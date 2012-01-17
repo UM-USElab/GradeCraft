@@ -8,6 +8,7 @@ gem 'haml'
 gem 'sorcery'
 gem 'exception_notification'
 gem 'easy_roles'
+gem 'paperclip', '~> 2.0'
 
 group :production do
   gem 'pg'

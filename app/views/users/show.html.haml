@@ -6,6 +6,10 @@
 %p
   %b Email:
   = @user.email
+  
+= image_tag @user.avatar.url
+= image_tag @user.avatar.url(:medium)
+= image_tag @user.avatar.url(:thumb)
 
 = link_to 'Edit', edit_user_path(@user)
 \|
