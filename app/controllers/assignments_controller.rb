@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+  
   # GET /assignments
   # GET /assignments.json
   def index

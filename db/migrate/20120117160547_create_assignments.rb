@@ -8,5 +8,6 @@ class CreateAssignments < ActiveRecord::Migration
 
       t.timestamps
     end
+    
   end
 end

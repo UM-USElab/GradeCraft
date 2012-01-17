@@ -7,6 +7,7 @@ gem 'formtastic'
 gem 'haml'
 gem 'sorcery'
 gem 'exception_notification'
+gem 'easy_roles'
 
 group :production do
   gem 'pg'
