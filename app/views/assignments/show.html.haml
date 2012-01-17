@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @assignment.title
+%p
+  %b Description:
+  = @assignment.description
+%p
+  %b Point total:
+  = @assignment.point_total
+%p
+  %b Due date:
+  = @assignment.due_date
+
+= link_to 'Edit', edit_assignment_path(@assignment)
+\|
+= link_to 'Back', assignments_path

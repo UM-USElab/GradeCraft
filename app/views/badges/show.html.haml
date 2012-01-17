@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @badge.title
+%p
+  %b Description:
+  = @badge.description
+%p
+  %b Icon:
+  = @badge.icon
+%p
+  %b Visible:
+  = @badge.visible
+
+= link_to 'Edit', edit_badge_path(@badge)
+\|
+= link_to 'Back', badges_path

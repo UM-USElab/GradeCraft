@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117060909) do
+ActiveRecord::Schema.define(:version => 20120117160647) do
+
+  create_table "assignments", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "point_total"
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "badges", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "icon"
+    t.binary   "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",                        :null => false

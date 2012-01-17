@@ -2,8 +2,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   
-  before_filter :require_login, :only => [:users]
-  
   def index
     @users = User.all
 
