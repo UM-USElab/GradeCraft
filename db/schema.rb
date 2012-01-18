@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117192531) do
+ActiveRecord::Schema.define(:version => 20120118022133) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -35,8 +35,34 @@ ActiveRecord::Schema.define(:version => 20120117192531) do
     t.datetime "image_updated_at"
   end
 
+  create_table "grades", :force => true do |t|
+    t.integer  "score"
+    t.integer  "user_id"
+    t.integer  "assignment_id"
+    t.string   "feedback"
+    t.integer  "badge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"
+  add_index "grades", ["badge_id"], :name => "index_grades_on_badge_id"
+  add_index "grades", ["user_id"], :name => "index_grades_on_user_id"
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "username",                                              :null => false
+    t.string   "username",                                               :null => false
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
@@ -52,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20120117192531) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "role",                            :default => "student"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

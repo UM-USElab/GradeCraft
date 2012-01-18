@@ -13,4 +13,21 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :message => "should match confirmation", :if => :password
   validates_presence_of :email
   validates_uniqueness_of :email
+  
+  def is_prof?
+    role == "professor"
+  end
+  
+  def is_gsi?
+    role =="gsi"
+  end
+  
+  def is_student?
+    role =="student"
+  end
+  
+  def is_admin?
+    role == "admin"
+  end
+  
 end
