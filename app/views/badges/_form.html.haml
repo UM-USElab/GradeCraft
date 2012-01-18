@@ -1,22 +1,7 @@
-= form_for @badge do |f|
-  -if @badge.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@badge.errors.count, "error")} prohibited this badge from being saved:"
-      %ul
-        - @badge.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :icon
-    = f.text_field :icon
-  .field
-    = f.label :visible
-    = f.text_field :visible
-  .actions
-    = f.submit 'Save'
+= semantic_form_for @badge do |f|
+	= f.inputs do
+		= f.input :title
+		= f.input :description, :as => :text
+		= f.input :icon
+		= f.input :visible, :as => :boolean
+		= f.buttons
