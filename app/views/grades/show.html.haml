@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Score:
+  = @grade.score
+%p
+  %b User:
+  = @grade.user
+%p
+  %b Assignment:
+  = @grade.assignment
+%p
+  %b Feedback:
+  = @grade.feedback
+%p
+  %b Badge:
+  = @grade.badge
+
+= link_to 'Edit', edit_grade_path(@grade)
+\|
+= link_to 'Back', grades_path

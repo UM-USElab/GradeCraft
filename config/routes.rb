@@ -1,5 +1,11 @@
 Grader::Application.routes.draw do
 
+  resources :groups
+
+  resources :teams
+
+  resources :grades
+
   root :to => "home#index"
 
   resources :user_sessions
