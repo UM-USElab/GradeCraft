@@ -6,3 +6,61 @@
  *= require_tree .
  *= require 'formtastic' 
 */
+
+html {
+  font-family: Helvetica, sans-serif;
+  background-color: #333;
+}
+
+body {
+  width: 800px;
+  margin: 15px auto;
+  background-color: #FFF;
+  padding: 15px 20px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 15px #888;
+}
+
+a {
+  color: #0047ae;
+  text-decoration: none;
+  &:visited {
+    color: #5199ae; }
+  &:hover {
+    color: #fff;
+    background-color: #000; } 
+  }
+
+a:hover {
+  text-decoration: underline;
+}
+table {
+  text-align: left;
+}
+
+#primaryContent {
+  position: relative;
+  left: 200px;
+} 
+
+#footer {
+  margin-top: 45px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+
+#nav {
+  text-align: right;
+}
+
+#nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+#nav li {
+  margin-left: 8px;
+  display: inline;
+}

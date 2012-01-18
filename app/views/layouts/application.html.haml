@@ -8,16 +8,23 @@
   = csrf_meta_tags
     
 %body
- #nav
- - if current_user
-  = link_to "Home", root_url
-  = link_to "Edit Profile", edit_user_path(current_user.id)
-  = link_to "Logout", :logout 
- - else
-  = link_to "Register", new_user_path 
-  = link_to "Login", :login 
- %h1 Welcome to the EDU222 Grade Tracker!
+ #nav  
+  %ul
+   - if current_user
+    %li= link_to "Dashboard", root_url
+    %li= link_to "Assignments", assignments_url
+    %li= link_to "Badges", badges_url
+    %li= link_to "Team Rankings", teams_url
+    %li= link_to "My Account", edit_user_path(current_user.id)
+    %li= link_to "Logout", :logout 
+   - else
+    %li= link_to "Register", new_user_path 
+    %li= link_to "Login", :login 
+ %h1 EDU222 Grade Tracker
  %div
   %p#notice= notice
   %p#alert= alert 
  = yield
+ 
+ #footer
+  .copyright Copyright 2012 Barry Fishman | Site Credits

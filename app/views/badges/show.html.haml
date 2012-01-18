@@ -1,5 +1,3 @@
-%p#notice= notice
-
 %p
   %b Title:
   = @badge.title
@@ -9,10 +7,9 @@
 %p
   %b Icon:
   = @badge.icon
-%p
-  %b Visible:
-  = @badge.visible
 
 = link_to 'Edit', edit_badge_path(@badge)
 \|
 = link_to 'Back', badges_path
+\|
+= link_to 'New Badge', new_badge_path

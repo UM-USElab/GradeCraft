@@ -1,3 +1,4 @@
 class Badge < ActiveRecord::Base
-	belongs_to :assignments
+  has_attached_file :image, 
+                    :styles => { :small => "70x70>" }                               
 end

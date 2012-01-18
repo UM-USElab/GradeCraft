@@ -1,10 +1,10 @@
-%h1 Listing badges
+%h1 The (Mostly) Complete Badge List
 
 %table
   %tr
+    %th Icon
     %th Title
     %th Description
-    %th Icon
     %th Visible
     %th
     %th
@@ -12,9 +12,9 @@
 
   - @badges.each do |badge|
     %tr
+      %td= badge.icon
       %td= badge.title
       %td= badge.description
-      %td= badge.icon
       %td= badge.visible
       %td= link_to 'Show', badge
       %td= link_to 'Edit', edit_badge_path(badge)

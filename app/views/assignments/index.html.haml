@@ -1,10 +1,9 @@
-%h1 Listing assignments
+%h1 The Master Assignment List
 
 %table
   %tr
     %th Title
-    %th Description
-    %th Point Total
+    %th Points
     %th Due Date
     %th
     %th
@@ -13,7 +12,6 @@
   - @assignments.each do |assignment|
     %tr
       %td= assignment.title
-      %td= assignment.description
       %td= assignment.point_total
       %td= assignment.due_date
       %td= link_to 'Show', assignment
