@@ -10,14 +10,14 @@
     = f.label :email
     = @user.email
     = form_for(@user, :html => { :multipart => true }) do |f|
-  .field
-    = f.file_field :avatar
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-    = hidden_field_tag :token, @token
-  .actions
-    = f.submit
+      .field
+        = f.file_field :avatar
+      .field
+        = f.label :password
+        = f.password_field :password
+      .field
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation
+        = hidden_field_tag :token, @token
+      .actions
+        = f.submit
