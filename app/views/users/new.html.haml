@@ -1,8 +1,9 @@
-%h1 New user
+%div#content
+  %h2 New user
 
-= render 'form'
-= form_for :user, :html => { :multipart => true } do |form|
- = form.file_field :avatar
+  = render 'form'
+  = form_for :user, :html => { :multipart => true } do |form|
+    = form.file_field :avatar
 
 = link_to 'Back', users_path
 

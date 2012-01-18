@@ -1,12 +1,13 @@
-%p#notice= notice
+%div#content
+  %p#notice= notice
 
-%p
-  %b Name:
-  = @team.name
-%p
-  %b Points:
-%p
-  %b Rank:
+  %p
+    %b Name:
+    = @team.name
+  %p
+    %b Points:
+  %p
+    %b Rank:
 
 = link_to 'Edit', edit_team_path(@team)
 \|

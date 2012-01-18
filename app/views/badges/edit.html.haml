@@ -1,9 +1,10 @@
-%h1 Editing badge
+%div#content
+  %h2 Editing badge
 
-= render 'form'
-= form_for :badge, :html => { :multipart => true } do |form|
-  = form.file_field :image
-
+  = render 'form'
+  = form_for :badge, :html => { :multipart => true } do |form|
+    = form.file_field :image
+%br
 = link_to 'Show', @badge
 \|
 = link_to 'Back', badges_path

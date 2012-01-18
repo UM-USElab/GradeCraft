@@ -39,6 +39,21 @@ table {
   text-align: left;
 }
 
+h1#assignmentTitle {
+  margin-left: 15px;
+  font-size: 20px;
+}
+
+h3 {
+  margin-left: 15px;
+}
+
+#content {
+  position: relative;
+  left: 15px;
+  min-height: 400px;
+}
+
 #primaryContent {
   position: relative;
   left: 200px;
@@ -63,4 +78,25 @@ table {
 #nav li {
   margin-left: 8px;
   display: inline;
+}
+
+input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation {
+  width: 50%;
+}
+
+input#assignment_point_total {
+  width: 100px;
+}
+
+th#description {
+  width: 250px;
+}
+
+th#title {
+  width: 200px;
+  padding-right: 10px;
+}
+
+th#icon {
+  width: 50px;
 }

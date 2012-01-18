@@ -1,15 +1,16 @@
-%p
-  %b Title:
-  = @assignment.title
-%p
-  %b Description:
-  = @assignment.description
-%p
-  %b Point Total:
-  = @assignment.point_total
-%p
-  %b Due Date:
-  = @assignment.due_date
+%div#content
+  %p
+    %b Title:
+    = @assignment.title
+  %p
+    %b Description:
+    = @assignment.description
+  %p
+    %b Point Total:
+    = @assignment.point_total
+  %p
+    %b Due Date:
+    = @assignment.due_date
 
 = link_to 'Edit', edit_assignment_path(@assignment)
 \|

@@ -1,7 +1,7 @@
-%h1 Editing assignment
+%div#content
+  %h2 Editing assignment
+  = render 'form'
 
-= render 'form'
-
-= link_to 'Show', @assignment
+= link_to 'View', @assignment
 \|
 = link_to 'Back', assignments_path

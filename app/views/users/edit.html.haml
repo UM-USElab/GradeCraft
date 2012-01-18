@@ -1,11 +1,12 @@
-%h1 Editing user
+%div#content
+  %h2 Editing user
 
-= render 'form'
-= form_for :user, :html => { :multipart => true } do |form|
-  = form.file_field :avatar
+  = render 'form'
+  = form_for :user, :html => { :multipart => true } do |form|
+    = form.file_field :avatar
 
 
-= link_to 'Show', @user
+= link_to 'View', @user
 \|
 = link_to 'Back', users_path
 
