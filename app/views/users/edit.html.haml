@@ -2,9 +2,6 @@
 
 = render 'form'
 
-= form_for :user, :html => { :multipart => true } do |form|
- = form.file_field :avatar
-
 = link_to 'Show', @user
 \|
 = link_to 'Back', users_path
