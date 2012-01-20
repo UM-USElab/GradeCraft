@@ -1,0 +1,12 @@
+= form_for @user, :url => password_reset_path(@token), :html => { :method => :put } do |f|
+  %ol
+    %li
+      = f.label :password
+      = f.password_field :password
+    %li
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation
+      = hidden_field_tag :token, @token
+  = submit_tag 'Save'
+  or
+  = link_to 'Cancel', root_path

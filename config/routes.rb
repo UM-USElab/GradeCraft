@@ -4,15 +4,15 @@ Grader::Application.routes.draw do
 
   resources :user_sessions
   resources :users
-  resources :password_resets 
+  resources :password_resets
   resources :assignments
-  resources :badges  
+  resources :badges
   resources :groups
   resources :teams
   resources :grades
   resources :info
   resources :dashboards
-  
+
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
 
