@@ -14,6 +14,7 @@ class DashboardsController < ApplicationController
   # GET /dashboards/1
   # GET /dashboards/1.json
   def show
+    @title = "My Dashboard"
     @dashboard = Dashboard.find(params[:id])
 
     respond_to do |format|

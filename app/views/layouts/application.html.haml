@@ -20,13 +20,12 @@
     - else
       %li= link_to "Register", new_user_path 
       %li= link_to "Login", :login 
-  %h1 EDU222 Grade Tracker
+  %h1= title
   %div
     %p#notice= notice
     %p#alert= alert 
   %div#content
-    %h2= @title
     = yield
 
   #footer
-    .copyright Copyright 2012 Barry Fishman | Site Credits
+    .copyright< Copyright 2012 Barry Fishman | <a href="/info/index">Site Credits</a>
