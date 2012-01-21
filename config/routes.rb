@@ -12,6 +12,8 @@ Grader::Application.routes.draw do
   resources :grades
   resources :info
   resources :dashboards
+  
+  get "info/index"
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout

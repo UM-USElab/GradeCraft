@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20120119192758) do
   end
 
   create_table "badges", :force => true do |t|
-    t.integer  "assignment_id"
     t.string   "title"
     t.string   "description"
     t.string   "icon"
@@ -35,8 +34,6 @@ ActiveRecord::Schema.define(:version => 20120119192758) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
-
-  add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
 
   create_table "dashboards", :force => true do |t|
     t.datetime "created_at"
@@ -85,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20120119192758) do
     t.datetime "reset_password_email_sent_at"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.string   "roles",                           :default => "--- []"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
