@@ -1,23 +1,20 @@
-%div#content
-  %h2 The Master Assignment List
+%table
+  %tr
+    %th Title
+    %th Points
+    %th Due Date
+    %th
+    %th
+    %th
 
-  %table
+  - @assignments.each do |assignment|
     %tr
-      %th Title
-      %th Points
-      %th Due Date
-      %th
-      %th
-      %th
-
-    - @assignments.each do |assignment|
-      %tr
-        %td= assignment.title
-        %td= assignment.point_total
-        %td= assignment.due_date
-        %td= link_to 'View', assignment
-        %td= link_to 'Edit', edit_assignment_path(assignment)
-        %td= link_to 'Delete', assignment, :confirm => 'Are you sure?', :method => :delete
+      %td= assignment.title
+      %td= assignment.point_total
+      %td= assignment.due_date
+      %td= link_to 'View', assignment
+      %td= link_to 'Edit', edit_assignment_path(assignment)
+      %td= link_to 'Delete', assignment, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

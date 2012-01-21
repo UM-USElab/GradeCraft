@@ -3,6 +3,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments
   # GET /assignments.json
   def index
+    @title = "View all Assignments"
     @assignments = Assignment.all
 
     respond_to do |format|
@@ -14,6 +15,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1
   # GET /assignments/1.json
   def show
+    @title = "View all Assignments"
     @assignment = Assignment.find(params[:id])
 
     respond_to do |format|
@@ -25,6 +27,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/new
   # GET /assignments/new.json
   def new
+    @title = "Create a New Assignment"
     @assignment = Assignment.new
 
     respond_to do |format|
@@ -35,6 +38,7 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments/1/edit
   def edit
+    @title = "Edit this Assignment"
     @assignment = Assignment.find(params[:id])
   end
 

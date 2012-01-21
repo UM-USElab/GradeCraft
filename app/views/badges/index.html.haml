@@ -1,26 +1,22 @@
-%div#content
-  %h2 The (Mostly) Complete Badge List
+%table
+  %tr
+    %th#icon Icon
+    %th#title Title
+    %th#description Description
+    %th#visible Visible
+    %th
+    %th
+    %th
 
-  %table
+  - @badges.each do |badge|
     %tr
-      %th#icon Icon
-      %th#title Title
-      %th#description Description
-      %th#visible Visible
-      %th
-      %th
-      %th
-
-    - @badges.each do |badge|
-      %tr
-        %td= badge.icon
-        %td= badge.title
-        %td= badge.description
-        %td= badge.visible
-        %td= link_to 'View', badge
-        %td= link_to 'Edit', edit_badge_path(badge)
-        %td= link_to 'Delete', badge, :confirm => 'Are you sure?', :method => :delete
-
-  %br
+      %td= badge.icon
+      %td= badge.title
+      %td= badge.description
+      %td= badge.visible
+      %td= link_to 'View', badge
+      %td= link_to 'Edit', edit_badge_path(badge)
+      %td= link_to 'Delete', badge, :confirm => 'Are you sure?', :method => :delete
+%br
 
 = link_to 'New Badge', new_badge_path

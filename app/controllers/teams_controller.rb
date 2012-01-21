@@ -2,6 +2,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
+    @title = "View All Teams"
     @teams = Team.all
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @title = "View Team"
     @team = Team.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +26,7 @@ class TeamsController < ApplicationController
   # GET /teams/new
   # GET /teams/new.json
   def new
+    @title = "Create a New Team"
     @team = Team.new
 
     respond_to do |format|
@@ -34,6 +37,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
+    @title = "Edit Team"
     @team = Team.find(params[:id])
   end
 

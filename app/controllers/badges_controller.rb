@@ -3,6 +3,7 @@ class BadgesController < ApplicationController
   # GET /badges
   # GET /badges.json
   def index
+    @title = "View All Badges"
     @badges = Badge.all
 
     respond_to do |format|
@@ -14,6 +15,7 @@ class BadgesController < ApplicationController
   # GET /badges/1
   # GET /badges/1.json
   def show
+    @title = "View Badge"
     @badge = Badge.find(params[:id])
 
     respond_to do |format|
@@ -25,6 +27,7 @@ class BadgesController < ApplicationController
   # GET /badges/new
   # GET /badges/new.json
   def new
+    @title = "Create a New Badge"
     @badge = Badge.new
 
     respond_to do |format|
@@ -35,6 +38,7 @@ class BadgesController < ApplicationController
 
   # GET /badges/1/edit
   def edit
+    @title = "Edit Badge"
     @badge = Badge.find(params[:id])
   end
 

@@ -1,10 +1,7 @@
-%div#content
-  %h2 Login
+= render 'form'
 
-  = render 'form'
-
-  %br
-  %h2 Forgot Password?
-  = render 'forgot_password_form'
+%br
+%h2 Forgot Password?
+= render 'forgot_password_form'
 
 = link_to 'Back', user_sessions_path

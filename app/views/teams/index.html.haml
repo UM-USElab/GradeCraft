@@ -1,21 +1,18 @@
-%div#content
-  %h2 Team Rankings
+%table
+  %tr
+    %th Ranking
+    %th Name
+    %th Total Points
+    %th
 
-  %table
+  - @teams.each do |team|
     %tr
-      %th Ranking
-      %th Name
-      %th Total Points
-      %th
-
-    - @teams.each do |team|
-      %tr
-        %td= team.name
-        %td
-        %td
-        %td= link_to 'View', team
-        %td= link_to 'Edit', edit_team_path(team)
-        %td= link_to 'Delete', team, :confirm => 'Are you sure?', :method => :delete
+      %td= team.name
+      %td
+      %td
+      %td= link_to 'View', team
+      %td= link_to 'Edit', edit_team_path(team)
+      %td= link_to 'Delete', team, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

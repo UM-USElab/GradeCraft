@@ -2,6 +2,7 @@ class DashboardsController < ApplicationController
   # GET /dashboards
   # GET /dashboards.json
   def index
+    @title = "View Dashboards"
     @dashboards = Dashboard.all
 
     respond_to do |format|

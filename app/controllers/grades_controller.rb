@@ -2,6 +2,7 @@ class GradesController < ApplicationController
   # GET /grades
   # GET /grades.json
   def index
+    @title = "View All Grades"
     @grades = Grade.all
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class GradesController < ApplicationController
   # GET /grades/1
   # GET /grades/1.json
   def show
+    @title = "View Grade"
     @grade = Grade.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +26,7 @@ class GradesController < ApplicationController
   # GET /grades/new
   # GET /grades/new.json
   def new
+    @title = "Submit New Grade"
     @grade = Grade.new
 
     respond_to do |format|
@@ -34,6 +37,7 @@ class GradesController < ApplicationController
 
   # GET /grades/1/edit
   def edit
+    @title = "Edit Grade"
     @grade = Grade.find(params[:id])
   end
 

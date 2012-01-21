@@ -4,6 +4,7 @@ class PasswordResetsController < ApplicationController
   # request password reset.
   # you get here when the user entered his email in the reset password form and submitted it.
   def create
+    @title = "Create a New Password"
     @user = User.find_by_email(params[:email])
 
     # This line sends an email to the user with instructions on how to reset their password (a url with a random token)
@@ -16,6 +17,7 @@ class PasswordResetsController < ApplicationController
 
   # This is the reset password form.
   def edit
+    @title = "Edit Your Password"
     @user = User.load_from_reset_password_token(params[:id])
     @token = params[:id]
     not_authenticated unless @user

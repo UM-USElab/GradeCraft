@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
   def index
+    @title = "View All Groups"
     @groups = Group.all
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @title = "View Group"
     @group = Group.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +26,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   # GET /groups/new.json
   def new
+    @title = "Create a New Group"
     @group = Group.new
 
     respond_to do |format|
@@ -34,6 +37,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+    @title = "Edit Group"
     @group = Group.find(params[:id])
   end
 

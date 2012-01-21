@@ -1,12 +1,9 @@
-%div#content
-  = image_tag @user.avatar.url
-
-  %p
-    %b Username:
-    = @user.username
-  %p
-    %b Email:
-    = @user.email
+%p
+  %b Username:
+  = @user.username
+%p
+  %b Email:
+  = @user.email
 
 = link_to 'Edit', edit_user_path(@user)
 \|
