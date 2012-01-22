@@ -20,15 +20,19 @@ class User < ActiveRecord::Base
   end
   
   def is_gsi?
-    role =="gsi"
+    role == "gsi"
   end
   
   def is_student?
-    role =="student"
+    role == "student" || role.blank?
   end
   
   def is_admin?
     role == "admin"
+  end
+  
+  def role
+    super || "student"
   end
   
 end

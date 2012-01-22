@@ -4,11 +4,13 @@
     %th Name
     %th Total Points
     %th
+    %th
+    %th
 
   - @teams.each do |team|
     %tr
-      %td= team.name
       %td
+      %td= team.name
       %td
       %td= link_to 'View', team
       %td= link_to 'Edit', edit_team_path(team)
