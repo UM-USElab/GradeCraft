@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20120122063317) do
-=======
-ActiveRecord::Schema.define(:version => 20120122024929) do
->>>>>>> b3a5d0cf1299fd5c9f6c931e08d151d511aefbaf
+ActiveRecord::Schema.define(:version => 20120122144425) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -27,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20120122024929) do
   end
 
   create_table "badges", :force => true do |t|
-    t.integer  "assignment_id"
     t.string   "title"
     t.string   "description"
     t.string   "icon"
@@ -49,8 +44,6 @@ ActiveRecord::Schema.define(:version => 20120122024929) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
 
   create_table "dashboards", :force => true do |t|
     t.datetime "created_at"
@@ -112,6 +105,8 @@ ActiveRecord::Schema.define(:version => 20120122024929) do
     t.datetime "avatar_updated_at"
     t.string   "role",                            :default => "student"
     t.integer  "team_id"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

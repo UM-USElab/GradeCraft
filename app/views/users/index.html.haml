@@ -1,6 +1,8 @@
 %table
   %tr
     %th Username
+    %th First Name
+    %th Last Name
     %th Email
     %th Role
     %th
@@ -11,6 +13,8 @@
   - @users.each do |user|
     %tr
       %td= user.username
+      %td= user.first_name 
+      %td= user.last_name
       %td= user.email
       %td= user.role
       %td= link_to 'View', user
