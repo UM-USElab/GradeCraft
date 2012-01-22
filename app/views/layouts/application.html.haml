@@ -11,11 +11,15 @@
   #nav
     %ul
     - if current_user
-      %li= link_to "Dashboard", dashboard_url
-      %li= link_to "Assignments", assignments_url
-      %li= link_to "Badges", badges_url
-      %li= link_to "Team Rankings", teams_url
-      %li= link_to "Team Challenges", challenges_url
+      %li= link_to "Dashboard", dashboard_path
+      - if current_user.is_staff?
+        %li= link_to "Users", users_path
+      - else
+        \\ Show student only links here
+      %li= link_to "Assignments", assignments_path
+      %li= link_to "Badges", badges_path
+      %li= link_to "Team Rankings", teams_path
+      %li= link_to "Team Challenges", challenges_path
       %li= link_to "My Account", edit_profile_users_path
       %li= link_to "Logout", :logout
     - else
