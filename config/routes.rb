@@ -11,11 +11,11 @@ Grader::Application.routes.draw do
   resources :teams
   resources :grades
   resources :info
-  resources :dashboards
   resources :home
-  
+
   get "info/index"
   get "home/index"
+  get 'dashboard' => 'info#dashboard'
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout

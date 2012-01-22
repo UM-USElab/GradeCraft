@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
   def create
     respond_to do |format|
       if @user = login(params[:username],params[:password],params[:remember])
-        format.html { redirect_to dashboards_path, :notice => 'Login successful.' }
+        format.html { redirect_to dashboard_path, :notice => 'Login successful.' }
         format.xml { render :xml => @users, :status => :created, :location => @user }
       else
         format.html { flash.now[:alert] = "Login failed."; render :action => "new" }

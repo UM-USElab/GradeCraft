@@ -3,27 +3,27 @@
 %html
   %head
     %title EDU222 Grade Tracker
-    = stylesheet_link_tag "application" 
+    = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-    
+
 %body
-  #nav  
+  #nav
     %ul
     - if current_user
-      %li= link_to "Dashboard", dashboards_url
+      %li= link_to "Dashboard", dashboard_url
       %li= link_to "Assignments", assignments_url
       %li= link_to "Badges", badges_url
       %li= link_to "Team Rankings", teams_url
       %li= link_to "My Account", edit_user_path(current_user.id)
-      %li= link_to "Logout", :logout 
+      %li= link_to "Logout", :logout
     - else
-      %li= link_to "Register", new_user_path 
-      %li= link_to "Login", :login 
+      %li= link_to "Register", new_user_path
+      %li= link_to "Login", :login
   %h1= title
   %div
     %p#notice= notice
-    %p#alert= alert 
+    %p#alert= alert
   %div#content
     = yield
 
