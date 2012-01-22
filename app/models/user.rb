@@ -42,5 +42,4 @@ class User < ActiveRecord::Base
   def is_staff?
     is_prof? || is_gsi? || is_admin?
   end
-
 end

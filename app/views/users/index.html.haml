@@ -1,3 +1,9 @@
+%ul.actions
+  - if @role
+    %li= link_to 'View all users', users_path
+    = render "#{@role}_actions"
+  - else
+    = render 'actions'
 %table
   %tr
     %th Username
@@ -9,11 +15,10 @@
     %th
     %th
     %th
-
   - @users.each do |user|
     %tr
       %td= user.username
-      %td= user.first_name 
+      %td= user.first_name
       %td= user.last_name
       %td= user.email
       %td= user.role
