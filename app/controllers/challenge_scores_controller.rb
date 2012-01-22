@@ -35,6 +35,8 @@ class ChallengeScoresController < ApplicationController
 
   # GET /challenge_scores/1/edit
   def edit
+    @teams = Team.all
+    @challenges = Challenge.all
     @challenge_score = ChallengeScore.find(params[:id])
   end
 

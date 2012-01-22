@@ -10,8 +10,9 @@
 
 %h3#blogging Blogging
 
-%h3.papers Game Selection Paper 
-= current_user.grades.first.score
+%h3.papers
+  Game Selection Paper: 
+  = current_user.grades.first.score
 
 %h3.papers Game Play Update Poster 1
 
@@ -24,3 +25,8 @@
 %h3.papers Individual Paper/Project 2
 
 %h3.papers Group Game Design Project
+
+%h3
+  Badges Earned:
+  - current_user.earned_badges.each do |badge|
+    %img{:src => badge.icon, :alt => badge.title}

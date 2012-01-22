@@ -1,20 +1,19 @@
-%p#notice= notice
-
+%p
+  %b User:
+  = @grade.user.username
+%p
+  %b Assignment:
+  = @grade.assignment.title
 %p
   %b Score:
   = @grade.score
 %p
-  %b User:
-  = @grade.user
-%p
-  %b Assignment:
-  = @grade.assignment
-%p
   %b Feedback:
   = @grade.feedback
 %p
-  %b Badge:
-  = @grade.badge
+  %b Badges:
+  - @grade.earned_badges.each do |badge|
+    %img{:src => badge.icon, :alt => badge.title}
 
 = link_to 'Edit', edit_grade_path(@grade)
 \|
