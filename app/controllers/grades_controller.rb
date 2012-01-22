@@ -1,4 +1,7 @@
 class GradesController < ApplicationController
+  
+  before_filter :ensure_staff?, :only=>[:index,:new,:edit,:create,:update,:destroy]
+  
   # GET /grades
   # GET /grades.json
   def index

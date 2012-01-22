@@ -1,5 +1,7 @@
 class AssignmentsController < ApplicationController
-  
+
+  before_filter :ensure_staff?, :only => [:new,:edit,:create,:update,:destroy] 
+
   # GET /assignments
   # GET /assignments.json
   def index

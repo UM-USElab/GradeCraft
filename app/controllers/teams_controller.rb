@@ -1,4 +1,7 @@
 class TeamsController < ApplicationController
+
+  before_filter :ensure_staff?, :only=>[:new,:edit,:create,:destroy]
+
   # GET /teams
   # GET /teams.json
   def index

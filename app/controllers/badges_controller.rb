@@ -1,5 +1,7 @@
 class BadgesController < ApplicationController
-  
+
+  before_filter :ensure_staff?, :only=>[:new,:edit,:create,:update,:destroy]  
+
   # GET /badges
   # GET /badges.json
   def index

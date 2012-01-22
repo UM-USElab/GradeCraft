@@ -35,4 +35,8 @@ class User < ActiveRecord::Base
     super || "student"
   end
   
+  def is_staff?
+    current_user.is_prof? || current_user.is_gsi? || current_user.is_admin?
+  end
+  
 end
