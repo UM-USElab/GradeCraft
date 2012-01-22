@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120119192758) do
+ActiveRecord::Schema.define(:version => 20120122024929) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20120119192758) do
   end
 
   create_table "badges", :force => true do |t|
+    t.integer  "assignment_id"
     t.string   "title"
     t.string   "description"
     t.string   "icon"
@@ -35,7 +36,16 @@ ActiveRecord::Schema.define(:version => 20120119192758) do
     t.datetime "image_updated_at"
   end
 
+  add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
+
   create_table "dashboards", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "earned_badges", :force => true do |t|
+    t.integer  "grade_id"
+    t.integer  "badge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,7 +92,6 @@ ActiveRecord::Schema.define(:version => 20120119192758) do
     t.datetime "reset_password_email_sent_at"
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
-    t.string   "roles",                           :default => "--- []"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

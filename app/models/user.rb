@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
                     :path => ':rails_root/public/assets/avatars/:id/:style/:basename.:extension',
                     :default_url => '/images/missing_:style.png'
 
+
+  has_many :grades
+  has_many :earned_badges, :through => :grades
+
   validates_length_of :password, :minimum => 3, :message => "password must be at least 3 characters long", :if => :password
   validates_confirmation_of :password, :message => "should match confirmation", :if => :password
   validates_presence_of :email
