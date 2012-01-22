@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122194134) do
+ActiveRecord::Schema.define(:version => 20120122223744) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(:version => 20120122194134) do
     t.datetime "due_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "level"
+    t.string   "type"
   end
 
   create_table "badges", :force => true do |t|
-    t.integer  "assignment_id"
     t.string   "title"
     t.string   "description"
     t.string   "icon"
@@ -43,7 +44,6 @@ ActiveRecord::Schema.define(:version => 20120122194134) do
     t.integer  "challenge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
   end
 
   create_table "challenges", :force => true do |t|
