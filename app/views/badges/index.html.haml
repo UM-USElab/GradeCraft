@@ -3,10 +3,11 @@
     %th#icon Icon
     %th#title Title
     %th#description Description
-    %th#visible Visible
-    %th
-    %th
-    %th
+    - if current_user.is_staff?
+      %th#visible Visible
+      %th
+      %th
+      %th
 
   - @badges.each do |badge|
     %tr
@@ -14,10 +15,12 @@
         %img{:src => badge.icon, :alt => badge.title}
       %td= badge.title
       %td= badge.description
-      %td= badge.visible
-      %td= link_to 'View', badge
-      %td= link_to 'Edit', edit_badge_path(badge)
-      %td= link_to 'Delete', badge, :confirm => 'Are you sure?', :method => :delete
+      - if current_user.is_staff?
+        %td= badge.visible
+        %td= link_to 'View', badge
+        %td= link_to 'Edit', edit_badge_path(badge)
+        %td= link_to 'Delete', badge, :confirm => 'Are you sure?', :method => :delete
 %br
 
-= link_to 'New Badge', new_badge_path
+- if current_user.is_staff?
+  = link_to 'New Badge', new_badge_path

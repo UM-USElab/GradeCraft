@@ -4,9 +4,10 @@
     %th Title
     %th Points
     %th Due Date
-    %th
-    %th
-    %th
+    - if current_user.is_staff?
+      %th
+      %th
+      %th
 
   - @assignments.each do |assignment|
     %tr
@@ -14,10 +15,12 @@
       %td= assignment.title
       %td= assignment.point_total
       %td= assignment.due_date
-      %td= link_to 'View', assignment
-      %td= link_to 'Edit', edit_assignment_path(assignment)
-      %td= link_to 'Delete', assignment, :confirm => 'Are you sure?', :method => :delete
+      - if current_user.is_staff?
+        %td= link_to 'View', assignment
+        %td= link_to 'Edit', edit_assignment_path(assignment)
+        %td= link_to 'Delete', assignment, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Assignment', new_assignment_path
+- if current_user.is_staff?
+  = link_to 'New Assignment', new_assignment_path

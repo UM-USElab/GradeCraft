@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  attr_accessible :username, :email, :password, :password_confirmation, :role, :first_name, :last_name
+  attr_accessible :username, :email, :password, :password_confirmation, :role, :first_name, :last_name, :team_id
 
   has_attached_file :avatar,
                     :styles => { :medium => "300x300>",
@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   validates_length_of :password, :minimum => 3, :message => "password must be at least 3 characters long", :if => :password
   validates_confirmation_of :password, :message => "should match confirmation", :if => :password
-  validates :name, :presence => true
+  validates :username, :presence => true
   validates_uniqueness_of :email
 
   def is_prof?
