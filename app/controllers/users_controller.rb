@@ -32,6 +32,7 @@ class UsersController < ApplicationController
   def new
     @title = "Register"
     @user = User.new
+    @teams = Team.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -51,6 +52,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user = User.create(params[:user])
+    @teams = Team.all
 
     respond_to do |format|
       if @user.save
@@ -67,6 +69,7 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    @teams = Team.all
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

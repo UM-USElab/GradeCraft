@@ -32,6 +32,8 @@ class GradesController < ApplicationController
     @title = "Submit New Grade"
     @grade = Grade.new
     @users = User.all
+    @badges = Badge.all
+    @teams = Team.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -49,6 +51,9 @@ class GradesController < ApplicationController
   # POST /grades.json
   def create
     @grade = Grade.new(params[:grade])
+    @users = User.all
+    @badges = Badge.all
+    @teams = Team.all
 
     respond_to do |format|
       if @grade.save

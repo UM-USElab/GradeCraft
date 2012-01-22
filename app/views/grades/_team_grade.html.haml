@@ -1,6 +1,6 @@
 = semantic_form_for @grade do |f|
   = f.inputs do
-    = f.input :user, :as => :select, :collection => @users
+    = f.input :team, :as => :select, :collection => @teams
     = f.input :assignment
     = f.input :score
     = f.input :feedback, :as => :text
