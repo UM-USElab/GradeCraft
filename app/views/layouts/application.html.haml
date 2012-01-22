@@ -14,8 +14,8 @@
       %li= link_to "Dashboard", dashboard_path
       - if current_user.is_staff?
         %li= link_to "Users", users_path
-      - else 
-        \\ Show student only links here
+      - else
+        // Show student only links here
       %li= link_to "Assignments", assignments_path
       %li= link_to "Badges", badges_path
       %li= link_to "Team Rankings", teams_path
