@@ -10,8 +10,8 @@
 
   - @badges.each do |badge|
     %tr
-      /%img{:src => @badge.icon, :alt => @badge.title}
       %td
+        %img{:src => badge.icon, :alt => badge.title}
       %td= badge.title
       %td= badge.description
       %td= badge.visible

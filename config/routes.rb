@@ -1,7 +1,5 @@
 Grader::Application.routes.draw do
 
-  resources :challenges
-
   root :to => "home#index"
 
   resources :user_sessions
@@ -19,6 +17,8 @@ Grader::Application.routes.draw do
   resources :grades
   resources :info
   resources :home
+  resources :challenge_scores
+  resources :challenges
 
   get "info/index"
   get "home/index"

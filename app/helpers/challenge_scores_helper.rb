@@ -1,0 +1,2 @@
+module ChallengeScoresHelper
+end

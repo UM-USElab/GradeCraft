@@ -1,0 +1,16 @@
+%p
+  %b Score:
+  = @challenge_score.score
+%p
+  %b Feedback:
+  = @challenge_score.feedback
+%p
+  %b Team:
+  = @challenge_score.team_id
+%p
+  %b Challenge:
+  = @challenge_score.challenge_id
+
+= link_to 'Edit', edit_challenge_score_path(@challenge_score)
+\|
+= link_to 'Back', challenge_scores_path
