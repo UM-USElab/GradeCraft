@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20120122194134) do
   end
 
   create_table "badges", :force => true do |t|
+    t.integer  "assignment_id"
     t.string   "title"
     t.string   "description"
     t.string   "icon"
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20120122194134) do
     t.integer  "challenge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
   end
 
   create_table "challenges", :force => true do |t|
