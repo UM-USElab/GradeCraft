@@ -3,7 +3,12 @@ Grader::Application.routes.draw do
   root :to => "home#index"
 
   resources :user_sessions
-  resources :users
+  resources :users do
+    collection do
+      get 'edit_profile'
+      put 'update_profile'
+    end
+  end
   resources :password_resets
   resources :assignments
   resources :badges

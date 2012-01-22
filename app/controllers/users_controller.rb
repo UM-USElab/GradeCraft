@@ -72,6 +72,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :ok }
       else
+        debugger
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -88,5 +89,14 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :ok }
     end
+  end
+  
+  def edit_profile
+    @user = current_user
+  end
+  
+  def update_profile
+    @user = current_user
+    @user.update_attribute(:password, params[:password]) if params[:password] == params[:confirm_password]
   end
 end
