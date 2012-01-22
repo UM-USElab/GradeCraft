@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # GET /users.json
 
   skip_before_filter :require_login, :only=>[:create,:new]
-  before_filter :ensure_staff?, :only=>[:index,:destroy]
+  before_filter :'ensure_staff?', :only=>[:index,:destroy]
 
   def index
     @title = "View all Users"
