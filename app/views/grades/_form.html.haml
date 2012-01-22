@@ -1,25 +1,8 @@
-= form_for @grade do |f|
-  -if @grade.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@grade.errors.count, "error")} prohibited this grade from being saved:"
-      %ul
-        - @grade.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :score
-    = f.number_field :score
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :assignment
-    = f.text_field :assignment
-  .field
-    = f.label :feedback
-    = f.text_field :feedback
-  .field
-    = f.label :badge
-    = f.text_field :badge
-  .actions
-    = f.submit 'Save'
+= semantic_form_for @grade do |f|
+  = f.inputs do
+    = f.input :score
+    = f.input :user, :as => :select, :collection => @users
+    = f.input :assignment
+    = f.input :feedback
+    = f.input :badge, :as => :check_boxes
+    = f.buttons

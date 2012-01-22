@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   def edit
     @title = "Edit User"
     @user = User.find(params[:id])
+    @teams = Team.all
   end
 
   # POST /users

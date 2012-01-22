@@ -1,5 +1,7 @@
 Grader::Application.routes.draw do
 
+  resources :challenges
+
   root :to => "home#index"
 
   resources :user_sessions

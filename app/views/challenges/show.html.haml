@@ -1,0 +1,19 @@
+%p
+  %b Title:
+  = @challenge.title
+%p
+  %b Points:
+  = @challenge.points
+%p
+  %b Team:
+  = @challenge.team_id
+%p
+  %b Description:
+  = @challenge.description
+%p
+  %b Date:
+  = @challenge.date
+
+= link_to 'Edit', edit_challenge_path(@challenge)
+\|
+= link_to 'Back', challenges_path

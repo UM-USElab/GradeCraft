@@ -5,5 +5,6 @@
       = f.input :password, :as => :password
       = f.input :password_confirmation, :as => :password
     = f.input :role, :as => :select, :collection => [["Student", "student"], ["GSI", "gsi"], ["Professor", "professor"], ["Admin", "admin"]]
+    = f.input :team_id, :as => :select, :collection => @teams
     /= f.input :token, :as => :hidden 
     = f.buttons       
