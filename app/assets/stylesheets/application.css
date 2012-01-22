@@ -36,7 +36,20 @@ a:hover {
   text-decoration: underline;
 }
 table {
+  border: 1px solid #eee;
   text-align: left;
+  border-collapse:collapse;
+}
+
+table th {
+  padding: 8px;
+  border: 1px solid #eee;
+}
+
+table td {
+  padding: 8px;
+  margin: 0px;
+  border: 1px solid #eee;
 }
 
 h1#assignmentTitle {

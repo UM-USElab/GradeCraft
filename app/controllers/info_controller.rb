@@ -1,5 +1,5 @@
 class InfoController < ApplicationController
-  def home
-  
+  def show
+    @title = "Site Credits"
   end
 end

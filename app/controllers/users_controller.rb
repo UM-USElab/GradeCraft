@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @title = "Create a New User"
+    @title = "Register"
     @user = User.new
 
     respond_to do |format|
