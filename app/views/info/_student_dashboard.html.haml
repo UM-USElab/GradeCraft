@@ -11,7 +11,7 @@
 %h3#blogging Blogging
 
 %h3.papers Game Selection Paper 
-/= @assignment.id[1].score
+= current_user.grades.first.score
 
 %h3.papers Game Play Update Poster 1
 
