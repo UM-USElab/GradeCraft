@@ -11,8 +11,8 @@
     %th Last Name
     %th Email
     %th Role
+    %th Team
     %th Total Points
-    %th
     %th
     %th
     %th
@@ -23,9 +23,9 @@
       %td= user.last_name
       %td= user.email
       %td= user.role
+      %td= user.team_id
       %td= user.grades.map(&:score).inject(&:+)          
       %td= link_to 'View', user
-      %td= link_to 'Edit Profile', edit_profile_users_path
       %td= link_to 'Edit Role', edit_user_path(user)
       %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
 
