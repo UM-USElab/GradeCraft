@@ -93,13 +93,4 @@ class GradesController < ApplicationController
       format.json { head :ok }
     end
   end
-
-  def mass_new
-    @assignment = Assignment.first
-    @grades = User.students.map { |s| @assignment.grades.find_or_create_by_user_id(s.id) }
-  end
-
-  def mass_create
-
-  end
 end
