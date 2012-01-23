@@ -15,7 +15,6 @@
     %th
     %th
     %th
-    %th
   - @users.each do |user|
     %tr
       %td= user.username
@@ -25,7 +24,6 @@
       %td= user.role
       %td= user.grades.map(&:score).inject(&:+)          
       %td= link_to 'View', user
-      %td= link_to 'Edit Profile', edit_profile_users_path
       %td= link_to 'Edit Role', edit_user_path(user)
       %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
 
