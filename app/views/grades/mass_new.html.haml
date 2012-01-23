@@ -1,0 +1,11 @@
+%h1= @assignment.title
+%ul.grades
+  = semantic_form_for(@assignment) do |f|
+    = f.semantic_fields_for :grades, @grades do |gf|
+      = gf.inputs do
+        %li= gf.object.user.name
+        = gf.input :score, :as => :boolean, :label => 'Present', :input_html => { :value => 5000 }
+    = f.buttons do
+      = f.commit_button 'Save'
+      or
+      = link_to 'Cancel', assignments_path

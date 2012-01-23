@@ -19,6 +19,14 @@ class User < ActiveRecord::Base
   validates :username, :presence => true
   validates_uniqueness_of :email
 
+  %w{student gsi professor admin}.each do |role|
+    scope role.pluralize, where(:role => role)
+  end
+
+  def name
+    [first_name,last_name].join(' ')
+  end
+
   def is_prof?
     role == "professor"
   end

@@ -1,7 +1,7 @@
 class GradesController < ApplicationController
-  
+
   before_filter :ensure_staff?, :only=>[:index,:new,:edit,:create,:update,:destroy]
-  
+
   # GET /grades
   # GET /grades.json
   def index
@@ -92,5 +92,14 @@ class GradesController < ApplicationController
       format.html { redirect_to grades_url }
       format.json { head :ok }
     end
+  end
+
+  def mass_new
+    @assignment = Assignment.first
+    @grades = User.students.map { |s| @assignment.grades.find_or_create_by_user_id(s.id) }
+  end
+
+  def mass_create
+
   end
 end

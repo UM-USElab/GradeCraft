@@ -21,7 +21,12 @@ Grader::Application.routes.draw do
   resources :badges
   resources :groups
   resources :teams
-  resources :grades
+  resources :grades do
+    collection do
+      get 'mass_new'
+      post 'mass_create'
+    end
+  end
   resources :info
   resources :home
   resources :challenge_scores
