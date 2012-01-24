@@ -16,6 +16,7 @@
     %th
     %th
     %th
+    %th
   - @users.each do |user|
     %tr
       %td= user.username
@@ -24,7 +25,11 @@
       %td= user.email
       %td= user.role
       %td= user.team_id
-      %td= user.grades.map(&:score).inject(&:+)          
+      %td= user.grades.map(&:score).inject(&:+)
+      - if user.is_student?
+        %td= link_to 'Student Dashboard', dashboard_path(user) 
+      - else
+        %td      
       %td= link_to 'View', user
       %td= link_to 'Edit Role', edit_user_path(user)
       %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
