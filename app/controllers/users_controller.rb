@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     @teams = Team.all
     @user = User.create(params[:user])
     respond_with @user
+    
   end
 
   def update

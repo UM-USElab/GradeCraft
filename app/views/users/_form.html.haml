@@ -2,8 +2,8 @@
   = f.inputs do
     = f.input :username
     = f.input :email
-    = f.input :first_name
-    = f.input :last_name
+    = f.input :first_name, :label => "First Name"
+    = f.input :last_name, :label => "Last Name"
     - if !@user.persisted?
       = f.input :password, :as => :password
       = f.input :password_confirmation, :as => :password

@@ -12,42 +12,23 @@
 
 %h3#blogging Blogging
 
-%h3.papers
-  Game Selection Paper:
-  - if current_user.grades.first.score valid?
-    = current_user.grades.first.score
+- Assignment.all.each do |assignment|
+  - if grade = assignment.grades.where(:user_id => current_user.id).first
+    = assignment.title
+    = grade.score
+    out of
+    = assignment.point_total
+    %br
+    - grade.earned_badges.each do |badge|
+      %img{:src => badge.icon, :alt => badge.title}
+    %br
+  - else
+    = assignment.title
+    = assignment.point_total
+    = assignment.due_date
+    %br
 
-%h3.papers 
-  Game Play Update Poster 1
-  - if current_user.grades.second.score valid?
-    = current_user.grades.second.score
-
-%h3.papers 
-  Game Play Update Poster 2
-  - if current_user.grades.third.score valid?
-    = current_user.grades.third.score
-
-%h3.papers 
-  Game Play Reflection Paper
-  - if current_user.grades.fourth.score valid?
-    = current_user.grades.fourth.score
-
-%h3.papers 
-  Individual Paper/Project 1
-  - if current_user.grades.fifth.score valid?
-    = current_user.grades.fifth.score
-
-%h3.papers 
-  Individual Paper/Project 2
-  - if current_user.grades.sixth.score valid?
-    = current_user.grades.sixth.score
-
-%h3.papers 
-  Group Game Design Project
-  - if current_user.grades.seventh.score valid?
-    = current_user.grades.seventh.score
-
-%h3
-  Badges Earned:
+%div#badgesEarned
+  %span.title Badges Earned:
   - current_user.earned_badges.each do |badge|
     %img{:src => badge.icon, :alt => badge.title}

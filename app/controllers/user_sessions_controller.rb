@@ -17,6 +17,7 @@ class UserSessionsController < ApplicationController
         format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
+    
   end
 
   def destroy
