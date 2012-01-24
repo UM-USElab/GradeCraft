@@ -1,7 +1,7 @@
 module ApplicationHelper
   # Return a title on a per-page basis.
   def title
-    base_title = "EDU222 Grade Tracker"
+    base_title = "EDUC 222 Grade Tracker"
     if @title.nil?
       base_title
     else

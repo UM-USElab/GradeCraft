@@ -2,7 +2,7 @@
 !!!
 %html
   %head
-    %title EDU222 Grade Tracker
+    %title EDUC 222 Grade Tracker
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -34,3 +34,6 @@
 
   #footer
     .copyright< Copyright 2012 Barry Fishman | <a href="/info/index">Site Credits</a>
+
+
+= debug(params) if Rails.env.development?

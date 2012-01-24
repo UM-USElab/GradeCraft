@@ -13,20 +13,39 @@
 %h3#blogging Blogging
 
 %h3.papers
-  Game Selection Paper: 
-  = current_user.grades.first.score
+  Game Selection Paper:
+  - if current_user.grades.first.score valid?
+    = current_user.grades.first.score
 
-%h3.papers Game Play Update Poster 1
+%h3.papers 
+  Game Play Update Poster 1
+  - if current_user.grades.second.score valid?
+    = current_user.grades.second.score
 
-%h3.papers Game Play Update Poster 2
+%h3.papers 
+  Game Play Update Poster 2
+  - if current_user.grades.third.score valid?
+    = current_user.grades.third.score
 
-%h3.papers Game Play Reflection Paper
+%h3.papers 
+  Game Play Reflection Paper
+  - if current_user.grades.fourth.score valid?
+    = current_user.grades.fourth.score
 
-%h3.papers Individual Paper/Project 1
+%h3.papers 
+  Individual Paper/Project 1
+  - if current_user.grades.fifth.score valid?
+    = current_user.grades.fifth.score
 
-%h3.papers Individual Paper/Project 2
+%h3.papers 
+  Individual Paper/Project 2
+  - if current_user.grades.sixth.score valid?
+    = current_user.grades.sixth.score
 
-%h3.papers Group Game Design Project
+%h3.papers 
+  Group Game Design Project
+  - if current_user.grades.seventh.score valid?
+    = current_user.grades.seventh.score
 
 %h3
   Badges Earned:
