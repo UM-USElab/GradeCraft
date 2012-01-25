@@ -93,4 +93,10 @@ class GradesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def mass_new 
+  end
+  
+  def mass_create
+  end
 end
