@@ -8,9 +8,6 @@
   %b Score:
   = @grade.score
 %p
-  %b Feedback:
-  = @grade.feedback
-%p
   %b Badges:
   - @grade.earned_badges.each do |badge|
     %img{:src => badge.icon, :alt => badge.title}
