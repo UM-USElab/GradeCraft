@@ -3,6 +3,7 @@
 %h2#points 
   Current Points Total/Available Points
   = current_user.grades.map(&:score).inject(&:+)
+  out of
 
 %h2#grading Grades & Assignments
 

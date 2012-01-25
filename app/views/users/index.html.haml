@@ -6,18 +6,19 @@
     = render 'actions'
 %table
   %tr
-    %th Username
-    %th First Name
-    %th Last Name
-    %th Email
-    %th Role
-    %th Team
-    %th Total Points
+    %th= sortable "username"
+    %th= sortable "first_name"
+    %th= sortable "last_name"
+    %th= sortable "email"
+    %th= sortable "role"
+    %th= sortable "team_id"
+    %th= sortable "Total Points"
+    %th Badges Earned
     %th
     %th
     %th
     %th
-  - @users.each do |user|
+  - for user in @users
     %tr
       %td= user.username
       %td= user.first_name
@@ -26,10 +27,12 @@
       %td= user.role
       %td= user.team_id
       %td= user.grades.map(&:score).inject(&:+)
-      - if user.is_student?
-        %td= link_to 'Student Dashboard', dashboard_path(user) 
-      - else
-        %td      
+      %td
+        - user.earned_badges.each do |badge|
+          %img{:src => badge.icon, :alt => badge.title, :width => "25"}
+      %td
+        - if user.is_student?
+          = link_to 'Student Dashboard', dashboard_path(user)      
       %td= link_to 'View', user
       %td= link_to 'Edit Role', edit_user_path(user)
       %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete

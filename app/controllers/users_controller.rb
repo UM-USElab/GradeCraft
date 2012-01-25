@@ -3,8 +3,11 @@ class UsersController < ApplicationController
 
   skip_before_filter :require_login, :only=>[:create,:new]
   before_filter :'ensure_staff?', :only=>[:index,:destroy]
+  
+  helper_method :sort_column, :sort_direction
 
   def index
+    @users = User.order(sort_column + " " + sort_direction)
     @title = "View all Users"
     @role = params[:role]
     if @role
@@ -69,4 +72,15 @@ class UsersController < ApplicationController
     @user.update_attribute(:password, params[:password]) if params[:password] == params[:confirm_password]
     respond_with @user
   end
+
+  private 
+  
+  def sort_column
+    User.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+  
 end

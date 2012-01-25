@@ -10,6 +10,27 @@
 %p
   %b Email:
   = @user.email
+  
+- Assignment.all.each do |assignment|
+  - if grade = assignment.grades.where(:user_id => current_user.id).first
+    = assignment.title
+    = grade.score
+    out of
+    = assignment.point_total
+    %br
+    - grade.earned_badges.each do |badge|
+      %img{:src => badge.icon, :alt => badge.title, :width => "25"}
+    %br
+  - else
+    = assignment.title
+    = assignment.point_total
+    = assignment.due_date
+    %br
+
+%div#badgesEarned
+  %span.title Badges Earned:
+  - current_user.earned_badges.each do |badge|
+    %img{:src => badge.icon, :alt => badge.title}  
 
 = link_to 'Edit', edit_user_path(@user)
 \|
