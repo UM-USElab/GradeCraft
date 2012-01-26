@@ -13,6 +13,14 @@
     %tr
       %td= grade.user.username
       %td= grade.assignment.title
+      %td= grade.score
+      %td= grade.feedback
+      %td
+        - grade.earned_badges.each do |badge|
+          %img{:src => badge.icon, :alt => badge.title, :width => "25"}
+      %td= link_to 'View', grade
+      %td= link_to 'Edit', edit_grade_path(grade)
+      %td= link_to 'Delete', grade, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
