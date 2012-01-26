@@ -4,7 +4,7 @@ class Grade < ActiveRecord::Base
   has_many :earned_badges
   has_many :badges, :through => :earned_badges
   
-  attr_accessible :feedback
+  attr_accessible :feedback, :score, :user_id, :assignment_id, :badge_id
   
   validates :user_id, :presence => true
   validates :score, :presence => true
