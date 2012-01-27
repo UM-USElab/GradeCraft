@@ -3,18 +3,21 @@ class UsersController < ApplicationController
 
   skip_before_filter :require_login, :only=>[:create,:new]
   before_filter :'ensure_staff?', :only=>[:index,:destroy]
-  
+
   helper_method :sort_column, :sort_direction
 
   def index
     @title = "View all Users"
-    @role = params[:role]
-    if @role
-      @users = User.where(:role => @role).order(sort_column + " " + sort_direction)
-    else
-      @users = User.find(:all, :order => (sort_column + " " + sort_direction))
+    search_options = {}
+    if params[:role].present?
+      @role = params[:role]
+      search_options[:role] = @role
     end
-    respond_with @users
+    if params[:team_id].present?
+      @team = Team.find(params[:team_id])
+      search_options[:team_id] = @team.id if @team
+    end
+    respond_with @users = User.where(search_options).order(sort_column + " " + sort_direction)
   end
 
   def show
@@ -38,13 +41,13 @@ class UsersController < ApplicationController
     @teams = Team.all
     @user = User.create(params[:user])
     respond_with @user
-    
+
   end
 
   def update
     @user = User.find(params[:id])
     @teams = Team.all
-    
+
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -71,15 +74,15 @@ class UsersController < ApplicationController
     @user.update_attribute(:password, params[:password]) if params[:password] == params[:confirm_password]
     respond_with @user
   end
-  
+
   private
-  
+
   def sort_column
     User.column_names.include?(params[:sort]) ? params[:sort] : "username"
   end
-  
+
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
-  
+
 end

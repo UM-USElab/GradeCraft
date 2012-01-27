@@ -6,7 +6,6 @@ Grader::Application.routes.draw do
 
   %w{students gsis professors admins}.each do |role|
     get "users/#{role}/new" => 'users#new', :as => "new_#{role.singularize}", :role => role.singularize
-    get "users/#{role}" => 'users#index', :as => role, :role => role.singularize
   end
 
   resources :users do

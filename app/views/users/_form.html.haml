@@ -7,7 +7,7 @@
     - if !@user.persisted?
       = f.input :password, :as => :password
       = f.input :password_confirmation, :as => :password
-    = f.input :team_id, :as => :select, :collection => @teams
+    = f.input :team, :as => :select, :collection => @teams
     = f.input :role, :as => :select, :collection => [["Student", "student"],["GSI", "gsi"],["Admin", "admin"],["Professor", "professor"]]
-    /= f.input :token, :as => :hidden 
+    /= f.input :token, :as => :hidden
     = f.buttons

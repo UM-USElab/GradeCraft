@@ -1,5 +1,9 @@
-%ul.actions
-  = render 'actions'
+.filters
+  = form_tag users_path, :method => :get do
+    = select_tag :role, options_for_select(User::Roles.map { |r| [r.capitalize, r] }, @role), :prompt => 'Select a role'
+    = select_tag :team_id, options_for_select(Team.all.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => 'Select a team'
+    = submit_tag 'Filter users'
+
 %table
   %tr
     %th= sortable "username"
@@ -28,7 +32,7 @@
       %td
         - if user.is_student?
           = link_to 'View Profile', user
-      %td= link_to 'Edit Role', edit_user_path(user)
+      %td= link_to 'Edit', edit_user_path(user)
       %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
 
 %br

@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  Roles = %w{student professor gsi admin}
+
   attr_accessible :username, :email, :password, :password_confirmation, :role, :first_name, :last_name, :team_id
 
   has_attached_file :avatar,
@@ -13,6 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :grades
   has_many :earned_badges, :through => :grades
+  belongs_to :team
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
