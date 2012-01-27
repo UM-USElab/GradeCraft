@@ -17,7 +17,6 @@
     %th
     %th
     %th
-    %th
   - for user in @users
     %tr
       %td= user.username
@@ -29,11 +28,10 @@
       %td= user.grades.map(&:score).inject(&:+)
       %td
         - user.earned_badges.each do |badge|
-          %img{:src => badge.icon, :alt => badge.title, :width => "25"}
+          %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
       %td
         - if user.is_student?
-          = link_to 'Student Dashboard', dashboard_path(user)      
-      %td= link_to 'View', user
+          = link_to 'View Profile', user
       %td= link_to 'Edit Role', edit_user_path(user)
       %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
 
