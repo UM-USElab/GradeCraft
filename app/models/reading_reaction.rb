@@ -2,7 +2,7 @@ class ReadingReaction < Assignment
 
   Levels = ['Semifinalist','Finalist','Complete']
 
-  def is_complete?
+  def complete?
     level == 'Complete'
   end
 
@@ -14,7 +14,7 @@ class ReadingReaction < Assignment
     level == 'Finalist'
   end
 
-  def score
+  def point_total
     if complete?
       5000
     elsif semifinalist?

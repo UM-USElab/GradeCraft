@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120127070851) do
+ActiveRecord::Schema.define(:version => 20120127150653) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20120127070851) do
     t.string   "level"
     t.string   "type"
     t.boolean  "substantial", :default => false
+    t.boolean  "present"
   end
 
   create_table "badges", :force => true do |t|

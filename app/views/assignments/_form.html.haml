@@ -2,7 +2,5 @@
   = f.inputs do
     = f.input :title
     = f.input :description, :as => :text
-    = f.input :point_total, :as => :numeric
-    = f.input :due_date, :as => :datetime
     = render "#{@assignment.class.name.underscore}_form", :form => f
     = f.buttons

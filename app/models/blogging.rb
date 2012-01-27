@@ -4,7 +4,7 @@ class Blogging < Assignment
     !substantial?
   end
 
-  def score
+  def point_total
     if substantial?
       5000
     else
