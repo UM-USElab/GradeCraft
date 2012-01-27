@@ -1,15 +1,14 @@
 %table
   %tr
-    %th Student
-    %th Team
-    %th Assignment
-    %th Score
-    %th Feedback
-    %th Badge
+    %th= sortable "grade.user.username", "Username"
+    %th= sortable "grade.user.team_id", "Team"
+    %th= sortable "assignment_id"
+    %th= sortable "score"
+    %th= sortable "feedback"
+    %th= sortable "badge_id"
     %th
     %th
     %th
-
     - for grade in @grades
       %tr
         %td= grade.user.username
@@ -19,7 +18,7 @@
         %td= grade.feedback
         %td
           - grade.earned_badges.each do |badge|
-            %img{:src => badge.icon, :alt => badge.title, :width => "25"}
+            %img{:src => badge.icon, :alt => badge.title, :width => "25", :height => "25"}
         %td= link_to 'View', grade
         %td= link_to 'Edit', edit_grade_path(grade)
         %td= link_to 'Delete', grade, :confirm => 'Are you sure?', :method => :delete

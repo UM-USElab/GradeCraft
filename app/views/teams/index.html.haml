@@ -1,7 +1,7 @@
 %table
   %tr
     %th Ranking
-    %th Name
+    %th= sortable "name"
     %th Total Points
     - if current_user.is_staff?
       %th

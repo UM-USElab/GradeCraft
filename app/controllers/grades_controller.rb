@@ -3,10 +3,13 @@ class GradesController < ApplicationController
 
   before_filter :ensure_staff?
 
+  helper_method :sort_column, :sort_direction
+
+  # GET /grades
+  # GET /grades.json
   def index
     @title = "View All Grades"
-    @grades = Grade.all
-
+    @grades = Grade.find(:all, :order => (sort_column + " " + sort_direction))
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @grades }
@@ -95,4 +98,13 @@ class GradesController < ApplicationController
       respond_with @assignment, :location => mass_edit_grades_path(:assignment_id => @assignment.id)
     end
   end
+  
+  def sort_column
+    Grade.column_names.include?(params[:sort]) ? params[:sort] : "assignment_id"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
 end

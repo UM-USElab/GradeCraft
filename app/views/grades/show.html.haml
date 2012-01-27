@@ -10,7 +10,7 @@
 %p
   %b Badges:
   - @grade.earned_badges.each do |badge|
-    %img{:src => badge.icon, :alt => badge.title}
+    %img{:src => badge.icon, :alt => badge.title, :width => "50", :height => "50"}
 
 = link_to 'Edit', edit_grade_path(@grade)
 \|
