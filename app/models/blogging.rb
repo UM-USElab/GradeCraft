@@ -1,11 +1,19 @@
 class Blogging < Assignment
 
-  def is_short?
-    score == "1000"
+  def short?
+    !substantial?
   end
 
-  def is_substantial?
-    score == "5000"
+  def score
+    if substantial?
+      5000
+    else
+      1000
+    end
+  end
+
+  def mass_gradeable?
+    false
   end
 
 end

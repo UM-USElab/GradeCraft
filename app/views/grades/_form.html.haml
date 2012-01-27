@@ -1,7 +1,7 @@
 = semantic_form_for @grade do |f|
   = f.inputs do
-    = f.input :user, :as => :select, :collection => @users
-    = f.input :assignment
+    = f.input :user, :as => ( :hidden if @grade.user ), :collection => User.students, :include_blank => false
+    = f.input :assignment, :as => ( :hidden if @grade.assignment ), :include_blank => false
     = f.input :score
     = f.input :feedback, :as => :text
     = f.input :badges, :as => :check_boxes, :collection => @badges

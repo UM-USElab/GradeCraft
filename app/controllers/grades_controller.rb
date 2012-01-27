@@ -29,7 +29,8 @@ class GradesController < ApplicationController
   def new
     @title = "Submit New Grade"
     @grade = Grade.new
-    @users = User.all
+    @grade.user = User.students.find(params[:user_id]) if params[:user_id]
+    @grade.assignment = Assignment.find(params[:assignment_id]) if params[:assignment_id]
     @badges = Badge.all
     @teams = Team.all
 
@@ -98,11 +99,11 @@ class GradesController < ApplicationController
       respond_with @assignment, :location => mass_edit_grades_path(:assignment_id => @assignment.id)
     end
   end
-  
+
   def sort_column
     Grade.column_names.include?(params[:sort]) ? params[:sort] : "assignment_id"
   end
-  
+
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end

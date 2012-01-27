@@ -4,4 +4,8 @@ class Assignment < ActiveRecord::Base
 
   scope :one_time, where(:type => nil)
 
+  def mass_gradeable?
+    true
+  end
+
 end
