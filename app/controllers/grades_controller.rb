@@ -1,6 +1,7 @@
 class GradesController < ApplicationController
+  respond_to :html, :json
 
-  before_filter :ensure_staff?, :only=>[:index,:new,:edit,:create,:update,:destroy]
+  before_filter :ensure_staff?
 
   helper_method :sort_column, :sort_direction
 
@@ -15,8 +16,6 @@ class GradesController < ApplicationController
     end
   end
 
-  # GET /grades/1
-  # GET /grades/1.json
   def show
     @title = "View Grade"
     @grade = Grade.find(params[:id])
@@ -27,8 +26,6 @@ class GradesController < ApplicationController
     end
   end
 
-  # GET /grades/new
-  # GET /grades/new.json
   def new
     @title = "Submit New Grade"
     @grade = Grade.new
@@ -42,14 +39,11 @@ class GradesController < ApplicationController
     end
   end
 
-  # GET /grades/1/edit
   def edit
     @title = "Edit Grade"
     @grade = Grade.find(params[:id])
   end
 
-  # POST /grades
-  # POST /grades.json
   def create
     @grade = Grade.new(params[:grade])
     @users = User.all
@@ -67,8 +61,6 @@ class GradesController < ApplicationController
     end
   end
 
-  # PUT /grades/1
-  # PUT /grades/1.json
   def update
     @grade = Grade.find(params[:id])
 
@@ -83,8 +75,6 @@ class GradesController < ApplicationController
     end
   end
 
-  # DELETE /grades/1
-  # DELETE /grades/1.json
   def destroy
     @grade = Grade.find(params[:id])
     @grade.destroy
@@ -94,11 +84,19 @@ class GradesController < ApplicationController
       format.json { head :ok }
     end
   end
-  
-  def mass_new 
+
+  def mass_edit
+    @assignment = Assignment.find(params[:assignment_id])
+    @grades = User.students.map { |s| @assignment.grades.find_or_create_by_user_id(s.id) }
   end
-  
-  def mass_create
+
+  def mass_update
+    @assignment = Assignment.find(params[:assignment_id])
+    if @assignment.update_attributes(params[:assignment])
+      respond_with @assignment
+    else
+      respond_with @assignment, :location => mass_edit_grades_path(:assignment_id => @assignment.id)
+    end
   end
   
   def sort_column

@@ -11,6 +11,14 @@
   %b Due Date:
   = @assignment.due_date
 
+%h2
+  Grades (
+  = link_to 'log grades', mass_edit_grades_path(:assignment_id => @assignment.id)
+  )
+- @assignment.grades.each do |grade|
+  %p
+    #{grade.user.name} (#{grade.score})
+
 = link_to 'Edit', edit_assignment_path(@assignment)
 \|
 = link_to 'Back', assignments_path

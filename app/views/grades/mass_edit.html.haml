@@ -1,6 +1,6 @@
 %h1= @assignment.title
 %ul.grades
-  = semantic_form_for @assignment, :url => assignment_grades_path do |f|
+  = semantic_form_for @assignment, :url => mass_update_grades_path(:assignment_id => @assignment.id) do |f|
     = f.semantic_fields_for :grades, @grades do |gf|
       = gf.inputs do
         %li= gf.object.user.name

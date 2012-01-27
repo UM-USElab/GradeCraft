@@ -23,5 +23,6 @@ class AssignmentGradesController < ApplicationController
   protected
   def set_assignment
     @assignment = Assignment.find(params[:assignment_id])
+    redirect_to assignments_path, :error => 'Please select an assignment before mass adding grades' unless @assignment
   end
 end
