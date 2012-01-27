@@ -1,9 +1,5 @@
 %ul.actions
-  - if @role
-    %li= link_to 'View all users', users_path
-    = render "#{@role}_actions"
-  - else
-    = render 'actions'
+  = render 'actions'
 %table
   %tr
     %th= sortable "username"
