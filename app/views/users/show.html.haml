@@ -29,7 +29,7 @@
 
 %div#badgesEarned
   %span.title Badges Earned:
-  - current_user.earned_badges.each do |badge|
+  - @user.earned_badges.each do |badge|
     %img{:src => badge.icon, :alt => badge.title}
 
 = link_to 'Edit', edit_user_path(@user)
