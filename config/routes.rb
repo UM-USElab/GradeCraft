@@ -17,19 +17,14 @@ Grader::Application.routes.draw do
   end
   resources :password_resets
 
-  resources :assignments do
-    resources :grades, :controller => 'assignment_grades', :only => [:index] do
-      get :edit, :on => :collection
-      put :update, :on => :collection
-    end
-  end
+  resources :assignments
   resources :badges
   resources :groups
   resources :teams
   resources :grades do
     collection do
-      get :mass_new
-      post :mass_create
+      get :mass_edit
+      put :mass_update
     end
   end
   resources :info
