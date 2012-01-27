@@ -7,13 +7,12 @@ class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @users = User.order(sort_column + " " + sort_direction)
     @title = "View all Users"
     @role = params[:role]
     if @role
-      @users = User.where(:role => @role)
+      @users = User.where(:role => @role).order(sort_column + " " + sort_direction)
     else
-      @users = User.all
+      @users = User.find(:all, :order => (sort_column + " " + sort_direction))
     end
     respond_with @users
   end
@@ -72,8 +71,8 @@ class UsersController < ApplicationController
     @user.update_attribute(:password, params[:password]) if params[:password] == params[:confirm_password]
     respond_with @user
   end
-
-  private 
+  
+  private
   
   def sort_column
     User.column_names.include?(params[:sort]) ? params[:sort] : "username"
