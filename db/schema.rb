@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20120127005344) do
   end
 
   create_table "badges", :force => true do |t|
-    t.integer  "assignment_id"
     t.string   "title"
     t.string   "description"
     t.string   "icon"
@@ -37,8 +36,6 @@ ActiveRecord::Schema.define(:version => 20120127005344) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
-
-  add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
 
   create_table "challenge_scores", :force => true do |t|
     t.integer  "score"
@@ -74,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20120127005344) do
     t.integer  "score"
     t.integer  "user_id"
     t.integer  "assignment_id"
-    t.text     "feedback"
+    t.text     "feedback",      :limit => 255
     t.integer  "badge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
