@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122223744) do
+ActiveRecord::Schema.define(:version => 20120127005344) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20120122223744) do
     t.integer  "score"
     t.integer  "user_id"
     t.integer  "assignment_id"
-    t.string   "feedback"
+    t.text     "feedback",      :limit => 255
     t.integer  "badge_id"
     t.datetime "created_at"
     t.datetime "updated_at"

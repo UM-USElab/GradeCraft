@@ -1,6 +1,7 @@
 %table
   %tr
     %th Student
+    %th Team
     %th Assignment
     %th Score
     %th Feedback
@@ -12,6 +13,7 @@
     - for grade in @grades
       %tr
         %td= grade.user.username
+        %td= grade.user.team_id
         %td= grade.assignment.title
         %td= grade.score
         %td= grade.feedback
