@@ -1,10 +1,9 @@
 %h1= @assignment.title
 %ul.grades
-  = semantic_form_for @assignment, :url => mass_update_grades_path(:assignment_id => @assignment.id) do |f|
-    = f.semantic_fields_for :grades, @grades do |gf|
-      = gf.inputs do
-        %li= gf.object.user.name
-        = gf.input :score, :as => :boolean, :label => 'Present', :input_html => { :value => 5000 }
+  = semantic_form_for @assignment.becomes(Assignment), :url => mass_update_grades_path(:assignment_id => @assignment.id) do |f|
+    = f.semantic_fields_for :grades, @grades do |grade_form|
+      = grade_form.inputs do
+        = render "#{@assignment.class.name.underscore}_form", :form => grade_form, :grade => grade_form.object
     = f.buttons do
       = f.commit_button 'Save'
       or

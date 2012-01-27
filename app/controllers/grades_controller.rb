@@ -5,25 +5,14 @@ class GradesController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
-  # GET /grades
-  # GET /grades.json
   def index
     @title = "View All Grades"
-    @grades = Grade.find(:all, :order => (sort_column + " " + sort_direction))
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @grades }
-    end
+    respond_with @grades = Grade.find(:all, :order => (sort_column + " " + sort_direction))
   end
 
   def show
     @title = "View Grade"
-    @grade = Grade.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @grade }
-    end
+    respond_with @grade = Grade.find(params[:id])
   end
 
   def new
@@ -33,16 +22,12 @@ class GradesController < ApplicationController
     @grade.assignment = Assignment.find(params[:assignment_id]) if params[:assignment_id]
     @badges = Badge.all
     @teams = Team.all
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @grade }
-    end
+    respond_with @grade
   end
 
   def edit
     @title = "Edit Grade"
-    @grade = Grade.find(params[:id])
+    respond_with @grade = Grade.find(params[:id])
   end
 
   def create
@@ -94,9 +79,9 @@ class GradesController < ApplicationController
   def mass_update
     @assignment = Assignment.find(params[:assignment_id])
     if @assignment.update_attributes(params[:assignment])
-      respond_with @assignment
+      respond_with @assignment, :location => assignment_path(@assignment)
     else
-      respond_with @assignment, :location => mass_edit_grades_path(:assignment_id => @assignment.id)
+      respond_with @assignment, :location => mass_edit_grades_path(:assignment_id => @assignment)
     end
   end
 

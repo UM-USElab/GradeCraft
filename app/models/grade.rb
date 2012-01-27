@@ -6,7 +6,11 @@ class Grade < ActiveRecord::Base
 
   attr_accessible :feedback, :score, :user_id, :assignment_id, :badge_ids
 
-  validates :user_id, :presence => true
-  validates :score, :presence => true
-  validates :assignment_id, :presence => true
+  validates_presence_of :user
+  validates_presence_of :assignment
+
+  def score
+    super || 0
+  end
+
 end
