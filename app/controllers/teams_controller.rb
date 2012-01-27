@@ -1,12 +1,14 @@
 class TeamsController < ApplicationController
 
   before_filter :ensure_staff?, :only=>[:new,:edit,:create,:destroy]
+  
+  helper_method :sort_column, :sort_direction
 
   # GET /teams
   # GET /teams.json
   def index
     @title = "View All Teams"
-    @teams = Team.all
+    @teams = Team.find(:all, :order => (sort_column + " " + sort_direction))
 
     respond_to do |format|
       format.html # index.html.erb
@@ -87,4 +89,13 @@ class TeamsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def sort_column
+    Team.column_names.include?(params[:sort]) ? params[:sort] : "id"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+  
 end

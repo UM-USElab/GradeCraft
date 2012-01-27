@@ -1,15 +1,14 @@
 %table
   %tr
-    %th Student
-    %th Team
-    %th Assignment
-    %th Score
-    %th Feedback
-    %th Badge
+    %th= sortable "grade.user.username", "Username"
+    %th= sortable "grade.user.team_id", "Team"
+    %th= sortable "assignment_id"
+    %th= sortable "score"
+    %th= sortable "feedback"
+    %th= sortable "badge_id"
     %th
     %th
     %th
-
     - for grade in @grades
       %tr
         %td= grade.user.username
