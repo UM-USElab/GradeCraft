@@ -5,14 +5,14 @@
 
 %p
   %b First Name:
-  = @user.first_name 
+  = @user.first_name
   = @user.last_name
 %p
   %b Email:
   = @user.email
-  
+
 - Assignment.all.each do |assignment|
-  - if grade = assignment.grades.where(:user_id => current_user.id).first
+  - if grade = assignment.grades.where(:user_id => @user.id).first
     = assignment.title
     = grade.score
     out of
@@ -30,7 +30,7 @@
 %div#badgesEarned
   %span.title Badges Earned:
   - current_user.earned_badges.each do |badge|
-    %img{:src => badge.icon, :alt => badge.title}  
+    %img{:src => badge.icon, :alt => badge.title}
 
 = link_to 'Edit', edit_user_path(@user)
 \|
