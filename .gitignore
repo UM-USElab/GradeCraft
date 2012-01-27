@@ -1,4 +1,6 @@
 .bundle
+grade-tracker.sublime-project
+grade-tracker.sublime-workspace
 db/*.sqlite3
 log/*.log
 tmp/
