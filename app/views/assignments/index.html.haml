@@ -26,3 +26,9 @@
 
 - if current_user.is_staff?
   = link_to 'New Assignment', new_assignment_path
+  \|
+  = link_to 'New Blogging Assignment', new_assignment_path(:type => 'Blogging')
+  \|
+  = link_to 'New Attendance Assignment', new_assignment_path(:type => 'Attendance')
+  \|
+  = link_to 'New Reading Reaction Assignment', new_assignment_path(:type => 'ReadingReaction')
