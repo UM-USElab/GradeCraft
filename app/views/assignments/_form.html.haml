@@ -1,7 +1,8 @@
-= semantic_form_for @assignment do |f|
+= semantic_form_for @assignment.becomes(Assignment) do |f|
   = f.inputs do
     = f.input :title
     = f.input :description, :as => :text
     = f.input :point_total, :as => :numeric
     = f.input :due_date, :as => :datetime
+    = render "#{@assignment.class.name.underscore}_form", :form => f
     = f.buttons
