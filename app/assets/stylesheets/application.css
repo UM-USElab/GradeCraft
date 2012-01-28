@@ -30,6 +30,7 @@ table {
   border: 1px solid #ccc;
   text-align: left;
   border-collapse:collapse;
+  width: 100%;
 }
 
 table th {
@@ -43,9 +44,10 @@ table td {
   border: 1px solid #ccc;
 }
 #siteTitle{
+  padding: 8px 0px 0px;
   float:left;
   font-family:'Copse', serif;
-  font-size:2.2em;
+  font-size:2.7em;
   margin-bottom:10px;
 }
 h1#assignmentTitle {
@@ -58,14 +60,14 @@ h3 {
 }
 
 #content {
-  -moz-border-radius: 8px;
+  -moz-border-radius: 15px;
   background-color: #FFF;
-  border-radius: 8px;
+  border-radius: 15px;
   box-shadow: 2px 2px 15px #888;
   clear:both;
   margin-top:80px;
   min-height: 400px;
-  padding: 15px 20px;
+  padding: 15px 20px 25px;
 }
 
 #primaryContent {
@@ -87,7 +89,7 @@ h3 {
 }
 #myInfo li{
   -moz-border-radius: 5px;
-  background-color:#bbb;
+  background-color: #FCC45F;
   border-radius: 5px;
   float:left;
   margin-left:10px;
@@ -100,6 +102,8 @@ h3 {
 #myInfo li a{
   display:block;
   padding:10px;
+  color: #000;
+  font-weight: bold;
 }
 #myInfo li a:hover{
   text-decoration:none;
@@ -154,11 +158,11 @@ h3 {
 #navDashboard:hover, #navUsers:hover, #navAssignments:hover, #navBadges:hover, #navRankings:hover, #navChallenges:hover{
   background-position: -100px 12px;
 }
-input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation, input#challenge_title, input#challenge_points, input#team_name {
+input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation, input#challenge_title, input#challenge_points, input#team_name, inpu#badge_icon, input#user_first_name, input#user_last_name, input#badge_icon {
   width: 50%;
 }
 
-textarea#challenge_description {
+textarea#challenge_description, textarea#badge_description, textarea#assignment_description {
   width: 60%;
 }
 
@@ -177,4 +181,53 @@ th#title {
 
 th#icon {
   width: 50px;
+}
+
+.filters {
+  background-color: #eee;
+  padding: 10px;
+  border-top-left-radius: 5px; 
+  border-top-right-radius: 5px;
+}
+
+.filters input, .button {
+  font-size: 11px;
+  -moz-border-radius: 5px;
+  background-color: #b2cc9e;
+  border-radius: 5px;
+  border: 0px;
+  padding: 8px;
+  font-weight: bold;
+  font-family: 'Armata', sans-serif;
+  color: #000;
+}
+
+.button a {
+  color: #000;
+}
+
+.filters input:hover {
+  cursor: pointer;
+}
+
+#footerNav {
+  border-top: 1px dotted #ccc;
+  padding-top: 15px;
+  margin-top: 10px;
+}
+
+/* User Profiel Visuals */
+
+.assignmentTitle, .title {
+  font-weight: bold;
+}
+
+.completedAssignment {
+  
+  background-color: #ccc !important;
+  margin-bottom: 15px;
+}
+
+.futureAssignment {
+  margin-bottom: 15px;
 }

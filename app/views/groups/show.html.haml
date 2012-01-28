@@ -4,6 +4,6 @@
   %b Name:
   = @group.name
 
-= link_to 'Edit', edit_group_path(@group)
-\|
-= link_to 'Back', groups_path
+%div#footerNav
+  %span.button= link_to 'Edit', edit_group_path(@group)
+  %span.button= link_to 'Back', groups_path

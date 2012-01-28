@@ -4,36 +4,44 @@
   = @user.username
 
 %p
-  %b First Name:
+  %b Name:
   = @user.first_name
   = @user.last_name
 %p
   %b Email:
   = @user.email
+%p
+  %b Team:
+  = @user.team
 
 - Assignment.all.each do |assignment|
   - if grade = assignment.grades.where(:user_id => @user.id).first
-    = assignment.title
-    = grade.score
-    out of
-    = assignment.point_total
-    %br
-    - grade.earned_badges.each do |badge|
-      %img{:src => badge.icon, :alt => badge.title, :width => "25"}
-    %br
+    %div.completedAssignment
+      %span.assignmentTitle= assignment.title
+      %br
+      %span.assignmentGrade= grade.score
+      out of
+      %span.assignmentScore= assignment.point_total
+      %br
+      - grade.earned_badges.each do |badge|
+        %img{:src => badge.icon, :alt => badge.title, :width => "25"}
   - else
-    = assignment.title
-    = assignment.point_total
-    = assignment.due_date
-    %br
+    %div.futureAssignment
+      %span.assignmentTitle= assignment.title
+      %br
+      %span.assignmentScore Points Possible:
+      = assignment.point_total
+      %br
+      %span.assignmentDueDate Due
+      = assignment.due_date
 
 %div#badgesEarned
   %span.title Badges Earned:
+  %br
   - @user.earned_badges.each do |badge|
     %img{:src => badge.icon, :alt => badge.title}
 
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
-\|
-= link_to 'New User', new_user_path
+%div#footerNav
+  %span.button= link_to 'Edit', edit_user_path(@user)
+  %span.button= link_to 'Back', users_path
+  %span.button= link_to 'Create a New Player', new_user_path

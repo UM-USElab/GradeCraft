@@ -4,6 +4,7 @@
   %head
     %title EDUC 222 Grade Tracker
     %link{:href => "http://fonts.googleapis.com/css?family=Copse|Droid+Serif", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "http://fonts.googleapis.com/css?family=Armata", :rel => "stylesheet", :type => "text/css" }
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -24,7 +25,7 @@
       - if current_user
         %li#navDashboard= link_to "Dashboard", dashboard_path, class: cp(dashboard_path)
         - if current_user.is_staff?
-          %li#navUsers= link_to "Users", users_path, class: cp(users_path)
+          %li#navUsers= link_to "Players", users_path, class: cp(users_path)
         - else
           // Show student only links here
         %li#navAssignments= link_to "Assignments", assignments_path, class: cp(assignments_path)

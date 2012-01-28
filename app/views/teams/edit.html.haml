@@ -1,7 +1,6 @@
 = render 'form'
 
-= link_to 'Show', @team
-\|
-= link_to 'Back', teams_path
-\|
-= link_to 'Add a New Team', new_team_path
+%div#footerNav
+  %span.button= link_to 'Show', @team
+  %span.button= link_to 'Back', teams_path
+  %span.button= link_to 'Add a New Team', new_team_path

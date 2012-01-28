@@ -22,5 +22,6 @@
 
 %br
 
-- if current_user.is_staff?
-  = link_to 'Create a New Challenge', new_challenge_path
+%div#footerNav
+  - if current_user.is_staff?
+    %span.button= link_to 'Create a New Challenge', new_challenge_path

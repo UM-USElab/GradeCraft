@@ -11,6 +11,6 @@
   %b Challenge:
   = @challenge_score.challenge_id
 
-= link_to 'Edit', edit_challenge_score_path(@challenge_score)
-\|
-= link_to 'Back', challenge_scores_path
+%div#footerNav
+  %span.button= link_to 'Edit', edit_challenge_score_path(@challenge_score)
+  %span.button= link_to 'Back', challenge_scores_path

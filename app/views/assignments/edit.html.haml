@@ -1,5 +1,5 @@
 = render 'form'
 
-= link_to 'View', assignment_path(@assignment)
-\|
-= link_to 'Back', assignments_path
+%div#footerNav
+  %span.button= link_to 'View', assignment_path(@assignment)
+  %span.button= link_to 'Back', assignments_path
