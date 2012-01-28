@@ -9,6 +9,11 @@ module ApplicationHelper
     end
   end
   
+  # Add class="current" to navigation item of current page
+  def cp(path)
+    "current" if current_page?(path)
+  end
+  
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil

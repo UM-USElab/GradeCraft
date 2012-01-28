@@ -8,18 +8,14 @@
 */
 
 html {
-  font-family: Helvetica, sans-serif;
-  background-color: #333;
+  	font-family:'Droid Serif',serif;
+	background: url('cloud_bg.gif') #99ccff;
 }
 
 body {
-  width: 800px;
-  margin: 15px auto;
-  background-color: #FFF;
-  padding: 15px 20px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  box-shadow: 2px 2px 15px #888;
+  	margin: 15px auto;
+	min-width:840px;
+	width:80%;
 }
 
 a {
@@ -36,22 +32,27 @@ a:hover {
   text-decoration: underline;
 }
 table {
-  border: 1px solid #eee;
+  border: 1px solid #ccc;
   text-align: left;
   border-collapse:collapse;
 }
 
 table th {
   padding: 8px;
-  border: 1px solid #eee;
+  border: 1px solid #ccc;
 }
 
 table td {
   padding: 8px;
   margin: 0px;
-  border: 1px solid #eee;
+  border: 1px solid #ccc;
 }
-
+#siteTitle{
+  float:left;
+  font-family:'Copse', serif;
+  font-size:2.2em;
+  margin-bottom:10px;
+}
 h1#assignmentTitle {
   margin-left: 15px;
   font-size: 20px;
@@ -62,14 +63,19 @@ h3 {
 }
 
 #content {
-  position: relative;
-  left: 15px;
+  -moz-border-radius: 8px;
+  background-color: #FFF;
+  border-radius: 8px;
+  box-shadow: 2px 2px 15px #888;
+  clear:both;
+  margin-top:80px;
   min-height: 400px;
+  padding: 15px 20px;
 }
 
 #primaryContent {
-  position: relative;
   left: 200px;
+  position: relative;
 } 
 
 #footer {
@@ -78,21 +84,81 @@ h3 {
   border-top: 1px solid #eee;
 }
 
-
+/* Navigation items */
+#myInfo{
+  float:right;
+  padding:8px;
+  list-style-type:none;	
+}
+#myInfo li{
+  -moz-border-radius: 5px;
+  background-color:#bbb;
+  border-radius: 5px;
+  float:left;
+  margin-left:10px;
+  opacity:.7;
+}
+#myInfo li:hover{
+  background-color:#ccc;
+  opacity:.7;
+}
+#myInfo li a{
+  display:block;
+  padding:10px;
+}
+#myInfo li a:hover{
+  text-decoration:none;
+}
 #nav {
-  text-align: right;
+  clear:both;
+  height:80px;
 }
 
 #nav ul {
+  list-style-type:none;
   margin: 0;
   padding: 0;
 }
 
 #nav li {
-  margin-left: 8px;
-  display: inline;
+  float:left;
+  margin-right:30px;
+  text-align:center;
 }
-
+#nav li a{
+  display: block;
+  font-size:1.2em;
+  padding-top:110px;
+  width:100px;
+}
+#nav li a:hover{
+  text-decoration:none;
+}
+#navDashboard, #navUsers, #navAssignments, #navBadges, #navRankings, #navChallenges{
+  background-position: 0px 12px;
+  background-repeat:no-repeat;
+}
+#navDashboard{
+  background-image:url('navDashboard.png');
+}
+#navUsers{
+  background-image:url('navUsers.png');
+}
+#navAssignments{
+  background-image:url('navAssignments.png');
+}
+#navBadges{
+  background-image:url('navBadges.png');
+}
+#navRankings{
+  background-image:url('navRankings.png');
+}
+#navChallenges{
+  background-image:url('navChallenges.png');
+}
+#navDashboard:hover, #navUsers:hover, #navAssignments:hover, #navBadges:hover, #navRankings:hover, #navChallenges:hover{
+  background-position: -100px 12px;
+}
 input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation {
   width: 50%;
 }
