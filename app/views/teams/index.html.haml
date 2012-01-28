@@ -2,6 +2,7 @@
   %tr
     %th Ranking
     %th= sortable "name"
+    %th= sortable "id"
     %th Total Points
     - if current_user.is_staff?
       %th
@@ -12,6 +13,7 @@
     %tr
       %td
       %td= team.name
+      %td= team.id
       %td= team.challenge_scores.map(&:score).inject(&:+) 
       - if current_user.is_staff?
         %td= link_to 'View', team
@@ -21,4 +23,4 @@
 %br
 
 - if current_user.is_staff?
-  = link_to 'New Team', new_team_path
+  = link_to 'Add a New Team', new_team_path

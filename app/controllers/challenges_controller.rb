@@ -25,6 +25,7 @@ class ChallengesController < ApplicationController
   # GET /challenges/new.json
   def new
     @challenge = Challenge.new
+    @title = "Create a New Challenge"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class ChallengesController < ApplicationController
   # GET /challenges/1/edit
   def edit
     @challenge = Challenge.find(params[:id])
+    @title = "Edit this Challenge"
   end
 
   # POST /challenges

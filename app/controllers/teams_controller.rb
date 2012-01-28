@@ -7,7 +7,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @title = "View All Teams"
+    @title = "Team Rankings"
     @teams = Team.find(:all, :order => (sort_column + " " + sort_direction))
 
     respond_to do |format|
@@ -19,7 +19,6 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    @title = "View Team"
     @team = Team.find(params[:id])
 
     respond_to do |format|

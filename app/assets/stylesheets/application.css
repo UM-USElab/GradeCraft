@@ -24,8 +24,7 @@ a {
   &:visited {
     color: #5199ae; }
   &:hover {
-    color: #fff;
-    background-color: #000; } 
+    color: #fff; } 
   }
 
 a:hover {
@@ -159,8 +158,12 @@ h3 {
 #navDashboard:hover, #navUsers:hover, #navAssignments:hover, #navBadges:hover, #navRankings:hover, #navChallenges:hover{
   background-position: -100px 12px;
 }
-input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation {
+input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation, input#challenge_title, input#challenge_points, input#team_name {
   width: 50%;
+}
+
+textarea#challenge_description {
+  width: 60%;
 }
 
 input#assignment_point_total {
