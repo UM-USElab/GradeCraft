@@ -57,7 +57,7 @@ h3 {
   margin-left: 15px;
 }
 
-#content {
+#content, #registrationDiv{
   -moz-border-radius: 8px;
   background-color: #FFF;
   border-radius: 8px;

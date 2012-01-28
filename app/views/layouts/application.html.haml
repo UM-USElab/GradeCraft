@@ -18,28 +18,30 @@
       %li= link_to "Register", new_user_path
       %li= link_to "Login", :login
     
-    
-  #nav
-    %ul
-      - if current_user
-        %li#navDashboard= link_to "Dashboard", dashboard_path, class: cp(dashboard_path)
-        - if current_user.is_staff?
-          %li#navUsers= link_to "Users", users_path, class: cp(users_path)
-        - else
-          // Show student only links here
-        %li#navAssignments= link_to "Assignments", assignments_path, class: cp(assignments_path)
-        %li#navBadges= link_to "Badges", badges_path, class: cp(badges_path)
-        %li#navRankings= link_to "Team Rankings", teams_path, class: cp(teams_path)
-        %li#navChallenges= link_to "Team Challenges", challenges_path, class: cp(challenges_path)
+  - if current_user  
+    #nav
+      %ul
+        - if current_user
+          %li#navDashboard= link_to "Dashboard", dashboard_path, class: cp(dashboard_path)
+          - if current_user.is_staff?
+            %li#navUsers= link_to "Users", users_path, class: cp(users_path)
+          - else
+            // Show student only links here
+          %li#navAssignments= link_to "Assignments", assignments_path, class: cp(assignments_path)
+          %li#navBadges= link_to "Badges", badges_path, class: cp(badges_path)
+          %li#navRankings= link_to "Team Rankings", teams_path, class: cp(teams_path)
+          %li#navChallenges= link_to "Team Challenges", challenges_path, class: cp(challenges_path)
 
+      %div#content
+        %h2= title
+        = yield
+  - else
+    %div#registrationDiv
 
   
-  %div
-    %p#notice= notice
-    %p#alert= alert
-  %div#content
-    %h2= title
-    = yield
+    %div
+      %p#notice= notice
+      %p#alert= alert
 
   #footer
     .copyright< Copyright 2012 Barry Fishman | <a href="/info/index">Site Credits</a>
