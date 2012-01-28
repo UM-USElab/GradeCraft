@@ -10,8 +10,7 @@
   %b Icon:
   = @badge.icon
 
-= link_to 'Edit', edit_badge_path(@badge)
-\|
-= link_to 'Back', badges_path
-\|
-= link_to 'New Badge', new_badge_path
+%div#footerNav
+  %span.button= link_to 'Edit', edit_badge_path(@badge)
+  %span.button= link_to 'Back', badges_path
+  %span.button= link_to 'Create a New Badge', new_badge_path

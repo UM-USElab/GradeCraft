@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @title = "View all Users"
+    @title = "View all Players"
     search_options = {}
     if params[:role].present?
       @role = params[:role]
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @title = "View User"
+    @title = "View Player"
     respond_with @user = User.find(params[:id])
   end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title = "Edit User"
+    @title = "Edit Player"
     @teams = Team.all
     respond_with @user = User.find(params[:id])
   end

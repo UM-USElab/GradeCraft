@@ -12,6 +12,6 @@
   - @grade.earned_badges.each do |badge|
     %img{:src => badge.icon, :alt => badge.title, :width => "50", :height => "50"}
 
-= link_to 'Edit', edit_grade_path(@grade)
-\|
-= link_to 'Back', grades_path
+%div#footerNav
+  %span.button= link_to 'Edit', edit_grade_path(@grade)
+  %span.button= link_to 'Back', grades_path

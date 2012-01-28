@@ -4,12 +4,11 @@ class AssignmentsController < ApplicationController
   before_filter :ensure_staff?, :except => [:index]
 
   def index
-    @title = "View all Assignments"
+    @title = "View All Assignments"
     respond_with @assignments = Assignment.all
   end
 
   def show
-    @title = "View all Assignments"
     respond_with @assignment = Assignment.find(params[:id])
   end
 

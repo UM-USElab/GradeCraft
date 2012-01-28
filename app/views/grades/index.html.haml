@@ -1,7 +1,7 @@
 %table
   %tr
-    %th= sortable "grade.user.username", "Username"
-    %th= sortable "grade.user.team_id", "Team"
+    %th Username
+    %th Team
     %th= sortable "assignment_id"
     %th= sortable "score"
     %th= sortable "feedback"
@@ -25,4 +25,5 @@
 
 %br
 
-= link_to 'New Grade', new_grade_path
+%div#footerNav
+  %span.button= link_to 'New Grade', new_grade_path

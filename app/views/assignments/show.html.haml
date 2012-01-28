@@ -19,10 +19,8 @@
   %p
     #{grade.user.name} (#{grade.score})
 
-= link_to 'Add Grade', new_grade_path(:assignment_id => @assignment)
-\|
-= link_to 'Edit', edit_assignment_path(@assignment)
-\|
-= link_to 'Back', assignments_path
-\|
-= link_to 'New Assignment', new_assignment_path
+%div#footerNav
+  %span.button= link_to 'Add Grade', new_grade_path(:assignment_id => @assignment)
+  %span.button= link_to 'Edit', edit_assignment_path(@assignment)
+  %span.button= link_to 'Back', assignments_path
+  %span.button= link_to 'New Assignment', new_assignment_path

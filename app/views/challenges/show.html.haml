@@ -9,6 +9,6 @@
   %b Date:
   = @challenge.date
 
-= link_to 'Edit', edit_challenge_path(@challenge)
-\|
-= link_to 'Back', challenges_path
+%div#footerNav
+  %span.button= link_to 'Edit', edit_challenge_path(@challenge)
+  %span.button= link_to 'Back', challenges_path

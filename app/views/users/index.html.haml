@@ -2,7 +2,7 @@
   = form_tag users_path, :method => :get do
     = select_tag :role, options_for_select(User::Roles.map { |r| [r.capitalize, r] }, @role), :prompt => 'Select a role'
     = select_tag :team_id, options_for_select(Team.all.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => 'Select a team'
-    = submit_tag 'Filter users'
+    = submit_tag 'Filter'
 
 %table
   %tr
@@ -37,4 +37,5 @@
 
 %br
 
-= link_to 'New User', new_user_path
+%footerNav
+  %span.button= link_to 'Create a New Player', new_user_path

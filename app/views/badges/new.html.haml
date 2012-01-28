@@ -1,6 +1,4 @@
 = render 'form'
-= form_for :badge, :html => { :multipart => true } do |form|
-  = form.file_field :image
 
-%br
-= link_to 'Back', badges_path
+%div#footerNav
+  %span.button= link_to 'Back', badges_path
