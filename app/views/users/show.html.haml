@@ -13,6 +13,9 @@
 %p
   %b Team:
   = @user.team
+%p
+  %b Total Points:
+  = @user.grades.map(&:score).inject(&:+)
 
 - Assignment.all.each do |assignment|
   - if grade = assignment.grades.where(:user_id => @user.id).first
