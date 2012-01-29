@@ -12,5 +12,6 @@
         = render "#{@assignment.class.name.underscore}_form", :form => grade_form, :grade => grade_form.object
     = f.buttons do
       = f.commit_button 'Save'
+      
 %div#footerNav
   %span.button= link_to 'Cancel', assignments_path
