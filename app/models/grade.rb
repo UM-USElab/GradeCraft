@@ -27,7 +27,7 @@ class Grade < ActiveRecord::Base
     level == 'Finalist'
   end
 
-  def point_total
+  def rr_score
     if complete?
       5000
     elsif semifinalist?
@@ -36,6 +36,18 @@ class Grade < ActiveRecord::Base
       2000
     else
       0
+    end
+  end
+  
+  def short?
+    !substantial?
+  end
+
+  def blogscore
+    if substantial?
+      5000
+    else
+      1000
     end
   end
 
