@@ -3,7 +3,7 @@
     %th= sortable "id"
     %th= sortable "name"
     %th Ranking
-    %th Total Points
+    %th= sortable "score"
     - if current_user.is_staff?
       %th
       %th

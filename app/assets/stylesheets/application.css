@@ -189,23 +189,12 @@ th#icon {
   border-top-right-radius: 5px;
 }
 
-.filters input {
-  font-size: 11px;
-  -moz-border-radius: 5px;
-  background-color: #b2cc9e;
-  border-radius: 5px;
-  border: 0px;
-  padding: 8px;
-  font-weight: bold;
-  font-family: 'Armata', sans-serif;
-  color: #000;
-}
 .filters input:hover {
   cursor: pointer;
 }
 
 /* button styles */
-.button, .button:visited{
+.button, .button:visited, .filters input {
   background: #7F7F7F;
   display: inline-block;
   padding: 5px 10px 6px;
