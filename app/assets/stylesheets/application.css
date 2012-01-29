@@ -132,30 +132,54 @@ h3 {
 #nav li a:hover{
   text-decoration:none;
 }
-#navDashboard, #navUsers, #navAssignments, #navBadges, #navRankings, #navChallenges{
+#navDashboard a, #navUsers a, #navAssignments a, #navBadges a, #navRankings a, #navChallenges a{
   background-position: 0px 12px;
   background-repeat:no-repeat;
 }
-#navDashboard{
+#nav a.current{
+  background-position:-2px 12px;
+}
+#navDashboard a{
   background-image:url('navDashboard.png');
 }
-#navUsers{
+#navDashboard a.current{
+  background-image:url('navDashboardFold.png');	
+}
+#navUsers a{
   background-image:url('navUsers.png');
 }
-#navAssignments{
+#navUsers a.current{
+  background-image:url('navUsersFold.png');	
+}
+#navAssignments a{
   background-image:url('navAssignments.png');
 }
-#navBadges{
+#navAssignments a.current{
+  background-image:url('navAssignmentsFold.png');	
+}
+#navBadges a{
   background-image:url('navBadges.png');
 }
-#navRankings{
+#navBadges a.current{
+  background-image:url('navBadgesFold.png');	
+}
+#navRankings a{
   background-image:url('navRankings.png');
 }
-#navChallenges{
+#navRankings a.current{
+  background-image:url('navRankingsFold.png');	
+}
+#navChallenges a{
   background-image:url('navChallenges.png');
 }
-#navDashboard:hover, #navUsers:hover, #navAssignments:hover, #navBadges:hover, #navRankings:hover, #navChallenges:hover{
+#navChallenges a.current{
+  background-image:url('navChallengesFold.png');	
+}
+#navDashboard a:hover, #navUsers a:hover, #navAssignments a:hover, #navBadges a:hover, #navRankings a:hover, #navChallenges a:hover{
   background-position: -75px 12px;
+}
+#nav a.current:hover{
+  background-position:-2px 12px;
 }
 input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation, input#challenge_title, input#challenge_points, input#team_name, inpu#badge_icon, input#user_first_name, input#user_last_name, input#badge_icon {
   width: 50%;
