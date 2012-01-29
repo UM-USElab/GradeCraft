@@ -16,32 +16,51 @@
       %li= link_to "My Account", edit_profile_users_path
       %li= link_to "Logout", :logout
     - else
-      %li= link_to "Register", new_user_path
-      %li= link_to "Login", :login
+      %table#loginGroup
+        = form_tag user_sessions_path, :method => :post do
+          %tr
+            %td
+              = label_tag :username
+            %td
+              = label_tag :password
+          %tr
+            %td
+              = text_field_tag :username
+            %td
+              = password_field_tag :password
+            %td.actions
+              %span.submitBtn.small= submit_tag "Login"
+          %tr
+            %td
+              = check_box_tag :remember_me, 1, params[:remember_me]
+              = label_tag :remember_me
     
+  - if current_user  
+    #nav
+      %ul
+        - if current_user
+          %li#navDashboard= link_to "Dashboard", dashboard_path, class: cp(dashboard_path)
+          - if current_user.is_staff?
+            %li#navUsers= link_to "Users", users_path, class: cp(users_path)
+          - else
+            // Show student only links here
+          %li#navAssignments= link_to "Assignments", assignments_path, class: cp(assignments_path)
+          %li#navBadges= link_to "Badges", badges_path, class: cp(badges_path)
+          %ul#teamNav
+            %li#navRankings= link_to "Rankings", teams_path, class: cp(teams_path)
+            %li#navChallenges= link_to "Challenges", challenges_path, class: cp(challenges_path)
+
+
+    %div#content
+      %h2= title
+      = yield
+  - else
+    %div#content
+      %p#notice= notice
+      %p#alert= alert
+      %h2= title
+      = yield
     
-  #nav
-    %ul
-      - if current_user
-        %li#navDashboard= link_to "Dashboard", dashboard_path, class: cp(dashboard_path)
-        - if current_user.is_staff?
-          %li#navUsers= link_to "Players", users_path, class: cp(users_path)
-        - else
-          // Show student only links here
-        %li#navAssignments= link_to "Assignments", assignments_path, class: cp(assignments_path)
-        %li#navBadges= link_to "Badges", badges_path, class: cp(badges_path)
-        %li#navRankings= link_to "Team Rankings", teams_path, class: cp(teams_path)
-        %li#navChallenges= link_to "Team Challenges", challenges_path, class: cp(challenges_path)
-
-
-  
-  %div
-    %p#notice= notice
-    %p#alert= alert
-  %div#content
-    %h2= title
-    = yield
-
   #footer
     .copyright< Copyright 2012 Barry Fishman | <a href="/info/index">Site Credits</a>
 
