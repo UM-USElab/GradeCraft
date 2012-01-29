@@ -59,4 +59,10 @@ class User < ActiveRecord::Base
   def is_staff?
     is_prof? || is_gsi? || is_admin?
   end
+  
+  # Overriding the save function so as to update the score every time a grade gets saved
+  def save
+    self.score = (user.grades.map(&:score).inject(&:+))
+    super   # calls the rails save function to store our object to the database
+  end
 end

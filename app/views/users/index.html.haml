@@ -12,7 +12,7 @@
     %th= sortable "email"
     %th= sortable "role"
     %th= sortable "team_id"
-    %th Total Points
+    %th= sortable "score"
     %th Badges Earned
     %th
     %th
@@ -25,7 +25,7 @@
       %td= user.email
       %td= user.role
       %td= user.team_id
-      %td= user.grades.map(&:score).inject(&:+)
+      %td= user.score
       %td
         - user.earned_badges.each do |badge|
           %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
