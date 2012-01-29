@@ -275,13 +275,14 @@ th#icon {
 .submitBtn input, .buttons li.commit input{
   background:none;
   border:none;
-  padding:5px;
+  padding:0;
   color:#FFF;
   font-family:'Droid Serif', serif;
   cursor: pointer;
 }
 .buttons li.commit input{
-  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);	
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  padding:5px;	
 }
 #footerNav {
   border-top: 1px dotted #ccc;
