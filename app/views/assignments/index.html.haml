@@ -106,6 +106,6 @@
 %div#footerNav
   - if current_user.is_staff?
     %span.button= link_to 'New Assignment', new_assignment_path
-    %span.button= link_to 'New Blogging Assignment', new_assignment_path(:type => 'Blogging')
-    %span.button= link_to 'New Attendance Assignment', new_assignment_path(:type => 'Attendance')
-    %span.button= link_to 'New Reading Reaction Assignment', new_assignment_path(:type => 'ReadingReaction')
+    %span.button= link_to 'New Blogging Assignment', new_assignment_path(:type => "Blogging")
+    %span.button= link_to 'New Attendance Assignment', new_assignment_path(:type => "Attendance")
+    %span.button= link_to 'New Reading Reaction Assignment', new_assignment_path(:type => "ReadingReaction")
