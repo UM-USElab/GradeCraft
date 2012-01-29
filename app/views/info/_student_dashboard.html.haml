@@ -14,7 +14,7 @@
 %h3#blogging Blogging
 
 - Assignment.all.each do |assignment|
-  - if grade = assignment.grades.where(:user_id => @user.id).first
+  - if grade = assignment.grades.where(:user_id => @current_user.id).first
     %div.completedAssignment
       %span.assignmentTitle= assignment.title
       %br
