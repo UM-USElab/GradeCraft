@@ -12,4 +12,5 @@ class Team < ActiveRecord::Base
   def calculate_score
     self.score = challenge_scores.map(&:score).inject(&:+)
   end
+  
 end

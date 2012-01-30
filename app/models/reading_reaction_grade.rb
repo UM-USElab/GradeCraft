@@ -3,7 +3,7 @@ class ReadingReactionGrade < Grade
   def score
     if finals?
       10000
-    elsif semifinals?
+    elsif semis?
       8000
     elsif complete?
       5000
