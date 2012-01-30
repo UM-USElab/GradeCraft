@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
 
   Roles = %w{student professor gsi admin}
 
-  attr_accessible :username, :email, :password, :password_confirmation, :role, :first_name, :last_name, :team_id
-
   has_attached_file :avatar,
                     :styles => { :medium => "300x300>",
                                  :thumb => "100x100>" },
@@ -16,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :grades
   has_many :earned_badges, :through => :grades
   belongs_to :team
+
+  before_save :calculate_score
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -59,10 +59,9 @@ class User < ActiveRecord::Base
   def is_staff?
     is_prof? || is_gsi? || is_admin?
   end
-  
+
   # Overriding the save function so as to update the score every time a grade gets saved
-  def save
-    self.score = (user.grades.map(&:score).inject(&:+))
-    super   # calls the rails save function to store our object to the database
+  def calculate_score
+    self.score = grades.map(&:score).inject(&:+)
   end
 end

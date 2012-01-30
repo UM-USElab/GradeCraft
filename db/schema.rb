@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120129171659) do
+ActiveRecord::Schema.define(:version => 20120130083935) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
     t.string   "description"
     t.integer  "point_total"
-    t.datetime "due_date"
+    t.time     "due_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "level"
@@ -80,6 +80,10 @@ ActiveRecord::Schema.define(:version => 20120129171659) do
     t.integer  "badge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "complete"
+    t.boolean  "semis"
+    t.boolean  "finals"
+    t.string   "type"
   end
 
   add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"
@@ -100,7 +104,7 @@ ActiveRecord::Schema.define(:version => 20120129171659) do
     t.string   "banner_content_type"
     t.integer  "banner_file_size"
     t.datetime "banner_updated_at"
-    t.decimal  "score"
+    t.integer  "score"
   end
 
   create_table "users", :force => true do |t|
@@ -123,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20120129171659) do
     t.integer  "team_id"
     t.string   "first_name"
     t.string   "last_name"
-    t.decimal  "score"
+    t.integer  "score"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

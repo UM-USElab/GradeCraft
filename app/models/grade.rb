@@ -4,40 +4,18 @@ class Grade < ActiveRecord::Base
   has_many :earned_badges
   has_many :badges, :through => :earned_badges
 
-  attr_accessible :feedback, :score, :user_id, :assignment_id, :badge_ids
-
   validates_presence_of :user
   validates_presence_of :assignment
+  
+  delegate :title, :description, :point_total, :to => :assignment
+  
+  after_save :save_user_score
 
   def score
     super || 0
   end
   
   Levels = ['Semifinalist','Finalist','Complete']
-
-  def complete?
-    level == 'Complete'
-  end
-
-  def semifinalist?
-    level == 'Semifinalist'
-  end
-
-  def finalist?
-    level == 'Finalist'
-  end
-
-  def rr_score
-    if complete?
-      5000
-    elsif semifinalist?
-      3000
-    elsif finalist?
-      2000
-    else
-      0
-    end
-  end
   
   def short?
     !substantial?
@@ -49,6 +27,10 @@ class Grade < ActiveRecord::Base
     else
       1000
     end
+  end
+  
+  def save_user_score
+    user.save
   end
 
 end

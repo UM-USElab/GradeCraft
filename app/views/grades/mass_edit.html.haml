@@ -1,7 +1,8 @@
 %h1= @assignment.title
 
 .filters
-  = form_tag users_path, :method => :get do
+  = form_tag mass_edit_grades_path, :method => :get do
+    = hidden_field_tag :assignment_id, @assignment.id
     = select_tag :team_id, options_for_select(Team.all.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => 'Select a team'
     = submit_tag 'Filter'
 
@@ -12,6 +13,6 @@
         = render "#{@assignment.class.name.underscore}_form", :form => grade_form, :grade => grade_form.object
     = f.buttons do
       = f.commit_button 'Save'
-      
+
 %div#footerNav
   %span.button= link_to 'Cancel', assignments_path

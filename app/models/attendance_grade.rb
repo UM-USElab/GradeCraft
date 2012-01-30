@@ -1,0 +1,3 @@
+class AttendanceGrade < Grade
+
+end
