@@ -1,38 +1,62 @@
-%h1#user= @current_user.first_name+" "+@current_user.last_name
+%h3#user= current_user.first_name+" "+current_user.last_name
 
-%h2#points 
-  Current Points Total/Available Points
-  = current_user.grades.map(&:score).inject(&:+)
-  out of
+%div#mainInfo
+  %h2#points 
+  %div Your current score is #{current_user.score}
 
-%h2#grading Grades & Assignments
+  %h2#blogging Assignments
+  - Grade.where(:user_id => current_user.id).each do |grade|
+    - if grade.assignment.type == "Standard"
+      %div.completedAssignment
+        %span.assignmentTitle= grade.title
+        %br
+        %span.assignmentGrade= grade.score
+        out of
+        %span.assignmentScore= grade.point_total
+        %br
+        - grade.earned_badges.each do |badge|
+          %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
 
-%h3#attendance Attendance
+  %h2#attendance Attendance
+  - Grade.where(:user_id => current_user.id).each do |grade|
+    - if grade.assignment.type == "Attendance"
+      %div.completedAssignment
+        %span.assignmentTitle= grade.title
+        %br
+        %span.assignmentGrade= grade.score
+        out of
+        %span.assignmentScore= grade.point_total
+        %br
+        - grade.earned_badges.each do |badge|
+          %img{:src => badge.icon, :alt => badge.title, :width => "25"}
+  
+  %h2#reading Reading Reactions
+  - Grade.where(:user_id => current_user.id).each do |grade|
+    - if grade.assignment.type == "ReadingReaction"
+      %div.completedAssignment
+        %span.assignmentTitle= grade.title
+        %br
+        %span.assignmentGrade= grade.score
+        out of
+        %span.assignmentScore= grade.point_total
+        %br
+        - grade.earned_badges.each do |badge|
+          %img{:src => badge.icon, :alt => badge.title, :width => "25"}
+  
+  %h2#blogging Blogging
+  - Grade.where(:user_id => current_user.id).each do |grade|
+    - if grade.assignment.type == "Blogging"
+      %div.completedAssignment
+        %span.assignmentTitle= grade.title
+        %br
+        %span.assignmentGrade= grade.score
+        out of
+        %span.assignmentScore= grade.point_total
+        %br
+        - grade.earned_badges.each do |badge|
+          %img{:src => badge.icon, :alt => badge.title, :width => "25"}  
+  
 
-%h3#reading Reading Reactions
-
-%h3#blogging Blogging
-
-- Assignment.all.each do |assignment|
-  - if grade = assignment.grades.where(:user_id => @current_user.id).first
-    %div.completedAssignment
-      %span.assignmentTitle= assignment.title
-      %br
-      %span.assignmentGrade= grade.score
-      out of
-      %span.assignmentScore= assignment.point_total
-      %br
-      - grade.earned_badges.each do |badge|
-        %img{:src => badge.icon, :alt => badge.title, :width => "25"}
-  - else
-    %div.futureAssignment
-      %span.assignmentTitle= assignment.title
-      %br
-      %span.assignmentScore Points Possible:
-      = assignment.point_total
-      %br
-      %span.assignmentDueDate Due
-      = assignment.due_date
 
 %div#badgesEarned
   %span.title Badges Earned:
