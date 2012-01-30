@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
 
   Roles = %w{student professor gsi admin}
 
-  attr_accessible :username, :email, :password, :password_confirmation, :role, :first_name, :last_name, :team_id
-
   has_attached_file :avatar,
                     :styles => { :medium => "300x300>",
                                  :thumb => "100x100>" },
