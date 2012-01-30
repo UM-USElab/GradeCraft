@@ -322,7 +322,18 @@ th#icon {
   height:400px;
   background:url('arcade.png') no-repeat;
 }
-
+/* Assignment tables */
+h2.assignTitle{
+  background:url('assignArrowRt.png') no-repeat;	
+  cursor: pointer;
+  display:block;
+  padding-left:22px;
+  top:0;
+  left:0;
+}
+h2.assignTitleOpen{
+  background:url('assignArrowDn.png') no-repeat;		
+}
 /* User Profile Visuals */
 
 .assignmentTitle, .title {
