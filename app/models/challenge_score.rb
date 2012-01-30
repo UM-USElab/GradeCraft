@@ -5,4 +5,11 @@ class ChallengeScore < ActiveRecord::Base
   validates :team_id, :presence => true
   validates :score, :presence => true
   validates :challenge_id, :presence => true
+  
+  after_save :save_team_score
+  
+  def save_team_score
+    team.save
+  end
+  
 end
