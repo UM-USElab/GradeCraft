@@ -17,14 +17,27 @@ class GradesController < ApplicationController
 
   def new
     @title = "Submit New Grade"
-    @grade = Grade.new
+    @assignment = Assignment.find(params[:assignment_id])
+    @grade = grade_class(@assignment).new
     @grade.user = User.students.find(params[:user_id]) if params[:user_id]
-    @grade.assignment = Assignment.find(params[:assignment_id]) if params[:assignment_id]
+    @grade.assignment = @assignment
     @badges = Badge.all
     @teams = Team.all
-    klass = params[:type].constantize if %w{Standard Attendance Blogging ReadingReaction}.include?(params[:type]) || Grade
-    respond_with @grade = klass.new
-end
+    respond_with @grade
+  end
+  
+  def grade_class(assignment)
+    case assignment
+    when ReadingReaction
+      ReadingReactionGrade
+    when Blogging
+      BloggingGrade
+    when Attendance
+      AttendanceGrade
+    else
+      Grade
+    end
+  end
 
   def edit
     @title = "Edit Grade"
