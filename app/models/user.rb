@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :grades
   has_many :earned_badges, :through => :grades
   belongs_to :team
+  
+  before_save :calculate_score
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -61,8 +63,7 @@ class User < ActiveRecord::Base
   end
   
   # Overriding the save function so as to update the score every time a grade gets saved
-  def save
-    self.score = (user.grades.map(&:score).inject(&:+))
-    super   # calls the rails save function to store our object to the database
+  def calculate_score
+    self.score = grades.map(&:score).inject(&:+)
   end
 end

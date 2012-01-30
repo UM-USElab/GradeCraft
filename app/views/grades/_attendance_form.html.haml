@@ -1,2 +1,2 @@
 %li= grade.user.name
-= form.input :score, :as => :check_boxes, :collection => [["Present", "5000"]], :label => "", :value => "5000"
+= form.input :score, :as => :boolean, :label => 'Present', :input_html => { :value => 5000 } 

@@ -8,6 +8,8 @@ class Grade < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :assignment
+  
+  after_save :save_user_score
 
   def score
     super || 0
@@ -49,6 +51,10 @@ class Grade < ActiveRecord::Base
     else
       1000
     end
+  end
+  
+  def save_user_score
+    user.save
   end
 
 end
