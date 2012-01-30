@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130061906) do
+ActiveRecord::Schema.define(:version => 20120130070834) do
 
   create_table "assignments", :force => true do |t|
     t.string    "title"
@@ -97,14 +97,14 @@ ActiveRecord::Schema.define(:version => 20120130061906) do
   end
 
   create_table "teams", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "banner_file_name"
-    t.string    "banner_content_type"
-    t.integer   "banner_file_size"
-    t.timestamp "banner_updated_at"
-    t.decimal   "score"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
+    t.integer  "score"
   end
 
   create_table "users", :force => true do |t|
