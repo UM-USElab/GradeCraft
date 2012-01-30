@@ -4,8 +4,6 @@ class Assignment < ActiveRecord::Base
   
   attr_accessible :title, :description, :point_total, :type, :due_date
 
-  scope :one_time, where(:type => nil)
-
   def mass_gradeable?
     true
   end
