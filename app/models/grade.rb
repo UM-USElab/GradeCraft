@@ -7,6 +7,8 @@ class Grade < ActiveRecord::Base
   validates_presence_of :user
   validates_presence_of :assignment
   
+  delegate :title, :description, :point_total, :to => :assignment
+  
   after_save :save_user_score
 
   def score

@@ -356,3 +356,17 @@ h2.assignTitleOpen{
   border:0px;
   padding:0;	
 }
+
+#mainInfo {
+  width:50%;
+  position: relative;
+  left: 250px;
+}
+
+#badgesEarned {
+  width: 200px;
+  top: 500px;
+  position: absolute;
+  background-color: #eee;
+  padding: 15px;
+}
