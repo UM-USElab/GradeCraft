@@ -9,7 +9,7 @@
       %th
       %th
       %th
-  - @assignments.each do |assignment|        
+  - @assignments.each do |assignment|
     - if assignment.type == nil
       %tr
         %td= assignment.id
@@ -17,7 +17,7 @@
         %td= assignment.point_total
         %td
           - if assignment.due_date?
-            = assignment.due_date.to_formatted_s(:long_ordinal)
+            = assignment.due_date
         - if current_user.is_staff?
           %td= link_to 'Grade', assignment_path(assignment)
           %td= link_to 'Edit', edit_assignment_path(assignment)
@@ -42,14 +42,14 @@
         %td= assignment.point_total
         %td
           - if assignment.due_date?
-            = assignment.due_date.to_formatted_s(:long_ordinal)
+            = assignment.due_date.to_s(:gt_date)
         - if current_user.is_staff?
           %td= link_to 'Grade', assignment_path(assignment)
           %td= link_to 'Edit', edit_assignment_path(assignment)
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
 
 %h2.assignTitle Reading Reactions
-%table.assignTable   
+%table.assignTable
   %tr
     %th ID
     %th Title
@@ -58,7 +58,7 @@
     - if current_user.is_staff?
       %th
       %th
-      %th       
+      %th
   - @assignments.each do |assignment|
     - if assignment.type == "ReadingReaction"
       %tr
@@ -67,12 +67,12 @@
         %td= assignment.point_total
         %td
           - if assignment.due_date?
-            = assignment.due_date.to_formatted_s(:long_ordinal)
+            = assignment.due_date
         - if current_user.is_staff?
           %td= link_to 'Grade', assignment_path(assignment)
           %td= link_to 'Edit', edit_assignment_path(assignment)
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
-          
+
 %h2.assignTitle Blogging
 %table.assignTable
   %tr
@@ -84,7 +84,7 @@
       %th
       %th
       %th
-  - @assignments.each do |assignment|          
+  - @assignments.each do |assignment|
     - if assignment.type == "Blogging"
       %tr
         %td= assignment.id
@@ -92,13 +92,13 @@
         %td= assignment.point_total
         %td
           - if assignment.due_date?
-            = assignment.due_date.to_formatted_s(:long_ordinal)
+            = assignment.due_date.to_s(:gt_date)
         - if current_user.is_staff?
           %td= link_to 'View', assignment_path(assignment)
           %td= link_to 'Edit', edit_assignment_path(assignment)
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
 
-    
+
 
 
 %br
