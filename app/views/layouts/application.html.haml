@@ -34,6 +34,8 @@
             %td
               = check_box_tag :remember_me, 1, params[:remember_me]
               = label_tag :remember_me
+            %td
+              %span#forgotPass= link_to "Forgot your password?", login_path
     
   - if current_user  
     #nav
