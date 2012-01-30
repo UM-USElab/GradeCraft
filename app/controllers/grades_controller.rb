@@ -87,7 +87,12 @@ class GradesController < ApplicationController
 
   def mass_edit
     @assignment = Assignment.find(params[:assignment_id])
-    @grades = User.students.map { |s| @assignment.grades.find_or_create_by_user_id(s.id) }
+    user_search_options = {}
+    if params[:team_id].present?
+      @team = Team.find(params[:team_id])
+      user_search_options[:team_id] = @team.id if @team
+    end
+    @grades = User.students.where(user_search_options).map { |s| @assignment.grades.find_or_create_by_user_id(s.id) }
   end
 
   def mass_update
