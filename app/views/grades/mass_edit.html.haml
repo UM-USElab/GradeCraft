@@ -1,7 +1,7 @@
 %h1= @assignment.title
 
 .filters
-  = form_tag users_path, :method => :get do
+  = form_tag mass_update_grades_path(:assignment_id => @assignment.id), :method => :get do
     = select_tag :team_id, options_for_select(Team.all.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => 'Select a team'
     = submit_tag 'Filter'
 
