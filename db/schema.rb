@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120129171659) do
+ActiveRecord::Schema.define(:version => 20120130045649) do
 
   create_table "assignments", :force => true do |t|
     t.string    "title"
@@ -80,6 +80,10 @@ ActiveRecord::Schema.define(:version => 20120129171659) do
     t.integer   "badge_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.boolean   "complete"
+    t.boolean   "semis"
+    t.boolean   "finals"
+    t.string    "type"
   end
 
   add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"

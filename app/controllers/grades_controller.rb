@@ -22,8 +22,9 @@ class GradesController < ApplicationController
     @grade.assignment = Assignment.find(params[:assignment_id]) if params[:assignment_id]
     @badges = Badge.all
     @teams = Team.all
-    respond_with @grade
-  end
+    klass = params[:type].constantize if %w{Standard Attendance Blogging ReadingReaction}.include?(params[:type]) || Grade
+    respond_with @grade = klass.new
+end
 
   def edit
     @title = "Edit Grade"

@@ -1,3 +1,4 @@
 %li= grade.user.name
-= form.input :score, :as => :check_boxes, :collection=> ["Complete"], :label => "", :value => "complete"
-= form.input :level, :as => :check_boxes, :collection => [["Semi-Finalist", "semifinalist"], ["Finalist", "finalist"]]
+= form.input :complete, :as => :boolean, :label => "Complete", :value => "1"
+= form.input :semis, :as => :boolean, :label => "Semi-Finalist", :value => "1"
+= form.input :finals, :as => :boolean, :label => "Finalist", :value => "1"
