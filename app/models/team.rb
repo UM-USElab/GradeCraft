@@ -14,8 +14,8 @@ class Team < ActiveRecord::Base
 
   # Overriding the save function so as to update the score every time a grade gets saved
   #def calculate_score
-    #self.score = (challenge_scores.map(&:score).inject(&:+)) + rr_score
-  end
+  #self.score = (challenge_scores.map(&:score).inject(&:+)) + rr_score
+  #end
   
   
 end
