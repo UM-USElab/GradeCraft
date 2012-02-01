@@ -11,8 +11,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120131024733) do
-
   create_table "assignments", :force => true do |t|
     t.string    "title"
     t.string    "description"

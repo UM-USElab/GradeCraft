@@ -337,10 +337,19 @@ h2.assignTitleOpen{
 }
 /* User Profile Visuals */
 
+#userPointValues{
+  font-size:1.1em;
+}
+#scoreToggle{
+  color: #0047ae;
+  cursor:pointer;
+}
+#scoreToggle:hover{
+  text-decoration:underline;
+}
 .assignmentTitle, .title {
   font-weight: bold;
 }
-
 .completedAssignment {
   padding: 15px;
   width: 300px;
