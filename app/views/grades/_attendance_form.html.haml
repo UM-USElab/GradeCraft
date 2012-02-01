@@ -1,2 +1,4 @@
-%li= grade.user.name
-= form.input :score, :as => :boolean, :label => 'Present', :input_html => { :value => 5000 } 
+%table#massGrade
+  %tr
+    %td.user= grade.user.name
+    %td.grade= form.input :score, :as => :boolean, :label => 'Present', :input_html => { :value => 5000 } 

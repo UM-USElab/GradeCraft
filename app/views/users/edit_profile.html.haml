@@ -1,4 +1,10 @@
 %h2 My Account
+
+= gravatar_for @user, :size => 150
+%br
+<a href="http://en.gravatar.com" target="_blank"/>Need a Gravatar? Get One Here!</a>
+
+%div#accountForm
 = semantic_form_for @user do |f|
   = f.inputs do
     = f.input :email

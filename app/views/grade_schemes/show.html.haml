@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b Assignment:
+  = @grade_scheme.assignment_id
+%p
+  %b Ascore:
+  = @grade_scheme.ascore
+%p
+  %b Amscore:
+  = @grade_scheme.amscore
+%p
+  %b Bpscore:
+  = @grade_scheme.bpscore
+%p
+  %b Bscore:
+  = @grade_scheme.bscore
+%p
+  %b Bmscore:
+  = @grade_scheme.bmscore
+%p
+  %b Cpscore:
+  = @grade_scheme.cpscore
+%p
+  %b Cscore:
+  = @grade_scheme.cscore
+%p
+  %b Cmscore:
+  = @grade_scheme.cmscore
+%p
+  %b Dpscore:
+  = @grade_scheme.dpscore
+%p
+  %b Dscore:
+  = @grade_scheme.dscore
+%p
+  %b Dmscore:
+  = @grade_scheme.dmscore
+
+= link_to 'Edit', edit_grade_scheme_path(@grade_scheme)
+\|
+= link_to 'Back', grade_schemes_path

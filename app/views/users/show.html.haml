@@ -12,7 +12,7 @@
   = @user.email
 %p
   %b Team:
-  = @user.team
+  = @user.team.name
 %p
   %b Total Points:
   = @user.grades.map(&:score).inject(&:+)

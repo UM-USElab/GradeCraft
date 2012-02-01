@@ -10,6 +10,8 @@ class Grade < ActiveRecord::Base
   delegate :title, :description, :point_total, :to => :assignment
   
   after_save :save_user_score
+  
+  # named_scope :reading_reactions, :type == "ReadingReaction"
 
   def score
     super || 0

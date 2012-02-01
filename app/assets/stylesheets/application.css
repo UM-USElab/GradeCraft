@@ -67,6 +67,7 @@ h3 {
   margin-top:50px;
   min-height: 500px;
   padding: 15px 20px 25px;
+  min-width: 935px;
 }
 
 #primaryContent {
@@ -369,4 +370,23 @@ h2.assignTitleOpen{
   position: absolute;
   background-color: #eee;
   padding: 15px;
+}
+.attendanceBox label {
+  width: 100px;
+  float: left;
+}
+
+li.attendance {
+  width: 200px;
+  clear: both;
+  margin: 0px;
+  float: left;
+}
+table#massGrade {
+  cellspacing: 0;
+  cellpadding: 0;
+}
+
+#accountForm {
+  margin-top: 10px;
 }

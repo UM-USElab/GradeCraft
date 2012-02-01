@@ -11,33 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130083935) do
+ActiveRecord::Schema.define(:version => 20120131024733) do
 
   create_table "assignments", :force => true do |t|
-    t.string   "title"
-    t.string   "description"
-    t.integer  "point_total"
-    t.time     "due_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "level"
-    t.string   "type"
-    t.boolean  "substantial", :default => false
-    t.boolean  "present"
+    t.string    "title"
+    t.string    "description"
+    t.integer   "point_total"
+    t.timestamp "due_date"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "level"
+    t.string    "type"
+    t.boolean   "substantial", :default => false
+    t.boolean   "present"
   end
 
   create_table "badges", :force => true do |t|
-    t.integer  "assignment_id"
-    t.string   "title"
-    t.string   "description"
-    t.string   "icon"
-    t.binary   "visible"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.integer   "assignment_id"
+    t.string    "title"
+    t.string    "description"
+    t.string    "icon"
+    t.binary    "visible"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "image_file_name"
+    t.string    "image_content_type"
+    t.integer   "image_file_size"
+    t.timestamp "image_updated_at"
   end
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
@@ -49,41 +49,59 @@ ActiveRecord::Schema.define(:version => 20120130083935) do
     t.integer  "challenge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
   end
 
   create_table "challenges", :force => true do |t|
-    t.string   "title"
-    t.integer  "points"
-    t.string   "description"
-    t.datetime "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "title"
+    t.integer   "points"
+    t.string    "description"
+    t.timestamp "date"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "dashboards", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "earned_badges", :force => true do |t|
-    t.integer  "grade_id"
-    t.integer  "badge_id"
+    t.integer   "grade_id"
+    t.integer   "badge_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+  end
+
+  create_table "grade_schemes", :force => true do |t|
+    t.integer  "assignment_id"
+    t.integer  "ascore"
+    t.integer  "amscore"
+    t.integer  "bpscore"
+    t.integer  "bscore"
+    t.integer  "bmscore"
+    t.integer  "cpscore"
+    t.integer  "cscore"
+    t.integer  "cmscore"
+    t.integer  "dpscore"
+    t.integer  "dscore"
+    t.integer  "dmscore"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "grades", :force => true do |t|
-    t.integer  "score"
-    t.integer  "user_id"
-    t.integer  "assignment_id"
-    t.text     "feedback"
-    t.integer  "badge_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "complete"
-    t.boolean  "semis"
-    t.boolean  "finals"
-    t.string   "type"
+    t.integer   "score"
+    t.integer   "user_id"
+    t.integer   "assignment_id"
+    t.text      "feedback"
+    t.integer   "badge_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.boolean   "complete"
+    t.boolean   "semis"
+    t.boolean   "finals"
+    t.string    "type"
   end
 
   add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"
@@ -91,9 +109,9 @@ ActiveRecord::Schema.define(:version => 20120130083935) do
   add_index "grades", ["user_id"], :name => "index_grades_on_user_id"
 
   create_table "groups", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "teams", :force => true do |t|

@@ -1,0 +1,41 @@
+%h1 Listing grade_schemes
+
+%table
+  %tr
+    %th Assignment
+    %th Ascore
+    %th Amscore
+    %th Bpscore
+    %th Bscore
+    %th Bmscore
+    %th Cpscore
+    %th Cscore
+    %th Cmscore
+    %th Dpscore
+    %th Dscore
+    %th Dmscore
+    %th
+    %th
+    %th
+
+  - @grade_schemes.each do |grade_scheme|
+    %tr
+      %td= grade_scheme.assignment_id
+      %td= grade_scheme.ascore
+      %td= grade_scheme.amscore
+      %td= grade_scheme.bpscore
+      %td= grade_scheme.bscore
+      %td= grade_scheme.bmscore
+      %td= grade_scheme.cpscore
+      %td= grade_scheme.cscore
+      %td= grade_scheme.cmscore
+      %td= grade_scheme.dpscore
+      %td= grade_scheme.dscore
+      %td= grade_scheme.dmscore
+      %td= link_to 'Show', grade_scheme
+      %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme)
+      %td= link_to 'Destroy', grade_scheme, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Grade scheme', new_grade_scheme_path

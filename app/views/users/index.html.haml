@@ -6,6 +6,7 @@
 
 %table
   %tr
+    %th
     %th= sortable "username"
     %th= sortable "first_name"
     %th= sortable "last_name"
@@ -19,6 +20,7 @@
     %th
   - for user in @users
     %tr
+      %td= gravatar_for user
       %td= user.username
       %td= user.first_name
       %td= user.last_name

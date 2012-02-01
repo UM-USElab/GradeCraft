@@ -21,7 +21,7 @@
     (#{link_to 'log grades', mass_edit_grades_path(:assignment_id => @assignment.id)})
 - @assignment.grades.each do |grade|
   %p
-    #{grade.user.name} (#{grade.score})
+    #{grade.user.name} (#{grade.score}) 
 
 %div#footerNav
   %span.button= link_to 'Add Grade', new_grade_path(:assignment_id => @assignment)

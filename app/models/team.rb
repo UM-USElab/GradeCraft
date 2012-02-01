@@ -7,10 +7,16 @@ class Team < ActiveRecord::Base
   def ranking
     
   end
+  
+  def rr_score
+    500 * users.map { |u| u.grades.reading_reactions.map { |g| 1 if g.semifinals? }.inject(&:+) }.inject(&:+)
+  end
 
   # Overriding the save function so as to update the score every time a grade gets saved
   def calculate_score
-    self.score = challenge_scores.map(&:score).inject(&:+)
+    self.score = (challenge_scores.map(&:score).inject(&:+)) + rr_score
   end
+  
+  
   
 end

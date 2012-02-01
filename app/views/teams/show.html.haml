@@ -1,21 +1,10 @@
 %h1= @team.name
 %p
-  %b Points:
+  %b Points: 
+  = @team.score
 %p
   %b Rank:
 
-- Challenge.all.each do |challenge|
-  - if challenge_score = challenge.score.where(:team_id => @team.id).first
-    = challenge.title
-    = challenge_score.score
-    out of
-    = challenge.points
-    %br
-  - else
-    = challenge.title
-    = challenge.points
-    = challenge.date
-  %br
 
 = link_to 'Edit', edit_team_path(@team)
 \|
