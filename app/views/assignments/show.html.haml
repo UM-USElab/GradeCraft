@@ -15,7 +15,7 @@
   = @assignment.type
 
 
-%h2
+%h3
   Grades
   - if @assignment.mass_gradeable?
     (#{link_to 'log grades', mass_edit_grades_path(:assignment_id => @assignment.id)})
