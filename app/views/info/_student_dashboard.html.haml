@@ -16,7 +16,7 @@
 
   %h2#blogging Assignments
   - Grade.where(:user_id => current_user.id).each do |grade|
-    - if grade.assignment.type == nil
+    - if grade.assignment.type == "Standard"
       %div.completedAssignment
         %span.assignmentTitle= grade.title
         %br
