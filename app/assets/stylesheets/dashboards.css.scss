@@ -1,3 +1,64 @@
 // Place all the styles related to the Dashboards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* User Profile Visuals */
+#content #user{
+  margin-left:0;
+  font-size:1.8em;	
+}
+#userPointValues{
+  font-size:1.1em;
+}
+#scoreToggle{
+  color: #0047ae;
+  cursor:pointer;
+}
+#scoreToggle:hover{
+  text-decoration:underline;
+}
+.assignmentTitle, .title {
+  font-weight: bold;
+}
+.assignmentPointsSpan{
+  color:green;
+  font-size:.8em;
+  float:right;
+}
+.completedAssignment {
+  padding: 15px;
+/*  width: 300px;*/
+  background-color: #eee;
+  margin-bottom: 15px;
+}
+
+.futureAssignment {
+  margin-bottom: 15px;
+  padding: 15px;
+}
+
+#loginGroup, #loginGroup tr, #loginGroup td{
+  border:0px;
+  padding:0;	
+}
+
+#mainInfo {
+  width:50%;
+  position: relative;
+  left: 250px;
+}
+
+#badgesWrapper {
+  width: 200px;
+  top: 500px;
+  position: absolute;
+  background-color: #eee;
+  padding: 15px;
+}
+#badgesEarned{
+  position:relative;
+  top:0px;
+  width:100%;
+  padding:0;
+}

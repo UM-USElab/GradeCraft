@@ -1,0 +1,25 @@
+/** Cait's Stylesheet Additions **/
+.attendanceBox label {
+  width: 100px;
+  float: left;
+}
+
+li.attendance {
+  width: 200px;
+  clear: both;
+  margin: 0px;
+  float: left;
+}
+table#massGrade {
+  cellspacing: 0;
+  cellpadding: 0;
+}
+
+#accountForm {
+  margin-top: 10px;
+}
+
+#badgeSelection li {
+  float: left; 
+  padding-right: 15px;
+}
