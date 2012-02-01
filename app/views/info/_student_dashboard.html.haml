@@ -2,7 +2,17 @@
 
 %div#mainInfo
   %h2#points 
-  %div Your current score is #{current_user.score}
+  %div#userScoreSection
+    %div#userPointValues
+      %span Your current score is 
+      %span#userScoreNum #{current_user.score}
+      /%span#scoreSoFar.toggle out of 300,000 points possible so far
+      %span#scoreTotal.toggle out of 1,245,000 total points in the course
+    /%div#userBarInProgress.toggle
+    %div#userBarTotal.toggle
+    %div#scoreToggle
+      /%span#showTotalPts.toggle Show score out of total course points
+      /%span#showPossiblePts.toggle Show score out of possible points so far
 
   %h2#blogging Assignments
   - Grade.where(:user_id => current_user.id).each do |grade|
