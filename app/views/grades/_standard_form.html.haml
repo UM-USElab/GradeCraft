@@ -1,4 +1,5 @@
-%li.gradeUserName= grade.user.name
+%div.gradeUserName= grade.user.name
+= gravatar_for grade.user
 = form.input :score
 = form.input :feedback, :as => :text
 %div#badgeSelection= form.input :badges, :as => :check_boxes, :collection => @badges
