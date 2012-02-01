@@ -11,10 +11,11 @@
 $(document).ready(function(){
 	
 // Collapsible tables in Assignments section
-	$('.assignTable').hide();
+	$('.collapsible').hide();
+
 	$('.assignTitle').click(function(){
 		$(this).toggleClass('assignTitleOpen');
-		$(this).next('.assignTable').slideToggle();
+		$(this).next('.collapsible').slideToggle();
 	});
 	
 // Progress bars to student dashboard

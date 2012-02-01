@@ -1,5 +1,5 @@
 %h2.assignTitle Assignments
-%table.assignTable
+%table.collapsible
   %tr
     %th ID
     %th Title
@@ -21,12 +21,12 @@
         - if current_user.is_staff?
           %td= link_to 'Grade', assignment_path(assignment)
           - if assignment.mass_gradeable?
-            %td (#{link_to 'log grades', mass_edit_grades_path(:assignment_id => @assignment.id)})
+            /%td (#{link_to 'log grades', mass_edit_grades_path(:assignment_id => @assignment.id)})
           %td= link_to 'Edit', edit_assignment_path(assignment)
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
 
 %h2.assignTitle Attendance
-%table.assignTable
+%table.collapsible
   %tr
     %th ID
     %th Title
@@ -51,7 +51,7 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
 
 %h2.assignTitle Reading Reactions
-%table.assignTable
+%table.collapsible
   %tr
     %th ID
     %th Title
@@ -76,7 +76,7 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
 
 %h2.assignTitle Blogging
-%table.assignTable
+%table.collapsible
   %tr
     %th ID
     %th Title

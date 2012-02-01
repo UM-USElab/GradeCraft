@@ -350,9 +350,14 @@ h2.assignTitleOpen{
 .assignmentTitle, .title {
   font-weight: bold;
 }
+.assignmentPointsSpan{
+  color:green;
+  font-size:.8em;
+  float:right;
+}
 .completedAssignment {
   padding: 15px;
-  width: 300px;
+/*  width: 300px;*/
   background-color: #eee;
   margin-bottom: 15px;
 }
