@@ -1,5 +1,5 @@
 %h2.assignTitle Assignments
-%table.assignTable
+%table.collapsible
   %tr
     %th ID
     %th Title
@@ -26,7 +26,7 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
 
 %h2.assignTitle Attendance
-%table.assignTable
+%table.collapsible
   %tr
     %th ID
     %th Title
@@ -51,7 +51,7 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
 
 %h2.assignTitle Reading Reactions
-%table.assignTable
+%table.collapsible
   %tr
     %th ID
     %th Title
@@ -76,7 +76,7 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
 
 %h2.assignTitle Blogging
-%table.assignTable
+%table.collapsible
   %tr
     %th ID
     %th Title
