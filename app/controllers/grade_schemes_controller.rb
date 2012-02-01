@@ -3,7 +3,10 @@ class GradeSchemesController < ApplicationController
   # GET /grade_schemes.json
   def index
     @grade_schemes = GradeScheme.all
-
+    if params[:assignment_id].present?
+      @assignment = Assignment.find(params[:assignment_id])
+      search_options[:assignment_id] = @assignment.id if @assignment
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @grade_schemes }
@@ -25,7 +28,7 @@ class GradeSchemesController < ApplicationController
   # GET /grade_schemes/new.json
   def new
     @grade_scheme = GradeScheme.new
-
+    @assignments = Assignment.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @grade_scheme }
@@ -35,12 +38,14 @@ class GradeSchemesController < ApplicationController
   # GET /grade_schemes/1/edit
   def edit
     @grade_scheme = GradeScheme.find(params[:id])
+    @assignments = Assignment.all
   end
 
   # POST /grade_schemes
   # POST /grade_schemes.json
   def create
     @grade_scheme = GradeScheme.new(params[:grade_scheme])
+    @assignments = Assignment.all
 
     respond_to do |format|
       if @grade_scheme.save
@@ -57,7 +62,7 @@ class GradeSchemesController < ApplicationController
   # PUT /grade_schemes/1.json
   def update
     @grade_scheme = GradeScheme.find(params[:id])
-
+    @assignments = Assignment.all
     respond_to do |format|
       if @grade_scheme.update_attributes(params[:grade_scheme])
         format.html { redirect_to @grade_scheme, notice: 'Grade scheme was successfully updated.' }

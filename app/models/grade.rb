@@ -11,13 +11,11 @@ class Grade < ActiveRecord::Base
   
   after_save :save_user_score
   
-  # named_scope :reading_reactions, :type == "ReadingReaction"
+  scope :reading_reactions, where(:type => "ReadingReactionGrade")
 
   def score
     super || 0
   end
-  
-  Levels = ['Semifinalist','Finalist','Complete']
   
   def short?
     !substantial?
