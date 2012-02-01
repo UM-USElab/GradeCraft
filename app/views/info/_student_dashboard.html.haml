@@ -1,5 +1,5 @@
 %h3#user= current_user.first_name+" "+current_user.last_name
-= gravatar_for @user, :size => 150
+= gravatar_for @current_user, :size => 150
 %div#mainInfo
   %h2#points 
   %div Your current score is #{current_user.score}
