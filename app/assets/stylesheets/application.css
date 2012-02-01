@@ -378,14 +378,6 @@ h2.assignTitleOpen{
   left: 250px;
 }
 
-#badgesEarned {
-  width: 200px;
-  top: 500px;
-  position: absolute;
-  background-color: #eee;
-  padding: 15px;
-}
-
 /** Cait's Stylesheet Additions **/
 .attendanceBox label {
   width: 100px;

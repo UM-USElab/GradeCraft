@@ -1,0 +1,4 @@
+%li.gradeUserName= grade.user.name
+= form.input :score
+= form.input :feedback, :as => :text
+%div#badgeSelection= form.input :badges, :as => :check_boxes, :collection => @badges

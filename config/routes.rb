@@ -1,10 +1,6 @@
 Grader::Application.routes.draw do
 
-  resources :grade_schemes
-
   root :to => "home#index"
-
-  resources :user_sessions
 
   %w{students gsis professors admins}.each do |role|
     get "users/#{role}/new" => 'users#new', :as => "new_#{role.singularize}", :role => role.singularize
@@ -17,7 +13,6 @@ Grader::Application.routes.draw do
     end
   end
   resources :password_resets
-
   resources :assignments
   resources :badges
   resources :groups
@@ -32,6 +27,8 @@ Grader::Application.routes.draw do
   resources :home
   resources :challenge_scores
   resources :challenges
+  resources :grade_schemes
+  resources :user_sessions
 
   get "info/index"
   get "home/index"
