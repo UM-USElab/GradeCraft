@@ -10,7 +10,7 @@
       %th
       %th
   - @assignments.each do |assignment|
-    - if assignment.type == nil
+    - if assignment.type == "Standard"
       %tr
         %td= assignment.id
         %td= assignment.title
