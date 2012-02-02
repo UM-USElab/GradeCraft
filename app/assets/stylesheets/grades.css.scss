@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/** Cait's Stylesheet Additions **/
 .attendanceBox label {
   width: 100px;
   float: left;
@@ -34,11 +33,11 @@ table.massGrade td {
   border-top: 1px dotted blue;
 }
 
-.user {
+div.gradeuser {
   width: 150px;
   float: left;
 }
-.attendance li {
+div.gradeattendance {
   float: left;
   padding: 0;
   margin: 0;
