@@ -1,10 +1,14 @@
 %h2= @grade.assignment.title
 
+%div.gradeUserName= grade.user.name
+= gravatar_for grade.user
 = semantic_form_for @grade.becomes(Grade) do |f|
   = f.inputs do
     = f.input :user, :as => ( :hidden if @grade.user ), :collection => User.students, :include_blank => false
     = f.input :assignment, :as => ( :hidden if @grade.assignment ), :include_blank => false
     = f.input :score
     = f.input :feedback, :as => :text
-    = f.input :badges, :as => :check_boxes, :collection => @badges
+    %div#badgeSelection= form.input :badges, :as => :check_boxes, :collection => @badges
     = f.buttons
+
+

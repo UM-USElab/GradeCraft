@@ -22,19 +22,22 @@
       /%span#showTotalPts.toggle Show score out of total course points
       /%span#showPossiblePts.toggle Show score out of possible points so far
 
-  %h2#blogging Assignments
-  - Grade.where(:user_id => current_user.id).each do |grade|
-    - if grade.assignment.type == nil
-      %div.completedAssignment
-        %span.assignmentTitle= grade.title
-        %br
-        %span.assignmentGrade= grade.score
-        out of
-        %span.assignmentScore= grade.point_total
-        %span possible points
-        %br
-        - grade.earned_badges.each do |badge|
-          %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
+  %h2#attendance.assignTitle
+    %span Assignments
+    %span.assignmentPointsSpan #{current_user.score}/200,000 points
+  %div.collapsible
+    - Grade.where(:user_id => current_user.id).each do |grade|
+      - if grade.assignment.type == "Standard"
+        %div.completedAssignment
+          %span.assignmentTitle= grade.title
+          %br
+          %span.assignmentGrade= grade.score
+          out of
+          %span.assignmentScore= grade.point_total
+          %span possible points
+          %br
+          - grade.earned_badges.each do |badge|
+            %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
 
   %h2#attendance.assignTitle
     %span Attendance
