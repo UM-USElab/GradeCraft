@@ -8,6 +8,24 @@
   margin-left:0;
   font-size:1.8em;	
 }
+#leftSidebar{
+  margin-right:0;
+  float:left;
+  width:0;
+}
+#badgesWrapper {
+  width: 200px;
+  top: 500px;
+  position: absolute;
+  background-color: #eee;
+  padding: 15px;
+}
+#userGravatar{
+  width:250px;
+}
+.gravatar{
+  max-width:100%;
+}
 #userPointValues{
   font-size:1.1em;
 }
@@ -28,7 +46,6 @@
 }
 .completedAssignment {
   padding: 15px;
-/*  width: 300px;*/
   background-color: #eee;
   margin-bottom: 15px;
 }
@@ -45,20 +62,7 @@
 
 #mainInfo {
   width:50%;
-  position: relative;
-  left: 250px;
+  left: 300px;
+  height:100%;
 }
 
-#badgesWrapper {
-  width: 200px;
-  top: 500px;
-  position: absolute;
-  background-color: #eee;
-  padding: 15px;
-}
-#badgesEarned{
-  position:relative;
-  top:0px;
-  width:100%;
-  padding:0;
-}

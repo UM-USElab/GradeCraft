@@ -1,5 +1,13 @@
 %h3#user= current_user.first_name+" "+current_user.last_name
-= gravatar_for @current_user, :size => 150
+%div#leftSidebar
+  %div#userGravatar
+    = gravatar_for @current_user, :size => 150
+  %div#badgesWrapper
+    %span.title Badges Earned:
+    %div#badgesEarned
+      - current_user.earned_badges.each do |badge|
+        %img{:src => badge.icon, :alt => badge.title}
+
 %div#mainInfo
   %h2#points 
   %div#userScoreSection
@@ -16,7 +24,7 @@
 
   %h2#blogging Assignments
   - Grade.where(:user_id => current_user.id).each do |grade|
-    - if grade.assignment.type == "Standard"
+    - if grade.assignment.type == nil
       %div.completedAssignment
         %span.assignmentTitle= grade.title
         %br
@@ -29,7 +37,7 @@
           %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
 
   %h2#attendance.assignTitle
-    %span Assignments
+    %span Attendance
     %span.assignmentPointsSpan #{current_user.score}/200,000 points
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade|
@@ -75,10 +83,3 @@
           %br
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => "25"}  
-  
-
-
-%div#badgesEarned
-  %span.title Badges Earned:
-  - current_user.earned_badges.each do |badge|
-    %img{:src => badge.icon, :alt => badge.title}

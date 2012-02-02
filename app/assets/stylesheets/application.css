@@ -82,6 +82,11 @@ h3 {
 }
 
 /* Navigation items */
+#loginGroup, #loginGroup tr, #loginGroup td{
+  border:0px;
+  padding:0;	
+}
+
 #myInfo{
   float:right;
   padding:8px;
@@ -306,74 +311,4 @@ th#icon {
 }
 #footerNav span{
   clear:both;
-}
-/* Intro page styles */
-
-#homeIntro{
-  font-size:1.2em;
-  width:60%;
-  float:left;
-}
-#homeRegBtn{
-  margin-top:20px;
-}
-#homeArcade{
-  float:right;
-  width:40%;
-  height:400px;
-  background:url('arcade.png') no-repeat;
-}
-/* Assignment tables */
-h2.assignTitle{
-  background:url('assignArrowRt.png') no-repeat;	
-  cursor: pointer;
-  display:block;
-  padding-left:22px;
-  top:0;
-  left:0;
-}
-h2.assignTitleOpen{
-  background:url('assignArrowDn.png') no-repeat;		
-}
-/* User Profile Visuals */
-
-#userPointValues{
-  font-size:1.1em;
-}
-#scoreToggle{
-  color: #0047ae;
-  cursor:pointer;
-}
-#scoreToggle:hover{
-  text-decoration:underline;
-}
-.assignmentTitle, .title {
-  font-weight: bold;
-}
-.assignmentPointsSpan{
-  color:green;
-  font-size:.8em;
-  float:right;
-}
-.completedAssignment {
-  padding: 15px;
-/*  width: 300px;*/
-  background-color: #eee;
-  margin-bottom: 15px;
-}
-
-.futureAssignment {
-  margin-bottom: 15px;
-  padding: 15px;
-}
-
-#loginGroup, #loginGroup tr, #loginGroup td{
-  border:0px;
-  padding:0;	
-}
-
-#mainInfo {
-  width:50%;
-  position: relative;
-  left: 250px;
 }
