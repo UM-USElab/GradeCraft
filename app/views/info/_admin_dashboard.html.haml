@@ -1,3 +1,25 @@
+/%h3 My Students
+/%table
+/%tr
+/%th
+/%th Username
+/%th First Name
+/%th Last Name
+/%th Score
+/%th Badges
+/%th View Profile
+  
+/- for user in @users
+/%tr
+/%td= user.username
+/%td= user.first_name
+/%td= user.last_name
+/%td= user.score
+/%td
+/- user.earned_badges.each do |badge|
+/%img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+
+
 %h3= link_to "View All Assignments", assignments_url
 %h3= link_to "View All Grades", grades_url
 %h3= link_to "Grade an Assignment", new_grade_url
