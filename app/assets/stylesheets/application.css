@@ -14,8 +14,7 @@ html {
 
 body {
   	margin: 15px auto;
-	min-width:840px;
-	width:80%;
+	width:980px;
 }
 a {
   color: #0047ae;
@@ -64,7 +63,7 @@ h3 {
   border-radius: 15px;
   box-shadow: 2px 2px 15px #888;
   clear:both;
-  margin-top:50px;
+  margin-top:20px;
   min-height: 500px;
   padding: 15px 20px 25px;
   min-width: 935px;
@@ -113,11 +112,84 @@ h3 {
 #myInfo li a:hover{
   text-decoration:none;
 }
+
+/* nav style full background */
+
 #nav {
   clear:both;
-  height:80px;
+  height:120px;
+  padding-bottom:30px;
+}
+#navGroup, #teamNav, #psaBox{		
+  padding:10px 20px;
+  float:left; 
+  -moz-border-radius: 15px;
+  border-radius: 15px;	
+}
+#navGroup, #teamNav{
+  background-color: rgba(150,150,150,.2);	
+}
+#psaBox{
+  background-color: rgba(150,150,150,.4); 
+}
+.navTitle{
+  font-weight:bold;
+  padding:10px 20px 10px 10px;
+  font-size:1em;
 }
 
+#teamNav, #psaBox{
+  margin-left:20px;
+  display:inline-block;
+}
+#psaBox{
+  height:125px;
+  width:190px;
+}
+#psaBox p a:hover{
+  text-decoration:underline;
+}
+
+/* nav style header background
+#nav {
+  clear:both;
+  height:120px;
+  padding-bottom:30px;
+}
+#navGroup{
+  padding:10px 20px 10px 10px;
+  float:left; 	
+}
+#teamNav, #psaBox{
+  padding:10px 20px;
+  float:left;
+}
+.navTitle, #psaBox{
+  background-color: rgba(150,150,150,.2);	
+}
+.navTitle{
+  font-weight:bold;
+  padding:10px 20px 10px 10px;
+  font-size:1em;
+  display:block;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+#teamNav, #psaBox{
+  margin-left:20px;
+  display:inline-block;
+}
+#psaBox{
+  height:125px;
+  width:190px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+#psaBox p a:hover{
+  text-decoration:underline;
+}
+*/
 #nav ul {
   list-style-type:none;
   margin: 0;
@@ -303,6 +375,14 @@ th#icon {
   text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
   padding:5px;
 }
+.assignTitle{
+  cursor:pointer;
+  background: url(assignArrowRt.png) no-repeat left bottom;
+  padding-left:25px;
+}
+.assignTitleOpen{
+  background: url(assignArrowDn.png) no-repeat left bottom;
+}
 #footerNav {
   border-top: 1px dotted #ccc;
   padding-top: 15px;
@@ -311,4 +391,3 @@ th#icon {
 #footerNav span{
   clear:both;
 }
-
