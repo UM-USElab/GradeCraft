@@ -67,11 +67,10 @@
       = yield
   - else
     %div#content
-      %div.homeArcade
-        %p#notice= notice
-        %p#alert= alert
-        %h2= title
-        = yield
+      %p#notice= notice
+      %p#alert= alert
+      %h2= title
+      = yield
     
   #footer
     .copyright< Copyright 2012 Barry Fishman | <a href="/info/index">Site Credits</a>

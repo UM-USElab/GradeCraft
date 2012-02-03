@@ -1,8 +1,10 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 
-.homeArcade {
-  background-image: url('arcade.png') no-repeat bottom right;
+div.homeArcade {
+  background-image: url('arcade.png');
+  background-position: top right;
+  background-repeat: no-repeat;
   height: 500px;
   width: 910px;
 }
