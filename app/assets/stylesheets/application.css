@@ -292,6 +292,10 @@ table#login td {
   background-position: -75px 12px;
 }
 
+#navDashboard a.current:hover, #navUsers a.current:hover, #navAssignments a.current:hover, #navBadges a.current:hover, #navRankings a.current:hover, #navChallenges a.current:hover {
+  background-position: -2px 12px;
+}
+
 input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation, input#challenge_title, input#challenge_points, input#team_name, inpu#badge_icon, input#user_first_name, input#user_last_name, input#badge_icon, input#user_username {
   width: 50%;
 }
