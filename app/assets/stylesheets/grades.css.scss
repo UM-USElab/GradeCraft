@@ -33,7 +33,7 @@ table.massGrade td {
   border-top: 1px dotted blue;
 }
 
-div.gradeuser {
+div.gradeuser, li.gradeuser {
   width: 150px;
   float: left;
 }
@@ -42,4 +42,35 @@ div.gradeattendance {
   padding: 0;
   margin: 0;
   width: 100px;
+}
+
+#badgeSelectionRight li {
+  float: left; 
+  padding-right: 15px;
+}
+
+#badgeSelectionRight {
+  float: right;
+  width: 250px;
+}
+
+#rrScore {
+  margin-left: 195px;
+  width: 500px;
+}
+
+#rrScore ul {
+  text-align: left;
+}
+
+li.gradeuser {
+  margin: 5px;
+}
+
+#rrScore li {
+  float: left;
+  width: 130px;
+  margin: 5px;
+  padding: 0;
+  text-align: left;
 }

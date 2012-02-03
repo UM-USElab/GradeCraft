@@ -16,13 +16,13 @@ class GradesController < ApplicationController
   end
 
   def new
+    @badges = Badge.all
+    @teams = Team.all
     @title = "Submit New Grade"
     @assignment = Assignment.find(params[:assignment_id])
     @grade = grade_class(@assignment).new
     @grade.user = User.students.find(params[:user_id]) if params[:user_id]
     @grade.assignment = @assignment
-    @badges = Badge.all
-    @teams = Team.all
     respond_with @grade
   end
   
@@ -34,6 +34,8 @@ class GradesController < ApplicationController
       BloggingGrade
     when Attendance
       AttendanceGrade
+    when Standard
+      StandardGrade
     else
       Grade
     end

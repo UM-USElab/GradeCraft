@@ -33,11 +33,9 @@
           %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
       %td
         - if user.is_student?
-          = link_to 'View Profile', user
+          = link_to 'Dashboard', user
       %td= link_to 'Edit', edit_user_path(user)
       %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
 
-%br
-
-%footerNav
+%div#footerNav
   %span.button= link_to 'Create a New Player', new_user_path

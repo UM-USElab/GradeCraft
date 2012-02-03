@@ -4,7 +4,7 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  *= require_tree .
- *= require 'formtastic' 
+ *= require formtastic
 */
 
 html {
@@ -18,40 +18,48 @@ body {
 	width:80%;
 }
 a {
-  color: #0047ae;
+  color: #5199ae;
   text-decoration: none;
   &:visited {
     color: #5199ae; }
   &:hover {
     text-decoration: underline; } 
   } 
-table {
-  border: 1px solid #ccc;
+table, th, td {
+  border: 1px solid #c1c50e;
+  background-color: #222;
   text-align: left;
   border-collapse:collapse;
+  padding: 6px;
+  margin: 0px;
+}
+
+table {
   width: 100%;
 }
 
-table th {
-  padding: 8px;
-  border: 1px solid #ccc;
+th {
+  background-color: #111111;
+  text-transform: uppercase;
+  color: #888;
 }
 
-table td {
-  padding: 8px;
-  margin: 0px;
-  border: 1px solid #ccc;
+th a {
+  display: block;
 }
-#siteTitle{
+
+h1#siteTitle{
   padding: 8px 0px 0px;
   float:left;
   font-family:'Copse', serif;
   font-size:2.7em;
   margin-bottom:10px;
+  color: #333;
 }
-h1#assignmentTitle {
-  margin-left: 15px;
+h2 {
+  color: #c1c50e;
   font-size: 20px;
+  
 }
 
 h3 {
@@ -60,14 +68,15 @@ h3 {
 
 #content, #registrationDiv {
   -moz-border-radius: 15px;
-  background-color: #FFF;
+	background: url('demo-bg.png') #333333;
   border-radius: 15px;
   box-shadow: 2px 2px 15px #888;
   clear:both;
   margin-top:50px;
   min-height: 500px;
-  padding: 15px 20px 25px;
-  min-width: 935px;
+  padding: 15px 35px 25px;
+  min-width: 1000px;
+  color: #FFF;
 }
 
 #primaryContent {
@@ -77,6 +86,7 @@ h3 {
 
 #footer {
   margin-top: 45px;
+  margin-bottom: 0px;
   padding-top: 15px;
   border-top: 1px solid #eee;
 }
@@ -134,13 +144,14 @@ h3 {
   font-size:1.1em;
   padding-top:90px;
   width:75px;
+  color: #0047ae;
 }
 #nav li a:hover{
   text-decoration:none;
 }
-#navDashboard a, #navUsers a, #navAssignments a, #navBadges a, #navRankings a, #navChallenges a{
+#navDashboard a, #navUsers a, #navAssignments a, #navBadges a, #navRankings a, #navChallenges a {
   background-position: 0px 12px;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
 }
 #nav a.current{
   background-position:-2px 12px;
@@ -170,6 +181,7 @@ h3 {
   background-image:url('navBadgesFold.png');	
 }
 #navRankings a{
+  margin-right: 25px;
   background-image:url('navRankings.png');
 }
 #navRankings a.current{
@@ -184,10 +196,42 @@ h3 {
 #navDashboard a:hover, #navUsers a:hover, #navAssignments a:hover, #navBadges a:hover, #navRankings a:hover, #navChallenges a:hover{
   background-position: -75px 12px;
 }
+
+#nav #teamNav {
+  width: 180px;
+  background-color: #99ccff;
+  border-top-left-radius: 15px; 
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  opacity: .8;
+  margin-left: 75px;
+  margin-right: 0px;
+  float: left;
+  margin-top: -20px;
+  padding: 10px 20px 20px 20px;
+}
+
+#nav ul#teamNav li {
+  height: 100px;
+  margin: -20px 0px 0px 0px;
+   padding: 0;}
+
+ #nav ul#teamNav a {
+   height: 50px;
+   width: 75px;
+ 
+ }
+
+#nav #teamNav h3 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
 #nav a.current:hover{
   background-position:-2px 12px;
 }
-input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation, input#challenge_title, input#challenge_points, input#team_name, inpu#badge_icon, input#user_first_name, input#user_last_name, input#badge_icon {
+input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation, input#challenge_title, input#challenge_points, input#team_name, inpu#badge_icon, input#user_first_name, input#user_last_name, input#badge_icon, input#user_username {
   width: 50%;
 }
 
@@ -213,10 +257,12 @@ th#icon {
 }
 
 .filters {
-  background-color: #eee;
+  background-color: #000;
   padding: 10px;
-  border-top-left-radius: 5px; 
-  border-top-right-radius: 5px;
+  border-top-left-radius: 8px; 
+  border-top-right-radius: 8px;
+  border: 1px solid #c1c50e;
+  min-width: 980px;
 }
 
 .filters input:hover {
@@ -239,6 +285,12 @@ th#icon {
   border-bottom: 1px solid rgba(0,0,0,0.25);
   position: relative;
   cursor: pointer
+}
+
+.filters input {
+  border: 0px;
+  font-size: 13px;
+  font-weight: bold;
 }
 .button a{
   color:#fff;
@@ -305,11 +357,12 @@ th#icon {
   padding:5px;
 }
 #footerNav {
+  margin-top: 20px;
   border-top: 1px dotted #ccc;
   padding-top: 15px;
-  margin-top: 20px;
 }
-#footerNav span{
+
+#footerNav {
   clear:both;
 }
 

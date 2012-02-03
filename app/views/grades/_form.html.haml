@@ -1,6 +1,6 @@
-%h2= @grade.assignment.title
+%h2= @grade.assignment.type+" "+@grade.assignment.title
 
-%div.gradeUserName= grade.user.name
+%div.gradeUserName= grade.user.username
 = gravatar_for grade.user
 = semantic_form_for @grade.becomes(Grade) do |f|
   = f.inputs do
@@ -10,5 +10,3 @@
     = f.input :feedback, :as => :text
     %div#badgeSelection= form.input :badges, :as => :check_boxes, :collection => @badges
     = f.buttons
-
-

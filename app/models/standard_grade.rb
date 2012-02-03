@@ -1,0 +1,3 @@
+class StandardGrade < Grade
+
+end
