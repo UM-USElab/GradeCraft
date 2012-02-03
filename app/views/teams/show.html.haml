@@ -10,6 +10,6 @@
   //= @team.rr_score
 
 
-= link_to 'Edit', edit_team_path(@team)
-\|
-= link_to 'Back', teams_path
+%div#footerNav
+  %span.button= link_to 'Edit', edit_team_path(@team)
+  %span.button= link_to 'Back', teams_path

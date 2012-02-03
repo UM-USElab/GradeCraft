@@ -37,6 +37,6 @@
   %b Dmscore:
   = @grade_scheme.dmscore
 
-= link_to 'Edit', edit_grade_scheme_path(@grade_scheme)
-\|
-= link_to 'Back', grade_schemes_path
+%div#footerNav
+  %span.button= link_to 'Edit', edit_grade_scheme_path(@grade_scheme)
+  %span.button= link_to 'Back', grade_schemes_path

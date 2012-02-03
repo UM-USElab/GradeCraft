@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @grade_scheme
-\|
-= link_to 'Back', grade_schemes_path
+%div#footerNav
+  %span.button= link_to 'Show', @grade_scheme
+  %span.button= link_to 'Back', grade_schemes_path
