@@ -16,26 +16,29 @@
       %li= link_to "My Account", edit_profile_users_path
       %li= link_to "Logout", :logout
     - else
-      %table#loginGroup
-        = form_tag user_sessions_path, :method => :post do
-          %tr
-            %td
-              = label_tag :username
-            %td
-              = label_tag :password
-          %tr
-            %td
-              = text_field_tag :username
-            %td
-              = password_field_tag :password
-            %td.actions
-              %span.submitBtn.small= submit_tag "Login"
-          %tr
-            %td
-              = check_box_tag :remember_me, 1, params[:remember_me]
-              = label_tag :remember_me
-            %td
-              %span#forgotPass= link_to "Forgot your password?", login_path
+      %div#loginGroup
+        %table#login
+          = form_tag user_sessions_path, :method => :post do
+            %tr
+              %td
+                = label_tag :username
+              %td
+                = label_tag :password
+              %td
+            %tr
+              %td
+                = text_field_tag :username
+              %td
+                = password_field_tag :password
+              %td.actions
+                %span.submitBtn.small= submit_tag "Login"
+            %tr
+              %td
+                = check_box_tag :remember_me, 1, params[:remember_me]
+                = label_tag :remember_me
+              %td
+                %span#forgotPass= link_to "Forgot your password?", login_path
+              %td
     
   - if current_user  
     #nav

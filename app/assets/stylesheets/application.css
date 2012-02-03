@@ -24,9 +24,13 @@ a {
   &:hover {
     text-decoration: underline; } 
   } 
+
+table {
+  background-color: #222;
+}  
+
 table, th, td {
   border: 1px solid #c1c50e;
-  background-color: #222;
   text-align: left;
   border-collapse:collapse;
   padding: 6px;
@@ -93,16 +97,27 @@ h3 {
 
 /* Navigation items */
 
-table#loginGroup {
+#loginGroup {
   border-radius: 15px;
   -moz-border-radius: 15px;
-  background-color: rgba(150,150,150,.2);	
-  padding: 20px;
-  
 }
 
-#loginGroup, #loginGroup tr, #loginGroup td{
+#loginGroup table {
+  padding: 30px;
+  border-radius: 15px;
+  width: 360px;
+  -moz-border-radius: 15px;
+  background-color: rgba(150,150,150,.7);
+}
+
+
+table#login, table#login tr, table#login th, table#login td {
   border:0px;
+  color: #FFF;
+}
+
+table#login td {
+  padding: 10px;
 }
 
 #myInfo{
