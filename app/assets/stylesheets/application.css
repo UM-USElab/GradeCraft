@@ -14,7 +14,7 @@ html {
 
 body {
   	margin: 15px auto;
-	width:980px;
+	width:1000px;
 }
 a {
   color: #5199ae;
@@ -38,7 +38,7 @@ table, th, td {
 }
 
 table {
-  width: 100%;
+  width: 900px;
 }
 
 
@@ -76,10 +76,10 @@ h3 {
   border-radius: 15px;
   box-shadow: 2px 2px 15px #888;
   clear:both;
-  margin-top:20px;
+  margin-top: 20px;
   min-height: 500px;
   padding: 15px 35px 25px;
-  min-width: 900px;
+  width: 932px;
   color: #FFF;
 }
 
@@ -174,7 +174,7 @@ table#login td {
 }
 
 #teamNav, #psaBox{
-  margin-left:20px;
+  margin-left:30px;
   display:inline-block;
 }
 #psaBox{
@@ -323,7 +323,7 @@ th#icon {
   border-top-left-radius: 8px; 
   border-top-right-radius: 8px;
   border: 1px solid #c1c50e;
-  min-width: 980px;
+  min-width: 912px;
 }
 
 .filters input:hover {
@@ -434,4 +434,3 @@ th#icon {
 #footerNav {
   clear:both;
 }
-
