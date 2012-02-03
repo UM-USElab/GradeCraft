@@ -518,7 +518,7 @@ white-space: nowrap;
 div.selector select {
 position: absolute;
 opacity: 0;
-filter: alpha(opacity:0);
+filter: alpha(opacity=0);
 height: 25px;
 background: none;
 }
@@ -537,7 +537,7 @@ text-align: center;
 
 div.checker input {
 opacity: 0;
-filter: alpha(opacity:0);
+filter: alpha(opacity=0);
 display: inline-block;
 background: none;
 }
@@ -556,7 +556,7 @@ text-align: center;
 
 div.radio input {
 opacity: 0;
-filter: alpha(opacity:0);
+filter: alpha(opacity=0);
 text-align: center;
 display: inline-block;
 background: none;
@@ -589,7 +589,7 @@ cursor: pointer;
 
 div.uploader input {
 opacity: 0;
-filter: alpha(opacity:0);
+filter: alpha(opacity=0);
 position: absolute;
 top: 0px;
 right: 0;

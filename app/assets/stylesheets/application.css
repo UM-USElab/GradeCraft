@@ -8,7 +8,7 @@
 */
 
 html {
-  	font-family:'Droid Serif',serif;
+  font-family:'Droid Serif',serif;
 	background: url('cloud_bg.gif') #99ccff;
 }
 
@@ -36,6 +36,7 @@ table, th, td {
 table {
   width: 100%;
 }
+
 
 th {
   background-color: #111111;
@@ -91,9 +92,17 @@ h3 {
 }
 
 /* Navigation items */
+
+table#loginGroup {
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  background-color: rgba(150,150,150,.2);	
+  padding: 20px;
+  
+}
+
 #loginGroup, #loginGroup tr, #loginGroup td{
   border:0px;
-  padding:0;	
 }
 
 #myInfo{
