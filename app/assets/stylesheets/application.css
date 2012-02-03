@@ -117,7 +117,7 @@ table#login, table#login tr, table#login th, table#login td {
 }
 
 table#login td {
-  padding: 10px;
+  padding: 10px 10px 5px;
 }
 
 #myInfo{
