@@ -1,4 +1,5 @@
-= render 'form'
+- if current_user.is_staff? 
+  = render 'form'
 
 %div#footerNav
   %span.button= link_to 'View', @user

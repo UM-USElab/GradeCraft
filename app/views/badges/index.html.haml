@@ -16,7 +16,11 @@
           %img{:src => badge.icon, :alt => badge.title}
           %td= badge.title
           %td= badge.description
-          %td= badge.visible
+          %td 
+            - if badge.visible == "1"
+              Yes
+            - else
+              No
           %td= link_to 'View', badge
           %td= link_to 'Edit', edit_badge_path(badge)
           %td= link_to 'Delete', badge, :confirm => 'Are you sure?', :method => :delete
