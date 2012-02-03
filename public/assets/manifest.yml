@@ -1,8 +1,10 @@
 ---
-arcade.png: arcade-9e38961808ad519583141dcfd13513ab.png
+arcade.png: arcade-a4ecc2c8d8e24afcfc8977bcca50557e.png
 assignArrowDn.png: assignArrowDn-5ccdda7cc7f340c03678775991e74beb.png
 assignArrowRt.png: assignArrowRt-3e688af6857cadf1741786584189ad41.png
+bg-input.png: bg-input-b982f6c8570abc7960fde1173ca9b508.png
 cloud_bg.gif: cloud_bg-19cf6bb444368a03a530468aa769bcf4.gif
+demo-bg.png: demo-bg-7e9fcbabf28da05def0373341709e878.png
 navAssignments.png: navAssignments-3aac8e84a201b9447b532d01e8a3608d.png
 navAssignmentsFold.png: navAssignmentsFold-78a45716cb7ce1f797b3cc4c91ea9100.png
 navAssignmentsFold.psd: navAssignmentsFold-5885013e929a3710d026974d2c23fbc8.psd
@@ -17,8 +19,11 @@ navRankingsFold.png: navRankingsFold-58b399f128ee3963a265ac12885f9ba1.png
 navUsers.png: navUsers-bda5c1606d8731a351ba5691b3eb8489.png
 navUsersFold.png: navUsersFold-6825fbf203c38500765b3104abc56512.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
-application.js: application-bf95fa88e9bf176070e04b66e59e5ee4.js
-application.css: application-446955a0a4e7f49df44674a22a4a1da3.css
+sprite-noire.png: sprite-noire-28d7e5e25f74515a7716ac0298b32203.png
+application.js: application-117d17a4acce1b045da401e9b1868052.js
+application.css: application-4de61b39696db91f0d922df4caa19106.css
+images/bg-input.png: images/bg-input-b982f6c8570abc7960fde1173ca9b508.png
+images/sprite-noire.png: images/sprite-noire-28d7e5e25f74515a7716ac0298b32203.png
 images/ui-bg_diagonals-small_0_aaaaaa_40x40.png: images/ui-bg_diagonals-small_0_aaaaaa_40x40-92ce0c60b4de49126fe4b318625563bf.png
 images/ui-bg_diagonals-thick_15_444444_40x40.png: images/ui-bg_diagonals-thick_15_444444_40x40-83fca545e2e2e9f7ab8fef4c667a1bcf.png
 images/ui-bg_diagonals-thick_95_ffdc2e_40x40.png: images/ui-bg_diagonals-thick_95_ffdc2e_40x40-cbeaea99a539098406d3f78698832e50.png
