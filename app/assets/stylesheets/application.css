@@ -14,8 +14,7 @@ html {
 
 body {
   	margin: 15px auto;
-	min-width:840px;
-	width:80%;
+	width:980px;
 }
 a {
   color: #5199ae;
@@ -72,10 +71,10 @@ h3 {
   border-radius: 15px;
   box-shadow: 2px 2px 15px #888;
   clear:both;
-  margin-top:50px;
+  margin-top:20px;
   min-height: 500px;
   padding: 15px 35px 25px;
-  min-width: 1000px;
+  min-width: 900px;
   color: #FFF;
 }
 
@@ -123,17 +122,90 @@ h3 {
 #myInfo li a:hover{
   text-decoration:none;
 }
+
+/* nav style full background */
+
 #nav {
   clear:both;
-  height:80px;
+  height:120px;
+  padding-bottom:30px;
+  width: 1000px;
+}
+#navGroup, #teamNav, #psaBox{		
+  padding:10px 20px;
+  float:left; 
+  -moz-border-radius: 15px;
+  border-radius: 15px;	
+}
+#navGroup, #teamNav{
+  background-color: rgba(150,150,150,.2);	
+}
+#psaBox{
+  background-color: rgba(150,150,150,.4); 
+}
+.navTitle{
+  font-weight:bold;
+  padding:10px 20px 10px 10px;
+  font-size:1em;
 }
 
+#teamNav, #psaBox{
+  margin-left:20px;
+  display:inline-block;
+}
+#psaBox{
+  height:120px;
+  width:190px;
+}
+#psaBox p a:hover{
+  text-decoration:underline;
+}
+
+/* nav style header background
+#nav {
+  clear:both;
+  height:120px;
+  padding-bottom:30px;
+}
+#navGroup{
+  padding:10px 20px 10px 10px;
+  float:left; 	
+}
+#teamNav, #psaBox{
+  padding:10px 20px;
+  float:left;
+}
+.navTitle, #psaBox{
+  background-color: rgba(150,150,150,.2);	
+}
+.navTitle{
+  font-weight:bold;
+  padding:10px 20px 10px 10px;
+  font-size:1em;
+  display:block;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+#teamNav, #psaBox{
+  margin-left:20px;
+  display:inline-block;
+}
+#psaBox{
+  height:125px;
+  width:190px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+#psaBox p a:hover{
+  text-decoration:underline;
+}
+*/
 #nav ul {
   list-style-type:none;
   margin: 0;
   padding: 0 0 10px 0;
 }
-
 #nav li {
   float:left;
   margin-right:30px;
@@ -181,7 +253,6 @@ h3 {
   background-image:url('navBadgesFold.png');	
 }
 #navRankings a{
-  margin-right: 25px;
   background-image:url('navRankings.png');
 }
 #navRankings a.current{
@@ -197,40 +268,6 @@ h3 {
   background-position: -75px 12px;
 }
 
-#nav #teamNav {
-  width: 180px;
-  background-color: #99ccff;
-  border-top-left-radius: 15px; 
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-  opacity: .8;
-  margin-left: 75px;
-  margin-right: 0px;
-  float: left;
-  margin-top: -20px;
-  padding: 10px 20px 20px 20px;
-}
-
-#nav ul#teamNav li {
-  height: 100px;
-  margin: -20px 0px 0px 0px;
-   padding: 0;}
-
- #nav ul#teamNav a {
-   height: 50px;
-   width: 75px;
- 
- }
-
-#nav #teamNav h3 {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-#nav a.current:hover{
-  background-position:-2px 12px;
-}
 input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation, input#challenge_title, input#challenge_points, input#team_name, inpu#badge_icon, input#user_first_name, input#user_last_name, input#badge_icon, input#user_username {
   width: 50%;
 }
@@ -356,6 +393,14 @@ th#icon {
   text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
   padding:5px;
 }
+.assignTitle{
+  cursor:pointer;
+  background: url(assignArrowRt.png) no-repeat left bottom;
+  padding-left:25px;
+}
+.assignTitleOpen{
+  background: url(assignArrowDn.png) no-repeat left bottom;
+}
 #footerNav {
   margin-top: 20px;
   border-top: 1px dotted #ccc;
@@ -365,4 +410,3 @@ th#icon {
 #footerNav {
   clear:both;
 }
-

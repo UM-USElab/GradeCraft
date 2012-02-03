@@ -1,17 +1,19 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 
+.homeArcade{
+  background:url('arcade.png') repeat-x bottom left;
+  height:500px;
+  width:840px;
+}
 #homeIntro{
-  font-size:1.2em;
-  width:60%;
+  width:100%;
   float:left;
+}
+#homeIntro p{
+  font-size:1em;
+  line-height:1.3em;
 }
 #homeRegBtn{
   margin-top:20px;
-}
-#homeArcade{
-  float:right;
-  width:40%;
-  height:400px;
-  background:url('arcade.png') no-repeat;
 }
