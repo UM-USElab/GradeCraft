@@ -19,6 +19,7 @@ class GradesController < ApplicationController
     @badges = Badge.all
     @teams = Team.all
     @title = "Submit New Grade"
+    #is there a way to write this so we can also have new grades that don't start with an assignment id?
     @assignment = Assignment.find(params[:assignment_id])
     @grade = grade_class(@assignment).new
     @grade.user = User.students.find(params[:user_id]) if params[:user_id]

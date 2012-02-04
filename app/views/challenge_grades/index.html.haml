@@ -8,16 +8,16 @@
     %th
     %th
 
-  - @challenge_scores.each do |challenge_score|
+  - @challenge_grades.each do |challenge_grades|
     %tr
-      %td= challenge_score.challenge.title
-      %td= challenge_score.team.name
-      %td= challenge_score.score
-      %td= challenge_score.feedback
-      %td= link_to 'Show', challenge_score
-      %td= link_to 'Edit', edit_challenge_score_path(challenge_score)
-      %td= link_to 'Destroy', challenge_score, :confirm => 'Are you sure?', :method => :delete
+      %td= challenge_grades.challenge.title
+      %td= challenge_grades.team.name
+      %td= challenge_grades.score
+      %td= challenge_grades.feedback
+      %td= link_to 'Show', challenge_grades
+      %td= link_to 'Edit', edit_challenge_grade_path(challenge_grades)
+      %td= link_to 'Destroy', challenge_grades, :confirm => 'Are you sure?', :method => :delete
 
 
 %div#footerNav
-  %span.button= link_to 'Grade a Challenge', new_challenge_score_path
+  %span.button= link_to 'Grade a Challenge', new_challenge_grade_path

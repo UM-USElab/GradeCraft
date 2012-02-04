@@ -1,12 +1,16 @@
 %p
   %b User:
-  = @grade.user.username
+  = @grade.user.first_name+" "+@grade.user.last_name
 %p
   %b Assignment:
   = @grade.assignment.title
 %p
   %b Score:
   = @grade.score
+%p
+  %b Feedback:
+  %br
+  = @grade.feedback
 %p
   %b Badges:
   - @grade.earned_badges.each do |badge|

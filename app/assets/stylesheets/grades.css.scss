@@ -49,6 +49,19 @@ div.gradeattendance {
   padding-right: 15px;
 }
 
+li.choice {
+  float: left;
+  padding: 0px;
+  margin: 0;
+}
+
+li.choice input {
+  height: 15px;
+}
+li.choice label {
+  font-size: 14px;
+}
+
 #badgeSelectionRight {
   float: right;
   width: 250px;

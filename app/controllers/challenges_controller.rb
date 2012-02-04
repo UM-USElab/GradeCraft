@@ -26,8 +26,6 @@ class ChallengesController < ApplicationController
   def new
     @challenge = Challenge.new
     @title = "Create a New Challenge"
-    klass = params[:type].constantize if %w{Team User ReadingReaction}.include?(params[:type]) || Challenge
-    respond_with @challenge = klass.new
   end
 
   # GET /challenges/1/edit
