@@ -8,12 +8,14 @@
     %th B
     %th B-
     %th C+
+    %th
     %th 
     %th
 
   - @grade_schemes.each do |grade_scheme|
     %tr
       %td= grade_scheme.assignment.title
+      %td= grade_scheme.apscore
       %td= grade_scheme.ascore
       %td= grade_scheme.amscore
       %td= grade_scheme.bpscore
