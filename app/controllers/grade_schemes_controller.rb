@@ -27,6 +27,7 @@ class GradeSchemesController < ApplicationController
   # GET /grade_schemes/new
   # GET /grade_schemes/new.json
   def new
+    @title = "Create a New Grading Scheme"
     @grade_scheme = GradeScheme.new
     @assignments = Assignment.all
     respond_to do |format|

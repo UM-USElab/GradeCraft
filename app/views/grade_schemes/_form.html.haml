@@ -1,17 +1,18 @@
 = semantic_form_for @grade_scheme do |f|
   = f.inputs do
     = f.input :assignment, :as => :select, :collection => @assignments
-    = f.input :ascore, :label => "Minimum A Score"
-    = f.input :amscore, :label => "Minimum A- Score"
-    = f.input :bpscore, :label => "Minimum B+ Score"
-    = f.input :bscore, :label => "Minimum B Score"
-    = f.input :bmscore, :label => "Minimum B- Score"
-    = f.input :cpscore, :label => "Minimum C+ Score"
-    = f.input :cscore, :label => "Minimum C Score"
-    = f.input :cmscore, :label => "Minimum C- Score"
-    = f.input :dpscore, :label => "Minimum D+ Score"
-    = f.input :dscore, :label => "Minimum D Score"
-    = f.input :dmscore, :label => "Minimum D- Score"
+    = f.input :apscore, :label => "A+ Score"
+    = f.input :ascore, :label => "A Score"
+    = f.input :amscore, :label => "A- Score"
+    = f.input :bpscore, :label => "B+ Score"
+    = f.input :bscore, :label => "B Score"
+    = f.input :bmscore, :label => "B- Score"
+    = f.input :cpscore, :label => "C+ Score"
+    = f.input :cscore, :label => "C Score"
+    = f.input :cmscore, :label => "C- Score"
+    = f.input :dpscore, :label => "D+ Score"
+    = f.input :dscore, :label => "D Score"
+    = f.input :dmscore, :label => "D- Score"
   
   = f.buttons do
     = f.commit_button
