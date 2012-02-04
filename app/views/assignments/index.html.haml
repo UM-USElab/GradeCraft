@@ -103,7 +103,7 @@
           - if assignment.due_date?
             = assignment.due_date.to_s(:gt_date)
         - if current_user.is_staff?
-          %td= link_to 'View', assignment_path(assignment)
+          %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
           %td= link_to 'Edit', edit_assignment_path(assignment)
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
           
@@ -128,7 +128,7 @@
           - if assignment.due_date?
             = assignment.due_date.to_s(:gt_date)
         - if current_user.is_staff?
-          %td= link_to 'View', assignment_path(assignment)
+          %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
           %td= link_to 'Edit', edit_assignment_path(assignment)
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete          
 
