@@ -1,3 +1,8 @@
+//.filters
+//= form_tag grades_path, :method => :get do
+//= select_tag :assignment, options_for_select(Grade::Assignments.map { |r| [r.capitalize, r] }, @assignment), :prompt => 'Select Assignment'
+//= submit_tag 'Filter'
+
 %table
   %tr
     %th Username

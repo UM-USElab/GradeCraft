@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  	margin: 15px auto;
+  margin: 15px auto;
 	width:1000px;
 }
 a {
@@ -67,7 +67,23 @@ h2 {
 }
 
 h3 {
-  margin-left: 15px;
+  color: #5199ae;
+  margin: 0;
+}
+
+h3.assignTitle {
+  width: 879px;
+}
+
+.assignTitle{
+  cursor:pointer;
+  background: url(assignArrowRt.png) no-repeat 5px center;
+  padding: 10px 25px;
+  background-color: #000000;
+  border: 1px solid #c1c50e;
+}
+.assignTitleOpen{
+  background: url(assignArrowDn.png) no-repeat left bottom;
 }
 
 #content, #registrationDiv {
@@ -420,14 +436,6 @@ th#icon {
 .buttons li.commit input{
   text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
   padding:5px;
-}
-.assignTitle{
-  cursor:pointer;
-  background: url(assignArrowRt.png) no-repeat left bottom;
-  padding-left:25px;
-}
-.assignTitleOpen{
-  background: url(assignArrowDn.png) no-repeat left bottom;
 }
 #footerNav {
   margin-top: 20px;

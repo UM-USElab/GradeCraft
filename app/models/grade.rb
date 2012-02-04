@@ -12,7 +12,7 @@ class Grade < ActiveRecord::Base
   after_save :save_user_score
   
   scope :reading_reactions, where(:type => "ReadingReactionGrade")
-
+  
   def score
     super || 0
   end
