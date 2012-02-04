@@ -9,6 +9,8 @@ class Grade < ActiveRecord::Base
   
   delegate :title, :description, :point_total, :to => :assignment
   
+  attr_accessible :type, :score, :user_id, :assignment_id, :feedback, :badge_id, :complete, :semis, :finals, :status, :attempted
+  
   after_save :save_user_score
   
   scope :reading_reactions, where(:type => "ReadingReactionGrade")
