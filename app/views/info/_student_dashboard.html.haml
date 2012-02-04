@@ -35,6 +35,7 @@
           out of
           %span.assignmentScore= grade.point_total
           %span possible points
+          //%span= link_to "View Feedback" grade_path(grade)
           %br
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
@@ -67,6 +68,7 @@
           %span.assignmentGrade= grade.score
           out of
           %span.assignmentScore= grade.point_total
+          %span.assignmentFeedback= grade.feedback
           %br
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => "25"}

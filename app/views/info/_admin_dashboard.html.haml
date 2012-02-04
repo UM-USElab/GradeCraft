@@ -1,25 +1,27 @@
-%h3 My Students
+%h3= current_user.team.name
+%br
 %table
   %tr
-    %th
+    %th 
     %th Username
     %th First Name
     %th Last Name
     %th Score
     %th Badges
     %th View Profile
-  
-- for user in @users
-  %tr
-    %td= user.username
-    %td= user.first_name
-    %td= user.last_name
-    %td= user.score
-    %td
-    - user.earned_badges.each do |badge|
-      %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+  - User.where(:team_id => current_user.team_id).each do |user|
+    %tr
+      %td= gravatar_for user
+      %td= user.username
+      %td= user.first_name
+      %td= user.last_name
+      %td= user.score
+      %td
+        - user.earned_badges.each do |badge|
+          %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+      %td
 
-%h3= link_to "View All Assignments", assignments_url
-%h3= link_to "View All Grades", grades_url
-%h3= link_to "Grade an Assignment", new_grade_url
-%h3= link_to "Grade a Team Challenge", new_challenge_grades_url
+%br
+%div#footerNav
+  %span.button= link_to "Grade an Assignment", new_grade_url
+  %span.button= link_to "Grade a Team Challenge", new_challenge_grade_url
