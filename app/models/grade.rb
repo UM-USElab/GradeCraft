@@ -15,6 +15,8 @@ class Grade < ActiveRecord::Base
   
   scope :reading_reactions, where(:type => "ReadingReactionGrade")
   
+  Assignments = @assignments
+  
   def score
     super || 0
   end

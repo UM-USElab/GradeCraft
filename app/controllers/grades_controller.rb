@@ -7,6 +7,11 @@ class GradesController < ApplicationController
 
   def index
     @title = "View All Grades"
+    search_options = {}
+    if params[:assignment_id].present?
+      @assignment = Assignment.find(params[:assignment_id])
+      search_options[:assignment_id] = @assignment.id if @assignment
+    end
     respond_with @grades = Grade.find(:all, :order => (sort_column + " " + sort_direction))
   end
 
