@@ -382,6 +382,7 @@ th#icon {
 .button a{
   color:#fff;
   text-decoration:none;
+  display: block;
 }
 .button:active{
   -moz-box-shadow: 0 0 0;

@@ -14,34 +14,21 @@ http://pixelmatrixdesign.com/uniform/
 .checker span,
 .radio span, 
 .uploader, 
-.uploader span.action/*
-,
-.button,
-.button span 
-*/{
-background-image: url(../images/sprite-noire.png);
+.uploader span.action {
+background-image: url(sprite-noire.png);
 background-repeat: no-repeat;
--webkit-font-smoothing: antialiased;
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .selector, 
 .radio, 
 .checker, 
-.uploader,/*
-
-.button, 
-*/
+.uploader,
 .selector *, 
 .radio *, 
 .checker *, 
-.uploader */*
-,
-.button *
-*/{
+.uploader * {
 margin: 0;
 padding: 0;
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 
@@ -49,46 +36,67 @@ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 .text,
 textarea {
-background: #2f2f33 url('../images/bg-input.png') repeat-x 0px 0px;
-padding: 8px 5px 0px 8px;
-color: #fff;
+background: #000;
+color: #5199ae;
+padding: 15px 5px 0px 0px;
 border: solid 1px #202224;
--webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
 outline: 0;
 width: auto;
-margin-bottom: 10px;
-font: normal 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
 -webkit-box-shadow:0px 1px 0px rgba(255,255,255,0.13);
 -moz-box-shadow: 0px 1px 0px rgba(255,255,255,0.13);
 box-shadow: 0px 1px 0px rgba(255,255,255,0.13);
 }
 
-/* SPRITES */
-
-/* Select */
-
-.selector {
-background-position: -483px -160px;
-line-height: 32px;
-height: 32px;
+.text {
+  margin-bottom: 10px;
 }
 
-.selector span {
+.text label, .datetime label, .selector label {
+
+  padding-left: 15px;
+font-size: 16px;
+color: #5199ae;
+}
+
+textarea {
+  height: 200px; 
+  background: #2f2f33 url('bg-input.png') repeat-x 0px 0px;
+  color: #FFF;
+}
+
+.text input {
+  color: #FFF;
+  background: #2f2f33 url('bg-input.png') repeat-x 0px 0px;
+border: none;
+height: 30px;
+}
+
+/* SPRITES */
+
+/* selector */
+
+select {
+background-position: -483px -160px;
+line-height: 32px;
+}
+
+select span {
 background-position: right 0px;
 height: 32px;
 line-height: 32px;
 }
 
-.selector select {
+div.text select {
 top: 0px;
 left: 0px;
 cursor: pointer;
 }
 
-.selector:active, 
-.selector.active {
+div.selector:active, 
+div.selector.active {
 background-position: -483px -192px;
 }
 
@@ -394,7 +402,7 @@ cursor: default;
 
 /* PRESENTATION */
 
-/* Select */
+/* selector */
 div.selector {
 font-weight: bold;
 color: #333333;
@@ -402,7 +410,7 @@ font-size: 12px;
 width: 190px;
 }
 
-div.selector select {
+div.selector selector {
 min-width: 190px;
 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -496,11 +504,11 @@ zoom: 1;
 *display: inline;
 }
 
-.selector select:focus, .radio input:focus, .checker input:focus, .uploader input:focus {
+.selector selector:focus, .radio input:focus, .checker input:focus, .uploader input:focus {
 outline: 0;
 }
 
-/* Select */
+/* selector */
 
 div.selector {
 position: relative;
@@ -515,7 +523,7 @@ text-overflow: ellipsis;
 white-space: nowrap;
 }
 
-div.selector select {
+div.selector selector {
 position: absolute;
 opacity: 0;
 filter: alpha(opacity=0);

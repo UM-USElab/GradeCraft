@@ -1,5 +1,5 @@
 %h3= @grade.assignment.title
-
+%br
 = semantic_form_for @grade.becomes(Grade) do |f|
   = f.inputs do
     .text= f.input :user, :as => ( :hidden if @grade.user ), :collection => User.students, :include_blank => false
