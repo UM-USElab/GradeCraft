@@ -3,24 +3,25 @@
 %table
   %tr
     %th Assignment
-    %th Ascore
-    %th Amscore
-    %th Bpscore
-    %th Bscore
-    %th Bmscore
-    %th Cpscore
-    %th Cscore
-    %th Cmscore
-    %th Dpscore
-    %th Dscore
-    %th Dmscore
+    %th A+
+    %th A
+    %th A-
+    %th B+
+    %th B
+    %th B-
+    %th C+
+    %th C
+    %th C-
+    %th D+
+    %th D
+    %th D-
     %th
     %th
     %th
 
   - @grade_schemes.each do |grade_scheme|
     %tr
-      %td= grade_scheme.assignment_id
+      %td= grade_scheme.assignment.title
       %td= grade_scheme.ascore
       %td= grade_scheme.amscore
       %td= grade_scheme.bpscore
