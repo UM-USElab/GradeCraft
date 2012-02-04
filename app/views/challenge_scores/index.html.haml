@@ -1,23 +1,23 @@
 %table
   %tr
+    %th Challenge
+    %th Team
     %th Score
     %th Feedback
-    %th Team
-    %th Challenge
     %th
     %th
     %th
 
   - @challenge_scores.each do |challenge_score|
     %tr
+      %td= challenge_score.challenge.title
+      %td= challenge_score.team.name
       %td= challenge_score.score
       %td= challenge_score.feedback
-      %td= challenge_score.team_id
-      %td= challenge_score.challenge_id
       %td= link_to 'Show', challenge_score
       %td= link_to 'Edit', edit_challenge_score_path(challenge_score)
       %td= link_to 'Destroy', challenge_score, :confirm => 'Are you sure?', :method => :delete
 
 
 %div#footerNav
-  %span.button= link_to 'New Challenge score', new_challenge_score_path
+  %span.button= link_to 'Grade a Challenge', new_challenge_score_path

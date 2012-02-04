@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120204001335) do
+ActiveRecord::Schema.define(:version => 20120204023633) do
 
   create_table "assignments", :force => true do |t|
     t.string    "title"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20120204001335) do
     t.timestamp "date"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.string    "type"
   end
 
   create_table "dashboards", :force => true do |t|

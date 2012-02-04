@@ -1,15 +1,15 @@
 %p
+  %b Challenge:
+  = @challenge_score.challenge.title
+%p
+  %b Team:
+  = @challenge_score.team.name
+%p
   %b Score:
   = @challenge_score.score
 %p
   %b Feedback:
   = @challenge_score.feedback
-%p
-  %b Team:
-  = @challenge_score.team_id
-%p
-  %b Challenge:
-  = @challenge_score.challenge_id
 
 %div#footerNav
   %span.button= link_to 'Edit', edit_challenge_score_path(@challenge_score)

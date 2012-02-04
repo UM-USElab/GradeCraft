@@ -7,6 +7,10 @@ class ChallengeScore < ActiveRecord::Base
   
   after_save :save_team_score
   
+  def score
+    super || 0
+  end
+  
   def save_team_score
     team.save
   end

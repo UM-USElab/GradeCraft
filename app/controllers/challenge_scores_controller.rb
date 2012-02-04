@@ -2,6 +2,7 @@ class ChallengeScoresController < ApplicationController
   # GET /challenge_scores
   # GET /challenge_scores.json
   def index
+    @title = "Team Challenge Scores"
     @challenge_scores = ChallengeScore.all
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class ChallengeScoresController < ApplicationController
   # GET /challenge_scores/1
   # GET /challenge_scores/1.json
   def show
+    @title = "View Team Challenge Score"
     @challenge_score = ChallengeScore.find(params[:id])
 
     respond_to do |format|
@@ -24,6 +26,7 @@ class ChallengeScoresController < ApplicationController
   # GET /challenge_scores/new
   # GET /challenge_scores/new.json
   def new
+    @title = "Grade a Team Challenge"
     @challenge_score = ChallengeScore.new
     @teams = Team.all
     @challenges = Challenge.all
@@ -35,6 +38,7 @@ class ChallengeScoresController < ApplicationController
 
   # GET /challenge_scores/1/edit
   def edit
+    @title = "Edit a Team Challenge Score"
     @teams = Team.all
     @challenges = Challenge.all
     @challenge_score = ChallengeScore.find(params[:id])

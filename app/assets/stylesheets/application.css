@@ -83,7 +83,7 @@ h3.assignTitle {
   border: 1px solid #c1c50e;
 }
 .assignTitleOpen{
-  background: url(assignArrowDn.png) no-repeat left bottom;
+  background: url(assignArrowDn.png) no-repeat 5px center;
   background-color: #000000;
 }
 

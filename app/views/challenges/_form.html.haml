@@ -1,6 +1,7 @@
 = semantic_form_for @challenge do |f|
   = f.inputs do
     .text= f.input :title
+    .text= f.input :type, :as => :select, :collection => [["Team", "Team"], ["Reading Reaction", "ReadingReaction"], ["User", "User"]]
     .text= f.input :points, :label => "Points Possible"
     = f.input :description, :as => :text
     .text= f.input :date
