@@ -21,6 +21,14 @@ class Grade < ActiveRecord::Base
     super || 0
   end
   
+  def attempted
+    if score > 0
+      "Yes"
+    else
+      "No"
+    end
+  end  
+  
   def short?
     !substantial?
   end

@@ -12,6 +12,9 @@
   %br
   = @grade.feedback
 %p
+  %b Attempted:
+  = @grade.attempted
+%p
   %b Badges:
   - @grade.earned_badges.each do |badge|
     %img{:src => badge.icon, :alt => badge.title, :width => "50", :height => "50"}
