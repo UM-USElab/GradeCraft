@@ -27,4 +27,4 @@
 %div#footerNav
   - if current_user.is_staff?
     %span.button= link_to "Add a New Team", new_team_path
-    %span.button= link_to "Add Team Points", new_challenge_score_url
+    %span.button= link_to "Add Team Points", new_challenge_grade_url

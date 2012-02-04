@@ -25,7 +25,7 @@ Grader::Application.routes.draw do
   end
   resources :info
   resources :home
-  resources :challenge_scores
+  resources :challenge_grades
   resources :challenges
   resources :grade_schemes
   resources :user_sessions

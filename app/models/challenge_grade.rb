@@ -1,4 +1,4 @@
-class ChallengeScore < ActiveRecord::Base
+class ChallengeGrade < ActiveRecord::Base
   belongs_to :team
   belongs_to :challenge
   

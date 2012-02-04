@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "challenge_scores/show.html.haml" do
+describe "challenge_grades/show.html.haml" do
   before(:each) do
-    @challenge_score = assign(:challenge_score, stub_model(ChallengeScore,
+    @challenge_grade = assign(:challenge_grade, stub_model(ChallengeGrade,
       :score => 1,
       :feedback => "Feedback",
       :team_id => 1,

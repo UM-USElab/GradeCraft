@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120204023633) do
+ActiveRecord::Schema.define(:version => 20120204175436) do
 
   create_table "assignments", :force => true do |t|
     t.string    "title"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20120204023633) do
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
 
-  create_table "challenge_scores", :force => true do |t|
+  create_table "challenge_grades", :force => true do |t|
     t.integer   "score"
     t.string    "feedback"
     t.integer   "team_id"

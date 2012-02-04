@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
   has_many :users
-  has_many :challenge_scores
+  has_many :challenge_grades
 
   def user_grades
     Grade.where(:user_id => users)
@@ -11,11 +11,11 @@ class Team < ActiveRecord::Base
   end
 
   def score
-    challenge_score + reading_reaction_score
+    challenge_grade + reading_reaction_score
   end
 
-  def challenge_score
-    challenge_scores.sum(:score)
+  def challenge_grade
+    challenge_grades.sum(:score)
   end
 
   def reading_reaction_score

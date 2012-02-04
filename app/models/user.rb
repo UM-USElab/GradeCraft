@@ -15,8 +15,6 @@ class User < ActiveRecord::Base
   has_many :earned_badges, :through => :grades
   belongs_to :team
 
-  before_save :calculate_score
-
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates_length_of :password, :minimum => 3, :message => "password must be at least 3 characters long", :if => :password

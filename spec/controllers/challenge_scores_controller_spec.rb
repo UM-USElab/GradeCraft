@@ -18,78 +18,78 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe ChallengeScoresController do
+describe ChallengeGradesController do
 
   # This should return the minimal set of attributes required to create a valid
-  # ChallengeScore. As you add validations to ChallengeScore, be sure to
+  # ChallengeGrade. As you add validations to ChallengeGrade, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
     {}
   end
 
   describe "GET index" do
-    it "assigns all challenge_scores as @challenge_scores" do
-      challenge_score = ChallengeScore.create! valid_attributes
+    it "assigns all challenge_grades as @challenge_grades" do
+      challenge_grade = ChallengeGrade.create! valid_attributes
       get :index
-      assigns(:challenge_scores).should eq([challenge_score])
+      assigns(:challenge_grades).should eq([challenge_grade])
     end
   end
 
   describe "GET show" do
-    it "assigns the requested challenge_score as @challenge_score" do
-      challenge_score = ChallengeScore.create! valid_attributes
-      get :show, :id => challenge_score.id
-      assigns(:challenge_score).should eq(challenge_score)
+    it "assigns the requested challenge_grade as @challenge_grade" do
+      challenge_grade = ChallengeGrade.create! valid_attributes
+      get :show, :id => challenge_grade.id
+      assigns(:challenge_grade).should eq(challenge_grade)
     end
   end
 
   describe "GET new" do
-    it "assigns a new challenge_score as @challenge_score" do
+    it "assigns a new challenge_grade as @challenge_grade" do
       get :new
-      assigns(:challenge_score).should be_a_new(ChallengeScore)
+      assigns(:challenge_grade).should be_a_new(ChallengeGrade)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested challenge_score as @challenge_score" do
-      challenge_score = ChallengeScore.create! valid_attributes
-      get :edit, :id => challenge_score.id
-      assigns(:challenge_score).should eq(challenge_score)
+    it "assigns the requested challenge_grade as @challenge_grade" do
+      challenge_grade = ChallengeGrade.create! valid_attributes
+      get :edit, :id => challenge_grade.id
+      assigns(:challenge_grade).should eq(challenge_grade)
     end
   end
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new ChallengeScore" do
+      it "creates a new ChallengeGrade" do
         expect {
-          post :create, :challenge_score => valid_attributes
-        }.to change(ChallengeScore, :count).by(1)
+          post :create, :challenge_grade => valid_attributes
+        }.to change(ChallengeGrade, :count).by(1)
       end
 
-      it "assigns a newly created challenge_score as @challenge_score" do
-        post :create, :challenge_score => valid_attributes
-        assigns(:challenge_score).should be_a(ChallengeScore)
-        assigns(:challenge_score).should be_persisted
+      it "assigns a newly created challenge_grade as @challenge_grade" do
+        post :create, :challenge_grade => valid_attributes
+        assigns(:challenge_grade).should be_a(ChallengeGrade)
+        assigns(:challenge_grade).should be_persisted
       end
 
-      it "redirects to the created challenge_score" do
-        post :create, :challenge_score => valid_attributes
-        response.should redirect_to(ChallengeScore.last)
+      it "redirects to the created challenge_grade" do
+        post :create, :challenge_grade => valid_attributes
+        response.should redirect_to(ChallengeGrade.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved challenge_score as @challenge_score" do
+      it "assigns a newly created but unsaved challenge_grade as @challenge_grade" do
         # Trigger the behavior that occurs when invalid params are submitted
-        ChallengeScore.any_instance.stub(:save).and_return(false)
-        post :create, :challenge_score => {}
-        assigns(:challenge_score).should be_a_new(ChallengeScore)
+        ChallengeGrade.any_instance.stub(:save).and_return(false)
+        post :create, :challenge_grade => {}
+        assigns(:challenge_grade).should be_a_new(ChallengeGrade)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        ChallengeScore.any_instance.stub(:save).and_return(false)
-        post :create, :challenge_score => {}
+        ChallengeGrade.any_instance.stub(:save).and_return(false)
+        post :create, :challenge_grade => {}
         response.should render_template("new")
       end
     end
@@ -97,60 +97,60 @@ describe ChallengeScoresController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested challenge_score" do
-        challenge_score = ChallengeScore.create! valid_attributes
-        # Assuming there are no other challenge_scores in the database, this
-        # specifies that the ChallengeScore created on the previous line
+      it "updates the requested challenge_grade" do
+        challenge_grade = ChallengeGrade.create! valid_attributes
+        # Assuming there are no other challenge_grades in the database, this
+        # specifies that the ChallengeGrade created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        ChallengeScore.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => challenge_score.id, :challenge_score => {'these' => 'params'}
+        ChallengeGrade.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        put :update, :id => challenge_grade.id, :challenge_grade => {'these' => 'params'}
       end
 
-      it "assigns the requested challenge_score as @challenge_score" do
-        challenge_score = ChallengeScore.create! valid_attributes
-        put :update, :id => challenge_score.id, :challenge_score => valid_attributes
-        assigns(:challenge_score).should eq(challenge_score)
+      it "assigns the requested challenge_grade as @challenge_grade" do
+        challenge_grade = ChallengeGrade.create! valid_attributes
+        put :update, :id => challenge_grade.id, :challenge_grade => valid_attributes
+        assigns(:challenge_grade).should eq(challenge_grade)
       end
 
-      it "redirects to the challenge_score" do
-        challenge_score = ChallengeScore.create! valid_attributes
-        put :update, :id => challenge_score.id, :challenge_score => valid_attributes
-        response.should redirect_to(challenge_score)
+      it "redirects to the challenge_grade" do
+        challenge_grade = ChallengeGrade.create! valid_attributes
+        put :update, :id => challenge_grade.id, :challenge_grade => valid_attributes
+        response.should redirect_to(challenge_grade)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the challenge_score as @challenge_score" do
-        challenge_score = ChallengeScore.create! valid_attributes
+      it "assigns the challenge_grade as @challenge_grade" do
+        challenge_grade = ChallengeGrade.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        ChallengeScore.any_instance.stub(:save).and_return(false)
-        put :update, :id => challenge_score.id, :challenge_score => {}
-        assigns(:challenge_score).should eq(challenge_score)
+        ChallengeGrade.any_instance.stub(:save).and_return(false)
+        put :update, :id => challenge_grade.id, :challenge_grade => {}
+        assigns(:challenge_grade).should eq(challenge_grade)
       end
 
       it "re-renders the 'edit' template" do
-        challenge_score = ChallengeScore.create! valid_attributes
+        challenge_grade = ChallengeGrade.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        ChallengeScore.any_instance.stub(:save).and_return(false)
-        put :update, :id => challenge_score.id, :challenge_score => {}
+        ChallengeGrade.any_instance.stub(:save).and_return(false)
+        put :update, :id => challenge_grade.id, :challenge_grade => {}
         response.should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested challenge_score" do
-      challenge_score = ChallengeScore.create! valid_attributes
+    it "destroys the requested challenge_grade" do
+      challenge_grade = ChallengeGrade.create! valid_attributes
       expect {
-        delete :destroy, :id => challenge_score.id
-      }.to change(ChallengeScore, :count).by(-1)
+        delete :destroy, :id => challenge_grade.id
+      }.to change(ChallengeGrade, :count).by(-1)
     end
 
-    it "redirects to the challenge_scores list" do
-      challenge_score = ChallengeScore.create! valid_attributes
-      delete :destroy, :id => challenge_score.id
-      response.should redirect_to(challenge_scores_url)
+    it "redirects to the challenge_grades list" do
+      challenge_grade = ChallengeGrade.create! valid_attributes
+      delete :destroy, :id => challenge_grade.id
+      response.should redirect_to(challenge_grades_url)
     end
   end
 
