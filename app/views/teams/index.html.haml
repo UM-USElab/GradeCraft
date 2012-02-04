@@ -17,7 +17,7 @@
       %td= team.id
       %td= team.name
       %td
-      %td= team.challenge_scores.map(&:score).inject(&:+) 
+      %td= team.score
       - if current_user.is_staff?
         %td= link_to 'View', team
         %td= link_to 'Edit', edit_team_path(team)
