@@ -85,7 +85,7 @@ h3 {
 
 #content, #registrationDiv {
   -moz-border-radius: 15px;
-	background: url('demo-bg.png') #333333;
+  background: url('demo-bg.png') #333333;
   border-radius: 15px;
   box-shadow: 2px 2px 15px #888;
   clear:both;
@@ -95,12 +95,9 @@ h3 {
   width: 932px;
   color: #FFF;
 }
-
-#primaryContent {
-  left: 200px;
-  position: relative;
-} 
-
+#content{
+  position:relative;
+}
 #footer {
   margin-top: 45px;
   margin-bottom: 0px;
@@ -443,12 +440,14 @@ th#icon {
   text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
   padding:5px;
 }
+.push{
+  position:absolute;
+  min-height:50px;
+  bottom:30px;	
+}
 #footerNav {
   margin-top: 20px;
   border-top: 1px dotted #ccc;
   padding-top: 15px;
-}
-
-#footerNav {
-  clear:both;
+  
 }

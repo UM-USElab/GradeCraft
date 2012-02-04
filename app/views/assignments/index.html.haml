@@ -132,6 +132,7 @@
           %td= link_to 'Edit', edit_assignment_path(assignment)
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete          
 
+%div.push
 %div#footerNav
   - if current_user.is_staff?
     %span.button= link_to 'New Assignment', new_assignment_path(:type => "Standard")
