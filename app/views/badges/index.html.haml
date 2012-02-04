@@ -32,7 +32,6 @@
             %td= badge.title
             %td= badge.description
 %br
-
 %div#footerNav
   - if current_user.is_staff?
     %span.button= link_to 'Create a New Badge', new_badge_path
