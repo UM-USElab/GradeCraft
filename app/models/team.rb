@@ -1,21 +1,25 @@
 class Team < ActiveRecord::Base
   has_many :users
   has_many :challenge_scores
-  
-  before_save :calculate_score
-  
-  def ranking
-    
-  end
-  
-  def rr_score
-    self.score = 500 * users.map { |u| u.grades.reading_reactions.map { |g| 1 if g.semis? }.count }.inject(&:+)
+
+  def user_grades
+    Grade.where(:user_id => users)
   end
 
-  #Overriding the save function so as to update the score every time a grade gets saved
-  def calculate_score
-    self.score = (challenge_scores.map(&:score).inject(&:+)) + rr_score
+  def ranking
+
   end
-  
-  
+
+  def score
+    challenge_score + reading_reaction_score
+  end
+
+  def challenge_score
+    challenge_scores.sum(:score)
+  end
+
+  def reading_reaction_score
+    500 * user_grades.reading_reactions.where(:semis => true).count
+  end
+
 end
