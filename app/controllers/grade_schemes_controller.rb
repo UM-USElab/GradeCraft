@@ -2,6 +2,7 @@ class GradeSchemesController < ApplicationController
   # GET /grade_schemes
   # GET /grade_schemes.json
   def index
+    @title = "Grading Schemes"
     @grade_schemes = GradeScheme.all
     if params[:assignment_id].present?
       @assignment = Assignment.find(params[:assignment_id])
@@ -16,6 +17,7 @@ class GradeSchemesController < ApplicationController
   # GET /grade_schemes/1
   # GET /grade_schemes/1.json
   def show
+    @title = "View Grading Scheme"
     @grade_scheme = GradeScheme.find(params[:id])
 
     respond_to do |format|
@@ -38,6 +40,7 @@ class GradeSchemesController < ApplicationController
 
   # GET /grade_schemes/1/edit
   def edit
+    @title = "Update Grading Scheme"
     @grade_scheme = GradeScheme.find(params[:id])
     @assignments = Assignment.all
   end

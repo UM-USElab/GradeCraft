@@ -10,13 +10,7 @@
     %th B
     %th B-
     %th C+
-    %th C
-    %th C-
-    %th D+
-    %th D
-    %th D-
-    %th
-    %th
+    %th 
     %th
 
   - @grade_schemes.each do |grade_scheme|
@@ -28,11 +22,6 @@
       %td= grade_scheme.bscore
       %td= grade_scheme.bmscore
       %td= grade_scheme.cpscore
-      %td= grade_scheme.cscore
-      %td= grade_scheme.cmscore
-      %td= grade_scheme.dpscore
-      %td= grade_scheme.dscore
-      %td= grade_scheme.dmscore
       %td= link_to 'Show', grade_scheme
       %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme)
       %td= link_to 'Destroy', grade_scheme, :confirm => 'Are you sure?', :method => :delete
