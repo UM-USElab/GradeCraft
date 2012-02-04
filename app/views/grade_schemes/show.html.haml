@@ -2,40 +2,27 @@
 
 %p
   %b Assignment:
-  = @grade_scheme.assignment_id
+  = @grade_scheme.assignment.title
 %p
-  %b Ascore:
+  %b A+
+%p
+  %b A
   = @grade_scheme.ascore
 %p
-  %b Amscore:
+  %b A-
   = @grade_scheme.amscore
 %p
-  %b Bpscore:
+  %b B+
   = @grade_scheme.bpscore
 %p
-  %b Bscore:
+  %b B
   = @grade_scheme.bscore
 %p
-  %b Bmscore:
+  %b B-
   = @grade_scheme.bmscore
 %p
-  %b Cpscore:
+  %b C+
   = @grade_scheme.cpscore
-%p
-  %b Cscore:
-  = @grade_scheme.cscore
-%p
-  %b Cmscore:
-  = @grade_scheme.cmscore
-%p
-  %b Dpscore:
-  = @grade_scheme.dpscore
-%p
-  %b Dscore:
-  = @grade_scheme.dscore
-%p
-  %b Dmscore:
-  = @grade_scheme.dmscore
 
 %div#footerNav
   %span.button= link_to 'Edit', edit_grade_scheme_path(@grade_scheme)
