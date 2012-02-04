@@ -27,7 +27,7 @@
     %span.assignmentPointsSpan #{current_user.score} 
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade|
-      - if grade.assignment.type == "Standard"
+      - if grade.assignment.type == nil
         %div.completedAssignment
           %span.assignmentTitle= grade.title
           %br
@@ -41,7 +41,7 @@
 
   %h3#attendance.assignTitle
     %span Attendance
-    %span.assignmentPointsSpan #{current_user.score}/200,000 points
+    %span.assignmentPointsSpan
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Attendance"

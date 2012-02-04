@@ -71,14 +71,10 @@ h3 {
   margin: 0;
 }
 
-h3.assignTitle {
-  width: 879px;
-}
-
 .assignTitle{
   cursor:pointer;
   background: url(assignArrowRt.png) no-repeat 5px center;
-  padding: 10px 25px;
+  padding: 10px 25px 10px 30px;
   background-color: #000000;
   border: 1px solid #c1c50e;
 }
@@ -122,7 +118,7 @@ h3.assignTitle {
 #loginGroup table {
   padding: 30px;
   border-radius: 15px;
-  width: 360px;
+  width: 400px;
   -moz-border-radius: 15px;
   background-color: rgba(150,150,150,.7);
 }
@@ -173,16 +169,13 @@ table#login td {
   width: 1000px;
 }
 #navGroup, #teamNav, #psaBox{		
-  padding:10px 20px;
   float:left; 
   -moz-border-radius: 15px;
   border-radius: 15px;	
 }
 #navGroup, #teamNav{
+  padding:10px 20px;	
   background-color: rgba(150,150,150,.2);	
-}
-#psaBox{
-  background-color: rgba(150,150,150,.4); 
 }
 .navTitle{
   font-weight:bold;
@@ -195,13 +188,25 @@ table#login td {
   display:inline-block;
 }
 #psaBox{
-  height:120px;
+  background-color: rgba(150,150,150,.6); 
+  height:126px;
   width:190px;
+  padding:10px 20px 10px 10px;
+}
+#psaBox a{
+  color: #0047AE;
+  font-family:'Quantico', sans-serif;	
 }
 #psaBox p a:hover{
   text-decoration:underline;
 }
-
+#nextTip{
+  text-align:bottom;
+  float:right;
+}
+#nextTip:hover{
+  text-decoration:underline;
+}
 /* nav style header background
 #nav {
   clear:both;

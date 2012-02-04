@@ -5,8 +5,9 @@
     %title EDUC 222 Grade Tracker
     %link{:href => "http://fonts.googleapis.com/css?family=Copse|Droid+Serif", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "http://fonts.googleapis.com/css?family=Armata", :rel => "stylesheet", :type => "text/css" }
+    %link{:href => "http://fonts.googleapis.com/css?family=Quantico:400,700", :rel => "stylesheet", :type => "text/css"}
     = stylesheet_link_tag "application"
-    //= javascript_include_tag "application"
+    = javascript_include_tag "application"
     = csrf_meta_tags
 
 %body
@@ -60,6 +61,11 @@
           %li#navChallenges= link_to "Challenges", challenges_path, class: cp(challenges_path)
       #psaBox
         %p Do you consider video games to be a form of art?<br/><br/> <a href="http://americanart.si.edu/exhibitions/archive/2012/games/">The Smithsonian does</a>!
+        %p Psst! Want to know the <a href="http://arstechnica.com/gaming/news/2011/04/the-secret-history-of-super-mario-bros-2.ars">secret history of Mario Bros. 2</a>?
+        %p Ever wonder why Angry Birds is so successful? Here's an <a href="http://www.mauronewmedia.com/blog/2011/02/why-angry-birds-is-so-successful-a-cognitive-teardown-of-the-user-experience/">analysis of the user interface</a>.
+        %p Mario Kart is...romantic? <a href="http://youtu.be/VDBpQVhCMb8">http://youtu.be/VDBpQVhCMb8</a>
+        %p Video Games Live is a concert tour featuring music from popular video games <a href="http://www.videogameslive.com/index.php?s=home">http://www.videogameslive.com/</a>
+        %p The Great Gatsby: The Video Game <a href="http://greatgatsbygame.com/">http://greatgatsbygame.com/</a>
 
 
     %div#content

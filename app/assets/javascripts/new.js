@@ -7,6 +7,14 @@ $(document).ready(function(){
 		$(this).toggleClass('assignTitleOpen');
 		$(this).next('.collapsible').slideToggle();
 	});
+
+// Random PSA tip
+	$("#psaBox p").hide();
+	var psas = $("#psaBox p").get().sort(function(){ 
+            return Math.round(Math.random())-0.5; //so we get the right +/- combo
+           });
+    var firstpsa = psas.slice(1,2);
+	$(firstpsa).show();
 	
 // Progress bars to student dashboard
 /*

@@ -15,15 +15,17 @@
 }
 #badgesWrapper {
   width: 200px;
-  background-color: #eee;
-  padding: 15px;
   clear:both;
 }
 #userGravatar{
   width:250px;
+  padding-top:20px;
 }
 .gravatar{
   max-width:100%;
+}
+#userScoreSection{
+  padding-bottom:20px;
 }
 #userPointValues{
   font-size:1.1em;
@@ -45,7 +47,7 @@
 }
 .completedAssignment {
   padding: 15px;
-  background-color: #eee;
+
   margin-bottom: 15px;
 }
 
