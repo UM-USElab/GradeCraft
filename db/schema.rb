@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120203072631) do
+ActiveRecord::Schema.define(:version => 20120204001335) do
 
   create_table "assignments", :force => true do |t|
     t.string    "title"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20120203072631) do
     t.integer   "dmscore"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.integer   "apscore"
   end
 
   create_table "grades", :force => true do |t|

@@ -5,4 +5,5 @@ class AddAPlusToGradeScheme < ActiveRecord::Migration
   
   def down
     remove_column :grade_schemes, :apscore
+  end
 end
