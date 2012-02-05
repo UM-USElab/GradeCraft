@@ -84,9 +84,9 @@ h3 {
 }
 
 #content, #registrationDiv {
-  -moz-border-radius: 15px;
   background: url('demo-bg.png') #333333;
   border-radius: 15px;
+  -moz-border-radius: 15px;
   box-shadow: 2px 2px 15px #888;
   clear:both;
   margin-top: 20px;

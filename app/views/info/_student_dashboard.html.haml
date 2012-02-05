@@ -1,12 +1,13 @@
 %h3#user= current_user.first_name+" "+current_user.last_name
 %div#leftSidebar
   %div#userGravatar
-    = gravatar_for @current_user, :size => 150
+    = gravatar_for @current_user, :size => 200
   %div#badgesWrapper
-    %span.title Badges Earned:
+    %span.title Badges Earned
     %div#badgesEarned
       - current_user.earned_badges.each do |badge|
         %img{:src => badge.icon, :alt => badge.title}
+        
 
 %div#mainInfo
   %h2#points 
@@ -14,8 +15,9 @@
     %div#userPointValues
       %span Your current score is 
       %span#userScoreNum #{current_user.score}
-      /%span#scoreSoFar.toggle out of 300,000 points possible so far
+      %span#scoreSoFar.toggle= current_user.possible_score
       %span#scoreTotal.toggle out of #{Assignment.sum(:point_total)} total points in the course
+    %br
     /%div#userBarInProgress.toggle
     %div#userBarTotal.toggle
     %div#scoreToggle
@@ -24,7 +26,7 @@
 
   %h3#attendance.assignTitle
     %span Assignments
-    %span.assignmentPointsSpan #{current_user.score} 
+    %span.assignmentPointsSpan #{current_user.standard_score} 
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Standard"
@@ -42,14 +44,14 @@
 
   %h3#attendance.assignTitle
     %span Attendance
-    %span.assignmentPointsSpan
+    %span.assignmentPointsSpan #{current_user.attendance_score} 
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Attendance"
         %div.completedAssignment
           %span.assignmentTitle= grade.title
           %br
-          %span.assignmentGrade= grade.score
+          %span.assignmentGrade= attendance_score
           out of
           %span.assignmentScore= grade.point_total
           %br
@@ -89,7 +91,7 @@
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
             
-  %h2#bonus.assignTitle
+  %h3#bonus.assignTitle
     %span Bonus Points!
     /%span.assignmentPointsSpan add blogging score out of total possible
   %div.collapsible

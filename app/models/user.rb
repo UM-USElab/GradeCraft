@@ -58,8 +58,41 @@ class User < ActiveRecord::Base
     is_prof? || is_gsi? || is_admin?
   end
 
-  # Overriding the save function so as to update the score every time a grade gets saved
-  def calculate_score
-    self.score = grades.map(&:score).inject(&:+)
+  
+  def standard_score
+    grades.standard.sum(:score)
   end
+  
+  def standard_possible
+    grades.standard.assignments.sum(:point_total) #get grades that are of type standard and have been attempted, find their assignment and get the point_total
+  end
+  
+  def blogging_score
+    grades.blogging.sum(:score)
+  end
+  
+  def attendance_score
+    grades.attendance.sum(:score)
+  end
+  
+  def attendance_possible
+    #if assignments.attendance.due_date < today 
+  end
+  
+  def reading_reaction_score
+    grades.reading_reaction.sum(:score)
+  end
+  
+  def reading_reaction_possible
+    #sum the total number of reading reactions that have happened so far
+  end
+    
+  def calculate_score
+    grades.sum(:score)
+  end
+  
+  def possible_score
+    #attendance_possible + reading_reaction_possible + standard_possible
+  end
+  
 end

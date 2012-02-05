@@ -14,9 +14,19 @@
   width:0;
 }
 #badgesWrapper {
-  width: 200px;
+  margin-top: 15px;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  background-color: #222;
+  width: 175px;
+  padding: 15px;
   clear:both;
 }
+
+#badgesWrapper .title {
+  text-transform: uppercase;
+}
+
 #userGravatar{
   width:250px;
   padding-top:20px;
@@ -60,5 +70,11 @@
   width:50%;
   margin-left:300px;
   height:100%;
+}
+
+.collapsible {
+  background-color: #222;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
