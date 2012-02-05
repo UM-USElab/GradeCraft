@@ -15,7 +15,7 @@
     %div#userPointValues
       %span Your current score is 
       %span#userScoreNum #{current_user.score}
-      %span#scoreSoFar.toggle #{current_user.possible_score}
+      %span#scoreSoFar.toggle out of #{current_user.possible_score} possible points so far
       %span#scoreTotal.toggle out of #{Assignment.sum(:point_total)} total points in the course
     %br
     %div#userBarInProgress.toggle
@@ -26,7 +26,7 @@
 
   %h3#attendance.assignTitle
     %span Assignments
-    %span.assignmentPointsSpan #{current_user.standard_score} #{current_user.standard_possible}
+    %span.assignmentPointsSpan #{current_user.standard_score} / #{current_user.standard_possible}
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Standard"
@@ -44,7 +44,7 @@
 
   %h3#attendance.assignTitle
     %span Attendance
-    %span.assignmentPointsSpan #{current_user.attendance_score} #{current_user.attendance_possible}
+    %span.assignmentPointsSpan #{current_user.attendance_score} / #{current_user.attendance_possible}
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Attendance"
@@ -60,7 +60,7 @@
   
   %h3#reading.assignTitle 
     %span Reading Reactions
-    %span.assignmentPointsSpan #{current_user.reading_reaction_score} #{current_user.reading_reaction_possible}
+    %span.assignmentPointsSpan #{current_user.reading_reaction_score} / #{current_user.reading_reaction_possible}
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade| 
       - if grade.assignment.type == "ReadingReaction"
