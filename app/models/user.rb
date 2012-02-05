@@ -60,35 +60,35 @@ class User < ActiveRecord::Base
 
   
   def standard_score
-    grades.standard.sum(:score)
+    grades.standard.sum(:score) || 0
   end
   
   def standard_possible
-    grades.standard.map(&:point_total).inject(&:+)
+    grades.standard.map(&:point_total).inject(&:+) || 0
   end
   
   def blogging_score
-    grades.blogging.sum(:score)
+    grades.blogging.sum(:score) || 0
   end
   
   def attendance_score
-    grades.attendance.sum(:score)
+    grades.attendance.sum(:score) || 0
   end
   
   def attendance_possible
-    grades.attendance.map(&:point_total).inject(&:+)
+    grades.attendance.map(&:point_total).inject(&:+) || 0
   end
   
   def reading_reaction_score
-    grades.reading_reaction.sum(:score)
+    grades.reading_reaction.sum(:score) || 0
   end
   
   def reading_reaction_possible
-    grades.reading_reaction.map(&:point_total).inject(&:+)
+    grades.reading_reaction.map(&:point_total).inject(&:+) || 0
   end
     
   def calculate_score
-    grades.sum(:score)
+    grades.sum(:score) || 0
   end
   
   def possible_score
