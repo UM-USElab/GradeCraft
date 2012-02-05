@@ -1,8 +1,8 @@
 class StandardGrade < Grade
   
   def points_possible
-    if assignment.attempted == "1"
-      assignments.point_total
+    if attempted?
+      assignment.point_total
     else
       0
     end

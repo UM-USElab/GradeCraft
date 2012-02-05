@@ -14,7 +14,7 @@ class ReadingReactionGrade < Grade
   
   def points_possible
     if assignment.due_date < Date.today
-      assignments.point_total
+      5000
     else
       0
     end

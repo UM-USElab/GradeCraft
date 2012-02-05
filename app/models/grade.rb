@@ -26,13 +26,9 @@ class Grade < ActiveRecord::Base
     super || 0
   end
   
-  def attempted
-    if score > 0
-      "Yes"
-    else
-      "No"
-    end
-  end  
+  def attempted?
+    score > 0
+  end
   
   def short?
     !substantial?
@@ -55,7 +51,7 @@ class Grade < ActiveRecord::Base
   end
   
   def points_possible
-    assignments.point_total
+    assignment.point_total
   end
 
 end

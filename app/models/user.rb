@@ -58,14 +58,12 @@ class User < ActiveRecord::Base
     is_prof? || is_gsi? || is_admin?
   end
 
+  #Actual
   
   def standard_score
     grades.standard.sum(:score) || 0
   end
   
-  def standard_possible
-    grades.standard.map(&:point_total).inject(&:+) || 0
-  end
   
   def blogging_score
     grades.blogging.sum(:score) || 0
@@ -75,20 +73,25 @@ class User < ActiveRecord::Base
     grades.attendance.sum(:score) || 0
   end
   
-  def attendance_possible
-    grades.attendance.map(&:point_total).inject(&:+) || 0
-  end
-  
   def reading_reaction_score
     grades.reading_reaction.sum(:score) || 0
   end
-  
-  def reading_reaction_possible
-    grades.reading_reaction.map(&:point_total).inject(&:+) || 0
-  end
-    
+   
   def calculate_score
     grades.sum(:score) || 0
+  end
+  
+  #Possible 
+  def reading_reaction_possible
+    grades.where(:type=>"ReadingReactionGrade").map(&:points_possible).inject(&:+) || 0
+  end
+    
+  def standard_possible
+    grades.where(:type=>"Grade").map(&:points_possible).inject(&:+) || 0
+  end
+  
+  def attendance_possible
+    grades.where(:type=>"ReadingReactionGrade").map(&:points_possible).inject(&:+) || 0
   end
   
   def possible_score
