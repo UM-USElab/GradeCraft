@@ -18,11 +18,11 @@
       %span#scoreSoFar.toggle= @user.possible_score
       %span#scoreTotal.toggle out of #{Assignment.sum(:point_total)} total points in the course
     %br
-    /%div#userBarInProgress.toggle
+    %div#userBarInProgress.toggle
     %div#userBarTotal.toggle
     %div#scoreToggle
-      /%span#showTotalPts.toggle Show score out of total course points
-      /%span#showPossiblePts.toggle Show score out of possible points so far
+      %span#showTotalPts.toggle Show score out of total course points
+      %span#showPossiblePts.toggle Show score out of possible points so far
 
   %h3#attendance.assignTitle
     %span Assignments
@@ -44,7 +44,7 @@
 
   %h3#attendance.assignTitle
     %span Attendance
-    %span.assignmentPointsSpan #{@user.attendance_score} 
+    %span.assignmentPointsSpan #{@user.attendance_score} #{@user.attendance_possible}
   %div.collapsible
     - Grade.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Attendance"
@@ -60,9 +60,9 @@
   
   %h3#reading.assignTitle 
     %span Reading Reactions
-    /%span.assignmentPointsSpan add reactions score out of total possible
+    %span.assignmentPointsSpan #{@user.reading_reaction_score} #{@user.reading_reaction_possible}
   %div.collapsible
-    - Grade.where(:user_id => @user.id).each do |grade|
+    - Grade.where(:user_id => @user.id).each do |grade| 
       - if grade.assignment.type == "ReadingReaction"
         %div.completedAssignment
           %span.assignmentTitle= grade.title
@@ -77,7 +77,7 @@
   
   %h3#blogging.assignTitle
     %span Blogging
-    /%span.assignmentPointsSpan add blogging score out of total possible
+    %span.assignmentPointsSpan #{@user.blogging_score}
   %div.collapsible
     - Grade.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Blogging"
@@ -93,7 +93,7 @@
             
   %h3#bonus.assignTitle
     %span Bonus Points!
-    /%span.assignmentPointsSpan add blogging score out of total possible
+    %span.assignmentPointsSpan
   %div.collapsible
     - Grade.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == nil

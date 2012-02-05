@@ -13,7 +13,7 @@ class Grade < ActiveRecord::Base
   
   after_save :save_user_score
   
-  scope :reading_reactions, where(:type => "ReadingReactionGrade")
+  scope :reading_reaction, where(:type => "ReadingReactionGrade")
   scope :standard, where(:type=> "Grade")
   scope :blogging, where(:type=> "BloggingGrade")
   scope :attendance, where(:type=> "AttendanceGrade")
@@ -52,6 +52,10 @@ class Grade < ActiveRecord::Base
   
   def is_released?
     released == 1 || role.blank?
+  end
+  
+  def points_possible
+    assignments.point_total
   end
 
 end

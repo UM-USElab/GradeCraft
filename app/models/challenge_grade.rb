@@ -14,5 +14,5 @@ class ChallengeGrade < ActiveRecord::Base
   def save_team_score
     team.save
   end
-  
+
 end

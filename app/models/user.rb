@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
   
   def standard_possible
-    grades.standard.assignments.sum(:point_total) #get grades that are of type standard and have been attempted, find their assignment and get the point_total
+    grades.standard.map(&:point_total).inject(&:+)
   end
   
   def blogging_score
@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
   end
   
   def attendance_possible
-    #if assignments.attendance.due_date < today 
+    grades.attendance.map(&:point_total).inject(&:+)
   end
   
   def reading_reaction_score
@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   end
   
   def reading_reaction_possible
-    #sum the total number of reading reactions that have happened so far
+    grades.reading_reaction.map(&:point_total).inject(&:+)
   end
     
   def calculate_score
@@ -92,7 +92,7 @@ class User < ActiveRecord::Base
   end
   
   def possible_score
-    #attendance_possible + reading_reaction_possible + standard_possible
+    attendance_possible + reading_reaction_possible + standard_possible
   end
   
 end
