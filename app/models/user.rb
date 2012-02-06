@@ -87,11 +87,11 @@ class User < ActiveRecord::Base
   end
     
   def standard_possible
-    grades.where(:type=>"Grade").map(&:points_possible).inject(&:+) || 0
+    grades.where(:type=>"StandardGrade").map(&:points_possible).inject(&:+) || 0
   end
   
   def attendance_possible
-    grades.where(:type=>"ReadingReactionGrade").map(&:points_possible).inject(&:+) || 0
+    grades.where(:type=>"AttendanceGrade").map(&:points_possible).inject(&:+) || 0
   end
   
   def possible_score

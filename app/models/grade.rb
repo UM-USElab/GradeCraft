@@ -14,7 +14,7 @@ class Grade < ActiveRecord::Base
   after_save :save_user_score
   
   scope :reading_reaction, where(:type => "ReadingReactionGrade")
-  scope :standard, where(:type=> "Grade")
+  scope :standard, where(:type=> "StandardGrade")
   scope :blogging, where(:type=> "BloggingGrade")
   scope :attendance, where(:type=> "AttendanceGrade")
   
@@ -51,11 +51,7 @@ class Grade < ActiveRecord::Base
   end
   
   def points_possible
-    if attempted?
-      assignment.point_total
-    else
-      0
-    end
+    assignment.point_total
   end
 
 end
