@@ -11,7 +11,7 @@
     = csrf_meta_tags
 
 %body
-  %h1#siteTitle EDUC 222 Grade Tracker
+  %h1#siteTitle <a href="http://grade-tracker.herokuapp.com/">EDUC 222 Grade Tracker</a>
   %ul#myInfo
     - if current_user
       %li= link_to "My Account", edit_profile_users_path
