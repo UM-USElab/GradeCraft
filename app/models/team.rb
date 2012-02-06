@@ -19,7 +19,7 @@ class Team < ActiveRecord::Base
   end
 
   def reading_reaction_score
-    500 * user_grades.reading_reactions.where(:semis => true).count
+    500 * user_grades.reading_reaction.where(:semis => true).count
   end
 
 end
