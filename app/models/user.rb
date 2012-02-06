@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   end
   
   def reading_reaction_score
-    grades.reading_reaction.sum(:score) || 0
+    grades.reading_reaction.map(&:score).inject(&:+) || 0
   end
    
   def calculate_score

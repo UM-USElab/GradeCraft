@@ -68,7 +68,7 @@
   
   %h3#reading.assignTitle 
     %span Reading Reactions
-    %span.assignmentPointsSpan #{current_user.reading_reaction_score} / #{current_user.reading_reaction_possible}
+    %span.assignmentPointsSpan #{current_user.reading_reaction_score} out of #{current_user.reading_reaction_possible}
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade| 
       - if grade.assignment.type == "ReadingReaction"
