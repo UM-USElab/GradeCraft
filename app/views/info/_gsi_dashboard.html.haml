@@ -20,6 +20,8 @@
         - user.earned_badges.each do |badge|
           %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
       %td
+        - if user.is_student?
+          = link_to 'Dashboard', user
 
 %div#footerNav
   %span.button= link_to "Grade an Assignment", new_grade_url
