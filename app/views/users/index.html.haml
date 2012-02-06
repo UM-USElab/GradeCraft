@@ -9,7 +9,6 @@
     %th= sortable "username"
     %th= sortable "first_name"
     %th= sortable "last_name"
-    %th= sortable "email"
     %th= sortable "role"
     %th= sortable "team_id"
     %th= sortable "score"
@@ -22,7 +21,6 @@
       %td= user.username
       %td= user.first_name
       %td= user.last_name
-      %td= user.email
       %td= user.role
       %td= user.team_id
       %td= user.score if user.respond_to?(:score)
