@@ -4,7 +4,7 @@ class ReadingReactionGrade < Grade
     if finals?
       10000
     elsif semis?
-      8000
+      7000
     elsif complete?
       5000
     else
