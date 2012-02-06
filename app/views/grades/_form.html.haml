@@ -1,5 +1,5 @@
 %br
-= semantic_form_for @grade.becomes(StandardGrade) do |f|
+= semantic_form_for @grade.becomes(Grade) do |f|
   = f.inputs do
     .text= f.input :user, :collection => User.students, :include_blank => false
     .text= f.input :assignment, :include_blank => false
