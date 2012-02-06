@@ -51,7 +51,11 @@ class Grade < ActiveRecord::Base
   end
   
   def points_possible
-    assignment.point_total
+    if attempted?
+      assignment.point_total
+    else
+      0
+    end
   end
 
 end

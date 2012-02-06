@@ -4,7 +4,7 @@ class StandardGrade < Grade
     if attempted?
       assignment.point_total
     else
-      0
+     0
     end
   end
 
