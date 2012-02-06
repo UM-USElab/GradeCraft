@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
   end
    
   def calculate_score
-    grades.map(&:score).inject(&:+) || 0
+    standard_score + blogging_score + attendance_score + reading_reaction_score || 0
   end
   
   #Possible 
