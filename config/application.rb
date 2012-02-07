@@ -36,6 +36,11 @@ module Grader
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
+    config.generators do |g|
+      g.test_framework :rspec, :fixtures => true
+      g.fixture_replacement :fabrication
+    end
+
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
@@ -44,10 +49,10 @@ module Grader
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-        
+
     # Change the path that assets are served from
     config.assets.prefix = "/assets"
-    
+
     if Rails.env == "production"
       config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-28992046-1")
     end
