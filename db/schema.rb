@@ -11,33 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120204175436) do
+ActiveRecord::Schema.define(:version => 20120207004501) do
 
   create_table "assignments", :force => true do |t|
-    t.string    "title"
-    t.string    "description"
-    t.integer   "point_total"
-    t.timestamp "due_date"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "level"
-    t.string    "type"
-    t.boolean   "substantial", :default => false
-    t.boolean   "present"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "point_total"
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "level"
+    t.string   "type"
+    t.boolean  "substantial", :default => false
+    t.boolean  "present"
   end
 
   create_table "badges", :force => true do |t|
-    t.integer   "assignment_id"
-    t.string    "title"
-    t.string    "description"
-    t.string    "icon"
-    t.binary    "visible"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "image_file_name"
-    t.string    "image_content_type"
-    t.integer   "image_file_size"
-    t.timestamp "image_updated_at"
+    t.integer  "assignment_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "icon"
+    t.binary   "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
