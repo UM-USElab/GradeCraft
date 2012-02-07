@@ -14,9 +14,17 @@
   %div#userScoreSection
     %div#userPointValues
       %span Your current score is 
-      %span#userScoreNum #{@user.score} out of
-      %span#scoreSoFar.toggle= @user.possible_score
-      %span#scoreTotal.toggle out of #{Assignment.sum(:point_total)} total points in the course
+      %span#userScoreNum #{@user.score}
+      %span#scoreSoFar.toggle 
+        out of 
+        %span#availablePoints 
+          #{@user.possible_score} 
+        possible points so far
+      %span#scoreTotal.toggle 
+        out of 
+        %span#courseTotalPts
+          #{Assignment.sum(:point_total)} 
+        total points in the course
     %br
     %div#userBarInProgress.toggle
     %div#userBarTotal.toggle
