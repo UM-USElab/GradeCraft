@@ -13,6 +13,7 @@ gem 'tinymce-rails'
 
 group :production do
   gem 'pg'
+  gem 'rack-google_analytics', :require => "rack/google_analytics"
 end
 
 # Gems used only for assets and not required

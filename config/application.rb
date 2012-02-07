@@ -47,5 +47,9 @@ module Grader
         
     # Change the path that assets are served from
     config.assets.prefix = "/assets"
+    
+    if Rails.env == "production"
+      config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-28992046-1")
+    end
   end
 end
