@@ -34,7 +34,7 @@
 
   %h3#attendance.assignTitle
     %span Assignments
-    %span.assignmentPointsSpan #{current_user.standard_score} / #{current_user.standard_possible}
+    %span.assignmentPointsSpan #{current_user.standard_score} out of #{current_user.standard_possible}
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Standard"
@@ -52,7 +52,7 @@
 
   %h3#attendance.assignTitle
     %span Attendance
-    %span.assignmentPointsSpan #{current_user.attendance_score} / #{current_user.attendance_possible}
+    %span.assignmentPointsSpan #{current_user.attendance_score} out of #{current_user.attendance_possible}
   %div.collapsible
     - Grade.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Attendance"
