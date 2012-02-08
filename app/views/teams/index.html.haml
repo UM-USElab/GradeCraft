@@ -1,24 +1,25 @@
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/static/modules/gviz/1.0/chart.js"> {"dataSourceUrl":"//docs.google.com/spreadsheet/tq?key=0AtknGd3uiORwdGJOVmhYRG9SX0pIWW5Qb29ZcnUyUEE&transpose=1&headers=1&range=B4%3AC11&gid=1&pub=1","options":{"reverseCategories":false,"pointSize":7,"minValue":0,"is3D":false,"logScale":false,"hAxis":{"maxAlternations":1},"wmode":"opaque","lineSize":2,"vAxes":[{"title":"Points","minValue":0,"viewWindowMode":"pretty","viewWindow":{"min":0,"max":20000},"maxValue":20000},{"viewWindowMode":"pretty","viewWindow":{}}],"title":"Team Points Thus Far","height":550,"pointSizeOther":7,"mapType":"hybrid","maxValue":20000,"isStacked":false,"showTip":true,"displayAnnotations":true,"dataMode":"markers","titleX":"Team","maxAlternation":1,"colors":["#3366CC","#DC3912","#FF9900","#109618","#990099","#0099C6","#DD4477","#66AA00","#B82E2E","#316395"],"width":930,"lineWidth":"2","labelPosition":"right","hasLabelsColumn":true,"legend":"right","allowCollapse":true,"reverseAxis":false},"state":{},"view":"{\"columns\":[0,1,2,3,4,5,6,7]}","chartType":"ColumnChart"} </script>
 %br 
+<iframe width='930' height='500' frameborder='0' src='https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=0AtknGd3uiORwdGJOVmhYRG9SX0pIWW5Qb29ZcnUyUEE&single=true&gid=0&output=html&widget=true'></iframe>
 
-%table
-  %tr
-    %th= sortable "id"
-    %th= sortable "name"
-    %th Ranking
-    %th= sortable "score"
-    - if current_user.is_staff?
-      %th
-      %th
-      %th
-
-  - @teams.each do |team|
+- if current_user.is_staff?
+  %table
     %tr
-      %td= team.id
-      %td= team.name
-      %td
-      %td= team.score
+      %th= sortable "id"
+      %th= sortable "name"
+      %th Ranking
+      %th= sortable "score"
       - if current_user.is_staff?
+        %th
+        %th
+        %th
+  
+    - @teams.each do |team|
+      %tr
+        %td= team.id
+        %td= team.name
+        %td
+        %td= team.score
         %td= link_to 'View', team
         %td= link_to 'Edit', edit_team_path(team)
         %td= link_to 'Delete', team, :confirm => 'Are you sure?', :method => :delete
