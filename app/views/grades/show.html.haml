@@ -22,4 +22,4 @@
 %div#footerNav
   %span.button= link_to 'Edit', edit_grade_path(@grade)
   %span.button= link_to 'Back', grades_path
-//%span.button= link_to 'New Grade', new_grade_path
+  %span.button= link_to "Grade Another " +@grade.assignment.title, new_grade_path("assignment_id"=>@grade.assignment.id)
