@@ -24,8 +24,7 @@ class GradesController < ApplicationController
     @badges = Badge.all
     @teams = Team.all
     @title = "Submit New Grade"
-    #is there a way to write this so we can also have new grades that don't start with an assignment id?
-    @assignment = Assignment.find(params[:assignment_id])
+    @assignment = Assignment.find(params[:assignment_id]) if params[:assignment_id]
     @grade = grade_class(@assignment).new
     @grade.user = User.students.find(params[:user_id]) if params[:user_id]
     @grade.assignment = @assignment
@@ -53,14 +52,15 @@ class GradesController < ApplicationController
   end
 
   def create
-    @grade = Grade.new(params[:grade])
+    @assignment = Assignment.find(params[:grade][:assignment_id])
+    @grade = grade_class(@assignment).new(params[:grade])
     @users = User.all
     @badges = Badge.all
     @teams = Team.all
 
     respond_to do |format|
       if @grade.save
-        format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
+        format.html { redirect_to grade_path(@grade), notice: 'Grade was successfully created.' }
         format.json { render json: @grade, status: :created, location: @grade }
       else
         format.html { render action: "new" }
@@ -100,7 +100,10 @@ class GradesController < ApplicationController
       @team = Team.find(params[:team_id])
       user_search_options[:team_id] = @team.id if @team
     end
-    @grades = User.students.where(user_search_options).map { |s| @assignment.grades.find_or_create_by_user_id(s.id) }
+    @students = User.students.where(user_search_options)
+    @grades = @students.map do |s| 
+      @assignment.grades.find_by_user_id(s.id) || grade_class(@assignment).create(:user => s, :assignment => @assignment) 
+    end
   end
 
   def mass_update
@@ -119,5 +122,7 @@ class GradesController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
+  
+  
 
 end

@@ -2,5 +2,4 @@
 = gravatar_for grade.user
 = form.input :score
 = form.input :feedback, :as => :text
-= form.input :type, :as => :hidden, :value => "StandardGrade"
 %div#badgeSelection= form.input :badges, :as => :check_boxes, :collection => @badges
