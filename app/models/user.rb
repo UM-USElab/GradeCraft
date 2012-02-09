@@ -61,7 +61,6 @@ class User < ActiveRecord::Base
   end
 
   #Actual
-  
   def standard_score
     grades.standard.sum(:score) || 0
   end
