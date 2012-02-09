@@ -10,5 +10,5 @@ Fabricator(:student, :from => :user) do
 end
 
 Fabricator(:student_with_grades, :from => :student) do
-  grades!(:count => 2) { |student, i| Fabricate(:grade, :user => student) }
+  grades!(:count => 2) { |student, i| Fabricate(:grade, :user => student) }  
 end
