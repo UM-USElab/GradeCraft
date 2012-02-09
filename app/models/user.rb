@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
                     :default_url => '/images/missing_:style.png'
 
 
-  has_many :grades
+  has_many :grades, :dependent => :destroy
   has_many :earned_badges, :through => :grades
   belongs_to :team
 

@@ -1,5 +1,5 @@
 class Assignment < ActiveRecord::Base
-  has_many :grades
+  has_many :grades, :dependent => :destroy
   accepts_nested_attributes_for :grades
 
   attr_accessible :type, :title, :description, :due_date, :point_total

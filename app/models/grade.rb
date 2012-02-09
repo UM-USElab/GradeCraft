@@ -1,7 +1,7 @@
 class Grade < ActiveRecord::Base
   belongs_to :user
   belongs_to :assignment
-  has_many :earned_badges
+  has_many :earned_badges, :dependent => :destroy
   has_many :badges, :through => :earned_badges
 
   validates_presence_of :user
