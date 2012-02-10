@@ -12,7 +12,7 @@ class GradesController < ApplicationController
       @assignment = Assignment.find(params[:assignment_id])
       search_options[:assignment_id] = @assignment.id if @assignment
     end
-    respond_with @grades = Grade.where(search_options).order(sort_column + " " + sort_direction).page(params[:page]).per(50)
+    respond_with @grades = Grade.where(search_options).order(sort_column + " " + sort_direction).page(params[:page]).per(100)
   end
 
   def show

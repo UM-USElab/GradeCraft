@@ -3,7 +3,7 @@
     = select_tag :assignment_id, options_for_select(Assignment.all.map { |a| [a.title, a.id] }, @assignment.try(:id)), :prompt => 'Select Assignment'
     = submit_tag 'Filter'
 
-paginate @grades
+= paginate @grades
 
 %table
   %tr

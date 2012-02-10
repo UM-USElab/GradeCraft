@@ -11,6 +11,8 @@ gem 'paperclip', '~> 2.0'
 gem 'gravatar_image_tag'
 gem 'tinymce-rails'
 gem 'kaminari'
+gem 'simple_datatables'
+
 
 group :production do
   gem 'pg'

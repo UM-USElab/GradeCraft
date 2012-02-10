@@ -2,6 +2,8 @@ class Team < ActiveRecord::Base
   has_many :users
   has_many :challenge_grades, :dependent => :destroy
 
+  default_scope :order => 'id ASC'
+
   def user_grades
     Grade.where(:user_id => users)
   end
