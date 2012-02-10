@@ -10,6 +10,7 @@ gem 'exception_notification'
 gem 'paperclip', '~> 2.0'
 gem 'gravatar_image_tag'
 gem 'tinymce-rails'
+gem 'kaminari'
 
 group :production do
   gem 'pg'
