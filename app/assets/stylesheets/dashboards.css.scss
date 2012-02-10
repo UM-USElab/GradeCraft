@@ -9,18 +9,45 @@
   font-size:1.8em;	
 }
 #leftSidebar{
-  margin-right:0;
-  float:left;
-  width:0;
+  margin-right: 0;
+  float: left;
+  width: 300px;
 }
 #badgesWrapper {
   margin-top: 15px;
   border-radius: 15px;
   -moz-border-radius: 15px;
   background-color: #222;
-  width: 175px;
+  width: 200px;
   padding: 15px;
-  clear:both;
+  height: auto;
+  text-align:center;
+  font-size: 125%;
+}
+
+#badgesEarned {
+  height: auto;
+  margin: 2px;
+  padding: 2px;
+  position: relative;
+}
+
+.clear {
+  height: 5px;
+  clear: both;
+}
+
+#badgesWrapper .badge {
+  float: left;
+  text-align: center;
+  height: 105px;
+  width: 62px;
+  color: #c1c50e;
+  font-size: 75%;
+}
+
+.badge img {
+  width: 60px;
 }
 
 #badgesWrapper .title {
@@ -28,11 +55,7 @@
 }
 
 #userGravatar{
-  width:250px;
   padding-top:20px;
-}
-.gravatar{
-  max-width:100%;
 }
 #userScoreSection{
   padding-bottom:20px;
@@ -57,7 +80,6 @@
 }
 .completedAssignment {
   padding: 15px;
-
   margin-bottom: 15px;
 }
 

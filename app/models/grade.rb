@@ -11,8 +11,6 @@ class Grade < ActiveRecord::Base
   
   after_save :save_user_score
   
-  #default_scope :order => 'due_date ASC'
-  
   scope :reading_reaction, where(:type => "ReadingReactionGrade")
   scope :standard, where(:type=> "StandardGrade")
   scope :blogging, where(:type=> "BloggingGrade")
