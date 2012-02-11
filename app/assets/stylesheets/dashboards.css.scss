@@ -38,7 +38,8 @@
 }
 
 .assignmentGrade {
-  color: #5199AE;;
+  color: black;
+  font-weight: bold;
 }
 
 #badgesWrapper .badge {
@@ -79,7 +80,7 @@
   font-weight: bold;
 }
 .assignmentPointsSpan{
-  color:green;
+  color: green;
   font-size:.8em;
   float:right;
 }
@@ -89,7 +90,7 @@
 }
 
 .completedAssignment {
-  background-color: #63B000;
+  background-color: #3a8104;
 }
 
 .incompleteAssignment {
