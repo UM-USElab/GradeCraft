@@ -1,4 +1,4 @@
 = semantic_form_for @assignment.becomes(Assignment) do |f|
   = f.input :type, :as => :hidden, :value => "Blogging"
   .text= f.input :point_total, :as => :numeric
-  = f.input :due_date, :as => :date_picker
+  = f.input :due_date, :as => :datetime

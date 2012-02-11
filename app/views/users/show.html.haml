@@ -50,6 +50,8 @@
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
             %br
             %span.assignmentFeedback= grade.feedback
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
         - else
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
@@ -71,6 +73,8 @@
             %br
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
         - else
           %div.missedAssignment
             %span.assignmentTitle #{grade.title} –
@@ -94,6 +98,8 @@
             %br
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
         - else
           %div.missedAssignment
             %span.assignmentTitle= grade.title
@@ -117,6 +123,8 @@
             %br
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
         - else
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
@@ -140,6 +148,8 @@
           %br
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
+          %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
   %div.clear
 
 %div#footerNav

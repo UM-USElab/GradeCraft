@@ -84,13 +84,19 @@
   font-size:.8em;
   float:right;
 }
+
+.assignmentEdit a {
+  font-weight: bold;
+  color: #333;
+}
 .completedAssignment, .incompleteAssignment, .missedAssignment {
   padding: 15px;
   margin-bottom: 2px;
 }
 
 .completedAssignment {
-  background-color: #3a8104;
+  background-color: #a7dc77;
+  color: #000;
 }
 
 .incompleteAssignment {

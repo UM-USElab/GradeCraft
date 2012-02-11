@@ -74,7 +74,7 @@ class GradesController < ApplicationController
 
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
-        format.html { redirect_to @grade, notice: 'Grade was successfully updated.' }
+        format.html { redirect_to grade_path(@grade), notice: 'Grade was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

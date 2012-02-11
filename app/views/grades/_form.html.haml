@@ -5,7 +5,7 @@
     - if @assignment
       = f.input :assignment_id, :as => :hidden 
     - else
-      = f.input :assignment
+      .text= f.input :assignment
     .text= f.input :score
     .text= f.input :feedback, :as => :text
     .text= f.input :badges, :as => :check_boxes, :collection => @badges
