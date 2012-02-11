@@ -1,2 +1,3 @@
-.text= form.input :point_total, :as => :number
-.text= form.input :due_date, :as => :datetime
+= semantic_form_for @assignment.becomes(Assignment) do |f|
+  .text= f.input :point_total, :as => :number
+  .text= f.input :due_date, :as => :datetime

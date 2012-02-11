@@ -7,9 +7,9 @@
 %table
   %tr
     %th= sortable "username"
-    %th= sortable "first_name"
-    %th= sortable "last_name"
+    %th= sortable "name"
     %th= sortable "role"
+    %td Ranking
     %th= sortable "team_id"
     %th= sortable "score"
     %th Badges Earned
@@ -19,9 +19,9 @@
   - for user in @users
     %tr
       %td= user.username
-      %td= user.first_name
-      %td= user.last_name
+      %td= user.name
       %td= user.role
+      %td= user.score_ranking
       %td= user.team_id
       %td= user.score if user.respond_to?(:score)
       %td

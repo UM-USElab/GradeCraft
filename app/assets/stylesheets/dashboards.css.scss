@@ -18,8 +18,8 @@
   border-radius: 15px;
   -moz-border-radius: 15px;
   background-color: #222;
-  width: 200px;
-  padding: 15px;
+  width: 220px;
+  padding: 20px 5px 32px;
   height: auto;
   text-align:center;
   font-size: 125%;
@@ -37,13 +37,18 @@
   clear: both;
 }
 
+.assignmentGrade {
+  color: #5199AE;;
+}
+
 #badgesWrapper .badge {
   float: left;
   text-align: center;
-  height: 105px;
-  width: 62px;
+  height: 90px;
+  width: 70px;
   color: #c1c50e;
-  font-size: 75%;
+  font-size: 70%;
+  margin-top: 5px;
 }
 
 .badge img {
@@ -78,14 +83,20 @@
   font-size:.8em;
   float:right;
 }
-.completedAssignment {
+.completedAssignment, .incompleteAssignment, .missedAssignment {
   padding: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 2px;
 }
 
-.futureAssignment {
-  margin-bottom: 15px;
-  padding: 15px;
+.completedAssignment {
+  background-color: #63B000;
+}
+
+.incompleteAssignment {
+  background-color: #666;
+}
+.missedAssignment {
+  background-color: red;
 }
 
 #mainInfo {
@@ -96,7 +107,9 @@
 
 .collapsible {
   background-color: #222;
+  padding-bottom: 15px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  margin-bottom: 10px;
 }
 

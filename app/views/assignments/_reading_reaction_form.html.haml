@@ -1,3 +1,4 @@
-.text= form.input :due_date, :as => :datetime, :discard_year => true, :discard_hour => true, :discard_minute => true
-= form.input :point_total, :as => :hidden, :value => "5000"
-= form.input :type, :as => :hidden, :value => "ReadingReaction"
+= semantic_form_for @assignment.becomes(Assignment) do |f|
+  .text= f.input :due_date, :as => :datetime, :discard_year => true, :discard_hour => true, :discard_minute => true
+  = f.input :point_total, :as => :hidden, :value => "5000"
+  = f.input :type, :as => :hidden, :value => "ReadingReaction"

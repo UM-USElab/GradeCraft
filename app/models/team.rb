@@ -3,13 +3,11 @@ class Team < ActiveRecord::Base
   has_many :challenge_grades, :dependent => :destroy
 
   default_scope :order => 'id ASC'
+  
+  rank_by :score
 
   def user_grades
     Grade.where(:user_id => users)
-  end
-
-  def ranking
-
   end
 
   def score
@@ -17,11 +15,11 @@ class Team < ActiveRecord::Base
   end
 
   def challenge_grade
-    challenge_grades.sum(:score)
+    challenge_grades.map(&:score).inject(&:+) || 0
   end
 
   def reading_reaction_score
-    500 * user_grades.reading_reaction.where(:semis => true).count
+    500 * user_grades.reading_reaction.where(:semis => true).count || 0
   end
 
 end

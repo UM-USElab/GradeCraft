@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     respond_with @user
 
   end
-
+  
   def update
     @user = User.find(params[:id])
     @teams = Team.all

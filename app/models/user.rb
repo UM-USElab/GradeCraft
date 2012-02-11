@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   %w{student gsi professor admin}.each do |role|
     scope role.pluralize, where(:role => role)
   end
+  
+  rank_by :score
 
   def name
     [first_name,last_name].join(' ')
