@@ -11,19 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210215341) do
+ActiveRecord::Schema.define(:version => 20120211161222) do
 
   create_table "assignments", :force => true do |t|
-    t.string    "title"
-    t.text      "description"
-    t.integer   "point_total"
-    t.timestamp "due_date"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "level"
-    t.string    "type"
-    t.boolean   "substantial", :default => false
-    t.boolean   "present"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "point_total"
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "level"
+    t.string   "type"
+    t.boolean  "present"
   end
 
   create_table "badges", :force => true do |t|
@@ -38,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20120210215341) do
     t.string    "image_content_type"
     t.integer   "image_file_size"
     t.timestamp "image_updated_at"
+    t.string    "occurrence"
   end
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
@@ -93,20 +93,20 @@ ActiveRecord::Schema.define(:version => 20120210215341) do
   end
 
   create_table "grades", :force => true do |t|
-    t.integer   "score"
-    t.integer   "user_id"
-    t.integer   "assignment_id"
-    t.text      "feedback"
-    t.integer   "badge_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "complete"
-    t.boolean   "semis"
-    t.boolean   "finals"
-    t.string    "type"
-    t.string    "status"
-    t.boolean   "attempted"
-    t.string    "occurance"
+    t.integer  "score"
+    t.integer  "user_id"
+    t.integer  "assignment_id"
+    t.text     "feedback"
+    t.integer  "badge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "complete"
+    t.boolean  "semis"
+    t.boolean  "finals"
+    t.string   "type"
+    t.string   "status"
+    t.boolean  "attempted"
+    t.boolean  "substantial"
   end
 
   add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"

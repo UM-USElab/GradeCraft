@@ -1,5 +1,6 @@
 %div.gradeUserName= grade.user.name
 = gravatar_for grade.user
-= form.input :score
+= form.input :substantial
 = form.input :feedback, :as => :text
+= form.input :status, :as => :select, :collection => [["New", "new"], ["Graded", "graded"], ["Released", "released"]]
 %div#badgeSelection= form.input :badges, :as => :check_boxes, :collection => @badges

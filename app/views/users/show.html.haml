@@ -51,6 +51,10 @@
             %br
             %span.assignmentFeedback= grade.feedback
             %br
+            %br
+            %span.assignmentStatus Grade Status: #{grade.status}
+            %br
+            %br
             %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
         - else
           %div.incompleteAssignment

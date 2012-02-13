@@ -87,4 +87,8 @@ class BadgesController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def onetime
+    @badges = Badge.find_all_by_occurrence(true)
+  end
 end

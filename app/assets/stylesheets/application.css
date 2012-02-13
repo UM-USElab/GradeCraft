@@ -43,7 +43,6 @@ table {
   width: 930px;
 }
 
-
 th {
   background-color: #111111;
   text-transform: uppercase;
@@ -459,4 +458,9 @@ th#icon {
   padding-top: 15px;
   position:absolute;
   bottom:30px; 
+}
+
+p#alert {
+  height: 20px;
+  marign-top: 0px;
 }

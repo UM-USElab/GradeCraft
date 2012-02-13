@@ -18,8 +18,6 @@ class Grade < ActiveRecord::Base
   scope :blogging, where(:type=> "BloggingGrade")
   scope :attendance, where(:type=> "AttendanceGrade")
   
-  scope :isreleased, where(:released=> 1)
-  
   Assignments = @assignments
   
   def score
@@ -33,21 +31,17 @@ class Grade < ActiveRecord::Base
   def short?
     !substantial?
   end
-
-  def blogscore
-    if substantial?
-      5000
-    else
-      1000
-    end
-  end
   
   def save_user_score
     user.save
   end
   
+  def released
+    super || "new"
+  end
+  
   def is_released?
-    released == 1 || role.blank?
+    status == "released" || "new"
   end
   
   def points_possible
