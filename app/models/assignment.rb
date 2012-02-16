@@ -12,5 +12,21 @@ class Assignment < ActiveRecord::Base
   scope :standard, where(:type=> "Standard")
   scope :blogging, where(:type=> "Blogging")
   scope :attendance, where(:type=> "Attendance")
+  
+  def assignment_grades
+    Grade.where(:assignment_id => id)
+  end
+  
+  def high_score
+    assignment_grades.maximum :score
+  end
+  
+  def low_score
+    assignment_grades.minimum :score
+  end
 
+  def average 
+    assignment_grades.average :score
+  end
+  
 end

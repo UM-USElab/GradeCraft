@@ -100,4 +100,10 @@ class User < ActiveRecord::Base
     attendance_possible + reading_reaction_possible + standard_possible || 0
   end
   
+  #stats
+  
+  def average_score
+    User.average :score
+  end
+  
 end

@@ -37,11 +37,11 @@ class Grade < ActiveRecord::Base
   end
   
   def released
-    super || "new"
+    super || "New"
   end
   
   def is_released?
-    status == "released" || "new"
+    status == "Released"
   end
   
   def points_possible

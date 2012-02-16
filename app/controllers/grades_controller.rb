@@ -23,6 +23,7 @@ class GradesController < ApplicationController
   def new
     @badges = Badge.all
     @teams = Team.all
+    @grade_schemes = GradeScheme.all
     @title = "Submit New Grade"
     @assignment = Assignment.find(params[:assignment_id]) if params[:assignment_id]
     @grade = grade_class(@assignment).new

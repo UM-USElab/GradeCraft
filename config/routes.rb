@@ -29,6 +29,7 @@ Grader::Application.routes.draw do
   resources :challenges
   resources :grade_schemes
   resources :user_sessions
+  resources :predictor
 
   get "info/index"
   get "home/index"
