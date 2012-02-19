@@ -11,7 +11,7 @@ class Grade < ActiveRecord::Base
   
   after_save :save_user_score
   
-  #default_scope :order => 'due_date ASC'
+  scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
   
   scope :reading_reaction, where(:type => "ReadingReactionGrade")
   scope :standard, where(:type=> "StandardGrade")
@@ -36,9 +36,7 @@ class Grade < ActiveRecord::Base
     user.save
   end
   
-  def released
-    super || "New"
-  end
+  #@released_grades = Grade.find(:all, :conditions => ['released = ?', true])
   
   def is_released?
     status == "Released"

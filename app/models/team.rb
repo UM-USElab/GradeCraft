@@ -3,8 +3,6 @@ class Team < ActiveRecord::Base
   has_many :challenge_grades, :dependent => :destroy
 
   default_scope :order => 'id ASC'
-  
-  rank_by :score
 
   def user_grades
     Grade.where(:user_id => users)

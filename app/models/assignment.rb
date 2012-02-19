@@ -26,7 +26,12 @@ class Assignment < ActiveRecord::Base
   end
 
   def average 
-    assignment_grades.average :score
-  end
+    assignment_grades.average(:score).try(:round)
+  end  
   
+  def percentage_complete
+    assignment_grades.count
+  end
+
+
 end

@@ -13,8 +13,6 @@ class User < ActiveRecord::Base
   has_many :grades, :dependent => :destroy
   has_many :earned_badges, :through => :grades
   belongs_to :team
-  
-  default_scope :order => 'last_name ASC'
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -32,7 +30,7 @@ class User < ActiveRecord::Base
   end
   
   rank_by :score
-
+  
   def name
     [first_name,last_name].join(' ')
   end

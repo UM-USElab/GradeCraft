@@ -13,6 +13,8 @@ gem 'tinymce-rails'
 gem 'kaminari'
 gem 'jquery_datepicker'
 gem 'rankitize'
+gem 'pacecar'
+gem 'datagrid'
 
 
 group :production do

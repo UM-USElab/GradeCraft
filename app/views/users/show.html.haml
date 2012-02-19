@@ -38,7 +38,7 @@
     %span Assignments
     %span.assignmentPointsSpan #{@user.standard_score} out of #{@user.standard_possible}
   %div.collapsible
-    - Grade.where(:user_id => @user.id).each do |grade|
+    - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Standard" 
         - if grade.attempted? 
           %div.completedAssignment 
@@ -68,7 +68,7 @@
     %span Attendance
     %span.assignmentPointsSpan #{@user.attendance_score} out of #{@user.attendance_possible}
   %div.collapsible
-    - Grade.where(:user_id => @user.id).each do |grade|
+    - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Attendance"
         - if grade.attempted? 
           %div.completedAssignment 
@@ -90,7 +90,7 @@
     %span Reading Reactions
     %span.assignmentPointsSpan #{@user.reading_reaction_score} out of #{@user.reading_reaction_possible}
   %div.collapsible
-    - Grade.where(:user_id => @user.id).each do |grade| 
+    - Grade.completion.where(:user_id => @user.id).each do |grade| 
       - if grade.assignment.type == "ReadingReaction"
         - if grade.attempted? 
           %div.completedAssignment 
@@ -116,7 +116,7 @@
     %span Blogging
     %span.assignmentPointsSpan #{@user.blogging_score}
   %div.collapsible
-    - Grade.where(:user_id => @user.id).each do |grade|
+    - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Blogging"
         - if grade.attempted? 
           %div.completedAssignment 
