@@ -9,5 +9,6 @@
     .text= f.input :score
     .text= f.input :feedback, :as => :text
     .text= f.input :status, :as => :select, :collection => [["New", "new"], ["Graded", "graded"], ["Released", "released"]]
+    .text= f.input :substantial
     .text= f.input :badges, :as => :check_boxes, :collection => @badges
     = f.buttons
