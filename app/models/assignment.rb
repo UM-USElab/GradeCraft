@@ -18,11 +18,11 @@ class Assignment < ActiveRecord::Base
   end
   
   def high_score
-    assignment_grades.maximum :score
+    assignment_grades.maximum(:score)
   end
   
   def low_score
-    assignment_grades.minimum :score
+    assignment_grades.minimum(:score)
   end
 
   def average 
@@ -37,8 +37,4 @@ class Assignment < ActiveRecord::Base
     assignment_grades_attempted.count
   end
   
-
-
-
-
 end
