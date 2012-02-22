@@ -29,9 +29,16 @@ class Assignment < ActiveRecord::Base
     assignment_grades.average(:score).try(:round)
   end  
   
-  def percentage_complete
-    assignment_grades.count
+  def assignment_grades_attempted
+    assignment_grades.where(:score != 0)
   end
+  
+  def percentage_complete
+    assignment_grades_attempted.count
+  end
+  
+
+
 
 
 end

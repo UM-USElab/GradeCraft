@@ -27,9 +27,7 @@ class User < ActiveRecord::Base
 
   %w{student gsi professor admin}.each do |role|
     scope role.pluralize, where(:role => role)
-  end
-  
-  rank_by :score
+  end 
   
   def name
     [first_name,last_name].join(' ')
@@ -81,6 +79,14 @@ class User < ActiveRecord::Base
     grades.map(&:score).inject(&:+) || 0
   end
   
+  def sortable_score
+    
+  end
+  
+  def rank
+    
+  end
+  
   #Possible 
   def reading_reaction_possible
     grades.where(:type=>"ReadingReactionGrade").map(&:points_possible).inject(&:+) || 0
@@ -96,12 +102,6 @@ class User < ActiveRecord::Base
   
   def possible_score
     attendance_possible + reading_reaction_possible + standard_possible || 0
-  end
-  
-  #stats
-  
-  def average_score
-    User.average :score
   end
   
 end

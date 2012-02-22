@@ -9,7 +9,6 @@
     %th= sortable "username"
     %th= sortable "name"
     %th= sortable "role"
-    %td= sortable "score_ranking"
     %th= sortable "team_id"
     %th= sortable "score"
     %th Badges Earned
@@ -21,7 +20,6 @@
       %td= user.username
       %td= user.name
       %td= user.role
-      %td= user.score_ranking
       %td= user.team_id
       %td= user.score if user.respond_to?(:score)
       %td

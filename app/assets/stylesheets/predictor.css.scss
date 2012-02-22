@@ -1,3 +1,30 @@
 // Place all the styles related to the Predictor controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+		#predictor-wrapper{
+/*			margin: 0 auto;*/
+			margin-left:50px;
+		}
+		#prediction{
+			float:right;
+			margin-bottom:30px;
+			color:white;
+		}
+		.flexslider{
+			clear:both;
+		}
+		.slides li{
+			height:450px;
+			position:relative;
+		}
+		.slide-panel{
+			width:600px;
+			position:absolute;
+			left:100px;
+			top:20px;
+			background-color: #FFF;
+		}
+		.slider{
+			width:50%;
+		}

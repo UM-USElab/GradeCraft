@@ -1,27 +1,15 @@
 %table
   %tr
     %th Assignment
-    %th A+
-    %th A
-    %th A-
-    %th B+
-    %th B
-    %th B-
-    %th C+
-    %th
     %th 
     %th
 
   - @grade_schemes.each do |grade_scheme|
     %tr
       %td= grade_scheme.assignment.title
-      %td= grade_scheme.apscore
-      %td= grade_scheme.ascore
-      %td= grade_scheme.amscore
-      %td= grade_scheme.bpscore
-      %td= grade_scheme.bscore
-      %td= grade_scheme.bmscore
-      %td= grade_scheme.cpscore
+      %th= grade_scheme.grade_name
+      %th= grade_scheme.range_bottom
+      %th= grade-scheme.range_top
       %td= link_to 'Show', grade_scheme
       %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme)
       %td= link_to 'Destroy', grade_scheme, :confirm => 'Are you sure?', :method => :delete

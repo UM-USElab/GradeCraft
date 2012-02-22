@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211161222) do
+ActiveRecord::Schema.define(:version => 20120221185808) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -75,21 +75,12 @@ ActiveRecord::Schema.define(:version => 20120211161222) do
   end
 
   create_table "grade_schemes", :force => true do |t|
-    t.integer   "assignment_id"
-    t.integer   "ascore"
-    t.integer   "amscore"
-    t.integer   "bpscore"
-    t.integer   "bscore"
-    t.integer   "bmscore"
-    t.integer   "cpscore"
-    t.integer   "cscore"
-    t.integer   "cmscore"
-    t.integer   "dpscore"
-    t.integer   "dscore"
-    t.integer   "dmscore"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "apscore"
+    t.integer  "assignment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "grade_name"
+    t.integer  "range_bottom"
+    t.integer  "range_top"
   end
 
   create_table "grades", :force => true do |t|
@@ -120,37 +111,39 @@ ActiveRecord::Schema.define(:version => 20120211161222) do
   end
 
   create_table "teams", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "banner_file_name"
-    t.string    "banner_content_type"
-    t.integer   "banner_file_size"
-    t.timestamp "banner_updated_at"
-    t.integer   "score"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
+    t.integer  "sortable_score"
+    t.integer  "rank"
   end
 
   create_table "users", :force => true do |t|
-    t.string    "username",                                               :null => false
-    t.string    "email"
-    t.string    "crypted_password"
-    t.string    "salt"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "reset_password_token"
-    t.timestamp "reset_password_token_expires_at"
-    t.timestamp "reset_password_email_sent_at"
-    t.string    "remember_me_token"
-    t.timestamp "remember_me_token_expires_at"
-    t.string    "avatar_file_name"
-    t.string    "avatar_content_type"
-    t.integer   "avatar_file_size"
-    t.timestamp "avatar_updated_at"
-    t.string    "role",                            :default => "student"
-    t.integer   "team_id"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.integer   "score"
+    t.string   "username",                                               :null => false
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "role",                            :default => "student"
+    t.integer  "team_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "sortable_score"
+    t.integer  "rank"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

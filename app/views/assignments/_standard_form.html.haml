@@ -1,4 +1,4 @@
 .text= form.input :description, :as => :text
 .text= form.input :point_total, :as => :numeric
-= form.datepicker :due_date
+.text= form.input :due_date, :as => :datetime
 .text= form.input :type, :as => :select, :collection => [["Standard", "Standard"], ["Reading Reaction", "ReadingReaction"], ["Blogging", "Blogging"], ["Attendance", "Attendance"]]

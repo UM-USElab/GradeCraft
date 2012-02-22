@@ -1,8 +1,153 @@
-%h2 Predict Your Grade!
-%div#prediction Total projected points:
-%div#userBarInProgress
+%div#predictor-wrapper
+  %div#prediction Total projected points:
+  %span#expected-grade
+    %div#progressbar
+      %div.flexslider
+        %ul.slides
+          %li#slide-1
+            %div.slide-panel#attendance
+              %h2 Step 1 - Attendance
+              %section 
+                Weekly engagement in this course, in the form of attendance and reading reactions, is required. 
+                %br
+                Will you have to miss any classes?
+                %input{:type => "radio", :name => "attendance", :value => "no", :label => "No"}		
+                %input{:type => "radio", :name => "attendance", :value => "yes", :label => "Yes"}
+                %div#classes-missed.hidden-section Which classes do you expect to miss?  
+                %span.point-value (5,000 pts/class)
+                %input{:type => "checkbox", :name => "class-attendance", :value => "9/12", :label => "9/12"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "9/19", :label => "9/19"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "9/26", :label => "9/26"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "10/3", :label => "10/3"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "10/10", :label => "10/10"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "10/17", :label => "10/17"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "10/24", :label =>  "10/24"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "10/31", :label =>  "10/31"}		
+                %input{:type => "checkbox", :name => "class-attendance", :value => "11/7", :label =>  "11/7"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "11/14", :label =>  "11/14"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "11/21", :label =>  "11/21"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "11/28", :label =>  "11/28"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "12/5", :label =>   "12/5"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "12/12", :label =>  "12/12"}
 
-%span What grade would you like to get in this course? 
+          %li#slide-2
+            %div.slide-panel#reading-rxns
+              %h2 Step 2 - Reading Reactions
+              %section Will you have to miss any reading reactions?
+              %input{:type => "radio", :name => "reactions", :value => "no", :label => "No"	}		
+              %input{:type => "radio", :name => "reactions", :value => "yes", :label => "Yes" }
+              %div#reactions-missed.hidden-section Which reading reactions do you expect to miss? 
+              %span.point-value (5,000 pts/reaction)
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "9/19", :label =>   "9/19" }
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "9/26", :label =>   "9/26" }
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "10/10", :label =>  "10/10" }
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "10/24", :label =>  "10/24" }
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "10/31", :label =>  "10/31" }				
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "11/7", :label =>  "11/7" }
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "11/14", :label =>  "11/14" }
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "11/21", :label =>  "11/21" }
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "11/28", :label =>  "11/28"}
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "11/28", :label =>  "12/5"}
+          
+          %li#slide-3
+            %div.slide-panel#blogging
+              %h2 Step 3 - Blogging
+              %section Are you blogging this semester? 
+              %span.point-value (5,000 pts per post)
+              %input{:type => "radio", :name => "blogging", :value => "no", :label => "No" }
+              %input{:type => "radio", :name => "blogging", :value => "yes", :label => "Yes" }
+              %div#weekly-blogging.hidden-section
+              How many total posts?
+              %select#total-blogposts
+                %option{ :value => "11", :label => "11" }
+                %option{ :value => "22", :label => "22"}
+                %option{ :value => "33", :label => "33" }
+                %option{ :value => "44", :label => "44" }
+                %option{ :value => "55", :label => "55" }
+                %option{ :value => "66", :label => "66" }
+                %option{ :value => "77", :label => "77" }
+                %option{ :value => "88", :label => "88" }
+                %option{ :value => "99", :label => "99" }
+                %option{ :value => "1010", :label => "1010" }
+          
+          %li#slide-4
+            %div.slide-panel#training-missions
+              %h2 Step 4 - Learning From Playing a Game
+              Game Selection Paper
+              Total points: 
+              %input#game-selection-total.point-value{:type => "text", :value => "0" }
+              %div.slider#game-selection-slider
+            
+            %section
+            Game Play Update Poster 1
+            Total points: 
+            %input#gameplay-poster-1-total.point-value{:type => "text", :value => "0" }
+            %div.slider#gameplay-poster-1-slider
+            
+            %section
+            Game Play Update Poster 2 (optional)
+            Total points: 
+            %input#gameplay-poster-2-total.point-value{:type => "text", :value => "0"}
+            %div.slider#gameplay-poster-2-slider
+            
+            %section
+            Do you plan to do a rough draft of the final paper? 
+            %span.point-value (5,000 pts)
+            %input{:type => "radio", :name => "final-draft", :value => "yes", :label => "Yes" }
+            %input{:type => "radio", :name => "final-draft", :value => "no", :label => "No"}	 
+
+            %section
+            Gameplay Reflection Paper
+            Total points: 
+            %input#gameplay-reflection-total.point-value{:type => "text", :value => "0"}
+            %div.slider#gameplay-reflection-slider
+          
+          %li#slide-5
+            %div.slide-panel#boss-battles
+              %h2 Step 5 - Boss Battles
+              
+              %section Individual Paper/Project 1
+              Total points: 
+              %input#individual-project-1-total.point-value{:type => "text", :value => "0"}
+              %div.slider#individual-project-1-slider
+              
+              
+              %section Individual Paper/Project 2
+              Total points: 
+              %input#individual-project-2-total.point-value{:type => "text", :value => "0"}
+              %div.slider#individual-project-2-slider
+              
+              %section Group Game Design Project
+              Total points: 
+              %input#game-design-project-total.point-value{:type => "text", :value => "0"}
+              %div.slider#game-design-project-slider
+          
+          
+          
+          %li#slide-6
+            %div.slide-panel#team-points
+              %h2 Step 6 - Team Points
+              %section Part of your score is determined by team points. Where do you anticipate your team finishing? 
+              %select#team-point-values
+                %option{ :value => "11", :label => "11" }
+                %option{ :value => "22", :label => "22"}
+                %option{ :value => "33", :label => "33" }
+                %option{ :value => "44", :label => "44" }
+                %option{ :value => "55", :label => "55" }
+                %option{ :value => "66", :label => "66" }
+                %option{ :value => "77", :label => "77" }
+                %option{ :value => "88", :label => "88" }
+                %option{ :value => "99", :label => "99" }
+                %option{ :value => "1010", :label => "1010" }						
+              %section
+                %br
+                Current Team Standings:
+                %div#team-standings
 
 
 
+
+  <!-- team -->
+			
+
+	

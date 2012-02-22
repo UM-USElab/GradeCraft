@@ -10,6 +10,7 @@
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    <script type="text/javascript">$(window).load(function() { $('.flexslider').flexslider({ animation: "fade", slideshow:false, animationLoop: false, keyboardNav: false }); }); </script>
 
 %body
   %h1#siteTitle <a href="http://grade-tracker.herokuapp.com/">EDUC 222 Grade Tracker</a>
@@ -81,5 +82,3 @@
     
   #footer
     .copyright Copyright 2012 Barry Fishman | <a href="/info/index">Site Credits</a>
-
-= debug(params) if Rails.env.development?

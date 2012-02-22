@@ -1,3 +1,3 @@
 = semantic_form_for @assignment.becomes(Assignment) do |f|
-  .text= f.input :due_date, :as => :date, :discard_year => true, :label => "Class Date"
+  .text= f.input :due_date, :as => :datetime, :discard_year => true, :discard_hour => true, :discard_minute => true, :label => "Class Date"
   = f.input :type, :as => :hidden, :value => "Attendance"
