@@ -3,6 +3,8 @@ class Assignment < ActiveRecord::Base
   accepts_nested_attributes_for :grades
   
   default_scope :order => 'due_date ASC'
+  
+  attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :type, :present, :grades_attributes
 
   def mass_gradeable?
     true
