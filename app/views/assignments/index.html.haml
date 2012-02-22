@@ -6,6 +6,7 @@
     %th Points
     %th Due Date
     - if current_user.is_staff?
+      %th Average
       %th
       %th
       %th
@@ -20,6 +21,7 @@
           - if assignment.due_date?
             = assignment.due_date
         - if current_user.is_staff?
+          %td= assignment.average
           %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
           - if assignment.mass_gradeable?
             %td= link_to 'Log Grades', mass_edit_grades_path("assignment_id"=>assignment.id)
