@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
   Roles = %w{student professor gsi admin}
+  
+  default_scope :order => 'last_name ASC'
 
   has_attached_file :avatar,
                     :styles => { :medium => "300x300>",
@@ -64,7 +66,7 @@ class User < ActiveRecord::Base
   
   
   def blogging_score
-    grades.blogging.map(&:score).inject(&:+) || 0
+    #grades.blogging.map(&:score).inject(&:+) || 0
   end
   
   def attendance_score
