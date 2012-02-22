@@ -2,6 +2,9 @@ class Assignment < ActiveRecord::Base
   has_many :grades, :dependent => :destroy
   accepts_nested_attributes_for :grades
   
+  attr_accessible :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :type, :present
+  attr_accessible :role, :as => :admin
+  
   default_scope :order => 'due_date ASC'
 
   def mass_gradeable?
