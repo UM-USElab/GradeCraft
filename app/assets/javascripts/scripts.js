@@ -1,130 +1,112 @@
 $(document).ready(function(){
 
-// hide items of class hidden-section
-	$(".hidden-section").hide();
+// hide grade estimations
+	$("#expected-grade > span").hide();
 	
 // set initial point values
 	var attendancePts = 0;
 	var rxnPts = 0;
-	var blogPts = 0;
+	var rxnSemiPts = 0;
+	var rxnFinalPts = 0;
+	var subBlogPts = 0;
+	var shortBlogPts = 0;	
 	var draftPts = 0;
 	var sliderPts = 0;
+	var gameSelectionPts = 0;
 	var teamPts = 0;
 	var totalPts;
 	var gradePct = (totalPts/1245000)*100				
 
 // adds up total points
 	function getTotalPts(){
-		totalPts = attendancePts + rxnPts + blogPts + draftPts + sliderPts + teamPts;
-		// console.log("getTotalPts");
-		// console.log("team points = " + teamPts);
-		// console.log("total points = " + totalPts);		
-		// console.log("grade percentage = " + gradePct);
+		totalPts = attendancePts + rxnPts + rxnSemiPts + rxnFinalPts + subBlogPts + shortBlogPts + draftPts + sliderPts + gameSelectionPts + teamPts
 	};
 
 // removes points per class or reading reaction missed
-	$("#attendance-yes").click(function(){
-		$("#classes-missed").slideDown('fast');
-		attendancePts = 120000;
-		// rxnPts = 60000;
+	
+	function updateGrinding(){
+		attendancePts = ($("#classes-missed fieldset > input").filter(":checked").length)*5000;
+		if (attendancePts > 120000){
+			attendancePts = 120000;
+		};
+		rxnPts = ($("#reactions-missed fieldset > input").filter(":checked").length)*5000;
 		updateProgressBar();
+	}
+	
+
+	$("#classes-missed .select-all").click(function(e){
+		e.preventDefault();
+		$("#classes-missed fieldset > .class-checkbox").each(function(){
+			$(this).attr("checked","checked");
+		});
+		updateGrinding();
 	});
 	
-	$("#reactions-yes").click(function(){
-		$("#reactions-missed").slideDown('fast');
-		// attendancePts = 120000;
-		rxnPts = 60000;
-		updateProgressBar();
+	$("#reactions-missed .select-all").click(function(e){
+		e.preventDefault();
+		$("#reactions-missed fieldset > .class-checkbox").each(function(){
+			$(this).attr("checked",true);
+		});
+		updateGrinding();
 	});
 	
-	$("#classes-missed > .class-checkbox").change(function(){
-		console.log(this);
-		attendancePts = 120000 - ($("#classes-missed > input").filter(":checked").length)*5000;
-		updateProgressBar();			
+	$("#classes-missed .select-none").click(function(e){
+		e.preventDefault();		
+		$("#classes-missed fieldset > .class-checkbox").each(function(){
+			$(this).attr("checked", false);
+		});
+		updateGrinding();
 	});
 	
-	$("#reactions-missed > .class-checkbox").change(function(){
-		rxnPts = 60000 - ($("#reactions-missed > input").filter(":checked").length)*5000;
-		updateProgressBar();			
+	$("#reactions-missed .select-none").click(function(e){
+		e.preventDefault();		
+		$("#reactions-missed fieldset > .class-checkbox").each(function(){
+			$(this).attr("checked", false);
+		});
+		updateGrinding();
 	});
 	
-	$("#attendance-missed").change(function(){
-		classesMissed = ($(this).val())*5000;
-		attendancePts = 120000 - classesMissed;
-		updateProgressBar();			
+	$("#classes-missed fieldset > .class-checkbox").change(function(){
+		updateGrinding();					
 	});
 	
-	$("#rxns-missed").change(function(){
-		reactionsMissed = ($(this).val())*5000;
-		rxnPts = 60000 - reactionsMissed;
-		updateProgressBar();			
+	$("#reactions-missed fieldset > .class-checkbox").change(function(){
+		updateGrinding();			
 	});
 	
-	$("#attendance-no").click(function(){
-		$("#classes-missed").slideUp();
-		attendancePts = 120000;
-		// rxnPts = 60000;			
-		// $("#classes-missed").find(":checked").each(function(){
-		// 	$(this).removeAttr("checked");
-		// })
-		updateProgressBar();
+	$("#reaction-semis").change(function(){
+		rxnSemiPts = ($(this).val())*2000;
+		updateGrinding();		
 	});
-	
-	$("#reactions-no").click(function(){
-		$("#reactions-missed").slideUp();
-		// attendancePts = 120000;
-		rxnPts = 60000;			
-		// $("#classes-missed").find(":checked").each(function(){
-		// 	$(this).removeAttr("checked");
-		// })
-		updateProgressBar();
+	$("#reaction-finals").change(function(){
+		rxnFinalPts = ($(this).val())*3000;
+		updateGrinding();
 	});
 
 // adds points for blog posts
-	$("#blogging-yes").click(function(){
-		$("#weekly-blogging").slideDown('fast');
-		blogPts = 5000;
+
+	$("#substantial-blogposts").change(function(){
+		subBlogPts = ($(this).val())*5000;
+		updateProgressBar();
+	});
+	
+	$("#short-blogposts").change(function(){
+		shortBlogPts = ($(this).val())*1000;
 		updateProgressBar();
 	});
 
-	$("#total-blogposts").change(function(){
-		blogPts = ($(this).val())*5000;
-		// console.log(blogPts);
+	$("#game-selection-checkbox").click(function(){
+		gameSelectionStr = $(this).val();
+		if ($(this).attr("checked")){
+			gameSelectionPts = parseInt(gameSelectionStr)
+		}
+		else{
+			gameSelectionPts = 0;
+		}
 		updateProgressBar();
-	});
-
-	$("#blogging-no").click(function(){
-		$("#weekly-blogging").slideUp();
-		blogPts = 0;
-		updateProgressBar();
-	});
-
-// set points based on final draft completion
-	$("#final-draft-yes").click(function(){
-		draftPts = 5000;
-		updateProgressBar();							
-	});
-	$("#final-draft-no").click(function(){
-		draftPts = 0;
-		updateProgressBar();				
 	});
 
 // create sliders for training missions and boss battles
-	$( "#game-selection-slider" ).slider({
-		value:0,
-		min: 0,
-		max: 80000,
-		step: 1000,
-		slide: function( event, ui ) {
-			// $("#game-selection-skill" ).val( ui.value-20000 );
-			$("#game-selection-total" ).val( ui.value );
-		},
-		change: function( event, ui ) {
-			updateProgressBar();				
-		}
-
-	});
-	$( "#game-selection-amount" ).val( $( "#game-selection-slider" ).slider( "value" ) );
 
 	$( "#gameplay-poster-1-slider" ).slider({
 		value:0,
@@ -211,16 +193,12 @@ $(document).ready(function(){
 	$( "#gameplay-reflection-amount" ).val( $( "#gameplay-reflection-slider" ).slider( "value" ) );
 	
 	$("#team-point-values").change(function(){
-		teamPts = $(this).val();
-		console.log(teamPts);
-		console.log(totalPts);		
-		console.log(gradePct);				
-		// console.log(blogPts);
+		teamPtsVal = $(this).val();
+		teamPts = parseInt(teamPtsVal);				
 		updateProgressBar();
 	});
 
 // set slider values
-	var gameplaySelectionPts = 0;
 	var poster1Pts = 0;
 	var poster2Pts = 0;	
 	var individualProject1Pts = 0;
@@ -230,7 +208,6 @@ $(document).ready(function(){
 
 // get slider point values
 	function getSliderPts(){
-		gameplaySelectionPts = $( "#game-selection-slider" ).slider( "option", "value" );
 		poster1Pts = $( "#gameplay-poster-1-slider" ).slider( "option", "value" );
 		poster2Pts = $( "#gameplay-poster-2-slider" ).slider( "option", "value" );		
 		individualProject1Pts = $( "#individual-project-1-slider" ).slider( "option", "value" );
@@ -238,7 +215,7 @@ $(document).ready(function(){
 		finalProjectPts = $( "#game-design-project-slider" ).slider( "option", "value" );
 		gameReflectionPts = $( "#gameplay-reflection-slider" ).slider( "option", "value" );
 
-		sliderPts = gameplaySelectionPts + poster1Pts + poster2Pts + individualProject1Pts + individualProject2Pts + finalProjectPts + gameReflectionPts;
+		sliderPts = poster1Pts + poster2Pts + individualProject1Pts + individualProject2Pts + finalProjectPts + gameReflectionPts;
 		getGradePct();
 	};
 
@@ -247,52 +224,59 @@ $(document).ready(function(){
 		getTotalPts();
 		gradePct = (totalPts/1245000)*100
 	};
-	
+
+// add commas to large numbers
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+		
 // update the progress bar
 	function updateProgressBar(){
 		getSliderPts();
-		// getGradePct();
 		$("#progressbar").progressbar({
 			value: gradePct
 		});
-		$("#expected-grade").html(totalPts);
+		
+		ptsCommas = numberWithCommas(totalPts);
+		
+		$("#expected-points").html(ptsCommas);
 
 
 // update the points --> letter grade table
-		$("#grade-table tr").removeClass("grade-selected");
+		$("#expected-grade > span").hide();
 
-		if (totalPts < 420000){
-
+		if (totalPts < 600000){
+			$("#doomgrade").show();
 		}
-		else if (totalPts < 440000){
-			$("#dplusgrade").addClass("grade-selected");
+		else if (totalPts < 650000){
+			$("#dplusgrade").show();
 		}
-		else if(totalPts < 460000){
-					$("#cminusgrade").addClass("grade-selected");
+		else if(totalPts < 700000){
+			$("#cminusgrade").show();
 				}
-		else if(totalPts < 470000){
-			$("#cgrade").addClass("grade-selected");
+		else if(totalPts < 750000){
+			$("#cgrade").show();
 		}
-		else if(totalPts < 480000){
-			$("#cplusgrade").addClass("grade-selected");
+		else if(totalPts < 800000){
+			$("#cplusgrade").show();
 		}
-		else if(totalPts < 500000){
-			$("#bminusgrade").addClass("grade-selected");
+		else if(totalPts < 850000){
+			$("#bminusgrade").show();
 		}
-		else if(totalPts < 506000){
-			$("#bgrade").addClass("grade-selected");
+		else if(totalPts < 900000){
+			$("#bgrade").show();
 		}
-		else if(totalPts < 513000){
-			$("#bplusgrade").addClass("grade-selected");
+		else if(totalPts < 950000){
+			$("#bplusgrade").show();
 		}
-		else if(totalPts < 520000){
-			$("#aminusgrade").addClass("grade-selected");
+		else if(totalPts < 1000000){
+			$("#aminusgrade").show();
 		}
-		else if(totalPts < 540000){
-			$("#agrade").addClass("grade-selected");
+		else if(totalPts < 1245000){
+			$("#agrade").show();
 		}
 		else{
-			$("#aplusgrade").addClass("grade-selected");
+			$("#aplusgrade").show();
 		};
 	};
 

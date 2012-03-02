@@ -3,28 +3,77 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 		#predictor-wrapper{
-/*			margin: 0 auto;*/
-			margin-left:50px;
+
+
+			color:black;
+		}
+		#expected-grade, #expected-points{
+			font-size:18px;
+			width:50%;
+			color:white;
 		}
 		#prediction{
-			float:right;
 			margin-bottom:30px;
 			color:white;
 		}
-		.flexslider{
-			clear:both;
-		}
-		.slides li{
-			height:450px;
-			position:relative;
-		}
-		.slide-panel{
-			width:600px;
-			position:absolute;
-			left:100px;
-			top:20px;
-			background-color: #FFF;
-		}
-		.slider{
-			width:50%;
-		}
+			#progressbar{
+				width:400px;
+				margin-top:10px;
+			}
+			.flexslider{
+				clear:both;
+			}
+			.slides li{
+				min-height:450px;
+				position:relative;
+			}
+			.slide-panel{
+				width:600px;
+				position:absolute;
+				left:100px;
+				top:20px;
+			}
+			.slide-panel input{
+				background-color:#ddd;
+			}
+			.slide-panel section{
+				margin:10px 0;
+			}
+			.slider{
+				width:50%;
+				margin-bottom:10px;
+			}
+			.predictor-assignment-title{
+				display:block;
+				font-weight:bold;
+				margin-bottom:5px;
+			}
+			.slide-panel fieldset{
+				border:none;
+			}
+			#winning-reactions{
+				clear:both;
+			}
+			#training-missions fieldset, #boss-battles fieldset{
+				padding:10px 10px 10px 20px;
+				margin:10px 0;
+				background-color:#ddd;
+				-moz-border-radius:10px;
+				-webkit-border-radius:10px;
+				border-radius:10px;
+			}
+			.select-checkboxes{
+				display:block;
+				margin:10px 0;
+			}
+			.checkbox-group{
+				width:20%;
+				float:left;
+			}
+			.checkbox-group legend{
+				font-weight:bold;
+				padding:10px 0px;
+			}
+			.checkbox-group input{
+				clear:both;
+			}

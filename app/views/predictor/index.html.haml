@@ -1,148 +1,268 @@
 %div#predictor-wrapper
-  %div#prediction Total projected points:
-  %span#expected-grade
+  %div#prediction 
+    Total projected points:
+    %span#expected-points
+    %br 
+    Projected Course Grade:
+    %span#expected-grade
+      %span#aplusgrade A+
+      %span#agrade A
+      %span#aminusgrade A-
+      %span#bplusgrade B+
+      %span#bgrade B
+      %span#bminusgrade B-
+      %span#cplusgrade C+
+      %span#cgrade C
+      %span#cminusgrade C-
+      %span#dplusgrade D+
+      %span#doomgrade Doom
     %div#progressbar
-      %div.flexslider
-        %ul.slides
-          %li#slide-1
-            %div.slide-panel#attendance
-              %h2 Step 1 - Attendance
-              %section 
-                Weekly engagement in this course, in the form of attendance and reading reactions, is required. 
+  %div.flexslider
+    %ul.slides
+      %li#slide-1
+        %div.slide-panel#attendance
+          %h2 Step 1 - Attendance
+          %section 
+            Weekly engagement in this course, in the form of attendance and reading reactions, is required. 
+            %br
+            Which classes do you expect to attend?
+            %span.point-value (5,000 pts/class)
+            %div#classes-missed
+              %div.select-checkboxes <a href="#" class="select-all">select all</a> | <a href="#" class="select-none">select none</a>
+              %fieldset.checkbox-group
+                %legend January
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/9
                 %br
-                Will you have to miss any classes?
-                %input{:type => "radio", :name => "attendance", :value => "no", :label => "No"}		
-                %input{:type => "radio", :name => "attendance", :value => "yes", :label => "Yes"}
-                %div#classes-missed.hidden-section Which classes do you expect to miss?  
-                %span.point-value (5,000 pts/class)
-                %input{:type => "checkbox", :name => "class-attendance", :value => "9/12", :label => "9/12"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "9/19", :label => "9/19"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "9/26", :label => "9/26"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "10/3", :label => "10/3"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "10/10", :label => "10/10"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "10/17", :label => "10/17"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "10/24", :label =>  "10/24"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "10/31", :label =>  "10/31"}		
-                %input{:type => "checkbox", :name => "class-attendance", :value => "11/7", :label =>  "11/7"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "11/14", :label =>  "11/14"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "11/21", :label =>  "11/21"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "11/28", :label =>  "11/28"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "12/5", :label =>   "12/5"}
-                %input{:type => "checkbox", :name => "class-attendance", :value => "12/12", :label =>  "12/12"}
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/11
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/18
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/23
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/25
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/30
+              %fieldset.checkbox-group
+                %legend February
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/1
+                %br		
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/8
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/13
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/15
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/20
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/22
+              %fieldset.checkbox-group
+                %legend March
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/5
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/7
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/12
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/14
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/19
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/21
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/26
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/28
+              %fieldset.checkbox-group
+                %legend April
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}4/2
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}4/4
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}4/9
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}4/11
+                %br
+                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}4/16
 
-          %li#slide-2
-            %div.slide-panel#reading-rxns
-              %h2 Step 2 - Reading Reactions
-              %section Will you have to miss any reading reactions?
-              %input{:type => "radio", :name => "reactions", :value => "no", :label => "No"	}		
-              %input{:type => "radio", :name => "reactions", :value => "yes", :label => "Yes" }
-              %div#reactions-missed.hidden-section Which reading reactions do you expect to miss? 
-              %span.point-value (5,000 pts/reaction)
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "9/19", :label =>   "9/19" }
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "9/26", :label =>   "9/26" }
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "10/10", :label =>  "10/10" }
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "10/24", :label =>  "10/24" }
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "10/31", :label =>  "10/31" }				
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "11/7", :label =>  "11/7" }
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "11/14", :label =>  "11/14" }
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "11/21", :label =>  "11/21" }
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "11/28", :label =>  "11/28"}
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "11/28", :label =>  "12/5"}
-          
-          %li#slide-3
-            %div.slide-panel#blogging
-              %h2 Step 3 - Blogging
-              %section Are you blogging this semester? 
-              %span.point-value (5,000 pts per post)
-              %input{:type => "radio", :name => "blogging", :value => "no", :label => "No" }
-              %input{:type => "radio", :name => "blogging", :value => "yes", :label => "Yes" }
-              %div#weekly-blogging.hidden-section
-              How many total posts?
-              %select#total-blogposts
-                %option{ :value => "11", :label => "11" }
-                %option{ :value => "22", :label => "22"}
-                %option{ :value => "33", :label => "33" }
-                %option{ :value => "44", :label => "44" }
-                %option{ :value => "55", :label => "55" }
-                %option{ :value => "66", :label => "66" }
-                %option{ :value => "77", :label => "77" }
-                %option{ :value => "88", :label => "88" }
-                %option{ :value => "99", :label => "99" }
-                %option{ :value => "1010", :label => "1010" }
-          
-          %li#slide-4
-            %div.slide-panel#training-missions
-              %h2 Step 4 - Learning From Playing a Game
+      %li#slide-2
+        %div.slide-panel#reading-rxns
+          %h2 Step 2 - Reading Reactions
+          Which reading reactions do you expect to complete?
+          %span.point-value (5,000 pts/reaction)
+          %div#reactions-missed
+            %div.select-checkboxes <a href="#" class="select-all">select all</a> | <a href="#" class="select-none">select none</a>
+            %fieldset.checkbox-group
+              %legend 
+                January
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }1/17
+              %br
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }1/22
+              %br
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }1/31
+            %fieldset.checkbox-group
+              %legend
+                February
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }2/7
+              %br
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }2/14				
+              %br
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }2/21
+            %fieldset.checkbox-group
+              %legend
+                March
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }3/6
+              %br
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }3/13
+              %br
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox"}3/18
+              %br
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox"}3/27
+            %fieldset.checkbox-group
+              %legend
+                April
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }4/3
+              %br
+              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }4/10
+            %div#winning-reactions
+              %p Feeling confident? Select the number of reading reactions you think you'll win:
+              %fieldset
+                %strong Semi-Finalist
+                %select#reaction-semis
+                  %option{ :value => "0"}0
+                  %option{ :value => "1"}1
+                  %option{ :value => "2"}2
+                  %option{ :value => "3"}3
+                  %option{ :value => "4"}4
+                  %option{ :value => "5"}5
+              %fieldset
+                %strong Finalist
+                %select#reaction-finals
+                  %option{ :value => "0"}0
+                  %option{ :value => "1"}1
+                  %option{ :value => "2"}2
+                  %option{ :value => "3"}3
+                  %option{ :value => "4"}4
+                  %option{ :value => "5"}5
+                
+      %li#slide-3
+        %div.slide-panel#blogging
+          %h2 Step 3 - Blogging
+          %p Are you blogging this semester? 
+          %fieldset
+            How many substantial posts?
+            %span.point-value (5,000 pts per post)
+            %select#substantial-blogposts
+              %option{ :value => "0"}0
+              %option{ :value => "1"}1
+              %option{ :value => "2"}2
+              %option{ :value => "3"}3
+              %option{ :value => "4"}4
+              %option{ :value => "5"}5
+              %option{ :value => "6"}6
+              %option{ :value => "7"}7
+              %option{ :value => "8"}8
+              %option{ :value => "9"}9
+              %option{ :value => "10"}10
+              %option{ :value => "11"}11
+              %option{ :value => "12"}12
+          %fieldset
+            How many short posts?
+            %span.point-value (1,000 pts per post)
+            %select#short-blogposts
+              %option{ :value => "0"}0
+              %option{ :value => "1"}1
+              %option{ :value => "2"}2
+              %option{ :value => "3"}3
+              %option{ :value => "4"}4
+              %option{ :value => "5"}5
+              %option{ :value => "6"}6
+              %option{ :value => "7"}7
+              %option{ :value => "8"}8
+              %option{ :value => "9"}9
+              %option{ :value => "10"}10
+              %option{ :value => "11"}11
+              %option{ :value => "12"}12
+              %option{ :value => "13"}13
+              %option{ :value => "14"}14
+              %option{ :value => "15"}15
+
+      %li#slide-4
+        %div.slide-panel#training-missions
+          %h2 Step 4 - Learning From Playing a Game
+          %fieldset
+            %span.predictor-assignment-title            
               Game Selection Paper
-              Total points: 
-              %input#game-selection-total.point-value{:type => "text", :value => "0" }
-              %div.slider#game-selection-slider
+              %span.point-value (80,000 pts)
+            %input#game-selection-checkbox.class-checkbox{:type => "checkbox", :name => "game-selection-checkbox", :value => "80000" }
+            Completed?
             
-            %section
-            Game Play Update Poster 1
+          %fieldset
+            %span.predictor-assignment-title
+              Game Play Update Poster 1
             Total points: 
             %input#gameplay-poster-1-total.point-value{:type => "text", :value => "0" }
             %div.slider#gameplay-poster-1-slider
             
-            %section
-            Game Play Update Poster 2 (optional)
+          %fieldset
+            %span.predictor-assignment-title
+              Game Play Update Poster 2 (optional)
             Total points: 
             %input#gameplay-poster-2-total.point-value{:type => "text", :value => "0"}
             %div.slider#gameplay-poster-2-slider
             
-            %section
-            Do you plan to do a rough draft of the final paper? 
-            %span.point-value (5,000 pts)
-            %input{:type => "radio", :name => "final-draft", :value => "yes", :label => "Yes" }
-            %input{:type => "radio", :name => "final-draft", :value => "no", :label => "No"}	 
-
-            %section
-            Gameplay Reflection Paper
+          %fieldset
+            %span.predictor-assignment-title
+              Gameplay Reflection Paper
             Total points: 
             %input#gameplay-reflection-total.point-value{:type => "text", :value => "0"}
             %div.slider#gameplay-reflection-slider
           
-          %li#slide-5
-            %div.slide-panel#boss-battles
-              %h2 Step 5 - Boss Battles
+      %li#slide-5
+        %div.slide-panel#boss-battles
+          %h2 Step 5 - Boss Battles
               
-              %section Individual Paper/Project 1
-              Total points: 
-              %input#individual-project-1-total.point-value{:type => "text", :value => "0"}
-              %div.slider#individual-project-1-slider
+          %fieldset 
+            %span.predictor-assignment-title
+              Individual Paper/Project 1
+            Total points: 
+            %input#individual-project-1-total.point-value{:type => "text", :value => "0"}
+            %div.slider#individual-project-1-slider
               
               
-              %section Individual Paper/Project 2
-              Total points: 
-              %input#individual-project-2-total.point-value{:type => "text", :value => "0"}
-              %div.slider#individual-project-2-slider
+          %fieldset 
+            %span.predictor-assignment-title
+              Individual Paper/Project 2
+            Total points: 
+            %input#individual-project-2-total.point-value{:type => "text", :value => "0"}
+            %div.slider#individual-project-2-slider
               
-              %section Group Game Design Project
-              Total points: 
-              %input#game-design-project-total.point-value{:type => "text", :value => "0"}
-              %div.slider#game-design-project-slider
+          %fieldset
+            %span.predictor-assignment-title
+              Group Game Design Project
+            Total points: 
+            %input#game-design-project-total.point-value{:type => "text", :value => "0"}
+            %div.slider#game-design-project-slider
           
           
           
-          %li#slide-6
-            %div.slide-panel#team-points
-              %h2 Step 6 - Team Points
-              %section Part of your score is determined by team points. Where do you anticipate your team finishing? 
-              %select#team-point-values
-                %option{ :value => "11", :label => "11" }
-                %option{ :value => "22", :label => "22"}
-                %option{ :value => "33", :label => "33" }
-                %option{ :value => "44", :label => "44" }
-                %option{ :value => "55", :label => "55" }
-                %option{ :value => "66", :label => "66" }
-                %option{ :value => "77", :label => "77" }
-                %option{ :value => "88", :label => "88" }
-                %option{ :value => "99", :label => "99" }
-                %option{ :value => "1010", :label => "1010" }						
-              %section
-                %br
-                Current Team Standings:
-                %div#team-standings
+      %li#slide-6
+        %div.slide-panel#team-points
+          %h2 Step 6 - Team Points
+          %fieldset
+            %p Part of your score is determined by team points. Where do you anticipate your team finishing? 
+            %select#team-point-values
+              %option{ :value => "0"}Select Place
+              %option{ :value => "40000"}7th
+              %option{ :value => "50000"}6th
+              %option{ :value => "60000"}5th
+              %option{ :value => "70000"}4th
+              %option{ :value => "80000"}3rd
+              %option{ :value => "90000"}2nd
+              %option{ :value => "100000"}1st
+              %br
+          Current Team Standings:
+          %div#team-standings
+            <iframe width='500' height='220' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0AtknGd3uiORwdGJOVmhYRG9SX0pIWW5Qb29ZcnUyUEE&single=true&gid=3&output=html&widget=true'></iframe>
 
 
 

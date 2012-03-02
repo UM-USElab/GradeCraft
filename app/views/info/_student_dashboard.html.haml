@@ -28,9 +28,14 @@
           #{Assignment.sum(:point_total)} 
         total points in the course
     %br
+    %dl#score-bar
+      %dd #{current_user.standard_score}
+      %dd #{current_user.attendance_score}
+      %dd #{current_user.reading_reaction_score}
+      %dd #{current_user.blogging_score}
     %div#userBarInProgress.toggle
     %div#userBarTotal.toggle
-    %div#scoreToggle
+    %div#scoreToggle	
       %span#showTotalPts.toggle Show score out of total course points
       %span#showPossiblePts.toggle Show score out of possible points so far
 
