@@ -27,21 +27,16 @@
         %span#courseTotalPts
           #{Assignment.sum(:point_total)} 
         total points in the course
-    %br
-    %dl#score-bar
-      %dd #{current_user.standard_score}
-      %dd #{current_user.attendance_score}
-      %dd #{current_user.reading_reaction_score}
-      %dd #{current_user.blogging_score}
-    %div#userBarInProgress.toggle
     %div#userBarTotal.toggle
-    %div#scoreToggle	
-      %span#showTotalPts.toggle Show score out of total course points
-      %span#showPossiblePts.toggle Show score out of possible points so far
+      
+    %div#userBarInProgress.toggle
 
   %h3#attendance.assignTitle
     %span Assignments
-    %span.assignmentPointsSpan #{current_user.standard_score} out of #{current_user.standard_possible}
+    %span.assignmentPointsSpan 
+      %span#standard_score
+        #{current_user.standard_score} 
+      out of #{current_user.standard_possible}
   %div.collapsible
     - Grade.completion.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Standard" 
@@ -65,7 +60,10 @@
 
   %h3#attendance.assignTitle
     %span Attendance
-    %span.assignmentPointsSpan #{current_user.attendance_score} out of #{current_user.attendance_possible}
+    %span.assignmentPointsSpan 
+      %span#attendance_score
+        #{current_user.attendance_score} 
+      out of #{current_user.attendance_possible}
   %div.collapsible
     - Grade.completion.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Attendance"
@@ -85,7 +83,10 @@
   
   %h3#reading.assignTitle 
     %span Reading Reactions
-    %span.assignmentPointsSpan #{current_user.reading_reaction_score} out of #{current_user.reading_reaction_possible}
+    %span.assignmentPointsSpan 
+      %span#reading_reaction_score
+        #{current_user.reading_reaction_score} 
+      out of #{current_user.reading_reaction_possible}
   %div.collapsible
     - Grade.completion.where(:user_id => current_user.id).each do |grade| 
       - if grade.assignment.type == "ReadingReaction"
@@ -109,7 +110,9 @@
   
   %h3#blogging.assignTitle
     %span Blogging
-    %span.assignmentPointsSpan #{current_user.blogging_score}
+    %span.assignmentPointsSpan 
+      %span#blogging_score
+        #{current_user.blogging_score}
   %div.collapsible
     - Grade.completion.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Blogging"
@@ -145,4 +148,6 @@
           %br
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
+  %div#predictorLink
+    <a href="predictor">Grade Predictor</a>
   %div.clear

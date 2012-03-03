@@ -21,24 +21,37 @@ $(document).ready(function(){
 	$('#scoreTotal').hide();
 	$('#userBarTotal').hide();
 	$('#showPossiblePts').hide();
-		
-	var availPoints = $('#availablePoints').html();
-	var totalPoints = $('#courseTotalPts').html();
-	var currentUserScore = $('#userScoreNum').html();
-	var totalInProgress = (currentUserScore/availPoints)*100;
-	var totalFull = (currentUserScore/totalPoints)*100;
+	// 	
+	// var availPoints = $('#availablePoints').html();
+	// var totalPoints = $('#courseTotalPts').html();
+	// var currentUserScore = $('#userScoreNum').html();
+	// var totalInProgress = (currentUserScore/availPoints)*100;
+	// var totalFull = (currentUserScore/totalPoints)*100;
 	
-	$('#userBarInProgress').progressbar({
-		value:totalInProgress
-	});
+	// $('#userBarInProgress').progressbar({
+	// 	value:totalInProgress
+	// });
 	
-	$('#userBarTotal').progressbar({
-		value:totalFull
-	});
+	// $('#userBarTotal').progressbar({
+	// 	value:totalFull
+	// });
 	
-	$('#scoreToggle').click(function(){
-		$("#userScoreSection .toggle").toggle();
-	});
+	// $('#scoreToggle').click(function(){
+	// 	$("#userScoreSection .toggle").toggle();
+	// });
+	
+	// $("#userBarTotal dl").horizontalBarGraph({
+	// 	colors: ["#c22", "#999", "#2c2", "#ddd"],
+	// 	hoverColors: ["#f33", "#ccc", "#6d6", "#ccc"],
+	// 	interval: 3000
+	// });
+	// 
+	// $("#userBarInProgress dl").horizontalBarGraph({
+	// 	colors: ["#c22", "#999", "#2c2", "#ddd"],
+	// 	hoverColors: ["#f33", "#ccc", "#6d6", "#ccc"],
+	// 	interval: 3000
+	// });
+	
 	
 });
 
