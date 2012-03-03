@@ -16,11 +16,11 @@
   %div#userScoreSection
     %div#userPointValues
       %span Your current score is 
-      %span#userScoreNum #{current_user.score}
+      %span#userScoreNum #{@user.score}
       %span#scoreSoFar.toggle 
         out of 
         %span#availablePoints 
-          #{current_user.possible_score} 
+          #{@user.possible_score} 
         possible points so far
       %span#scoreTotal.toggle 
         out of 
@@ -35,8 +35,8 @@
     %span Assignments
     %span.assignmentPointsSpan 
       %span#standard_score
-        #{current_user.standard_score} 
-      out of #{current_user.standard_possible}
+        #{@user.standard_score} 
+      out of #{@user.standard_possible}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Standard" 
@@ -68,8 +68,8 @@
     %span Attendance
     %span.assignmentPointsSpan 
       %span#attendance_score
-        #{current_user.attendance_score} 
-      out of #{current_user.attendance_possible}
+        #{@user.attendance_score} 
+      out of #{@user.attendance_possible}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Attendance"
@@ -93,8 +93,8 @@
     %span Reading Reactions
     %span.assignmentPointsSpan
       %span#reading_reaction_score
-        #{current_user.reading_reaction_score} 
-      out of #{current_user.reading_reaction_possible}
+        #{@user.reading_reaction_score} 
+      out of #{@user.reading_reaction_possible}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade| 
       - if grade.assignment.type == "ReadingReaction"
@@ -122,7 +122,7 @@
     %span Blogging
     %span.assignmentPointsSpan
       %span#blogging_score
-        #{current_user.blogging_score}
+        #{@user.blogging_score}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Blogging"
