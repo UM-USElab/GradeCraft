@@ -34,6 +34,9 @@ if ($("#userScoreSection").length > 0){
 			backgroundColor:null,
 			width:500
 		},
+		credits: {
+		        enabled: false
+		    },
 		title: {
 			text: '',
 			style: {
