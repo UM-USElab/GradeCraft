@@ -10,7 +10,6 @@ $(document).ready(function(){
 	var rxnFinalPts = 0;
 	var subBlogPts = 0;
 	var shortBlogPts = 0;	
-	var draftPts = 0;
 	var sliderPts = 0;
 	var gameSelectionPts = 0;
 	var teamPts = 0;
@@ -19,7 +18,7 @@ $(document).ready(function(){
 
 // adds up total points
 	function getTotalPts(){
-		totalPts = attendancePts + rxnPts + rxnSemiPts + rxnFinalPts + subBlogPts + shortBlogPts + draftPts + sliderPts + gameSelectionPts + teamPts
+		totalPts = attendancePts + rxnPts + rxnSemiPts + rxnFinalPts + subBlogPts + shortBlogPts + sliderPts + gameSelectionPts + teamPts
 	};
 
 // removes points per class or reading reaction missed
@@ -233,8 +232,107 @@ $(document).ready(function(){
 // update the progress bar
 	function updateProgressBar(){
 		getSliderPts();
-		$("#progressbar").progressbar({
-			value: gradePct
+		
+		// $("#progressbar").progressbar({
+		// 	value: gradePct
+		// });
+
+		standard_score = sliderPts + gameSelectionPts
+		attendance_score = attendancePts
+		reading_reaction_score = rxnPts + rxnSemiPts + rxnFinalPts
+		blogging_score = subBlogPts + shortBlogPts
+		team_score = teamPts
+		coursePts = 1400000
+		available_points = coursePts - totalPts
+
+		var chart;
+		chart = new Highcharts.Chart({
+			colors: [
+				'#CCCCCC',
+				'#DB843D', 
+				'#AA4643', 
+				'#89A54E', 
+				'#80699B', 
+				'#3D96AE'
+			],
+			chart: {
+				renderTo: 'progressbar',
+				type: 'bar',
+				reflow: true,
+				height:200,
+				backgroundColor:null,
+				width:700
+			},
+			credits: {
+			        enabled: false
+			    },
+			title: {
+				text: '',
+				style: {
+					color: "#FFFFFF"
+				}
+			},
+			xAxis: {
+				categories: [''],
+				labels: {
+					style: {
+						color: "#FFFFFF"
+					}
+				}
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Points'
+				},
+				labels: {
+					style: {
+						color: "#FFFFFF"
+					}
+				}
+			},
+			legend: {
+				backgroundColor: null,
+				borderColor:null,
+				reversed: true,
+				itemStyle: {
+					color: '#CCCCCC'
+				},
+				itemHiddenStyle: {
+					color: '#3E576F'
+				},
+				width:700
+			},
+			tooltip: {
+				formatter: function() {
+					return ''+
+						this.series.name +': '+ this.y +'';
+				}
+			},
+			plotOptions: {
+				series: {
+					stacking: 'normal'
+				}
+			},
+			series: [{
+				name: 'Available Points',
+				data: [available_points]	
+			},{
+				name: 'Team Points',
+				data: [team_score]	
+			},{
+				name: 'Blogging',
+				data: [blogging_score]	
+			},{
+				name: 'Reading Reactions',
+				data: [reading_reaction_score]	
+			},{
+				name: 'Attendance',
+				data: [attendance_score]	
+			},{
+				name: 'Assignments',
+				data: [standard_score]	
+			}]
 		});
 		
 		ptsCommas = numberWithCommas(totalPts);
