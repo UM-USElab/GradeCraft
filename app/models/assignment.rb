@@ -4,6 +4,8 @@ class Assignment < ActiveRecord::Base
   
   default_scope :order => 'due_date ASC'
   
+  
+  
   attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :type, :present, :grades_attributes
 
   def mass_gradeable?
@@ -11,9 +13,15 @@ class Assignment < ActiveRecord::Base
   end
   
   scope :reading_reactions, where(:type => "ReadingReaction")
-  scope :standard, where(:type=> "Standard")
+  scope :standard, where(:type=> "LFPG")
+  scope :standard, where(:type=> "BossBattle")
   scope :blogging, where(:type=> "Blogging")
   scope :attendance, where(:type=> "Attendance")
+  scope :future, lambda {
+    { :conditions => 
+      ["assignments.due_date IS NOt nulL AND assignments.due_date >?", Date.today]
+    }
+  }
   
   def assignment_grades
     Grade.where(:assignment_id => id)

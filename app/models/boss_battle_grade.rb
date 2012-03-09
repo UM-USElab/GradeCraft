@@ -1,0 +1,3 @@
+class BossBattleGrade < Grade
+
+end

@@ -14,7 +14,7 @@ class AssignmentsController < ApplicationController
 
   def new
     @title = "Create a New Assignment"
-    klass = params[:type].constantize if %w{Standard Attendance Blogging ReadingReaction}.include?(params[:type]) || Assignment
+    klass = params[:type].constantize if %w{LFPG BossBattle Attendance Blogging ReadingReaction}.include?(params[:type]) || Assignment
     respond_with @assignment = klass.new
   end
 

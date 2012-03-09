@@ -32,14 +32,47 @@
     %div#userBarInProgress.toggle
 
   %h3#attendance.assignTitle
-    %span Assignments
+    %span Learning From Playing a Game
     %span.assignmentPointsSpan 
       %span#standard_score
         #{@user.standard_score} 
       out of #{@user.standard_possible}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
-      - if grade.assignment.type == "Standard" 
+      - if grade.assignment.type == "LFPG" 
+        - if grade.attempted? 
+          %div.completedAssignment 
+            %span.assignmentTitle= grade.title
+            %br
+            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
+            %br
+            - grade.earned_badges.each do |badge|
+              %img{:src => badge.icon, :alt => badge.title, :width => "40"}
+            %br
+            %span.assignmentFeedback= grade.feedback
+            %br
+            %br
+            %span.assignmentStatus Grade Status: #{grade.status}
+            %br
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+        - else
+          %div.incompleteAssignment
+            %span.assignmentTitle= grade.title
+            %br
+            %span.assignmentGrade #{grade.point_total} possible points
+            %br
+            %span You have not yet attempted this challenge
+
+  %h3#attendance.assignTitle
+    %span Boss Battles
+    %span.assignmentPointsSpan 
+      %span#standard_score
+        #{@user.standard_score} 
+      out of #{@user.standard_possible}
+  %div.collapsible
+    - Grade.completion.where(:user_id => @user.id).each do |grade|
+      - if grade.assignment.type == "BossBattle" 
         - if grade.attempted? 
           %div.completedAssignment 
             %span.assignmentTitle= grade.title

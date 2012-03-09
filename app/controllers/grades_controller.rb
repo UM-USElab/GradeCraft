@@ -40,8 +40,10 @@ class GradesController < ApplicationController
       BloggingGrade
     when Attendance
       AttendanceGrade
-    when Standard
-      StandardGrade
+    when LFPG
+      LFPGGrade
+    when BossBattle
+      BossBattleGrade
     else
       Grade
     end

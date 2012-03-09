@@ -14,7 +14,8 @@ class Grade < ActiveRecord::Base
   scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
   
   scope :reading_reaction, where(:type => "ReadingReactionGrade")
-  scope :standard, where(:type=> "StandardGrade")
+  scope :lfpg, where(:type=> "LFPGGrade")
+  scope :bossbattle, where(:type=> "BossBattleGrade")
   scope :blogging, where(:type=> "BloggingGrade")
   scope :attendance, where(:type=> "AttendanceGrade")
   

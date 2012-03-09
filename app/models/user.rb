@@ -60,8 +60,12 @@ class User < ActiveRecord::Base
   end
 
   #Actual
-  def standard_score
-    grades.standard.sum(:score) || 0
+  def boss_battle_score
+    grades.bossbattle.sum(:score) || 0
+  end
+   
+  def lfpg_score
+    grades.lfpg.sum(:score) || 0
   end
   
   
@@ -92,6 +96,14 @@ class User < ActiveRecord::Base
   #Possible 
   def reading_reaction_possible
     grades.where(:type=>"ReadingReactionGrade").map(&:points_possible).inject(&:+) || 0
+  end
+    
+  def lfpg_possible
+    grades.where(:type=>"LFPGGrade").map(&:points_possible).inject(&:+) || 0
+  end
+    
+  def boss_battle_possible
+    grades.where(:type=>"BossBattle").map(&:points_possible).inject(&:+) || 0
   end
     
   def standard_possible

@@ -1,6 +1,6 @@
 %div#predictor-wrapper
   %div#prediction 
-    Total projected points:
+    Total projected points: 
     %span#expected-points
     %br 
     Projected Course Grade:
@@ -22,6 +22,7 @@
       %li#slide-1
         %div.slide-panel#attendance
           %h2 Step 1 - Attendance
+          %p Current Score: #{current_user.attendance_score || 0}
           %section 
             Weekly engagement in this course, in the form of attendance and reading reactions, is required. 
             %br
@@ -31,98 +32,50 @@
               %div.select-checkboxes <a href="#" class="select-all">select all</a> | <a href="#" class="select-none">select none</a>
               %fieldset.checkbox-group
                 %legend January
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/9
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/11
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/18
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/23
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/25
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}1/30
-              %fieldset.checkbox-group
-                %legend February
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/1
-                %br		
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/8
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/13
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/15
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/20
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}2/22
-              %fieldset.checkbox-group
-                %legend March
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/5
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/7
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/12
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/14
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/19
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/21
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/26
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}3/28
-              %fieldset.checkbox-group
-                %legend April
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}4/2
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}4/4
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}4/9
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}4/11
-                %br
-                %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class =>   "class-checkbox"}4/16
+                - Grade.completion.where(:user_id => current_user.id).each do |grade|
+                  - if grade.assignment.type == "Attendance"
+                    - if grade.attempted? 
+                      %span #{grade.title} –
+                      %span #{grade.score} 
+                      %br
+                    - else
+                      %span #{grade.title} –
+                      %span #{grade.score}
+                      %br
+                - Assignment.future.each do |assignment|
+                  - if assignment.type == "Attendance"
+                    %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
+                    = assignment.title
+                    %br
 
       %li#slide-2
         %div.slide-panel#reading-rxns
           %h2 Step 2 - Reading Reactions
+          %span.current Current Reading Reactions Score:
+          = current_user.reading_reaction_score
+          %br
+          %br
           Which reading reactions do you expect to complete?
           %span.point-value (5,000 pts/reaction)
           %div#reactions-missed
             %div.select-checkboxes <a href="#" class="select-all">select all</a> | <a href="#" class="select-none">select none</a>
             %fieldset.checkbox-group
-              %legend 
-                January
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }1/17
-              %br
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }1/22
-              %br
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }1/31
-            %fieldset.checkbox-group
-              %legend
-                February
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }2/7
-              %br
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }2/14				
-              %br
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }2/21
-            %fieldset.checkbox-group
-              %legend
-                March
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }3/6
-              %br
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }3/13
-              %br
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox"}3/18
-              %br
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox"}3/27
-            %fieldset.checkbox-group
-              %legend
-                April
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }4/3
-              %br
-              %input{:type => "checkbox", :name => "reading-rxn", :value => "5000", :class =>   "class-checkbox" }4/10
+              %legend January
+              - Grade.completion.where(:user_id => current_user.id).each do |grade|
+                - if grade.assignment.type == "ReadingReaction"
+                  - if grade.attempted? 
+                    %span #{grade.title} –
+                    %span #{grade.score} 
+                    %br
+                  - else
+                    %span #{grade.title} –
+                    %span #{grade.score}
+                    %br
+              - Assignment.future.each do |assignment|
+                - if assignment.type == "ReadingReaction"
+                  %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
+                  = assignment.title
+                  %br
             %div#winning-reactions
               %p Feeling confident? Select the number of reading reactions you think you'll win:
               %fieldset
@@ -147,6 +100,7 @@
       %li#slide-3
         %div.slide-panel#blogging
           %h2 Step 3 - Blogging
+          %p Current Blogging Score: #{current_user.blogging_score || 0}
           %p Are you blogging this semester? 
           %fieldset
             How many substantial posts?
@@ -189,61 +143,46 @@
       %li#slide-4
         %div.slide-panel#training-missions
           %h2 Step 4 - Learning From Playing a Game
-          %fieldset
-            %span.predictor-assignment-title            
-              Game Selection Paper
-              %span.point-value (80,000 pts)
-            %input#game-selection-checkbox.class-checkbox{:type => "checkbox", :name => "game-selection-checkbox", :value => "80000" }
-            Completed?
-            
-          %fieldset
-            %span.predictor-assignment-title
-              Game Play Update Poster 1
-            Total points: 
-            %input#gameplay-poster-1-total.point-value{:type => "text", :value => "0" }
-            %div.slider#gameplay-poster-1-slider
-            
-          %fieldset
-            %span.predictor-assignment-title
-              Game Play Update Poster 2 (optional)
-            Total points: 
-            %input#gameplay-poster-2-total.point-value{:type => "text", :value => "0"}
-            %div.slider#gameplay-poster-2-slider
-            
-          %fieldset
-            %span.predictor-assignment-title
-              Gameplay Reflection Paper
-            Total points: 
-            %input#gameplay-reflection-total.point-value{:type => "text", :value => "0"}
-            %div.slider#gameplay-reflection-slider
+          %p Current Score: #{current_user.lfpg_score || 0}
+          - Grade.completion.where(:user_id => current_user.id).each do |grade|
+            - if grade.assignment.type == "LFPG"
+              - if grade.attempted? 
+                %fieldset
+                  %span #{grade.title} –
+                  %span #{grade.score} 
+              - else
+                %fieldset
+                  %span #{grade.title} –
+                  %span #{grade.score}
+          - Assignment.future.each do |assignment|
+            - if assignment.type == "LFPG"
+              %fieldset
+                %span.predictor-assignment-title= assignment.title
+                Total points:
+                %input.point-value{:class => assignment.title, :type => "text", :name => assignment.title, :value => 0 }
+                %div.slider{:id => assignment.id }
           
       %li#slide-5
         %div.slide-panel#boss-battles
           %h2 Step 5 - Boss Battles
-              
-          %fieldset 
-            %span.predictor-assignment-title
-              Individual Paper/Project 1
-            Total points: 
-            %input#individual-project-1-total.point-value{:type => "text", :value => "0"}
-            %div.slider#individual-project-1-slider
-              
-              
-          %fieldset 
-            %span.predictor-assignment-title
-              Individual Paper/Project 2
-            Total points: 
-            %input#individual-project-2-total.point-value{:type => "text", :value => "0"}
-            %div.slider#individual-project-2-slider
-              
-          %fieldset
-            %span.predictor-assignment-title
-              Group Game Design Project
-            Total points: 
-            %input#game-design-project-total.point-value{:type => "text", :value => "0"}
-            %div.slider#game-design-project-slider
-          
-          
+          %p Current Boss Battle Score: #{current_user.boss_battle_score || 0}    
+          - Grade.completion.where(:user_id => current_user.id).each do |grade|
+            - if grade.assignment.type == "BossBattle"
+              - if grade.attempted? 
+                %fieldset
+                  %span #{grade.title} –
+                  %span #{grade.score} 
+              - else
+                %fieldset
+                  %span #{grade.title} –
+                  %span #{grade.score}
+          - Assignment.future.each do |assignment|
+            - if assignment.type == "BossBattle"
+              %fieldset
+                %span.predictor-assignment-title= assignment.title
+                Total points:
+                %input.point-value{:class => assignment.title, :type => "text", :name => assignment.title, :value => 0 }
+                %div.slider{:id => assignment.id }   
           
       %li#slide-6
         %div.slide-panel#team-points

@@ -1,0 +1,4 @@
+class BossBattle < Assignment
+
+
+end
