@@ -16,16 +16,11 @@ if ($("#userScoreSection").length > 0){
 	available_points = parseInt(total_points - (standard_score + attendance_score + reading_reaction_score + blogging_score));
 	
 	chart = new Highcharts.Chart({
-		colors: [
-			'#CCCCCC', 
-			'#AA4643', 
+		colors: [			
+			'#DB843D',  
 			'#89A54E', 
 			'#80699B', 
-			'#3D96AE', 
-			'#DB843D', 
-			'#92A8CD', 
-			'#A47D7C', 
-			'#B5CA92'
+			'#3D96AE'
 		],
 		chart: {
 			renderTo: 'userBarInProgress',
@@ -53,13 +48,19 @@ if ($("#userScoreSection").length > 0){
 		},
 		yAxis: {
 			min: 0,
+			max:1400000,
+			tickInterval: 200000,
 			title: {
 				text: 'Points'
 			},
 			labels: {
+				formatter: function(){
+					return this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				},
 				style: {
 					color: "#FFFFFF"
-				}
+				},
+				x: -20
 			}
 		},
 		legend: {
@@ -69,10 +70,17 @@ if ($("#userScoreSection").length > 0){
 			itemStyle: {
 				color: '#CCCCCC'
 			},
+			itemHoverStyle: {
+				color: '#CCCCCC',
+				cursor: "default"
+			},
 			itemHiddenStyle: {
 				color: '#3E576F'
 			},
-			width:500
+			width:500,
+			style: {
+				padding: 10
+			}
 		},
 		tooltip: {
 			formatter: function() {
@@ -82,13 +90,18 @@ if ($("#userScoreSection").length > 0){
 		},
 		plotOptions: {
 			series: {
-				stacking: 'normal'
-			}
+				stacking: 'normal',
+				events: {
+					legendItemClick: function(event){
+						return false;
+					}
+				}
+			}	
 		},
 		series: [{
-			name: 'Available Points (unearned)',
-			data: [available_points]
-		}, {
+			name: 'Assignments',
+			data: [standard_score]	
+		},{
 			name: 'Blogging',
 			data: [blogging_score]	
 		},{
@@ -97,9 +110,6 @@ if ($("#userScoreSection").length > 0){
 		},{
 			name: 'Attendance',
 			data: [attendance_score]	
-		},{
-			name: 'Assignments',
-			data: [standard_score]	
 		}]
 	});
 	}

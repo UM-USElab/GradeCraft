@@ -9,16 +9,16 @@ $(document).ready(function(){
 	var rxnSemiPts = 0;
 	var rxnFinalPts = 0;
 	var subBlogPts = 0;
-	var shortBlogPts = 0;	
+	var shortBlogPts = 0;
+	var blogPts = 0;	
 	var sliderPts = 0;
 	var gameSelectionPts = 0;
 	var teamPts = 0;
 	var totalPts;
-	var gradePct = (totalPts/1245000)*100				
 
 // adds up total points
 	function getTotalPts(){
-		totalPts = attendancePts + rxnPts + rxnSemiPts + rxnFinalPts + subBlogPts + shortBlogPts + sliderPts + gameSelectionPts + teamPts
+		totalPts = attendancePts + rxnPts + rxnSemiPts + rxnFinalPts + blogPts + sliderPts + gameSelectionPts + teamPts
 	};
 
 // removes points per class or reading reaction missed
@@ -83,14 +83,22 @@ $(document).ready(function(){
 	});
 
 // adds points for blog posts
-
+	function updateBlogging(){
+		subBlogPts = ($("#substantial-blogposts").val())*5000;
+		shortBlogPts = ($("#short-blogposts").val())*1000;
+		blogPts = subBlogPts + shortBlogPts;
+		if (blogPts > 60000){
+			blogPts = 60000;
+		};
+	}
+	
 	$("#substantial-blogposts").change(function(){
-		subBlogPts = ($(this).val())*5000;
+		updateBlogging();
 		updateProgressBar();
 	});
 	
 	$("#short-blogposts").change(function(){
-		shortBlogPts = ($(this).val())*1000;
+		updateBlogging();
 		updateProgressBar();
 	});
 
@@ -215,13 +223,6 @@ $(document).ready(function(){
 		gameReflectionPts = $( "#gameplay-reflection-slider" ).slider( "option", "value" );
 
 		sliderPts = poster1Pts + poster2Pts + individualProject1Pts + individualProject2Pts + finalProjectPts + gameReflectionPts;
-		getGradePct();
-	};
-
-// get percentage
-	function getGradePct(){
-		getTotalPts();
-		gradePct = (totalPts/1245000)*100
 	};
 
 // add commas to large numbers
@@ -232,25 +233,21 @@ $(document).ready(function(){
 // update the progress bar
 	function updateProgressBar(){
 		getSliderPts();
-		
-		// $("#progressbar").progressbar({
-		// 	value: gradePct
-		// });
 
 		standard_score = sliderPts + gameSelectionPts
 		attendance_score = attendancePts
 		reading_reaction_score = rxnPts + rxnSemiPts + rxnFinalPts
-		blogging_score = subBlogPts + shortBlogPts
+		blogging_score = blogPts
 		team_score = teamPts
 		coursePts = 1400000
 		available_points = coursePts - totalPts
+		getTotalPts();
 
 		var chart;
 		chart = new Highcharts.Chart({
 			colors: [
-				'#CCCCCC',
-				'#DB843D', 
-				'#AA4643', 
+				'#AA4643',			
+				'#DB843D',  
 				'#89A54E', 
 				'#80699B', 
 				'#3D96AE'
@@ -261,7 +258,7 @@ $(document).ready(function(){
 				reflow: true,
 				height:200,
 				backgroundColor:null,
-				width:700
+				width:932
 			},
 			credits: {
 			        enabled: false
@@ -282,13 +279,19 @@ $(document).ready(function(){
 			},
 			yAxis: {
 				min: 0,
+				max:1400000,
+				tickInterval: 200000,
 				title: {
 					text: 'Points'
 				},
 				labels: {
+					formatter: function(){
+						return this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					},
 					style: {
 						color: "#FFFFFF"
-					}
+					},
+					x: -20
 				}
 			},
 			legend: {
@@ -298,10 +301,17 @@ $(document).ready(function(){
 				itemStyle: {
 					color: '#CCCCCC'
 				},
+				itemHoverStyle: {
+					color: '#CCCCCC',
+					cursor: "default"
+				},
 				itemHiddenStyle: {
 					color: '#3E576F'
 				},
-				width:700
+				width:932,
+				style: {
+					padding: 10
+				}
 			},
 			tooltip: {
 				formatter: function() {
@@ -311,15 +321,20 @@ $(document).ready(function(){
 			},
 			plotOptions: {
 				series: {
-					stacking: 'normal'
-				}
+					stacking: 'normal',
+					events: {
+						legendItemClick: function(event){
+							return false;
+						}
+					}
+				}	
 			},
 			series: [{
-				name: 'Available Points',
-				data: [available_points]	
-			},{
 				name: 'Team Points',
 				data: [team_score]	
+			},{
+				name: 'Assignments',
+				data: [standard_score]	
 			},{
 				name: 'Blogging',
 				data: [blogging_score]	
@@ -329,9 +344,6 @@ $(document).ready(function(){
 			},{
 				name: 'Attendance',
 				data: [attendance_score]	
-			},{
-				name: 'Assignments',
-				data: [standard_score]	
 			}]
 		});
 		
@@ -379,8 +391,7 @@ $(document).ready(function(){
 	};
 
 	getSliderPts();
-	getTotalPts();
-	getGradePct();
+	// getTotalPts();
 	updateProgressBar();
 
 });
