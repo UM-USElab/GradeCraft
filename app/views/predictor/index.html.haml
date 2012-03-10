@@ -22,7 +22,9 @@
       %li#slide-1
         %div.slide-panel#attendance
           %h2 Step 1 - Attendance
-          %p Current Score: #{current_user.attendance_score || 0}
+          %p 
+            Current Score: 
+            %span#attendanceScore #{current_user.attendance_score || 0}
           %section 
             Weekly engagement in this course, in the form of attendance and reading reactions, is required. 
             %br
@@ -52,7 +54,8 @@
         %div.slide-panel#reading-rxns
           %h2 Step 2 - Reading Reactions
           %span.current Current Reading Reactions Score:
-          = current_user.reading_reaction_score
+          %span#rxnScore 
+            = current_user.reading_reaction_score
           %br
           %br
           Which reading reactions do you expect to complete?
@@ -100,7 +103,9 @@
       %li#slide-3
         %div.slide-panel#blogging
           %h2 Step 3 - Blogging
-          %p Current Blogging Score: #{current_user.blogging_score || 0}
+          %p 
+            Current Blogging Score: 
+            %span#bloggingScore #{current_user.blogging_score || 0}
           %p Are you blogging this semester? 
           %fieldset
             How many substantial posts?
@@ -143,7 +148,9 @@
       %li#slide-4
         %div.slide-panel#training-missions
           %h2 Step 4 - Learning From Playing a Game
-          %p Current Score: #{current_user.lfpg_score || 0}
+          %p 
+            Current Score: 
+            %span#lfpgScore #{current_user.lfpg_score || 0}
           - Grade.completion.where(:user_id => current_user.id).each do |grade|
             - if grade.assignment.type == "LFPG"
               - if grade.attempted? 
@@ -165,7 +172,9 @@
       %li#slide-5
         %div.slide-panel#boss-battles
           %h2 Step 5 - Boss Battles
-          %p Current Boss Battle Score: #{current_user.boss_battle_score || 0}    
+          %p 
+            Current Boss Battle Score: 
+            %span#bossBattleScore #{current_user.boss_battle_score || 0}    
           - Grade.completion.where(:user_id => current_user.id).each do |grade|
             - if grade.assignment.type == "BossBattle"
               - if grade.attempted? 
