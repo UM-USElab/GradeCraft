@@ -327,7 +327,7 @@ if ($("#progressbar").length > 0){
 	function updateProgressBar(){
 		getSliderPts();
 		// console.log(lfpgTotalPts+", "+bossTotalPts+", "+gameSelectionPts+", "+sliderPts)
-		assignments_score = lfpgTotalPts + bossTotalPts + gameSelectionPts + sliderPts
+		assignments_score = gameSelectionPts + sliderPts
 		// console.log(assignments_score);
 		attendance_score = attendanceTotalPts
 		reading_reaction_score = rxnTotalPts
