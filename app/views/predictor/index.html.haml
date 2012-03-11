@@ -151,7 +151,7 @@
             Current Score: 
             %span#lfpgScore #{current_user.lfpg_score || 0}
           - Grade.completion.where(:user_id => current_user.id).each do |grade|
-            - if grade.assignment.type == "LFPG"
+            - if grade.assignment.id < 4 && grade.assignment.type == "Standard"
               - if grade.attempted? 
                 %fieldset
                   %span #{grade.title} –
@@ -161,7 +161,7 @@
                   %span #{grade.title} –
                   %span #{grade.score}
           - Assignment.future.each do |assignment|
-            - if assignment.type == "LFPG"
+            - if grade.assignment.id < 4
               %fieldset
                 %span.predictor-assignment-title= assignment.title
                 Total points:
