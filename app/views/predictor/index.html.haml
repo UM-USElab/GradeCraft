@@ -22,7 +22,9 @@
       %li#slide-1
         %div.slide-panel#attendance
           %h2 Step 1 - Attendance
-          %p Current Score: #{current_user.attendance_score || 0}
+          %p 
+            Current Score: 
+            %span#attendanceScore #{current_user.attendance_score || 0}
           Weekly engagement in this course, in the form of attendance and reading reactions, is required. 
           %br
           Which classes do you expect to attend?
@@ -175,8 +177,8 @@
           - Grade.completion.where(:user_id => current_user.id).each do |grade|
             - if grade.assignment.type == "BossBattle"
               %fieldset
-                %span #{current_user.grade.title} –
-                %span #{current_user.grade.score}
+                %span #{grade.title} –
+                %span #{grade.score}
           - Assignment.future.each do |assignment|
             - if assignment.type == "BossBattle"
               %fieldset

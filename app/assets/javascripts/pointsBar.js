@@ -3,18 +3,19 @@ $(document).ready(function() {
 
 if ($("#userScoreSection").length > 0){
 	
-	lfpg_score = parseInt($("#lfpg_score").html());
-	boss_battle_score = parseInt($("#boss_battle_score").html());
-	attendance_score = parseInt($("#attendance_score").html());
-	reading_reaction_score = parseInt($("#reading_reaction_score").html());
-	blogging_score = parseInt($("#blogging_score").html());
-	if (blogging_score > 0) {
-	}
-	else{
+	var lfpg_score = parseInt($("#lfpg_score").html());
+	var boss_battle_score = parseInt($("#boss_battle_score").html());
+	var attendance_score = parseInt($("#attendance_score").html());
+	var reading_reaction_score = parseInt($("#reading_reaction_score").html());
+	var blogging_score = parseInt($("#blogging_score").html());	
+	if ( isNaN(blogging_score) == true){
 		blogging_score = 0
 	}
-	total_points = parseInt($("#courseTotalPts").html());
-	available_points = parseInt(total_points - (lfpg_score + boss_battle_score + attendance_score + reading_reaction_score + blogging_score));
+	else{
+		blogging_score = parseInt($("#blogging_score").html());
+	}
+	var assignment_score = lfpg_score + boss_battle_score	
+	var total_points = parseInt($("#courseTotalPts").html());
 	
 	chart = new Highcharts.Chart({
 		colors: [			
@@ -100,11 +101,8 @@ if ($("#userScoreSection").length > 0){
 			}	
 		},
 		series: [{
-			name: 'Learning From Playing a Game',
-			data: [lfpg_score]	
-		},{
-			name: 'Boss Battles',
-			data: [boss_battle_score]	
+			name: 'Assignments',
+			data: [assignment_score]	
 		},{
 			name: 'Blogging',
 			data: [blogging_score]	

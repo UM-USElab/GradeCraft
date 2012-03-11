@@ -29,7 +29,7 @@
         total points in the course
     %div#userBarTotal.toggle
       
-    %div#userBarInProgress.toggle
+    %div#userBarInProgress
 
   %h3#attendance.assignTitle
     %span Learning from Playing a Game
@@ -138,8 +138,7 @@
   %h3#blogging.assignTitle
     %span Blogging
     %span.assignmentPointsSpan 
-      %span#blogging_score
-        #{current_user.blogging_score}
+      %span#blogging_score #{current_user.blogging_score}
   %div.collapsible
     - Grade.completion.where(:user_id => current_user.id).each do |grade|
       - if grade.assignment.type == "Blogging"

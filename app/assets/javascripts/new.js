@@ -33,7 +33,7 @@ $(document).ready(function(){
 		// else{
 		// 	
 		// }
-		
+if ($("#progressbar").length > 0){		
 // hide grade estimations
 	$("#expected-grade > span").hide();
 					
@@ -49,10 +49,12 @@ $(document).ready(function(){
 	var subBlogPts = 0;
 	var shortBlogPts = 0;
 	var blogTotalPts = 0;
+	var gameSelectionPts = 0;
     var lfpgPts = parseInt($("#lfpgScore").html());
 	var lfpgTotalPts = 0;
 	var bossPts = parseInt($("#bossBattleScore").html());
 	var bossTotalPts = 0;
+	var assignmentPts = 0;
 	var teamPts = 0;
 	var totalPts;						
 		
@@ -157,7 +159,7 @@ $(document).ready(function(){
 
 // create sliders for training missions and boss battles
 
-	$( "#gameplay-poster-1-slider" ).slider({
+	$( "#3" ).slider({
 		value:0,
 		min: 0,
 		max: 120000,
@@ -169,9 +171,9 @@ $(document).ready(function(){
 			updateProgressBar();				
 		}
 	});
-	$( "#gameplay-poster-2-amount" ).val( $( "#gameplay-poster-2-slider" ).slider( "value" ) );
+	$( "#gameplay-poster-1-amount" ).val( $( "#3" ).slider( "value" ) );
 
-	$( "#gameplay-poster-2-slider" ).slider({
+	$( "#2" ).slider({
 		value:0,
 		min: 0,
 		max: 120000,
@@ -183,9 +185,9 @@ $(document).ready(function(){
 			updateProgressBar();				
 		}
 	});
-	$( "#gameplay-poster-2-amount" ).val( $( "#gameplay-poster-2-slider" ).slider( "value" ) );
+	$( "#gameplay-poster-2-amount" ).val( $( "#2" ).slider( "value" ) );
 
-	$( "#individual-project-1-slider" ).slider({
+	$( "#5" ).slider({
 		value:0,
 		min: 0,
 		max: 200000,
@@ -197,9 +199,9 @@ $(document).ready(function(){
 			updateProgressBar();
 		}
 	});
-	$( "#individual-project-1-amount" ).val( $( "#individual-project-1-slider" ).slider( "value" ) );
+	$( "#individual-project-1-amount" ).val( $( "#5" ).slider( "value" ) );
 
-	$( "#individual-project-2-slider" ).slider({
+	$( "#6" ).slider({
 		value:0,
 		min: 0,
 		max: 300000,
@@ -211,9 +213,9 @@ $(document).ready(function(){
 			updateProgressBar();
 		}
 	});
-	$( "#individual-project-2-amount" ).val( $( "#individual-project-2-slider" ).slider( "value" ) );
+	$( "#individual-project-2-amount" ).val( $( "#6" ).slider( "value" ) );
 
-	$( "#game-design-project-slider" ).slider({
+	$( "#7" ).slider({
 		value:0,
 		min: 0,
 		max: 400000,
@@ -225,9 +227,9 @@ $(document).ready(function(){
 			updateProgressBar();
 		}
 	});
-	$( "#game-design-project-amount" ).val( $( "#game-design-project-slider" ).slider( "value" ) );
+	$( "#game-design-project-amount" ).val( $( "#7" ).slider( "value" ) );
 
-	$( "#gameplay-reflection-slider" ).slider({
+	$( "#4" ).slider({
 		value:0,
 		min: 0,
 		max: 160000,
@@ -239,7 +241,7 @@ $(document).ready(function(){
 			updateProgressBar();
 		}
 	});
-	$( "#gameplay-reflection-amount" ).val( $( "#gameplay-reflection-slider" ).slider( "value" ) );
+	$( "#gameplay-reflection-amount" ).val( $( "#4" ).slider( "value" ) );
 
 	$("#team-point-values").change(function(){
 		teamPtsVal = $(this).val();
@@ -276,13 +278,13 @@ $(document).ready(function(){
 	function updateProgressBar(){
 		getSliderPts();
 
-		standard_score = sliderPts + gameSelectionPts
-		attendance_score = attendancePts
-		reading_reaction_score = rxnPts + rxnSemiPts + rxnFinalPts
-		blogging_score = blogPts
+		assignments_score = lfpgTotalPts + bossTotalPts + gameSelectionPts
+		attendance_score = attendanceTotalPts
+		reading_reaction_score = rxnTotalPts
+		blogging_score = blogTotalPts
 		team_score = teamPts
 		coursePts = 1400000
-		available_points = coursePts - totalPts
+		// available_points = coursePts - totalPts
 		getTotalPts();
 
 		var chart;
@@ -376,7 +378,7 @@ $(document).ready(function(){
 				data: [team_score]	
 			},{
 				name: 'Assignments',
-				data: [standard_score]	
+				data: [assignments_score]	
 			},{
 				name: 'Blogging',
 				data: [blogging_score]	
@@ -436,6 +438,6 @@ $(document).ready(function(){
 	getSliderPts();
 	// getTotalPts();
 	updateProgressBar();	
-	
+};	
 });
 
