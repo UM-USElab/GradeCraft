@@ -22,36 +22,37 @@
       %li#slide-1
         %div.slide-panel#attendance
           %h2 Step 1 - Attendance
-          %p Current Score: #{current_user.attendance_score || 0}
-          Weekly engagement in this course, in the form of attendance and reading reactions, is required. 
-          %br
-          Which classes do you expect to attend?
-          %span.point-value (5,000 pts/class)
-          %div#classes-missed
-            %div.select-checkboxes <a href="#" class="select-all">select all</a> | <a href="#" class="select-none">select none</a>
-            %fieldset.checkbox-group
-              %legend January
-              - Grade.completion.where(:user_id => current_user.id).each do |grade|
-                - if grade.assignment.type == "Attendance"
-                  - if grade.attempted? 
-                    %span #{grade.title} –
-                    %span #{grade.score} 
+          %p Current Score: #{@user.attendance_score || 0}
+          %section 
+            Weekly engagement in this course, in the form of attendance and reading reactions, is required. 
+            %br
+            Which classes do you expect to attend?
+            %span.point-value (5,000 pts/class)
+            %div#classes-missed
+              %div.select-checkboxes <a href="#" class="select-all">select all</a> | <a href="#" class="select-none">select none</a>
+              %fieldset.checkbox-group
+                %legend January
+                - Grade.completion.where(:user_id => @user.id).each do |grade|
+                  - if grade.assignment.type == "Attendance"
+                    - if grade.attempted? 
+                      %span #{grade.title} –
+                      %span #{grade.score} 
+                      %br
+                    - else
+                      %span #{grade.title} –
+                      %span #{grade.score}
+                      %br
+                - Assignment.future.each do |assignment|
+                  - if assignment.type == "Attendance"
+                    %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
+                    = assignment.title
                     %br
-                  - else
-                    %span #{grade.title} –
-                    %span #{grade.score}
-                    %br
-              - Assignment.future.each do |assignment|
-                - if assignment.type == "Attendance"
-                  %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
-                  = assignment.title
-                  %br
 
       %li#slide-2
         %div.slide-panel#reading-rxns
           %h2 Step 2 - Reading Reactions
           %span.current Current Reading Reactions Score:
-          = current_user.reading_reaction_score
+          = @user.reading_reaction_score
           %br
           %br
           Which reading reactions do you expect to complete?
@@ -60,7 +61,7 @@
             %div.select-checkboxes <a href="#" class="select-all">select all</a> | <a href="#" class="select-none">select none</a>
             %fieldset.checkbox-group
               %legend January
-              - Grade.completion.where(:user_id => current_user.id).each do |grade|
+              - Grade.completion.where(:user_id => @user.id).each do |grade|
                 - if grade.assignment.type == "ReadingReaction"
                   - if grade.attempted? 
                     %span #{grade.title} –
@@ -99,7 +100,7 @@
       %li#slide-3
         %div.slide-panel#blogging
           %h2 Step 3 - Blogging
-          %p Current Blogging Score: #{current_user.blogging_score || 0}
+          %p Current Blogging Score: #{@user.blogging_score || 0}
           %p Are you blogging this semester? 
           %fieldset
             How many substantial posts?
@@ -142,8 +143,8 @@
       %li#slide-4
         %div.slide-panel#training-missions
           %h2 Step 4 - Learning From Playing a Game
-          %p Current Score: #{current_user.lfpg_score || 0}
-          - Grade.completion.where(:user_id => current_user.id).each do |grade|
+          %p Current Score: #{@user.lfpg_score || 0}
+          - Grade.completion.where(:user_id => @user.id).each do |grade|
             - if grade.assignment.type == "LFPG"
               - if grade.attempted? 
                 %fieldset
@@ -160,24 +161,29 @@
                 Total points:
                 %input.point-value{:class => assignment.title, :type => "text", :name => assignment.title, :value => 0 }
                 %div.slider{:id => assignment.id }
-
+          
       %li#slide-5
         %div.slide-panel#boss-battles
           %h2 Step 5 - Boss Battles
-          %p Current Boss Battle Score: #{current_user.boss_battle_score || 0}    
-          - Grade.completion.where(:user_id => current_user.id).each do |grade|
+          %p Current Boss Battle Score: #{@user.boss_battle_score || 0}    
+          - Grade.completion.where(:user_id => @user.id).each do |grade|
             - if grade.assignment.type == "BossBattle"
-              %fieldset
-                %span #{current_user.grade.title} –
-                %span #{current_user.grade.score}
+              - if grade.attempted? 
+                %fieldset
+                  %span #{grade.title} –
+                  %span #{grade.score} 
+              - else
+                %fieldset
+                  %span #{grade.title} –
+                  %span #{grade.score}
           - Assignment.future.each do |assignment|
             - if assignment.type == "BossBattle"
               %fieldset
                 %span.predictor-assignment-title= assignment.title
                 Total points:
-                %input.point-value{:class => assignment.id, :type => "text", :id => "total-", :name => assignment.title, :value => 0 }
+                %input.point-value{:class => assignment.title, :type => "text", :name => assignment.title, :value => 0 }
                 %div.slider{:id => assignment.id }   
-
+          
       %li#slide-6
         %div.slide-panel#team-points
           %h2 Step 6 - Team Points
@@ -197,7 +203,10 @@
           %div#team-standings
             <iframe width='500' height='220' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0AtknGd3uiORwdGJOVmhYRG9SX0pIWW5Qb29ZcnUyUEE&single=true&gid=3&output=html&widget=true'></iframe>
 
-<!-- team -->
+
+
+
+  <!-- team -->
 			
 
 	

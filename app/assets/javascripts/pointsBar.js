@@ -3,7 +3,8 @@ $(document).ready(function() {
 
 if ($("#userScoreSection").length > 0){
 	
-	standard_score = parseInt($("#standard_score").html());
+	lfpg_score = parseInt($("#lfpg_score").html());
+	boss_battle_score = parseInt($("#boss_battle_score").html());
 	attendance_score = parseInt($("#attendance_score").html());
 	reading_reaction_score = parseInt($("#reading_reaction_score").html());
 	blogging_score = parseInt($("#blogging_score").html());
@@ -13,7 +14,7 @@ if ($("#userScoreSection").length > 0){
 		blogging_score = 0
 	}
 	total_points = parseInt($("#courseTotalPts").html());
-	available_points = parseInt(total_points - (standard_score + attendance_score + reading_reaction_score + blogging_score));
+	available_points = parseInt(total_points - (lfpg_score + boss_battle_score + attendance_score + reading_reaction_score + blogging_score));
 	
 	chart = new Highcharts.Chart({
 		colors: [			
@@ -99,8 +100,11 @@ if ($("#userScoreSection").length > 0){
 			}	
 		},
 		series: [{
-			name: 'Assignments',
-			data: [standard_score]	
+			name: 'Learning From Playing a Game',
+			data: [lfpg_score]	
+		},{
+			name: 'Boss Battles',
+			data: [boss_battle_score]	
 		},{
 			name: 'Blogging',
 			data: [blogging_score]	
