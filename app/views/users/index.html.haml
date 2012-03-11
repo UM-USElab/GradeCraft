@@ -25,9 +25,14 @@
       %td
         - user.earned_badges.each do |badge|
           %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
-      %td
-        - if user.is_student?
+      - if user.is_student?
+        %td
           = link_to 'Dashboard', user
+        %td
+          //= link_to 'Predictor', predictor_path
+      - else
+        %td
+        %td
       %td= link_to 'Edit', edit_user_path(user)
       %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
 

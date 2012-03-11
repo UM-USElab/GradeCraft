@@ -3,23 +3,25 @@ class Assignment < ActiveRecord::Base
   accepts_nested_attributes_for :grades
   
   default_scope :order => 'due_date ASC'
-  
-  
-  
-  attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :type, :present, :grades_attributes
+    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :type, :present, :grades_attributes
 
   def mass_gradeable?
     true
   end
   
   scope :reading_reactions, where(:type => "ReadingReaction")
-  scope :standard, where(:type=> "LFPG")
-  scope :standard, where(:type=> "BossBattle")
+  scope :lfpg, where(:type=> "LFPG")
+  scope :boss_battle, where(:type=> "BossBattle")
   scope :blogging, where(:type=> "Blogging")
   scope :attendance, where(:type=> "Attendance")
   scope :future, lambda {
     { :conditions => 
-      ["assignments.due_date IS NOt nulL AND assignments.due_date >?", Date.today]
+      ["assignments.due_date IS NOt nulL AND assignments.due_date >=?", Date.today]
+    }
+  }
+  scope :past, lambda {
+    { :conditions => 
+      ["assignments.due_date IS NOt nulL AND assignments.due_date <?", Date.today]
     }
   }
   

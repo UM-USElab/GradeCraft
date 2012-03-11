@@ -34,9 +34,9 @@
   %h3#attendance.assignTitle
     %span Learning From Playing a Game
     %span.assignmentPointsSpan 
-      %span#standard_score
-        #{@user.standard_score} 
-      out of #{@user.standard_possible}
+      %span#lfpg_score
+        #{@user.lfpg_score} 
+      out of #{@user.lfpg_possible}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "LFPG" 
@@ -56,6 +56,8 @@
             %br
             %br
             %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+            %br
+            %span Grade Type: #{grade.type}
         - else
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
@@ -63,13 +65,15 @@
             %span.assignmentGrade #{grade.point_total} possible points
             %br
             %span You have not yet attempted this challenge
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
 
   %h3#attendance.assignTitle
     %span Boss Battles
     %span.assignmentPointsSpan 
-      %span#standard_score
-        #{@user.standard_score} 
-      out of #{@user.standard_possible}
+      %span#boss_battle_score
+        #{@user.boss_battle_score} 
+      out of #{@user.boss_battle_possible}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "BossBattle" 
@@ -196,7 +200,7 @@
           %br
             %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
   %div#predictorLink
-    <a href="predictor">Grade Predictor</a>
+    <a href="/predictor">Grade Predictor</a>
   %div.clear
 
 %div#footerNav

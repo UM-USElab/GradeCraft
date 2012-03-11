@@ -105,17 +105,13 @@ class User < ActiveRecord::Base
   def boss_battle_possible
     grades.where(:type=>"BossBattle").map(&:points_possible).inject(&:+) || 0
   end
-    
-  def standard_possible
-    grades.where(:type=>"StandardGrade").map(&:points_possible).inject(&:+) || 0
-  end
   
   def attendance_possible
     grades.where(:type=>"AttendanceGrade").map(&:points_possible).inject(&:+) || 0
   end
   
   def possible_score
-    attendance_possible + reading_reaction_possible + standard_possible || 0
+    attendance_possible + reading_reaction_possible + boss_battle_possible + lfpg_possible || 0
   end
   
 end
