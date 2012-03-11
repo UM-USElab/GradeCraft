@@ -165,7 +165,7 @@ if ($("#progressbar").length > 0){
 		max: 120000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#gameplay-poster-1-total" ).val( ui.value );				
+			$("#total-3" ).val( ui.value );				
 		},
 		change: function( event, ui ) {
 			updateProgressBar();				
@@ -179,7 +179,7 @@ if ($("#progressbar").length > 0){
 		max: 120000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#gameplay-poster-2-total" ).val( ui.value );				
+			$("#total-2" ).val( ui.value );				
 		},
 		change: function( event, ui ) {
 			updateProgressBar();				
@@ -193,7 +193,7 @@ if ($("#progressbar").length > 0){
 		max: 200000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#individual-project-1-total" ).val( ui.value );				
+			$("#total-5" ).val( ui.value );				
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
@@ -207,7 +207,7 @@ if ($("#progressbar").length > 0){
 		max: 300000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#individual-project-2-total" ).val( ui.value );
+			$("#total-6" ).val( ui.value );
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
@@ -221,7 +221,7 @@ if ($("#progressbar").length > 0){
 		max: 400000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#game-design-project-total" ).val( ui.value );
+			$("#total-7" ).val( ui.value );
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
@@ -235,7 +235,7 @@ if ($("#progressbar").length > 0){
 		max: 160000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#gameplay-reflection-total" ).val( ui.value );
+			$("#total-4" ).val( ui.value );
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
@@ -259,13 +259,13 @@ if ($("#progressbar").length > 0){
 
 // get slider point values
 	function getSliderPts(){
-		poster1Pts = $( "#gameplay-poster-1-slider" ).slider( "option", "value" );
-		poster2Pts = $( "#gameplay-poster-2-slider" ).slider( "option", "value" );		
-		individualProject1Pts = $( "#individual-project-1-slider" ).slider( "option", "value" );
-		individualProject2Pts = $( "#individual-project-2-slider" ).slider( "option", "value" );
-		finalProjectPts = $( "#game-design-project-slider" ).slider( "option", "value" );
-		gameReflectionPts = $( "#gameplay-reflection-slider" ).slider( "option", "value" );
-
+		poster1Pts = $( "#3" ).slider( "option", "value" );
+		poster2Pts = $( "#2" ).slider( "option", "value" );		
+		individualProject1Pts = $( "#5" ).slider( "option", "value" );
+		individualProject2Pts = $( "#6" ).slider( "option", "value" );
+		finalProjectPts = $( "#7" ).slider( "option", "value" );
+		gameReflectionPts = $( "#4" ).slider( "option", "value" );
+		console.log(poster1Pts+", "+poster2Pts+", "+individualProject1Pts+", "+individualProject2Pts+", "+finalProjectPts+", "+gameReflectionPts)
 		sliderPts = poster1Pts + poster2Pts + individualProject1Pts + individualProject2Pts + finalProjectPts + gameReflectionPts;
 	};
 
@@ -278,7 +278,7 @@ if ($("#progressbar").length > 0){
 	function updateProgressBar(){
 		getSliderPts();
 
-		assignments_score = lfpgTotalPts + bossTotalPts + gameSelectionPts
+		assignments_score = lfpgTotalPts + bossTotalPts + gameSelectionPts + sliderPts
 		attendance_score = attendanceTotalPts
 		reading_reaction_score = rxnTotalPts
 		blogging_score = blogTotalPts

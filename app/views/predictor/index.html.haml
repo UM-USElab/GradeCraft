@@ -165,7 +165,7 @@
               %fieldset
                 %span.predictor-assignment-title= assignment.title
                 Total points:
-                %input.point-value{:id => "total-"+assignment.id, :type => "text", :name => assignment.title, :value => 0 }
+                %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.title, :value => 0 }
                 %div.slider{:id => assignment.id }
 
       %li#slide-5
