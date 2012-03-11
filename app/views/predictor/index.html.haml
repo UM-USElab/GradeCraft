@@ -151,7 +151,7 @@
             Current Score: 
             %span#lfpgScore #{current_user.lfpg_score || 0}
           - Grade.completion.where(:user_id => current_user.id).each do |grade|
-            - if assignment.id < 4 && grade.assignment.type == "Standard"
+            - if grade.assignment.id < 4 && grade.assignment.type == "Standard"
               - if grade.attempted? 
                 %fieldset
                   %span #{grade.title} –
@@ -175,7 +175,7 @@
             Current Boss Battle Score: 
             %span#bossBattleScore #{current_user.boss_battle_score || 0}    
           - Grade.completion.where(:user_id => current_user.id).each do |grade|
-            - if assignment.id > 3 && grade.assignment.type == "Standard"
+            - if grade.assignment.id > 3 && grade.assignment.type == "Standard"
               %fieldset
                 %span #{grade.title} –
                 %span #{grade.score}
