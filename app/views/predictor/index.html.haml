@@ -41,7 +41,7 @@
                     %br
                   - else
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{grade.score || 0}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("January")
@@ -257,10 +257,6 @@
                 %fieldset
                   %span #{grade.title} –
                   %span #{grade.score} 
-              - else
-                %fieldset
-                  %span #{grade.title} –
-                  %span #{grade.score}
           - Assignment.future.each do |assignment|
             - if assignment.type == "LFPG"
               %fieldset
