@@ -96,7 +96,8 @@
             %br
             %span.assignmentGrade #{grade.point_total} possible points
             %br
-            %span You have not yet attempted this challenge            
+            %span You have not yet attempted this challenge        
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)    
 
   %h3#attendance.assignTitle
     %span Attendance
