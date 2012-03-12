@@ -17,12 +17,16 @@
     %div#userPointValues
       %span Your current score is 
       %span#userScoreNum #{current_user.score}
+      %br
+      <a href="#" id="totalScoreToggle" class="toggle">Show me my score out of total course points</a>
+      <a href="#" id="soFarScoreToggle" class="toggle">Show me my score out of available points so far</a>
       
     %div#predictorLink
     <a href="predictor">Predict My Course Grade!</a>
     %div#userBarTotal.toggle
+      #{current_user.possible_score}
       
-    %div#userBarInProgress
+    %div#userBarInProgress.toggle
     
 
   %h3#attendance.assignTitle
