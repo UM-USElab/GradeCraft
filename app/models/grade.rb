@@ -3,7 +3,7 @@ class Grade < ActiveRecord::Base
   belongs_to :assignment
   has_many :earned_badges, :dependent => :destroy
   has_many :badges, :through => :earned_badges
-  attr_accessible :type, :score, :feedback, :user_id, :assignment_id, :badge_id, :created_at, :updated_at, :complete, :semis, :finals, :status, :attempted, :substantial
+  attr_accessible :type, :score, :feedback, :user_id, :assignment_id, :badge_id, :created_at, :updated_at, :complete, :semis, :finals, :status, :attempted, :substantial, :user, :badge_ids
 
   validates_presence_of :user
   validates_presence_of :assignment
