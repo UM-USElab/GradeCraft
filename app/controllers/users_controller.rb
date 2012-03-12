@@ -24,6 +24,11 @@ class UsersController < ApplicationController
     @title = "View Player"
     respond_with @user = User.find(params[:id])
   end
+  
+  def predictor
+    @title = "Predict Course Grade"
+    respond_with @user = User.find(params[:id])
+  end
 
   def new
     @title = "Register"
