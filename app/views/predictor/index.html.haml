@@ -36,68 +36,68 @@
               - Grade.completion.where(:user_id => current_user.id).each do |grade|
                 - if grade.assignment.type == "Attendance" && grade.assignment.title.include?("January")
                   - if grade.attempted? 
-                    %span #{grade.title.slice(10..-1)} –
+                    %span #{grade.title} –
                     %span #{grade.score} 
                     %br
                   - else
-                    %span #{grade.title.slice(10..-1)} –
+                    %span #{grade.title} –
                     %span #{grade.score}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "Attendance" && assignment.title.include?("January")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
-                  = assignment.title.slice(10..-1)
+                  = assignment.title
                   %br
             %fieldset.checkbox-group
               %legend February
               - Grade.completion.where(:user_id => current_user.id).each do |grade|
                 - if grade.assignment.type == "Attendance" && grade.assignment.title.include?("February")
                   - if grade.attempted? 
-                    %span #{grade.title.slice(10..-1)} –
+                    %span #{grade.title} –
                     %span #{grade.score} 
                     %br
                   - else
-                    %span #{grade.title.slice(10..-1)} –
+                    %span #{grade.title} –
                     %span #{grade.score}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "Attendance" && assignment.title.include?("February")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
-                  = assignment.title.slice(10..-1)
+                  = assignment.title
                   %br
             %fieldset.checkbox-group
               %legend March
               - Grade.completion.where(:user_id => current_user.id).each do |grade|
                 - if grade.assignment.type == "Attendance" && grade.assignment.title.include?("March")
                   - if grade.attempted? 
-                    %span #{grade.title.slice(10..-1)} –
+                    %span #{grade.title} –
                     %span #{grade.score} 
                     %br
                   - else
-                    %span #{grade.title.slice(10..-1)} –
+                    %span #{grade.title} –
                     %span #{grade.score}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "Attendance" && assignment.title.include?("March")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
-                  = assignment.title.slice(10..-1)
+                  = assignment.title
                   %br
             %fieldset.checkbox-group
               %legend April
               - Grade.completion.where(:user_id => current_user.id).each do |grade|
                 - if grade.assignment.type == "Attendance" && grade.assignment.title.include?("April")
                   - if grade.attempted? 
-                    %span #{grade.title.slice(10..-1)} –
+                    %span #{grade.title} –
                     %span #{grade.score} 
                     %br
                   - else
-                    %span #{grade.title.slice(10..-1)} –
+                    %span #{grade.title} –
                     %span #{grade.score}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "Attendance" && assignment.title.include?("April")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
-                  = assignment.title.slice(10..-1)
+                  = assignment.title
                   %br
       %li#slide-2
         %div.slide-panel#reading-rxns
