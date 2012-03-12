@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
 
   #Actual
   def boss_battle_score
-    grades.bossbattle.sum(:score) || 0
+    grades.boss_battle.sum(:score) || 0
   end
    
   def lfpg_score
