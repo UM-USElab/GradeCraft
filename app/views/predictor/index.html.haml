@@ -112,7 +112,6 @@
           %div#reactions-missed
             %div.select-checkboxes <a href="#" class="select-all">select all</a> | <a href="#" class="select-none">select none</a>
             %fieldset.checkbox-group
-              %legend January
               - Grade.completion.where(:user_id => current_user.id).each do |grade|
                 - if grade.assignment.type == "ReadingReaction"
                   - if grade.attempted? 
