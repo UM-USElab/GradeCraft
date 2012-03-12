@@ -271,12 +271,13 @@
           %p 
             Current Boss Battle Score: 
             %span#bossBattleScore #{current_user.boss_battle_score || 0}    
-          - Grade.completion.where(:user_id => current_user.id).each do |grade|
-            - if grade.assignment.type == "BossBattle"
-              %fieldset
-                %span #{grade.title} –
-                %span #{grade.score}
-          - Assignment.future.each do |assignment|
+          /- Grade.completion.where(:user_id => current_user.id).each do |grade|
+          /- if grade.assignment.type == "BossBattle"
+          /%fieldset
+          /%span #{grade.title} –
+          /%span #{grade.score}
+          /- Assignment.future.each do |assignment|
+          - Assignment.all.each do |assignment|
             - if assignment.type == "BossBattle"
               %fieldset
                 %span.predictor-assignment-title= assignment.title
