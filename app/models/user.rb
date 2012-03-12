@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
   end
     
   def boss_battle_possible
-    grades.where(:type=>"BossBattle").map(&:points_possible).inject(&:+) || 0
+    grades.where(:type=>"BossBattleGrade").map(&:points_possible).inject(&:+) || 0
   end
   
   def attendance_possible
