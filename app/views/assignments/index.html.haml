@@ -166,8 +166,6 @@
             = assignment.due_date.to_s(:gt_date)
         - if current_user.is_staff?
           %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
-          - if assignment.mass_gradeable?
-            %td= link_to 'Log Grades', mass_edit_grades_path("assignment_id"=>assignment.id) 
           %td= link_to 'Edit', edit_assignment_path(assignment)
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
           
