@@ -34,7 +34,7 @@
             %fieldset.checkbox-group
               %legend January
               - Grade.completion.where(:user_id => current_user.id).each do |grade|
-                - if grade.assignment.type == "Attendance" && grade.assignment.title.include?("January")
+                - if grade.assignment.type == "Attendance" && grade.assignment.due_date.strftime("%B").include?("January")
                   - if grade.attempted? 
                     %span #{grade.title} –
                     %span #{grade.score} 
@@ -44,14 +44,14 @@
                     %span #{grade.score}
                     %br
               - Assignment.future.each do |assignment|
-                - if assignment.type == "Attendance" && assignment.title.include?("January")
+                - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("January")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
                   = assignment.title
                   %br
             %fieldset.checkbox-group
               %legend February
               - Grade.completion.where(:user_id => current_user.id).each do |grade|
-                - if grade.assignment.type == "Attendance" && grade.assignment.title.include?("February")
+                - if grade.assignment.type == "Attendance" && grade.assignment.due_date.strftime("%B").include?("February")
                   - if grade.attempted? 
                     %span #{grade.title} –
                     %span #{grade.score} 
@@ -61,14 +61,14 @@
                     %span #{grade.score}
                     %br
               - Assignment.future.each do |assignment|
-                - if assignment.type == "Attendance" && assignment.title.include?("February")
+                - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("February")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
                   = assignment.title
                   %br
             %fieldset.checkbox-group
               %legend March
               - Grade.completion.where(:user_id => current_user.id).each do |grade|
-                - if grade.assignment.type == "Attendance" && grade.assignment.title.include?("March")
+                - if grade.assignment.type == "Attendance" && grade.assignment.due_date.strftime("%B").include?("March")
                   - if grade.attempted? 
                     %span #{grade.title} –
                     %span #{grade.score} 
@@ -78,14 +78,14 @@
                     %span #{grade.score}
                     %br
               - Assignment.future.each do |assignment|
-                - if assignment.type == "Attendance" && assignment.title.include?("March")
+                - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("March")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
                   = assignment.title
                   %br
             %fieldset.checkbox-group
               %legend April
               - Grade.completion.where(:user_id => current_user.id).each do |grade|
-                - if grade.assignment.type == "Attendance" && grade.assignment.title.include?("April")
+                - if grade.assignment.type == "Attendance" && grade.assignment.due_date.strftime("%B").include?("April")
                   - if grade.attempted? 
                     %span #{grade.title} –
                     %span #{grade.score} 
@@ -95,7 +95,7 @@
                     %span #{grade.score}
                     %br
               - Assignment.future.each do |assignment|
-                - if assignment.type == "Attendance" && assignment.title.include?("April")
+                - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("April")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
                   = assignment.title
                   %br
@@ -114,21 +114,71 @@
             %fieldset.checkbox-group
               %legend January
               - Grade.completion.where(:user_id => current_user.id).each do |grade|
-                - if grade.assignment.type == "ReadingReaction"
+                - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("January")
                   - if grade.attempted? 
                     %span #{grade.title} –
-                    %span #{grade.score} 
+                    %span #{grade.score}
                     %br
                   - else
                     %span #{grade.title} –
                     %span #{grade.score}
                     %br
               - Assignment.future.each do |assignment|
-                - if assignment.type == "ReadingReaction"
+                - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("January")
+                  %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
+                  = assignment.title
+                  %br            
+            %fieldset.checkbox-group
+              %legend February
+              - Grade.completion.where(:user_id => current_user.id).each do |grade|
+                - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("February")
+                  - if grade.attempted? 
+                    %span #{grade.title} –
+                    %span #{grade.score}
+                    %br
+                  - else
+                    %span #{grade.title} –
+                    %span #{grade.score}
+                    %br
+              - Assignment.future.each do |assignment|
+                - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("February")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
                   = assignment.title
                   %br
-            
+            %fieldset.checkbox-group
+              %legend March
+              - Grade.completion.where(:user_id => current_user.id).each do |grade|
+                - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("March")
+                  - if grade.attempted? 
+                    %span #{grade.title} –
+                    %span #{grade.score}
+                    %br
+                  - else
+                    %span #{grade.title} –
+                    %span #{grade.score}
+                    %br
+              - Assignment.future.each do |assignment|
+                - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("March")
+                  %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
+                  = assignment.title
+                  %br
+            %fieldset.checkbox-group
+              %legend April
+              - Grade.completion.where(:user_id => current_user.id).each do |grade|
+                - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("April")
+                  - if grade.attempted? 
+                    %span #{grade.title} –
+                    %span #{grade.score}
+                    %br
+                  - else
+                    %span #{grade.title} –
+                    %span #{grade.score}
+                    %br
+              - Assignment.future.each do |assignment|
+                - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("April")
+                  %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
+                  = assignment.title
+                  %br
             %div#winning-reactions
               %p Feeling confident? Select the number of reading reactions you think you'll win:
               %fieldset
