@@ -17,19 +17,13 @@
     %div#userPointValues
       %span Your current score is 
       %span#userScoreNum #{current_user.score}
-      %span#scoreSoFar.toggle 
-        out of 
-        %span#availablePoints 
-          #{current_user.possible_score} 
-        possible points so far
-      %span#scoreTotal.toggle 
-        out of 
-        %span#courseTotalPts
-          #{Assignment.sum(:point_total)} 
-        total points in the course
+      
+    %div#predictorLink
+    <a href="predictor">Predict My Course Grade!</a>
     %div#userBarTotal.toggle
       
     %div#userBarInProgress
+    
 
   %h3#attendance.assignTitle
     %span Learning from Playing a Game
@@ -174,6 +168,4 @@
           %br
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
-  %div#predictorLink
-    <a href="predictor">Grade Predictor</a>
-  %div.clear
+  

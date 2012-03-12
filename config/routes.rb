@@ -9,6 +9,7 @@ Grader::Application.routes.draw do
   resources :users do
     collection do
       get 'edit_profile'
+      get 'predictor'
       put 'update_profile'
     end
   end
