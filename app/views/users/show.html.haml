@@ -17,17 +17,14 @@
     %div#userPointValues
       %span Your current score is 
       %span#userScoreNum #{@user.score}
-      %span#scoreSoFar.toggle 
-        out of 
-        %span#availablePoints 
-          #{@user.possible_score} 
-        possible points so far
-      %span#scoreTotal.toggle 
-        out of 
-        %span#courseTotalPts
-          #{Assignment.sum(:point_total)} 
-        total points in the course
+      %br
+      <a href="#" id="totalScoreToggle" class="toggle">Show me my score out of total course points</a>
+      <a href="#" id="soFarScoreToggle" class="toggle">Show me my score out of available points so far</a>
+
+    %div#predictorLink
+    <a href="/predictor">Predict My Course Grade!</a>
     %div#userBarTotal.toggle
+      #{@user.possible_score}
 
     %div#userBarInProgress.toggle
 
@@ -199,9 +196,6 @@
             %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
           %br
             %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
-  %div#predictorLink
-    <a href="/predictor">Grade Predictor</a>
-  %div.clear
 
 %div#footerNav
   %span.button= link_to 'Edit', edit_user_path(@user)

@@ -16,12 +16,6 @@ $(document).ready(function(){
     var firstpsa = psas.slice(1,2);
 	$(firstpsa).show();
 	
-// Progress bars to student dashboard
-
-	$('#scoreTotal').hide();
-	$('#userBarTotal').hide();
-	$('#showPossiblePts').hide();
-	
 	var chart;
 
 		// if ($("#userScoreSection").length > 0){
