@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   
   
   def blogging_score
-    #grades.blogging.map(&:score).inject(&:+) || 0
+    grades.blogging.map(&:score).inject(&:+) || 0
   end
   
   def attendance_score
