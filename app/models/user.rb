@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
   end
   
   def possible_score
-    attendance_possible + reading_reaction_possible + boss_battle_possible + lfpg_possible || 0
+    attendance_possible + reading_reaction_possible + boss_battle_possible + lfpg_possible + blogging_score || 0
   end
   
 end

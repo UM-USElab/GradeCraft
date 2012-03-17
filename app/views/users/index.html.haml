@@ -29,7 +29,7 @@
         %td
           = link_to 'Dashboard', user
         %td
-          = link_to 'Predictor', predictor_path(user)
+          = link_to 'Predictor', predictor_users_path(:user_id => user.id)
       - else
         %td
         %td

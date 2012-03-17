@@ -1,6 +1,6 @@
 %div#predictor-wrapper
   %div#prediction 
-    Total projected points: 
+    #{@user.name}'s total projected points: 
     %span#expected-points
     %br 
     Projected Course Grade:
@@ -271,16 +271,11 @@
           %p 
             Current Boss Battle Score: 
             %span#bossBattleScore #{@user.boss_battle_score || 0}    
-          - Assignment.past.each do |assignment|
-            - Grade.completion.where(:user_id => @user.id).each do |grade|
-              - if grade.assignment.type == "BossBattle"
-                %fieldset
-                  %span #{grade.title} –
-                  %span #{grade.score}
-              - else
-                %fieldset
-                  %span #{grade.title} –
-                  %span #{grade.score}
+          - Grade.completion.where(:user_id => @user.id).each do |grade|
+            - if grade.assignment.type == "BossBattle"
+              %fieldset
+              %span #{grade.title} –
+              %span #{grade.score}
           - Assignment.future.each do |assignment|
             - if assignment.type == "BossBattle"
               %fieldset

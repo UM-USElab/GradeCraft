@@ -80,6 +80,14 @@ class UsersController < ApplicationController
     respond_with @user
   end
 
+  def predictor
+    if current_user.is_staff?
+      @user = User.find(params[:user_id])
+    else
+      @user = current_user
+    end
+  end
+  
   private
 
   def sort_column
@@ -89,5 +97,6 @@ class UsersController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
+  
 
 end
