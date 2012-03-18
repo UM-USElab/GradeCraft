@@ -9,9 +9,10 @@
   %tr
     %th Username
     %th Team
-    %th= Assignment
+    %th Assignment
     %th= sortable "score"
     %th= sortable "feedback"
+    %th Grade Type
     %th= sortable "badge_id"
     %th
     %th
@@ -23,6 +24,7 @@
         %td= grade.assignment.title
         %td= grade.score
         %td= grade.feedback
+        %td= grade.type
         %td
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => "25", :height => "25"}

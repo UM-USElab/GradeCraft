@@ -6,7 +6,7 @@
   = @assignment.description
 %p
   %b Point Total:
-  = @assignment.point_total
+  = number_with_delimiter(@assignment.point_total, :delimiter => ',') 
 %p
   %b Due Date:
   = @assignment.due_date
@@ -21,7 +21,7 @@
     (#{link_to 'log grades', mass_edit_grades_path(:assignment_id => @assignment.id)})
 - @assignment.grades.each do |grade|
   %p
-    #{grade.user.name} (#{grade.score}) 
+    #{grade.user.name} (#{number_with_delimiter(grade.score, :delimiter => ',') }) 
 
 %div#footerNav
   %span.button= link_to 'Add Grade', new_grade_path(:assignment_id => @assignment)

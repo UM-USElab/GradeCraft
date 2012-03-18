@@ -274,8 +274,8 @@
           - Grade.completion.where(:user_id => @user.id).each do |grade|
             - if grade.assignment.type == "BossBattle"
               %fieldset
-              %span #{grade.title} –
-              %span #{grade.score}
+                %span #{grade.title} –
+                %span #{grade.score}
           - Assignment.future.each do |assignment|
             - if assignment.type == "BossBattle"
               %fieldset

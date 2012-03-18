@@ -16,13 +16,13 @@
   %div#userScoreSection
     %div#userPointValues
       %span Your current score is 
-      %span#userScoreNum #{@user.score}
+      %span#userScoreNum #{number_with_delimiter(@user.score, :delimiter => ',') if @user.respond_to?(:score)}
       %br
       <a href="#" id="totalScoreToggle" class="toggle">Show me my score out of total course points</a>
       <a href="#" id="soFarScoreToggle" class="toggle">Show me my score out of available points so far</a>
 
     %div#predictorLink
-    <a href="/predictor">Predict My Course Grade!</a>
+      = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
     %div#userBarTotal.toggle
       #{@user.possible_score}
 
@@ -32,8 +32,8 @@
     %span Learning From Playing a Game
     %span.assignmentPointsSpan 
       %span#lfpg_score
-        #{@user.lfpg_score} 
-      out of #{@user.lfpg_possible}
+        #{number_with_delimiter(@user.lfpg_score, :delimiter => ',')} 
+      out of #{number_with_delimiter(@user.lfpg_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "LFPG" 
@@ -41,7 +41,7 @@
           %div.completedAssignment 
             %span.assignmentTitle= grade.title
             %br
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
+            %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
@@ -59,7 +59,7 @@
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
             %br
-            %span.assignmentGrade #{grade.point_total} possible points
+            %span.assignmentGrade #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             %span You have not yet attempted this challenge
             %br
@@ -69,8 +69,8 @@
     %span Boss Battles
     %span.assignmentPointsSpan 
       %span#boss_battle_score
-        #{@user.boss_battle_score} 
-      out of #{@user.boss_battle_possible}
+        #{number_with_delimiter(@user.boss_battle_score, :delimiter => ',')} 
+      out of #{number_with_delimiter(@user.boss_battle_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "BossBattle" 
@@ -78,7 +78,7 @@
           %div.completedAssignment 
             %span.assignmentTitle= grade.title
             %br
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
+            %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
@@ -94,7 +94,7 @@
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
             %br
-            %span.assignmentGrade #{grade.point_total} possible points
+            %span.assignmentGrade #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             %span You have not yet attempted this challenge        
             %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)    
@@ -103,15 +103,15 @@
     %span Attendance
     %span.assignmentPointsSpan 
       %span#attendance_score
-        #{@user.attendance_score} 
-      out of #{@user.attendance_possible}
+        #{number_with_delimiter(@user.attendance_score, :delimiter => ',')} 
+      out of #{number_with_delimiter(@user.attendance_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Attendance"
         - if grade.attempted? 
           %div.completedAssignment 
             %span.assignmentTitle #{grade.title} –
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
+            %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
@@ -120,7 +120,7 @@
         - else
           %div.missedAssignment
             %span.assignmentTitle #{grade.title} –
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
+            %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             %span You didn't make it to class. Bummer!
   
@@ -128,8 +128,8 @@
     %span Reading Reactions
     %span.assignmentPointsSpan
       %span#reading_reaction_score
-        #{@user.reading_reaction_score} 
-      out of #{@user.reading_reaction_possible}
+        #{number_with_delimiter(@user.reading_reaction_score, :delimiter => ',')} 
+      out of #{number_with_delimiter(@user.reading_reaction_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade| 
       - if grade.assignment.type == "ReadingReaction"
@@ -137,7 +137,7 @@
           %div.completedAssignment 
             %span.assignmentTitle= grade.title
             %br
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
+            %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             %span.assignmentFeedback= grade.feedback
             %br
@@ -149,7 +149,7 @@
           %div.missedAssignment
             %span.assignmentTitle= grade.title
             %br
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
+            %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             %span Didn't do the readings this week, huh?
   
@@ -157,14 +157,14 @@
     %span Blogging
     %span.assignmentPointsSpan
       %span#blogging_score
-        #{@user.blogging_score}
+        #{number_with_delimiter(@user.blogging_score, :delimiter => ',') }
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Blogging"
         - if grade.attempted? 
           %div.completedAssignment 
             %span.assignmentTitle #{ grade.title } – 
-            %span.assignmentGrade #{ grade.score }
+            %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')}
             %br
             %span.assignmentFeedback= grade.feedback
             %br
@@ -176,7 +176,7 @@
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
             %br
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
+            %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             %span Blogging is a great way to make up some extra points, you should go do it!
             
@@ -189,9 +189,9 @@
         %div.completedAssignment
           %span.assignmentTitle= grade.title
           %br
-          %span.assignmentGrade= grade.score
+          %span.assignmentGrade= number_with_delimiter(grade.score, :delimiter => ',')
           out of
-          %span.assignmentScore= grade.point_total
+          %span.assignmentScore= number_with_delimiter(grade.point_total, :delimiter => ',')
           %br
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => "25"} 

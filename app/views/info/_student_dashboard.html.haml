@@ -22,7 +22,7 @@
       <a href="#" id="soFarScoreToggle" class="toggle">Show me my score out of available points so far</a>
       
     %div#predictorLink
-    <a href="/predictor">Predict My Course Grade!</a>
+      %= link_to "Predict My Course Grade!" predictor_users_path(:user_id => user.id)
     %div#userBarTotal.toggle
       #{current_user.possible_score}
       

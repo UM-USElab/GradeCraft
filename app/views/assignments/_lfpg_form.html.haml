@@ -1,4 +1,4 @@
 .text= form.input :description, :as => :text
-.text= form.input :point_total, :as => :numeric
+.text= form.input :point_total, :as => :number
 .text= form.input :due_date, :as => :datetime
-.text= form.input :type, :as => :select, :collection => [["Learning From Playing a Game", "LFPG"], ["Boss Battle", "BossBattle"], ["Reading Reaction", "ReadingReaction"], ["Blogging", "Blogging"], ["Attendance", "Attendance"]]
+= form.input :type, :as => :hidden, :value => "LFPG"
