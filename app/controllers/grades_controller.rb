@@ -105,7 +105,7 @@ class GradesController < ApplicationController
     end
     @students = User.students.where(user_search_options)
     @grades = @students.map do |s| 
-      @assignment.grades.find_by_user_id(s.id) || grade_class(@assignment).create(:user => s, :assignment => @assignment) 
+      @assignment.grades.find_by_user_id(s.id) || grade_class(@assignment).create(:user => s, :assignment_id => @assignment.id) 
     end
   end
 

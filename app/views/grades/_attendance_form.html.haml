@@ -1,3 +1,2 @@
-= semantic_form_for @assignment.becomes(Assignment) do |f|
-  .gradeuser= grade.user.name
-  .gradeattendance= form.input :score, :as => :boolean, :label => 'Present', :input_html => { :value => 5000 } 
+.gradeuser= grade.user.name
+.gradeattendance= form.input :score, :as => :boolean, :label => 'Present', :input_html => { :value => 5000 } 

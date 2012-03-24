@@ -19,9 +19,7 @@ class Grade < ActiveRecord::Base
   scope :bossbattle, where(:type=> "BossBattleGrade")
   scope :blogging, where(:type=> "BloggingGrade")
   scope :attendance, where(:type=> "AttendanceGrade")
-  
-  Assignments = @assignments
-  
+    
   def score
     super || 0
   end
