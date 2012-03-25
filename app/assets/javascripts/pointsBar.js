@@ -3,6 +3,20 @@ var soFarChart;
 		
 $(document).ready(function() {
 
+	function removeCommas(i){
+		console.log(i);
+		if (i == null) {
+			return 0;
+		}
+		else if (i.indexOf(",") >= 0){
+			integer = parseInt(i.replace(/,/g, ""));
+			return integer
+		}
+		else{
+			return parseInt(i);
+		}
+	}; 
+
 // Progress bars to student dashboard
 
 	$('#scoreTotal').hide();
@@ -17,20 +31,14 @@ $(document).ready(function() {
 
 if ($("#userScoreSection").length > 0){
 	
-	var lfpg_score = parseInt($("#lfpg_score").html());
-	var boss_battle_score = parseInt($("#boss_battle_score").html());
-	var attendance_score = parseInt($("#attendance_score").html());
-	var reading_reaction_score = parseInt($("#reading_reaction_score").html());
-	var blogging_score = parseInt($("#blogging_score").html());	
-    if ( isNaN(blogging_score) == true){
-		blogging_score = 0
-	}
-	else{
-		blogging_score = parseInt($("#blogging_score").html());
-	}
+	var lfpg_score = removeCommas($("#lfpg_score").html());
+	var boss_battle_score = removeCommas($("#boss_battle_score").html());
+	var attendance_score = removeCommas($("#attendance_score").html());
+	var reading_reaction_score = removeCommas($("#reading_reaction_score").html());
+	var blogging_score = removeCommas($("#blogging_score").html());	
 	var assignment_score = lfpg_score + boss_battle_score	
-	var total_points = parseInt($("#courseTotalPts").html());
-	var totalSoFar = parseInt($("#userBarTotal").html());
+	var total_points = removeCommas($("#courseTotalPts").html());
+	var totalSoFar = removeCommas($("#userBarTotal").html());
 	
 	chart = new Highcharts.Chart({
 		colors: [			

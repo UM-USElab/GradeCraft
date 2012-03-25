@@ -18,35 +18,41 @@ $(document).ready(function(){
 	
 	var chart;
 
-		// if ($("#userScoreSection").length > 0){
-		// 	
-		// }
-		// else if ($("#progressbar").length > 0){
-		// 	
-		// }
-		// else{
-		// 	
-		// }
+// Remove commas from numbers when grabbing them from page
+	function removeCommas(i){
+		console.log(i);
+		if (i == null) {
+			return 0;
+		}
+		else if (i.indexOf(",") >= 0){
+			integer = parseInt(i.replace(/,/g, ""));
+			return integer
+		}
+		else{
+			return parseInt(i);
+		}
+	};
+
 if ($("#progressbar").length > 0){		
 // hide grade estimations
 	$("#expected-grade > span").hide();
 					
 // set initial point values
 		
-	var attendancePts = parseInt($("#attendanceScore").html());
+	var attendancePts = removeCommas($("#attendanceScore").html());
 	var attendanceTotalPts = 0;
-	var rxnPts = parseInt($("#rxnScore").html());
+	var rxnPts = removeCommas($("#rxnScore").html());
 	var rxnSemiPts = 0;
 	var rxnFinalPts = 0;
 	var rxnTotalPts = 0;
-	var blogPts = parseInt($("#bloggingScore").html());
+	var blogPts = removeCommas($("#bloggingScore").html());
 	var subBlogPts = 0;
 	var shortBlogPts = 0;
 	var blogTotalPts = 0;
 	var gameSelectionPts = 0;
-    var lfpgPts = parseInt($("#lfpgScore").html());
+    var lfpgPts = removeCommas($("#lfpgScore").html());
 	var lfpgTotalPts = 0;
-	var bossPts = parseInt($("#bossBattleScore").html());
+	var bossPts = removeCommas($("#bossBattleScore").html());
 	var bossTotalPts = 0;
 	var assignmentPts = 0;
 	var teamPts = 0;
