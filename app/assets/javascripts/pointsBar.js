@@ -3,8 +3,8 @@ var soFarChart;
 		
 $(document).ready(function() {
 
+// adds commas
 	function removeCommas(i){
-		console.log(i);
 		if (i == null) {
 			return 0;
 		}
@@ -16,6 +16,12 @@ $(document).ready(function() {
 			return parseInt(i);
 		}
 	}; 
+
+// adds commas
+	function addCommas(i){
+		numWithCommas = i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		return numWithCommas;
+	};
 
 // Progress bars to student dashboard
 
@@ -79,7 +85,7 @@ if ($("#userScoreSection").length > 0){
 			},
 			labels: {
 				formatter: function(){
-					return this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					return addCommas(this.value);
 				},
 				style: {
 					color: "#FFFFFF"
@@ -109,7 +115,7 @@ if ($("#userScoreSection").length > 0){
 		tooltip: {
 			formatter: function() {
 				return ''+
-					this.series.name +': '+ this.y +'';
+					this.series.name +': '+ addCommas(this.y) +'';
 			}
 		},
 		plotOptions: {

@@ -20,7 +20,6 @@ $(document).ready(function(){
 
 // Remove commas from numbers when grabbing them from page
 	function removeCommas(i){
-		console.log(i);
 		if (i == null) {
 			return 0;
 		}
@@ -59,7 +58,13 @@ if ($("#progressbar").length > 0){
 	var totalPts;						
 		
 //	---->
-	var gameSelectionPts = 0;		
+	var gameSelectionPts = 0;	
+	
+// adds commas
+	function addCommas(i){
+		numWithCommas = i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		return numWithCommas;
+	};
 		
 // adds up total points
 	function getTotalPts(){
@@ -166,13 +171,13 @@ if ($("#progressbar").length > 0){
 		max: 120000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#total-3" ).val( ui.value );				
+			$("#total-3" ).val( addCommas(ui.value) );				
 		},
 		change: function( event, ui ) {
 			updateProgressBar();				
 		}
 	});
-	$( "#gameplay-poster-1-amount" ).val( $( "#3" ).slider( "value" ) );
+	// $( "#gameplay-poster-1-amount" ).val( $( "#3" ).slider( "value" ) );
 
 	$( "#2" ).slider({
 		value:0,
@@ -180,13 +185,13 @@ if ($("#progressbar").length > 0){
 		max: 120000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#total-2" ).val( ui.value );				
+			$("#total-2" ).val( addCommas(ui.value) );				
 		},
 		change: function( event, ui ) {
 			updateProgressBar();				
 		}
 	});
-	$( "#gameplay-poster-2-amount" ).val( $( "#2" ).slider( "value" ) );
+	// $( "#gameplay-poster-2-amount" ).val( $( "#2" ).slider( "value" ) );
 
 	$( "#5" ).slider({
 		value:0,
@@ -194,13 +199,13 @@ if ($("#progressbar").length > 0){
 		max: 200000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#total-5" ).val( ui.value );				
+			$("#total-5" ).val( addCommas(ui.value) );				
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
 		}
 	});
-	$( "#individual-project-1-amount" ).val( $( "#5" ).slider( "value" ) );
+	// $( "#individual-project-1-amount" ).val( $( "#5" ).slider( "value" ) );
 
 	$( "#6" ).slider({
 		value:0,
@@ -208,13 +213,13 @@ if ($("#progressbar").length > 0){
 		max: 300000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#total-6" ).val( ui.value );
+			$("#total-6" ).val( addCommas(ui.value) );
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
 		}
 	});
-	$( "#individual-project-2-amount" ).val( $( "#6" ).slider( "value" ) );
+	// $( "#individual-project-2-amount" ).val( $( "#6" ).slider( "value" ) );
 
 	$( "#7" ).slider({
 		value:0,
@@ -222,13 +227,13 @@ if ($("#progressbar").length > 0){
 		max: 400000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#total-7" ).val( ui.value );
+			$("#total-7" ).val( addCommas(ui.value) );
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
 		}
 	});
-	$( "#game-design-project-amount" ).val( $( "#7" ).slider( "value" ) );
+	// $( "#game-design-project-amount" ).val( $( "#7" ).slider( "value" ) );
 
 	$( "#4" ).slider({
 		value:0,
@@ -236,13 +241,13 @@ if ($("#progressbar").length > 0){
 		max: 160000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#total-4" ).val( ui.value );
+			$("#total-4" ).val( addCommas(ui.value) );
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
 		}
 	});
-	$( "#gameplay-reflection-amount" ).val( $( "#4" ).slider( "value" ) );
+	// $( "#gameplay-reflection-amount" ).val( $( "#4" ).slider( "value" ) );
 
 	$("#team-point-values").change(function(){
 		teamPtsVal = $(this).val();
@@ -310,9 +315,9 @@ if ($("#progressbar").length > 0){
 		};
 		
 		lfpgTotalPts = poster1Pts + poster2Pts + gameReflectionPts + lfpgPts;
-		console.log(poster1Pts +", " +poster2Pts +", " +gameReflectionPts +", " +lfpgPts)
+		// console.log(poster1Pts +", " +poster2Pts +", " +gameReflectionPts +", " +lfpgPts)
 		bossTotalPts = individualProject1Pts + individualProject2Pts + finalProjectPts + bossPts;
-		console.log(individualProject1Pts +", " +individualProject2Pts +", " +finalProjectPts +", " +bossPts)		
+		// console.log(individualProject1Pts +", " +individualProject2Pts +", " +finalProjectPts +", " +bossPts)		
 		// console.log(poster1Pts+", "+poster2Pts+", "+individualProject1Pts+", "+individualProject2Pts+", "+finalProjectPts+", "+gameReflectionPts)
 		sliderPts = lfpgTotalPts + bossTotalPts;
 		// console.log(sliderPts);
@@ -380,7 +385,7 @@ if ($("#progressbar").length > 0){
 				},
 				labels: {
 					formatter: function(){
-						return this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						return addCommas(this.value);
 					},
 					style: {
 						color: "#FFFFFF"
@@ -410,7 +415,7 @@ if ($("#progressbar").length > 0){
 			tooltip: {
 				formatter: function() {
 					return ''+
-						this.series.name +': '+ this.y +'';
+						this.series.name +': '+ addCommas(this.y) +'';
 				}
 			},
 			plotOptions: {
@@ -485,6 +490,7 @@ if ($("#progressbar").length > 0){
 	};
 
 	updateGrinding();
+	updateBlogging();
 	getSliderPts();
 	// getTotalPts();
 	updateProgressBar();	
