@@ -24,7 +24,7 @@
           %h2 Step 1 - Attendance
           %p 
             Current Score: 
-            %span#attendanceScore #{@user.attendance_score || 0}
+            %span#attendanceScore #{number_with_delimiter(@user.attendance_score, :delimiter => ',') || 0}
           Weekly engagement in this course, in the form of attendance and reading reactions, is required. 
           %br
           Which classes do you expect to attend?
@@ -37,11 +37,11 @@
                 - if grade.assignment.type == "Attendance" && grade.assignment.due_date.strftime("%B").include?("January")
                   - if grade.attempted? 
                     %span #{grade.title} –
-                    %span #{grade.score} 
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
                     %br
                   - else
                     %span #{grade.title} –
-                    %span #{grade.score || 0}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',') || 0}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("January")
@@ -54,11 +54,11 @@
                 - if grade.assignment.type == "Attendance" && grade.assignment.due_date.strftime("%B").include?("February")
                   - if grade.attempted? 
                     %span #{grade.title} –
-                    %span #{grade.score} 
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
                     %br
                   - else
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("February")
@@ -71,11 +71,11 @@
                 - if grade.assignment.type == "Attendance" && grade.assignment.due_date.strftime("%B").include?("March")
                   - if grade.attempted? 
                     %span #{grade.title} –
-                    %span #{grade.score} 
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
                     %br
                   - else
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("March")
@@ -88,11 +88,11 @@
                 - if grade.assignment.type == "Attendance" && grade.assignment.due_date.strftime("%B").include?("April")
                   - if grade.attempted? 
                     %span #{grade.title} –
-                    %span #{grade.score} 
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
                     %br
                   - else
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("April")
@@ -104,7 +104,7 @@
           %h2 Step 2 - Reading Reactions
           %span.current Current Reading Reactions Score:
           %span#rxnScore 
-            = @user.reading_reaction_score
+            = number_with_delimiter(@user.reading_reaction_score, :delimiter => ',')
           %br
           %br
           Which reading reactions do you expect to complete?
@@ -117,11 +117,11 @@
                 - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("January")
                   - if grade.attempted? 
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
                   - else
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("January")
@@ -134,11 +134,11 @@
                 - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("February")
                   - if grade.attempted? 
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
                   - else
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("February")
@@ -151,11 +151,11 @@
                 - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("March")
                   - if grade.attempted? 
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
                   - else
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("March")
@@ -168,11 +168,11 @@
                 - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("April")
                   - if grade.attempted? 
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
                   - else
                     %span #{grade.title} –
-                    %span #{grade.score}
+                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
               - Assignment.future.each do |assignment|
                 - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("April")
@@ -205,7 +205,7 @@
           %h2 Step 3 - Blogging
           %p 
             Current Blogging Score: 
-            %span#bloggingScore #{@user.blogging_score || 0}
+            %span#bloggingScore #{number_with_delimiter(@user.blogging_score, :delimiter => ',') || 0}
           %p Are you blogging this semester? 
           %fieldset
             How many substantial posts?
@@ -250,13 +250,13 @@
           %h2 Step 4 - Learning From Playing a Game
           %p 
             Current Score: 
-            %span#lfpgScore #{@user.lfpg_score || 0}
+            %span#lfpgScore #{number_with_delimiter(@user.lfpg_score, :delimiter => ',') || 0}
           - Grade.completion.where(:user_id => @user.id).each do |grade|
             - if grade.assignment.type == "LFPG"
               - if grade.attempted? 
                 %fieldset
                   %span #{grade.title} –
-                  %span #{grade.score} 
+                  %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
           - Assignment.future.each do |assignment|
             - if assignment.type == "LFPG"
               %fieldset
@@ -270,12 +270,12 @@
           %h2 Step 5 - Boss Battles
           %p 
             Current Boss Battle Score: 
-            %span#bossBattleScore #{@user.boss_battle_score || 0}    
+            %span#bossBattleScore #{number_with_delimiter(@user.boss_battle_score, :delimiter => ',') || 0}    
           - Grade.completion.where(:user_id => @user.id).each do |grade|
             - if grade.assignment.type == "BossBattle"
               %fieldset
                 %span #{grade.title} –
-                %span #{grade.score}
+                %span #{number_with_delimiter(grade.score, :delimiter => ',')}
           - Assignment.future.each do |assignment|
             - if assignment.type == "BossBattle"
               %fieldset
