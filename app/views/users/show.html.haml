@@ -32,8 +32,8 @@
     %span Learning From Playing a Game
     %span.assignmentPointsSpan 
       %span#lfpg_score
-        #{@user.lfpg_score} 
-      out of #{@user.lfpg_possible}
+        #{number_with_delimiter(@user.lfpg_score, :delimiter => ',')} 
+      out of #{number_with_delimiter(@user.lfpg_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "LFPG" 
@@ -69,8 +69,8 @@
     %span Boss Battles
     %span.assignmentPointsSpan 
       %span#boss_battle_score
-        #{@user.boss_battle_score} 
-      out of #{@user.boss_battle_possible}
+        #{number_with_delimiter(@user.boss_battle_score, :delimiter => ',')} 
+      out of #{number_with_delimiter(@user.boss_battle_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "BossBattle" 
@@ -103,8 +103,8 @@
     %span Attendance
     %span.assignmentPointsSpan 
       %span#attendance_score
-        #{@user.attendance_score} 
-      out of #{@user.attendance_possible}
+        #{number_with_delimiter(@user.attendance_score, :delimiter => ',')} 
+      out of #{number_with_delimiter(@user.attendance_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Attendance"
@@ -128,8 +128,8 @@
     %span Reading Reactions
     %span.assignmentPointsSpan
       %span#reading_reaction_score
-        #{@user.reading_reaction_score} 
-      out of #{@user.reading_reaction_possible}
+        #{number_with_delimiter(@user.reading_reaction_score, :delimiter => ',')} 
+      out of #{number_with_delimiter(@user.reading_reaction_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade| 
       - if grade.assignment.type == "ReadingReaction"
@@ -157,7 +157,7 @@
     %span Blogging
     %span.assignmentPointsSpan
       %span#blogging_score
-        #{@user.blogging_score}
+        #{number_with_delimiter(@user.blogging_score, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Blogging"
