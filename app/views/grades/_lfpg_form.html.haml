@@ -4,4 +4,5 @@
 = form.input :feedback, :as => :text
 = form.input :status, :as => :select, :collection => [["New", "New"], ["Graded", "Graded"], ["Released", "Released"]]
 = form.input :substantial, :as => :select
+= form.input :type, :as => :select, :collection => [["LFPGGrade", "LFPGGrade"]]
 %div#badgeSelection= form.input :badges, :as => :check_boxes, :collection => @badges
