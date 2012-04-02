@@ -15,6 +15,7 @@ gem 'jquery_datepicker'
 gem 'rankitize'
 gem 'pacecar'
 gem 'datagrid'
+gem 'newrelic_rpm'
 
 
 group :production do
