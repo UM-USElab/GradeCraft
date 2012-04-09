@@ -16,12 +16,12 @@ class Assignment < ActiveRecord::Base
   scope :attendance, where(:type=> "Attendance")
   scope :future, lambda {
     { :conditions => 
-      ["assignments.due_date IS NOt nulL AND assignments.due_date >=?", Date.today]
+      ["assignments.due_date IS NOT nulL AND assignments.due_date >=?", Date.today]
     }
   }
   scope :past, lambda {
     { :conditions => 
-      ["assignments.due_date IS NOt nulL AND assignments.due_date <?", Date.today]
+      ["assignments.due_date IS NOT nulL AND assignments.due_date <?", Date.today]
     }
   }
   
