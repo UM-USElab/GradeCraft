@@ -44,6 +44,8 @@ class GradesController < ApplicationController
       LFPGGrade
     when BossBattle
       BossBattleGrade
+    when TeamAssignment
+      TeamAssignmentGrade
     else
       Grade
     end

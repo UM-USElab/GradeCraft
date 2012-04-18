@@ -42,16 +42,19 @@ if ($("#userScoreSection").length > 0){
 	var attendance_score = removeCommas($("#attendance_score").html());
 	var reading_reaction_score = removeCommas($("#reading_reaction_score").html());
 	var blogging_score = removeCommas($("#blogging_score").html());	
+	var team_assignment_score = removeCommas($("#team_assignment_score").html());	
 	var assignment_score = lfpg_score + boss_battle_score	
 	var total_points = removeCommas($("#courseTotalPts").html());
 	var totalSoFar = removeCommas($("#userBarTotal").html());
 	
 	chart = new Highcharts.Chart({
 		colors: [			
-			'#DB843D',  
-			'#89A54E', 
+			'#AA4643',			
+		  '#DB843D',  
+		  '#89A54E', 
 			'#80699B', 
 			'#3D96AE'
+			
 		],
 		chart: {
 			renderTo: 'userBarInProgress',
@@ -129,6 +132,9 @@ if ($("#userScoreSection").length > 0){
 			}	
 		},
 		series: [{
+			name: 'Team Points',
+			data: [team_assignment_score]	
+		},{
 			name: 'Assignments',
 			data: [assignment_score]	
 		},{
@@ -145,8 +151,9 @@ if ($("#userScoreSection").length > 0){
 	
 	chart = new Highcharts.Chart({
 		colors: [			
-			'#DB843D',  
-			'#89A54E', 
+			'#AA4643',			
+		  '#DB843D',  
+		  '#89A54E', 
 			'#80699B', 
 			'#3D96AE'
 		],
@@ -238,6 +245,9 @@ if ($("#userScoreSection").length > 0){
 		},{
 			name: 'Attendance',
 			data: [attendance_score]	
+		},{
+			name: 'Team Points',
+			data: [team_assignment_score]	
 		}]
 	});
 	

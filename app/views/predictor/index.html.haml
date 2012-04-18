@@ -287,12 +287,14 @@
       %li#slide-6
         %div.slide-panel#team-points
           %h2 Step 6 - Team Points
-          %fieldset
-            %p Congratulations, you've earned 100,000 points for your work with your team this semester!
-              %br
-          Current Team Standings:
-          %div#team-standings
-            <iframe width='500' height='220' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0AtknGd3uiORwdGJOVmhYRG9SX0pIWW5Qb29ZcnUyUEE&single=true&gid=3&output=html&widget=true'></iframe>
+          %p 
+            Current Team Score: 
+            %span#teamAssignmentScore #{number_with_delimiter(current_user.team_assignment_score, :delimiter => ',') || 0}    
+          - Grade.completion.where(:user_id => current_user.id).each do |grade|
+            - if grade.assignment.type == "TeamAssignment"
+              %fieldset
+                %span #{grade.title} –
+                %span #{number_with_delimiter(grade.score, :delimiter => ',')}
 
 <!-- team -->
 			

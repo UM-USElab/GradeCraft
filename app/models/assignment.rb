@@ -14,6 +14,7 @@ class Assignment < ActiveRecord::Base
   scope :boss_battle, where(:type=> "BossBattle")
   scope :blogging, where(:type=> "Blogging")
   scope :attendance, where(:type=> "Attendance")
+  scope :team_assignment, where(:type=> "TeamAssignment")
   scope :future, lambda {
     { :conditions => 
       ["assignments.due_date IS NOT nulL AND assignments.due_date >=?", Date.today]

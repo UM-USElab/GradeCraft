@@ -2,8 +2,11 @@
 .filters
   = form_tag mass_edit_grades_path, :method => :get do
     = hidden_field_tag :assignment_id, @assignment.id
+    %br
+    %br
+    %br
     = select_tag :team_id, options_for_select(Team.all.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => 'Select a team'
-    = submit_tag 'Filter Test'
+    = submit_tag 'Filter'
 
 #massGrade  
   %ul.grades

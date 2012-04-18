@@ -19,6 +19,26 @@ class Grade < ActiveRecord::Base
   scope :bossbattle, where(:type=> "BossBattleGrade")
   scope :blogging, where(:type=> "BloggingGrade")
   scope :attendance, where(:type=> "AttendanceGrade")
+  scope :team_assignment, where(:type=> "TeamAssignmentGrade")
+  
+  def grade_type
+    case assignment
+    when ReadingReaction
+      ReadingReactionGrade
+    when Blogging
+      BloggingGrade
+    when Attendance
+      AttendanceGrade
+    when LFPG
+      LFPGGrade
+    when BossBattle
+      BossBattleGrade
+    when TeamAssignment
+      TeamAssignmentGrade
+    else
+      Grade
+    end
+  end
     
   def score
     super || 0

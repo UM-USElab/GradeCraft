@@ -156,6 +156,30 @@
             %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
             %br
             %span Blogging is a great way to make up some extra points, you should go do it!
+  
+  %h3#blogging.assignTitle
+    %span Team Points
+    %span.assignmentPointsSpan 
+      %span#team_assignment_score #{current_user.team_assignment_score}
+  %div.collapsible
+    - Grade.completion.where(:user_id => current_user.id).each do |grade|
+      - if grade.assignment.type == "TeamAssignment"
+        - if grade.attempted? 
+          %div.completedAssignment 
+            %span.assignmentTitle #{ grade.title } – 
+            %span.assignmentGrade #{ grade.score }
+            %br
+            %span.assignmentFeedback= grade.feedback
+            %br
+            - grade.earned_badges.each do |badge|
+              %img{:src => badge.icon, :alt => badge.title, :width => "40"}
+        - else
+          %div.incompleteAssignment
+            %span.assignmentTitle= grade.title
+            %br
+            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
+            %br
+            %span Team Points are awarded at the end of the semester - how is your team doing? 
             
   %h3#bonus.assignTitle
     %span Bonus Points!

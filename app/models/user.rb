@@ -63,11 +63,14 @@ class User < ActiveRecord::Base
   def boss_battle_score
     grades.bossbattle.sum(:score) || 0
   end
+  
+  def team_assignment_score
+    grades.team_assignment.sum(:score) || 0
+  end
    
   def lfpg_score
     grades.lfpg.sum(:score) || 0
   end
-  
   
   def blogging_score
     grades.blogging.map(&:score).inject(&:+) || 0
@@ -110,8 +113,12 @@ class User < ActiveRecord::Base
     grades.where(:type=>"AttendanceGrade").map(&:points_possible).inject(&:+) || 0
   end
   
+  def team_assignment_possible
+    grades.where(:type=>"TeamAssignmentGrade").map(&:points_possible).inject(&:+) || 0
+  end
+  
   def possible_score
-    attendance_possible + reading_reaction_possible + boss_battle_possible + lfpg_possible + blogging_score || 0
+    attendance_possible + reading_reaction_possible + boss_battle_possible + lfpg_possible + blogging_score + team_assignment_possible || 0
   end
   
 end

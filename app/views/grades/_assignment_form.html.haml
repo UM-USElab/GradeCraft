@@ -3,6 +3,4 @@
   %tr
     %td.score= form.input :score
     %td.feedback= form.input :feedback, :as => :text
-    %td= form.input :status, :as => :select, :collection => [["New", "new"], ["Graded", "graded"], ["Released", "released"]]
   %tr#badgeSelection= form.input :badges, :as => :check_boxes, :collection => @badges
-

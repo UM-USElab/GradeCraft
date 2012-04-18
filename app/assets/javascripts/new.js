@@ -54,7 +54,7 @@ if ($("#progressbar").length > 0){
 	var bossPts = removeCommas($("#bossBattleScore").html());
 	var bossTotalPts = 0;
 	var assignmentPts = 0;
-	var teamPts = 0;
+	var teamPts = removeCommas($("#teamAssignmentScore").html());
 	var totalPts;						
 		
 //	---->
@@ -337,7 +337,7 @@ if ($("#progressbar").length > 0){
 		attendance_score = attendanceTotalPts
 		reading_reaction_score = rxnTotalPts
 		blogging_score = blogTotalPts
-		team_score = teamPts
+		team_assignment_score = teamPts
 		coursePts = 1400000
 		// available_points = coursePts - totalPts
 		getTotalPts();
@@ -430,7 +430,7 @@ if ($("#progressbar").length > 0){
 			},
 			series: [{
 				name: 'Team Points',
-				data: [team_score]	
+				data: [team_assignment_score]	
 			},{
 				name: 'Assignments',
 				data: [assignments_score]	
