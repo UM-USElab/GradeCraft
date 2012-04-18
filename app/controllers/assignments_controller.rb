@@ -43,6 +43,7 @@ class AssignmentsController < ApplicationController
 
   def destroy
     @assignment = Assignment.find(params[:id])
+    @assignment.destroy
     respond_to do |format|
       format.html { redirect_to assignments_url }
       format.json { head :ok }
