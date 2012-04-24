@@ -257,7 +257,7 @@
                 %fieldset
                   %span #{grade.title} –
                   %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
-          - Assignment.future.each do |assignment|
+          - Assignment.all.each do |assignment|
             - if assignment.type == "LFPG"
               %fieldset
                 %span.predictor-assignment-title= assignment.title
@@ -276,7 +276,7 @@
               %fieldset
                 %span #{grade.title} –
                 %span #{number_with_delimiter(grade.score, :delimiter => ',')}
-          - Assignment.future.each do |assignment|
+          - Assignment.all.each do |assignment|
             - if assignment.type == "BossBattle"
               %fieldset
                 %span.predictor-assignment-title= assignment.title
