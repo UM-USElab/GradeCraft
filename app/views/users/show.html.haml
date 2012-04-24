@@ -123,6 +123,8 @@
             %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             %span You didn't make it to class. Bummer!
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
   
   %h3#reading.assignTitle 
     %span Reading Reactions
@@ -152,6 +154,8 @@
             %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             %span Didn't do the readings this week, huh?
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
   
   %h3#blogging.assignTitle
     %span Blogging
@@ -179,6 +183,8 @@
             %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             %span Blogging is a great way to make up some extra points, you should go do it!
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
 
 
   %h3#blogging.assignTitle
@@ -198,6 +204,8 @@
             %br
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
         - else
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
