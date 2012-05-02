@@ -32,4 +32,9 @@ Grader::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  
+  config.middleware.use ExceptionNotifier,
+    sender_address: 'noreply@grade-tracker.herokuapp.com',
+    exception_recipients: 'caitlin.holman@gmail.com'
 end
