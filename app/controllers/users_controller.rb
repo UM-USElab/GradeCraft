@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @title = "View Player"
+    @title = @user
     respond_with @user = User.find(params[:id])
   end
   

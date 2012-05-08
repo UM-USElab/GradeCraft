@@ -15,14 +15,15 @@
 }
 #badgesWrapper {
   margin-top: 15px;
+  margin-bottom: 25px;
   border-radius: 15px;
   -moz-border-radius: 15px;
   background-color: #222;
   width: 220px;
   padding: 20px 5px 32px;
-  height: auto;
   text-align:center;
   font-size: 125%;
+  clear: both;
 }
 
 #badgesEarned {
@@ -45,7 +46,7 @@
 #badgesWrapper .badge {
   float: left;
   text-align: center;
-  height: 90px;
+  height: 100px;
   width: 70px;
   color: #c1c50e;
   font-size: 70%;
@@ -58,6 +59,11 @@
 
 #badgesWrapper .title {
   text-transform: uppercase;
+}
+
+#badgesWrapper .badgeTitle {
+  line-height: 14px;
+  font-size: 11px;
 }
 
 #userGravatar{
@@ -102,6 +108,7 @@
 
 .incompleteAssignment {
   background-color: #999;
+  color: #000;
 }
 .missedAssignment {
   background-color: #ffaea2;

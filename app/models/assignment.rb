@@ -25,6 +25,7 @@ class Assignment < ActiveRecord::Base
       ["assignments.due_date IS NOT nulL AND assignments.due_date <?", Date.today]
     }
   }
+  scope :graded, where(:assignment_grades.present? == 1)
   
   def assignment_grades
     Grade.where(:assignment_id => id)

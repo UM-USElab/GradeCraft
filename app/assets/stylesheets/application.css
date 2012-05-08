@@ -460,8 +460,9 @@ th#icon {
 #footerNav {
   border-top: 1px dotted #ccc;
   padding-top: 15px;
-  position:absolute;
   bottom:30px; 
+  clear: left;
+  margin-top: 25px;
 }
 
 p#alert {

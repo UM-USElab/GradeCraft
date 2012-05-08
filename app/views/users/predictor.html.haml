@@ -83,9 +83,9 @@
                   = assignment.title
                   %br
             %fieldset.checkbox-group
-              %legend April
+              %legend May
               - Grade.completion.where(:user_id => @user.id).each do |grade|
-                - if grade.assignment.type == "Attendance" && grade.assignment.due_date.strftime("%B").include?("April")
+                - if grade.assignment.type == "Attendance" && grade.assignment.due_date.strftime("%B").include?("May")
                   - if grade.attempted? 
                     %span #{grade.title} –
                     %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
@@ -95,7 +95,7 @@
                     %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
               - Assignment.future.each do |assignment|
-                - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("April")
+                - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("May")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
                   = assignment.title
                   %br
@@ -163,9 +163,9 @@
                   = assignment.title
                   %br
             %fieldset.checkbox-group
-              %legend April
+              %legend May
               - Grade.completion.where(:user_id => @user.id).each do |grade|
-                - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("April")
+                - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("May")
                   - if grade.attempted? 
                     %span #{grade.title} –
                     %span #{number_with_delimiter(grade.score, :delimiter => ',')}
@@ -175,7 +175,7 @@
                     %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
               - Assignment.future.each do |assignment|
-                - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("April")
+                - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("May")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
                   = assignment.title
                   %br
@@ -253,36 +253,33 @@
             %span#lfpgScore #{number_with_delimiter(@user.lfpg_score, :delimiter => ',') || 0}
           - Grade.completion.where(:user_id => @user.id).each do |grade|
             - if grade.assignment.type == "LFPG"
-              - if grade.attempted? 
-                %fieldset
-                  %span #{grade.title} –
-                  %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
-          - Assignment.all.each do |assignment|
-            - if assignment.type == "LFPG"
               %fieldset
-                %span.predictor-assignment-title= assignment.title
-                Total points:
-                %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.title, :value => 0 }
-                %div.slider{:id => assignment.id }
+                %span #{grade.title} –
+                %span #{number_with_delimiter(grade.score, :delimiter => ',')}
+          - Assignment.lfpg.future.each do |assignment|
+            %fieldset
+              %span.predictor-assignment-title= assignment.title
+              Total points:
+              %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.title, :value => 0 }
+              %div.slider{:id => assignment.id }
 
       %li#slide-5
         %div.slide-panel#boss-battles
           %h2 Step 5 - Boss Battles
           %p 
             Current Boss Battle Score: 
-            %span#bossBattleScore #{number_with_delimiter(@user.boss_battle_score, :delimiter => ',') || 0}    
+            %span#bossBattleScore #{number_with_delimiter(@user.boss_battle_score, :delimiter => ',') || 0} 
           - Grade.completion.where(:user_id => @user.id).each do |grade|
             - if grade.assignment.type == "BossBattle"
               %fieldset
                 %span #{grade.title} –
                 %span #{number_with_delimiter(grade.score, :delimiter => ',')}
-          - Assignment.all.each do |assignment|
-            - if assignment.type == "BossBattle"
-              %fieldset
-                %span.predictor-assignment-title= assignment.title
-                Total points:
-                %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.title, :value => 0 }
-                %div.slider{:id => assignment.id }   
+          - Assignment.boss_battle.future.each do |assignment|
+            %fieldset
+              %span.predictor-assignment-title= assignment.title
+              Total points:
+              %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.title, :value => 0 }
+              %div.slider{:id => assignment.id }
 
       %li#slide-6
         %div.slide-panel#team-points
@@ -290,14 +287,11 @@
           %p 
             Current Team Score: 
             %span#teamAssignmentScore #{number_with_delimiter(@user.team_assignment_score, :delimiter => ',') || 0}    
-          - Grade.completion.where(:user_id => @user.id).each do |grade|
-            - if grade.assignment.type == "TeamAssignment"
-              %fieldset
-                %span #{grade.title} –
-                %span #{number_with_delimiter(grade.score, :delimiter => ',')}
-            
-
-<!-- team -->
-			
+          - Assignment.team_assignment.each do |assignment|
+            %fieldset
+              %span.predictor-assignment-title= assignment.title
+              Total points:
+              %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.title, :value => 0 }
+              %div.slider{:id => assignment.id } 
 
 	

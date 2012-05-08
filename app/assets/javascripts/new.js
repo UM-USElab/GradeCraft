@@ -235,25 +235,33 @@ if ($("#progressbar").length > 0){
 	});
 	// $( "#game-design-project-amount" ).val( $( "#7" ).slider( "value" ) );
 
-	$( "#4" ).slider({
+	$( "#63" ).slider({
 		value:0,
 		min: 0,
 		max: 160000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#total-4" ).val( addCommas(ui.value) );
+			$("#total-63" ).val( addCommas(ui.value) );
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
 		}
 	});
 	// $( "#gameplay-reflection-amount" ).val( $( "#4" ).slider( "value" ) );
-
-	$("#team-point-values").change(function(){
-		teamPtsVal = $(this).val();
-		teamPts = parseInt(teamPtsVal);				
-		updateProgressBar();
+	
+		$( "#62" ).slider({
+		value:0,
+		min: 0,
+		max: 100000,
+		step: 10000,
+		slide: function( event, ui ) {
+			$("#total-62" ).val( addCommas(ui.value) );
+		},
+		change: function( event, ui ) {
+			updateProgressBar();
+		}
 	});
+	// $( "#team-points-amount" ).val( $( "#4" ).slider( "value" ) );
 
 // set slider values
 	var poster1Pts = 0;
@@ -262,6 +270,7 @@ if ($("#progressbar").length > 0){
 	var individualProject2Pts = 0;
 	var finalProjectPts = 0;
 	var gameReflectionPts = 0;
+	var teamPts = 0;
 
 // get slider point values
 	function getSliderPts(){
@@ -270,7 +279,8 @@ if ($("#progressbar").length > 0){
 		individualProject1Pts = $( "#5" ).slider( "option", "value" );
 		individualProject2Pts = $( "#6" ).slider( "option", "value" );
 		finalProjectPts = $( "#7" ).slider( "option", "value" );
-		gameReflectionPts = $( "#4" ).slider( "option", "value" );
+		gameReflectionPts = $( "#63" ).slider( "option", "value" );
+		teamAssignPts = $( "#62" ).slider( "option", "value" );
 		
 		if (isNaN(poster1Pts)){
 			poster1Pts = 0;
@@ -311,7 +321,14 @@ if ($("#progressbar").length > 0){
 			gameReflectionPts = 0;
 		}
 		else{
-			gameReflectionPts = $( "#4" ).slider( "option", "value" );
+			gameReflectionPts = $( "#63" ).slider( "option", "value" );
+		};
+		
+		if (isNaN(teamPts)){
+			teamPts = 0;
+		}
+		else{
+			teamPts = $( "#62" ).slider( "option", "value" );
 		};
 		
 		lfpgTotalPts = poster1Pts + poster2Pts + gameReflectionPts + lfpgPts;

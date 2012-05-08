@@ -234,6 +234,9 @@ if ($("#userScoreSection").length > 0){
 			}	
 		},
 		series: [{
+			name: 'Team Points',
+			data: [team_assignment_score]	
+		},{
 			name: 'Assignments',
 			data: [assignment_score]	
 		},{
@@ -245,9 +248,6 @@ if ($("#userScoreSection").length > 0){
 		},{
 			name: 'Attendance',
 			data: [attendance_score]	
-		},{
-			name: 'Team Points',
-			data: [team_assignment_score]	
 		}]
 	});
 	

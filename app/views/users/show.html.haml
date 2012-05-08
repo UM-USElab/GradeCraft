@@ -48,13 +48,12 @@
             %br
             %span.assignmentFeedback= grade.feedback
             %br
-            %br
-            %span.assignmentStatus Grade Status: #{grade.status}
-            %br
-            %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
-            %br
-            %span Grade Type: #{grade.type}
+            - if current_user.is_staff?
+              %br              
+              %span.assignmentStatus Grade Status: #{grade.status}
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
         - else
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
@@ -62,8 +61,10 @@
             %span.assignmentGrade #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
             %span You have not yet attempted this challenge
-            %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+            - if current_user.is_staff?
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
 
   %h3#attendance.assignTitle
     %span Boss Battles
@@ -85,19 +86,25 @@
             %br
             %span.assignmentFeedback= grade.feedback
             %br
-            %br
-            %span.assignmentStatus Grade Status: #{grade.status}
-            %br
-            %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+            - if current_user.is_staff?
+              %br              
+              %span.assignmentStatus Grade Status: #{grade.status}
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
         - else
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
             %br
             %span.assignmentGrade #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
-            %span You have not yet attempted this challenge        
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)    
+            %br 
+            %span You have not yet attempted this challenge 
+            %br        
+            - if current_user.is_staff?
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)    
 
   %h3#attendance.assignTitle
     %span Attendance
@@ -115,8 +122,12 @@
             %br
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
-            %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+            - if current_user.is_staff?
+              %br              
+              %span.assignmentStatus Grade Status: #{grade.status}
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)  
         - else
           %div.missedAssignment
             %span.assignmentTitle #{grade.title} –
@@ -124,7 +135,12 @@
             %br
             %span You didn't make it to class. Bummer!
             %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+            - if current_user.is_staff?
+              %br              
+              %span.assignmentStatus Grade Status: #{grade.status}
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)  
   
   %h3#reading.assignTitle 
     %span Reading Reactions
@@ -141,12 +157,15 @@
             %br
             %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')} out of #{number_with_delimiter(grade.point_total, :delimiter => ',')} possible points
             %br
-            %span.assignmentFeedback= grade.feedback
-            %br
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
             %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+            - if current_user.is_staff?
+              %br              
+              %span.assignmentStatus Grade Status: #{grade.status}
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)  
         - else
           %div.missedAssignment
             %span.assignmentTitle= grade.title
@@ -155,7 +174,12 @@
             %br
             %span Didn't do the readings this week, huh?
             %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+            - if current_user.is_staff?
+              %br              
+              %span.assignmentStatus Grade Status: #{grade.status}
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)  
   
   %h3#blogging.assignTitle
     %span Blogging
@@ -170,12 +194,15 @@
             %span.assignmentTitle #{ grade.title } – 
             %span.assignmentGrade #{number_with_delimiter(grade.score, :delimiter => ',')}
             %br
-            %span.assignmentFeedback= grade.feedback
-            %br
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
             %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+            - if current_user.is_staff?
+              %br              
+              %span.assignmentStatus Grade Status: #{grade.status}
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)  
         - else
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
@@ -184,7 +211,10 @@
             %br
             %span Blogging is a great way to make up some extra points, you should go do it!
             %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+            - if current_user.is_staff?
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)  
 
 
   %h3#blogging.assignTitle
@@ -205,7 +235,12 @@
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => "40"}
             %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+            - if current_user.is_staff?
+              %br              
+              %span.assignmentStatus Grade Status: #{grade.status}
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)  
         - else
           %div.incompleteAssignment
             %span.assignmentTitle= grade.title
@@ -213,6 +248,12 @@
             %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
             %br
             %span Team Points are awarded at the end of the semester - how is your team doing? 
+            - if current_user.is_staff?
+              %br              
+              %span.assignmentStatus Grade Status: #{grade.status}
+              %br
+              %br
+              %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)  
             
   %h3#bonus.assignTitle
     %span Bonus Points!
@@ -229,8 +270,12 @@
           %br
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => "25"} 
-          %br
-            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)
+          - if current_user.is_staff?
+            %br              
+            %span.assignmentStatus Grade Status: #{grade.status}
+            %br
+            %br
+            %span.assignmentEdit= link_to 'Edit', edit_grade_path(grade)  
 
 %div#footerNav
   %span.button= link_to 'Edit', edit_user_path(@user)
