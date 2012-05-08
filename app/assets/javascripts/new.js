@@ -235,13 +235,13 @@ if ($("#progressbar").length > 0){
 	});
 	// $( "#game-design-project-amount" ).val( $( "#7" ).slider( "value" ) );
 
-	$( "#63" ).slider({
+	$( "#4" ).slider({
 		value:0,
 		min: 0,
 		max: 160000,
 		step: 1000,
 		slide: function( event, ui ) {
-			$("#total-63" ).val( addCommas(ui.value) );
+			$("#total-4" ).val( addCommas(ui.value) );
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
@@ -249,13 +249,13 @@ if ($("#progressbar").length > 0){
 	});
 	// $( "#gameplay-reflection-amount" ).val( $( "#4" ).slider( "value" ) );
 	
-		$( "#62" ).slider({
+		$( "#47" ).slider({
 		value:0,
 		min: 0,
 		max: 100000,
 		step: 10000,
 		slide: function( event, ui ) {
-			$("#total-62" ).val( addCommas(ui.value) );
+			$("#total-47" ).val( addCommas(ui.value) );
 		},
 		change: function( event, ui ) {
 			updateProgressBar();
@@ -279,8 +279,8 @@ if ($("#progressbar").length > 0){
 		individualProject1Pts = $( "#5" ).slider( "option", "value" );
 		individualProject2Pts = $( "#6" ).slider( "option", "value" );
 		finalProjectPts = $( "#7" ).slider( "option", "value" );
-		gameReflectionPts = $( "#63" ).slider( "option", "value" );
-		teamAssignPts = $( "#62" ).slider( "option", "value" );
+		gameReflectionPts = $( "#4" ).slider( "option", "value" );
+		teamAssignPts = $( "#47" ).slider( "option", "value" );
 		
 		if (isNaN(poster1Pts)){
 			poster1Pts = 0;
@@ -321,14 +321,14 @@ if ($("#progressbar").length > 0){
 			gameReflectionPts = 0;
 		}
 		else{
-			gameReflectionPts = $( "#63" ).slider( "option", "value" );
+			gameReflectionPts = $( "#4" ).slider( "option", "value" );
 		};
 		
 		if (isNaN(teamPts)){
 			teamPts = 0;
 		}
 		else{
-			teamPts = $( "#62" ).slider( "option", "value" );
+			teamPts = $( "#47" ).slider( "option", "value" );
 		};
 		
 		lfpgTotalPts = poster1Pts + poster2Pts + gameReflectionPts + lfpgPts;
