@@ -2,4 +2,4 @@
   = f.inputs do
     .text= f.input :title
     = render "#{@assignment.class.name.underscore}_form", :form => f
-    = f.buttons
+    = f.actions

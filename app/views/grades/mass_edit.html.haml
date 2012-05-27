@@ -14,7 +14,7 @@
       = f.semantic_fields_for :grades, @grades do |grade_form|
         = grade_form.inputs do
           = render "#{@assignment.class.name.underscore}_form", :form => grade_form, :grade => grade_form.object
-      = f.buttons do
+      = f.actions do
         = f.commit_button 'Save'
 
 %div#footerNav
