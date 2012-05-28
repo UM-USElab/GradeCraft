@@ -8,4 +8,7 @@
       .text= f.input :password, :as => :password
       .text= f.input :password_confirmation, :as => :password
     /= f.input :token, :as => :hidden
+    - if current_user.is_staff?
+      .text= f.input :role, :as => :select, :collection => [["Student", "student"],["GSI", "gsi"],["Professor", "professor"],["Admin", "admin"]]
+      .text= f.input :team_id, :as => :select, :collection => @teams
     = f.actions
