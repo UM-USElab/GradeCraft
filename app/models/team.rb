@@ -1,6 +1,8 @@
 class Team < ActiveRecord::Base
   has_many :users
   has_many :challenge_grades, :dependent => :destroy
+  
+  attr_accessible :name, :created_at, :updated_at, :banner_file_name, :banner_updated_at, :sortable_score, :rank
 
   default_scope :order => 'id ASC'
 
