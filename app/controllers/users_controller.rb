@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       @team = Team.find(params[:team_id])
       search_options[:team_id] = @team.id if @team
     end
-    respond_with @users = User.where(search_options).order(sort_column + " " + sort_direction)
+    respond_with @users = User.where(search_options)
   end
 
   def show
@@ -89,14 +89,5 @@ class UsersController < ApplicationController
   end
   
   private
-
-  def sort_column
-    User.column_names.include?(params[:sort]) ? params[:sort] : "username"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
-  
 
 end

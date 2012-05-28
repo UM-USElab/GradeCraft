@@ -2,20 +2,18 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 gem 'jquery-rails'
+gem 'jquery_datepicker'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'jquery-ui-rails'
 gem 'fabrication'
 gem 'formtastic'
 gem 'haml'
 gem 'sorcery'
 gem 'exception_notification'
-gem 'paperclip', '~> 2.0'
+gem "paperclip", "~> 3.0"
 gem 'gravatar_image_tag'
-gem 'tinymce-rails'
-gem 'kaminari'
-gem 'jquery_datepicker'
-gem 'rankitize'
 gem 'pacecar'
-gem 'newrelic_rpm'
-gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'will_paginate'
 
 
 group :production do
@@ -28,6 +26,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
 end
+
 
 group :development do
   gem 'haml-rails'

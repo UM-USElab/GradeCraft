@@ -5,9 +5,9 @@
  *= require_self
  *= require_tree .
  *= require formtastic
- *= require jquery-ui
+ *= require jquery.ui.core
+ *= require jquery.ui.theme
  *= require jquery-ui-1.8.17.custom.css
- *= require dataTables/jquery.dataTables
 */
 
 html {

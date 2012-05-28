@@ -1,20 +1,16 @@
-.filters
-  = form_tag users_path, :method => :get do
-    = select_tag :role, options_for_select(User::Roles.map { |r| [r.capitalize, r] }, @role), :prompt => 'Select a role'
-    = select_tag :team_id, options_for_select(Team.all.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => 'Select a team'
-    = submit_tag 'Filter'
-
-%table#users
+%table#users.display
   %thead
-    %th Username
-    %th Name
-    %th Role
-    %th Team ID
-    %th Score
-    %th Badges Earned
-    %th
-    %th
-    %th
+    %tr
+      %th Username
+      %th Name
+      %th Role
+      %th Team ID
+      %th Score
+      %th Badges Earned
+      %th 
+      %th
+      %th
+      %th
   %tbody
   - @users.each do |user|
     %tr
