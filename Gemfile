@@ -15,11 +15,10 @@ gem 'jquery_datepicker'
 gem 'rankitize'
 gem 'pacecar'
 gem 'newrelic_rpm'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 
 
 group :production do
-  gem 'pg'
-  gem 'rack-google_analytics', :require => "rack/google_analytics"
 end
 
 # Gems used only for assets and not required

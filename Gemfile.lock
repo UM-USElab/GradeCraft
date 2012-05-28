@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: 9e88f3c3a858a29492adb710e4801b8f19205ead
+  specs:
+    jquery-datatables-rails (1.9.1.3)
+      jquery-rails
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -197,6 +204,7 @@ DEPENDENCIES
   gravatar_image_tag
   haml
   haml-rails
+  jquery-datatables-rails!
   jquery-rails
   jquery_datepicker
   kaminari

@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
 
   Roles = %w{student professor gsi admin}
   
-  default_scope :order => 'last_name ASC'
-  
   attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank
 
   has_attached_file :avatar,

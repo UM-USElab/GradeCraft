@@ -4,18 +4,19 @@
     = select_tag :team_id, options_for_select(Team.all.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => 'Select a team'
     = submit_tag 'Filter'
 
-%table
-  %tr
-    %th= sortable "username"
-    %th= sortable "name"
-    %th= sortable "role"
-    %th= sortable "team_id"
-    %th= sortable "score"
+%table#users
+  %thead
+    %th Username
+    %th Name
+    %th Role
+    %th Team ID
+    %th Score
     %th Badges Earned
     %th
     %th
     %th
-  - for user in @users
+  %tbody
+  - @users.each do |user|
     %tr
       %td= user.username
       %td= user.name

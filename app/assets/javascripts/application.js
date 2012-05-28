@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require_tree .
+//= require dataTables/jquery.dataTables
 
 $(document).ready(function(){
   $('input.ui-datepicker').datepicker();
