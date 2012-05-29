@@ -1,27 +1,29 @@
 %h3= current_user.team.name
 %br
-%table
-  %tr
-    %th 
-    %th Username
-    %th First Name
-    %th Last Name
-    %th Score
-    %th Badges
-    %th View Profile
-  - User.where(:team_id => current_user.team_id).each do |user|
+%table#dashboard
+  %thead
     %tr
-      %td= gravatar_for user
-      %td= user.username
-      %td= user.first_name
-      %td= user.last_name
-      %td= user.score
-      %td
-        - user.earned_badges.each do |badge|
-          %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
-      %td
-        - if user.is_student?
-          = link_to 'Dashboard', user
+      %th 
+      %th Username
+      %th First Name
+      %th Last Name
+      %th Score
+      %th Badges
+      %th View Profile
+  %tbody
+    - User.where(:team_id => current_user.team_id).each do |user|
+      %tr
+        %td= gravatar_for user
+        %td= user.username
+        %td= user.first_name
+        %td= user.last_name
+        %td= user.score
+        %td
+          - user.earned_badges.each do |badge|
+            %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+        %td
+          - if user.is_student?
+            = link_to 'Dashboard', user
 
 %div#footerNav
   %span.button= link_to "Grade an Assignment", new_grade_url

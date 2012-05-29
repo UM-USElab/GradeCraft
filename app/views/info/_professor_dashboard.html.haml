@@ -1,4 +1,23 @@
-
+HIGH SCORES
+%table#dashboard
+  %thead
+    %tr 
+      %th Name
+      %th Team
+      %th Score
+      %th Badges
+      %th Dashboard
+  %tbody
+    - User.where(:role => "student").each do |user|
+      %tr
+        %td= user.name
+        %td= user.team_id
+        %td= user.score if user.respond_to?(:score)
+        %td
+          - user.earned_badges.each do |badge|
+            %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+        %td
+          = link_to 'Dashboard', user
 
 %div#footerNav
   %span.button= link_to "Grade an Assignment", new_grade_url

@@ -7,7 +7,7 @@
  *= require formtastic
  *= require jquery.ui.core
  *= require jquery.ui.theme
- *= require jquery-ui-1.8.17.custom.css
+ *= require jquery-ui-1.8.20.custom.css
  *= require dataTables/src/demo_table_jui
 */
 
@@ -33,16 +33,19 @@ a {
 
 table {
   width: 930px;
+  color: #000;
 }
 
 th {
   background-color: #111111;
-  text-transform: uppercase;
+  font-weight: bold;
   color: #888;
 }
 
-th a {
-  display: block;
+
+td {
+  padding: 10px;
+  
 }
 
 h1#siteTitle{

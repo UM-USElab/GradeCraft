@@ -1,11 +1,13 @@
 HIGH SCORES
-%table
-  %tr 
-    %th Name
-    %th Team
-    %th Score
-    %th Badges
-    %th Dashboard
+%table#dashboard
+  %thead
+    %tr 
+      %th Name
+      %th Team
+      %th Score
+      %th Badges
+      %th Dashboard
+  %tbody
     - User.where(:role => "student").each do |user|
       %tr
         %td= user.name
