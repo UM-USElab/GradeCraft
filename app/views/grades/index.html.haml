@@ -1,22 +1,17 @@
-.filters
-  = form_tag grades_path, :method => :get do
-    = select_tag :assignment_id, options_for_select(Assignment.all.map { |a| [a.title, a.id] }, @assignment.try(:id)), :prompt => 'Select Assignment'
-    = submit_tag 'Filter'
-
-= paginate @grades
-
-%table
-  %tr
-    %th Username
-    %th Team
-    %th Assignment
-    %th= sortable "score"
-    %th= sortable "feedback"
-    %th Grade Type
-    %th= sortable "badge_id"
-    %th
-    %th
-    %th
+%table#grades.display
+  %thead
+    %tr
+      %th Username
+      %th Team
+      %th Assignment
+      %th Score
+      %th Feedback
+      %th Grade Type
+      %th Badges Earned
+      %th
+      %th
+      %th
+  %tbody
     - for grade in @grades
       %tr
         %td= grade.user.username

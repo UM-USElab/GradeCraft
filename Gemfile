@@ -17,6 +17,7 @@ gem 'will_paginate'
 
 
 group :production do
+  
 end
 
 # Gems used only for assets and not required

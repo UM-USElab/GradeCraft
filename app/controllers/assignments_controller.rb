@@ -5,7 +5,12 @@ class AssignmentsController < ApplicationController
 
   def index
     @title = "View All Assignments"
-    respond_with @assignments = Assignment.all
+    @assignments = Assignment.all
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @assignments }
+    end
   end
 
   def show

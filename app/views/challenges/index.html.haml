@@ -1,24 +1,25 @@
-%table
-  %tr
-    %th Challenge
-    %th Points
-    %th Description
-    %th Date
-    - if current_user.is_staff?
-      %th
-      %th
-      %th
-
-  - @challenges.each do |challenge|
+%table#challenges
+  %thead
     %tr
-      %td= challenge.title
-      %td= challenge.points
-      %td= challenge.description
-      %td= challenge.date
+      %th Challenge
+      %th Points
+      %th Description
+      %th Date
       - if current_user.is_staff?
-        %td= link_to 'View', challenge
-        %td= link_to 'Edit', edit_challenge_path(challenge)
-        %td= link_to 'Delete', challenge, :confirm => 'Are you sure?', :method => :delete
+        %th
+        %th
+        %th
+  %tbody
+    - for challenge in @challenges
+      %tr
+        %td= challenge.title
+        %td= challenge.points
+        %td= challenge.description
+        %td= challenge.date
+        - if current_user.is_staff?
+          %td= link_to 'View', challenge
+          %td= link_to 'Edit', edit_challenge_path(challenge)
+          %td= link_to 'Delete', challenge, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

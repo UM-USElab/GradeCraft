@@ -3,16 +3,14 @@ class GradesController < ApplicationController
 
   before_filter :ensure_staff?
 
-  helper_method :sort_column, :sort_direction
-
   def index
     @title = "View All Grades"
-    search_options = {}
-    if params[:assignment_id].present?
-      @assignment = Assignment.find(params[:assignment_id])
-      search_options[:assignment_id] = @assignment.id if @assignment
+    @grades = Grade.all
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @grades }
     end
-    respond_with @grades = Grade.where(search_options).order(sort_column + " " + sort_direction).page(params[:page]).per(100)
   end
 
   def show

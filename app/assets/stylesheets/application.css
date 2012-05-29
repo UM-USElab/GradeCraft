@@ -8,6 +8,7 @@
  *= require jquery.ui.core
  *= require jquery.ui.theme
  *= require jquery-ui-1.8.17.custom.css
+ *= require dataTables/src/demo_table_jui
 */
 
 html {
@@ -28,17 +29,7 @@ a {
     text-decoration: underline; } 
   } 
 
-table {
-  background-color: #222;
-}  
 
-table, th, td {
-  border: 1px solid #c1c50e;
-  text-align: left;
-  border-collapse:collapse;
-  padding: 6px;
-  margin: 0px;
-}
 
 table {
   width: 930px;
@@ -133,15 +124,21 @@ h3 {
   background-color: rgba(150,150,150,.7);
 }
 
-
 table#login, table#login tr, table#login th, table#login td {
   border:0px;
   color: #FFF;
+  text-align: left;
+  border-collapse:collapse;
+  padding: 6px;
+  margin: 0px;
 }
+ 
 
 table#login td {
   padding: 10px 10px 5px;
+
 }
+
 
 #myInfo{
   float:right;

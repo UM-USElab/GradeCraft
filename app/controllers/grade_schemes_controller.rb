@@ -4,10 +4,7 @@ class GradeSchemesController < ApplicationController
   def index
     @title = "Grading Schemes"
     @grade_schemes = GradeScheme.all
-    if params[:assignment_id].present?
-      @assignment = Assignment.find(params[:assignment_id])
-      search_options[:assignment_id] = @assignment.id if @assignment
-    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @grade_schemes }

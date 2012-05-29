@@ -1,36 +1,37 @@
-%table
-  %tr
-    %th#icon Icon
-    %th#title Title
-    %th#description Description
-    - if current_user.is_staff?
-      %th#visible Visible to Students
-      %th
-      %th
-      %th
-
-  - @badges.each do |badge|
-    - if current_user.is_staff?
-      %tr
-        %td
-          %img{:src => badge.icon, :alt => badge.title}
-          %td= badge.title
-          %td= badge.description
-          %td 
-            - if badge.visible == "1"
-              Yes
-            - else
-              No
-          %td= link_to 'View', badge
-          %td= link_to 'Edit', edit_badge_path(badge)
-          %td= link_to 'Delete', badge, :confirm => 'Are you sure?', :method => :delete
-    - else
-      -if badge.visible == "1"
+%table#badges.display
+  %thead
+    %tr
+      %th#icon Icon
+      %th#title Title
+      %th#description Description
+      - if current_user.is_staff?
+        %th#visible Visible to Students
+        %th
+        %th
+        %th
+  %tbody
+    - for badge in @badges
+      - if current_user.is_staff?
         %tr
           %td
             %img{:src => badge.icon, :alt => badge.title}
             %td= badge.title
             %td= badge.description
+            %td 
+              - if badge.visible == "1"
+                Yes
+              - else
+                No
+            %td= link_to 'View', badge
+            %td= link_to 'Edit', edit_badge_path(badge)
+            %td= link_to 'Delete', badge, :confirm => 'Are you sure?', :method => :delete
+      - else
+        - if badge.visible == "1"
+          %tr
+            %td
+              %img{:src => badge.icon, :alt => badge.title}
+              %td= badge.title
+              %td= badge.description
 %br
 %div#footerNav
   - if current_user.is_staff?

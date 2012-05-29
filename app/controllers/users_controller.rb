@@ -4,20 +4,13 @@ class UsersController < ApplicationController
   skip_before_filter :require_login, :only=>[:create,:new]
   before_filter :'ensure_staff?', :only=>[:index,:destroy]
 
-  helper_method :sort_column, :sort_direction
-
   def index
     @title = "View all Players"
-    search_options = {}
-    if params[:role].present?
-      @role = params[:role]
-      search_options[:role] = @role
+    @users = User.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @users }
     end
-    if params[:team_id].present?
-      @team = Team.find(params[:team_id])
-      search_options[:team_id] = @team.id if @team
-    end
-    respond_with @users = User.where(search_options)
   end
 
   def show
