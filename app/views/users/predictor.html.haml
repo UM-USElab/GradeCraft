@@ -165,7 +165,7 @@
             %fieldset.checkbox-group
               %legend June
               - Grade.completion.where(:user_id => @user.id).each do |grade|
-                - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("May")
+                - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("June")
                   - if grade.attempted? 
                     %span #{grade.title} –
                     %span #{number_with_delimiter(grade.score, :delimiter => ',')}
@@ -175,7 +175,7 @@
                     %span #{number_with_delimiter(grade.score, :delimiter => ',')}
                     %br
               - Assignment.future.each do |assignment|
-                - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("May")
+                - if assignment.type == "ReadingReaction" && assignment.due_date.strftime("%B").include?("June")
                   %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
                   = assignment.title
                   %br
