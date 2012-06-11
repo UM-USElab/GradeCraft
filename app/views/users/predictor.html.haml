@@ -163,7 +163,7 @@
                   = assignment.title
                   %br
             %fieldset.checkbox-group
-              %legend May
+              %legend June
               - Grade.completion.where(:user_id => @user.id).each do |grade|
                 - if grade.assignment.type == "ReadingReaction" && grade.assignment.due_date.strftime("%B").include?("May")
                   - if grade.attempted? 
