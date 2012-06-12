@@ -1,20 +1,23 @@
-%table
-  %tr
-    %th Assignment
-    %th 
-    %th
-
-  - @grade_schemes.each do |grade_scheme|
+%table#grade_schemes.display
+  %thead
     %tr
-      %td= grade_scheme.assignment.title
-      %th= grade_scheme.grade_name
-      %th= grade_scheme.range_bottom
-      %th= grade-scheme.range_top
-      %td= link_to 'Show', grade_scheme
-      %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme)
-      %td= link_to 'Destroy', grade_scheme, :confirm => 'Are you sure?', :method => :delete
-
-%br
+      %th Assignment
+      %th Grade Name
+      %th Range Bottom
+      %th Range Top
+      %th 
+      %th
+      %th
+  %tbody
+    - for grade_scheme in @grade_schemes
+      %tr
+        %td= grade_scheme.assignment_id
+        %th= grade_scheme.grade_name
+        %th= grade_scheme.range_bottom
+        %th= grade_scheme.range_top
+        %td= link_to 'Show', grade_scheme
+        %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme)
+        %td= link_to 'Destroy', grade_scheme, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
   %span.button= link_to 'New Grade scheme', new_grade_scheme_path

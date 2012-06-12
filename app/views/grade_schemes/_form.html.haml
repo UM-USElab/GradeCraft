@@ -1,18 +1,5 @@
 = semantic_form_for @grade_scheme do |f|
   = f.inputs do
     .text= f.input :assignment, :as => :select, :collection => @assignments
-    .text= f.input :apscore, :label => "A+ Score"
-    .text= f.input :ascore, :label => "A Score"
-    .text= f.input :amscore, :label => "A- Score"
-    .text= f.input :bpscore, :label => "B+ Score"
-    .text= f.input :bscore, :label => "B Score"
-    .text= f.input :bmscore, :label => "B- Score"
-    .text= f.input :cpscore, :label => "C+ Score"
-    .text= f.input :cscore, :label => "C Score"
-    .text= f.input :cmscore, :label => "C- Score"
-    .text= f.input :dpscore, :label => "D+ Score"
-    .text= f.input :dscore, :label => "D Score"
-    .text= f.input :dmscore, :label => "D- Score"
   
-  = f.actions do
-    = f.commit_button
+  = f.actions
