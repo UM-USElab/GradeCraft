@@ -62,6 +62,11 @@ li.choice label {
   font-size: 14px;
 }
 
+li.ckeditor label {
+  margin-bottom: 15px;
+  clear: both;
+}
+
 #badgeSelectionRight {
   float: right;
   width: 250px;
@@ -86,4 +91,8 @@ li.gradeuser {
   margin: 5px;
   padding: 0;
   text-align: left;
+}
+
+li.ckeditor textarea {
+  width: 700px;
 }

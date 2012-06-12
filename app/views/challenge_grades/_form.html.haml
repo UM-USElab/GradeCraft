@@ -2,6 +2,6 @@
   = f.inputs do
     .text= f.input :team_id, :as => :select, :collection => @teams
     .text= f.input :challenge_id, :as => :select, :collection => @challenges
-    .text= f.input :feedback, :as => :text
+    .text= f.input :feedback, :as => :ckeditor
     .text= f.input :score
     = f.actions(:label => "Add Team Points") 

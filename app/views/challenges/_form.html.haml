@@ -3,6 +3,6 @@
     .text= f.input :title
     .text= f.input :type, :as => :select, :collection => [["Team", "Team"], ["Reading Reaction", "ReadingReaction"], ["User", "User"]]
     .text= f.input :points, :label => "Points Possible"
-    = f.input :description, :as => :text
+    = f.input :description, :as => :ckeditor
     .text= f.input :date
     = f.actions

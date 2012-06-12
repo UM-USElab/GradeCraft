@@ -1,7 +1,7 @@
 = semantic_form_for @badge do |f|
   = f.inputs do
     .text= f.input :title
-    .text= f.input :description, :as => :text
+    .text= f.input :description, :as => :ckeditor
     .text= f.input :icon
     .text= f.input :visible, :as => :boolean
     .text= f.input :occurrence, :as => :select, :collection => [["Onetime", "onetime"], ["Multiple", "multiple"]]
