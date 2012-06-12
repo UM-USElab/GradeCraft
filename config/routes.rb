@@ -1,5 +1,7 @@
 Grader::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
+
   root :to => "home#index"
 
   %w{students gsis professors admins}.each do |role|

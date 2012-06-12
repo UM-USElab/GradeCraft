@@ -14,6 +14,7 @@ gem "paperclip", "~> 3.0"
 gem 'gravatar_image_tag'
 gem 'pacecar'
 gem 'will_paginate'
+gem 'ckeditor'
 
 
 group :production do

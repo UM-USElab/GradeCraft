@@ -41,6 +41,9 @@ GEM
     arel (2.2.3)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
+    ckeditor (3.7.1)
+      mime-types
+      orm_adapter
     cocaine (0.2.1)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
@@ -95,6 +98,7 @@ GEM
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
+    orm_adapter (0.0.7)
     pacecar (1.5.3)
     paperclip (3.0.4)
       activemodel (>= 3.0.0)
@@ -193,6 +197,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ckeditor
   coffee-rails
   exception_notification
   fabrication

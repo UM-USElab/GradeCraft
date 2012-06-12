@@ -9,6 +9,7 @@
 //= require jquery-ui
 //= require_tree .
 //= require dataTables/jquery.dataTables
+//= require ckeditor/init
 
 $(document).ready(function(){
   $('input.ui-datepicker').datepicker();

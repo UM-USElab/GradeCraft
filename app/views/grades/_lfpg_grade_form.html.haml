@@ -1,4 +1,4 @@
 .text= form.input :score
-.text= form.input :feedback, :as => :text
+.text= form.input :feedback, :as => :ckeditor, :input_html => { :height => 250, :width => 700 }
 .text= form.input :badges, :as => :check_boxes, :collection => @badges
 .text= form.input :status, :as => :select, :collection => [["New", "New"], ["Graded", "Graded"], ["Released", "Released"]]
