@@ -24,6 +24,7 @@ Grader::Application.routes.draw do
     collection do
       get :mass_edit
       put :mass_update
+      get :gradebook
     end
   end
   resources :info

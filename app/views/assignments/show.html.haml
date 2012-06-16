@@ -3,7 +3,7 @@
   = @assignment.title
 %p
   %b Description:
-  = @assignment.description
+  = raw @assignment.description
 %p
   %b Point Total:
   = number_with_delimiter(@assignment.point_total, :delimiter => ',') 

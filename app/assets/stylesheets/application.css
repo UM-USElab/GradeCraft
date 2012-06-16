@@ -470,3 +470,8 @@ p#alert {
   height: 20px;
   marign-top: 0px;
 }
+
+.text li.ckeditor .cke_skin_kama {
+  width: 750px;
+  margin-left: 150px;
+}

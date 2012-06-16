@@ -23,3 +23,10 @@ production:
   database: db/production.sqlite3
   pool: 5
   timeout: 5000
+  
+siproduction:
+  adapter: mysql
+  encoding: utf8
+  host: 127.0.0.1
+  username: gradecraft
+  password: VU26GtBeR3enSHiL

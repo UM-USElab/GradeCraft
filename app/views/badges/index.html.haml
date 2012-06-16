@@ -16,7 +16,7 @@
           %td
             %img{:src => badge.icon, :alt => badge.title}
             %td= badge.title
-            %td= badge.description
+            %td= raw badge.description
             %td 
               - if badge.visible == "1"
                 Yes
