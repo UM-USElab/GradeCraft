@@ -1,0 +1,11 @@
+= semantic_form_for @course do |f|
+  = f.inputs do
+    .text= f.input :name
+    .text= f.input :courseno, :label => "Course Number"
+    .text= f.input :year
+    .text= f.input :semester, :collection => [["Winter", "winter"], ["Spring", "spring"], ["Summer", "summer"], ["Fall", "fall"]]
+    .text= f.input :badgeset, :label => "Badge Set", :as => :select, :collection => @badge_sets
+    .text= f.input :theme, :as => :select, :collection => @themes
+    .text= f.input :coursegradescheme, :label => "Course Grading Scheme"
+  
+  = f.actions

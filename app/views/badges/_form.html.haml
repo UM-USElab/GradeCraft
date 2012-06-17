@@ -5,4 +5,5 @@
     .text= f.input :icon
     .text= f.input :visible, :as => :boolean
     .text= f.input :occurrence, :as => :select, :collection => [["Onetime", "onetime"], ["Multiple", "multiple"]]
+    .text= f.input :badge_set_id, :as => :select, :collection => @badge_sets
     = f.actions

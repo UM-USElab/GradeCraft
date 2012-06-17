@@ -19,6 +19,7 @@ class GradesController < ApplicationController
   end
   
   def gradebook
+    @title = "Class Gradebook"
     @assignments = Assignment.all
     @grades = Grade.all
   end
@@ -122,15 +123,5 @@ class GradesController < ApplicationController
       respond_with @assignment, :location => mass_edit_grades_path(:assignment_id => @assignment)
     end
   end
-
-  def sort_column
-    Grade.column_names.include?(params[:sort]) ? params[:sort] : "assignment_id"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end
-  
-  
 
 end

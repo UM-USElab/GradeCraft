@@ -1,5 +1,9 @@
 Grader::Application.routes.draw do
 
+  resources :badge_sets
+
+  resources :courses
+
   mount Ckeditor::Engine => '/ckeditor'
 
   root :to => "home#index"

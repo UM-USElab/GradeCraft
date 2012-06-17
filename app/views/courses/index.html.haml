@@ -1,0 +1,31 @@
+%table#courses.display
+  %thead
+    %tr
+      %th Name
+      %th Course No
+      %th Year
+      %th Semester
+      %th Badge Set
+      %th Theme
+      %th Grade Scheme
+      %th
+      %th
+      %th
+  %tbody
+    - @courses.each do |course|
+      %tr
+        %td= course.name
+        %td= course.courseno
+        %td= course.year
+        %td= course.semester
+        %td= course.badgeset
+        %td= course.theme
+        %td= course.coursegradescheme
+        %td= link_to 'Show', course
+        %td= link_to 'Edit', edit_course_path(course)
+        %td= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+%div#footerNav
+  %span.button= link_to 'New Course', new_course_path

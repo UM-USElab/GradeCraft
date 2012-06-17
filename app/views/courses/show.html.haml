@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @course.name
+%p
+  %b Course No:
+  = @course.courseno
+%p
+  %b Year:
+  = @course.year
+%p
+  %b Semester:
+  = @course.semester
+%p
+  %b Badge Set:
+  = @course.badgeset
+%p
+  %b Theme:
+  = @course.theme
+%p
+  %b Course Grade Scheme:
+  = @course.coursegradescheme
+
+%div#footerNav
+  %span.button= link_to 'Edit', edit_course_path(@course)
+  %span.button= link_to 'Back', courses_path

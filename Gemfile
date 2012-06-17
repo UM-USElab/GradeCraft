@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.2.6'
 gem 'jquery-rails'
 gem 'jquery_datepicker'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
