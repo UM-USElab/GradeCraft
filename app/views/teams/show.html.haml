@@ -14,5 +14,5 @@
 
 
 %div#footerNav
-  %span.button= link_to 'Edit', edit_team_path(@team)
-  %span.button= link_to 'Back', teams_path
+  = link_to 'Edit', edit_team_path(@team), :class => "btn btn-inverse"
+  = link_to 'Back', teams_path, :class => "btn btn-inverse"

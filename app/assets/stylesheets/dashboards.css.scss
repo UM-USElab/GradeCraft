@@ -18,7 +18,7 @@
   margin-bottom: 25px;
   border-radius: 15px;
   -moz-border-radius: 15px;
-  background-color: #222;
+  background-color: #ddd;
   width: 220px;
   padding: 20px 5px 32px;
   text-align:center;
@@ -43,12 +43,11 @@
   font-weight: bold;
 }
 
-#badgesWrapper .badge {
+#badgesWrapper .earned-badge {
   float: left;
   text-align: center;
   height: 100px;
   width: 70px;
-  color: #c1c50e;
   font-size: 70%;
   margin-top: 5px;
 }
@@ -70,15 +69,24 @@
   padding-top:20px;
 }
 #userScoreSection{
-  padding-bottom:20px;
+  background-color:#222;
+  border-radius:10px;
+  margin-bottom:15px;
   min-height:250px;
+  text-align:center;
+  padding:10px 0;
 }
 #userPointValues{
-  font-size:1.1em;
+  color:#fff;
+  font-size:1.3em;
 }
 #scoreToggle{
   color:#5199AE;
   cursor:pointer;
+}
+.dashboard-toggle .highcharts-container{
+  margin:0 auto;
+  width:90%;
 }
 #scoreToggle:hover{
   text-decoration:underline;
@@ -116,16 +124,14 @@
 }
 
 #mainInfo {
-  width:50%;
   margin-left:300px;
   height:100%;
 }
 
 .collapsible {
-  background-color: #222;
+
   padding-bottom: 15px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+
   margin-bottom: 10px;
 }
 

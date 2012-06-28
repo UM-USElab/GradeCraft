@@ -1,4 +1,4 @@
-%table#users.display
+%table#users.table.table-striped
   %thead
     %tr
       %th Username
@@ -34,4 +34,4 @@
         %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
-  %span.button= link_to 'Create a New Player', new_user_path
+  = link_to 'Create a New Player', new_user_path, :class => "btn btn-primary"

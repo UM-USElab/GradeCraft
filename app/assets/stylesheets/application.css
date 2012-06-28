@@ -11,33 +11,19 @@
  *= require dataTables/src/demo_table_jui
 */
 
-html {
-  font-family:'Droid Serif',serif;
-	background: url('cloud_bg.gif') #99ccff;
-}
 
 body {
-  margin: 15px auto;
-	width:1000px;
+  background: url(bg.png) #000;	
+
+  width:1000px;
 }
-a {
-  color: #5199ae;
-  text-decoration: none;
-  &:visited {
-    color: #5199ae; }
-  &:hover {
-    text-decoration: underline; } 
-  } 
-
-
-
+ 
 table {
   width: 930px;
   color: #000;
 }
 
 th {
-  background-color: #111111;
   font-weight: bold;
   color: #888;
 }
@@ -48,14 +34,14 @@ td {
   
 }
 
-h1#siteTitle{
+/*h1#siteTitle{
   padding: 8px 0px 0px;
   float:left;
   font-family:'Copse', serif;
   font-size:2.7em;
   margin-bottom:10px;
   color: #333;
-}
+}*/
 h2 {
   color: #c1c50e;
   font-size: 20px;
@@ -66,30 +52,30 @@ h3 {
   color: #5199ae;
   margin: 0;
 }
-
 .assignTitle{
   cursor:pointer;
   background: url(assignArrowRt.png) no-repeat 5px center;
   padding: 10px 25px 10px 30px;
-  background-color: #000000;
-  border: 1px solid #c1c50e;
+  background-color: #ddd;
+  border: 1px solid #2F96B4;
+  margin-top:2px;
 }
 .assignTitleOpen{
   background: url(assignArrowDn.png) no-repeat 5px center;
-  background-color: #000000;
+  background-color: #ddd;
+  margin-top:2px;
 }
 
 #content, #registrationDiv {
-  background: url('demo-bg.png') #333333;
+  background: #FFF;
   border-radius: 15px;
   -moz-border-radius: 15px;
   box-shadow: 2px 2px 15px #888;
   clear:both;
-  margin-top: 20px;
+  margin-top: 30px;
   min-height: 500px;
   padding: 15px 35px 25px;
   width: 932px;
-  color: #FFF;
 }
 #content{
   position:relative;
@@ -106,93 +92,148 @@ h3 {
 }
 
 #footer {
+  border-top: 1px solid #eee;
+  color: #fff;	
   margin-top: 45px;
   margin-bottom: 0px;
   padding-top: 15px;
-  border-top: 1px solid #eee;
 }
 
-/* Navigation items */
+/* header styles */
 
+#header{		
+  font-family:'Copse', serif;		
+  height:80px;
+  margin:0 auto;
+  width:1000px;
+}
+h1#siteTitle{
+  float:left;
+  font-size:2.7em;	
+  margin-bottom:10px;
+  padding: 8px 0px;
+}
+h1#siteTitle a{	
+  color:white;
+  text-decoration:none;	
+}
 #loginGroup {
   border-radius: 15px;
+  float:right;
+  margin-bottom:10px;
   -moz-border-radius: 15px;
 }
 
 #loginGroup table {
   padding: 30px;
-  border-radius: 15px;
-  width: 400px;
+  border-radius: 10px;
   -moz-border-radius: 15px;
-  background-color: rgba(150,150,150,.7);
+  background-color: #bbb;
 }
-
+table#login{
+  float:right;
+  width: 200px;
+}
+table#login #loginFields input{
+  width: 100px;
+}
 table#login, table#login tr, table#login th, table#login td {
   border:0px;
   color: #FFF;
   text-align: left;
   border-collapse:collapse;
   padding: 6px;
-  margin: 0px;
+  margin: 0;
 }
- 
-
 table#login td {
-  padding: 10px 10px 5px;
+  min-width: 100px;
+  padding:15px;
 
 }
-
-
-#myInfo{
-  float:right;
-  padding:8px;
-  list-style-type:none;	
+table#login td.loginOptions{
+  padding:0 0 15px 15px;
 }
-#myInfo li{
-  -moz-border-radius: 5px;
-  background-color: #FCC45F;
-  border-radius: 5px;
+table#login td.loginOptions a{
+  color:;
+}
+table#login td.loginOptions a:hover{
+  color:;
+}
+#remember_me{
   float:left;
-  margin-left:10px;
-  opacity:.7;
+  margin-right:5px;
 }
-#myInfo li:hover{
-  background-color:#ccc;
-  opacity:.7;
-}
-#myInfo li a{
-  display:block;
-  padding:10px;
-  color: #000;
-  font-weight: bold;
-}
-#myInfo li a:hover{
-  text-decoration:none;
-}
-
 /* nav style full background */
 
-#nav {
-  clear:both;
-  height:120px;
-  padding-bottom:30px;
-  width: 1000px;
+#myInfoContainer{
+  float:right;
+  position:relative;
+  min-width:150px;
+  border-radius-top:5px;
 }
-#navGroup, #teamNav, #psaBox{		
-  float:left; 
-  -moz-border-radius: 15px;
-  border-radius: 15px;	
+#myInfoContainer .btn-group{
+  z-index:5;
 }
-#navGroup, #teamNav{
-  padding:10px 20px;	
-  background-color: rgba(150,150,150,.2);	
+#myInfo{
+  background-color:#e6e6e6;
+  border-radius:5px;
+  height:50px;
+  list-style-type:none;		
+  margin:-5px 0 0 0;
+  padding:10px;	
+  position:absolute;
+  right:0;
+  width:130px;
+  z-index:3;
 }
-.navTitle{
-  font-weight:bold;
-  padding:10px 20px 10px 10px;
-  font-size:1em;
+#myInfo li{
+  transition: background-color .3s;
+  -moz-transition: background-color .3s;
+  -webkit-transition: background-color .3s;
+  -o-transition: background-color .3s; 
 }
+#myInfo li:hover{
 
+}
+#myInfo li a{
+  color: #222;		
+  display:block;
+  font-weight:bold;
+  padding:5px 10px;
+  text-decoration:none;
+  transition: color .3s;
+  -moz-transition: color .3s;
+  -webkit-transition: color .3s;
+  -o-transition: color .3s; 
+}
+#myInfo li a:hover{
+  color:#2F96B4;
+  text-decoration:none;
+}
+#nav{
+	clear:both;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+#nav li{
+	float:left;
+	margin-right:25px;
+}
+#nav li a{
+	color: #2f99ba;
+	font-size:1.6em;
+	text-decoration:none;
+	text-shadow:0px -1px -1px #000;
+	transition: color .3s;
+	-moz-transition: color .3s; /* Firefox 4 */
+	-webkit-transition: color .3s; /* Safari and Chrome */
+	-o-transition: color .3s; /* Opera */		
+}
+#nav li a:hover, #nav li a.current{
+	color:#ADD8E6;
+	text-shadow:0px -1px -1px #000;		
+}
 #teamNav, #psaBox{
   margin-left:30px;
   display:inline-block;
@@ -216,116 +257,6 @@ table#login td {
 }
 #nextTip:hover{
   text-decoration:underline;
-}
-/* nav style header background
-#nav {
-  clear:both;
-  height:120px;
-  padding-bottom:30px;
-}
-#navGroup{
-  padding:10px 20px 10px 10px;
-  float:left; 	
-}
-#teamNav, #psaBox{
-  padding:10px 20px;
-  float:left;
-}
-.navTitle, #psaBox{
-  background-color: rgba(150,150,150,.2);	
-}
-.navTitle{
-  font-weight:bold;
-  padding:10px 20px 10px 10px;
-  font-size:1em;
-  display:block;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-}
-
-#teamNav, #psaBox{
-  margin-left:20px;
-  display:inline-block;
-}
-#psaBox{
-  height:125px;
-  width:190px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-}
-#psaBox p a:hover{
-  text-decoration:underline;
-}
-*/
-#nav ul {
-  list-style-type:none;
-  margin: 0;
-  padding: 0 0 10px 0;
-}
-#nav li {
-  float:left;
-  margin-right:30px;
-  text-align:center;
-}
-#nav li a{
-  display: block;
-  font-size:1.1em;
-  padding-top:90px;
-  width:75px;
-  color: #0047ae;
-}
-#nav li a:hover{
-  text-decoration:none;
-}
-#navDashboard a, #navUsers a, #navAssignments a, #navBadges a, #navRankings a, #navChallenges a {
-  background-position: 0px 12px;
-  background-repeat: no-repeat;
-}
-#nav a.current{
-  background-position:-2px 12px;
-}
-#navDashboard a{
-  background-image:url('navDashboard.png');
-}
-#navDashboard a.current{
-  background-image:url('navDashboardFold.png');	
-}
-#navUsers a{
-  background-image:url('navUsers.png');
-}
-#navUsers a.current{
-  background-image:url('navUsersFold.png');	
-}
-#navAssignments a{
-  background-image:url('navAssignments.png');
-}
-#navAssignments a.current{
-  background-image:url('navAssignmentsFold.png');	
-}
-#navBadges a{
-  background-image:url('navBadges.png');
-}
-#navBadges a.current{
-  background-image:url('navBadgesFold.png');	
-}
-#navRankings a{
-  background-image:url('navRankings.png');
-}
-#navRankings a.current{
-  background-image:url('navRankingsFold.png');	
-}
-#navChallenges a{
-  background-image:url('navChallenges.png');
-}
-#navChallenges a.current{
-  background-image:url('navChallengesFold.png');	
-}
-#navDashboard a:hover, #navUsers a:hover, #navAssignments a:hover, #navBadges a:hover, #navRankings a:hover, #navChallenges a:hover{
-  background-position: -75px 12px;
-}
-
-#navDashboard a.current:hover, #navUsers a.current:hover, #navAssignments a.current:hover, #navBadges a.current:hover, #navRankings a.current:hover, #navChallenges a.current:hover {
-  background-position: -2px 12px;
 }
 
 input#assignment_title, input#badge_title, input#user_email, input#user_password, input#user_password_confirmation, input#challenge_title, input#challenge_points, input#team_name, inpu#badge_icon, input#user_first_name, input#user_last_name, input#badge_icon, input#user_username {
@@ -446,10 +377,7 @@ th#icon {
   position: relative;
   cursor: pointer;
 }
-.submitBtn input, .buttons li.commit input{
-  background:none;
-  border:none;
-  padding:0;
+.btn{
   color:#FFF;
   font-family:'Droid Serif', serif;
   cursor: pointer;

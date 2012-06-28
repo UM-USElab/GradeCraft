@@ -6,7 +6,7 @@
     %span.title Badges Earned
     %div#badgesEarned
       - current_user.earned_badges.each do |badge|
-        %div.badge
+        %div.earned-badge
           %img{:src => badge.icon, :alt => badge.title}
           .badgeTitle= badge.title
       %div.clear
@@ -17,16 +17,17 @@
     %div#userPointValues
       %span Your current score is 
       %span#userScoreNum #{current_user.score}
-      %br
-      <a href="#" id="totalScoreToggle" class="toggle">Show me my score out of total course points</a>
-      <a href="#" id="soFarScoreToggle" class="toggle">Show me my score out of available points so far</a>
+    %a{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
+      Show me my score out of total course points
+    %a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
+      Show me my score out of available points so far
       
     %div#predictorLink
       <a href="/predictor">Predict My Course Grade!</a>
-    %div#userBarTotal.toggle
+    %div#userBarTotal.dashboard-toggle
       #{current_user.possible_score}
       
-    %div#userBarInProgress.toggle
+    %div#userBarInProgress.dashboard-toggle
     
 
   %h3#attendance.assignTitle

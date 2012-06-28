@@ -1,5 +1,5 @@
 = render 'form'
 
 %div#footerNav
-  %span.button= link_to 'Show', @challenge
-  %span.button= link_to 'Back', challenges_path
+  = link_to 'Show', @challenge, :class => "btn btn-inverse"
+  = link_to 'Back', challenges_path, :class => "btn btn-inverse"

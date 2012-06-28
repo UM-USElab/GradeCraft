@@ -1,6 +1,6 @@
 = render 'form'
 
 %div#footerNav
-  %span.button= link_to 'Show', @team
-  %span.button= link_to 'Back', teams_path
-  %span.button= link_to 'Add a New Team', new_team_path
+  = link_to 'Show', @team, :class => "btn btn-inverse"
+  = link_to 'Back', teams_path, :class => "btn btn-inverse"
+  = link_to 'Add a New Team', new_team_path, :class => "btn btn-primary"
