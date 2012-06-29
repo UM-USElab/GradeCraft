@@ -1,83 +1,76 @@
-!!! XML
-!!!
-%html
+!!! 5
+%html(lang="en")
   %head
-    %title EDUC 222 Grade Tracker
-    %link{:href => "/favicon.ico", :rel => "shortcut icon" }
-    %link{:href => "https://fonts.googleapis.com/css?family=Copse|Droid+Serif", :rel => "stylesheet", :type => "text/css"}
-    %link{:href => "https://fonts.googleapis.com/css?family=Quantico:400,700", :rel => "stylesheet", :type => "text/css"}
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
+    %meta(charset="utf-8")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "GradeCraft"
     = csrf_meta_tags
-    <script type="text/javascript">$(window).load(function() { $('.flexslider').flexslider({ animation: "fade", slideshow:false, animationLoop: false, keyboardNav: false }); }); </script>
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = stylesheet_link_tag "application", :media => "all"
 
-%body
-  %h1#siteTitle <a href="https://grade-tracker.herokuapp.com/">EDUC 222 Grade Tracker</a>
-  %ul#myInfo
-    - if current_user
-      %li= link_to "My Account", edit_profile_users_path
-      %li= link_to "Logout", :logout
-    - else
-      %div#loginGroup
-        %table#login
-          = form_tag user_sessions_path, :method => :post do
-            %tr
-              %td
-                = label_tag :email
-              %td
-                = label_tag :password
-              %td
-            %tr
-              %td
-                = text_field_tag :username
-              %td
-                = password_field_tag :password
-              %td.actions
-                %span.submitBtn.small= submit_tag "Login"
-            %tr
-              %td
-                = check_box_tag :remember_me, 1, params[:remember_me]
-                = label_tag :remember_me
-              %td
-                %span#forgotPass= link_to "Forgot your password?", login_path
-              %td
-    
-  - if current_user  
-    #nav
-      #navGroup
-        %span.navTitle My Info
-        %ul
-          - if current_user
-            %li#navDashboard= link_to "Dashboard", dashboard_path, class: cp(dashboard_path)
-            - if current_user.is_staff?
-              %li#navUsers= link_to "Users", users_path, class: cp(users_path)
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.brand(href="/") GradeCraft
+          %div.pull-right
+            %div{:class => 'btn-group pull-right'}
+              %button.btn.btn-primary= current_user.username
+              %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                %span{:class => 'caret'}
+              %ul{:class => 'dropdown-menu well'}
+                = link_to "My Account", edit_profile_users_path
+                = link_to "Logout", :logout
+            - if current_user 
+              - if current_user.is_staff?
+                %div{:class => 'btn-group pull-right'}
+                  %button.btn.btn-info= "Course"
+                  %a{:class => 'btn btn-info dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                    %span{:class => 'caret'}
+                  %ul{:class => 'dropdown-menu well'}
+                    = link_to "New Assignment", new_assignment_path
+                    = link_to "Gradebook"
+                    = link_to "Students", users_path
+                    = link_to "Teams", teams_path
+                    = link_to "Team Challenges", challenges_path
+                    = link_to "Badges", badges_path
+                    = link_to "Course Settings", courses_path 
+              %div{:class => 'btn-group pull-right'}
+                %button.btn= link_to "Dashboard"
+                %button.btn= link_to "Predictor"
+                %button.btn= link_to "Assignments", assignments_path
+                %button.btn= link_to "Badges", badges_path
+                %button.btn= link_to "Team Rankings", teams_path               
             - else
-              // Show student only links here
-            %li#navAssignments= link_to "Assignments", assignments_path, class: cp(assignments_path)
-            %li#navBadges= link_to "Badges", badges_path, class: cp(badges_path)
-      #teamNav
-        %span.navTitle Team Info
-        %ul
-          %li#navRankings= link_to "Rankings", teams_path, class: cp(teams_path)
-          %li#navChallenges= link_to "Challenges", challenges_path, class: cp(challenges_path)
-      #psaBox
-        %p Do you consider video games to be a form of art?<br/><br/> <a href="http://americanart.si.edu/exhibitions/archive/2012/games/">The Smithsonian does</a>!
-        %p Psst! Want to know the <a href="http://arstechnica.com/gaming/news/2011/04/the-secret-history-of-super-mario-bros-2.ars">secret history of Mario Bros. 2</a>?
-        %p Ever wonder why Angry Birds is so successful? Here's an <a href="http://www.mauronewmedia.com/blog/2011/02/why-angry-birds-is-so-successful-a-cognitive-teardown-of-the-user-experience/">analysis of the user interface</a>.
-        %p Mario Kart is...romantic? <a href="http://youtu.be/VDBpQVhCMb8">http://youtu.be/VDBpQVhCMb8</a>
-        %p Video Games Live is a concert tour featuring music from popular video games <a href="http://www.videogameslive.com/index.php?s=home">http://www.videogameslive.com/</a>
-        %p The Great Gatsby: The Video Game <a href="http://greatgatsbygame.com/">http://greatgatsbygame.com/</a>
+              %button.btn.btn-primary Login
+              %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                %span{:class => 'caret'}
+              %ul{:class => 'dropdown-menu well'}
+                = form_tag user_sessions_path, :method => :post do
+                  %input{:type => "text", :class => "input", :placeholder => "Email", :text_field_tag => "username" }
+                  %input{:type => "password", :class => "input", :placeholder => "Password", :password_field_tag => "password" }
+                  %br
+                  %input{:type => "checkbox", :remember_me => 1 }
+                  .btn.btn-primary= submit_tag "Login"
+                  = link_to "Forgot your password?", login_path
 
-
-    %div#content
-      %h2= title
-      = yield
-  - else
-    %div#content
-      %div#notice= notice
-      %div#alert= alert
-      %h2= title
-      = yield
+    .container
+      .content
+        .row
+          .span12
+            = yield
     
-  #footer
-    .copyright Copyright 2012 Barry Fishman | <a href="/info/index">Site Credits</a>
+      %footer#siteFooter
+        &copy; 2012 Barry Fishman &#124; 
+        = link_to "Site Credits", info_index_path
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"

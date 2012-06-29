@@ -7,9 +7,17 @@
 %div#accountForm
 = semantic_form_for @user do |f|
   = f.inputs do
-    .text= f.input :email
-    .text= f.input :first_name
-    .text= f.input :last_name
-    .text= f.input :password, :as => :password
-    .text= f.input :password_confirmation, :as => :password
-    = f.actions
+    = f.label "Email Address"
+    = f.text_field :email
+    = f.label "First Name"
+    = f.text_field :first_name
+    = f.label "Last Name"
+    = f.text_field :last_name
+    = f.label "Password"
+    = f.text_field :password
+    = f.label "Password Confirmation"
+    = f.text_field :password_confirmation
+    
+  = submit_tag 'Update Settings', :class => 'btn btn-primary'
+  or
+  = link_to 'Cancel', root_path, :class => 'btn btn-primary'

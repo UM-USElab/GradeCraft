@@ -28,6 +28,9 @@ class CoursesController < ApplicationController
   def new
     @title = "Add a New Course"
     @course = Course.new
+    @themes = Theme.all
+    @badge_sets = BadgeSet.all
+    @course_grade_schemes = CourseGradeScheme.all
 
     respond_to do |format|
       format.html # new.html.erb

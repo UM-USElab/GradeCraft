@@ -6,10 +6,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require jquery-ui
 //= require_tree .
 //= require dataTables/jquery.dataTables
 //= require ckeditor/init
+//= require twitter/bootstrap
 
 $(document).ready(function(){
   $('input.ui-datepicker').datepicker();

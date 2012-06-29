@@ -1,11 +1,22 @@
 = semantic_form_for @course do |f|
   = f.inputs do
-    .text= f.input :name
-    .text= f.input :courseno, :label => "Course Number"
-    .text= f.input :year
-    .text= f.input :semester, :collection => [["Winter", "winter"], ["Spring", "spring"], ["Summer", "summer"], ["Fall", "fall"]]
-    .text= f.input :badgeset, :label => "Badge Set", :as => :select, :collection => @badge_sets
-    .text= f.input :theme, :as => :select, :collection => @themes
-    .text= f.input :coursegradescheme, :label => "Course Grading Scheme"
+    = f.label "Name"
+    = f.text_field :name, :class => 'input-small span4'
+    = f.label "Course Number"
+    = f.text_field :courseno, :class => 'input-small span4'
+    = f.label "Semester"
+    = f.select :semester, [["Winter", "winter"], ["Spring", "spring"], ["Summer", "summer"], ["Fall", "fall"]]
+    = f.label "Year"
+    = f.datepicker :year
+    = f.label "Are you using badges?"
+    = f.input :badges, :label => "Yes"
+    = f.label "Badge Set"
+    = f.select :badgeset, @badge_sets
+    = f.label "GradeCraft Theme"
+    = f.select :theme, @themes
+    = f.label "Course Grading Scheme"
+    = f.select :coursegradescheme, @course_grade_schemes
   
-  = f.actions
+  = submit_tag 'Create', :class => 'btn btn-primary'
+  or
+  = link_to 'Cancel', root_path, :class => 'btn btn-primary'

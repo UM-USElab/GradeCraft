@@ -1,8 +1,16 @@
 = semantic_form_for @challenge do |f|
   = f.inputs do
-    .text= f.input :title
-    .text= f.input :type, :as => :select, :collection => [["Team", "Team"], ["Reading Reaction", "ReadingReaction"], ["User", "User"]]
-    .text= f.input :points, :label => "Points Possible"
-    = f.input :description, :as => :ckeditor
-    .text= f.input :date
-    = f.actions
+    = f.label "Title"
+    = f.text_field :title
+    = f.label :type
+    = f.select :type, [["Team", "Team"], ["Reading Reaction", "ReadingReaction"], ["User", "User"]]
+    = f.label "Points Possible"
+    = f.text_field :points
+    = f.label "Description"
+    = f.cktext_area :description
+    = f.label "Due Date"
+    = f.datepicker :date
+
+  = submit_tag 'Create', :class => 'btn btn-primary'
+  or
+  = link_to 'Cancel', root_path, :class => 'btn btn-primary'

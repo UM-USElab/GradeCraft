@@ -1,4 +1,4 @@
-%table#grade_schemes.display
+%table#grade_schemes.display.table-bordered
   %thead
     %tr
       %th Assignment
@@ -20,4 +20,4 @@
         %td= link_to 'Destroy', grade_scheme, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
-  %span.button= link_to 'New Grade scheme', new_grade_scheme_path
+  = link_to 'New Grade scheme', new_grade_scheme_path, {:class => 'btn btn-primary'}

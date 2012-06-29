@@ -1,4 +1,4 @@
-%table#courses.display
+%table#courses.display.table-bordered
   %thead
     %tr
       %th Name
@@ -25,7 +25,5 @@
         %td= link_to 'Edit', edit_course_path(course)
         %td= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete
 
-%br
-
 %div#footerNav
-  %span.button= link_to 'New Course', new_course_path
+  = link_to 'New Course', new_course_path, {:class => 'btn btn-primary'}

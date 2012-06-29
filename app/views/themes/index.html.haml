@@ -1,0 +1,21 @@
+%h1 Listing themes
+
+%table
+  %tr
+    %th Name
+    %th Filename
+    %th
+    %th
+    %th
+
+  - @themes.each do |theme|
+    %tr
+      %td= theme.name
+      %td= theme.filename
+      %td= link_to 'Show', theme
+      %td= link_to 'Edit', edit_theme_path(theme)
+      %td= link_to 'Destroy', theme, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Theme', new_theme_path

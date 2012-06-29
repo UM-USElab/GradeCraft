@@ -1,5 +1,5 @@
 %h3.assignTitle Learning From Playing a Game
-%table.collapsible
+%table.table.table-striped.table-bordered
   %tr
     %th ID
     %th Title
@@ -29,7 +29,7 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
           
 %h3.assignTitle Boss Battles
-%table.collapsible
+%table.table.table-striped.table-bordered
   %tr
     %th ID
     %th Title
@@ -59,14 +59,13 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete      
 
 %h3.assignTitle Attendance
-%table.collapsible
+%table.table.table-striped.table-bordered
   %tr
     %th ID
     %th Title
     %th Points
     %th Due Date
     - if current_user.is_staff?
-      %th
       %th
       %th
       %th
@@ -86,14 +85,13 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
 
 %h3.assignTitle Reading Reactions
-%table.collapsible
+%table.table.table-striped.table-bordered
   %tr
     %th ID
     %th Title
     %th Points
     %th Due Date
     - if current_user.is_staff?
-      %th
       %th
       %th
       %th
@@ -113,7 +111,7 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
 
 %h3.assignTitle Blogging
-%table.collapsible
+%table.table.table-striped.table-bordered
   %tr
     %th ID
     %th Title
@@ -138,7 +136,7 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
           
 %h3.assignTitle Team
-%table.collapsible
+%table.table.table-striped.table-bordered
   %tr
     %th ID
     %th Title
@@ -163,13 +161,14 @@
           %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete          
           
 %h3.assignTitle Bonus Points!
-%table.collapsible
+%table.table.table-striped.table-bordered
   %tr
     %th ID
     %th Title
     %th Points
     %th Due Date
     - if current_user.is_staff?
+      %th
       %th
       %th
       %th
@@ -191,9 +190,4 @@
 
 %div#footerNav
   - if current_user.is_staff?
-    %span.button= link_to 'New LFPG Assignment', new_assignment_path(:type => "LFPG")
-    %span.button= link_to 'New Boss Battle Assignment', new_assignment_path(:type => "BossBattle")
-    %span.button= link_to 'New Blogging Assignment', new_assignment_path(:type => "Blogging")
-    %span.button= link_to 'New Attendance Assignment', new_assignment_path(:type => "Attendance")
-    %span.button= link_to 'New Reading Reaction Assignment', new_assignment_path(:type => "ReadingReaction")
-    %span.button= link_to 'New Team Assignment', new_assignment_path(:type => "TeamAssignment")
+    = link_to 'New Assignment', new_assignment_path, {:class => 'btn btn-primary'}

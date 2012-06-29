@@ -1,5 +1,7 @@
 = semantic_form_for @grade_scheme do |f|
   = f.inputs do
-    .text= f.input :assignment, :as => :select, :collection => @assignments
+    = f.select :assignment, :collection => @assignments
   
-  = f.actions
+  = submit_tag 'Create', :class => 'btn btn-primary'
+  or
+  = link_to 'Cancel', root_path, :class => 'btn btn-primary'

@@ -1,4 +1,8 @@
-Grader::Application.routes.draw do
+GradeCraft::Application.routes.draw do
+
+  resources :course_grade_schemes
+
+  resources :themes
 
   resources :badge_sets
 

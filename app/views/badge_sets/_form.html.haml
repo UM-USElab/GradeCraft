@@ -1,7 +1,11 @@
 = semantic_form_for @badge_set do |f|
   = f.inputs do
-    .text= f.input :name
-    .text= f.input :notes, :as => :ckeditor
+    = f.label "Name"
+    = f.text_field :name
+    = f.label "Notes"
+    = f.cktext_area :notes, :as => :ckeditor
   
-  = f.actions
+  = submit_tag 'Create', :class => 'btn btn-primary'
+  or
+  = link_to 'Cancel', root_path, :class => 'btn btn-primary'
 

@@ -1,9 +1,15 @@
-= semantic_form_for @badge do |f|
-  = f.inputs do
-    .text= f.input :title
-    .text= f.input :description, :as => :ckeditor
-    .text= f.input :icon
-    .text= f.input :visible, :as => :boolean
-    .text= f.input :occurrence, :as => :select, :collection => [["Onetime", "onetime"], ["Multiple", "multiple"]]
-    .text= f.input :badge_set_id, :as => :select, :collection => @badge_sets
-    = f.actions
+= form_for @badge, :url => new_badge_path, :html => { :method => :put } do |f|
+  = f.label :title
+  = f.text_field :title, :class => 'input-small span4'
+  = f.label :description
+  = f.cktext_area :description, :class => 'span4', :placeholder => "Describe what this badge means, and how it can be earned. Note that if this badge is marked as visible then this description will also be viewable in the list of badges."
+  = f.label :icon
+  = f.text_field :icon
+  = f.label :visible
+  = f.check_box :visible
+  = f.label :occurence
+  .text= f.select :occurrence, [["Onetime", "onetime"], ["Multiple", "multiple"]]
+  
+  = submit_tag 'Create', :class => 'btn btn-primary'
+  or
+  = link_to 'Cancel', root_path, :class => 'btn btn-primary'

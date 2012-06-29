@@ -1,4 +1,4 @@
-%table#badges.display
+%table#badges.display.table-bordered
   %thead
     %tr
       %th#icon Icon
@@ -32,7 +32,7 @@
               %img{:src => badge.icon, :alt => badge.title}
               %td= badge.title
               %td= badge.description
-%br
+              
 %div#footerNav
   - if current_user.is_staff?
-    %span.button= link_to 'Create a New Badge', new_badge_path
+    = link_to 'Create a New Badge', new_badge_path, {:class => 'btn btn-primary'}

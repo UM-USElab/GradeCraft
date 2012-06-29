@@ -1,10 +1,10 @@
 = render 'form'
 
-%br
-%h2 Create Your New Password:
-%span Please enter your @umich.edu email address, and you'll receive a link 
-%br via email that will allow you to create a new password for your account.
-= render 'forgot_password_form'
+%form.well.alert-info
+  %h3 Forgot Your Password?
+  %span Enter the email address associated with your account, and you'll  
+  %br receive a link via email that will allow you to create a new password.
+  = render 'forgot_password_form'
 
 %div#footerNav
   %span.button= link_to 'Back', user_sessions_path

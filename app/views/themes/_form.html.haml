@@ -1,0 +1,10 @@
+= semantic_form_for @theme do |f|
+  = f.inputs do
+    = f.label :name
+    = f.text_field :name
+    = f.label "File path"
+    = f.text_field :filename
+  
+  = submit_tag 'Create', :class => 'btn btn-primary'
+  or
+  = link_to 'Cancel', root_path, :class => 'btn btn-primary'

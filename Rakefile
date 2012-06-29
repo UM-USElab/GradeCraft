@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Grader::Application.load_tasks
+GradeCraft::Application.load_tasks
