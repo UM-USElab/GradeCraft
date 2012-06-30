@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629021206) do
+ActiveRecord::Schema.define(:version => 20120629112553) do
 
   create_table "assignments", :force => true do |t|
     t.string    "title"
@@ -97,12 +97,15 @@ ActiveRecord::Schema.define(:version => 20120629021206) do
     t.string   "courseno"
     t.datetime "year"
     t.string   "semester"
-    t.integer  "badgeset"
-    t.string   "theme"
+    t.integer  "badge_sets_id"
+    t.string   "themes_id"
     t.integer  "coursegradescheme"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.boolean  "badges",            :default => true
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.boolean  "team_setting",      :default => false
+    t.string   "user_term"
+    t.boolean  "badge_setting",     :default => true
+    t.string   "team_term"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -194,6 +197,8 @@ ActiveRecord::Schema.define(:version => 20120629021206) do
     t.string    "last_name"
     t.integer   "sortable_score"
     t.integer   "rank"
+    t.string    "display_name"
+    t.boolean   "private_display",                 :default => false
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

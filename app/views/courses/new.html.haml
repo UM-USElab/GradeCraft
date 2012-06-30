@@ -1,4 +1,9 @@
 .form-vertical= render 'form'
 
+
+= submit_tag 'Update Course', :class => 'btn btn-primary'
+ or
+= link_to 'Cancel', root_path, :class => 'btn btn-primary'
+  
 %div#footerNav
   %button.btn.btn-primary= link_to 'Back', courses_path

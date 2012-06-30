@@ -9,14 +9,15 @@
     = f.label "Year"
     = f.datepicker :year
     = f.label "Are you using badges?"
-    = f.input :badges, :label => "Yes"
+    = f.check_box :badge_setting, :label => "Yes"
     = f.label "Badge Set"
-    = f.select :badgeset, @badge_sets
+    = f.select :badge_sets_id, @badge_sets
     = f.label "GradeCraft Theme"
-    = f.select :theme, @themes
-    = f.label "Course Grading Scheme"
-    = f.select :coursegradescheme, @course_grade_schemes
+    = f.select :themes_id, @themes
+    = f.label "Will students be grouped into teams or sections?"
+    = f.check_box :team_setting, :label => "Yes"
+    = f.label "What will these groups be called?"
+    = f.text_field :team_term
+    = f.label "How would you like to refer to your students? Users, Players, Students, Learners..."
+    = f.text_field :user_term
   
-  = submit_tag 'Create', :class => 'btn btn-primary'
-  or
-  = link_to 'Cancel', root_path, :class => 'btn btn-primary'

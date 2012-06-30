@@ -41,12 +41,17 @@
                     = link_to "Team Challenges", challenges_path
                     = link_to "Badges", badges_path
                     = link_to "Course Settings", courses_path 
+                  - if current_user.role == "admin"
+                    %div{:class=> 'btn-group pull-right'}
+                      %ul
+
               %div{:class => 'btn-group pull-right'}
                 %button.btn= link_to "Dashboard"
                 %button.btn= link_to "Predictor"
                 %button.btn= link_to "Assignments", assignments_path
                 %button.btn= link_to "Badges", badges_path
                 %button.btn= link_to "Team Rankings", teams_path               
+                                
             - else
               %button.btn.btn-primary Login
               %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
@@ -59,6 +64,7 @@
                   %input{:type => "checkbox", :remember_me => 1 }
                   .btn.btn-primary= submit_tag "Login"
                   = link_to "Forgot your password?", login_path
+              
 
     .container
       .content

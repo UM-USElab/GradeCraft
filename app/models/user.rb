@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
   def name
     [first_name,last_name].join(' ')
   end
+  
+  def public_name
+    :display_name || @name
+  end
 
   def is_prof?
     role == "professor"
@@ -59,30 +63,30 @@ class User < ActiveRecord::Base
     is_prof? || is_gsi? || is_admin?
   end
 
-  #Actual
-  def boss_battle_score
-    grades.bossbattle.sum(:score) || 0
-  end
-  
-  def team_assignment_score
-    grades.team_assignment.sum(:score) || 0
-  end
-   
-  def lfpg_score
-    grades.lfpg.sum(:score) || 0
-  end
-  
-  def blogging_score
-    grades.blogging.map(&:score).inject(&:+) || 0
-  end
-  
-  def attendance_score
-    grades.attendance.sum(:score) || 0
-  end
-  
-  def reading_reaction_score
-    grades.reading_reaction.map(&:score).inject(&:+) || 0
-  end
+ #  #Actual
+#   def boss_battle_score
+#     grades.bossbattle.sum(:score) || 0
+#   end
+#   
+#   def team_assignment_score
+#     grades.team_assignment.sum(:score) || 0
+#   end
+#    
+#   def lfpg_score
+#     grades.lfpg.sum(:score) || 0
+#   end
+#   
+#   def blogging_score
+#     grades.blogging.map(&:score).inject(&:+) || 0
+#   end
+#   
+#   def attendance_score
+#     grades.attendance.sum(:score) || 0
+#   end
+#   
+#   def reading_reaction_score
+#     grades.reading_reaction.map(&:score).inject(&:+) || 0
+#   end
    
   def score
     grades.map(&:score).inject(&:+) || 0
@@ -96,29 +100,29 @@ class User < ActiveRecord::Base
     
   end
   
-  #Possible 
-  def reading_reaction_possible
-    grades.where(:type=>"ReadingReactionGrade").map(&:points_possible).inject(&:+) || 0
-  end
-    
-  def lfpg_possible
-    grades.where(:type=>"LFPGGrade").map(&:points_possible).inject(&:+) || 0
-  end
-    
-  def boss_battle_possible
-    grades.where(:type=>"BossBattleGrade").map(&:points_possible).inject(&:+) || 0
-  end
-  
-  def attendance_possible
-    grades.where(:type=>"AttendanceGrade").map(&:points_possible).inject(&:+) || 0
-  end
-  
-  def team_assignment_possible
-    grades.where(:type=>"TeamAssignmentGrade").map(&:points_possible).inject(&:+) || 0
-  end
-  
-  def possible_score
-    attendance_possible + reading_reaction_possible + boss_battle_possible + lfpg_possible + blogging_score + team_assignment_possible || 0
-  end
+  # #Possible 
+#   def reading_reaction_possible
+#     grades.where(:type=>"ReadingReactionGrade").map(&:points_possible).inject(&:+) || 0
+#   end
+#     
+#   def lfpg_possible
+#     grades.where(:type=>"LFPGGrade").map(&:points_possible).inject(&:+) || 0
+#   end
+#     
+#   def boss_battle_possible
+#     grades.where(:type=>"BossBattleGrade").map(&:points_possible).inject(&:+) || 0
+#   end
+#   
+#   def attendance_possible
+#     grades.where(:type=>"AttendanceGrade").map(&:points_possible).inject(&:+) || 0
+#   end
+#   
+#   def team_assignment_possible
+#     grades.where(:type=>"TeamAssignmentGrade").map(&:points_possible).inject(&:+) || 0
+#   end
+#   
+#   def possible_score
+#     attendance_possible + reading_reaction_possible + boss_battle_possible + lfpg_possible + blogging_score + team_assignment_possible || 0
+#   end
   
 end

@@ -43,6 +43,9 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @title = "Edit Course" 
     @badge_sets = BadgeSet.all
+    @themes = Theme.all
+    @course_grade_schemes = CourseGradeScheme.all
+    
   end
 
   # POST /courses
