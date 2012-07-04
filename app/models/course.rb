@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :badge_sets_id, :coursegradescheme, :courseno, :name, :semester, :themes_id, :year, :badge_setting, :teams_setting
+  attr_accessible :badge_sets_id, :coursegradescheme, :courseno, :name, :semester, :themes_id, :year, :badge_setting, :team_setting, :team_term, :user_term
   
   has_many :assignments, :dependent => :destroy
   has_one :badge_sets
