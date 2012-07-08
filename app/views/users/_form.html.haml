@@ -1,22 +1,18 @@
-= semantic_form_for @user do |f|
-  = f.inputs do
-    = f.label :username
-    = f.text_field :username
-    = f.label "Email Address"
-    = f.text_field :email
-    = f.label "First Name"
-    = f.text_field :first_name
-    = f.label "Last Name"
-    = f.text_field :last_name
-    - if !@user.persisted?
-      = f.text_field :password, :as => :password
-      = f.text_field :password_confirmation, :as => :password
-    /= f.input :token, :as => :hidden
-    - if current_user.is_staff?
-      = f.label :role
-      = f.select :role, [["Student", "student"],["GSI", "gsi"],["Professor", "professor"],["Admin", "admin"]]
-      = f.label :team
-      = f.select :team_id, @teams
+= simple_form_for(@user, :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :username
+  = f.input :email
+  = f.input :first_name
+  = f.input :last_name
+  - if !@user.persisted?
+    = f.input :password, :as => :password
+    = f.input :password_confirmation, :as => :password
+  /= f.input :token, :as => :hidden
+  - if current_user.is_staff?
+    = f.input :role, :collection => [["Student", "student"],["GSI", "gsi"],["Professor", "professor"],["Admin", "admin"]], :prompt => "Select Role"
+    = f.input :team_id, :collection => @teams, :prompt => "Select a Team"
+  - if current_user.is_admin?
+    = f.association :courses, :as => :check_boxes
+
   = submit_tag 'Update Settings', :class => 'btn btn-primary'
   or
   = link_to 'Cancel', root_path, :class => 'btn btn-primary'

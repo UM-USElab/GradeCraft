@@ -1,5 +1,9 @@
 class Course < ActiveRecord::Base
-  attr_accessible :badge_sets_id, :coursegradescheme, :courseno, :name, :semester, :themes_id, :year, :badge_setting, :team_setting, :team_term, :user_term
+  attr_accessible :badge_sets_id, :coursegradescheme, :courseno, :name, :semester, :themes_id, :year, :badge_setting, :team_setting, :team_term, :user_term, :user_id, :course_id
+  
+  has_many :course_memberships, :dependent => :destroy
+  has_many :users, :through => :course_memberships
+  accepts_nested_attributes_for :users
   
   has_many :assignments, :dependent => :destroy
   has_one :badge_sets
@@ -10,6 +14,5 @@ class Course < ActiveRecord::Base
   has_many :teams, :dependent => :destroy
   has_many :team_assignments, :dependent => :destroy
   has_one :theme
-  has_many :users
   
 end

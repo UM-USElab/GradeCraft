@@ -8,8 +8,6 @@ GradeCraft::Application.routes.draw do
 
   resources :courses
 
-  mount Ckeditor::Engine => '/ckeditor'
-
   root :to => "home#index"
 
   %w{students gsis professors admins}.each do |role|
@@ -39,7 +37,11 @@ GradeCraft::Application.routes.draw do
   resources :home
   resources :challenge_grades
   resources :challenges
-  resources :grade_schemes
+  resources :grade_schemes do
+    collection do
+      post :destroy_multiple 
+    end
+  end
   resources :user_sessions
   resources :predictor
 
@@ -49,7 +51,6 @@ GradeCraft::Application.routes.draw do
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

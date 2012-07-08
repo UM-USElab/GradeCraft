@@ -37,22 +37,22 @@ class GradesController < ApplicationController
   end
   
   def grade_class(assignment)
-    case assignment
-    when ReadingReaction
-      ReadingReactionGrade
-    when Blogging
-      BloggingGrade
-    when Attendance
-      AttendanceGrade
-    when LFPG
-      LFPGGrade
-    when BossBattle
-      BossBattleGrade
-    when TeamAssignment
-      TeamAssignmentGrade
-    else
-      Grade
-    end
+#     case assignment
+#     when ReadingReaction
+#       ReadingReactionGrade
+#     when Blogging
+#       BloggingGrade
+#     when Attendance
+#       AttendanceGrade
+#     when LFPG
+#       LFPGGrade
+#     when BossBattle
+#       BossBattleGrade
+#     when TeamAssignment
+#       TeamAssignmentGrade
+#     else
+#       Grade
+#     end
   end
 
   def edit

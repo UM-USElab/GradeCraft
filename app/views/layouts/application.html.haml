@@ -44,14 +44,12 @@
                   - if current_user.role == "admin"
                     %div{:class=> 'btn-group pull-right'}
                       %ul
-
               %div{:class => 'btn-group pull-right'}
                 %button.btn= link_to "Dashboard"
                 %button.btn= link_to "Predictor"
                 %button.btn= link_to "Assignments", assignments_path
                 %button.btn= link_to "Badges", badges_path
-                %button.btn= link_to "Team Rankings", teams_path               
-                                
+                %button.btn= link_to "Team Rankings", teams_path                                     
             - else
               %button.btn.btn-primary Login
               %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }

@@ -14,6 +14,14 @@ module ApplicationHelper
     "current" if current_page?(path)
   end
   
+  def current_course
+    @__current_course ||= if session[:course_id]
+      current_user.courses.find(session[:course_id])
+    else
+      current_user.try(:default_course)
+    end
+  end
+  
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil

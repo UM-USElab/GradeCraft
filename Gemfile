@@ -13,9 +13,9 @@ gem "paperclip", "~> 3.0"
 gem 'gravatar_image_tag'
 gem 'pacecar'
 gem 'will_paginate'
-gem 'ckeditor', "3.7.1"
 gem 'twitter-bootstrap-rails'
-gem 'formtastic'
+gem 'simple_form'
+gem 'bootstrap-wysihtml5-rails'
 
 
 group :production do

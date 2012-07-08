@@ -24,7 +24,7 @@
     %div#predictorLink
       = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
     %div#userBarTotal.toggle
-      #{@user.possible_score}
+      //#{@user.possible_score}
 
     %div#userBarInProgress.toggle
 
@@ -32,8 +32,8 @@
     %span Learning From Playing a Game
     %span.assignmentPointsSpan 
       %span#lfpg_score
-        #{number_with_delimiter(@user.lfpg_score, :delimiter => ',')} 
-      out of #{number_with_delimiter(@user.lfpg_possible, :delimiter => ',')}
+        //#{number_with_delimiter(@user.lfpg_score, :delimiter => ',')} 
+      //out of #{number_with_delimiter(@user.lfpg_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "LFPG" 
@@ -70,8 +70,8 @@
     %span Boss Battles
     %span.assignmentPointsSpan 
       %span#boss_battle_score
-        #{number_with_delimiter(@user.boss_battle_score, :delimiter => ',')} 
-      out of #{number_with_delimiter(@user.boss_battle_possible, :delimiter => ',')}
+        //#{number_with_delimiter(@user.boss_battle_score, :delimiter => ',')} 
+      //out of #{number_with_delimiter(@user.boss_battle_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "BossBattle" 
@@ -110,8 +110,8 @@
     %span Attendance
     %span.assignmentPointsSpan 
       %span#attendance_score
-        #{number_with_delimiter(@user.attendance_score, :delimiter => ',')} 
-      out of #{number_with_delimiter(@user.attendance_possible, :delimiter => ',')}
+        //#{number_with_delimiter(@user.attendance_score, :delimiter => ',')} 
+      //out of #{number_with_delimiter(@user.attendance_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Attendance"
@@ -146,8 +146,8 @@
     %span Reading Reactions
     %span.assignmentPointsSpan
       %span#reading_reaction_score
-        #{number_with_delimiter(@user.reading_reaction_score, :delimiter => ',')} 
-      out of #{number_with_delimiter(@user.reading_reaction_possible, :delimiter => ',')}
+        //#{number_with_delimiter(@user.reading_reaction_score, :delimiter => ',')} 
+      //out of #{number_with_delimiter(@user.reading_reaction_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade| 
       - if grade.assignment.type == "ReadingReaction"
@@ -185,7 +185,7 @@
     %span Blogging
     %span.assignmentPointsSpan
       %span#blogging_score
-        #{number_with_delimiter(@user.blogging_score, :delimiter => ',')}
+        //#{number_with_delimiter(@user.blogging_score, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "Blogging"
@@ -220,8 +220,8 @@
   %h3#blogging.assignTitle
     %span Team Points
     %span.assignmentPointsSpan 
-      %span#team_assignment_score #{@user.team_assignment_score}
-      out of #{number_with_delimiter(@user.team_assignment_possible, :delimiter => ',')}
+      //%span#team_assignment_score #{@user.team_assignment_score}
+      //out of #{number_with_delimiter(@user.team_assignment_possible, :delimiter => ',')}
   %div.collapsible
     - Grade.completion.where(:user_id => @user.id).each do |grade|
       - if grade.assignment.type == "TeamAssignment"

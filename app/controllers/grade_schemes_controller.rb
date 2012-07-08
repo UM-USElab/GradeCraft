@@ -1,6 +1,7 @@
 class GradeSchemesController < ApplicationController
   # GET /grade_schemes
   # GET /grade_schemes.json
+  
   def index
     @title = "Grading Schemes"
     @grade_schemes = GradeScheme.all
@@ -58,6 +59,17 @@ class GradeSchemesController < ApplicationController
       end
     end
   end
+    
+  def destroy_multiple
+    @grade_schemes = GradeScheme.find(params[:grade_scheme_ids])
+    @grade_schemes.delete
+    
+    respond_to do |format|
+      format.html { redirect_to grade_schemes_url }
+      format.json { head :ok }
+    end
+  end
+  
 
   # PUT /grade_schemes/1
   # PUT /grade_schemes/1.json
@@ -86,4 +98,5 @@ class GradeSchemesController < ApplicationController
       format.json { head :ok }
     end
   end
+
 end

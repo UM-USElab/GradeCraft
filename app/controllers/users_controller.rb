@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   def index
     @title = "View all Players"
     @users = User.all
+    @courses = Course.all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -15,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @title = @user
+    @courses = Course.all
     respond_with @user = User.find(params[:id])
   end
   
@@ -26,18 +29,22 @@ class UsersController < ApplicationController
   def new
     @title = "Register"
     @teams = Team.all
+    @courses = Course.all
     respond_with @user = User.new
   end
 
   def edit
     @title = "Edit Player"
     @teams = Team.all
+    @courses = Course.all
     respond_with @user = User.find(params[:id])
   end
-
+  
   def create
     @teams = Team.all
     @user = User.create(params[:user])
+    @courses = Course.all
+    
     respond_with @user
 
   end
@@ -45,6 +52,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @teams = Team.all
+    @courses = Course.all
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

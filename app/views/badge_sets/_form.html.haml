@@ -1,9 +1,6 @@
-= semantic_form_for @badge_set do |f|
-  = f.inputs do
-    = f.label "Name"
-    = f.text_field :name
-    = f.label "Notes"
-    = f.cktext_area :notes, :as => :ckeditor
+= simple_form_for(@badge_set, :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :name
+  = f.input :notes, :as => :text, :label => "Notes", :input_html => {:id => 'some-textarea', :class => 'span6' }
   
   = submit_tag 'Create', :class => 'btn btn-primary'
   or

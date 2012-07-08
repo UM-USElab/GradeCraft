@@ -1,7 +1,6 @@
-= semantic_form_for @challenge_grade do |f|
-  = f.inputs do
-    .text= f.input :team_id, :as => :select, :collection => @teams
-    .text= f.input :challenge_id, :as => :select, :collection => @challenges
-    .text= f.input :feedback, :as => :ckeditor
-    .text= f.input :score
-    = f.actions(:label => "Add Team Points") 
+= simple_form_for(@challenge_grade, :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :team_id, :as => :select, :collection => @teams
+  = f.input :challenge_id, :as => :select, :collection => @challenges
+  = f.input :feedback, :as => :text, :label => "Feedback", :input_html => {:id => 'some-textarea', :class => 'span6' },
+  = f.input :score
+  = f.actions(:label => "Add Team Points") 

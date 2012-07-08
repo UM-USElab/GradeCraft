@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   Roles = %w{student professor gsi admin}
   
-  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank
+  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank, :course_id, :user_id
 
   has_attached_file :avatar,
                     :styles => { :medium => "300x300>",
@@ -11,7 +11,11 @@ class User < ActiveRecord::Base
                     :url => '/assets/avatars/:id/:style/:basename.:extension',
                     :path => ':rails_root/public/assets/avatars/:id/:style/:basename.:extension',
                     :default_url => '/images/missing_:style.png'
-
+  
+  has_many :course_memberships, :dependent => :destroy
+  has_many :courses, :through => :course_memberships
+  accepts_nested_attributes_for :courses
+            
   has_many :grades, :dependent => :destroy
   has_many :earned_badges, :through => :grades
   belongs_to :team

@@ -1,7 +1,5 @@
-= semantic_form_for @group do |f|
-  = f.inputs do
-    = f.label "Name"
-    = f.text_field :name
+= simple_form_for(@group, :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :name
 
   = submit_tag 'Create', :class => 'btn btn-primary'
   or

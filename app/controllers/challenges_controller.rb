@@ -14,6 +14,7 @@ class ChallengesController < ApplicationController
   # GET /challenges/1
   # GET /challenges/1.json
   def show
+    @title = "Viewing Challenge"
     @challenge = Challenge.find(params[:id])
 
     respond_to do |format|

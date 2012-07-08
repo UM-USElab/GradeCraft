@@ -13,32 +13,32 @@ class Grade < ActiveRecord::Base
   after_save :save_user_score
   
   scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
+  # 
+#   scope :reading_reaction, where(:type => "ReadingReactionGrade")
+#   scope :lfpg, where(:type=> "LFPGGrade")
+#   scope :bossbattle, where(:type=> "BossBattleGrade")
+#   scope :blogging, where(:type=> "BloggingGrade")
+#   scope :attendance, where(:type=> "AttendanceGrade")
+#   scope :team_assignment, where(:type=> "TeamAssignmentGrade")
   
-  scope :reading_reaction, where(:type => "ReadingReactionGrade")
-  scope :lfpg, where(:type=> "LFPGGrade")
-  scope :bossbattle, where(:type=> "BossBattleGrade")
-  scope :blogging, where(:type=> "BloggingGrade")
-  scope :attendance, where(:type=> "AttendanceGrade")
-  scope :team_assignment, where(:type=> "TeamAssignmentGrade")
-  
-  def grade_type
-    case assignment
-    when ReadingReaction
-      ReadingReactionGrade
-    when Blogging
-      BloggingGrade
-    when Attendance
-      AttendanceGrade
-    when LFPG
-      LFPGGrade
-    when BossBattle
-      BossBattleGrade
-    when TeamAssignment
-      TeamAssignmentGrade
-    else
-      Grade
-    end
-  end
+#   def grade_type
+#     case assignment
+#     when ReadingReaction
+#       ReadingReactionGrade
+#     when Blogging
+#       BloggingGrade
+#     when Attendance
+#       AttendanceGrade
+#     when LFPG
+#       LFPGGrade
+#     when BossBattle
+#       BossBattleGrade
+#     when TeamAssignment
+#       TeamAssignmentGrade
+#     else
+#       Grade
+#     end
+#   end
     
   def score
     super || 0

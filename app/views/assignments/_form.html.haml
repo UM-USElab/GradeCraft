@@ -1,5 +1,4 @@
-= semantic_form_for @assignment.becomes(Assignment) do |f|
-  = f.inputs do
-    .text= f.input :title
-    = render "#{@assignment.class.name.underscore}_form", :form => f
-    = f.actions
+= simple_form_for(@assignment, :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :title
+  = render "#{@assignment.class.name.underscore}_form", :form => f
+  = f.actions
