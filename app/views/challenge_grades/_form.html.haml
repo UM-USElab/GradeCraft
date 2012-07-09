@@ -3,4 +3,5 @@
   = f.input :challenge_id, :as => :select, :collection => @challenges
   = f.input :feedback, :as => :text, :label => "Feedback", :input_html => {:id => 'some-textarea', :class => 'span6' },
   = f.input :score
-  = f.actions(:label => "Add Team Points") 
+  = f.button :submit, :class => 'btn btn-primary', :label => "Add Team Points"
+  = link_to 'Cancel', challenge_grades_path, :class => 'btn btn-primary' 

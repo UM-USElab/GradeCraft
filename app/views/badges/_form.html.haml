@@ -5,6 +5,5 @@
   = f.input :visible, :as => :radio
   = f.input :occurrence, :collection => [["Onetime", "onetime"], ["Multiple", "multiple"]]
   
-  = submit_tag 'Create', :class => 'btn btn-primary'
-  or
-  = link_to 'Cancel', root_path, :class => 'btn btn-primary'
+  = f.button :submit, :class => 'btn btn-primary'
+  = link_to 'Cancel', badges_path, :class => 'btn btn-primary'

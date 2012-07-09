@@ -1,15 +1,17 @@
 class Assignment < ActiveRecord::Base
+  set_inheritance_column 'something_you_will_not_use'
+  
   has_many :grades, :dependent => :destroy
-  belongs_to :courses
+  belongs_to :course
   accepts_nested_attributes_for :grades
   
   default_scope :order => 'due_date ASC'
-    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :type, :present, :grades_attributes
+    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes
 
   def mass_gradeable?
     true
   end
-  
+
   scope :team_assignment, where(:type => "TeamAssignment")
   scope :group_assignment, where(:type => "GroupAssignment")
   scope :future, lambda {
@@ -23,7 +25,7 @@ class Assignment < ActiveRecord::Base
     }
   }
   scope :graded, where(:assignment_grades.present? == 1)
-  
+
   def assignment_grades
     Grade.where(:assignment_id => id)
   end

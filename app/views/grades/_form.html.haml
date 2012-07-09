@@ -1,5 +1,3 @@
-%h3= @grade.assignment.title
-%br
 = simple_form_for(@grade, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :user, :collection => User.students, :include_blank => false
   - if @assignment
@@ -7,4 +5,5 @@
   - else
     = f.input :assignment
   = render "#{@grade.class.name.underscore}_form", :form => f
-  = f.actions
+  = f.button :submit, :class => 'btn btn-primary'
+  = link_to 'Cancel', grades_path, :class => 'btn btn-primary'

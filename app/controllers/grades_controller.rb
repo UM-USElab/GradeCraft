@@ -51,7 +51,7 @@ class GradesController < ApplicationController
 #     when TeamAssignment
 #       TeamAssignmentGrade
 #     else
-#       Grade
+       Grade
 #     end
   end
 

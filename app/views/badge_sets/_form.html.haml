@@ -2,7 +2,6 @@
   = f.input :name
   = f.input :notes, :as => :text, :label => "Notes", :input_html => {:id => 'some-textarea', :class => 'span6' }
   
-  = submit_tag 'Create', :class => 'btn btn-primary'
-  or
-  = link_to 'Cancel', root_path, :class => 'btn btn-primary'
+  = f.button :submit, :class => 'btn btn-primary'
+  = link_to 'Cancel', badge_sets_path, :class => 'btn btn-primary'
 

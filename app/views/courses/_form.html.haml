@@ -4,15 +4,13 @@
   = f.input :semester, :collection => [["Winter", "winter"], ["Spring", "spring"], ["Summer", "summer"], ["Fall", "fall"]]
   = f.input :year
   = f.input :badge_setting, :label => "Yes"
-  = f.input :badge_sets, :collection => @badge_sets, :prompt => "-- Select a Badge Set --"
+  //= f.input :badge_sets, :collection => @badge_sets, :prompt => "-- Select a Badge Set --"
   //= f.input :themes, :collection => @themes, :prompt => "-- Select a Theme --"
   = f.input :team_setting, :label => "Yes"
   = f.input :team_term
   = f.input :user_term
     
-    
-  = submit_tag 'Submit', :class => 'btn btn-primary'
-  or
-  = link_to 'Cancel', root_path, :class => 'btn btn-primary'
+  = f.button :submit, :class => 'btn btn-primary'
+  = link_to 'Cancel', courses_path, :class => 'btn btn-primary'
 
   

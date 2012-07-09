@@ -19,6 +19,7 @@ class AssignmentsController < ApplicationController
 
   def new
     @title = "Create a New Assignment"
+    @assignment = Assignment.new
   end
 
   def edit

@@ -1,26 +1,16 @@
-%h2 My Account
-
 = gravatar_for @user, :size => 150
 %br
 <a href="http://en.gravatar.com" target="_blank"/>Need a Gravatar? Get One Here!</a>
 
 %div#accountForm
-= semantic_form_for @user do |f|
-  = f.inputs do
-    = f.label "Email Address"
-    = f.text_field :email
-    = f.label "First Name"
-    = f.text_field :first_name
-    = f.label "Last Name"
-    = f.text_field :last_name
-    = f.label "Would you like to set a custom display name?"
-    = f.text_field :display_name
-    = f.label "For privacy purposes would you like to hide all identifying information (name and email address) while browsing?"
-    = f.check_box :private_display, :label => "Yes"
-    = f.label "Password"
-    = f.text_field :password
-    = f.label "Password Confirmation"
-    = f.text_field :password_confirmation
+= simple_form_for(@user, :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :email
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :display_name
+  = f.input :private_display, :label => "For privacy purposes would you like to hide all identifying information (name and email address) while browsing?"
+  = f.input :password
+  = f.input :password_confirmation
     
   = submit_tag 'Update Settings', :class => 'btn btn-primary'
   or

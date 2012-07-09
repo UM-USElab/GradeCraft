@@ -1,6 +1,5 @@
 = simple_form_for(@group, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :name
 
-  = submit_tag 'Create', :class => 'btn btn-primary'
-  or
-  = link_to 'Cancel', root_path, :class => 'btn btn-primary'
+  = f.button :submit, :class => 'btn btn-primary'
+  = link_to 'Cancel', groups_path, :class => 'btn btn-primary'

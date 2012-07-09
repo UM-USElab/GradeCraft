@@ -1,4 +1,5 @@
 = simple_form_for(@assignment, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :title
-  = render "#{@assignment.class.name.underscore}_form", :form => f
-  = f.actions
+  
+  = f.button :submit, :class => 'btn btn-primary'
+  = link_to 'Cancel', assignments_path, :class => 'btn btn-primary'

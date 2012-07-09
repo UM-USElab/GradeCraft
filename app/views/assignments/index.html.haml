@@ -1,4 +1,4 @@
-%h3.assignTitle Learning From Playing a Game
+%h3.assignTitle 
 %table.table.table-striped.table-bordered
   %tr
     %th ID
@@ -12,181 +12,21 @@
       %th
       %th
   - @assignments.each do |assignment|
-    - if assignment.type == "LFPG"
-      %tr
-        %td= assignment.id
-        %td= assignment.title
-        %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
-        %td
-          - if assignment.due_date?
-            = assignment.due_date
-        - if current_user.is_staff?
-          %td= number_with_delimiter(assignment.average, :delimiter => ',') 
-          %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
-          - if assignment.mass_gradeable?
-            %td= link_to 'Log Grades', mass_edit_grades_path("assignment_id"=>assignment.id)
-          %td= link_to 'Edit', edit_assignment_path(assignment)
-          %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
-          
-%h3.assignTitle Boss Battles
-%table.table.table-striped.table-bordered
-  %tr
-    %th ID
-    %th Title
-    %th Points
-    %th Due Date
-    - if current_user.is_staff?
-      %th Average
-      %th
-      %th
-      %th
-      %th
-  - @assignments.each do |assignment|
-    - if assignment.type == "BossBattle"
-      %tr
-        %td= assignment.id
-        %td= assignment.title
-        %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
-        %td
-          - if assignment.due_date?
-            = assignment.due_date
-        - if current_user.is_staff?
-          %td= number_with_delimiter(assignment.average, :delimiter => ',') 
-          %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
-          - if assignment.mass_gradeable?
-            %td= link_to 'Log Grades', mass_edit_grades_path("assignment_id"=>assignment.id)
-          %td= link_to 'Edit', edit_assignment_path(assignment)
-          %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete      
-
-%h3.assignTitle Attendance
-%table.table.table-striped.table-bordered
-  %tr
-    %th ID
-    %th Title
-    %th Points
-    %th Due Date
-    - if current_user.is_staff?
-      %th
-      %th
-      %th
-  - @assignments.each do |assignment|
-    - if assignment.type == "Attendance"
-      %tr
-        %td= assignment.id
-        %td= assignment.title
-        %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
-        %td
-          - if assignment.due_date?
-            = assignment.due_date.to_s(:gt_date)
-        - if current_user.is_staff?        
-          - if assignment.mass_gradeable?
-            %td= link_to 'Log Grades', mass_edit_grades_path("assignment_id"=>assignment.id)
-          %td= link_to 'Edit', edit_assignment_path(assignment)
-          %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
-
-%h3.assignTitle Reading Reactions
-%table.table.table-striped.table-bordered
-  %tr
-    %th ID
-    %th Title
-    %th Points
-    %th Due Date
-    - if current_user.is_staff?
-      %th
-      %th
-      %th
-  - @assignments.each do |assignment|
-    - if assignment.type == "ReadingReaction"
-      %tr
-        %td= assignment.id
-        %td= assignment.title
-        %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
-        %td
-          - if assignment.due_date?
-            = assignment.due_date
-        - if current_user.is_staff?
-          - if assignment.mass_gradeable?
-            %td= link_to 'Log Grades', mass_edit_grades_path("assignment_id"=>assignment.id)          
-          %td= link_to 'Edit', edit_assignment_path(assignment)
-          %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
-
-%h3.assignTitle Blogging
-%table.table.table-striped.table-bordered
-  %tr
-    %th ID
-    %th Title
-    %th Points
-    %th Due Date
-    - if current_user.is_staff?
-      %th
-      %th
-      %th
-  - @assignments.each do |assignment|
-    - if assignment.type == "Blogging"
-      %tr
-        %td= assignment.id
-        %td= assignment.title
-        %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
-        %td
-          - if assignment.due_date?
-            = assignment.due_date.to_s(:gt_date)
-        - if current_user.is_staff?
-          %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
-          %td= link_to 'Edit', edit_assignment_path(assignment)
-          %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
-          
-%h3.assignTitle Team
-%table.table.table-striped.table-bordered
-  %tr
-    %th ID
-    %th Title
-    %th Points
-    %th Due Date
-    - if current_user.is_staff?
-      %th
-      %th
-      %th
-  - @assignments.each do |assignment|
-    - if assignment.type == "TeamAssignment"
-      %tr
-        %td= assignment.id
-        %td= assignment.title
-        %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
-        %td
-          - if assignment.due_date?
-            = assignment.due_date.to_s(:gt_date)
-        - if current_user.is_staff?
+    %tr
+      %td= assignment.id
+      %td= assignment.title
+      %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
+      %td
+        - if assignment.due_date?
+          = assignment.due_date
+      - if current_user.is_staff?
+        %td= number_with_delimiter(assignment.average, :delimiter => ',') 
+        %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
+        - if assignment.mass_gradeable?
           %td= link_to 'Log Grades', mass_edit_grades_path("assignment_id"=>assignment.id)
-          %td= link_to 'Edit', edit_assignment_path(assignment)
-          %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete          
-          
-%h3.assignTitle Bonus Points!
-%table.table.table-striped.table-bordered
-  %tr
-    %th ID
-    %th Title
-    %th Points
-    %th Due Date
-    - if current_user.is_staff?
-      %th
-      %th
-      %th
-      %th
-  - @assignments.each do |assignment|
-    - if assignment.type == nil
-      %tr
-        %td= assignment.id
-        %td= assignment.title
-        %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
-        %td
-          - if assignment.due_date?
-            = assignment.due_date.to_s(:gt_date)
-        - if current_user.is_staff?
-          %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
-          - if assignment.mass_gradeable?
-            %td= link_to 'Log Grades', mass_edit_grades_path("assignment_id"=>assignment.id)
-          %td= link_to 'Edit', edit_assignment_path(assignment)
-          %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete          
+        %td= link_to 'Edit', edit_assignment_path(assignment)
+        %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
+                   
 
 %div#footerNav
   - if current_user.is_staff?
