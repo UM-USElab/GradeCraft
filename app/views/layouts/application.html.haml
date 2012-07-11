@@ -18,7 +18,7 @@
           %div.pull-right
             - if current_user
               %div{:class => 'btn-group pull-right'}
-                %button.btn.btn-primary= current_user.username
+                %button.btn.btn-primary= @user.public_name
                 %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
                   %span{:class => 'caret'}
                 %ul{:class => 'dropdown-menu well'}
@@ -51,11 +51,11 @@
                   %li= link_to "Course Settings", courses_path
             - if current_user 
               %div{:class => 'btn-group pull-right'}
-                = link_to "Dashboard",  assignments_path, :class => "btn btn-primary"
-                = link_to "Predictor",  assignments_path, :class => "btn btn-primary"
-                = link_to "Assignments", assignments_path, :class => "btn btn-primary"
-                = link_to "Badges", badges_path, :class => "btn btn-primary"
-                = link_to "Team Rankings", teams_path, :class => "btn btn-primary"
+                = link_to "Dashboard",  assignments_path, :class => "btn"
+                = link_to "Predictor",  assignments_path, :class => "btn"
+                = link_to "Assignments", assignments_path, :class => "btn"
+                = link_to "Badges", badges_path, :class => "btn"
+                = link_to "Team Rankings", teams_path, :class => "btn"
 
               
 

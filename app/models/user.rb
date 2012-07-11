@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   Roles = %w{student professor gsi admin}
   
-  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank, :course_id, :user_id
+  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank, :course_ids, :user_id, :display_name, :private_display
 
   has_attached_file :avatar,
                     :styles => { :medium => "300x300>",
@@ -40,7 +40,11 @@ class User < ActiveRecord::Base
   end
   
   def public_name
-    :display_name || @name
+    if display_name?
+      display_name
+    else 
+      email
+    end
   end
 
   def is_prof?

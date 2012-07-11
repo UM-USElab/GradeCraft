@@ -8,3 +8,4 @@ jQuery ->
     bJQueryUI: true
     bStateSave: true
     iDisplayLength: 50
+  $('.datepicker').datepicker()

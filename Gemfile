@@ -16,6 +16,7 @@ gem 'will_paginate'
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem 'bootstrap-wysihtml5-rails'
+gem 'bootstrap-datepicker-rails'
 
 
 group :production do

@@ -13,6 +13,7 @@
 //= require_tree .
 //= require dataTables/jquery.dataTables
 //= require twitter/bootstrap
+//= require bootstrap-datepicker
 
 $(document).ready(function(){
   $('input.ui-datepicker').datepicker();

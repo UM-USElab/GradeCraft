@@ -1,6 +1,6 @@
+%div
+  = link_to 'View', @team, :class => "btn btn-primary"
+  = link_to 'Back', teams_path, :class => "btn btn-primary"
+  = link_to 'Add a New Team', new_team_path, :class => "btn btn-primary"
+  
 = render 'form'
-
-%div#footerNav
-  %span.button= link_to 'Show', @team
-  %span.button= link_to 'Back', teams_path
-  %span.button= link_to 'Add a New Team', new_team_path

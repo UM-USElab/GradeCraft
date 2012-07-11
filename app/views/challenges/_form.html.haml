@@ -2,6 +2,6 @@
   = f.input :title, :label => "Challenge Title"
   = f.input :points, :label => "Points Possible"
   = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span6' }
-  = f.input :date, :label => "Due Date"
+  = f.input :date, :label => "Due Date", :as => :date
   = f.button :submit, :class => 'btn btn-primary'
   = link_to 'Cancel', challenges_path, :class => 'btn btn-primary'

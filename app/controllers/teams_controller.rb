@@ -30,6 +30,7 @@ class TeamsController < ApplicationController
   def new
     @title = "Create a New Team"
     @team = Team.new
+    @users = User.all
 
     respond_to do |format|
       format.html # new.html.erb

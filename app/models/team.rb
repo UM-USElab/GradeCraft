@@ -5,7 +5,7 @@ class Team < ActiveRecord::Base
   
   belongs_to :course
   
-  attr_accessible :name, :created_at, :updated_at, :banner_file_name, :banner_updated_at, :sortable_score, :rank
+  attr_accessible :name, :created_at, :updated_at, :banner_file_name, :banner_updated_at, :sortable_score, :rank, :team_id, :user_ids
 
   default_scope :order => 'id ASC'
 

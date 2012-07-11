@@ -39,6 +39,8 @@ GEM
     archive-tar-minitar (0.5.2)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    bootstrap-datepicker-rails (0.6.15)
+      railties (>= 3.0)
     bootstrap-wysihtml5-rails (0.2.12)
       railties (>= 3.0)
     builder (3.0.0)
@@ -207,6 +209,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-datepicker-rails
   bootstrap-wysihtml5-rails
   coffee-rails
   exception_notification

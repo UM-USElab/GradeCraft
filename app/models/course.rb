@@ -6,7 +6,7 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :users
   
   has_many :assignments, :dependent => :destroy
-  has_one :badge_sets
+  has_many :badge_sets
   has_many :challenges, :dependent => :destroy
   has_many :course_grade_scheme, :dependent => :destroy
   has_many :grades

@@ -1,5 +1,5 @@
 class Assignment < ActiveRecord::Base
-  set_inheritance_column 'something_you_will_not_use'
+  self.inheritance_column 'something_you_will_not_use'
   
   has_many :grades, :dependent => :destroy
   belongs_to :course
