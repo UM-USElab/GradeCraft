@@ -6,7 +6,7 @@
     %span.title Badges Earned
     %div#badgesEarned
       - @user.earned_badges.each do |badge|
-        %div.badge
+        %div.earned-badge
           %img{:src => badge.icon, :alt => badge.title}
           .badgeTitle= badge.title
       %div.clear
@@ -17,16 +17,16 @@
     %div#userPointValues
       %span Your current score is 
       %span#userScoreNum #{number_with_delimiter(@user.score, :delimiter => ',') if @user.respond_to?(:score)}
-      %br
-      <a href="#" id="totalScoreToggle" class="toggle">Show me my score out of total course points</a>
-      <a href="#" id="soFarScoreToggle" class="toggle">Show me my score out of available points so far</a>
+    %a{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
+      Show me my score out of total course points
+    %a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
+      Show me my score out of available points so far
 
     %div#predictorLink
       = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
-    %div#userBarTotal.toggle
-      //#{@user.possible_score}
-
-    %div#userBarInProgress.toggle
+    %div#userBarTotal.dashboard-toggle
+      #{@user.possible_score}
+    %div#userBarInProgress.dashboard-toggle
 
   %h3#attendance.assignTitle
     %span Learning From Playing a Game
@@ -34,9 +34,8 @@
       %span#lfpg_score
         //#{number_with_delimiter(@user.lfpg_score, :delimiter => ',')} 
       //out of #{number_with_delimiter(@user.lfpg_possible, :delimiter => ',')}
-  
 
 %div#footerNav
-  %span.button= link_to 'Edit', edit_user_path(@user)
-  %span.button= link_to 'Back', users_path
-  %span.button= link_to 'Create a New Player', new_user_path
+  = link_to 'Edit', edit_user_path(@user), :class => "btn btn-inverse"
+  = link_to 'Back', users_path, :class => "btn btn-inverse"
+  = link_to 'Create a New Player', new_user_path, :class => "btn btn-primary"

@@ -25,5 +25,5 @@
 
 %div#footerNav
   - if current_user.is_staff?
-    = link_to 'Create a New Challenge', new_challenge_path, {:class => 'btn btn-primary'}
-    = link_to 'Grade a Challenge', new_challenge_grade_url, {:class => 'btn btn-primary'}
+    = link_to 'Create a New Challenge', new_challenge_path, :class => "btn btn-primary"
+    = link_to 'Grade a Challenge', new_challenge_grade_url, :class => "btn btn-primary"

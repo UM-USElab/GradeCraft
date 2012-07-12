@@ -21,26 +21,26 @@ HIGH SCORES
   
 
 LOW SCORES
-%table
+%table.table.table-striped
   %tr
     %th Username 
     %th Score
     %th Dashboard
 
 MOST BADGES 
-%table
+%table.table.table-striped
   %tr
     %th Username 
     %th Score
     %th Dashboard
 
 FEWEST BADGES
-%table
+%table.table.table-striped
   %tr
     %th Username 
     %th Score
     %th Dashboard
 
 %div#footerNav
-  %span.button= link_to "Grade an Assignment", new_grade_url
-  %span.button= link_to "Grade a Team Challenge", new_challenge_grade_url
+  = link_to "Grade an Assignment", new_grade_url, :class => "btn btn-inverse"
+  = link_to "Grade a Team Challenge", new_challenge_grade_url, :class => "btn btn-inverse"
