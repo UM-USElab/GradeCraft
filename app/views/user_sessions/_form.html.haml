@@ -1,7 +1,7 @@
-%form.well 
+.well
   %h3 Login
-  = form_tag user_sessions_path, :method => :post do
-    %input{:type => "text", :class => "input", :placeholder => "Email" }
-    %input{:type => "password", :class => "input", :placeholder => "Password" }
-    %input{:type => "checkbox", :remember_me => 1}  Remember me
-    %button{:type => "submit", :class => "btn btn-primary" } Login
+  = simple_form_for @user, :url => user_sessions_path do |f|
+    = f.input :email
+    = f.input :password
+    = f.input :remember_me, :as => :boolean
+    = f.submit 'Log in', :class => 'btn btn-primary'
