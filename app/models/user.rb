@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   Roles = %w{student professor gsi admin}
   
+  attr_accessor :remember_me
   attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank, :course_ids, :user_id, :display_name, :private_display, :default_course_id
 
   has_attached_file :avatar,
@@ -117,6 +118,10 @@ class User < ActiveRecord::Base
     end
   end
   
+def default_course
+  @default_course ||= (self.courses.where(:id => self.default_course_id).first || self.courses.first)
+end
+
   # #Possible 
 #   def reading_reaction_possible
 #     grades.where(:type=>"ReadingReactionGrade").map(&:points_possible).inject(&:+) || 0
