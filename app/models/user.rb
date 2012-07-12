@@ -118,6 +118,10 @@ class User < ActiveRecord::Base
     end
   end
   
+def default_course
+  @default_course ||= (self.courses.where(:id => self.default_course_id).first || self.courses.first)
+end
+
   # #Possible 
 #   def reading_reaction_possible
 #     grades.where(:type=>"ReadingReactionGrade").map(&:points_possible).inject(&:+) || 0

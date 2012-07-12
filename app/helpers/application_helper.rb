@@ -15,11 +15,8 @@ module ApplicationHelper
   end
   
   def current_course
-    @__current_course ||= if session[:course_id]
-      current_user.courses.find(session[:course_id])
-    else
-      current_user.try(:default_course_id)
-    end
+    @__current_course ||= current_user.courses.where(:id => session[:course_id]).first if session[:course_id]
+    @__current_course ||= current_user.default_course if current_user.respond_to?(:default_course)
   end
   
   def sortable(column, title = nil)
