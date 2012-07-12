@@ -12,6 +12,7 @@
     = f.input :team_id, :collection => @teams, :prompt => "Select a Team"
   - if current_user.is_admin?
     = f.association :courses, :as => :check_boxes
+    = f.input :default_course_id, :collection => @courses
 
   = f.button :submit, :class => 'btn btn-primary'
   = link_to 'Cancel', users_path, :class => 'btn btn-primary'

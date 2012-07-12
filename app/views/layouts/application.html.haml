@@ -14,11 +14,11 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          %a.brand(href="/") GradeCraft
+          %a.brand(href="/") GradeCraft | #{current_course}
           %div.pull-right
             - if current_user
               %div{:class => 'btn-group pull-right'}
-                %button.btn.btn-primary= @user.public_name
+                %button.btn.btn-primary= current_user.public_name
                 %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
                   %span{:class => 'caret'}
                 %ul{:class => 'dropdown-menu well'}

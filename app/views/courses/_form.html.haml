@@ -9,6 +9,7 @@
   = f.input :team_setting, :hint => "Will you have semester-long teams in your course?"
   = f.input :team_term, :label => "What will you call these teams?", :hint => "Teams, Groups, Sections..."
   = f.input :user_term, :hint => "Students, Learners, Players...", :label => "What will you call your users? "
+  = f.input :homepage_message, :as => :text, :label => "Homepage description:", :input_html => {:id => 'some-textarea', :class => 'span6' }, :placeholder => "Text here will be shown on the course homepage when students login."
     
   = f.button :submit, :class => 'btn btn-primary'
   = link_to 'Cancel', courses_path, :class => 'btn btn-primary'

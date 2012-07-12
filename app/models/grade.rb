@@ -58,8 +58,6 @@ class Grade < ActiveRecord::Base
     user.save
   end
   
-  #@released_grades = Grade.find(:all, :conditions => ['released = ?', true])
-  
   def is_released?
     status == "Released"
   end

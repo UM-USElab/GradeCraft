@@ -16,6 +16,10 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
+    @users = current_course.users
+    @assignments = current_course.assignments
+    @grades = current_course.grades
+    @teams = current_course.teams
 
     respond_to do |format|
       format.html # show.html.erb

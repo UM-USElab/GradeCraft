@@ -18,7 +18,7 @@ module ApplicationHelper
     @__current_course ||= if session[:course_id]
       current_user.courses.find(session[:course_id])
     else
-      current_user.try(:default_course)
+      current_user.try(:default_course_id)
     end
   end
   

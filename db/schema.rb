@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120708030225) do
+ActiveRecord::Schema.define(:version => 20120712053608) do
 
   create_table "assignments", :force => true do |t|
     t.string    "title"
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(:version => 20120708030225) do
     t.string   "user_term"
     t.boolean  "badge_setting",     :default => true
     t.string   "team_term"
+    t.string   "homepage_message"
+    t.boolean  "status",            :default => true
   end
 
   create_table "dashboards", :force => true do |t|
@@ -207,6 +209,7 @@ ActiveRecord::Schema.define(:version => 20120708030225) do
     t.integer   "rank"
     t.string    "display_name"
     t.boolean   "private_display",                 :default => false
+    t.integer   "default_course_id"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

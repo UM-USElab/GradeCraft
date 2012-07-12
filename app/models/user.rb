@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   Roles = %w{student professor gsi admin}
   
-  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank, :course_ids, :user_id, :display_name, :private_display
+  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank, :course_ids, :user_id, :display_name, :private_display, :default_course_id
 
   has_attached_file :avatar,
                     :styles => { :medium => "300x300>",
@@ -106,6 +106,15 @@ class User < ActiveRecord::Base
   
   def rank
     
+  end
+  
+  def find_scoped_courses(course_id)
+    course_id = BSON::ObjectId(course_id) if course_id.is_a?(String)
+    if superuser? || self.course_ids.include?(course_id)
+      Course.find(course_id)
+    else
+      raise 
+    end
   end
   
   # #Possible 

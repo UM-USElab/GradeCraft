@@ -1,4 +1,10 @@
 %div.hero-unit
-  %h1 Welcome to GradeCraft 
-  %br
-  %p Login to build your grade
+  - if current_user
+    = #{current_course.homepage_message}
+
+  - else
+    %h1 Welcome to GradeCraft 
+    %br
+    %p Login to build your grade
+  
+  
