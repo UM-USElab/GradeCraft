@@ -2,7 +2,7 @@
 !!!
 %html
   %head
-    %title EDUC 222 Grade Tracker
+    %title GradeCraft
     %link{:href => "/favicon.ico", :rel => "shortcut icon" }
     %link{:href => "https://fonts.googleapis.com/css?family=Copse|Droid+Serif", :rel => "stylesheet", :type => "text/css"}
     %link{:href => "https://fonts.googleapis.com/css?family=Quantico:400,700", :rel => "stylesheet", :type => "text/css"}
@@ -12,72 +12,64 @@
     <script type="text/javascript">$(window).load(function() { $('.flexslider').flexslider({ animation: "fade", slideshow:false, animationLoop: false, keyboardNav: false }); }); </script>
 
 %body
-  %h1#siteTitle <a href="https://grade-tracker.herokuapp.com/">EDUC 222 Grade Tracker</a>
-  %ul#myInfo
+  %div#header
+    %h1#siteTitle <a href="https://grade-tracker.herokuapp.com/">GradeCraft</a>
     - if current_user
-      %li= link_to "My Account", edit_profile_users_path
-      %li= link_to "Logout", :logout
+      %div#myInfoContainer
+        %div.btn-group
+          %a.btn.btn-info
+            %i.icon-user.icon-white 
+            = current_user.first_name+" "+current_user.last_name
+          %a.btn.btn-info.dropdown-toggle
+            %span.caret
+        %ul#myInfo
+          %li= link_to "My Account", edit_profile_users_path
+          %li= link_to "Logout", :logout
+      %ul#nav
+        - if current_user
+          %li#navDashboard= link_to "Dashboard", dashboard_path, class: cp(dashboard_path)
+          - if current_user.is_staff?
+            %li#navUsers= link_to "Users", users_path, class: cp(users_path)
+          - else
+          // How do I convert this link to the same format as the others?
+          %li#navPredictor
+            %a{:href => "predictor"}
+              Predictor
+          %li#navAssignments= link_to "Assignments", assignments_path, class: cp(assignments_path)
+          %li#navBadges= link_to "Badges", badges_path, class: cp(badges_path)
+          %li#navRankings= link_to "Team Rankings", teams_path, class: cp(teams_path)
+          %li#navChallenges= link_to "Team Challenges", challenges_path, class: cp(challenges_path)
+
     - else
       %div#loginGroup
         %table#login
           = form_tag user_sessions_path, :method => :post do
-            %tr
+            %tr#loginFields
               %td
-                = label_tag :email
+                / = text_field_tag :username, "Username"
+                %input{:id => "username", :name => "username", :type => "text", :placeholder => "username"}
               %td
-                = label_tag :password
-              %td
-            %tr
-              %td
-                = text_field_tag :username
-              %td
-                = password_field_tag :password
+                / = password_field_tag :password, "Password"
+                %input{:id => "password", :name => "password", :type => "password", :placeholder => "password"}                
               %td.actions
-                %span.submitBtn.small= submit_tag "Login"
+                %input{:name => "commit", :type => "submit", :value => "login", :class => "btn btn-primary"}
+                / %span.submitBtn.small= submit_tag "Login"
             %tr
-              %td
+              %td{:class => "loginOptions"}
                 = check_box_tag :remember_me, 1, params[:remember_me]
                 = label_tag :remember_me
-              %td
+              %td{:colspan => "2", :class => "loginOptions"}
                 %span#forgotPass= link_to "Forgot your password?", login_path
-              %td
-    
-  - if current_user  
-    #nav
-      #navGroup
-        %span.navTitle My Info
-        %ul
-          - if current_user
-            %li#navDashboard= link_to "Dashboard", dashboard_path, class: cp(dashboard_path)
-            - if current_user.is_staff?
-              %li#navUsers= link_to "Users", users_path, class: cp(users_path)
-            - else
-              // Show student only links here
-            %li#navAssignments= link_to "Assignments", assignments_path, class: cp(assignments_path)
-            %li#navBadges= link_to "Badges", badges_path, class: cp(badges_path)
-      #teamNav
-        %span.navTitle Team Info
-        %ul
-          %li#navRankings= link_to "Rankings", teams_path, class: cp(teams_path)
-          %li#navChallenges= link_to "Challenges", challenges_path, class: cp(challenges_path)
-      #psaBox
-        %p Do you consider video games to be a form of art?<br/><br/> <a href="http://americanart.si.edu/exhibitions/archive/2012/games/">The Smithsonian does</a>!
-        %p Psst! Want to know the <a href="http://arstechnica.com/gaming/news/2011/04/the-secret-history-of-super-mario-bros-2.ars">secret history of Mario Bros. 2</a>?
-        %p Ever wonder why Angry Birds is so successful? Here's an <a href="http://www.mauronewmedia.com/blog/2011/02/why-angry-birds-is-so-successful-a-cognitive-teardown-of-the-user-experience/">analysis of the user interface</a>.
-        %p Mario Kart is...romantic? <a href="http://youtu.be/VDBpQVhCMb8">http://youtu.be/VDBpQVhCMb8</a>
-        %p Video Games Live is a concert tour featuring music from popular video games <a href="http://www.videogameslive.com/index.php?s=home">http://www.videogameslive.com/</a>
-        %p The Great Gatsby: The Video Game <a href="http://greatgatsbygame.com/">http://greatgatsbygame.com/</a>
-
-
+  - if current_user
     %div#content
       %h2= title
       = yield
-  - else
+  - else      
     %div#content
       %div#notice= notice
       %div#alert= alert
       %h2= title
       = yield
-    
+
   #footer
     .copyright Copyright 2012 Barry Fishman | <a href="/info/index">Site Credits</a>

@@ -30,8 +30,8 @@ $(document).ready(function() {
 	$('#showPossiblePts').hide();
     $('#soFarScoreToggle').hide();	
 	
-    $('a.toggle').click(function(){
-      $('.toggle').toggle();
+    $('a.dashboard-toggle').click(function(){
+      $('.dashboard-toggle').toggle();
       return false;
 	})
 

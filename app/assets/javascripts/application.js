@@ -12,5 +12,6 @@
 //= require ckeditor/init
 
 $(document).ready(function(){
-  $('input.ui-datepicker').datepicker();
+	$('input.ui-datepicker').datepicker();
+
 });

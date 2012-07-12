@@ -9,4 +9,4 @@
     = check_box_tag :remember_me, 1, params[:remember_me]
     = label_tag :remember_me
   .actions
-    = submit_tag "Login"
+    %input{:name => "commit", :type => "submit", :value => "login", :class => "btn btn-primary"}
