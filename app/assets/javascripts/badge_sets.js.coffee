@@ -6,3 +6,5 @@ jQuery ->
   $('#badge_set').dataTable
     sPaginationType: "full_numbers"
     bJQueryUI: true
+    bStateSave: true
+    iDisplayLength: 50

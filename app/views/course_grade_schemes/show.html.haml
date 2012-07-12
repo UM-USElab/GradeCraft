@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @course_grade_scheme.name
+
+= link_to 'Edit', edit_course_grade_scheme_path(@course_grade_scheme)
+\|
+= link_to 'Back', course_grade_schemes_path

@@ -1,14 +1,18 @@
-= semantic_form_for @user do |f|
-  = f.inputs do
-    .text= f.input :username
-    .text= f.input :email
-    .text= f.input :first_name, :label => "First Name"
-    .text= f.input :last_name, :label => "Last Name"
-    - if !@user.persisted?
-      .text= f.input :password, :as => :password
-      .text= f.input :password_confirmation, :as => :password
-    /= f.input :token, :as => :hidden
-    - if current_user.is_staff?
-      .text= f.input :role, :as => :select, :collection => [["Student", "student"],["GSI", "gsi"],["Professor", "professor"],["Admin", "admin"]]
-      .text= f.input :team_id, :as => :select, :collection => @teams
-    = f.actions
+= simple_form_for(@user, :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :username
+  = f.input :email
+  = f.input :first_name
+  = f.input :last_name
+  - if !@user.persisted?
+    = f.input :password, :as => :password
+    = f.input :password_confirmation, :as => :password
+  /= f.input :token, :as => :hidden
+  - if current_user.is_staff?
+    = f.input :role, :collection => [["Student", "student"],["GSI", "gsi"],["Professor", "professor"],["Admin", "admin"]], :prompt => "Select Role"
+    = f.input :team_id, :collection => @teams, :prompt => "Select a Team"
+  - if current_user.is_admin?
+    = f.association :courses, :as => :check_boxes
+    = f.input :default_course_id, :collection => @courses
+
+  = f.button :submit, :class => 'btn btn-primary'
+  = link_to 'Cancel', users_path, :class => 'btn btn-primary'

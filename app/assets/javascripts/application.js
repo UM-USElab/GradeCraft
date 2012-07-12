@@ -6,12 +6,16 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require jquery-ui
+//= require wysihtml5
+//= require bootstrap-wysihtml5
 //= require_tree .
 //= require dataTables/jquery.dataTables
-//= require ckeditor/init
+//= require twitter/bootstrap
+//= require bootstrap-datepicker
 
 $(document).ready(function(){
-	$('input.ui-datepicker').datepicker();
-
+  $('input.ui-datepicker').datepicker();
+  $('#some-textarea').wysihtml5();
 });

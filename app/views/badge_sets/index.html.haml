@@ -1,4 +1,4 @@
-%table#badge_set.display
+%table#badge_set.display.table-bordered
   %thead
     %tr
       %th Name
@@ -15,7 +15,5 @@
         %td= link_to 'Edit', edit_badge_set_path(badge_set)
         %td= link_to 'Destroy', badge_set, :confirm => 'Are you sure?', :method => :delete
 
-%br
-
 %div#footerNav
-  %span.button= link_to 'New Badge set', new_badge_set_path
+  = link_to 'New Badge set', new_badge_set_path, {:class => 'btn btn-primary'}

@@ -1,4 +1,4 @@
-%table#grades
+%table#grades.display.table-bordered
   %thead
     %tr
       %th Username
@@ -30,4 +30,4 @@
 %br
 
 %div#footerNav
-  %span.button= link_to 'New Grade', new_grade_path(grade)
+  = link_to 'New Grade', new_grade_path(grade), {:class => 'btn btn-primary'}

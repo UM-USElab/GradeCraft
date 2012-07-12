@@ -14,13 +14,26 @@
   = @course.semester
 %p
   %b Badge Set:
-  = @course.badgeset
+  = @course.badge_sets_id
 %p
   %b Theme:
-  = @course.theme
+  = @course.themes_id
 %p
   %b Course Grade Scheme:
   = @course.coursegradescheme
+
+%p
+  %b Students will be grouped into teams or sections:
+  = @course.team_setting
+
+%p
+  %b These sections will be called:
+  = @course.team_term
+  
+%p 
+  %b Students will be called:
+  = @course.user_term
+
 
 %div#footerNav
   %span.button= link_to 'Edit', edit_course_path(@course)

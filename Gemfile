@@ -6,7 +6,6 @@ gem 'jquery_datepicker'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
 gem 'fabrication'
-gem 'formtastic'
 gem 'haml'
 gem 'sorcery'
 gem 'exception_notification'
@@ -14,7 +13,10 @@ gem "paperclip", "~> 3.0"
 gem 'gravatar_image_tag'
 gem 'pacecar'
 gem 'will_paginate'
-gem 'ckeditor'
+gem 'twitter-bootstrap-rails'
+gem 'simple_form'
+gem 'bootstrap-wysihtml5-rails'
+gem 'bootstrap-datepicker-rails'
 
 
 group :production do

@@ -16,6 +16,10 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
+    @users = current_course.users
+    @assignments = current_course.assignments
+    @grades = current_course.grades
+    @teams = current_course.teams
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,6 +32,9 @@ class CoursesController < ApplicationController
   def new
     @title = "Add a New Course"
     @course = Course.new
+    @themes = Theme.all
+    @badge_sets = BadgeSet.all
+    @course_grade_schemes = CourseGradeScheme.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,6 +47,9 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @title = "Edit Course" 
     @badge_sets = BadgeSet.all
+    @themes = Theme.all
+    @course_grade_schemes = CourseGradeScheme.all
+    
   end
 
   # POST /courses

@@ -5,7 +5,7 @@ class AssignmentsController < ApplicationController
 
   def index
     @title = "View All Assignments"
-    @assignments = Assignment.all
+    @assignments = current_course.assignments
     
     respond_to do |format|
       format.html # index.html.erb
@@ -19,8 +19,7 @@ class AssignmentsController < ApplicationController
 
   def new
     @title = "Create a New Assignment"
-    klass = params[:type].constantize if %w{LFPG BossBattle Attendance Blogging ReadingReaction TeamAssignment}.include?(params[:type]) || Assignment
-    respond_with @assignment = klass.new
+    @assignment = Assignment.new
   end
 
   def edit

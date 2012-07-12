@@ -3,10 +3,22 @@ class UsersController < ApplicationController
 
   skip_before_filter :require_login, :only=>[:create,:new]
   before_filter :'ensure_staff?', :only=>[:index,:destroy]
+  before_filter :'ensure_admin?', :only=>[:all_users]
 
   def index
     @title = "View all Players"
-    @users = User.all
+    @users = current_course.users
+    @courses = Course.all
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @users }
+    end
+  end
+  
+  def all_users
+    @users = User.all 
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -15,6 +27,7 @@ class UsersController < ApplicationController
 
   def show
     @title = @user
+    @courses = Course.all
     respond_with @user = User.find(params[:id])
   end
   
@@ -26,18 +39,25 @@ class UsersController < ApplicationController
   def new
     @title = "Register"
     @teams = Team.all
+    @courses = Course.all
+    @user.course = current_course
     respond_with @user = User.new
   end
 
   def edit
     @title = "Edit Player"
     @teams = Team.all
+    @courses = Course.all
     respond_with @user = User.find(params[:id])
   end
-
+  
   def create
     @teams = Team.all
     @user = User.create(params[:user])
+    @courses = Course.all
+    
+    @user.course ||= current_course
+    
     respond_with @user
 
   end
@@ -45,6 +65,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @teams = Team.all
+    @courses = Course.all
 
     respond_to do |format|
       if @user.update_attributes(params[:user])

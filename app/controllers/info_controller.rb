@@ -18,5 +18,4 @@ class InfoController < ApplicationController
     @title = "My Dashboard"
   end
 
-
 end

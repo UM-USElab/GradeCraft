@@ -6,3 +6,4 @@ jQuery ->
   $('#assignments').dataTable
     sPaginationType: "full_numbers"
     bJQueryUI: true
+    bStateSave: true

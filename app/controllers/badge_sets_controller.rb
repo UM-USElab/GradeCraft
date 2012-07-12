@@ -26,6 +26,7 @@ class BadgeSetsController < ApplicationController
   # GET /badge_sets/new.json
   def new
     @badge_set = BadgeSet.new
+    @title = "Create a New Badge Set"
 
     respond_to do |format|
       format.html # new.html.erb

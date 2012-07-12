@@ -1,0 +1,6 @@
+= simple_form_for :grade_schemes, :url => update_multiple_grade_schemes_path, :html => { :method => :put } do |f|
+  %ul
+    = for grade_scheme in @grade_schemes
+      %li
+        = grade_scheme.grade_name
+        = hidden_field_tag "grade_scheme_ids[]", grade_scheme.id
