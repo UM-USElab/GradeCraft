@@ -30,13 +30,13 @@
                 %span{:class => 'caret'}
               %ul{:class => 'dropdown-menu well'}
                 = form_tag user_sessions_path, :method => :post do
-                  %input{:type => "text", :class => "input", :placeholder => "Email", :text_field_tag => "username" }
+                  %input{:type => "text", :class => "input", :name => :email, :placeholder => "Email", :text_field_tag => "username" }
                   %input{:type => "password", :class => "input", :placeholder => "Password", :password_field_tag => "password" }
                   %br
                   %input{:type => "checkbox", :remember_me => 1 }
                   .btn.btn-primary= submit_tag "Login"
                   = link_to "Forgot your password?", login_path
-            - if current_user.is_staff?
+            - if current_user.try(:is_staff?)
               %div{:class => 'btn-group pull-right'}
                 %button.btn.btn-info= "Course"
                 %a{:class => 'btn btn-info dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
@@ -64,7 +64,7 @@
         .row
           .span12
             %h3= @title
-            = yield
+            = render 'layouts/content'
     
       %footer#siteFooter
         &copy; 2012 Barry Fishman &#124; 
