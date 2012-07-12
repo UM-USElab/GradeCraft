@@ -19,7 +19,7 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          %a.brand(href="/") GradeCraft | #{current_course}
+          %a.brand(href="/") GradeCraft | #{current_course.name}
           %div.pull-right
             - if current_user
               %div{:class => 'btn-group pull-right'}
