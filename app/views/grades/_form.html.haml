@@ -1,11 +1,9 @@
-%h3= @grade.assignment.title
-%br
-= semantic_form_for @grade.becomes(Grade) do |f|
-  = f.inputs do
-    .text= f.input :user, :collection => User.students, :include_blank => false
-    - if @assignment
-      = f.input :assignment_id, :as => :hidden
-    - else
-      .text= f.input :assignment
-    = render "#{@grade.class.name.underscore}_form", :form => f
-    = f.actions
+= simple_form_for(@grade, :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :user, :collection => User.students, :include_blank => false
+  - if @assignment
+    = f.input :assignment_id, :as => :hidden
+  - else
+    = f.input :assignment
+  = render "#{@grade.class.name.underscore}_form", :form => f
+  = f.button :submit, :class => 'btn btn-primary'
+  = link_to 'Cancel', grades_path, :class => 'btn btn-primary'

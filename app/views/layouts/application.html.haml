@@ -1,75 +1,77 @@
-!!! XML
-!!!
-%html
+!!! 5
+%html(lang="en")
   %head
-    %title GradeCraft
-    %link{:href => "/favicon.ico", :rel => "shortcut icon" }
-    %link{:href => "https://fonts.googleapis.com/css?family=Copse|Droid+Serif", :rel => "stylesheet", :type => "text/css"}
-    %link{:href => "https://fonts.googleapis.com/css?family=Quantico:400,700", :rel => "stylesheet", :type => "text/css"}
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
+    %meta(charset="utf-8")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : current_course.name
     = csrf_meta_tags
-    <script type="text/javascript">$(window).load(function() { $('.flexslider').flexslider({ animation: "fade", slideshow:false, animationLoop: false, keyboardNav: false }); }); </script>
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = stylesheet_link_tag "application", :media => "all"
+    = stylesheet_link_tag "application"
 
-%body
-  %div#header
-    %h1#siteTitle <a href="https://grade-tracker.herokuapp.com/">GradeCraft</a>
-    - if current_user
-      %div#myInfoContainer
-        %div.btn-group
-          %a.btn.btn-info
-            %i.icon-user.icon-white 
-            = current_user.first_name+" "+current_user.last_name
-          %a.btn.btn-info.dropdown-toggle
-            %span.caret
-        %ul#myInfo
-          %li= link_to "My Account", edit_profile_users_path
-          %li= link_to "Logout", :logout
-      %ul#nav
-        - if current_user
-          %li#navDashboard= link_to "Dashboard", dashboard_path, class: cp(dashboard_path)
-          - if current_user.is_staff?
-            %li#navUsers= link_to "Users", users_path, class: cp(users_path)
-          - else
-          // How do I convert this link to the same format as the others?
-          %li#navPredictor
-            %a{:href => "predictor"}
-              Predictor
-          %li#navAssignments= link_to "Assignments", assignments_path, class: cp(assignments_path)
-          %li#navBadges= link_to "Badges", badges_path, class: cp(badges_path)
-          %li#navRankings= link_to "Team Rankings", teams_path, class: cp(teams_path)
-          %li#navChallenges= link_to "Team Challenges", challenges_path, class: cp(challenges_path)
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a.brand(href="/") GradeCraft | #{current_course.name}
+          %div.pull-right
+            - if current_user
+              %div{:class => 'btn-group pull-right'}
+                %button.btn.btn-primary= current_user.public_name
+                %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                  %span{:class => 'caret'}
+                %ul{:class => 'dropdown-menu well'}
+                  %li= link_to "My Account", edit_profile_users_path
+                  %li= link_to "Logout", :logout
+            - else
+              %button.btn.btn-primary Login
+              %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                %span{:class => 'caret'}
+              %ul{:class => 'dropdown-menu well'}
+                = form_tag user_sessions_path, :method => :post do
+                  %input{:type => "text", :class => "input", :name => :email, :placeholder => "Email", :text_field_tag => "username" }
+                  %input{:type => "password", :class => "input", :placeholder => "Password", :password_field_tag => "password" }
+                  %br
+                  %input{:type => "checkbox", :remember_me => 1 }
+                  .btn.btn-primary= submit_tag "Login"
+                  = link_to "Forgot your password?", login_path
+            - if current_user.try(:is_staff?)
+              %div{:class => 'btn-group pull-right'}
+                %button.btn.btn-info= "Course"
+                %a{:class => 'btn btn-info dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                  %span{:class => 'caret'}
+                %ul{:class => 'dropdown-menu well'}
+                  %li= link_to "New Assignment", new_assignment_path
+                  %li= link_to "Gradebook"
+                  %li= link_to "Students", users_path
+                  %li= link_to "Teams", teams_path
+                  %li= link_to "Team Challenges", challenges_path
+                  %li= link_to "Badges", badges_path
+                  %li= link_to "Course Settings", edit_course_path(current_course)
+            - if current_user 
+              %div{:class => 'btn-group pull-right'}
+                = link_to "Dashboard",  assignments_path, :class => "btn"
+                = link_to "Predictor",  assignments_path, :class => "btn"
+                = link_to "Assignments", assignments_path, :class => "btn"
+                = link_to "Badges", badges_path, :class => "btn"
+                = link_to "Team Rankings", teams_path, :class => "btn"
 
-    - else
-      %div#loginGroup
-        %table#login
-          = form_tag user_sessions_path, :method => :post do
-            %tr#loginFields
-              %td
-                / = text_field_tag :username, "Username"
-                %input{:id => "username", :name => "username", :type => "text", :placeholder => "username"}
-              %td
-                / = password_field_tag :password, "Password"
-                %input{:id => "password", :name => "password", :type => "password", :placeholder => "password"}                
-              %td.actions
-                %input{:name => "commit", :type => "submit", :value => "login", :class => "btn btn-primary"}
-                / %span.submitBtn.small= submit_tag "Login"
-            %tr
-              %td{:class => "loginOptions"}
-                = check_box_tag :remember_me, 1, params[:remember_me]
-                = label_tag :remember_me
-              %td{:colspan => "2", :class => "loginOptions"}
-                %span#forgotPass= link_to "Forgot your password?", login_path
-  - if current_user
-    %div#content
-      %h2= title
-      = yield
-  - else      
-    %div#content
-      %div#notice= notice
-      %div#alert= alert
-      %h2= title
-      = yield
+              
 
-  #footer
-    .copyright Copyright 2012 Barry Fishman | <a href="/info/index">Site Credits</a>
+    .container
+      .content
+        .row
+          .span12
+            %h3= @title
+            = render 'layouts/content'
+    
+      %footer#siteFooter
+        &copy; 2012 Barry Fishman &#124; 
+        = link_to "Site Credits", info_index_path
+    /
+      Javascripts
+      \==================================================
+    / Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"

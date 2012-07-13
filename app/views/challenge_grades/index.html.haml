@@ -1,23 +1,24 @@
-%table
-  %tr
-    %th Challenge
-    %th Team
-    %th Score
-    %th Feedback
-    %th
-    %th
-    %th
-
-  - @challenge_grades.each do |challenge_grades|
+%table#challenge_scores.display.table-bordered
+  %thead
     %tr
-      %td= challenge_grades.challenge.title
-      %td= challenge_grades.team.name
-      %td= challenge_grades.score
-      %td= challenge_grades.feedback
-      %td= link_to 'Show', challenge_grades
-      %td= link_to 'Edit', edit_challenge_grade_path(challenge_grades)
-      %td= link_to 'Destroy', challenge_grades, :confirm => 'Are you sure?', :method => :delete
+      %th Challenge
+      %th Team
+      %th Score
+      %th Feedback
+      %th 
+      %th 
+      %th 
+  %tbody
+    - @challenge_grades.each do |challenge_grades|
+      %tr
+        %td= challenge_grades.challenge.title
+        %td= challenge_grades.team.name
+        %td= challenge_grades.score
+        %td= challenge_grades.feedback
+        %td= link_to 'Show', challenge_grades
+        %td= link_to 'Edit', edit_challenge_grade_path(challenge_grades)
+        %td= link_to 'Destroy', challenge_grades, :confirm => 'Are you sure?', :method => :delete
 
 
 %div#footerNav
-  %span.button= link_to 'Grade a Challenge', new_challenge_grade_path
+  = link_to 'Grade a Challenge', new_challenge_grade_path, {:class => 'btn btn-primary'}

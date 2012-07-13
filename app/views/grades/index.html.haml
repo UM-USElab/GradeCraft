@@ -1,4 +1,4 @@
-%table#grades
+%table#grades.display.table-bordered
   %thead
     %tr
       %th Username
@@ -18,7 +18,7 @@
         %td= grade.user.team_id
         %td= grade.assignment.title
         %td= grade.score
-        %td= grade.feedback
+        %td= raw grade.feedback
         %td= grade.type
         %td
           - grade.earned_badges.each do |badge|
@@ -30,4 +30,4 @@
 %br
 
 %div#footerNav
-  %span.button= link_to 'New Grade', new_grade_path(grade)
+  = link_to 'New Grade', new_grade_path(grade), {:class => 'btn btn-primary'}

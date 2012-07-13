@@ -6,3 +6,6 @@ jQuery ->
   $('#users').dataTable
     sPaginationType: "full_numbers"
     bJQueryUI: true
+    bLengthChange: true
+    bStateSave: true
+    iDisplayLength: 50

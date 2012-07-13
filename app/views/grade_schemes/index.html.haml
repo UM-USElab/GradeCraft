@@ -1,6 +1,7 @@
-%table#grade_schemes.display
+%table#grade_schemes.display.table-bordered
   %thead
     %tr
+      %th
       %th Assignment
       %th Grade Name
       %th Range Bottom
@@ -11,6 +12,7 @@
   %tbody
     - for grade_scheme in @grade_schemes
       %tr
+        %td= check_box_tag "grade_scheme_ids[]", grade_scheme.id
         %td= grade_scheme.assignment_id
         %th= grade_scheme.grade_name
         %th= grade_scheme.range_bottom
@@ -20,4 +22,4 @@
         %td= link_to 'Destroy', grade_scheme, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
-  %span.button= link_to 'New Grade scheme', new_grade_scheme_path
+  = link_to 'New Grade scheme', new_grade_scheme_path, {:class => 'btn btn-primary'}

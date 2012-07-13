@@ -1,18 +1,17 @@
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
-
-  - @groups.each do |group|
+%table#groups.display.table-bordered
+  %thead
     %tr
-      %td= group.name
-      %td= link_to 'View', group
-      %td= link_to 'Edit', edit_group_path(group)
-      %td= link_to 'Delete', group, :confirm => 'Are you sure?', :method => :delete
-
-%br
+      %th Name
+      %th
+      %th
+      %th
+  %tbody
+    - @groups.each do |group|
+      %tr
+        %td= group.name
+        %td= link_to 'View', group
+        %td= link_to 'Edit', edit_group_path(group)
+        %td= link_to 'Delete', group, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
-  %span.button= link_to 'New Group', new_group_path
+  = link_to 'New Group', new_group_path, {:class => 'btn btn-primary'}

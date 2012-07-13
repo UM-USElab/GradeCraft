@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @badge_set.name
+%p
+  %b Notes:
+  = @badge_set.notes
+
+%div#footerNav
+  %span.button= link_to 'Edit', edit_badge_set_path(@badge_set)
+  %span.button= link_to 'Back', badge_sets_path

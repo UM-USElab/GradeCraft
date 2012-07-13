@@ -1,6 +1,12 @@
-Grader::Application.routes.draw do
+GradeCraft::Application.routes.draw do
 
-  mount Ckeditor::Engine => '/ckeditor'
+  resources :course_grade_schemes
+
+  resources :themes
+
+  resources :badge_sets
+
+  resources :courses
 
   root :to => "home#index"
 
@@ -31,7 +37,11 @@ Grader::Application.routes.draw do
   resources :home
   resources :challenge_grades
   resources :challenges
-  resources :grade_schemes
+  resources :grade_schemes do
+    collection do
+      post :destroy_multiple 
+    end
+  end
   resources :user_sessions
   resources :predictor
 
@@ -41,7 +51,6 @@ Grader::Application.routes.draw do
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

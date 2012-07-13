@@ -41,12 +41,14 @@ class BadgesController < ApplicationController
   # GET /badges/1/edit
   def edit
     @title = "Edit Badge"
+    @badge_sets = BadgeSet.all
     @badge = Badge.find(params[:id])
   end
 
   # POST /badges
   # POST /badges.json
   def create
+    @badge_sets = BadgeSet.all
     @badge = Badge.new(params[:badge])
 
     respond_to do |format|
@@ -63,6 +65,7 @@ class BadgesController < ApplicationController
   # PUT /badges/1
   # PUT /badges/1.json
   def update
+    @badge_sets = BadgeSet.all
     @badge = Badge.find(params[:id])
 
     respond_to do |format|

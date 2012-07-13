@@ -1,0 +1,40 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @course.name
+%p
+  %b Course No:
+  = @course.courseno
+%p
+  %b Year:
+  = @course.year
+%p
+  %b Semester:
+  = @course.semester
+%p
+  %b Badge Set:
+  = @course.badge_sets_id
+%p
+  %b Theme:
+  = @course.themes_id
+%p
+  %b Course Grade Scheme:
+  = @course.coursegradescheme
+
+%p
+  %b Students will be grouped into teams or sections:
+  = @course.team_setting
+
+%p
+  %b These sections will be called:
+  = @course.team_term
+  
+%p 
+  %b Students will be called:
+  = @course.user_term
+
+
+%div#footerNav
+  %span.button= link_to 'Edit', edit_course_path(@course)
+  %span.button= link_to 'Back', courses_path
