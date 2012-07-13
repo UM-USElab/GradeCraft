@@ -4,13 +4,11 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  *= require_tree .
- *= require bootstrap_and_overrides
  *= require bootstrap-wysihtml5
  *= require jquery.ui.core
  *= require jquery.ui.theme
  *= require jquery-ui-1.8.20.custom.css
  *= require dataTables/src/demo_table_jui
- *= require bootstrap-datepicker
 */
 
 

@@ -13,7 +13,7 @@ class Course < ActiveRecord::Base
   has_many :groups, :dependent => :destroy
   has_many :teams, :dependent => :destroy
   has_many :team_assignments, :dependent => :destroy
-  has_one :theme
+  has_many :themes
   
   def user_ref
     if user_term?
