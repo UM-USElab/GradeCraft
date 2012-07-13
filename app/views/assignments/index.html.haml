@@ -11,7 +11,7 @@
       %th
       %th
       %th
-  - @assignments.each do |assignment|
+  - current_scope.assignments.each do |assignment|
     %tr
       %td= assignment.id
       %td= assignment.title

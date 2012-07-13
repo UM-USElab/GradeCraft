@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :badge_sets_id, :coursegradescheme, :courseno, :name, :semester, :themes_id, :year, :badge_setting, :team_setting, :team_term, :user_term, :user_id, :course_id, :homepage_message
+  attr_accessible :badge_sets_id, :coursegradescheme, :courseno, :name, :semester, :theme_id, :year, :badge_setting, :team_setting, :team_term, :user_term, :user_id, :course_id, :homepage_message
   
   has_many :course_memberships, :dependent => :destroy
   has_many :users, :through => :course_memberships
@@ -13,7 +13,7 @@ class Course < ActiveRecord::Base
   has_many :groups, :dependent => :destroy
   has_many :teams, :dependent => :destroy
   has_many :team_assignments, :dependent => :destroy
-  has_many :themes
+  has_one :theme 
   
   def user_ref
     if user_term?

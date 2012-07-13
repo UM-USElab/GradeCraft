@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712053608) do
+ActiveRecord::Schema.define(:version => 20120713044029) do
 
   create_table "assignments", :force => true do |t|
     t.string    "title"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
     t.datetime "year"
     t.string   "semester"
     t.integer  "badge_sets_id"
-    t.string   "themes_id"
+    t.string   "theme_id"
     t.integer  "coursegradescheme"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false

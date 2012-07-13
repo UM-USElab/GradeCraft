@@ -9,7 +9,7 @@
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag "application", :media => "all"
-    = stylesheet_link_tag "application"
+    = stylesheet_link_tag current_course.theme.filename
 
   %body
     .navbar.navbar-fixed-top
