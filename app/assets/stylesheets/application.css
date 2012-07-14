@@ -7,11 +7,4 @@
  *= require bootstrap-wysihtml5
  *= require jquery.ui.core
  *= require jquery.ui.theme
- *= require jquery-ui-1.8.20.custom.css
- *= require dataTables/src/demo_table_jui
 */
-
-
-#footerNav {
-  margin-top: 15px; 
-}

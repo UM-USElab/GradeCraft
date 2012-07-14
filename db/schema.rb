@@ -11,18 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712053608) do
+ActiveRecord::Schema.define(:version => 20120713225929) do
 
   create_table "assignments", :force => true do |t|
-    t.string    "title"
-    t.text      "description"
-    t.integer   "point_total"
-    t.timestamp "due_date"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "level"
-    t.string    "type"
-    t.boolean   "present"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "point_total"
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "level"
+    t.string   "type"
+    t.boolean  "present"
+    t.integer  "course_id"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -61,13 +62,14 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
   end
 
   create_table "challenges", :force => true do |t|
-    t.string    "title"
-    t.integer   "points"
-    t.string    "description"
-    t.timestamp "date"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "type"
+    t.string   "title"
+    t.integer  "points"
+    t.string   "description"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+    t.integer  "course_id"
   end
 
   create_table "ckeditor_assets", :force => true do |t|
@@ -106,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
     t.datetime "year"
     t.string   "semester"
     t.integer  "badge_sets_id"
-    t.string   "themes_id"
+    t.string   "theme_id"
     t.integer  "coursegradescheme"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
@@ -167,15 +169,16 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
   end
 
   create_table "teams", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "banner_file_name"
-    t.string    "banner_content_type"
-    t.integer   "banner_file_size"
-    t.timestamp "banner_updated_at"
-    t.integer   "sortable_score"
-    t.integer   "rank"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
+    t.integer  "sortable_score"
+    t.integer  "rank"
+    t.integer  "course_id"
   end
 
   create_table "themes", :force => true do |t|

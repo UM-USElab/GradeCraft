@@ -11,6 +11,6 @@
   = @badge.icon
 
 %div#footerNav
-  %span.button= link_to 'Edit', edit_badge_path(@badge)
-  %span.button= link_to 'Back', badges_path
-  %span.button= link_to 'Create a New Badge', new_badge_path
+  = link_to 'Edit', edit_badge_path(@badge), {:class => 'btn btn-primary'}
+  = link_to 'Back', badges_path, {:class => 'btn btn-primary'}
+  = link_to 'Create a New Badge', new_badge_path, {:class => 'btn btn-primary'}

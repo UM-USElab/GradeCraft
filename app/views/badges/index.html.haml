@@ -10,7 +10,7 @@
         %th
         %th
   %tbody
-    - for badge in @badges
+    - @badges.each do |badge|
       - if current_user.is_staff?
         %tr
           %td

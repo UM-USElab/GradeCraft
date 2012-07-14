@@ -5,7 +5,7 @@ class AssignmentsController < ApplicationController
 
   def index
     @title = "View All Assignments"
-    @assignments = current_course.assignments
+    @assignments = Assignment.all
     
     respond_to do |format|
       format.html # index.html.erb

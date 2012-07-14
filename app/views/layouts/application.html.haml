@@ -9,12 +9,12 @@
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag "application", :media => "all"
-    = stylesheet_link_tag "application"
+    = stylesheet_link_tag current_course.theme.filename
 
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container
+        .container-fluid
           %a.brand(href="/") GradeCraft | #{current_course.name}
           %div.pull-right
             - if current_user
@@ -60,11 +60,11 @@
 
               
 
-    .container
+    .container-fluid
       .content
         .row
           .span12
-            %h3= @title
+            %h3#pageTitle= @title
             = render 'layouts/content'
     
       %footer#siteFooter
