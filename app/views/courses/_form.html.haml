@@ -1,14 +1,14 @@
 = simple_form_for(@course, :html => {:class => 'form-horizontal' }) do |f|
-  = f.input :name 
-  = f.input :courseno
+  = f.input :name, :label => "Course Title"
+  = f.input :courseno, :label => "Course Number"
   = f.input :semester, :collection => [["Winter", "winter"], ["Spring", "spring"], ["Summer", "summer"], ["Fall", "fall"]]
   = f.input :year
-  = f.input :badge_setting, :label => "Do you want to use badges in your course?", :hint => "", :as => :boolean, :boolean_style => "inline"
-  = f.input :badge_sets_id, :collection => @badge_sets, :prompt => "-- Select a Badge Set --", :label => "Which badge set will you use?"
+  = f.input :badge_setting, :hint => "Do you want to use badges in your course?", :label => "Badges", :as => :boolean, :boolean_style => "inline"
+  = f.input :badge_sets_id, :collection => @badge_sets, :prompt => "-- Select a Badge Set --", :label => "Badge Set"
   = f.input :theme_id, :collection => @themes, :prompt => "-- Select a Theme --"
-  = f.input :team_setting, :hint => "Will you have semester-long teams in your course?"
-  = f.input :team_term, :label => "What will you call these teams?", :hint => "Teams, Groups, Sections..."
-  = f.input :user_term, :hint => "Students, Learners, Players...", :label => "What will you call your users? "
+  = f.input :team_setting, :hint => "Will you have semester-long teams in your course?", :label => "Teams"
+  = f.input :team_term, :label => "Team Term", :hint => "What will you call these teams? Teams, Groups, Sections..."
+  = f.input :user_term, :hint => "What will you call your users? Students, Learners, Players...", :label => "User Term"
   = f.input :homepage_message, :as => :text, :label => "Homepage description:", :input_html => {:id => 'some-textarea', :class => 'span6' }, :placeholder => "Text here will be shown on the course homepage when students login."
     
   = f.button :submit, :class => 'btn btn-primary'

@@ -1,5 +1,7 @@
 - if flash[:notice]
-  .notice= flash[:notice]
+  .alert.alert-success= flash[:notice]
+- if flash[:error]
+  .alert.alert-error= flash[:error]
 - if flash[:alert]
-  .alert= flash[:alert]
+  .alert.alert-info= flash[:alert]
 = yield

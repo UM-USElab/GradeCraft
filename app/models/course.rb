@@ -31,4 +31,12 @@ class Course < ActiveRecord::Base
     end
   end
   
+  def has_teams?
+    team_setting == true
+  end
+  
+  def has_badges?
+    badge_setting == true
+  end
+  
 end
