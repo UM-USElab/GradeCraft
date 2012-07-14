@@ -1,6 +1,7 @@
 = simple_form_for(@assignment_type, :html => {:class => 'form-horizontal'} ) do |f|
   = f.input :name, :label => "Assignment Type Name"
   = f.input :point_setting, :label => "How will points be set?", :hint => "Do all assignments have the same point value? Or is this set individually?", :collection => [["Individually"], ["Universally"]]
+  = f.input :universal_point_value, :label => "Universal Value"
   = f.input :levels, :label => "Will there be levels to the grading?", :hint => "This includes normal A - F grading schemes.", :as => :boolean
   = f.input :due_date
   = f.input :resubmission, :label => "Resubmission allowed", :hint => "Can this assignment type be resubmitted for a better grade?", :collection => [["Yes"], ["No"], ["Set per Assignment"]]

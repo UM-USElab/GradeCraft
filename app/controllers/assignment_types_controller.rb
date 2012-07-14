@@ -11,7 +11,10 @@ class AssignmentTypesController < ApplicationController
   # GET /assignment_types/1.xml
   def show
     @assignment_type = AssignmentType.find(params[:id])
-    respond_with(@assignment_type)
+    respond_to do |format|
+      format.html
+      format.json { render json: @assignment_type }
+    end
   end
 
   # GET /assignment_types/new

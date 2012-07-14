@@ -47,6 +47,9 @@
                   - if current_course.has_badges?   
                     %li= link_to "Badges", badges_path
                   %li= link_to "Course Settings", edit_course_path(current_course)
+            - if current_user.try(:is_admin?)
+              %div{:class => 'btn-group pull-right'}
+                .btn.btn-info= link_to "Switch Courses", courses_path
             - if current_user
               %div{:class => 'btn-group pull-right'}
                 %button.btn.btn-primary= current_user.public_name

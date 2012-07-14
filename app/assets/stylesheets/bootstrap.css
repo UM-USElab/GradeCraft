@@ -2618,8 +2618,10 @@ button.close {
 .btn:active,
 .btn.active,
 .btn.disabled,
-.btn[disabled] {
+.btn[disabled]
+.btn.btn-info a {
   background-color: #e6e6e6;
+  text-decoration: none;
   *background-color: #d9d9d9;
 }
 
