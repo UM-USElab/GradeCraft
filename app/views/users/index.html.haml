@@ -12,7 +12,7 @@
       %th
       %th
   %tbody
-    - for user in @users
+    - current_course.users.each do |user|
       %tr
         %td= user.username
         %td= user.name

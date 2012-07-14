@@ -1,5 +1,5 @@
 = render 'form'
 
 %div#footerNav
-  %span.button= link_to 'Show', @group
-  %span.button= link_to 'Back', groups_path
+  = link_to 'Show', @group, :class => 'btn btn-primary'
+  = link_to 'Back', groups_path, :class => 'btn btn-primary'

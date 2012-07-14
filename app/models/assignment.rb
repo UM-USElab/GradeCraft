@@ -3,6 +3,7 @@ class Assignment < ActiveRecord::Base
   
   has_many :grades, :dependent => :destroy
   belongs_to :course
+  validates_presence_of :course
   accepts_nested_attributes_for :grades
   
   default_scope :order => 'due_date ASC'

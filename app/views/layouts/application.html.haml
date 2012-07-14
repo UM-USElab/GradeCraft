@@ -14,7 +14,7 @@
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container
+        .container-fluid
           %a.brand(href="/") GradeCraft | #{current_course.name}
           %div.pull-right
             - if current_user
@@ -60,11 +60,11 @@
 
               
 
-    .container
+    .container-fluid
       .content
         .row
           .span12
-            %h3= @title
+            %h3#pageTitle= @title
             = render 'layouts/content'
     
       %footer#siteFooter
