@@ -1,0 +1,30 @@
+%p
+  %b Name:
+  = @assignment_type.name
+%p
+  %b Point setting:
+  = @assignment_type.point_setting
+%p
+  %b Levels:
+  = @assignment_type.levels
+%p
+  %b Points predictor display:
+  = @assignment_type.points_predictor_display
+%p
+  %b Due date:
+  = @assignment_type.due_date
+%p
+  %b Resubmission:
+  = @assignment_type.resubmission
+%p
+  %b Max value:
+  = @assignment_type.max_value
+%p
+  %b Percentage course:
+  = @assignment_type.percentage_course
+%p
+  %b Predictor description:
+  = @assignment_type.predictor_description
+
+= link_to 'Edit', edit_assignment_type_path(@assignment_type), :class => 'btn btn-primary'
+= link_to 'Back', assignment_types_path, :class => 'btn btn-primary'

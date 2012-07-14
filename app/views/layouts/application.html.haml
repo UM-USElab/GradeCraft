@@ -21,33 +21,23 @@
             - if current_course
               | #{current_course.name}
           %div.pull-right
-            - if current_user
-              %div{:class => 'btn-group pull-right'}
-                %button.btn.btn-primary= current_user.public_name
-                %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
-                  %span{:class => 'caret'}
-                %ul{:class => 'dropdown-menu well'}
-                  %li= link_to "My Account", edit_profile_users_path
-                  %li= link_to "Logout", :logout
-            - else
-              %button.btn.btn-primary Login
-              %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
-                %span{:class => 'caret'}
-              %ul{:class => 'dropdown-menu well'}
-                = simple_form_for User.new, :url => user_sessions_path do |f|
-                  = f.input :email, :label => false
-                  = f.input :password, :label => false
-                  %br
-                  = f.input :remember_me, :as => :boolean
-                  .btn.btn-primary= submit_tag "Login"
-                  = link_to "Forgot your password?", login_path
+            - if current_user && current_course
+              %div{:class => 'btn-group pull-right inline-fix'}
+                = link_to "My Dashboard",  dashboard_path, :class => "btn"
+                = link_to "Assignments", assignments_path, :class => "btn"
+                - if current_course.has_badges?                
+                  = link_to "Badges", badges_path, :class => "btn"
+                - if current_course.has_teams?                
+                  = link_to "Teams", teams_path, :class => "btn"
+                = link_to "Predictor",  predictor_users_path(:user_id), :class => "btn"
             - if current_user.try(:is_staff?) && current_course
               %div{:class => 'btn-group pull-right'}
-                %button.btn.btn-info= "Course"
+                %button.btn.btn-info Course
                 %a{:class => 'btn btn-info dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
                   %span{:class => 'caret'}
                 %ul{:class => 'dropdown-menu well'}
                   %li= link_to "New Assignment", new_assignment_path
+                  %li= link_to "New Assignment Type", new_assignment_type_path
                   %li= link_to "Gradebook", gradebook_grades_path
                   %li= link_to "Students", students_users_path
                   %li= link_to "Staff", staff_users_path
@@ -57,15 +47,26 @@
                   - if current_course.has_badges?   
                     %li= link_to "Badges", badges_path
                   %li= link_to "Course Settings", edit_course_path(current_course)
-            - if current_user && current_course
+            - if current_user
               %div{:class => 'btn-group pull-right'}
-                = link_to "My Dashboard",  dashboard_path, :class => "btn"
-                = link_to "Assignments", assignments_path, :class => "btn"
-                - if current_course.has_badges?                
-                  = link_to "Badges", badges_path, :class => "btn"
-                - if current_course.has_teams?                
-                  = link_to "Teams", teams_path, :class => "btn"
-                = link_to "Predictor",  predictor_users_path(:user_id), :class => "btn"
+                %button.btn.btn-primary= current_user.public_name
+                %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                  %span{:class => 'caret'}
+                %ul{:class => 'dropdown-menu well'}
+                  %li= link_to "My Account", edit_profile_users_path
+                  %li= link_to "Logout", :logout
+            - else
+              %div{:class => 'btn-group pull-right'}
+                %button.btn.btn-primary Login
+                %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                  %span{:class => 'caret'}
+                %ul{:class => 'dropdown-menu well'}
+                  = simple_form_for User.new, :url => user_sessions_path do |f|
+                    = f.input :email, :label => false
+                    = f.input :password, :label => false
+                    = f.input :remember_me, :as => :boolean
+                    = submit_tag "Login", :class => '.btn.btn-primary'
+                    = link_to "Forgot your password?", login_path
 
               
 

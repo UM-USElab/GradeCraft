@@ -3643,8 +3643,17 @@ input[type="submit"].btn.btn-mini {
   margin-top: 5px;
 }
 
-.navbar .btn-group .btn {
+.navbar .btn-group {
   margin: 0;
+  float: none;
+  display: inline-block;
+  letter-spacing: -.31em;
+  word-spacing: -.43em;
+}
+
+.navbar .btn-group a, .navbar .btn-group .btn a {
+  letter-spacing: normal;
+  word-spacing: normal;
 }
 
 .navbar-form {

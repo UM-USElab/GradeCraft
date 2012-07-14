@@ -3,6 +3,7 @@ class Assignment < ActiveRecord::Base
   
   has_many :grades, :dependent => :destroy
   belongs_to :course
+  belongs_to :assignment_type
   validates_presence_of :course
   accepts_nested_attributes_for :grades
   

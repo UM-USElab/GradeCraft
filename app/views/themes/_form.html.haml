@@ -2,5 +2,6 @@
   = f.input :name
   = f.input :filename
   
-  = f.button :submit, :class => 'btn btn-primary'
-  = link_to 'Cancel', themes_path, :class => 'btn btn-primary'
+  .form-actions  
+    = f.button :submit, :class => 'btn btn-primary'
+    = link_to 'Cancel', themes_path, :class => 'btn btn-primary'

@@ -1,6 +1,7 @@
 = simple_form_for(@team, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :name, :label => "Team Name"
   = f.association :users, :collection => @users, :as => :check_boxes
-
-  = f.button :submit, :class => 'btn btn-primary'
-  = link_to 'Cancel', teams_path, :class => 'btn btn-primary'
+  
+  .form-actions
+    = f.button :submit, :class => 'btn btn-primary'
+    = link_to 'Cancel', teams_path, :class => 'btn btn-primary'

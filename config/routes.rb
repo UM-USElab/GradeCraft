@@ -1,5 +1,7 @@
 GradeCraft::Application.routes.draw do
 
+  resources :assignment_types
+
   root :to => "home#index"
 
   %w{students gsis professors admins}.each do |role|

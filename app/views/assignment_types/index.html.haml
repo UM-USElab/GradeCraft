@@ -1,0 +1,33 @@
+%table
+  %tr
+    %th Name
+    %th Point setting
+    %th Levels
+    %th Points predictor display
+    %th Due date
+    %th Resubmission
+    %th Max value
+    %th Percentage course
+    %th Predictor description
+    %th
+    %th
+    %th
+
+  - current_course.assignment_types.each do |assignment_type|
+    %tr
+      %td= assignment_type.name
+      %td= assignment_type.point_setting
+      %td= assignment_type.levels
+      %td= assignment_type.points_predictor_display
+      %td= assignment_type.due_date
+      %td= assignment_type.resubmission
+      %td= assignment_type.max_value
+      %td= assignment_type.percentage_course
+      %td= assignment_type.predictor_description
+      %td= link_to 'Show', assignment_type
+      %td= link_to 'Edit', edit_assignment_type_path(assignment_type)
+      %td= link_to 'Destroy', assignment_type, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Assignment type', new_assignment_type_path, {:class => 'btn btn-primary'}
