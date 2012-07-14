@@ -18,7 +18,7 @@
         .container-fluid
           %a.brand(href="/")
             GradeCraft
-            - if current_course.present?
+            - if current_course
               | #{current_course.name}
           %div.pull-right
             - if current_user
@@ -41,7 +41,7 @@
                   = f.input :remember_me, :as => :boolean
                   .btn.btn-primary= submit_tag "Login"
                   = link_to "Forgot your password?", login_path
-            - if current_user.try(:is_staff?)
+            - if current_user.try(:is_staff?) && current_course
               %div{:class => 'btn-group pull-right'}
                 %button.btn.btn-info= "Course"
                 %a{:class => 'btn btn-info dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
@@ -53,9 +53,8 @@
                   %li= link_to "Teams", teams_path
                   %li= link_to "Team Challenges", challenges_path
                   %li= link_to "Badges", badges_path
-                  - if current_course.present?
-                    %li= link_to "Course Settings", edit_course_path(current_course)
-            - if current_user 
+                  %li= link_to "Course Settings", edit_course_path(current_course)
+            - if current_user && current_course
               %div{:class => 'btn-group pull-right'}
                 = link_to "Dashboard",  assignments_path, :class => "btn"
                 = link_to "Predictor",  assignments_path, :class => "btn"

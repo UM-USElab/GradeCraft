@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
   
   has_many :course_memberships, :dependent => :destroy
   has_many :courses, :through => :course_memberships
-  validates_presence_of :course
   accepts_nested_attributes_for :courses
             
   has_many :grades, :dependent => :destroy
@@ -31,7 +30,6 @@ class User < ActiveRecord::Base
   validates :email, :presence => true,
                     :format   => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
-
 
   %w{student gsi professor admin}.each do |role|
     scope role.pluralize, where(:role => role)

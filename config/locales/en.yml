@@ -7,3 +7,14 @@ en:
       user:
         email: 'Email'
         password: 'Password'
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name} was successfully created."
+        alert: "Could not create %{resource_name}."
+      update:
+        notice: "%{resource_name} was successfully updated."
+        alert: "Could not update %{resource_name}."
+      destroy:
+        notice: "%{resource_name} was successfully deleted."
+        alert: "Could not delete %{resource_name}."
