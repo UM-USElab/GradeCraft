@@ -12,5 +12,5 @@
   = @challenge_grade.feedback
 
 %div#footerNav
-  %span.button= link_to 'Edit', edit_challenge_grade_path(@challenge_grade)
-  %span.button= link_to 'Back', challenge_grades_path
+  = link_to 'Edit', edit_challenge_grade_path(@challenge_grade), :class => 'btn btn-primary'
+  = link_to 'Back', challenge_grades_path, :class => 'btn btn-primary'

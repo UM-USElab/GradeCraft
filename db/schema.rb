@@ -11,18 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712053608) do
+ActiveRecord::Schema.define(:version => 20120713225929) do
 
   create_table "assignments", :force => true do |t|
-    t.string    "title"
-    t.text      "description"
-    t.integer   "point_total"
-    t.timestamp "due_date"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "level"
-    t.string    "type"
-    t.boolean   "present"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "point_total"
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "level"
+    t.string   "type"
+    t.boolean  "present"
+    t.integer  "course_id"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -33,41 +34,42 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
   end
 
   create_table "badges", :force => true do |t|
-    t.integer   "assignment_id"
-    t.string    "title"
-    t.text      "description"
-    t.string    "icon"
-    t.binary    "visible"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "image_file_name"
-    t.string    "image_content_type"
-    t.integer   "image_file_size"
-    t.timestamp "image_updated_at"
-    t.string    "occurrence"
-    t.integer   "badge_set_id"
+    t.integer  "assignment_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "icon"
+    t.binary   "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "occurrence"
+    t.integer  "badge_set_id"
   end
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
 
   create_table "challenge_grades", :force => true do |t|
-    t.integer   "score"
-    t.string    "feedback"
-    t.integer   "team_id"
-    t.integer   "challenge_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "type"
+    t.integer  "score"
+    t.string   "feedback"
+    t.integer  "team_id"
+    t.integer  "challenge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
   end
 
   create_table "challenges", :force => true do |t|
-    t.string    "title"
-    t.integer   "points"
-    t.string    "description"
-    t.timestamp "date"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "type"
+    t.string   "title"
+    t.integer  "points"
+    t.string   "description"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+    t.integer  "course_id"
   end
 
   create_table "ckeditor_assets", :force => true do |t|
@@ -106,54 +108,54 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
     t.datetime "year"
     t.string   "semester"
     t.integer  "badge_sets_id"
-    t.string   "themes_id"
+    t.string   "theme_id"
     t.integer  "coursegradescheme"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
+    t.boolean  "badge_setting",     :default => true
     t.boolean  "team_setting",      :default => false
     t.string   "user_term"
-    t.boolean  "badge_setting",     :default => true
     t.string   "team_term"
     t.string   "homepage_message"
     t.boolean  "status",            :default => true
   end
 
   create_table "dashboards", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "earned_badges", :force => true do |t|
-    t.integer   "grade_id"
-    t.integer   "badge_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "grade_id"
+    t.integer  "badge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "grade_schemes", :force => true do |t|
-    t.integer   "assignment_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "grade_name"
-    t.integer   "range_bottom"
-    t.integer   "range_top"
+    t.integer  "assignment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "grade_name"
+    t.integer  "range_bottom"
+    t.integer  "range_top"
   end
 
   create_table "grades", :force => true do |t|
-    t.integer   "score"
-    t.integer   "user_id"
-    t.integer   "assignment_id"
-    t.text      "feedback"
-    t.integer   "badge_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "complete"
-    t.boolean   "semis"
-    t.boolean   "finals"
-    t.string    "type"
-    t.string    "status"
-    t.boolean   "attempted"
-    t.boolean   "substantial"
+    t.integer  "score"
+    t.integer  "user_id"
+    t.integer  "assignment_id"
+    t.text     "feedback"
+    t.integer  "badge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "complete"
+    t.boolean  "semis"
+    t.boolean  "finals"
+    t.string   "type"
+    t.string   "status"
+    t.boolean  "attempted"
+    t.boolean  "substantial"
   end
 
   add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"
@@ -161,21 +163,22 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
   add_index "grades", ["user_id"], :name => "index_grades_on_user_id"
 
   create_table "groups", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "teams", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "banner_file_name"
-    t.string    "banner_content_type"
-    t.integer   "banner_file_size"
-    t.timestamp "banner_updated_at"
-    t.integer   "sortable_score"
-    t.integer   "rank"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
+    t.integer  "sortable_score"
+    t.integer  "rank"
+    t.integer  "course_id"
   end
 
   create_table "themes", :force => true do |t|
@@ -186,30 +189,30 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
   end
 
   create_table "users", :force => true do |t|
-    t.string    "username",                                               :null => false
-    t.string    "email"
-    t.string    "crypted_password"
-    t.string    "salt"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "reset_password_token"
-    t.timestamp "reset_password_token_expires_at"
-    t.timestamp "reset_password_email_sent_at"
-    t.string    "remember_me_token"
-    t.timestamp "remember_me_token_expires_at"
-    t.string    "avatar_file_name"
-    t.string    "avatar_content_type"
-    t.integer   "avatar_file_size"
-    t.timestamp "avatar_updated_at"
-    t.string    "role",                            :default => "student"
-    t.integer   "team_id"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.integer   "sortable_score"
-    t.integer   "rank"
-    t.string    "display_name"
-    t.boolean   "private_display",                 :default => false
-    t.integer   "default_course_id"
+    t.string   "username",                                               :null => false
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "role",                            :default => "student"
+    t.integer  "team_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "sortable_score"
+    t.integer  "rank"
+    t.string   "display_name"
+    t.boolean  "private_display",                 :default => false
+    t.integer  "default_course_id"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
   def index
     @title = "View all Players"
-    @users = current_course.users
     @courses = Course.all
     
     respond_to do |format|

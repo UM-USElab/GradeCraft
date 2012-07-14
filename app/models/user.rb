@@ -31,7 +31,6 @@ class User < ActiveRecord::Base
                     :format   => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
 
-
   %w{student gsi professor admin}.each do |role|
     scope role.pluralize, where(:role => role)
   end 

@@ -7,7 +7,7 @@
       %th
       %th
   %tbody
-    - @badge_sets.each do |badge_set|
+    - current_course.badge_sets.each do |badge_set|
       %tr
         %td= badge_set.name
         %td= badge_set.notes

@@ -6,29 +6,26 @@ class AssignmentsController < ApplicationController
   def index
     @title = "View All Assignments"
     @assignments = current_course.assignments
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @assignments }
-    end
+    respond_with @assignments
   end
 
   def show
-    respond_with @assignment = Assignment.find(params[:id])
+    respond_with @assignment = current_course.assignments.find(params[:id])
   end
 
   def new
     @title = "Create a New Assignment"
-    @assignment = Assignment.new
+    @assignment = current_course.assignments.new
   end
 
   def edit
     @title = "Edit this Assignment"
-    respond_with @assignment = Assignment.find(params[:id])
+    respond_with @assignment = current_course.assignments.find(params[:id])
   end
 
   def create
-    @assignment = Assignment.new(params[:assignment])
+    @assignment = current_course.assignments.new(params[:assignment])
+    debugger
     if @assignment.save
       respond_with @assignment, :location => assignment_path(@assignment), :notice => 'Assignment was successfully created.'
     else
@@ -37,7 +34,7 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-    @assignment = Assignment.find(params[:id])
+    @assignment = current_course.assignments.find(params[:id])
     if @assignment.update_attributes(params[:assignment])
       respond_with @assignment, :location => assignment_path(@assignment), :notice => 'Assignment was successfully updated.'
     else
@@ -46,11 +43,8 @@ class AssignmentsController < ApplicationController
   end
 
   def destroy
-    @assignment = Assignment.find(params[:id])
+    @assignment = current_course.assignments.find(params[:id])
     @assignment.destroy
-    respond_to do |format|
-      format.html { redirect_to assignments_url }
-      format.json { head :ok }
-    end
+    respond_with @assignment
   end
 end

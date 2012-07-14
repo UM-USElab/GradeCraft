@@ -17,7 +17,7 @@ gem 'twitter-bootstrap-rails'
 gem 'simple_form'
 gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap-datepicker-rails'
-
+gem 'responders'
 
 group :production do
   gem 'pg'

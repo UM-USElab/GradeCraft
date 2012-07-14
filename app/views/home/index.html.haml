@@ -1,7 +1,9 @@
 %div.hero-unit
   - if current_user
-    = current_course.homepage_message
-
+    - if current_course
+      = current_course.homepage_message
+    - else
+      %p Message for users who don't have any courses associated with their account
   - else
     %h1 Welcome to GradeCraft 
     %br

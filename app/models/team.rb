@@ -4,6 +4,7 @@ class Team < ActiveRecord::Base
   has_many :earned_badges, :through => :users
   
   belongs_to :course
+  validates_presence_of :course
   
   attr_accessible :name, :created_at, :updated_at, :banner_file_name, :banner_updated_at, :sortable_score, :rank, :team_id, :user_ids
 
