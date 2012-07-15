@@ -1,5 +1,7 @@
 GradeCraft::Application.routes.draw do
 
+  resources :news
+
   resources :assignment_types
 
   root :to => "home#index"

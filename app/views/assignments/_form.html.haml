@@ -1,6 +1,13 @@
 = simple_form_for(@assignment, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :title
+  = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span7' }
+  = f.input :point_total
+  = f.input :due_date
+  = f.input :level
+  = f.input :type
+  = f.input :present
+  = f.input :course_id
   
   .form-actions  
-    = f.button :submit, :class => 'btn btn-primary'
-    = link_to 'Cancel', assignments_path, :class => 'btn btn-primary'
+    = f.button :submit, :class => 'btn btn-inverse'
+    = link_to 'Cancel', assignments_path, :class => 'btn btn-inverse'

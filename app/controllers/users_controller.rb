@@ -84,6 +84,7 @@ class UsersController < ApplicationController
   end
 
   def edit_profile
+    @title = "Edit My Account"
     respond_with @user = current_user
   end
 

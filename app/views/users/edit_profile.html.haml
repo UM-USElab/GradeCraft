@@ -1,16 +1,16 @@
-= gravatar_for @user, :size => 150
-%br
-<a href="http://en.gravatar.com" target="_blank"/>Need a Gravatar? Get One Here!</a>
+%div.pull-left.span4
+  = gravatar_for @user, :size => 250
+  %br
+  Need a Gravatar?
+  = link_to "Get One Here!", "https://en.gravatar.com/"
 
-%div#accountForm
-= simple_form_for(@user, :html => {:class => 'form-horizontal' }) do |f|
+= simple_form_for(@user, :html => {:class => 'form-horizontal pull-left span6' }) do |f|
   = f.input :email
   = f.input :first_name
   = f.input :last_name
   = f.input :display_name
-  = f.input :private_display, :label => "For privacy purposes would you like to hide all identifying information (name and email address) while browsing?"
+  = f.input :private_display, :label => "Private Browsing", :hint => "For privacy purposes would you like to hide all identifying information (name and email address) while browsing?"
   = f.input :password
   = f.input :password_confirmation
-    
-  = submit_tag 'Update Settings', :class => 'btn btn-primary'
-  = link_to 'Cancel', root_path, :class => 'btn btn-primary'
+  = submit_tag 'Update Settings', :class => 'btn btn-inverse'
+  = link_to 'Cancel', root_path, :class => 'btn btn-inverse'

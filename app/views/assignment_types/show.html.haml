@@ -1,4 +1,4 @@
-%p
+%div
   %b Name:
   = @assignment_type.name
 %p
@@ -25,6 +25,11 @@
 %p
   %b Predictor description:
   = @assignment_type.predictor_description
+  
+%p
+  Course ID:
+  = @assignment_type.course_id
 
-= link_to 'Edit', edit_assignment_type_path(@assignment_type), :class => 'btn btn-primary'
+.form-actions
+  = link_to 'Edit', edit_assignment_type_path(@assignment_type), :class => 'btn btn-inverse'
 = link_to 'Back', assignment_types_path, :class => 'btn btn-primary'

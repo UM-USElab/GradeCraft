@@ -4,7 +4,6 @@ label {
 
 #footerNav {
   margin-top: 15px;
-  
 }
 
 footer {
@@ -15,11 +14,17 @@ footer {
 }
 
 .content {
-  padding-top: 50px;
+  padding-top: 30px;
   min-height: 650px; 
 }
 
+
 #pageTitle {
   margin-bottom: 10px;
+  
+}
+
+.hero-unit {
+  min-height: 450px;
   
 }

@@ -1,9 +1,13 @@
 %div.hero-unit
   - if current_user
     - if current_course
-      = current_course.homepage_message
+      %div.span6
+        = raw current_course.homepage_message
+      %div.span3.pull-right
+        %h3 Course News
     - else
       %p Message for users who don't have any courses associated with their account
+      
   - else
     %h1 Welcome to GradeCraft 
     %br

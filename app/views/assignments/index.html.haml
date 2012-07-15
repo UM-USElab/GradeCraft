@@ -10,7 +10,10 @@
       %th Low Score
       %th % Completed
       %th
-  - current_course.assignments.each do |assignment|
+      %th
+      %th
+      %th
+  - @assignments.each do |assignment|
     %tr
       %td= assignment.id
       %td= assignment.title
@@ -20,6 +23,9 @@
           = assignment.due_date
       - if current_user.is_staff?
         %td= number_with_delimiter(assignment.average, :delimiter => ',') 
+        %td
+        %td
+        %td
         %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
         - if assignment.mass_gradeable?
           %td= link_to 'Log Grades', mass_edit_grades_path("assignment_id"=>assignment.id)
