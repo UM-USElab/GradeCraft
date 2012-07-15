@@ -16,7 +16,6 @@
 //= require bootstrap-datepicker
 
 $(document).ready(function(){
-  $('input.ui-datepicker').datepicker();
   $('#some-textarea').wysihtml5();
   
 });

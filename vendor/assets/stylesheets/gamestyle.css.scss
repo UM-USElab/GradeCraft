@@ -12,13 +12,15 @@ body {
   color: #FFF;
   background: url('images/demo-bg.png') #333333;
   margin-bottom: 15px;
+  width: 1000px;
+  padding: 0px 20px;
 }
 
 a {
-  color: green;
+  color: #caff74;
   text-decoration: none;
   &:visited {
-    color: green; }
+  color: #caff74;}
   &:hover {
     text-decoration: underline; } 
   } 
@@ -26,6 +28,10 @@ a {
   button.btn.btn-info a, a.btn.btn-primary {
     color: #FFF;
     
+  }
+  
+  .navbar a {
+    color: #000;
   }
   
   a.brand {
@@ -51,9 +57,18 @@ a {
 }
 
 table {
-  position: relative;
   color: #000;
   background-color: #999999;
+  width: 1000px !important;
+}
+
+.dataTables_wrapper {
+  width: 1000px;
+}
+
+table a {
+  color: blue !important;
+  
 }
 
 th {
@@ -62,10 +77,15 @@ th {
   color: #888;
 }
 
-td {
-  padding: 10px;
+p.help-block {
+  color: #f2fbb9;
+}
+
+.form-horizontal {
+  width: 980px;
   
 }
+
 
 h1 {
   padding: 8px 0px 0px;

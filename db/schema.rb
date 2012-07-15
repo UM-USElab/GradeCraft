@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120714194557) do
+ActiveRecord::Schema.define(:version => 20120715232542) do
 
   create_table "assignment_types", :force => true do |t|
     t.string   "name"
     t.string   "point_setting"
     t.integer  "levels"
     t.string   "points_predictor_display"
-    t.datetime "due_date"
+    t.boolean  "due_date"
     t.integer  "resubmission"
     t.integer  "max_value"
     t.integer  "percentage_course"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120714194557) do
     t.datetime "updated_at",               :null => false
     t.integer  "course_id"
     t.integer  "universal_point_value"
+    t.integer  "minimum_score"
   end
 
   create_table "assignments", :force => true do |t|
@@ -121,7 +122,7 @@ ActiveRecord::Schema.define(:version => 20120714194557) do
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.string   "courseno"
-    t.datetime "year"
+    t.string   "year"
     t.string   "semester"
     t.integer  "badge_sets_id"
     t.string   "theme_id"
@@ -134,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20120714194557) do
     t.string   "team_term"
     t.string   "homepage_message"
     t.boolean  "status",            :default => true
+    t.boolean  "group_setting"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -182,6 +184,13 @@ ActiveRecord::Schema.define(:version => 20120714194557) do
     t.string    "name"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+  end
+
+  create_table "news", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "teams", :force => true do |t|

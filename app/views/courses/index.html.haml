@@ -1,4 +1,6 @@
-%table#courses.display.table-bordered
+%h3 Course Index
+%br
+%table.table-bordered
   %thead
     %tr
       %th Name
@@ -21,9 +23,9 @@
         %td= course.badge_sets_id
         %td= course.theme_id
         %td= course.coursegradescheme
-        %td= link_to 'Show', course
+        %td= link_to 'View', course
         %td= link_to 'Edit', edit_course_path(course)
-        %td= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Delete', course, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
   = link_to 'New Course', new_course_path, {:class => 'btn btn-primary'}

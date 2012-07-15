@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :badge_sets_id, :coursegradescheme, :courseno, :name, :semester, :theme_id, :year, :badge_setting, :team_setting, :team_term, :user_term, :user_id, :course_id, :homepage_message
+  attr_accessible :badge_sets_id, :coursegradescheme, :courseno, :name, :semester, :theme_id, :year, :badge_setting, :team_setting, :team_term, :user_term, :user_id, :course_id, :homepage_message, :group_setting
   
   has_many :course_memberships, :dependent => :destroy
   has_many :users, :through => :course_memberships
@@ -38,6 +38,10 @@ class Course < ActiveRecord::Base
   
   def has_badges?
     badge_setting == true
+  end
+  
+  def has_groups?
+    group_setting == true
   end
   
 end

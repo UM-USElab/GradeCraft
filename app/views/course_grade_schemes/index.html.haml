@@ -8,7 +8,7 @@
   - @course_grade_schemes.each do |course_grade_scheme|
     %tr
       %td= course_grade_scheme.name
-      %td= link_to 'Show', course_grade_scheme
+      %td= link_to 'View', course_grade_scheme
       %td= link_to 'Edit', edit_course_grade_scheme_path(course_grade_scheme)
       %td= link_to 'Destroy', course_grade_scheme, :confirm => 'Are you sure?', :method => :delete
 

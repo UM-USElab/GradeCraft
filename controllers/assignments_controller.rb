@@ -25,7 +25,6 @@ class AssignmentsController < ApplicationController
   end
 
   def create
-    debugger
     @assignment = current_course.assignments.new(params[:assignment])
     if @assignment.save
       respond_with @assignment, :location => assignment_path(@assignment), :notice => 'Assignment was successfully created.'

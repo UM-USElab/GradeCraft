@@ -45,11 +45,11 @@ class Assignment < ActiveRecord::Base
   end  
   
   def assignment_grades_attempted
-    assignment_grades.where(:score != 0)
+    assignment_grades.where(:score != 0).count
   end
   
   def percentage_complete
-    assignment_grades_attempted.count
+    assignment_grades_attempted / 80
   end
   
 end

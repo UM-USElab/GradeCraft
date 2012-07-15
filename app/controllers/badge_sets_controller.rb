@@ -3,7 +3,7 @@ class BadgeSetsController < ApplicationController
   # GET /badge_sets.json
   def index
     @title = "Badge Sets"
-    @badge_sets = BadgeSet.all
+    @badge_sets = current_course.badge_sets
 
     respond_to do |format|
       format.html # index.html.erb
