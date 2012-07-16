@@ -2,6 +2,7 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.xml
   def index
+    @title = "Course News"
     @news = News.all
     respond_with(@news)
   end
@@ -9,6 +10,7 @@ class NewsController < ApplicationController
   # GET /news/1
   # GET /news/1.xml
   def show
+    @title = title
     @news = News.find(params[:id])
     respond_with(@news)
   end

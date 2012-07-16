@@ -8,8 +8,8 @@
       %th Average
       %th High Score
       %th Low Score
-      %th # Attempted
-      %th % Completed
+      %th # Submitted
+      %th
       %th
       %th
       %th
@@ -27,7 +27,6 @@
         %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 
         %td= number_with_delimiter(assignment.low_score, :delimiter => ',')
         %td= assignment.assignment_grades_attempted
-        %td= assignment.assignment_grades
         %td= link_to 'View', assignment
         %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
         - if assignment.mass_gradeable?

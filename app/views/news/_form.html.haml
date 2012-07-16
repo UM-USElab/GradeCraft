@@ -3,7 +3,7 @@
 
   .form-inputs
     = f.input :title
-    = f.input :content
+    = f.input :content, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span7' }
 
   .form-actions
     = f.button :submit

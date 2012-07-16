@@ -17,6 +17,7 @@ GradeCraft::Application.routes.draw do
       put 'update_profile'
       get 'students'
       get 'staff'
+      get 'final_grades'
     end
   end
   resources :user_sessions

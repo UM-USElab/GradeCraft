@@ -7,9 +7,9 @@
   = f.input :badge_sets_id, :collection => @badge_sets, :prompt => "-- Select a Badge Set --", :label => "Badge Set"
   = f.input :theme_id, :collection => @themes, :prompt => "-- Select a Theme --"
   = f.input :team_setting, :hint => "Will you have semester-long teams in your course?", :label => "Teams"
-  = f.input :team_term, :label => "Team Term", :hint => "What will you call these teams? Teams, Groups, Sections..."
+  = f.input :team_term, :label => "Team Term", :hint => "What will you call these? Team, Group, Section... Make sure that they're singular!"
   = f.input :group_setting, :hint => "Will students work in groups on any assignments, and thus all receive the same grade?"
-  = f.input :user_term, :hint => "What will you call your users? Students, Learners, Players...", :label => "User Term"
+  = f.input :user_term, :hint => "What will you call your user? Student, Learner, Player...", :label => "User Term"
   = f.input :homepage_message, :as => :text, :label => "Homepage description:", :input_html => {:id => 'some-textarea', :class => 'span6' }, :placeholder => "Text here will be shown on the course homepage when students login."
   
   .form-actions    

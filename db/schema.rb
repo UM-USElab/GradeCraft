@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120715232542) do
+ActiveRecord::Schema.define(:version => 20120716025419) do
 
   create_table "assignment_types", :force => true do |t|
     t.string   "name"
@@ -23,11 +23,12 @@ ActiveRecord::Schema.define(:version => 20120715232542) do
     t.integer  "max_value"
     t.integer  "percentage_course"
     t.string   "predictor_description"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.integer  "course_id"
     t.integer  "universal_point_value"
     t.integer  "minimum_score"
+    t.integer  "step_value",               :default => 1
   end
 
   create_table "assignments", :force => true do |t|
@@ -238,6 +239,7 @@ ActiveRecord::Schema.define(:version => 20120715232542) do
     t.string    "display_name"
     t.boolean   "private_display",                 :default => false
     t.integer   "default_course_id"
+    t.string    "final_grade"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

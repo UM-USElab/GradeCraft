@@ -3,9 +3,10 @@ class Assignment < ActiveRecord::Base
   
   has_many :grades, :dependent => :destroy
   belongs_to :course
-  belongs_to :assignment_type
+  belongs_to :assignment_types
   validates_presence_of :course
   accepts_nested_attributes_for :grades
+  accepts_nested_attributes_for :assignment_types
   
   default_scope :order => 'due_date ASC'
     attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes
@@ -46,10 +47,6 @@ class Assignment < ActiveRecord::Base
   
   def assignment_grades_attempted
     assignment_grades.where(:score != 0).count
-  end
-  
-  def percentage_complete
-    assignment_grades_attempted / 80
   end
   
 end

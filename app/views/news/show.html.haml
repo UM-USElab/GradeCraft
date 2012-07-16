@@ -1,11 +1,9 @@
-%p#notice= notice
-
 %p
   %b Title:
   = @news.title
 %p
   %b Content:
-  = @news.content
+  = raw @news.content
 
 = link_to 'Edit', edit_news_path(@news)
 \|

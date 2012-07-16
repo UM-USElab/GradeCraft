@@ -1,0 +1,12 @@
+%table#users.display.table-bordered
+  %thead
+    %tr
+      %th Username
+      %th Current Score
+      %th Final Grade
+  %tbody
+    - current_course.users.each do |user|
+      %tr
+        %td= user.username
+        %td= user.score
+        %td= user.final_grade

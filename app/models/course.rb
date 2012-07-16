@@ -12,6 +12,7 @@ class Course < ActiveRecord::Base
   has_many :course_grade_scheme, :dependent => :destroy
   has_many :grades
   has_many :groups, :dependent => :destroy
+  has_many :news, :dependent => :destroy
   has_many :teams, :dependent => :destroy
   has_many :team_assignments, :dependent => :destroy
   belongs_to :theme
