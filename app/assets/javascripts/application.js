@@ -27,3 +27,5 @@ $(function() {
     e.stopPropagation();
   });
 });
+
+$('#course_id').change(function() { $(this).closest('form').submit(); });

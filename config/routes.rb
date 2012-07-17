@@ -51,6 +51,8 @@ GradeCraft::Application.routes.draw do
   get "info/index"
   get "home/index"
   get 'dashboard' => 'info#dashboard'
+  
+  post '/current_course/change' => 'current_courses#change', :as => :change_current_course
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
