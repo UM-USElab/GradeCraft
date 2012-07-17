@@ -46,10 +46,6 @@
                   - if current_course.has_groups?    
                     %li= link_to "Groups", groups_path
                   %li= link_to "Course Settings", edit_course_path(current_course)
-            - if current_user.try(:is_admin?)
-              %div{:class => 'btn-group pull-right'}
-                = form_tag change_current_course_path do
-                  = select_tag 'course_id', options_from_collection_for_select(current_user.courses, 'id', 'name')
             - if current_user
               %div{:class => 'btn-group pull-right'}
                 %button.btn.btn-info= current_user.public_name
@@ -81,6 +77,14 @@
       %footer#siteFooter
         &copy; 2012 Barry Fishman &#124; 
         = link_to "Site Credits", info_index_path
+        
+    .navbar.navbar-fixed-bottom
+      .navbar-inner
+        - if current_user.try(:is_admin?)
+          %div{:class => 'btn-group pull-left'}
+            = form_tag change_current_course_path do
+              = select_tag 'course_id', options_from_collection_for_select(current_user.courses, 'id', 'name', current_course.id)
+      
     /
       Javascripts
       \==================================================

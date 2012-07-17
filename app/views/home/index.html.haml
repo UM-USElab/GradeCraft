@@ -5,7 +5,7 @@
       %div.span3.pull-right
         %h3 Course News
         %br
-        - @news.each do |news|
+        - current_course.news do |news|
           %h5= news.title
           %span= news.created_at
           %br
