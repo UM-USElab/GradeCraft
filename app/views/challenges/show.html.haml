@@ -9,5 +9,5 @@
   = @challenge.date
 
 %div#footerNav
-  %span.button= link_to 'Edit', edit_challenge_path(@challenge)
-  %span.button= link_to 'Back', challenges_path
+  = link_to 'Edit', edit_challenge_path(@challenge), :class => 'btn btn-primary'
+  = link_to 'Back', challenges_path, :class => 'btn btn-primary'

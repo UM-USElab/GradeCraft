@@ -1,12 +1,8 @@
 GradeCraft::Application.routes.draw do
 
-  resources :course_grade_schemes
+  resources :news
 
-  resources :themes
-
-  resources :badge_sets
-
-  resources :courses
+  resources :assignment_types
 
   root :to => "home#index"
 
@@ -19,8 +15,17 @@ GradeCraft::Application.routes.draw do
       get 'edit_profile'
       get 'predictor'
       put 'update_profile'
+      get 'students'
+      get 'staff'
+      get 'final_grades'
     end
   end
+  resources :user_sessions
+  resources :predictor
+  resources :course_grade_schemes
+  resources :themes
+  resources :badge_sets
+  resources :courses
   resources :password_resets
   resources :assignments
   resources :badges
@@ -42,8 +47,6 @@ GradeCraft::Application.routes.draw do
       post :destroy_multiple 
     end
   end
-  resources :user_sessions
-  resources :predictor
 
   get "info/index"
   get "home/index"

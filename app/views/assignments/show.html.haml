@@ -1,6 +1,5 @@
-%p
-  %b Title:
-  = @assignment.title
+%h3= @assignment.title
+%br
 %p
   %b Description:
   = raw @assignment.description
@@ -10,20 +9,35 @@
 %p
   %b Due Date:
   = @assignment.due_date
-%p
-  %b Type:
-  = @assignment.type
 
 
 %h3
   Grades
   - if @assignment.mass_gradeable?
     (#{link_to 'log grades', mass_edit_grades_path(:assignment_id => @assignment.id)})
-- @assignment.grades.each do |grade|
-  %p
-    #{grade.user.name} (#{number_with_delimiter(grade.score, :delimiter => ',') }) 
+
+%table#assignments.display.table-bordered.table
+  %thead
+    %tr
+      %th User
+      %th Points
+      %th Badges Earned
+      %th
+      %th
+      %th
+  %tbody
+    - @assignment.grades.each do |grade|
+      %tr
+        %td #{grade.user.name} 
+        %td #{number_with_delimiter(grade.score, :delimiter => ',') }
+        %td 
+          - grade.earned_badges.each do |badge|
+            %img{:src => badge.icon, :alt => badge.title, :width => 40}
+        %td= link_to "View", grade
+        %td= link_to "Edit", edit_grade_path
+        %td= link_to "Delete", grade, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
-  %span.button= link_to 'Add Grade', new_grade_path(:assignment_id => @assignment)
-  %span.button= link_to 'Edit', edit_assignment_path(@assignment)
-  %span.button= link_to 'Back', assignments_path
+  = link_to 'Add Grade', new_grade_path(:assignment_id => @assignment), :class => 'btn btn-primary'
+  = link_to 'Edit', edit_assignment_path(@assignment), :class => 'btn btn-primary'
+  = link_to 'Back', assignments_path, :class => 'btn btn-primary'

@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @title = "View All Groups"
-    @groups = Group.all
+    @groups = current_course.groups.all
 
     respond_to do |format|
       format.html # index.html.erb

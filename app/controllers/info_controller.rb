@@ -4,6 +4,7 @@ class InfoController < ApplicationController
   helper_method :sort_column, :sort_direction
   
   def index
+    @title = "Site Credits"
     @users = User.all
     @teams = Team.all
   end

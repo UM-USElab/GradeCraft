@@ -3,7 +3,7 @@ class ChallengesController < ApplicationController
   # GET /challenges.json
   def index
     @title = "Team Challenges"
-    @challenges = Challenge.all
+    @challenges = current_course.challenges.all
     
     respond_to do |format|
       format.html # index.html.erb
@@ -27,13 +27,13 @@ class ChallengesController < ApplicationController
   # GET /challenges/new.json
   def new
     @challenge = Challenge.new
-    @title = "Create a New Challenge"
+    @title = "Create a New Team Challenge"
   end
 
   # GET /challenges/1/edit
   def edit
     @challenge = Challenge.find(params[:id])
-    @title = "Edit this Challenge"
+    @title = "Edit this Team Challenge"
   end
 
   # POST /challenges

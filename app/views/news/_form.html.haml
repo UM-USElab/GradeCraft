@@ -1,0 +1,9 @@
+= simple_form_for(@news) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.input :content, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span7' }
+
+  .form-actions
+    = f.button :submit

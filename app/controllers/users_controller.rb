@@ -6,10 +6,8 @@ class UsersController < ApplicationController
   before_filter :'ensure_admin?', :only=>[:all_users]
 
   def index
-    @title = "View all Players"
-    @users = current_course.users
+    @title = "View all #{current_course.user_term}s"
     @courses = Course.all
-    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -18,12 +16,17 @@ class UsersController < ApplicationController
   
   def all_users
     @users = User.all 
-    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
     end
   end
+  
+  def students
+    @students = current_course.users.all
+  end
+  
+  def 
 
   def show
     @title = @user
@@ -45,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title = "Edit Player"
+    @title = "Edit #{current_course.user_term}"
     @teams = Team.all
     @courses = Course.all
     respond_with @user = User.find(params[:id])
@@ -85,6 +88,7 @@ class UsersController < ApplicationController
   end
 
   def edit_profile
+    @title = "Edit My Account"
     respond_with @user = current_user
   end
 

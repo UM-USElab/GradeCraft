@@ -16,6 +16,14 @@
 //= require bootstrap-datepicker
 
 $(document).ready(function(){
-  $('input.ui-datepicker').datepicker();
   $('#some-textarea').wysihtml5();
+  
+});
+
+$(function() {
+ 
+  // Fix input element click problem
+  $('.dropdown input, .dropdown label').click(function(e) {
+    e.stopPropagation();
+  });
 });

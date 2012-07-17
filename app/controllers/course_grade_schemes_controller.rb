@@ -2,7 +2,7 @@ class CourseGradeSchemesController < ApplicationController
   # GET /course_grade_schemes
   # GET /course_grade_schemes.json
   def index
-    @course_grade_schemes = CourseGradeScheme.all
+    @course_grade_schemes = current_course.course_grade_schemes.all
 
     respond_to do |format|
       format.html # index.html.erb

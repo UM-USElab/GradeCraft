@@ -1,9 +1,7 @@
-%p#notice= notice
-
 %p
   %b Name:
   = @group.name
 
 %div#footerNav
-  %span.button= link_to 'Edit', edit_group_path(@group)
-  %span.button= link_to 'Back', groups_path
+  = link_to 'Edit', edit_group_path(@group), :class => 'btn btn-primary'
+  = link_to 'Back', groups_path, :class => 'btn btn-primary'

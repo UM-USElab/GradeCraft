@@ -11,18 +11,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712053608) do
+ActiveRecord::Schema.define(:version => 20120716025419) do
+
+  create_table "assignment_types", :force => true do |t|
+    t.string   "name"
+    t.string   "point_setting"
+    t.integer  "levels"
+    t.string   "points_predictor_display"
+    t.boolean  "due_date"
+    t.integer  "resubmission"
+    t.integer  "max_value"
+    t.integer  "percentage_course"
+    t.string   "predictor_description"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.integer  "course_id"
+    t.integer  "universal_point_value"
+    t.integer  "minimum_score"
+    t.integer  "step_value",               :default => 1
+  end
 
   create_table "assignments", :force => true do |t|
-    t.string    "title"
-    t.text      "description"
-    t.integer   "point_total"
-    t.timestamp "due_date"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "level"
-    t.string    "type"
-    t.boolean   "present"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "point_total"
+    t.datetime "due_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "level"
+    t.string   "type"
+    t.boolean  "present"
+    t.integer  "course_id"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -61,13 +80,14 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
   end
 
   create_table "challenges", :force => true do |t|
-    t.string    "title"
-    t.integer   "points"
-    t.string    "description"
-    t.timestamp "date"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "type"
+    t.string   "title"
+    t.integer  "points"
+    t.string   "description"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+    t.integer  "course_id"
   end
 
   create_table "ckeditor_assets", :force => true do |t|
@@ -103,10 +123,10 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.string   "courseno"
-    t.datetime "year"
+    t.string   "year"
     t.string   "semester"
     t.integer  "badge_sets_id"
-    t.string   "themes_id"
+    t.string   "theme_id"
     t.integer  "coursegradescheme"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
@@ -116,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
     t.string   "team_term"
     t.string   "homepage_message"
     t.boolean  "status",            :default => true
+    t.boolean  "group_setting"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -166,16 +187,24 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
     t.timestamp "updated_at"
   end
 
+  create_table "news", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "teams", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "banner_file_name"
-    t.string    "banner_content_type"
-    t.integer   "banner_file_size"
-    t.timestamp "banner_updated_at"
-    t.integer   "sortable_score"
-    t.integer   "rank"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "banner_file_name"
+    t.string   "banner_content_type"
+    t.integer  "banner_file_size"
+    t.datetime "banner_updated_at"
+    t.integer  "sortable_score"
+    t.integer  "rank"
+    t.integer  "course_id"
   end
 
   create_table "themes", :force => true do |t|
@@ -210,6 +239,7 @@ ActiveRecord::Schema.define(:version => 20120712053608) do
     t.string    "display_name"
     t.boolean   "private_display",                 :default => false
     t.integer   "default_course_id"
+    t.string    "final_grade"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

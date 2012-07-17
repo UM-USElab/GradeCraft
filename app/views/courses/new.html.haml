@@ -1,4 +1,6 @@
+%h3 Create New Course
+%br
 = render 'form'
 
 %div#footerNav
-  %button.btn.btn-primary= link_to 'Back', courses_path
+  = link_to 'Back', courses_path, :class => 'btn btn-primary'

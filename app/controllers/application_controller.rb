@@ -1,7 +1,14 @@
+require "application_responder"
+
 class ApplicationController < ActionController::Base
+  self.responder = ApplicationResponder
+  respond_to :html
+
   protect_from_forgery
 
   before_filter :require_login, :except => [:not_authenticated]
+
+  include ApplicationHelper
 
   protected
   def not_authenticated
