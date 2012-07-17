@@ -19,10 +19,6 @@ module ApplicationHelper
     @__current_course ||= current_user.default_course if current_user.respond_to?(:default_course)
   end
   
-  def scope_pulldown
-    select_tag :scope, grouped_options_for_select("#{current_course.to_s}|#{current_course.id}")
-  end
-  
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil
