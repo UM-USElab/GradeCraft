@@ -12,16 +12,16 @@ body {
   color: #FFF;
   background: url('images/demo-bg.png') #333333;
   margin-bottom: 15px;
-  margin-top: 0px;
+  margin-top: -20px;
   width: 1000px;
   padding: 0px 20px;
 }
 
 a {
-  color: #caff74;
+  color: #d3eb1f;
   text-decoration: none;
   &:visited {
-  color: #caff74;}
+  color: #d3eb1f;}
   &:hover {
     text-decoration: underline; } 
   } 
@@ -29,6 +29,10 @@ a {
   button.btn.btn-info a, a.btn.btn-primary {
     color: #FFF;
     
+  }
+  
+  .btn-group a, a.dropdown-toggle {
+    color: #000;
   }
   
   .navbar a {
@@ -60,7 +64,6 @@ a {
 table {
   color: #000;
   background-color: #999999;
-  width: 1000px !important;
 }
 
 .dataTables_wrapper {

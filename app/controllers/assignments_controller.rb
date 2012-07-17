@@ -46,6 +46,6 @@ class AssignmentsController < ApplicationController
   def destroy
     @assignment = current_course.assignments.find(params[:id])
     @assignment.destroy
-    respond_with @assignment
+    respond_with(@assignment)
   end
 end

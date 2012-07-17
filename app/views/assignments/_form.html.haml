@@ -3,7 +3,7 @@
   = f.input :title
   = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span7' }
   = f.input :point_total, :label => "Total Points Possible"
-  = f.input :due_date, :as => :string, :input_html => {:class => "datepicker", "data-behaviour" => 'datepicker', :value => Date.today, :start_year => Date.today }
+  = f.input :due_date, :as => :string, :input_html => {:class => "datepicker", "data-behaviour" => 'datepicker'}
   
   .form-actions  
     = f.button :submit, :class => 'btn btn-inverse'

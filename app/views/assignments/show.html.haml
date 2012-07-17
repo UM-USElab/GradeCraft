@@ -1,6 +1,5 @@
-%p
-  %b Title:
-  = @assignment.title
+%h3= @assignment.title
+%br
 %p
   %b Description:
   = raw @assignment.description
@@ -10,9 +9,6 @@
 %p
   %b Due Date:
   = @assignment.due_date
-%p
-  %b Type:
-  = @assignment.type
 
 
 %h3
@@ -20,7 +16,7 @@
   - if @assignment.mass_gradeable?
     (#{link_to 'log grades', mass_edit_grades_path(:assignment_id => @assignment.id)})
 
-%table#assignment.display.table-bordered.table
+%table#assignments.display.table-bordered.table
   %thead
     %tr
       %th User

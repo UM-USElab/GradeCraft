@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @themes = Theme.all
+    @users = current_course.users.all
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @course }

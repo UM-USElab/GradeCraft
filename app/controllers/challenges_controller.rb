@@ -3,7 +3,7 @@ class ChallengesController < ApplicationController
   # GET /challenges.json
   def index
     @title = "Team Challenges"
-    @challenges = Challenge.all
+    @challenges = current_course.challenges.all
     
     respond_to do |format|
       format.html # index.html.erb

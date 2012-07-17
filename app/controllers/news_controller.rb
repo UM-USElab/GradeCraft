@@ -3,7 +3,7 @@ class NewsController < ApplicationController
   # GET /news.xml
   def index
     @title = "Course News"
-    @news = News.all
+    @news = current_course.news.all
     respond_with(@news)
   end
 

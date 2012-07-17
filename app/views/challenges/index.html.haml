@@ -1,4 +1,4 @@
-%table.display.table-bordered
+%table#challenges.display.table-bordered
   %thead
     %tr
       %th Challenge
@@ -10,11 +10,11 @@
         %th
         %th
   %tbody
-    - current_course.challenges.each do |challenge|
+    - @challenges.each do |challenge|
       %tr
         %td= challenge.title
         %td= challenge.points
-        %td= challenge.description
+        %td= raw challenge.description
         %td= challenge.date
         - if current_user.is_staff?
           %td= link_to 'View', challenge

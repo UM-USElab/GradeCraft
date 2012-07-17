@@ -12,7 +12,7 @@
       %th
       %th
   %tbody
-    - @students.each do |user|
+    - if @users.is_student? do |user|
       %tr
         %td= user.username
         %td= user.name

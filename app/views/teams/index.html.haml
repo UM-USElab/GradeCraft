@@ -1,4 +1,4 @@
-%table#teams.display.table-bordered
+%table#teams.table.table-bordered
   %thead
     %tr
       %th ID
@@ -10,7 +10,7 @@
         %th
         %th
   %tbody
-    - current_course.teams.each do |team|
+    - @teams.each do |team|
       %tr
         %td= team.id
         %td= team.name
