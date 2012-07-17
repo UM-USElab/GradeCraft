@@ -2,7 +2,7 @@
   = f.input :name, :label => "Course Title"
   = f.input :courseno, :label => "Course Number"
   = f.input :semester, :collection => [["Winter", "winter"], ["Spring", "spring"], ["Summer", "summer"], ["Fall", "fall"]]
-  = f.input :year, :collection => [[2012], [2013], [2014]]
+  = f.input :year, :collection => (Date.today.year)..(Date.today.year + 2) 
   = f.input :badge_setting, :hint => "Do you want to use badges in your course?", :label => "Badges", :as => :boolean, :boolean_style => "inline"
   = f.input :badge_sets_id, :collection => @badge_sets, :prompt => "-- Select a Badge Set --", :label => "Badge Set"
   = f.input :theme_id, :collection => @themes, :prompt => "-- Select a Theme --"

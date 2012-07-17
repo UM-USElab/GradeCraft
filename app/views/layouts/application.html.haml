@@ -48,6 +48,8 @@
                   %li= link_to "Course Settings", edit_course_path(current_course)
                   - if current_user.try(:is_admin?)
                     = link_to "Switch Courses", courses_path
+            - if current_user.try(:is_admin?)
+              = scope_pulldown
             - if current_user
               %div{:class => 'btn-group pull-right'}
                 %button.btn.btn-info= current_user.public_name

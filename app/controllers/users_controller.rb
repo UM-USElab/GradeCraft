@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
   
   def students
-    @students = current_course.users.
+    @students = current_course.users.all
   end
   
   def 
