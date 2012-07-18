@@ -4,7 +4,7 @@ class GradeSchemesController < ApplicationController
   
   def index
     @title = "Grading Schemes"
-    @grade_schemes = GradeScheme.all
+    @grade_schemes = current_course.grade_schemes.all
 
     respond_to do |format|
       format.html # index.html.erb

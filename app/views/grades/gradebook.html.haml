@@ -1,9 +1,13 @@
-%table#grades
+%table.table.table-bordered
   %thead
     %tr
+      %th #{current_course.user_term}
       - for assignment in @assignments
         %th= assignment.title
-
-%br
+    - @users.each do |user|
+      %tr 
+        %td= user.name
+        - user.grades.each do |grade|
+          %td= grade.score
 
 %div#footerNav

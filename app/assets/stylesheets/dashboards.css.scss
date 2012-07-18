@@ -11,14 +11,14 @@
 #leftSidebar{
   margin-right: 0;
   float: left;
-  width: 300px;
+  width: 250px;
 }
 #badgesWrapper {
   margin-top: 15px;
   margin-bottom: 25px;
   border-radius: 15px;
   -moz-border-radius: 15px;
-  background-color: #ddd;
+  background-color: #222;
   width: 220px;
   padding: 20px 5px 32px;
   text-align:center;
@@ -66,15 +66,15 @@
 }
 
 #userGravatar{
-  padding-top:20px;
 }
-#userScoreSection{
+#userScoreSection {
   background-color:#222;
   border-radius:10px;
   margin-bottom:15px;
   min-height:250px;
   text-align:center;
   padding:10px 0;
+  width: 750px;
 }
 #userPointValues{
   color:#fff;
@@ -94,7 +94,7 @@
 .assignmentTitle, .title {
   font-weight: bold;
 }
-.assignmentPointsSpan{
+.assignmentPointsSpan {
   color: green;
   font-size:.8em;
   float:right;
@@ -124,7 +124,7 @@
 }
 
 #mainInfo {
-  margin-left:300px;
+  margin-left:250px;
   height:100%;
 }
 

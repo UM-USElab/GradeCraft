@@ -5,5 +5,7 @@
   - else
     = f.input :assignment
   = render "#{@grade.class.name.underscore}_form", :form => f
-  = f.button :submit, :class => 'btn btn-primary'
-  = link_to 'Cancel', grades_path, :class => 'btn btn-primary'
+    
+  .form-actions
+    = f.button :submit, :class => 'btn btn-primary'
+    = link_to 'Cancel', grades_path, :class => 'btn btn-primary'

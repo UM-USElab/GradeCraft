@@ -1,0 +1,121 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+
+body {
+	background: url('images/cloud_bg.gif') #99ccff;
+}
+
+.container {
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -moz-border-radius: 15px;
+  box-shadow: 2px 2px 15px #888;
+  color: #FFF;
+  background: url('images/demo-bg.png') #333333;
+  margin-bottom: 15px;
+  margin-top: -20px;
+  width: 1000px;
+  padding: 0px 20px;
+}
+
+a {
+  color: #d3eb1f;
+  text-decoration: none;
+  &:visited {
+  color: #d3eb1f;}
+  &:hover {
+    text-decoration: underline; } 
+  } 
+  
+  button.btn.btn-info a, a.btn.btn-primary {
+    color: #FFF;
+    
+  }
+  
+  .btn-group a, a.dropdown-toggle {
+    color: #000;
+  }
+  
+  .navbar a {
+    color: #000;
+  }
+  
+  a.brand {
+    font-family:'Droid Sans', serif;
+  }
+
+.content {
+  padding-top: 15px;
+  margin-top: 0px;
+}
+
+.hero-unit {
+  background-color: #000;
+  opacity: 0.7;
+  width: 880px;
+  font-size: 14px;
+  line-height: 22px;
+  padding-bottom: 150px;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-image: url('images/arcade.png');
+  
+}
+
+table {
+  color: #000;
+  background-color: #999999;
+}
+
+.dataTables_wrapper {
+  width: 1000px;
+}
+
+table a {
+  color: blue !important;
+  
+}
+
+th {
+  background-color: #111111;
+  font-weight: bold;
+  color: #888;
+}
+
+p.help-block {
+  color: #f2fbb9;
+}
+
+.form-horizontal {
+  width: 980px;
+  
+}
+
+
+h1 {
+  padding: 8px 0px 0px;
+  float:left;
+  font-family:'Droid Sans', serif;
+  font-size:2.7em;
+  margin-bottom:10px;
+  color: #333;
+}
+h2 {
+  font-family:'Droid Sans', serif;
+  color: #c1c50e;
+  font-size: 20px;
+  
+}
+
+h3 {
+  font-family:'Droid Sans', serif;
+  color: #5199ae;
+  margin: 0;
+}
+
+div.form-actions {
+  background: none;
+  width:  600px;
+  border-top: none;
+  background-color: none;
+  
+}

@@ -1,5 +1,5 @@
 = render 'form'
 
 %div#footerNav
-  /%span.button= link_to 'Show', @grade
-  %span.button= link_to 'Back', grades_url
+  = link_to 'View', @grade, :class => 'btn btn-primary'
+  = link_to 'Back', grades_url, :class => 'btn btn-primary'

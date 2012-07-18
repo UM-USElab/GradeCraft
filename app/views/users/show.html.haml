@@ -1,4 +1,3 @@
-%h3#user= @name
 %div#leftSidebar
   %div#userGravatar
     = gravatar_for @user, :size => 230
@@ -25,15 +24,14 @@
     %div#predictorLink
       = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
     %div#userBarTotal.dashboard-toggle
-      #{@user.possible_score}
+      //#{@user.possible_score}
     %div#userBarInProgress.dashboard-toggle
-
-  %h3#attendance.assignTitle
-    %span Learning From Playing a Game
-    %span.assignmentPointsSpan 
-      %span#lfpg_score
-        //#{number_with_delimiter(@user.lfpg_score, :delimiter => ',')} 
-      //out of #{number_with_delimiter(@user.lfpg_possible, :delimiter => ',')}
+    
+    %div#Grades
+      - @user.grades.each do |grade|
+        %div.assignmentTitle= grade.assignment.title
+        = grade.score
+        %br
 
 %div#footerNav
   = link_to 'Edit', edit_user_path(@user), :class => "btn btn-inverse"

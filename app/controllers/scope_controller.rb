@@ -13,7 +13,7 @@ class ScopeController < ApplicationController
   end
 
   def find_scope(id)
-    current_user.find_scoped_classes(id)
+    current_user.find_scoped_courses(id)
   end
 
 end
