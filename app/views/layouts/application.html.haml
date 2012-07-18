@@ -30,7 +30,7 @@
                   = link_to "Badges", badges_path, :class => "btn"
                 - if current_course.has_teams?                
                   = link_to "#{current_course.team_term}s", teams_path, :class => "btn"
-                = link_to "Predictor",  predictor_users_path(:user_id), :class => "btn"
+                //= link_to "Predictor",  predictor_users_path(:user_id), :class => "btn"
             - if current_user.try(:is_staff?) && current_course
               %div{:class => 'btn-group pull-right'}
                 %button.btn.btn-info Course
@@ -38,13 +38,13 @@
                   %span{:class => 'caret'}
                 %ul{:class => 'dropdown-menu well'}
                   %li= link_to "New Assignment", new_assignment_path
-                  %li= link_to "Gradebook", gradebook_grades_path
+                  //%li= link_to "Gradebook", gradebook_grades_path
                   %li= link_to "#{current_course.user_term}s", students_users_path
-                  %li= link_to "News", news_index_path
+                  //%li= link_to "News", news_index_path
                   - if current_course.has_teams?    
                     %li= link_to "#{current_course.team_term} Challenges", challenges_path
                   - if current_course.has_groups?    
-                    %li= link_to "Groups", groups_path
+                    //%li= link_to "Groups", groups_path
                   %li= link_to "Course Settings", edit_course_path(current_course)
             - if current_user
               %div{:class => 'btn-group pull-right'}

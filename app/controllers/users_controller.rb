@@ -25,13 +25,12 @@ class UsersController < ApplicationController
   def students
     @students = current_course.users.all
   end
-  
-  def 
 
   def show
-    @title = @user
-    @courses = Course.all
     @user = User.find(params[:id])
+    @title = @user.name
+    @courses = Course.all
+    respond_with @user
   end
   
   def predictor
@@ -62,7 +61,6 @@ class UsersController < ApplicationController
     @user.course ||= current_course
     
     respond_with @user
-
   end
   
   def update

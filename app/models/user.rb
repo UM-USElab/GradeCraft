@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   has_many :grades, :dependent => :destroy
   has_many :earned_badges, :through => :grades
   belongs_to :team
+  has_many :group_memberships, :dependent => :destroy
+  has_many :groups, :through => :group_memberships
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -110,7 +112,7 @@ class User < ActiveRecord::Base
   
   def find_scoped_courses(course_id)
     course_id = BSON::ObjectId(course_id) if course_id.is_a?(String)
-    if superuser? || self.course_ids.include?(course_id)
+    if is_admin? || self.course_ids.include?(course_id)
       Course.find(course_id)
     else
       raise 

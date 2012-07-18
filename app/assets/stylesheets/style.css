@@ -17,7 +17,9 @@ footer {
   min-height: 650px; 
 }
 
-
+.container.container-fluid {
+  margin-bottom: 55px;
+}
 #pageTitle {
   margin-bottom: 10px;
   
@@ -26,4 +28,8 @@ footer {
 .hero-unit {
   min-height: 450px;
   
+}
+
+.navbar-fixed-bottom {
+  height: 40px;
 }
