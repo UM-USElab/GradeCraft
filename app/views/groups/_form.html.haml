@@ -1,6 +1,6 @@
 = simple_form_for(@group, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :name
-  = f.association :assignment_id, :collection @assignments, :as => :select
+  //= f.association :assignment_id, :collection @assignments, :as => :select
   = f.association :users, :collection => @users, :as => :check_boxes
   
   .form-actions

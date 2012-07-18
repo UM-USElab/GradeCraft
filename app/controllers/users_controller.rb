@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def index
     @title = "View all #{current_course.user_term}s"
-    @courses = Course.all
+    @users =  current_course.users
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
   
   def all_users
-    @users = User.all 
+    @users = current_course.users.all 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_course.users.find(params[:id])
     @title = @user.name
     @courses = Course.all
     respond_with @user
@@ -35,28 +35,27 @@ class UsersController < ApplicationController
   
   def predictor
     @title = "Predict Course Grade"
-    respond_with @user = User.find(params[:id])
+    @user = current_course.users.find(params[:id])
+    respond_with @user
   end
 
   def new
     @title = "Register"
-    @teams = Team.all
-    @courses = Course.all
-    @user.course = current_course
-    respond_with @user = User.new
+    @teams = current_course.teams.all
+    @user.course = current_course.users.new(params[:users])
+    respond_with @user
   end
 
   def edit
     @title = "Edit #{current_course.user_term}"
-    @teams = Team.all
-    @courses = Course.all
-    respond_with @user = User.find(params[:id])
+    @teams = current_course.teams.all
+    @user = current_course.users.find(params[:id])
+    respond_with @user
   end
   
   def create
-    @teams = Team.all
-    @user = User.create(params[:user])
-    @courses = Course.all
+    @teams = current_course.teams.all
+    @user = current_course.users.create(params[:user])
     
     @user.course ||= current_course
     
@@ -66,7 +65,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @teams = Team.all
-    @courses = Course.all
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -80,7 +78,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = current_course.users.find(params[:id])
     @user.destroy
     respond_with @user
   end

@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @title = "View All Groups"
-    @groups = current_course.groups.all
+    @groups = current_course.groups
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @title = "View Group"
-    @group = Group.find(params[:id])
+    @group = current_course.groups.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
   # GET /groups/new.json
   def new
     @title = "Create a New Group"
-    @group = Group.new
+    @group = current_course.groups.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,13 +38,13 @@ class GroupsController < ApplicationController
   # GET /groups/1/edit
   def edit
     @title = "Edit Group"
-    @group = Group.find(params[:id])
+    @group = current_course.groups.find(params[:id])
   end
 
   # POST /groups
   # POST /groups.json
   def create
-    @group = Group.new(params[:group])
+    @group = current_course.groups.new(params[:group])
 
     respond_to do |format|
       if @group.save
@@ -60,7 +60,8 @@ class GroupsController < ApplicationController
   # PUT /groups/1
   # PUT /groups/1.json
   def update
-    @group = Group.find(params[:id])
+    @group = current_course.groups.find(params[:id])
+    @group.update_attributes(params[:group])
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
@@ -76,7 +77,7 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
-    @group = Group.find(params[:id])
+    @group = current_course.groups.find(params[:id])
     @group.destroy
 
     respond_to do |format|

@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   before_filter :require_login, :only => [:login, :register]
   
   def index 
-    @news = News.all
+    @news = current_course.news.all
   
   end
 

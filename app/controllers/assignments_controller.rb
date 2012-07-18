@@ -21,6 +21,7 @@ class AssignmentsController < ApplicationController
 
   def edit
     @title = "Edit this Assignment"
+    @assignment = current_course.assignments.all
     @assignment_types = current_course.assignment_types.all
     respond_with @assignment = current_course.assignments.find(params[:id])
   end

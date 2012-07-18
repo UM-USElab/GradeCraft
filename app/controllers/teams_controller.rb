@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    @team = Team.find(params[:id])
+    @team = current_course.team.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
   # GET /teams/new.json
   def new
     @title = "Create a New #{current_course.user_term}"
-    @team = Team.new
+    @team =  current_course.team.new
     @users = current_course.users
 
     respond_to do |format|
@@ -41,13 +41,13 @@ class TeamsController < ApplicationController
   # GET /teams/1/edit
   def edit
     @title = "Edit #{current_course.user_term}"
-    @team = Team.find(params[:id])
+    @team =  current_course.team.find(params[:id])
   end
 
   # POST /teams
   # POST /teams.json
   def create
-    @team = Team.new(params[:team])
+    @team =  current_course.team.new(params[:team])
 
     respond_to do |format|
       if @team.save
@@ -63,7 +63,7 @@ class TeamsController < ApplicationController
   # PUT /teams/1
   # PUT /teams/1.json
   def update
-    @team = Team.find(params[:id])
+    @team =  current_course.team.find(params[:id])
 
     respond_to do |format|
       if @team.update_attributes(params[:team])
@@ -79,7 +79,7 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   # DELETE /teams/1.json
   def destroy
-    @team = Team.find(params[:id])
+    @team =  current_course.team.find(params[:id])
     @team.destroy
 
     respond_to do |format|
@@ -89,7 +89,7 @@ class TeamsController < ApplicationController
   end
   
   def sort_column
-    Team.column_names.include?(params[:sort]) ? params[:sort] : "id"
+     current_course.team.column_names.include?(params[:sort]) ? params[:sort] : "id"
   end
   
   def sort_direction
