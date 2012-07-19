@@ -29,7 +29,9 @@ class UsersController < ApplicationController
   def show
     @user = current_course.users.find(params[:id])
     @title = @user.name
-    @courses = Course.all
+    @assignment_types = current_course.assignment_types
+    @assignments = current_course.assignments
+    @grades = current_user.grades.all
     respond_with @user
   end
   

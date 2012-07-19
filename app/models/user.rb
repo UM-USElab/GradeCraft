@@ -15,9 +15,9 @@ class User < ActiveRecord::Base
   
   has_many :course_memberships, :dependent => :destroy
   has_many :courses, :through => :course_memberships
-  accepts_nested_attributes_for :courses
-            
+  accepts_nested_attributes_for :courses          
   has_many :grades, :dependent => :destroy
+  has_many :assignments, :through => :grades
   has_many :earned_badges, :through => :grades
   belongs_to :team
   has_many :group_memberships, :dependent => :destroy
@@ -97,13 +97,13 @@ class User < ActiveRecord::Base
 #   def reading_reaction_score
 #     grades.reading_reaction.map(&:score).inject(&:+) || 0
 #   end
+
+  def assignment_type_score
+    grades
+  end
    
   def score
     grades.map(&:score).inject(&:+) || 0
-  end
-  
-  def sortable_score
-    
   end
   
   def rank
@@ -122,6 +122,7 @@ class User < ActiveRecord::Base
 def default_course
   @default_course ||= (self.courses.where(:id => self.default_course_id).first || self.courses.first)
 end
+
 
   # #Possible 
 #   def reading_reaction_possible
