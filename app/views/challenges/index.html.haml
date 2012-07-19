@@ -10,20 +10,17 @@
         %th
         %th
   %tbody
-    - for challenge in @challenges
+    - @challenges.each do |challenge|
       %tr
         %td= challenge.title
         %td= challenge.points
-        %td= challenge.description
+        %td= raw challenge.description
         %td= challenge.date
         - if current_user.is_staff?
           %td= link_to 'View', challenge
           %td= link_to 'Edit', edit_challenge_path(challenge)
           %td= link_to 'Delete', challenge, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
 %div#footerNav
   - if current_user.is_staff?
     = link_to 'Create a New Challenge', new_challenge_path, :class => "btn btn-primary"
-    = link_to 'Grade a Challenge', new_challenge_grade_url, :class => "btn btn-primary"
+    = link_to 'Grade a Challenge', new_challenge_grade_url, :class => "btn btn-inverse"

@@ -1,4 +1,19 @@
-%p#notice= notice
+%div{:class => 'btn-group inline-fix'}
+  = link_to "Assignments",  assignments_path, :class => "btn"
+  - if current_course.has_badges?                
+    = link_to "Badges", badges_path, :class => "btn"
+  - if current_course.has_teams?                
+    = link_to "#{current_course.team_term}s", teams_path, :class => "btn"
+    = link_to "Challenges", challenges_path, :class => "btn"
+  = link_to "Groups", groups_path, :class => "btn"
+  = link_to "Predictor Settings", predictor_users_path, :class => "btn"
+  = link_to "Course Grade Scheme", course_grade_schemes_path, :class => "btn"
+  = link_to "#{current_course.user_term}s", students_users_path, :class => "btn"
+  = link_to "Staff", staff_users_path, :class => "btn"
+  = link_to "News", news_index_path, :class => "btn"
+%br  
+%h3 Course Settings
+%br
 
 %p
   %b Name:
@@ -17,7 +32,7 @@
   = @course.badge_sets_id
 %p
   %b Theme:
-  = @course.themes_id
+  = @course.theme.name
 %p
   %b Course Grade Scheme:
   = @course.coursegradescheme
@@ -36,5 +51,5 @@
 
 
 %div#footerNav
-  %span.button= link_to 'Edit', edit_course_path(@course)
-  %span.button= link_to 'Back', courses_path
+  = link_to 'Edit', edit_course_path(@course), :class => 'btn btn-primary'
+  = link_to 'Back', courses_path, :class => 'btn btn-primary'

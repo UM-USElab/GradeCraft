@@ -408,6 +408,8 @@ a:hover {
   padding-right: 20px;
   padding-left: 20px;
   *zoom: 1;
+  max-width: 1040px;
+  margin: 0 auto;
 }
 
 .container-fluid:before,
@@ -2616,8 +2618,10 @@ button.close {
 .btn:active,
 .btn.active,
 .btn.disabled,
-.btn[disabled] {
+.btn[disabled]
+.btn.btn-info a {
   background-color: #e6e6e6;
+  text-decoration: none;
   *background-color: #d9d9d9;
 }
 
@@ -3641,8 +3645,17 @@ input[type="submit"].btn.btn-mini {
   margin-top: 5px;
 }
 
-.navbar .btn-group .btn {
+.navbar .btn-group {
   margin: 0;
+  float: none;
+  display: inline-block;
+  letter-spacing: -.31em;
+  word-spacing: -.43em;
+}
+
+.navbar .btn-group a, .navbar .btn-group .btn a {
+  letter-spacing: normal;
+  word-spacing: normal;
 }
 
 .navbar-form {
@@ -3763,7 +3776,6 @@ input[type="submit"].btn.btn-mini {
 .navbar-fixed-bottom .container {
   width: 940px;
 }
-
 .navbar-fixed-top {
   top: 0;
 }

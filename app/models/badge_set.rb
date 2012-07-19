@@ -2,6 +2,6 @@ class BadgeSet < ActiveRecord::Base
   attr_accessible :name, :notes
   
   has_many :badges
-  belongs_to :course
+  has_many :courses
 
 end

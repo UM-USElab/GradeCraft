@@ -1,7 +1,17 @@
 %div.hero-unit
   - if current_user
-    = current_course.homepage_message
-
+    - if current_course
+      %p.span5= raw current_course.homepage_message
+      %div.span3.pull-right
+        %h3 Course News
+        %br
+        - @news.each do |news|
+          %h5= news.title
+          %span= news.created_at
+          %br
+          %span= raw news.content
+    - else
+      %p Your account hasn't yet been connected to any courses. Contact us for help!
   - else
     %h1 Welcome to GradeCraft 
     %br

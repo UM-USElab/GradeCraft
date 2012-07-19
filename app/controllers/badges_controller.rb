@@ -31,7 +31,7 @@ class BadgesController < ApplicationController
   def new
     @title = "Create a New Badge"
     @badge = Badge.new
-
+    @badge_sets = BadgeSet.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @badge }

@@ -1,6 +1,7 @@
-= simple_form_for(@themes, :html => {:class => 'form-horizontal' }) do |f|
+= simple_form_for(@theme, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :name
   = f.input :filename
   
-  = f.button :submit, :class => 'btn btn-primary'
-  = link_to 'Cancel', themes_path, :class => 'btn btn-primary'
+  .form-actions  
+    = f.button :submit, :class => 'btn btn-primary'
+    = link_to 'Cancel', themes_path, :class => 'btn btn-primary'

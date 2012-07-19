@@ -15,11 +15,13 @@ class User < ActiveRecord::Base
   
   has_many :course_memberships, :dependent => :destroy
   has_many :courses, :through => :course_memberships
-  accepts_nested_attributes_for :courses
-            
+  accepts_nested_attributes_for :courses          
   has_many :grades, :dependent => :destroy
+  has_many :assignments, :through => :grades
   has_many :earned_badges, :through => :grades
   belongs_to :team
+  has_many :group_memberships, :dependent => :destroy
+  has_many :groups, :through => :group_memberships
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -30,7 +32,6 @@ class User < ActiveRecord::Base
   validates :email, :presence => true,
                     :format   => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
-
 
   %w{student gsi professor admin}.each do |role|
     scope role.pluralize, where(:role => role)
@@ -96,13 +97,13 @@ class User < ActiveRecord::Base
 #   def reading_reaction_score
 #     grades.reading_reaction.map(&:score).inject(&:+) || 0
 #   end
+
+  def assignment_type_score
+    grades
+  end
    
   def score
     grades.map(&:score).inject(&:+) || 0
-  end
-  
-  def sortable_score
-    
   end
   
   def rank
@@ -111,7 +112,7 @@ class User < ActiveRecord::Base
   
   def find_scoped_courses(course_id)
     course_id = BSON::ObjectId(course_id) if course_id.is_a?(String)
-    if superuser? || self.course_ids.include?(course_id)
+    if is_admin? || self.course_ids.include?(course_id)
       Course.find(course_id)
     else
       raise 
@@ -121,6 +122,7 @@ class User < ActiveRecord::Base
 def default_course
   @default_course ||= (self.courses.where(:id => self.default_course_id).first || self.courses.first)
 end
+
 
   # #Possible 
 #   def reading_reaction_possible

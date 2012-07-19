@@ -1,6 +1,6 @@
 class Theme < ActiveRecord::Base
   attr_accessible :filename, :name
   
-  belongs_to :course
+  has_many :courses
   
 end

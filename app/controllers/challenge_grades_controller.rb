@@ -3,7 +3,7 @@ class ChallengeGradesController < ApplicationController
   # GET /challenge_grades.json
   def index
     @title = "Team Challenge Grades"
-    @challenge_grades = ChallengeGrade.all
+    @challenge_grades = current_course.challenge_grades.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class ChallengeGradesController < ApplicationController
   # GET /challenge_grades/1.json
   def show
     @title = "View Team Challenge Score"
-    @challenge_grade = ChallengeGrade.find(params[:id])
+    respond_with @challenge_grade = current_course.challenge_grades.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +27,7 @@ class ChallengeGradesController < ApplicationController
   # GET /challenge_grades/new.json
   def new
     @title = "Grade a Team Challenge"
-    @challenge_grade = ChallengeGrade.new
+    @challenge_grade = current_course.challenge_grades.new
     @teams = Team.all
     @challenges = Challenge.all
     respond_to do |format|

@@ -1,3 +1,35 @@
 label {
   text-transform: capitalize;
 }
+
+#footerNav {
+  margin-top: 15px;
+}
+
+footer {
+  margin: 15px 0px;
+  text-align: right;
+  border-top: 1px solid #666;
+  padding-top: 15px;
+}
+
+.content {
+  min-height: 650px; 
+}
+
+.container.container-fluid {
+  margin-bottom: 55px;
+}
+#pageTitle {
+  margin-bottom: 10px;
+  
+}
+
+.hero-unit {
+  min-height: 450px;
+  
+}
+
+.navbar-fixed-bottom {
+  height: 40px;
+}

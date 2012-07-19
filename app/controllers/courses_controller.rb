@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @title = "GradeCraft Courses"
     @courses = Course.all
 
     respond_to do |format|
@@ -16,11 +15,8 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
-    @users = current_course.users
-    @assignments = current_course.assignments
-    @grades = current_course.grades
-    @teams = current_course.teams
-
+    @themes = Theme.all
+    @users = current_course.users.all
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @course }
@@ -30,7 +26,6 @@ class CoursesController < ApplicationController
   # GET /courses/new
   # GET /courses/new.json
   def new
-    @title = "Add a New Course"
     @course = Course.new
     @themes = Theme.all
     @badge_sets = BadgeSet.all
@@ -45,7 +40,6 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
-    @title = "Edit Course" 
     @badge_sets = BadgeSet.all
     @themes = Theme.all
     @course_grade_schemes = CourseGradeScheme.all

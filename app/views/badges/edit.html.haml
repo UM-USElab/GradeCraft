@@ -1,5 +1,5 @@
 = render 'form'
 
 %div#footerNav
-  %span.button= link_to 'Show', @badge
-  %span.button= link_to 'Back', badges_path
+  = link_to 'View', @badge, {:class => 'btn btn-primary'}
+  = link_to 'Back', badges_path, {:class => 'btn btn-primary'}

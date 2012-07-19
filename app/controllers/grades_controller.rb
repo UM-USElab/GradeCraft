@@ -5,7 +5,7 @@ class GradesController < ApplicationController
 
   def index
     @title = "View All Grades"
-    @grades = Grade.all
+    @grades = current_course.grades.all
     
     respond_to do |format|
       format.html # index.html.erb
@@ -20,8 +20,9 @@ class GradesController < ApplicationController
   
   def gradebook
     @title = "Class Gradebook"
-    @assignments = Assignment.all
-    @grades = Grade.all
+    @assignments = Assignment.all.sort_by &:id
+    @grades = Grade.all.sort_by &:assignment_id
+    @users = current_course.users.all
   end
 
   def new
