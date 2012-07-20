@@ -72,9 +72,10 @@
   border-radius:10px;
   margin-bottom:15px;
   min-height:250px;
-  text-align:center;
+  text-align: left;
   padding:10px 0;
-  width: 750px;
+  width: 700px;
+  padding: 20px;
 }
 #userPointValues{
   color:#fff;
@@ -91,7 +92,10 @@
 #scoreToggle:hover{
   text-decoration:underline;
 }
-.assignmentTitle, .title {
+.assignmentTypeTitle {
+  font-size: 16px;
+  color: orange;
+  padding-bottom: 10px;
   font-weight: bold;
 }
 .assignmentPointsSpan {
@@ -104,6 +108,7 @@
   font-weight: bold;
   color: #333;
 }
+
 .completedAssignment, .incompleteAssignment, .missedAssignment {
   padding: 15px;
   margin-bottom: 2px;
