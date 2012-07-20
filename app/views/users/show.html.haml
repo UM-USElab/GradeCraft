@@ -28,10 +28,11 @@
     %div#userBarInProgress.dashboard-toggle
     
     %div#Grades
-      - @user.grades.each do |grade|
-        %div.assignmentTitle= grade.assignment.title
-        = grade.score
-        %br
+      - current_course.assignments.group_by(&:type).map do |assignment_type, assignments|
+        %div.assignmentType
+          %span.assignmentTypeTitle= assignment_type
+          - for assignment in assignments
+            %div.assignmentTitle= assignment.title
 
 %div#footerNav
   = link_to 'Edit', edit_user_path(@user), :class => "btn btn-inverse"
