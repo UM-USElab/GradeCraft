@@ -17,6 +17,7 @@ class GradeSchemeElementsController < ApplicationController
   # GET /grade_scheme_elements/new.xml
   def new
     @grade_scheme_element = GradeSchemeElement.new
+    @grade_schemes = current_course.grade_schemes
     respond_with(@grade_scheme_element)
   end
 
