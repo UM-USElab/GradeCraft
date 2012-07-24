@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @grade_scheme_element.name
+%p
+  %b Low range:
+  = @grade_scheme_element.low_range
+%p
+  %b High range:
+  = @grade_scheme_element.high_range
+%p
+  %b Letter grade:
+  = @grade_scheme_element.letter_grade
+
+= link_to 'Edit', edit_grade_scheme_element_path(@grade_scheme_element), {:class => 'btn btn-primary'}
+\|
+= link_to 'Back', grade_scheme_elements_path, {:class => 'btn btn-primary'}

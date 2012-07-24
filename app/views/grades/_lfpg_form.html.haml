@@ -1,4 +1,4 @@
 %div.gradeUserName= grade.user.name
 .text= form.input :score
-= form.input :feedback, :as => :ckeditor
+= form.input :feedback, :as => :text
 .text= form.input :badges, :as => :check_boxes, :collection => @badges

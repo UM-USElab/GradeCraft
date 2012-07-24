@@ -16,7 +16,7 @@ class GradeSchemesController < ApplicationController
   # GET /grade_schemes/1.json
   def show
     @title = "View Grading Scheme"
-    @grade_scheme = GradeScheme.find(params[:id])
+    @grade_scheme = current_course.grade_schemes.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +28,7 @@ class GradeSchemesController < ApplicationController
   # GET /grade_schemes/new.json
   def new
     @title = "Create a New Grading Scheme"
-    @grade_scheme = GradeScheme.new
+    @grade_scheme = current_course.grade_schemes.new
     @assignments = Assignment.all
     respond_to do |format|
       format.html # new.html.erb
@@ -39,14 +39,14 @@ class GradeSchemesController < ApplicationController
   # GET /grade_schemes/1/edit
   def edit
     @title = "Update Grading Scheme"
-    @grade_scheme = GradeScheme.find(params[:id])
+    @grade_scheme = current_course.grade_schemes.find(params[:id])
     @assignments = Assignment.all
   end
 
   # POST /grade_schemes
   # POST /grade_schemes.json
   def create
-    @grade_scheme = GradeScheme.new(params[:grade_scheme])
+    @grade_scheme = current_course.grade_schemes.new(params[:grade_scheme])
     @assignments = Assignment.all
 
     respond_to do |format|
@@ -61,7 +61,7 @@ class GradeSchemesController < ApplicationController
   end
     
   def destroy_multiple
-    @grade_schemes = GradeScheme.find(params[:grade_scheme_ids])
+    @grade_schemes = current_course.grade_schemes.find(params[:grade_scheme_ids])
     @grade_schemes.delete
     
     respond_to do |format|
@@ -74,7 +74,7 @@ class GradeSchemesController < ApplicationController
   # PUT /grade_schemes/1
   # PUT /grade_schemes/1.json
   def update
-    @grade_scheme = GradeScheme.find(params[:id])
+    @grade_scheme = current_course.grade_schemes.find(params[:id])
     @assignments = Assignment.all
     respond_to do |format|
       if @grade_scheme.update_attributes(params[:grade_scheme])
@@ -90,7 +90,7 @@ class GradeSchemesController < ApplicationController
   # DELETE /grade_schemes/1
   # DELETE /grade_schemes/1.json
   def destroy
-    @grade_scheme = GradeScheme.find(params[:id])
+    @grade_scheme = current_course.grade_schemes.find(params[:id])
     @grade_scheme.destroy
 
     respond_to do |format|

@@ -1,5 +1,7 @@
 GradeCraft::Application.routes.draw do
 
+  resources :grade_scheme_elements
+
   resources :news
 
   resources :assignment_types

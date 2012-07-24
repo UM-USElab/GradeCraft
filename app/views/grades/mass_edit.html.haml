@@ -9,12 +9,12 @@
 
 #massGrade  
   %ul.grades
-    = semantic_form_for @assignment.becomes(Assignment), :url => mass_update_grades_path(:assignment_id => @assignment.id) do |f|
-      = f.semantic_fields_for :grades, @grades do |grade_form|
-        = grade_form.inputs do
-          = render "#{@assignment.class.name.underscore}_form", :form => grade_form, :grade => grade_form.object
-      = f.actions do
-        = f.commit_button 'Save'
+    = simple_form_for @assignment, :url => mass_update_grades_path(:assignment_id => @assignment.id) do |f|
+      = f.simple_fields_for :grades, @grades do |grade_form|
+        = grade_form.input :score, :label => 'Present'
+        = grade_form.input :feedback, :as => :text
+        //= grade_form.input :badges, :as => :check_boxes, :collection => @badges
+      = f.button :submit
 
 %div#footerNav
   = link_to 'Cancel', assignments_path, :class => 'btn btn-primary'

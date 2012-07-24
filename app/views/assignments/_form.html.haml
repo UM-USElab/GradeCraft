@@ -1,5 +1,5 @@
 = simple_form_for(@assignment, :html => {:class => 'form-horizontal' }) do |f|
-  = f.input :type, :collection => @assignment_types
+  = f.association :assignment_type, :collection => @assignment_types
   = f.input :title
   = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span7' }
   = f.input :point_total, :label => "Total Points Possible"

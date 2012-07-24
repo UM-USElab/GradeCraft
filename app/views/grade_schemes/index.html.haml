@@ -2,10 +2,7 @@
   %thead
     %tr
       %th
-      %th Assignment
-      %th Grade Name
-      %th Range Bottom
-      %th Range Top
+      %th Scheme Name
       %th 
       %th
       %th
@@ -13,10 +10,7 @@
     - for grade_scheme in @grade_schemes
       %tr
         %td= check_box_tag "grade_scheme_ids[]", grade_scheme.id
-        %td= grade_scheme.assignment_id
-        %th= grade_scheme.grade_name
-        %th= grade_scheme.range_bottom
-        %th= grade_scheme.range_top
+        %td= grade_scheme.scheme_name
         %td= link_to 'View', grade_scheme
         %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme)
         %td= link_to 'Destroy', grade_scheme, :confirm => 'Are you sure?', :method => :delete

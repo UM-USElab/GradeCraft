@@ -10,7 +10,8 @@ class Course < ActiveRecord::Base
   belongs_to :badge_set
   has_many :badges, :through => :badge_set
   has_many :challenges, :dependent => :destroy
-  has_many :course_grade_scheme, :dependent => :destroy
+  has_many :course_grade_schemes, :dependent => :destroy
+  has_many :grade_schemes
   has_many :grades, :through => :assignments
   has_many :groups, :dependent => :destroy
   has_many :news, :dependent => :destroy

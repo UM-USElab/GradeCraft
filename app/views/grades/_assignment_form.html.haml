@@ -2,5 +2,5 @@
   %tr.user= grade.user.name
   %tr
     %td.score= form.input :score
-    %td.feedback= form.input :feedback, :as => :ckeditor
+    %td.feedback= form.input :feedback, :as => :text
   %tr#badgeSelection= form.input :badges, :as => :check_boxes, :collection => @badges

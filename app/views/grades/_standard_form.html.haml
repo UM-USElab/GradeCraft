@@ -1,6 +1,6 @@
 %div.gradeUserName= grade.user.name
 = form.input :score
-= form.input :feedback, :as => :ckeditor
+= form.input :feedback, :as => :text
 = form.input :status, :as => :select, :collection => [["New", "New"], ["Graded", "Graded"], ["Released", "Released"]]
 = form.input :substantial, :as => :select
 %div#badgeSelection= form.input :badges, :as => :check_boxes, :collection => @badges

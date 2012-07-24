@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 
+
 $(document).ready(function(){
   $('#some-textarea').wysihtml5();
   
@@ -29,3 +30,5 @@ $(function() {
 });
 
 $('#course_id').change(function() { $(this).closest('form').submit(); });
+
+$('.nav-tabs').button()

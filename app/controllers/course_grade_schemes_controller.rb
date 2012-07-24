@@ -2,7 +2,8 @@ class CourseGradeSchemesController < ApplicationController
   # GET /course_grade_schemes
   # GET /course_grade_schemes.json
   def index
-    @course_grade_schemes = current_course.course_grade_schemes.all
+    @title = "Grade Scheme Elements"
+    @course_grade_schemes = current_course.course_grade_schemes
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,7 @@ class CourseGradeSchemesController < ApplicationController
   # GET /course_grade_schemes/1
   # GET /course_grade_schemes/1.json
   def show
-    @course_grade_scheme = CourseGradeScheme.find(params[:id])
+    @course_grade_scheme = current_course.course_grade_schemes.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class CourseGradeSchemesController < ApplicationController
   # GET /course_grade_schemes/new
   # GET /course_grade_schemes/new.json
   def new
-    @course_grade_scheme = CourseGradeScheme.new
+    @course_grade_scheme = current_course.course_grade_schemes.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class CourseGradeSchemesController < ApplicationController
 
   # GET /course_grade_schemes/1/edit
   def edit
-    @course_grade_scheme = CourseGradeScheme.find(params[:id])
+    @course_grade_scheme = current_course.course_grade_schemes.find(params[:id])
   end
 
   # POST /course_grade_schemes
   # POST /course_grade_schemes.json
   def create
-    @course_grade_scheme = CourseGradeScheme.new(params[:course_grade_scheme])
+    @course_grade_scheme = current_course.course_grade_schemes.new(params[:course_grade_scheme])
 
     respond_to do |format|
       if @course_grade_scheme.save
@@ -56,7 +57,7 @@ class CourseGradeSchemesController < ApplicationController
   # PUT /course_grade_schemes/1
   # PUT /course_grade_schemes/1.json
   def update
-    @course_grade_scheme = CourseGradeScheme.find(params[:id])
+    @course_grade_scheme = current_course.course_grade_schemes.find(params[:id])
 
     respond_to do |format|
       if @course_grade_scheme.update_attributes(params[:course_grade_scheme])
@@ -72,7 +73,7 @@ class CourseGradeSchemesController < ApplicationController
   # DELETE /course_grade_schemes/1
   # DELETE /course_grade_schemes/1.json
   def destroy
-    @course_grade_scheme = CourseGradeScheme.find(params[:id])
+    @course_grade_scheme = current_course.course_grade_schemes.find(params[:id])
     @course_grade_scheme.destroy
 
     respond_to do |format|

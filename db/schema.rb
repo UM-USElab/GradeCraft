@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719021328) do
+ActiveRecord::Schema.define(:version => 20120721014941) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20120719021328) do
     t.integer  "universal_point_value"
     t.integer  "minimum_score"
     t.integer  "step_value",               :default => 1
+    t.integer  "grade_scheme_id"
   end
 
   create_table "assignments", :force => true do |t|
@@ -62,9 +63,11 @@ ActiveRecord::Schema.define(:version => 20120719021328) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "level"
-    t.integer  "type",        :limit => 255
+    t.integer  "type",               :limit => 255
     t.boolean  "present"
     t.integer  "course_id"
+    t.integer  "assignment_type_id"
+    t.integer  "grade_scheme_id"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -131,8 +134,12 @@ ActiveRecord::Schema.define(:version => 20120719021328) do
 
   create_table "course_grade_schemes", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "course_id"
+    t.integer  "low_range"
+    t.integer  "high_range"
+    t.string   "letter_grade"
   end
 
   create_table "course_memberships", :id => false, :force => true do |t|
@@ -148,17 +155,17 @@ ActiveRecord::Schema.define(:version => 20120719021328) do
     t.string   "courseno"
     t.string   "year"
     t.string   "semester"
-    t.integer  "badge_sets_id"
+    t.decimal  "badge_set_id"
     t.string   "theme_id"
     t.integer  "coursegradescheme"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.boolean  "team_setting",      :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "team_setting"
     t.string   "user_term"
-    t.boolean  "badge_setting",     :default => true
+    t.boolean  "badge_setting"
     t.string   "team_term"
     t.string   "homepage_message"
-    t.boolean  "status",            :default => true
+    t.boolean  "status"
     t.boolean  "group_setting"
   end
 
@@ -199,13 +206,21 @@ ActiveRecord::Schema.define(:version => 20120719021328) do
     t.timestamp "updated_at"
   end
 
+  create_table "grade_scheme_elements", :force => true do |t|
+    t.string   "name"
+    t.integer  "low_range"
+    t.integer  "high_range"
+    t.string   "letter_grade"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "grade_scheme_id"
+  end
+
   create_table "grade_schemes", :force => true do |t|
-    t.integer   "assignment_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "grade_name"
-    t.integer   "range_bottom"
-    t.integer   "range_top"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "scheme_name"
+    t.integer  "course_id"
   end
 
   create_table "grades", :force => true do |t|
