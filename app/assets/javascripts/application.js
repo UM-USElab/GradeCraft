@@ -31,4 +31,4 @@ $(function() {
 
 $('#course_id').change(function() { $(this).closest('form').submit(); });
 
-$('.nav-tabs').button()
+$('.nav-tabs').button();
