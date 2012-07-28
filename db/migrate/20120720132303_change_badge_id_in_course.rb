@@ -1,5 +1,5 @@
 class ChangeBadgeIdInCourse < ActiveRecord::Migration
   def change
-    change_column :courses, :badge_sets_id, :badge_set_id
+    add_column :courses, :badge_set_id, :integer
   end
 end
