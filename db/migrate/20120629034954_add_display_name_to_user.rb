@@ -1,7 +1,7 @@
 class AddDisplayNameToUser < ActiveRecord::Migration
   def up
     add_column :users, :display_name, :string
-    add_column :users, :private_display, :boolean, :default => 0
+    add_column :users, :private_display, :boolean
   end
 
   def down

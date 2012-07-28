@@ -1,6 +1,6 @@
 class AddTeamsToCourse < ActiveRecord::Migration
   def up
-    add_column :courses, :teams, :boolean, :default => 0
+    add_column :courses, :teams, :boolean
   end
 
   def down

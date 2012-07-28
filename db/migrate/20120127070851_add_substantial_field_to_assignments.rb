@@ -1,6 +1,6 @@
 class AddSubstantialFieldToAssignments < ActiveRecord::Migration
   def up
-    add_column :assignments, :substantial, :boolean, :default => 0
+    add_column :assignments, :substantial, :boolean
   end
 
   def down
