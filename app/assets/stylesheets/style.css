@@ -26,10 +26,17 @@ footer {
 }
 
 .hero-unit {
-  min-height: 450px;
+  min-height: 550px;
   
 }
 
 .navbar-fixed-bottom {
   height: 40px;
+}
+
+span.control-label {
+  float: left;
+  width: 110px;
+  letter-spacing: normal;
+  word-spacing: normal;
 }

@@ -11,7 +11,6 @@
     = stylesheet_link_tag "application", :media => "all"
     - if current_course.try(:theme).present?
       = stylesheet_link_tag current_course.theme.filename
-    = javascript_include_tag "application"
 
   %body
     .navbar.navbar-fixed-top
@@ -64,9 +63,12 @@
                   = simple_form_for User.new, :url => user_sessions_path do |f|
                     = f.input :email, :label => false
                     = f.input :password, :label => false
-                    = f.input :remember_me, :as => :boolean
-                    = submit_tag "Login", :class => '.btn.btn-primary'
-                    = link_to "Forgot your password?", login_path
+                    %span.control-label= "Remember Me"
+                    = f.input :remember_me, :as => :boolean, :label => false
+                    = submit_tag "Login", :class => 'btn btn-primary'
+                    %br
+                    %br
+                    = link_to "Forgot your password?", login_path, :class => 'btn btn-info'
 
     .container-fluid.container
       .content
@@ -85,3 +87,5 @@
           %div{:class => 'btn-group pull-left'}
             = form_tag change_current_course_path do
               = select_tag 'course_id', options_from_collection_for_select(current_user.courses, 'id', 'name', current_course.id)
+      
+= javascript_include_tag "application"

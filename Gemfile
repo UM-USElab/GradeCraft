@@ -37,7 +37,6 @@ group :assets do
   gem 'uglifier'
 end
 
-
 group :development do
   gem 'haml-rails'
 end
