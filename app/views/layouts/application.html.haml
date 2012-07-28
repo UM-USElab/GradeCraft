@@ -11,6 +11,7 @@
     = stylesheet_link_tag "application", :media => "all"
     - if current_course.try(:theme).present?
       = stylesheet_link_tag current_course.theme.filename
+    = javascript_include_tag "application"
 
   %body
     .navbar.navbar-fixed-top
@@ -84,9 +85,3 @@
           %div{:class => 'btn-group pull-left'}
             = form_tag change_current_course_path do
               = select_tag 'course_id', options_from_collection_for_select(current_user.courses, 'id', 'name', current_course.id)
-      
-    /
-      Javascripts
-      \==================================================
-    / Placed at the end of the document so the pages load faster
-    = javascript_include_tag "application"

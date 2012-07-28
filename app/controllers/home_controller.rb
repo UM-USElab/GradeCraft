@@ -4,7 +4,6 @@ class HomeController < ApplicationController
   
   def index 
     @news = current_course.news.all
-  
   end
 
 end
