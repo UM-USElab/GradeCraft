@@ -1,16 +1,16 @@
 %p
   %b User:
-  = @grade.user.first_name+" "+@grade.user.last_name
+  = link_to @grade.user.name, user_path
 %p
   %b Assignment:
-  = @grade.assignment.title
+  = link_to @grade.assignment.title, assignment_path(@grade.assignment_id)
 %p
   %b Score:
   = @grade.score
 %p
   %b Feedback:
   %br
-  = @grade.feedback
+  = raw @grade.feedback
 %p
   %b Attempted:
   = @grade.attempted
@@ -24,5 +24,5 @@
 
 %div#footerNav
   = link_to 'Edit', edit_grade_path(@grade), :class => 'btn btn-primary'
-  = link_to 'Back', grades_url, :class => 'btn btn-primary'
+  = link_to 'Back', assignment_path(@grade.assignment_id), :class => 'btn btn-primary'
   = link_to "Grade Another " +@grade.assignment.title, new_grade_path("assignment_id"=>@grade.assignment.id), :class => 'btn btn-primary'

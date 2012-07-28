@@ -1,0 +1,16 @@
+= simple_form_for(@assignment, :html => {:class => 'form-horizontal' }, :url => update_multiple_grades_path(:assignment_id => @assignment.id) do |f|
+  %h3= @assignment.name
+  %table.table.table-bordered
+    %tr
+      %th User
+      %th Score
+      %th Current Status
+    - for grade in @grades 
+      %tr
+        %td= grade.user.name 
+        %td= grade.score
+        %td= grade.status
+        // hidden_field_tag "grade_ids[]", grade.id
+  = f.simple_fields_for :grades, @grades do |f|
+    = f.input :status, :as => :select, :collection => [["New"], ["Graded"],["Released"]]
+    = f.button :submit

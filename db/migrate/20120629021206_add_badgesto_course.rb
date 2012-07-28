@@ -1,6 +1,6 @@
 class AddBadgestoCourse < ActiveRecord::Migration
   def up
-    add_column :courses, :badges, :boolean, :default => true
+    add_column :courses, :badges, :integer, :default => true
   end
 
   def down

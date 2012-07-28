@@ -38,6 +38,8 @@ GradeCraft::Application.routes.draw do
       get :mass_edit
       put :mass_update
       get :gradebook
+      get :edit_status 
+      put :update_status
     end
   end
   resources :info
@@ -49,7 +51,6 @@ GradeCraft::Application.routes.draw do
       post :destroy_multiple 
     end
   end
-
   get "info/index"
   get "home/index"
   get 'dashboard' => 'info#dashboard'

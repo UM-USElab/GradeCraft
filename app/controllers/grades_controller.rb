@@ -16,6 +16,7 @@ class GradesController < ApplicationController
   def show
     @title = "View Grade"
     respond_with @grade = Grade.find(params[:id])
+    @assignment = @grade.assignment_id
   end
   
   def gradebook
@@ -106,6 +107,7 @@ class GradesController < ApplicationController
   def mass_edit
     @assignment = Assignment.find(params[:assignment_id])
     user_search_options = {}
+
     if params[:team_id].present?
       @team = Team.find(params[:team_id])
       user_search_options[:team_id] = @team.id if @team
@@ -123,6 +125,19 @@ class GradesController < ApplicationController
     else
       respond_with @assignment, :location => mass_edit_grades_path(:assignment_id => @assignment)
     end
+  end
+  
+  def edit_status
+    @assignment = Assignment.find(params[:assignment_id])
+    @grades = Grade.find(params[:grade_ids])
+  end
+  
+  def update_status
+    @grades = Grade.find(params[:grade_ids])
+    @grades.each do |grade|
+      grade.update_attributes!(params[:grade].reject { |k,v| v.blank? })
+    end
+    flash[:notice] = "Updated grades!"
   end
 
 end

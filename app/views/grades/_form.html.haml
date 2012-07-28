@@ -1,12 +1,16 @@
-= @assignment.title
+= @assignment
 = simple_form_for(@grade, :html => {:class => 'form-horizontal' }) do |f|
-  = f.input :user, :collection => User.students, :include_blank => false
+  = f.association :user, :collection => User.students, :include_blank => false
   - if @assignment
     = f.input :assignment_id, :as => :hidden
+  - else 
+    = f.association :assignment
     = f.input :score
     = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span7' }
-    %div.btn-group, :input_html => {"data-toggle => "buttons-checkbox"}
+    %div.btn-group
     = f.association :badges, :as => :check_boxes, :class => "btn", :input_html => {"data-toggle" => "button" }
+    = f.input :status, :as => :select, :collection => [["New"], ["Graded"],["Released"]]
+  
 
   = f.button :submit, :class => 'btn btn-primary'
   = link_to 'Cancel', grades_path, :class => 'btn btn-primary'
