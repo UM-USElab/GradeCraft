@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721014941) do
+ActiveRecord::Schema.define(:version => 20120728041225) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(:version => 20120721014941) do
     t.string   "point_setting"
     t.integer  "levels"
     t.string   "points_predictor_display"
-    t.boolean  "due_date"
     t.integer  "resubmission"
     t.integer  "max_value"
     t.integer  "percentage_course"
@@ -53,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20120721014941) do
     t.integer  "minimum_score"
     t.integer  "step_value",               :default => 1
     t.integer  "grade_scheme_id"
+    t.boolean  "due_date_present"
   end
 
   create_table "assignments", :force => true do |t|
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(:version => 20120721014941) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "level"
-    t.integer  "type",               :limit => 255
     t.boolean  "present"
     t.integer  "course_id"
     t.integer  "assignment_type_id"
