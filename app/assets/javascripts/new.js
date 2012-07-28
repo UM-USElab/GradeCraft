@@ -1,3 +1,4 @@
+/*
 
 if ($("#predictorWrapper").length > 0){	
 	$("#projectedPoints").click(function(){
@@ -296,3 +297,4 @@ if ($("#predictorWrapper").length > 0){
 // create initial progress bar on page load
 	updateProgressBar();
 };
+*/
