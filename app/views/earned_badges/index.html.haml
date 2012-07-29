@@ -1,0 +1,21 @@
+%table#earned_badges.table.table-bordered
+  %thead
+    %tr
+      %th Assignment
+      %th User
+      %th Badge
+      %th
+      %th
+      %th
+  %tbody
+    - @earned_badges.each do |earned_badge|
+      %tr
+        %td= earned_badge.grade.assignment.title
+        %td= earned_badge.grade.user.name
+        %td
+          %img{:src => earned_badge.badge.icon, :alt => earned_badge.badge.title, :width => "25", :height => "25"}
+        %td= link_to 'View', earned_badge
+        %td= link_to 'Edit', edit_earned_badge_path(earned_badge)
+        %td= link_to 'Delete', earned_badge, :confirm => 'Are you sure?', :method => :delete
+%div#footerNav
+  = link_to "Award a Badge", new_earned_badge_path, :class => "btn btn-primary"

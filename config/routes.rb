@@ -1,16 +1,16 @@
 GradeCraft::Application.routes.draw do
 
-  resources :grade_scheme_elements
 
   resources :news
 
-  resources :assignment_types
 
   root :to => "home#index"
 
   %w{students gsis professors admins}.each do |role|
     get "users/#{role}/new" => 'users#new', :as => "new_#{role.singularize}", :role => role.singularize
   end
+  
+  
 
   resources :users do
     collection do
@@ -23,16 +23,23 @@ GradeCraft::Application.routes.draw do
     end
   end
   resources :user_sessions
-  resources :predictor
+  resources :password_resets
+  
+  resources :info
+  resources :home
+  
+  resources :courses
   resources :course_grade_schemes
   resources :themes
   resources :badge_sets
-  resources :courses
-  resources :password_resets
-  resources :assignments
   resources :badges
+  resources :earned_badges
   resources :groups
   resources :teams
+  resources :assignment_types
+  resources :assignments
+  resources :challenges
+  resources :challenge_grades
   resources :grades do
     collection do
       get :mass_edit
@@ -41,16 +48,15 @@ GradeCraft::Application.routes.draw do
       get :edit_status 
       put :update_status
     end
-  end
-  resources :info
-  resources :home
-  resources :challenge_grades
-  resources :challenges
+  end  
   resources :grade_schemes do
     collection do
       post :destroy_multiple 
     end
   end
+  resources :grade_scheme_elements 
+
+
   get "info/index"
   get "home/index"
   get 'dashboard' => 'info#dashboard'

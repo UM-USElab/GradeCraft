@@ -1,4 +1,15 @@
-
-%div#footerNav
+%div#headerNav
   = link_to "Grade an Assignment", new_grade_url, :class => "btn btn-inverse"
-  = link_to "Grade a Team Challenge", new_challenge_grade_url, :class => "btn btn-inverse"
+  - if current_course.has_teams?
+    = link_to "Grade a Team Challenge", new_challenge_grade_url, :class => "btn btn-inverse"
+  - if current_course.has_badges?
+    = link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-inverse"
+ 
+  
+%table.table.table-bordered
+  %thead
+    %tr
+      %th
+  %tbody
+    %tr
+      %td

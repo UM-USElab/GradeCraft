@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120728043327) do
+ActiveRecord::Schema.define(:version => 20120729200230) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -187,6 +187,8 @@ ActiveRecord::Schema.define(:version => 20120728043327) do
     t.integer   "badge_id"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.integer   "user_id"
+    t.string    "feedback"
   end
 
   create_table "grade_scheme_elements", :force => true do |t|
@@ -398,6 +400,7 @@ ActiveRecord::Schema.define(:version => 20120728043327) do
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
+  add_index "users", ["sortable_score"], :name => "index_users_sortable_score"
 
   create_table "validation_conditions", :force => true do |t|
     t.integer  "validation_id"

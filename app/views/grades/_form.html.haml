@@ -10,7 +10,6 @@
     %div.btn-group
     = f.association :badges, :as => :check_boxes, :class => "btn", :input_html => {"data-toggle" => "button" }
     = f.input :status, :as => :select, :collection => [["New"], ["Graded"],["Released"]]
-  
 
   = f.button :submit, :class => 'btn btn-primary'
   = link_to 'Cancel', grades_path, :class => 'btn btn-primary'
