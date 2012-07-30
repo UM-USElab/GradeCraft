@@ -27,7 +27,7 @@ class GradesController < ApplicationController
   end
 
   def new
-    @badges = Badge.all
+    @badges = current_course.badges.all
     @teams = Team.all
     @grade_schemes = GradeScheme.all
     @title = "Submit New Grade"
@@ -59,6 +59,7 @@ class GradesController < ApplicationController
 
   def edit
     @title = "Edit Grade"
+    @badges = current_course.badges.all
     respond_with @grade = Grade.find(params[:id])
   end
 

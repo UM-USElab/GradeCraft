@@ -1,6 +1,6 @@
 %p
   %b User:
-  = link_to @grade.user.name, user_path
+  = link_to @grade.user.name, user_path(@grade.user_id)
 %p
   %b Assignment:
   = link_to @grade.assignment.title, assignment_path(@grade.assignment_id)

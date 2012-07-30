@@ -2,7 +2,7 @@
   = f.association :user, :collection => @users
   #coryhelp!
   - if @grade
-    = f.association :grade, :collection => @grades, :label => "Assignment"
+    = f.association :grade, :collection => @grades, :label => "Assignment"  
   = f.association :badge, :collection => @badges
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span6' }
   

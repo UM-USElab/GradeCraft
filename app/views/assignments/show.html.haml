@@ -15,7 +15,7 @@
   - if @assignment.mass_gradeable?
     (#{link_to 'log grades', mass_edit_grades_path(:assignment_id => @assignment.id)})
 
-= form_tag edit_multiple_grades_path do
+= form_tag edit_status_grades_path do
   %table#assignments.display.table-bordered.table
     %thead
       %tr

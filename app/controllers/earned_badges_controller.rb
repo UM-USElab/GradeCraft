@@ -1,7 +1,11 @@
 class EarnedBadgesController < ApplicationController
   def index
     @title = "View All Awarded Badges"
-    @earned_badges = EarnedBadge.all
+    @earned_badges = current_course.earned_badges.all
+    @users = current_course.users.all
+    @assignments = current_course.assignments.all
+    @grades = current_course.grades.all
+    @badges = current_course.badges.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @earned_badge }

@@ -7,7 +7,7 @@
     = f.association :assignment
     = f.input :score
     = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span7' }
-    %div.btn-group
+    #coryhelp!
     = f.association :badges, :as => :check_boxes, :class => "btn", :input_html => {"data-toggle" => "button" }
     = f.input :status, :as => :select, :collection => [["New"], ["Graded"],["Released"]]
 

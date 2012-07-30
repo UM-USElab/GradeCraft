@@ -1,10 +1,7 @@
-%h4= @earned_badge.grade.user.name
-
-%h4= @earned_badge.grade.assignment.title
+%h4= link_to @earned_badge.user.name, user_path(@earned_badge.user_id)
+%h4= @earned_badge.feedback
 
 %img{:src => @earned_badge.badge.icon, :alt => @earned_badge.badge.title, :width => "25", :height => "25"}
-
-
 
 %div#footerNav
   = link_to 'Edit', edit_earned_badge_path(@earned_badge), :class => "btn btn-inverse"

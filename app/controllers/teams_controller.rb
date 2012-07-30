@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    @team = current_course.team.find(params[:id])
+    @team = current_course.teams.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,7 +41,7 @@ class TeamsController < ApplicationController
   # GET /teams/1/edit
   def edit
     @title = "Edit #{current_course.user_term}"
-    @team =  current_course.team.find(params[:id])
+    @team =  current_course.teams.find(params[:id])
   end
 
   # POST /teams

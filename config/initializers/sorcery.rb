@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:remember_me, :reset_password, :session_timeout]
+Rails.application.config.sorcery.submodules = [:remember_me, :reset_password, :session_timeout, :save_return_to_url]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -13,7 +13,7 @@ Rails.application.config.sorcery.configure do |config|
                                                                       # You can also override 'not_authenticated'
                                                                       # instead.
 
-  # config.save_return_to_url = true                                  # when a non logged in user tries to enter
+  config.save_return_to_url = true                                  # when a non logged in user tries to enter
                                                                       # a page that requires login,
                                                                       # save the URL he wanted to reach,
                                                                       # and send him there after login, using

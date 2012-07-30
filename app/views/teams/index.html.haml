@@ -5,6 +5,8 @@
       %th Name
       %th Rank
       %th Score
+      %th Badges Earned
+      %th Total Badges
       - if current_user.is_staff?
         %th
         %th
@@ -16,6 +18,10 @@
         %td= team.name
         %td= team.rank
         %td= team.score
+        %td
+          - team.earned_badges.each do |badge|
+            %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+        %td= team.badge_count
         - if current_user.is_staff?
           %td= link_to 'View', team
           %td= link_to 'Edit', edit_team_path(team)
