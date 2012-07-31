@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
                     :url => '/assets/avatars/:id/:style/:basename.:extension',
                     :path => ':rails_root/public/assets/avatars/:id/:style/:basename.:extension',
                     :default_url => '/images/missing_:style.png'
+  #default_scope :order => 'last_name ASC'
+  default_scope :order => 'sortable_score DESC'
   
   has_many :course_memberships, :dependent => :destroy
   has_many :courses, :through => :course_memberships
@@ -109,6 +111,14 @@ class User < ActiveRecord::Base
   
   def rank
     
+  end
+  
+  def alpha
+  
+  end
+  
+  def user_badge_count
+    earned_badges.count
   end
   
   def find_scoped_courses(course_id)

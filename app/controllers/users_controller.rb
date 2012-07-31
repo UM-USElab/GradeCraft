@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   
   def students
     @students = current_course.users.all
+    @teams = current_course.teams.all
   end
 
   def show
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
   def predictor
     @title = "Predict Course Grade"
     @user = current_course.users.find(params[:id])
+    User.increment_counter(:predictor_views, current_user.id) if current_user
     respond_with @user
   end
 
@@ -95,7 +97,7 @@ class UsersController < ApplicationController
     @user.update_attribute(:password, params[:password]) if params[:password] == params[:confirm_password]
     respond_with @user
   end
-
+  
   def predictor
     if current_user.is_staff?
       @user = User.find(params[:user_id])
@@ -103,6 +105,7 @@ class UsersController < ApplicationController
       @user = current_user
     end
   end
+  
   
   private
 

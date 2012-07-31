@@ -1,15 +1,68 @@
-%div#headerNav
+%div#subNav
   = link_to "Grade an Assignment", new_grade_url, :class => "btn btn-inverse"
   - if current_course.has_teams?
     = link_to "Grade a Team Challenge", new_challenge_grade_url, :class => "btn btn-inverse"
   - if current_course.has_badges?
     = link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-inverse"
- 
-  
-%table.table.table-bordered
-  %thead
-    %tr
-      %th
-  %tbody
-    %tr
-      %td
+    
+%div.span6
+  %h4= "Top 10" 
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th Student
+        %th Score
+        %th Badges Earned
+        %th Logins
+        %th Pageviews
+        %th Predictor Views
+    %tbody
+      - @users.first(10).each do |user|
+        %tr
+          %td= link_to user.name, user_path(:id => user.id)
+          %td= #number_with_delimiter(user.score), :delimiter => ',')
+          %td= user.user_badge_count
+          %td= user.visit_count
+          %td= user.page_views
+          %td= user.predictor_views
+
+%div.span5      
+  %h4= "Teams"
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th ID
+        %th Name
+        %th Rank
+        %th Score
+        %th Total Badges
+    %tbody
+      - @teams.each do |team|
+        %tr
+          %td= team.id
+          %td= link_to team.name, team
+          %td= team.rank
+          %td= team.score
+          %td= team.badge_count
+          
+%div.span6
+  %h4= "Bottom 10"  
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th Student
+        %th Score
+        %th Badges Earned
+        %th Logins
+        %th Pageviews
+        %th Predictor Views
+    %tbody
+      - @users.last(10).each do |user|
+        %tr
+          %td= link_to user.name, user_path(:id => user.id)
+          %td= #number_with_delimiter(user.score), :delimiter => ',')
+          %td= user.user_badge_count
+          %td= user.visit_count
+          %td= user.page_views
+          %td= user.predictor_views
+

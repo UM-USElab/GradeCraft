@@ -4,21 +4,23 @@
       %th Username
       %th Name
       %th Role
-      %th Team ID
+      %th Team
       %th Score
+      %th Logins
       %th Badges Earned
       %th 
       %th
       %th
       %th
   %tbody
-    - current_course.users.each do |user|
+    - for user in @users
       %tr
         %td= user.username
         %td= user.name
         %td= user.role
-        %td= user.team_id
+        %td= user.team.try(:name)
         %td= #number_with_delimiter(user.score, :delimiter => ',') if user.respond_to?(:score)
+        %td= user.visit_count
         %td
           - user.earned_badges.each do |badge|
             %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}

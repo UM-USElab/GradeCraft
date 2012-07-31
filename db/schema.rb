@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120729200230) do
+ActiveRecord::Schema.define(:version => 20120730221800) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -396,6 +396,9 @@ ActiveRecord::Schema.define(:version => 20120729200230) do
     t.boolean   "private_display",                 :default => false
     t.integer   "default_course_id"
     t.string    "final_grade"
+    t.integer   "visit_count"
+    t.integer   "predictor_views"
+    t.integer   "page_views"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

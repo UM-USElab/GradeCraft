@@ -3,9 +3,11 @@
     %tr
       %th Username
       %th Name
-      %th Role
       %th Team ID
       %th Score
+      %th Logins
+      %th Page Views
+      %th Predictor Views
       %th Badges Earned
       %th 
       %th
@@ -17,9 +19,12 @@
         %tr
           %td= user.username
           %td= user.name
-          %td= user.role
-          %td= user.team_id
+          %td= user.team
           %td= #number_with_delimiter(user.score, :delimiter => ',') if user.respond_to?(:score)
+          %td= user.visit_count
+          %td= user.page_views
+          %td= user.predictor_views
+          
           %td
             - user.earned_badges.each do |badge|
               %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
