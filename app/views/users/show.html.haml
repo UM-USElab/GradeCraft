@@ -1,3 +1,5 @@
+//#coryhelp! The team path is currently incorrect, shows period rather than slash
+%h2= link_to @user.team.name, teams_path(@user.team.id)
 %div#leftSidebar
   %div#userGravatar
     = gravatar_for @user, :size => 230
@@ -14,8 +16,8 @@
   %h2#points 
   %div#userScoreSection
     %div#userPointValues
-      %span Your current score is 
-      %span#userScoreNum #{number_with_delimiter(@user.score, :delimiter => ',') if @user.respond_to?(:score)}
+      %span= "Your current score is "  
+      %span#userScoreNum #{number_with_delimiter(@user.sortable_score, :delimiter => ',') if @user.respond_to?(:sortable_score)}
     %a{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
       Show me my score out of total course points
     %a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
@@ -24,14 +26,22 @@
     %div#predictorLink
       = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
     %div#userBarTotal.dashboard-toggle
-      //#{@user.possible_score}
+      = #{@user.possible_score}
     %div#userBarInProgress.dashboard-toggle
     
     %div#Grades
-      - current_course.assignments.group_by(&:assignment_type).each do |assignment_type, assignment|
+      - @assignments.group_by(&:assignment_type).each do |assignment_type, assignment|
         %div.assignmentType
-          %span.assignmentTypeTitle= assignment_type
-          %div.assignmentTitle= #{@assignment.title}
+          %span.assignmentTypeTitle= assignment_type.try(:name)
+          %div.assignmentTitle= @assignment.try(:title)
+    %div.clear
+          
+
+%div#helpInfo
+  %span= link_to "Email #{@user.first_name}", "mailto:#{@user.email}", :class => "btn btn-primary"
+  //#coryhelp! Need to show the name of the user who belongs to the same team and has the role of GSI
+  %span= link_to @user.team.team_leader, :class => "btn btn-primary"
+          
 
 %div#footerNav
   = link_to 'Edit', edit_user_path(@user), :class => "btn btn-inverse"

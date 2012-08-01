@@ -15,6 +15,7 @@ class InfoController < ApplicationController
     @teams = Team.all
   end
   
+  #coryhelp! Need to filter the users shown down to just students, but when I apply the student method then only ten total students are displayed on the dashboard
   def dashboard
     @title = "My Dashboard"
     @teams = current_course.teams.all

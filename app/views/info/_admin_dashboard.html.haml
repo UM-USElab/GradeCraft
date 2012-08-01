@@ -20,7 +20,7 @@
       - @users.first(10).each do |user|
         %tr
           %td= link_to user.name, user_path(:id => user.id)
-          %td= #number_with_delimiter(user.score), :delimiter => ',')
+          %td= user.sortable_score
           %td= user.user_badge_count
           %td= user.visit_count
           %td= user.page_views
@@ -60,7 +60,7 @@
       - @users.last(10).each do |user|
         %tr
           %td= link_to user.name, user_path(:id => user.id)
-          %td= #number_with_delimiter(user.score), :delimiter => ',')
+          %td= user.sortable_score
           %td= user.user_badge_count
           %td= user.visit_count
           %td= user.page_views

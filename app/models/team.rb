@@ -28,5 +28,9 @@ class Team < ActiveRecord::Base
   def badge_count
     earned_badges.count 
   end
+  
+  def team_leader
+    User.where(:role => "gsi")
+  end
 
 end

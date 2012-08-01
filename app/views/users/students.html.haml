@@ -1,11 +1,11 @@
 %table#users.display.table-bordered
   %thead
     %tr
-      %th Username
+      %th Email
       %th Name
-      %th Team ID
+      %th Team
       %th Score
-      %th Logins
+      %th Log ins
       %th Page Views
       %th Predictor Views
       %th Badges Earned
@@ -14,30 +14,22 @@
       %th
       %th
   %tbody
-    - current_course.users.each do |user|
-      - if user.is_student? 
-        %tr
-          %td= user.username
-          %td= user.name
-          %td= user.team
-          %td= #number_with_delimiter(user.score, :delimiter => ',') if user.respond_to?(:score)
-          %td= user.visit_count
-          %td= user.page_views
-          %td= user.predictor_views
-          
-          %td
-            - user.earned_badges.each do |badge|
-              %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
-          - if user.is_student?
-            %td
-              = link_to 'Dashboard', user
-            %td
-              = link_to 'Predictor', predictor_users_path(:user_id => user.id)
-          - else
-            %td
-            %td
-          %td= link_to 'Edit', edit_user_path(user)
-          %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
+    - for student in @students
+      %tr
+        %td= student.email
+        %td= student.name
+        %td= student.team.try(:name)
+        %td= student.try(:sortable_score)
+        %td= student.visit_count
+        %td= student.page_views
+        %td= student.predictor_views
+        %td
+          - student.earned_badges.each do |badge|
+            %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+        %td= link_to 'Dashboard', student
+        %td= link_to 'Predictor', predictor_users_path(:user_id => student)
+        %td= link_to 'Edit', edit_user_path(student)
+        %td= link_to 'Delete', student, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
   = link_to 'Create a New Player', new_user_path, :class => "btn btn-primary"

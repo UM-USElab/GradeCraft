@@ -4,12 +4,10 @@
       %th Username
       %th Name
       %th Role
-      %th Team ID
+      %th Team
       %th Score
       %th Badges Earned
       %th 
-      %th
-      %th
       %th
   %tbody
     - current_course.users.each do |user|
@@ -18,19 +16,12 @@
           %td= user.username
           %td= user.name
           %td= user.role
-          %td= user.team_id
-          %td= #number_with_delimiter(user.score, :delimiter => ',') if user.respond_to?(:score)
+          %td= user.team.try(:name)
+          %td= user.team.try(:score)
           %td
-            - user.earned_badges.each do |badge|
-              %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
-          - if user.is_student?
-            %td
-              = link_to 'Dashboard', user
-            %td
-              = link_to 'Predictor', predictor_users_path(:user_id => user.id)
-          - else
-            %td
-            %td
+          //coryhelp! Need to show the related team badges
+          //- user.team.try(:earned_badges).each do |badge|
+          //%img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
           %td= link_to 'Edit', edit_user_path(user)
           %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
 

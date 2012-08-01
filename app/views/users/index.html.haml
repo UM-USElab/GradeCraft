@@ -1,7 +1,7 @@
 %table#users.display.table-bordered
   %thead
     %tr
-      %th Username
+      %th Email
       %th Name
       %th Role
       %th Team
@@ -15,20 +15,18 @@
   %tbody
     - for user in @users
       %tr
-        %td= user.username
+        %td= user.email
         %td= user.name
         %td= user.role
         %td= user.team.try(:name)
-        %td= #number_with_delimiter(user.score, :delimiter => ',') if user.respond_to?(:score)
+        %td= user.try(:sortable_score)
         %td= user.visit_count
         %td
           - user.earned_badges.each do |badge|
             %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
         - if user.is_student?
-          %td
-            = link_to 'Dashboard', user
-          %td
-            = link_to 'Predictor', predictor_users_path(:user_id => user.id)
+          %td= link_to 'Dashboard', user
+          %td= link_to 'Predictor', predictor_users_path(:user_id => user.id)
         - else
           %td
           %td

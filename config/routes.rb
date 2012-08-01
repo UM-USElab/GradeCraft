@@ -1,8 +1,5 @@
 GradeCraft::Application.routes.draw do
-
-
   resources :news
-
 
   root :to => "home#index"
 
@@ -10,8 +7,6 @@ GradeCraft::Application.routes.draw do
     get "users/#{role}/new" => 'users#new', :as => "new_#{role.singularize}", :role => role.singularize
   end
   
-  
-
   resources :users do
     collection do
       get 'edit_profile'
@@ -45,7 +40,7 @@ GradeCraft::Application.routes.draw do
       get :mass_edit
       put :mass_update
       get :gradebook
-      get :edit_status 
+      post :edit_status 
       put :update_status
     end
   end  

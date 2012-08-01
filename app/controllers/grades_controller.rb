@@ -129,16 +129,18 @@ class GradesController < ApplicationController
   end
   
   def edit_status
-    @assignment = Assignment.find(params[:assignment_id])
     @grades = Grade.find(params[:grade_ids])
+    #@assignments = Assignment.find(params[:assignment_id])
   end
   
   def update_status
+    #@assignment = Assignment.find(params[:assignment_id])
     @grades = Grade.find(params[:grade_ids])
     @grades.each do |grade|
       grade.update_attributes!(params[:grade].reject { |k,v| v.blank? })
     end
     flash[:notice] = "Updated grades!"
+    redirect_to assignments_path
   end
 
 end

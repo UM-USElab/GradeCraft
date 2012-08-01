@@ -42,7 +42,8 @@
           %td= link_to "View", grade
           %td= link_to "Edit", edit_grade_path(grade.id)
           %td= link_to "Delete", grade, :confirm => 'Are you sure?', :method => :delete
-  = submit_tag "Update Status"
+  %p
+  = submit_tag "Update Grade Statuses", :class => "btn btn-info"
 
 %div#footerNav
   = link_to 'Add Grade', new_grade_path(:assignment_id => @assignment), :class => 'btn btn-primary'
