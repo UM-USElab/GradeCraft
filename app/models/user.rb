@@ -96,6 +96,10 @@ class User < ActiveRecord::Base
   def user_badge_count
     earned_badges.count
   end
+
+  def team_badges
+    team.try(:earned_badges) || []
+  end
   
   def find_scoped_courses(course_id)
     course_id = BSON::ObjectId(course_id) if course_id.is_a?(String)
