@@ -3,7 +3,7 @@ class Grade < ActiveRecord::Base
     
   belongs_to :user
   belongs_to :assignment
-  has_many :earned_badges, :dependent => :destroy
+  has_many :earned_badges, :as => :earned
   has_many :badges, :through => :earned_badges
   attr_accessible :type, :score, :feedback, :user_id, :assignment_id, :badge_id, :created_at, :updated_at, :complete, :semis, :finals, :status, :attempted, :substantial, :user, :badge_ids, :grade
 
@@ -16,32 +16,32 @@ class Grade < ActiveRecord::Base
   
   scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
   # 
-   scope :reading_reaction, where(:type => "ReadingReactionGrade")
-   scope :lfpg, where(:type=> "LFPGGrade")
-   scope :bossbattle, where(:type=> "BossBattleGrade")
-   scope :blogging, where(:type=> "BloggingGrade")
-   scope :attendance, where(:type=> "AttendanceGrade")
-   scope :team_assignment, where(:type=> "TeamAssignmentGrade")
-  
-   def grade_type
-     case assignment
-     when ReadingReaction
-       ReadingReactionGrade
-     when Blogging
-       BloggingGrade
-     when Attendance
-       AttendanceGrade
-     when LFPG
-       LFPGGrade
-     when BossBattle
-       BossBattleGrade
-     when TeamAssignment
-       TeamAssignmentGrade
-     else
-       Grade
-     end
-   end
-    
+#    scope :reading_reaction, where(:type => "ReadingReactionGrade")
+#    scope :lfpg, where(:type=> "LFPGGrade")
+#    scope :bossbattle, where(:type=> "BossBattleGrade")
+#    scope :blogging, where(:type=> "BloggingGrade")
+#    scope :attendance, where(:type=> "AttendanceGrade")
+#    scope :team_assignment, where(:type=> "TeamAssignmentGrade")
+#   
+#    def grade_type
+#      case assignment
+#      when ReadingReaction
+#        ReadingReactionGrade
+#      when Blogging
+#        BloggingGrade
+#      when Attendance
+#        AttendanceGrade
+#      when LFPG
+#        LFPGGrade
+#      when BossBattle
+#        BossBattleGrade
+#      when TeamAssignment
+#        TeamAssignmentGrade
+#      else
+#        Grade
+#      end
+#    end
+#     
   def score
     super || 0
   end

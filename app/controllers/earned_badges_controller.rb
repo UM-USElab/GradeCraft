@@ -1,6 +1,7 @@
 class EarnedBadgesController < ApplicationController
   def index
     @title = "View All Awarded Badges"
+    @earned = find_earned
     @earned_badges = current_course.earned_badges.all
     @users = current_course.users.all
     @assignments = current_course.assignments.all
@@ -29,7 +30,7 @@ class EarnedBadgesController < ApplicationController
   def new
     @title = "Award a New Badge"
     @earned_badge = EarnedBadge.new
-    @badges = Badge.all
+    @badges = current_course.badges
     @users = current_course.users.students
     @grades = current_user.grades
     @badge_sets = BadgeSet.all
@@ -49,6 +50,8 @@ class EarnedBadgesController < ApplicationController
   # POST /badges
   # POST /badges.json
   def create
+    @earned = find_earned
+    @earned = @earned.earned_badges.build(params[:earned_badge])
     @badge_sets = BadgeSet.all
     @badges = Badge.all
     @earned_badge = EarnedBadge.new(params[:earned_badge])
@@ -92,5 +95,14 @@ class EarnedBadgesController < ApplicationController
       format.html { redirect_to earned_badges_url }
       format.json { head :ok }
     end
+  end
+  
+  def find_earned
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
   end
 end

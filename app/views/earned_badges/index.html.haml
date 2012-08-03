@@ -8,7 +8,7 @@
       %th
       %th
   %tbody
-    - for earned_badge in @earned_badges
+    - @earned_badges.each do |earned_badge|
       %tr        
         %td= earned_badge.user.name
         %td= earned_badge.grade.try(@assignment)
