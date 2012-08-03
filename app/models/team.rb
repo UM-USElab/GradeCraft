@@ -30,7 +30,7 @@ class Team < ActiveRecord::Base
   end
   
   def team_leader
-    User.where(:role => "gsi")
+    users.gsis.first
   end
 
 end
