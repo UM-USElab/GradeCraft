@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   end 
   
   def name
-    [first_name,last_name].join(' ')
+    @name = [first_name,last_name].reject(&:blank?).join(' ').presence || "User #{id}"
   end
   
   def public_name
