@@ -19,7 +19,9 @@ class InfoController < ApplicationController
   def dashboard
     @title = "My Dashboard"
     @teams = current_course.teams.all
-    @users= current_course.users
+    @students = current_course.users.unscoped.students
+    @top_ten_students = @students.order('sortable_score DESC').limit(10)
+    @bottom_ten_students = @students.order('sortable_score ASC').limit(10)
   end
 
 end

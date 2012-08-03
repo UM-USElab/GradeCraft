@@ -49,5 +49,9 @@ class Assignment < ActiveRecord::Base
   def assignment_grades_attempted
     assignment_grades.where(:score != 0).count
   end
+
+  def type
+    assignment_type.try(:name)
+  end
   
 end

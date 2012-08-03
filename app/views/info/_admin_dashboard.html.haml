@@ -17,14 +17,14 @@
         %th Pageviews
         %th Predictor Views
     %tbody
-      - @users.first(10).each do |user|
+      - @top_ten_students.each do |student|
         %tr
-          %td= link_to user.name, user_path(:id => user.id)
-          %td= user.sortable_score
-          %td= user.user_badge_count
-          %td= user.visit_count
-          %td= user.page_views
-          %td= user.predictor_views
+          %td= link_to student.name, user_path(:id => student.id)
+          %td= student.sortable_score
+          %td= student.user_badge_count
+          %td= student.visit_count
+          %td= student.page_views
+          %td= student.predictor_views
 
 %div.span5      
   %h4= "Teams"
@@ -57,12 +57,12 @@
         %th Pageviews
         %th Predictor Views
     %tbody
-      - @users.last(10).each do |user|
+      - @bottom_ten_students.each do |student|
         %tr
-          %td= link_to user.name, user_path(:id => user.id)
-          %td= user.sortable_score
-          %td= user.user_badge_count
-          %td= user.visit_count
-          %td= user.page_views
-          %td= user.predictor_views
+          %td= link_to student.name, user_path(:id => student.id)
+          %td= student.sortable_score
+          %td= student.user_badge_count
+          %td= student.visit_count
+          %td= student.page_views
+          %td= student.predictor_views
 

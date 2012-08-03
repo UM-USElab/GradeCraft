@@ -115,7 +115,11 @@ class User < ActiveRecord::Base
   end
 
   def possible_score
-    assignment_type_score_possible.sum || 0
-   end
+    assignment_type_score_possible || 0
+  end
+
+  def team_assignment_score
+    0 # TODO: Remove this or make it calculate score
+  end
   
 end

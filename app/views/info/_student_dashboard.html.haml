@@ -1,4 +1,4 @@
-%h3#user= current_user.first_name+" "+current_user.last_name
+%h3#user= current_user.name
 %div#leftSidebar
   %div#userGravatar
     = gravatar_for current_user, :size => 230
@@ -23,141 +23,12 @@
       Show me my score out of available points so far
       
     %div#predictorLink
-      <a href="/predictor">Predict My Course Grade!</a>
+      = link_to 'Predict My Course Grade!', '/predictor'
     %div#userBarTotal.dashboard-toggle
       #{current_user.possible_score}
       
     %div#userBarInProgress.dashboard-toggle
-    
 
-  %h3#attendance.assignTitle
-    %span Learning from Playing a Game
-    %span.assignmentPointsSpan 
-      %span#lfpg_score
-        #{current_user.lfpg_score} 
-      out of #{current_user.lfpg_possible}
-  %div.collapsible
-    - Grade.completion.where(:user_id => current_user.id).each do |grade|
-      - if grade.assignment.type == "LFPG" 
-        - if grade.attempted? 
-          %div.completedAssignment 
-            %span.assignmentTitle= grade.title
-            %br
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
-            %br
-            - grade.earned_badges.each do |badge|
-              %img{:src => badge.icon, :alt => badge.title, :width => "40"}
-            %br
-            %span.assignmentFeedback= grade.feedback
-        - else
-          %div.incompleteAssignment
-            %span.assignmentTitle= grade.title
-            %br
-            %span.assignmentGrade #{grade.point_total} possible points
-            %br
-            %span You have not yet attempted this challenge    
-    
-  %h3#attendance.assignTitle
-    %span Boss Battles
-    %span.assignmentPointsSpan 
-      %span#boss_battle_score
-        #{current_user.boss_battle_score} 
-      out of #{current_user.boss_battle_possible}
-  %div.collapsible
-    - Grade.completion.where(:user_id => current_user.id).each do |grade|
-      - if grade.assignment.type == "BossBattle" 
-        - if grade.attempted? 
-          %div.completedAssignment 
-            %span.assignmentTitle= grade.title
-            %br
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
-            %br
-            - grade.earned_badges.each do |badge|
-              %img{:src => badge.icon, :alt => badge.title, :width => "40"}
-            %br
-            %span.assignmentFeedback= grade.feedback
-        - else
-          %div.incompleteAssignment
-            %span.assignmentTitle= grade.title
-            %br
-            %span.assignmentGrade #{grade.point_total} possible points
-            %br
-            %span You have not yet attempted this challenge         
-
-  %h3#attendance.assignTitle
-    %span Attendance
-    %span.assignmentPointsSpan 
-      %span#attendance_score
-        #{current_user.attendance_score} 
-      out of #{current_user.attendance_possible}
-  %div.collapsible
-    - Grade.completion.where(:user_id => current_user.id).each do |grade|
-      - if grade.assignment.type == "Attendance"
-        - if grade.attempted? 
-          %div.completedAssignment 
-            %span.assignmentTitle #{grade.title} –
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
-            %br
-            - grade.earned_badges.each do |badge|
-              %img{:src => badge.icon, :alt => badge.title, :width => "40"}
-        - else
-          %div.missedAssignment
-            %span.assignmentTitle #{grade.title} –
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
-            %br
-            %span You didn't make it to class. Bummer!
-  
-  %h3#reading.assignTitle 
-    %span Reading Reactions
-    %span.assignmentPointsSpan 
-      %span#reading_reaction_score
-        #{current_user.reading_reaction_score} 
-      out of #{current_user.reading_reaction_possible}
-  %div.collapsible
-    - Grade.completion.where(:user_id => current_user.id).each do |grade| 
-      - if grade.assignment.type == "ReadingReaction"
-        - if grade.attempted? 
-          %div.completedAssignment 
-            %span.assignmentTitle= grade.title
-            %br
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
-            %br
-            %span.assignmentFeedback= grade.feedback
-            %br
-            - grade.earned_badges.each do |badge|
-              %img{:src => badge.icon, :alt => badge.title, :width => "40"}
-        - else
-          %div.missedAssignment
-            %span.assignmentTitle= grade.title
-            %br
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
-            %br
-            %span Didn't do the readings this week, huh?
-  
-  %h3#blogging.assignTitle
-    %span Blogging
-    %span.assignmentPointsSpan 
-      %span#blogging_score #{current_user.blogging_score}
-  %div.collapsible
-    - Grade.completion.where(:user_id => current_user.id).each do |grade|
-      - if grade.assignment.type == "Blogging"
-        - if grade.attempted? 
-          %div.completedAssignment 
-            %span.assignmentTitle #{ grade.title } – 
-            %span.assignmentGrade #{ grade.score }
-            %br
-            %span.assignmentFeedback= grade.feedback
-            %br
-            - grade.earned_badges.each do |badge|
-              %img{:src => badge.icon, :alt => badge.title, :width => "40"}
-        - else
-          %div.incompleteAssignment
-            %span.assignmentTitle= grade.title
-            %br
-            %span.assignmentGrade #{grade.score} out of #{grade.point_total} possible points
-            %br
-            %span Blogging is a great way to make up some extra points, you should go do it!
-  
   %h3#blogging.assignTitle
     %span Team Points
     %span.assignmentPointsSpan 
