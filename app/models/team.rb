@@ -14,17 +14,13 @@ class Team < ActiveRecord::Base
   end
 
   def score
-    challenge_grade + reading_reaction_score
+    challenge_grade
   end
 
   def challenge_grade
     challenge_grades.map(&:score).inject(&:+) || 0
   end
 
-  def reading_reaction_score
-    500 * user_grades.reading_reaction.where(:semis => true).count || 0
-  end
-  
   def badge_count
     earned_badges.count 
   end

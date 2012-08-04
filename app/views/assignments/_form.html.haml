@@ -1,6 +1,7 @@
 = simple_form_for(@assignment, :html => {:class => 'form-horizontal' }) do |f|
   = f.association :assignment_type, :collection => @assignment_types
   = f.input :title
+  = f.input :groups_present, :as => :radio
   = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span7' }
   = f.input :point_total, :label => "Total Points Possible"
   = f.input :due_date, :as => :string, :input_html => {:class => "datepicker", "data-behaviour" => 'datepicker'}

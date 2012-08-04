@@ -31,16 +31,30 @@
     %div#Grades
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignment|
         %div.assignmentType
-          %span.assignmentTypeTitle= assignment_type.try(:name)
-          %div.assignmentTitle= @assignment.try(:title)
+          %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
+          %div
+            - @grades.each do |grade|
+              %span.assignmentTitle= grade.assignment.title
+              %span.grade= grade.score 
+              ="/"
+              = grade.assignment.point_total 
+              ="points"
+              %br
+              %div.feedback= raw grade.feedback
+              %div.badges
+                - grade.earned_badges.each do |badge|
+                  %img{:src => badge.icon, :alt => badge.title, :width => "50", :height => "50"}
+          
     %div.clear
           
 
 %div#helpInfo
-  %span= link_to "Email #{@user.first_name}", "mailto:#{@user.email}", :class => "btn btn-primary"
+  - if current_user.is_staff?
+    = link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-inverse"
+    %span= link_to "Email #{@user.first_name}", "mailto:#{@user.email}", :class => "btn btn-primary"
   - @user.team.team_leader.tap do |team_leader|
     - if team_leader.present?
-      %span= link_to "Email #{team_leader.public_name}", "mailto:#{team_leader.email}", :class => "btn btn-primary"
+      %span= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary"
           
 
 %div#footerNav

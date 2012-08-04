@@ -10,7 +10,7 @@ class Assignment < ActiveRecord::Base
   accepts_nested_attributes_for :grades
   
   default_scope :order => 'due_date ASC'
-    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id
+    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :groups_present
 
   def mass_gradeable?
     true
@@ -52,6 +52,10 @@ class Assignment < ActiveRecord::Base
 
   def type
     assignment_type.try(:name)
+  end
+  
+  def has_groups?
+    groups_present=="true"
   end
   
 end

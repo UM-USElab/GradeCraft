@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
   
   def students
-    @students = current_course.users.all
+    @students = current_course.users.students.all
     @teams = current_course.teams.all
   end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @title = @user.name
     @assignment_types = current_course.assignment_types
     @assignments = current_course.assignments
-    @grades = current_user.grades.all
+    @grades = @user.grades.all
     respond_with @user
   end
   

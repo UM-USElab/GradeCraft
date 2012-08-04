@@ -5,6 +5,7 @@
       %th Title
       %th Due Date
       %th Total Points
+      %th 
       - if current_user.is_staff?
         %th Average
         %th High Score
@@ -24,6 +25,9 @@
         %td
           - if assignment.due_date?
             = assignment.due_date
+        %td
+          - if assignment.has_groups?
+            = link_to 'Create Group', new_group_path("assignment_id"=>assignment.id)
         %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
         - if current_user.is_staff?
           %td= number_with_delimiter(assignment.average, :delimiter => ',') 

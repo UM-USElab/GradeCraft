@@ -1,14 +1,18 @@
 %table#groups.display.table-bordered
   %thead
     %tr
-      %th Name
-      %th
+      %th Assignment
+      %th Group Name
+      %th Status
+      %th 
       %th
       %th
   %tbody
     - @groups.each do |group|
       %tr
+        %td= group.assignment.title
         %td= group.name
+        %td= group.approved
         %td= link_to 'View', group
         %td= link_to 'Edit', edit_group_path(group)
         %td= link_to 'Delete', group, :confirm => 'Are you sure?', :method => :delete

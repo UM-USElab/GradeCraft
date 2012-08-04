@@ -25,6 +25,7 @@
         %th Level
         %th Badges Earned
         %th Status
+        %th Group
         %th
         %th
         %th
@@ -39,6 +40,7 @@
             - grade.earned_badges.each do |badge|
               %img{:src => badge.icon, :alt => badge.title, :width => 40}
           %td= grade.status
+          %td
           %td= link_to "View", grade
           %td= link_to "Edit", edit_grade_path(grade.id)
           %td= link_to "Delete", grade, :confirm => 'Are you sure?', :method => :delete
