@@ -4,7 +4,7 @@ class Grade < ActiveRecord::Base
   belongs_to :user
   belongs_to :assignment
   has_many :earned_badges, :as => :earned
-  has_many :badges, :through => :earned_badges
+  has_many :badges, :through => :earned_badges, :as => :earned
   attr_accessible :type, :score, :feedback, :user_id, :assignment_id, :badge_id, :created_at, :updated_at, :complete, :semis, :finals, :status, :attempted, :substantial, :user, :badge_ids, :grade
 
   validates_presence_of :user
