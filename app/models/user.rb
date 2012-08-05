@@ -125,5 +125,9 @@ class User < ActiveRecord::Base
   def team_assignment_score
     0 # TODO: Remove this or make it calculate score
   end
-  
+ 
+  def team_leader
+    team.try(:team_leader)
+  end
+
 end

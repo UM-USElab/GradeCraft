@@ -240,6 +240,8 @@ ActiveRecord::Schema.define(:version => 20120805082711) do
     t.datetime "updated_at"
     t.integer  "assignment_id"
     t.integer  "course_id"
+    t.string   "approved"
+    t.string   "proposal"
   end
 
   create_table "news", :force => true do |t|

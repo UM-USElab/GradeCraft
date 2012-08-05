@@ -65,6 +65,9 @@ class Grade < ActiveRecord::Base
   def points_possible
     assignment.point_total
   end
-  
+ 
+  def assignment_type
+    assignment.assignment_type
+  end
 
 end

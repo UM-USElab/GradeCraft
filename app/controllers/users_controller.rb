@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @title = @user.name
     @assignment_types = current_course.assignment_types
     @assignments = current_course.assignments
-    @grades = @user.grades.all
+    @grades_by_assignment_type = @user.grades.all(:include => :assignment).group_by(&:assignment_type)
     respond_with @user
   end
   
