@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :grades, :dependent => :destroy
   has_many :assignments, :through => :grades
   has_many :earned_badges, :as => :earned
-  has_many :badges, :through => :earned_badges
+  has_many :badges, :through => :earned_badges, :as => :earned
   belongs_to :team
   has_many :group_memberships, :dependent => :destroy
   has_many :groups, :through => :group_memberships
