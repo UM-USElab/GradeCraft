@@ -40,7 +40,7 @@
   %span= link_to "Email #{@user.first_name}", "mailto:#{@user.email}", :class => "btn btn-primary"
   - @user.team.team_leader.tap do |team_leader|
     - if team_leader.present?
-      %span= link_to team_leader.public_name, user_path(team_leader), :class => "btn btn-primary"
+      %span= link_to "Email #{team_leader.public_name}", "mailto:#{team_leader.email}", :class => "btn btn-primary"
           
 
 %div#footerNav

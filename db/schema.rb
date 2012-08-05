@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730221800) do
+ActiveRecord::Schema.define(:version => 20120805082711) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -184,12 +184,12 @@ ActiveRecord::Schema.define(:version => 20120730221800) do
   end
 
   create_table "earned_badges", :force => true do |t|
-    t.integer  "grade_id"
     t.integer  "badge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.string   "feedback"
+    t.integer  "earned_id"
+    t.string   "earned_type"
   end
 
   create_table "grade_scheme_elements", :force => true do |t|

@@ -7,8 +7,10 @@
     = f.association :assignment
     = f.input :score
     = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span7' }
-    #coryhelp! Need to post both the user id and the grade id to the earned badges table, or else find a way to get the association to work either with a grade id or user id (at the moment it requires user, it used to require grade - either is ideal)
-    = f.association :badges, :as => :check_boxes, :class => "btn", :input_html => {"data-toggle" => "button" }
+    - Badge.all.each do |badge|
+      = check_box_tag "earned_badge[badge_ids][]", badge.id
+      %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "50"}    
+      = badge.title
     = f.input :status, :as => :select, :collection => [["New"], ["Graded"],["Released"]]
 
   = f.button :submit, :class => 'btn btn-primary'
