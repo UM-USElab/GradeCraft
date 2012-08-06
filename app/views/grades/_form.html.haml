@@ -1,4 +1,4 @@
-= @assignment
+= @grade.assignment.title
 = simple_form_for(@grade, :html => {:class => 'form-horizontal' }) do |f|
   = f.association :user, :collection => User.students, :include_blank => false
   - if @assignment
@@ -7,10 +7,11 @@
     = f.association :assignment
     = f.input :score
     = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span7' }
-    - Badge.all.each do |badge|
-      = check_box_tag "earned_badge[badge_ids][]", badge.id
-      %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "50"}    
-      = badge.title
+    = fields_for @earned_badge
+      - Badge.all.each do |badge|
+        = check_box_tag "earned_badge[badge_ids][]", badge.id
+        %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "50"}    
+        = badge.title
     = f.input :status, :as => :select, :collection => [["New"], ["Graded"],["Released"]]
 
   = f.button :submit, :class => 'btn btn-primary'

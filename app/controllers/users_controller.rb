@@ -30,6 +30,8 @@ class UsersController < ApplicationController
   def show
     @user = current_course.users.find(params[:id])
     @title = @user.name
+    @earnable = @user
+    @earned_badges = @earnable.earned_badges
     @assignment_types = current_course.assignment_types
     @assignments = current_course.assignments
     @grades_by_assignment_type = @user.grades.all(:include => :assignment).group_by(&:assignment_type)

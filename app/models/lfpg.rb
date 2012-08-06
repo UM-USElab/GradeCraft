@@ -1,4 +1,0 @@
-class LFPG < Assignment
-
-
-end

@@ -1,11 +1,12 @@
-%table#assignments.table.table-bordered
+// # TODO Fix display to iterate through assignment types and then display assignments
+%table.table.table-bordered
   %thead
     %tr
       %th ID
       %th Title
       %th Due Date
+      %th Groups
       %th Total Points
-      %th 
       - if current_user.is_staff?
         %th Average
         %th High Score
@@ -34,7 +35,7 @@
           %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 
           %td= number_with_delimiter(assignment.low_score, :delimiter => ',')
           %td= assignment.assignment_grades_attempted
-          %td= assignment.assignment_type_id
+          %td= assignment.assignment_type.try(:name)
           %td= link_to 'View', assignment
           %td= link_to 'Grade', new_grade_path("assignment_id"=>assignment.id)
           - if assignment.mass_gradeable?

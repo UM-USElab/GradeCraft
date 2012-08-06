@@ -1,11 +1,10 @@
-= simple_form_for [@earned, @earned_badge] do |f|
-  = f.input :user_id, :collection => @users
-  - if @grade
-    = f.select :grade_id, :collection => @grades, :label => "Assignment" 
+%h4= @user.name
+= simple_form_for @earned_badge do |f|
+  //= f.input :earnable_id, :collection => @users, :label => "User"
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span6' } 
   = hidden_field_tag "earned_badge[badge_ids][]", nil
   - Badge.all.each do |badge|
-    = check_box_tag "earned_badge[badge_ids][]", badge.id,  @earned_badge.badge_ids.include?(badge.id)
+    = check_box_tag "earned_badge[badge_ids][]", badge.id
     %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "50"}    
     = badge.title
   .form-actions
