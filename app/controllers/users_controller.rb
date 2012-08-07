@@ -7,10 +7,12 @@ class UsersController < ApplicationController
 
   def index
     @title = "View all #{current_course.user_term}s"
-    @users =  current_course.users
+    @users =  current_course.users.order(:last_name)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
+      format.csv { send_data @users.to_csv }
+      format.xls { send_data @users.to_csv(col_sep: "\t") }
     end
   end
   
@@ -23,8 +25,15 @@ class UsersController < ApplicationController
   end
   
   def students
-    @students = current_course.users.students.all
-    @teams = current_course.teams.all
+    @users = current_course.users
+    @students = current_course.users.students.order(:last_name)
+    @teams = current_course.teams.all 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @users }
+      format.csv { send_data @users.to_csv }
+      format.xls { send_data @users.to_csv(col_sep: "\t") }
+    end
   end
 
   def show

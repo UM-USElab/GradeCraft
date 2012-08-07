@@ -33,13 +33,20 @@
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %div.assignmentType
           %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
-          %div.assignments
+          %div.assignmentsGroup
             - assignments.each do |assignment|
               %div.assignment
                 %span.assignmentTitle= assignment.try(:title)
-                = "/"
-                //%span= @grades.find(:assignment_id => assignment.id)
-                %span.assignmentPoints= assignment.point_total
+                - assignment.grades.where(:user_id => @user.id).each do |grade|
+                  - if grade.attempted?
+                    = grade.score
+                  - else
+                    = "0"
+                  = "/"
+                  %span.assignmentPoints= assignment.point_total
+                  - if grade.has_feedback?
+                    %button.btn{"data-target" => "#assignment-#{assignment.id}", "data-toggle" => "collapse"}= "See Feedback"
+                    %div{:id => "assignment-#{assignment.id}", :class => "collapse"}= raw grade.feedback
 
     %div.clear
    

@@ -30,6 +30,9 @@
         %td= link_to 'Predictor', predictor_users_path(:user_id => student)
         %td= link_to 'Edit', edit_user_path(student)
         %td= link_to 'Delete', student, :confirm => 'Are you sure?', :method => :delete
+= "Download:"
+= link_to "CSV", users_path(format: "csv") |
+= link_to "Excel", users_path(format: "xls")
 
 %div#footerNav
   = link_to 'Create a New Player', new_user_path, :class => "btn btn-primary"

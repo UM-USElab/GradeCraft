@@ -50,6 +50,10 @@ class Grade < ActiveRecord::Base
     score > 0
   end
   
+  def has_feedback?
+    feedback != nil
+  end
+  
   def short?
     !substantial?
   end

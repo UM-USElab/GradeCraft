@@ -1,0 +1,16 @@
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Score</th>
+  </tr>
+  <% @products.each do |product| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.sortable_score %></td>
+  </tr>
+  <% end %>
+</table>

@@ -5,4 +5,6 @@ class AssignmentType < ActiveRecord::Base
   belongs_to :grade_scheme
   has_many :assignments
   
+  default_scope :order => 'id DESC'
+  
 end

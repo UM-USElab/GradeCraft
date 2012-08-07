@@ -1,3 +1,161 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// Place all the styles related to the Dashboards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* User Profile Visuals */
+#content #user{
+  margin-left:0;
+  font-size:1.8em;	
+}
+#leftSidebar{
+  margin-right: 0;
+  float: left;
+  width: 250px;
+}
+#badgesWrapper {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  background-color: #222;
+  width: 220px;
+  padding: 20px 5px 32px;
+  text-align:center;
+  font-size: 125%;
+  clear: both;
+}
+
+#badgesEarned {
+  height: auto;
+  margin: 2px;
+  padding: 2px;
+  position: relative;
+}
+
+.clear {
+  height: 5px;
+  clear: both;
+}
+
+.assignmentGrade {
+  color: black;
+  font-weight: bold;
+}
+
+#badgesWrapper .earned-badge {
+  float: left;
+  text-align: center;
+  height: 100px;
+  width: 70px;
+  font-size: 70%;
+  margin-top: 5px;
+}
+
+.badge img {
+  width: 60px;
+}
+
+#badgesWrapper .title {
+  text-transform: uppercase;
+}
+
+#badgesWrapper .badgeTitle {
+  line-height: 14px;
+  font-size: 11px;
+}
+
+#userGravatar{
+}
+#userScoreSection {
+  background-color:#222;
+  border-radius:10px;
+  margin-bottom:15px;
+  min-height:250px;
+  text-align: left;
+  padding:10px 0;
+  width: 700px;
+  padding: 20px;
+}
+#userPointValues{
+  color:#fff;
+  font-size:1.3em;
+}
+#scoreToggle{
+  color:#5199AE;
+  cursor:pointer;
+}
+.dashboard-toggle .highcharts-container{
+  margin:0 auto;
+  width:90%;
+}
+#scoreToggle:hover{
+  text-decoration:underline;
+}
+.assignmentTypeTitle {
+  font-size: 16px;
+  color: orange;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
+.assignmentsGroup {
+  margin-bottom: 10px; 
+}
+
+.feedback {
+  margin-bottom: 10px;
+}
+.assignmentTitle {
+  font-size: 14px;
+  color: #61cbf9;
+}
+.assignmentPointsSpan {
+  color: green;
+  font-size:.8em;
+  float:right;
+}
+
+.assignmentEdit a {
+  font-weight: bold;
+  color: #333;
+}
+
+.completedAssignment, .incompleteAssignment, .missedAssignment {
+  padding: 15px;
+  margin-bottom: 2px;
+}
+
+.completedAssignment {
+  background-color: #a7dc77;
+  color: #000;
+}
+
+.incompleteAssignment {
+  background-color: #999;
+  color: #000;
+}
+.missedAssignment {
+  background-color: #ffaea2;
+  color: #000;
+}
+
+#mainInfo {
+  margin-left:250px;
+  height:100%;
+}
+
+.collapsible {
+
+  padding-bottom: 15px;
+
+  margin-bottom: 10px;
+}
+
+#predictorLink {
+  padding:10px 0;
+  font-size:1.1em;
+}

@@ -18,7 +18,6 @@
 
 $(document).ready(function(){
   $('#some-textarea').wysihtml5();
-  
 });
 
 $(function() {

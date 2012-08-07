@@ -85,6 +85,10 @@ class User < ActiveRecord::Base
     grades.map(&:score).inject(&:+) || 0
   end
   
+  def sortable_score
+    grades.map(&:score).inject(&:+) || 0 
+  end
+  
   def rank
     
   end
@@ -135,5 +139,14 @@ class User < ActiveRecord::Base
     #attendance_grade /attendance_dates.count TODO
   end
   
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << ["First Name", "Last Name", "Score"]
+      students.each do |user|
+        csv << [user.first_name, user.last_name, user.sortable_score]
+      end
+    end
+  end
+
 
 end
