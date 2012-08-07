@@ -6,6 +6,7 @@ class AssignmentsController < ApplicationController
   def index
     @title = "View All Assignments"
     @assignments = current_course.assignments
+    @assignment_types = current_course.assignment_types
     respond_with @assignments
   end
 
