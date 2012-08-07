@@ -6,5 +6,8 @@ class Attendance < Assignment
     self.due_date ||= Date.today
   end
 
+  def attendance_rate
+    
+  end
 
 end

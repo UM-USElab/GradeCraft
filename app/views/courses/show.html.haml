@@ -1,4 +1,5 @@
 %div{:class => 'btn-group inline-fix'}
+  = link_to "Assignment Types",  assignment_types_path, :class => "btn"
   = link_to "Assignments",  assignments_path, :class => "btn"
   - if current_course.has_badges?                
     = link_to "Badges", badges_path, :class => "btn"
