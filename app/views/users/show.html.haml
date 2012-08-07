@@ -30,25 +30,19 @@
     %div#userBarInProgress.dashboard-toggle
     
     %div#Grades
-      - @assignments.group_by(&:assignment_type).each do |assignment_type, assignment|
+      - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %div.assignmentType
           %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
-          %div
-            - @grades_by_assignment_type[assignment_type].each do |grade|
-              %span.assignmentTitle= grade.assignment.title
-              %span.grade= grade.score 
-              ="/"
-              = grade.assignment.point_total 
-              ="points"
-              %br
-              %div.feedback= raw grade.feedback
-              %div.badges
-                - grade.earned_badges.each do |badge|
-                  %img{:src => badge.icon, :alt => badge.title, :width => "50", :height => "50"}
-          
-    %div.clear
-          
+          %div.assignments
+            - assignments.each do |assignment|
+              %div.assignment
+                %span.assignmentTitle= assignment.try(:title)
+                = "/"
+                //%span= @grades.find(:assignment_id => assignment.id)
+                %span.assignmentPoints= assignment.point_total
 
+    %div.clear
+   
 %div#helpInfo
   - if current_user.is_staff?
     = link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-inverse"

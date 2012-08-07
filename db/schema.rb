@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120805205810) do
+ActiveRecord::Schema.define(:version => 20120806011742) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -369,6 +369,16 @@ ActiveRecord::Schema.define(:version => 20120805205810) do
   create_table "themes", :force => true do |t|
     t.string   "name"
     t.string   "filename"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_assignment_type_weights", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_grade_weights", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

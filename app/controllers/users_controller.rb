@@ -28,13 +28,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_course.users.find(params[:id])
+    @user = User.find(params[:id])
     @title = @user.name
     @earnable = @user
     @earned_badges = @earnable.earned_badges
     @assignment_types = current_course.assignment_types
     @assignments = current_course.assignments
-    @grades_by_assignment_type = @user.grades.all(:include => :assignment).group_by(&:assignment_type)
+    @grades = @user.grades.all 
+    #@grade = @user.grades.find(params[:assignment_id => assignment_id])
+    #@grades_by_assignment_type = @grades.group_by(&:assignment_type)
+    @grades_by_assignment_type = @user.grades(:include => :assignment).group_by(&:assignment_type)
     respond_with @user
   end
   
