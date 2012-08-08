@@ -1,0 +1,2 @@
+module UserAssignmentTypeWeightsHelper
+end

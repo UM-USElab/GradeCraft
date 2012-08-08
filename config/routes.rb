@@ -1,4 +1,8 @@
 GradeCraft::Application.routes.draw do
+  resources :user_assignment_type_weights
+
+  resources :user_grade_weights
+
   resources :news
 
   root :to => "home#index"
@@ -16,6 +20,7 @@ GradeCraft::Application.routes.draw do
       get 'staff'
       get 'final_grades'
     end
+    resources :earned_badges
   end
   resources :user_sessions
   resources :password_resets
@@ -43,6 +48,7 @@ GradeCraft::Application.routes.draw do
       post :edit_status 
       put :update_status
     end
+    resources :earned_badges
   end  
   resources :grade_schemes do
     collection do

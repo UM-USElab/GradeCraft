@@ -10,14 +10,16 @@ class Assignment < ActiveRecord::Base
   accepts_nested_attributes_for :grades
   
   default_scope :order => 'due_date ASC'
-    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id
+    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope
 
   def mass_gradeable?
     true
   end
 
-  scope :team_assignment, where(:type => "TeamAssignment")
-  scope :group_assignment, where(:type => "GroupAssignment")
+  scope :individual_assignment, where(:grade_scope => "Individual")
+  scope :group_assignment, where(:grade_scope => "Group")
+  scope :team_assignment, where(:grade_scope => "Team")
+  
   scope :future, lambda {
     { :conditions => 
       ["assignments.due_date IS NOT nulL AND assignments.due_date >=?", Date.today]
@@ -52,6 +54,19 @@ class Assignment < ActiveRecord::Base
 
   def type
     assignment_type.try(:name)
+  end
+  
+  
+  def is_individual?
+    grade_scope=="Individual"
+  end
+  
+  def has_groups?
+    grade_scope=="Group"
+  end
+  
+  def has_teams?
+    grade_scope=="Team"
   end
   
 end

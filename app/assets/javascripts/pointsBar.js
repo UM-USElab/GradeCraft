@@ -1,3 +1,5 @@
+$.get('data.json', function(data) {
+
 var chart;
 var soFarChart;
 		

@@ -17,6 +17,8 @@ class GradesController < ApplicationController
     @title = "View Grade"
     respond_with @grade = Grade.find(params[:id])
     @assignment = @grade.assignment_id
+    @earnable = @grade
+    @earned_badges = @earnable.earned_badges
   end
   
   def gradebook

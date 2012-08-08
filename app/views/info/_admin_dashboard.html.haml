@@ -13,6 +13,7 @@
         %th Student
         %th Score
         %th Badges Earned
+        %th Attendance Rate
         %th Logins
         %th Pageviews
         %th Predictor Views
@@ -22,6 +23,7 @@
           %td= link_to student.name, user_path(:id => student.id)
           %td= student.sortable_score
           %td= student.user_badge_count
+          %td= student.attendance_rate
           %td= student.visit_count
           %td= student.page_views
           %td= student.predictor_views
@@ -42,7 +44,7 @@
           %td= team.id
           %td= link_to team.name, team
           %td= team.rank
-          %td= team.score
+          //%td= team.score
           %td= team.badge_count
           
 %div.span6
@@ -53,6 +55,7 @@
         %th Student
         %th Score
         %th Badges Earned
+        %th Attendance Rate
         %th Logins
         %th Pageviews
         %th Predictor Views
@@ -62,6 +65,7 @@
           %td= link_to student.name, user_path(:id => student.id)
           %td= student.sortable_score
           %td= student.user_badge_count
+          %td= student.attendance_rate
           %td= student.visit_count
           %td= student.page_views
           %td= student.predictor_views

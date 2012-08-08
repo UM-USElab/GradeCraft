@@ -1,0 +1,2 @@
+module UserGradeWeightsHelper
+end

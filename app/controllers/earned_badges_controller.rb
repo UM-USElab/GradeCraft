@@ -1,8 +1,8 @@
 class EarnedBadgesController < ApplicationController
+  before_filter :load_earnable
   def index
     @title = "View All Awarded Badges"
-    @earned = find_earned
-    @earned_badges = current_course.earned_badges.all
+    @earned_badges = @earnable.earned_badges.all
     @users = current_course.users.all
     @assignments = current_course.assignments.all
     @grades = current_course.grades.all
@@ -29,14 +29,11 @@ class EarnedBadgesController < ApplicationController
   # GET /badges/new.json
   def new
     @title = "Award a New Badge"
-    @earned_badge = EarnedBadge.new
+    @earned_badge = @earnable.earned_badges.new
     @badges = current_course.badges
-    @users = current_course.users.students
-    @grades = current_user.grades
-    @badge_sets = BadgeSet.all
-    @earned_badge.user = User.students.find(params[:user_id]) if params[:user_id]
-    respond_with @earned_badge
+    @user = User.students.find(params[:user_id]) if params[:user_id]
   end
+  
 
   # GET /badges/1/edit
   def edit
@@ -50,20 +47,13 @@ class EarnedBadgesController < ApplicationController
   # POST /badges
   # POST /badges.json
   def create
-    @earned = find_earned
-    @earned = @earned.earned_badges.build(params[:earned_badge])
     @badge_sets = BadgeSet.all
     @badges = Badge.all
-    @earned_badge = EarnedBadge.new(params[:earned_badge])
-
-    respond_to do |format|
-      if @earned_badge.save
-        format.html { redirect_to @earned_badge, notice: 'Badge was successfully awarded.' }
-        format.json { render json: @earned_badge, status: :created, location: @earned_badge }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @earned_badge.errors, status: :unprocessable_entity }
-      end
+    @earned_badge = @earnable.earned_badges.new(params[:earned_badge])
+    if @earned_badge.save 
+      redirect_to[@earnable, :earned_badges], notice = "Badge awarded!"
+    else
+      render :new
     end
   end
 
@@ -97,12 +87,10 @@ class EarnedBadgesController < ApplicationController
     end
   end
   
-  def find_earned
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
-      end
+  private
+
+    def load_earnable
+      klass = [User, Grade].detect { |c| params["#{c.name.underscore}_id"]}
+      @earnable = klass.find(params["#{klass.name.underscore}_id"])
     end
-    nil
   end
-end

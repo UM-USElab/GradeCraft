@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :courses          
   has_many :grades, :dependent => :destroy
   has_many :assignments, :through => :grades
-  has_many :earned_badges, :as => :earned
-  has_many :badges, :through => :earned_badges
+  has_many :earned_badges, :as => :earnable
+  has_many :badges, :through => :earned_badges, :as => :earnable
   belongs_to :team
   has_many :group_memberships, :dependent => :destroy
   has_many :groups, :through => :group_memberships
@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
     is_prof? || is_gsi? || is_admin?
   end
   
-  #coryhelp!
+  # TODO
   def assignment_type_score
     grades.assignment_type.sum(:score) || 0
   end
@@ -125,5 +125,15 @@ class User < ActiveRecord::Base
   def team_assignment_score
     0 # TODO: Remove this or make it calculate score
   end
+ 
+  def team_leader
+    team.try(:team_leader)
+  end
+
   
+  def attendance_rate
+    #attendance_grade /attendance_dates.count TODO
+  end
+  
+
 end
