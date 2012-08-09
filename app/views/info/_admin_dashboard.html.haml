@@ -1,9 +1,6 @@
-%div#subNav
-  = link_to "Grade an Assignment", new_grade_url, :class => "btn btn-inverse"
-  - if current_course.has_teams?
-    = link_to "Grade a Team Challenge", new_challenge_grade_url, :class => "btn btn-inverse"
-  - if current_course.has_badges?
-    = link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-inverse"
+//%div#subNav
+//- if current_course.has_badges?
+//= link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-inverse"
     
 %div.span6
   %h4= "Top 10" 
@@ -45,7 +42,7 @@
           %td= link_to team.name, team
           %td= team.rank
           %td
-          %td= team.badge_count
+          //%td= team.badge_count
           
 %div.span6
   %h4= "Bottom 10"  

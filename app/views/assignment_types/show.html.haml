@@ -30,6 +30,10 @@
   Course ID:
   = @assignment_type.course_id
 
+%p
+  Order:
+  = @assignment_type.order_placement
+
 .form-actions
   = link_to 'Edit', edit_assignment_type_path(@assignment_type), :class => 'btn btn-inverse'
 = link_to 'Back', assignment_types_path, :class => 'btn btn-primary'

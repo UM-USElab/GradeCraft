@@ -53,7 +53,7 @@ module GradeCraft
     # Change the path that assets are served from
     config.assets.prefix = "/assets"
     
-    config.assets.initialize_on_precompile = false
+    #config.assets.initialize_on_precompile = false
 
     if Rails.env == "production"
       config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-28992046-1")

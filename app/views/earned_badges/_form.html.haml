@@ -1,6 +1,7 @@
-%h4= @user.name
+#TODO Make it possible to award badges outside of a grade
 = simple_form_for @earned_badge do |f|
-  //= f.input :earnable_id, :collection => @users, :label => "User"
+  = f.association :grade, :collection => @assignments
+  = f.association :users, :collection => @users
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span6' } 
   = hidden_field_tag "earned_badge[badge_ids][]", nil
   - Badge.all.each do |badge|

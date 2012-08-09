@@ -13,41 +13,41 @@
 %h3
   Grades
   - if @assignment.mass_gradeable?
-    (#{link_to 'log grades', mass_edit_grades_path(:assignment_id => @assignment.id)})
+    (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
 
-= form_tag edit_status_grades_path do
-  %table#assignments.display.table-bordered.table
-    %thead
+//= form_tag edit_status_assignment_grades_path do
+%table#assignments.display.table-bordered.table
+  %thead
+    %tr
+      %th
+      %th User
+      %th Score
+      %th Level
+      %th Badges Earned
+      %th Status
+      %th Group
+      %th
+      %th
+      %th
+  %tbody
+    - @assignment.grades.each do |grade|
       %tr
-        %th
-        %th User
-        %th Points
-        %th Level
-        %th Badges Earned
-        %th Status
-        %th Group
-        %th
-        %th
-        %th
-    %tbody
-      - @assignment.grades.each do |grade|
-        %tr
-          %td= check_box_tag "grade_ids[]", grade.id
-          %td #{grade.user.name} 
-          %td #{number_with_delimiter(grade.score, :delimiter => ',') }
-          %td
-          %td 
-            - grade.earned_badges.each do |badge|
-              %img{:src => badge.icon, :alt => badge.title, :width => 40}
-          %td= grade.status
-          %td
-          %td= link_to "View", grade
-          %td= link_to "Edit", edit_grade_path(grade.id)
-          %td= link_to "Delete", grade, :confirm => 'Are you sure?', :method => :delete
+        %td= check_box_tag "grade_ids[]", grade.id
+        %td= grade.graded_id
+        %td #{number_with_delimiter(grade.score, :delimiter => ',') }
+        %td
+        %td 
+          - grade.earned_badges.each do |badge|
+            %img{:src => badge.icon, :alt => badge.title, :width => 40}
+        %td= grade.status
+        %td= grade
+        %td= link_to "View", assignment_grade_path(grade.id)
+        %td= link_to "Edit", edit_assignment_grade_path(grade.id)
+        %td= link_to "Delete", assignment_grade_path(grade.id), :confirm => 'Are you sure?', :method => :delete
   %p
   = submit_tag "Update Grade Statuses", :class => "btn btn-info"
 
 %div#footerNav
-  = link_to 'Add Grade', new_grade_path(:assignment_id => @assignment), :class => 'btn btn-primary'
+  = link_to 'Add Grade', new_assignment_grade_path(:assignment_id => @assignment), :class => 'btn btn-primary'
   = link_to 'Edit', edit_assignment_path(@assignment), :class => 'btn btn-primary'
   = link_to 'Back', assignments_path, :class => 'btn btn-primary'

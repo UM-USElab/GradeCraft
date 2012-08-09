@@ -1,0 +1,9 @@
+= simple_form_for(@group_membership) do |f|
+
+  .form-inputs
+    = f.input :group_id
+    = f.input :user_id
+    = f.input :accepted
+
+  .form-actions
+    = f.button :submit

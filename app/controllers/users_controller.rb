@@ -39,8 +39,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @title = @user.name
-    @earnable = @user
-    @earned_badges = @earnable.earned_badges
+    @earned_badges = @user.earned_badges
     @assignment_types = current_course.assignment_types
     @assignments = current_course.assignments
     @grades = @user.grades.all 

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Group:
+  = @group_membership.group_id
+%p
+  %b User:
+  = @group_membership.user_id
+%p
+  %b Accepted:
+  = @group_membership.accepted
+
+= link_to 'Edit', edit_group_membership_path(@group_membership)
+\|
+= link_to 'Back', group_memberships_path

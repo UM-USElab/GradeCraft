@@ -18,12 +18,14 @@ class AssignmentsController < ApplicationController
     @title = "Create a New Assignment"
     @assignment = current_course.assignments.new
     @assignment_types = current_course.assignment_types.all
+    @grade_schemes = current_course.grade_schemes
   end
 
   def edit
     @title = "Edit this Assignment"
     @assignment = current_course.assignments.all
     @assignment_types = current_course.assignment_types.all
+    @grade_schemes = current_course.grade_schemes
     respond_with @assignment = current_course.assignments.find(params[:id])
   end
 

@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
   has_many :users
-  has_many :challenge_grades, :dependent => :destroy
+  has_many :grades, :dependent => :destroy, :as => :graded
   has_many :earned_badges, :through => :users
   
   belongs_to :course
@@ -14,11 +14,7 @@ class Team < ActiveRecord::Base
   end
 
   def score
-    challenge_grade
-  end
-
-  def challenge_grade
-    challenge_grades.map(&:score).inject(&:+) || 0
+    grades.map(&:score).inject(&:+) || 0
   end
 
   def badge_count

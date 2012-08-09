@@ -1,5 +1,3 @@
-/*
-
 if ($("#predictorWrapper").length > 0){	
 	$("#projectedPoints").click(function(){
 		$("#predictionWrapper").toggleClass("toggleOn");
@@ -297,4 +295,3 @@ if ($("#predictorWrapper").length > 0){
 // create initial progress bar on page load
 	updateProgressBar();
 };
-*/

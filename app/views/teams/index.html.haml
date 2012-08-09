@@ -29,4 +29,4 @@
 %div#footerNav
   - if current_user.is_staff?
     = link_to "Add a New Team", new_team_path, :class => "btn btn-primary"
-    = link_to "Add Team Points", new_challenge_grade_url, :class => "btn btn-inverse"
+    = link_to "Grade a Team Assignment", assignments_path, :class => "btn btn-inverse"

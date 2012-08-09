@@ -1,9 +1,10 @@
 class GradesController < ApplicationController
   respond_to :html, :json
 
-  before_filter :ensure_staff?
+  before_filter :ensure_staff?, :load_graded
 
   def index
+    @grades = Grades.find(params[:assignment_id])
     @title = "View All Grades"
     @grades = current_course.grades.all
     
@@ -17,8 +18,7 @@ class GradesController < ApplicationController
     @title = "View Grade"
     respond_with @grade = Grade.find(params[:id])
     @assignment = @grade.assignment_id
-    @earnable = @grade
-    @earned_badges = @earnable.earned_badges
+    @earned_badges = EarnedBadge.all
   end
   
   def gradebook
@@ -34,7 +34,7 @@ class GradesController < ApplicationController
     @grade_schemes = GradeScheme.all
     @title = "Submit New Grade"
     @assignment = Assignment.find(params[:assignment_id]) if params[:assignment_id]
-    @grade = grade_class(@assignment).new
+    @grade = @graded.grades.new
     @grade.user = User.students.find(params[:user_id]) if params[:user_id]
     @grade.assignment = @assignment
     respond_with @grade
@@ -71,15 +71,14 @@ class GradesController < ApplicationController
     @users = User.all
     @badges = Badge.all
     @teams = Team.all
-
-    respond_to do |format|
-      if @grade.save
-        format.html { redirect_to grade_path(@grade), notice: 'Grade was successfully created.' }
-        format.json { render json: @grade, status: :created, location: @grade }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @grade.errors, status: :unprocessable_entity }
-      end
+    
+    @grade = @graded.grades.new(params[:grade])
+    if @grade.save
+      format.html { redirect_to grade_path(@grade), notice: 'Grade was successfully created.' }
+      format.json { render json: @grade, status: :created, location: @grade }
+    else
+      format.html { render action: "new" }
+      format.json { render json: @grade.errors, status: :unprocessable_entity }
     end
   end
 

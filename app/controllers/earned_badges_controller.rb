@@ -1,8 +1,8 @@
 class EarnedBadgesController < ApplicationController
-  before_filter :load_earnable
+
   def index
     @title = "View All Awarded Badges"
-    @earned_badges = @earnable.earned_badges.all
+    @earned_badges = EarnedBadge.all
     @users = current_course.users.all
     @assignments = current_course.assignments.all
     @grades = current_course.grades.all
@@ -29,7 +29,8 @@ class EarnedBadgesController < ApplicationController
   # GET /badges/new.json
   def new
     @title = "Award a New Badge"
-    @earned_badge = @earnable.earned_badges.new
+    @assignments = current_course.assignments.all
+    @earned_badge = EarnedBadge.new
     @badges = current_course.badges
     @user = User.students.find(params[:user_id]) if params[:user_id]
   end
@@ -49,9 +50,9 @@ class EarnedBadgesController < ApplicationController
   def create
     @badge_sets = BadgeSet.all
     @badges = Badge.all
-    @earned_badge = @earnable.earned_badges.new(params[:earned_badge])
+    @earned_badge = EarnedBadge.new(params[:earned_badge])
     if @earned_badge.save 
-      redirect_to[@earnable, :earned_badges], notice = "Badge awarded!"
+      redirect_to[:earned_badges], notice = "Badge awarded!"
     else
       render :new
     end
@@ -87,10 +88,5 @@ class EarnedBadgesController < ApplicationController
     end
   end
   
-  private
 
-    def load_earnable
-      klass = [User, Grade].detect { |c| params["#{c.name.underscore}_id"]}
-      @earnable = klass.find(params["#{klass.name.underscore}_id"])
-    end
-  end
+end

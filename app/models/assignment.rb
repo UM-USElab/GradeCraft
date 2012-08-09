@@ -3,14 +3,14 @@ class Assignment < ActiveRecord::Base
   
   has_many :grades, :dependent => :destroy
   belongs_to :course
-  belongs_to :grade_scheme
+  belongs_to :grade_schemes
   validates_presence_of :course
   belongs_to :assignment_type
   has_many :groups
   accepts_nested_attributes_for :grades
   
   default_scope :order => 'due_date ASC'
-    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope
+    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id
 
   def mass_gradeable?
     true
@@ -30,7 +30,7 @@ class Assignment < ActiveRecord::Base
       ["assignments.due_date IS NOT nulL AND assignments.due_date <?", Date.today]
     }
   }
-  scope :graded, where(:assignment_grades.present? == 1)
+  scope :grading_done, where(:assignment_grades.present? == 1)
 
   def assignment_grades
     Grade.where(:assignment_id => id)
@@ -67,6 +67,10 @@ class Assignment < ActiveRecord::Base
   
   def has_teams?
     grade_scope=="Team"
+  end
+  
+  def is_visible?
+    visible == "true"
   end
   
 end

@@ -7,9 +7,10 @@ class AttendanceGrade < Grade
       0
     end
   end
-  
+
+  #TODO  
   def attendance_rate
-    current_user.attendance_grade.count / assignment.count
+    #attendance_grade.count / assignment.count
   end
 
 end

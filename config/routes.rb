@@ -1,4 +1,6 @@
 GradeCraft::Application.routes.draw do
+  resources :group_memberships
+
   resources :user_assignment_type_weights
 
   resources :user_grade_weights
@@ -37,19 +39,21 @@ GradeCraft::Application.routes.draw do
   resources :groups
   resources :teams
   resources :assignment_types
-  resources :assignments
+  resources :assignments do 
+    resources :grades do
+      collection do
+        get :mass_edit
+        put :mass_update
+        get :gradebook
+        post :edit_status
+        put :update_status
+      end
+      resources :earned_badges
+    end 
+  end
   resources :challenges
   resources :challenge_grades
-  resources :grades do
-    collection do
-      get :mass_edit
-      put :mass_update
-      get :gradebook
-      post :edit_status 
-      put :update_status
-    end
-    resources :earned_badges
-  end  
+ 
   resources :grade_schemes do
     collection do
       post :destroy_multiple 

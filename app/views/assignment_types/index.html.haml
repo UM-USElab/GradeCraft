@@ -1,11 +1,12 @@
 %table#assignment_types.display.table-bordered
   %thead
     %tr
+      %th Order
       %th Name
       %th Point
       %th Levels
       %th Predictor Display
-      //%th Due Date
+      %th Due Date
       %th Resubmission
       %th Max value
       %th % Course
@@ -16,11 +17,12 @@
   %tbody
     - current_course.assignment_types.each do |assignment_type|
       %tr
+        %td= assignment_type.order_placement
         %td= assignment_type.name
         %td= assignment_type.point_setting
         %td= assignment_type.levels
         %td= assignment_type.points_predictor_display
-        //%td= assignment_type.due_date
+        %td= assignment_type.due_date_present
         %td= assignment_type.resubmission
         %td= assignment_type.max_value
         %td= assignment_type.percentage_course

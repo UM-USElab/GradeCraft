@@ -36,16 +36,6 @@
   position: relative;
 }
 
-.clear {
-  height: 5px;
-  clear: both;
-}
-
-.assignmentGrade {
-  color: black;
-  font-weight: bold;
-}
-
 #badgesWrapper .earned-badge {
   float: left;
   text-align: center;
@@ -54,11 +44,6 @@
   font-size: 70%;
   margin-top: 5px;
 }
-
-.badge img {
-  width: 60px;
-}
-
 #badgesWrapper .title {
   text-transform: uppercase;
 }
@@ -67,9 +52,15 @@
   line-height: 14px;
   font-size: 11px;
 }
-
-#userGravatar{
+.badge img {
+  width: 60px;
 }
+
+.clear {
+  height: 5px;
+  clear: both;
+}
+
 #userScoreSection {
   background-color:#222;
   border-radius:10px;
@@ -103,11 +94,12 @@
 }
 
 .assignmentsGroup {
+  padding: 15px;
   margin-bottom: 10px; 
 }
 
 .feedback {
-  margin-bottom: 10px;
+  padding: 15px
 }
 .assignmentTitle {
   font-size: 14px;
@@ -125,13 +117,10 @@
 }
 
 .completedAssignment, .incompleteAssignment, .missedAssignment {
-  padding: 15px;
   margin-bottom: 2px;
 }
 
 .completedAssignment {
-  background-color: #a7dc77;
-  color: #000;
 }
 
 .incompleteAssignment {
@@ -148,11 +137,8 @@
   height:100%;
 }
 
-.collapsible {
-
-  padding-bottom: 15px;
-
-  margin-bottom: 10px;
+.editLink {
+  float: right;
 }
 
 #predictorLink {

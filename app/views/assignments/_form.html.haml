@@ -4,7 +4,9 @@
   = f.input :grade_scope, :as => :select, :collection => [["Individual"], ["Group"], ["Team"]]
   = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span7' }
   = f.input :point_total, :label => "Total Points Possible"
-  = f.input :due_date, :as => :string, :input_html => {:class => "datepicker", "data-behaviour" => 'datepicker'}
+  = f.input :due_date, :as => :datetime
+  = f.input :visible, :as => :boolean
+  = f.association :grade_schemes, :collection => @grade_schemes, :as => :select
   
   .form-actions  
     = f.button :submit, :class => 'btn btn-inverse'

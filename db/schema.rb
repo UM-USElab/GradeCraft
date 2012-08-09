@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806011742) do
+ActiveRecord::Schema.define(:version => 20120809042441) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20120806011742) do
     t.integer  "step_value",               :default => 1
     t.integer  "grade_scheme_id"
     t.boolean  "due_date_present"
+    t.integer  "order_placement"
   end
 
   create_table "assignments", :force => true do |t|
@@ -66,8 +67,10 @@ ActiveRecord::Schema.define(:version => 20120806011742) do
     t.boolean  "present"
     t.integer  "course_id"
     t.integer  "assignment_type_id"
-    t.integer  "grade_scheme_id"
+    t.integer  "grade_schemes_id"
     t.string   "grade_scope"
+    t.string   "visible"
+    t.datetime "close_time"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -188,8 +191,7 @@ ActiveRecord::Schema.define(:version => 20120806011742) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "feedback"
-    t.integer  "earnable_id"
-    t.string   "earnable_type"
+    t.integer  "grade_id"
   end
 
   create_table "grade_scheme_elements", :force => true do |t|
@@ -224,11 +226,22 @@ ActiveRecord::Schema.define(:version => 20120806011742) do
     t.string    "status"
     t.boolean   "attempted"
     t.boolean   "substantial"
+    t.integer   "graded_id"
+    t.string    "graded_type"
   end
 
   add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"
   add_index "grades", ["badge_id"], :name => "index_grades_on_badge_id"
+  add_index "grades", ["graded_id", "graded_type"], :name => "index_grades_on_graded_id_and_graded_type"
   add_index "grades", ["user_id"], :name => "index_grades_on_user_id"
+
+  create_table "group_memberships", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.string   "accepted"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "groups", :force => true do |t|
     t.string    "name"
