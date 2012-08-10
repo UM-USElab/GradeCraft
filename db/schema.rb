@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120809042441) do
+ActiveRecord::Schema.define(:version => 20120809221813) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
     t.integer  "grade_scheme_id"
     t.boolean  "due_date_present"
     t.integer  "order_placement"
+    t.string   "user_percentage_set"
   end
 
   create_table "assignments", :force => true do |t|
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
     t.string   "grade_scope"
     t.string   "visible"
     t.datetime "close_time"
+    t.datetime "open_time"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -154,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
     t.string   "homepage_message"
     t.boolean  "status"
     t.boolean  "group_setting"
+    t.integer  "user_weight_amount"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -387,8 +390,11 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
   end
 
   create_table "user_assignment_type_weights", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "user_id"
+    t.integer  "assignment_type_id"
+    t.integer  "value"
   end
 
   create_table "user_grade_weights", :force => true do |t|

@@ -1,8 +1,6 @@
-$.get('data.json', function(data) {
-
 var chart;
 var soFarChart;
-		
+
 $(document).ready(function() {
 
 // adds commas
@@ -31,14 +29,14 @@ $(document).ready(function() {
 	$('#userBarTotal').hide();
 	$('#showPossiblePts').hide();
     $('#soFarScoreToggle').hide();	
-	
+
     $('a.dashboard-toggle').click(function(){
       $('.dashboard-toggle').toggle();
       return false;
 	})
 
 if ($("#userScoreSection").length > 0){
-	
+
 	var lfpg_score = removeCommas($("#lfpg_score").html());
 	var boss_battle_score = removeCommas($("#boss_battle_score").html());
 	var attendance_score = removeCommas($("#attendance_score").html());
@@ -48,7 +46,7 @@ if ($("#userScoreSection").length > 0){
 	var assignment_score = lfpg_score + boss_battle_score	
 	var total_points = removeCommas($("#courseTotalPts").html());
 	var totalSoFar = removeCommas($("#userBarTotal").html());
-	
+
 	chart = new Highcharts.Chart({
 		colors: [			
 			'#AA4643',			
@@ -56,7 +54,7 @@ if ($("#userScoreSection").length > 0){
 		  '#89A54E', 
 			'#80699B', 
 			'#3D96AE'
-			
+
 		],
 		chart: {
 			renderTo: 'userBarInProgress',
@@ -150,7 +148,7 @@ if ($("#userScoreSection").length > 0){
 			data: [attendance_score]	
 		}]
 	});
-	
+
 	chart = new Highcharts.Chart({
 		colors: [			
 			'#AA4643',			
@@ -252,6 +250,6 @@ if ($("#userScoreSection").length > 0){
 			data: [attendance_score]	
 		}]
 	});
-	
+
   }
 });

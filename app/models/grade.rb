@@ -1,7 +1,7 @@
 class Grade < ActiveRecord::Base
   set_inheritance_column 'something_you_will_not_use'
     
-  belongs_to :graded, :polymorphic => true
+  belongs_to :user
   belongs_to :assignment
   has_many :earned_badges
   has_many :badges, :through => :earned_badges

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   has_many :course_memberships, :dependent => :destroy
   has_many :courses, :through => :course_memberships
   accepts_nested_attributes_for :courses          
-  has_many :grades, :dependent => :destroy, :as => :graded
+  has_many :grades, :dependent => :destroy
   has_many :assignments, :through => :grades
   has_many :earned_badges, :through => :grades
   has_many :badges, :through => :earned_badges

@@ -9,7 +9,7 @@
   /= f.input :token, :as => :hidden
   - if current_user.is_staff?
     = f.input :role, :collection => [["Student", "student"],["GSI", "gsi"],["Professor", "professor"],["Admin", "admin"]], :prompt => "Select Role"
-    = f.input :team_id, :collection => @teams, :prompt => "Select a Team"
+    = f.input :team_id, :collection => @teams, :prompt => "Select a #{current_course.team_term}", :label => "#{current_course.team_term}"
   - if current_user.is_admin?
     = f.association :courses, :as => :check_boxes
     = f.input :default_course_id, :collection => @courses

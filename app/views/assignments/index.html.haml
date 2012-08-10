@@ -1,7 +1,7 @@
 // TODO these need to show in the order of the assignment_type.order_placement (set as default scope)
 - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
   %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
-  %span.assignmentTypeValue= "#{assignment_type.try(:weight)}"
+  %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})"
   %table.table.table-bordered
     %thead
     %tr

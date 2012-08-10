@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :badge_sets_id, :coursegradescheme, :courseno, :name, :semester, :theme_id, :year, :badge_setting, :team_setting, :team_term, :user_term, :user_id, :course_id, :homepage_message, :group_setting
+  attr_accessible :badge_sets_id, :coursegradescheme, :courseno, :name, :semester, :theme_id, :year, :badge_setting, :team_setting, :team_term, :user_term, :user_id, :course_id, :homepage_message, :group_setting, :user_weight_amount
   
   has_many :course_memberships, :dependent => :destroy
   has_many :users, :through => :course_memberships

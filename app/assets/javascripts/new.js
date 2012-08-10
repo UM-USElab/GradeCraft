@@ -1,21 +1,24 @@
-if ($("#predictorWrapper").length > 0){	
-	$("#projectedPoints").click(function(){
-		$("#predictionWrapper").toggleClass("toggleOn");
-		$("#pointsArw").toggleClass("toggleOn");			
-		$("#prediction").toggle();
-		updateProgressBar();
-		return false;
+$(document).ready(function(){
+
+// Collapsible tables in Assignments section
+	$('.collapsible').hide();
+
+	$('.assignTitle').click(function(){
+		$(this).toggleClass('assignTitleOpen');
+		$(this).next('.collapsible').slideToggle();
 	});
 
-// utility scripts
+// Random PSA tip
+	$("#psaBox p").hide();
+	var psas = $("#psaBox p").get().sort(function(){ 
+            return Math.round(Math.random())-0.5; //so we get the right +/- combo
+           });
+    var firstpsa = psas.slice(1,2);
+	$(firstpsa).show();
 
-	// add commas
-	function addCommas(i){
-		numWithCommas = i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		return numWithCommas;
-	};	
-	
-	// Remove commas from numbers when grabbing them from page
+	var chart;
+
+// Remove commas from numbers when grabbing them from page
 	function removeCommas(i){
 		if (i == null) {
 			return 0;
@@ -27,171 +30,335 @@ if ($("#predictorWrapper").length > 0){
 		else{
 			return parseInt(i);
 		}
-	};	
-	
-	
-	// handle 'select all' button
-	$(".select-all").click(function(e){
+	};
+
+if ($("#progressbar").length > 0){		
+// hide grade estimations
+	$("#expected-grade > span").hide();
+
+// set initial point values
+
+	var attendancePts = removeCommas($("#attendanceScore").html());
+	var attendanceTotalPts = 0;
+	var rxnPts = removeCommas($("#rxnScore").html());
+	var rxnSemiPts = 0;
+	var rxnFinalPts = 0;
+	var rxnTotalPts = 0;
+	var blogPts = removeCommas($("#bloggingScore").html());
+	var subBlogPts = 0;
+	var shortBlogPts = 0;
+	var blogTotalPts = 0;
+	var gameSelectionPts = 0;
+    var lfpgPts = removeCommas($("#lfpgScore").html());
+	var lfpgTotalPts = 0;
+	var bossPts = removeCommas($("#bossBattleScore").html());
+	var bossTotalPts = 0;
+	var assignmentPts = 0;
+	var teamPts = 0;
+	var totalPts;						
+
+//	---->
+	var gameSelectionPts = 0;	
+
+// adds commas
+	function addCommas(i){
+		numWithCommas = i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		return numWithCommas;
+	};
+
+// adds up total points
+	function getTotalPts(){
+		totalPts = attendanceTotalPts + rxnTotalPts + blogTotalPts + sliderPts + teamPts
+		// console.log(attendanceTotalPts +", " +rxnTotalPts +", " +blogTotalPts +", " +sliderPts +", " +teamPts)
+	};				
+
+	function updateGrinding(){
+		attendancePredictorPts = ($("#classes-missed fieldset > input").filter(":checked").length)*5000;
+		attendanceTotalPts = attendancePts + attendancePredictorPts
+		if (attendanceTotalPts > 120000){
+			attendanceTotalPts = 120000;
+		};
+		rxnPredictorPts = ($("#reactions-missed fieldset > input").filter(":checked").length)*5000;
+		rxnTotalPts = rxnPts + rxnPredictorPts + rxnSemiPts + rxnFinalPts
+		updateProgressBar();
+	};
+
+	$("#classes-missed .select-all").click(function(e){
 		e.preventDefault();
-		$(this).siblings().find("input").each(function(){
+		$("#classes-missed fieldset > .class-checkbox").each(function(){
 			$(this).attr("checked","checked");
 		});
-		updateProgressBar($(this));		
+		updateGrinding();
 	});
-		
-	// handle 'select none' button
-	$(".select-none").click(function(e){
-		$(this).siblings().find("input").each(function(){
+
+	$("#reactions-missed .select-all").click(function(e){
+		e.preventDefault();
+		$("#reactions-missed fieldset > .class-checkbox").each(function(){
+			$(this).attr("checked",true);
+		});
+		updateGrinding();
+	});
+
+	$("#classes-missed .select-none").click(function(e){
+		e.preventDefault();		
+		$("#classes-missed fieldset > .class-checkbox").each(function(){
 			$(this).attr("checked", false);
 		});
-		updateProgressBar($(this));		
+		updateGrinding();
 	});
 
-
-	// get data from server
-	// loop through 
-	var jsonloop = function(){
-		addjsondata:
-		for(i=0; i<50; i++){
-			$.ajax('assignment_types/'+i+'.json', {
-				dataType: 'json',
-				success: fillAssignArray,
-				error: function(){
-					break addjsondata;
-				} 
-			});
-		}
-	};
-	jsonloop();
-
-	// this is what the json data should look like when it comes through, one object per assignment type
-	// keys and values I've used may not match what you've used. they're easy enough to change here
-	
-	// {
-	// 	"id":1,
-	// 	"name": "individual paper/project",
-	// 	"assignmentType":"slider",
-	// 	"pointType":"range",
-	// 	"minScore":0,
-	// 	"maxScore":160000,
-	// 	"step":1,
-	// 	"currScore":0
-	// }
-	
-	// create assignments array
-	var assignmentObjects = [];
-
-	// create scores array
-	var scoresArray = [];
-
-	// add assignment object to array
-	var fillAssignArray = function(json){
-		assignmentObjects.push(json);
-	};
-	
-// update the progress bar
-	var updateProgressBar = function(input){
-		var scoreUpdate = 0;
-		if(input != undefined){
-			var assignSection = input.parents().filter(".gradeSection");
-			var assignId = parseInt(assignSection.attr("id"));			
-		}else{
-			var assignId = "";
-		}
-		
-	// get student's current grades
-		$(assignSection).find(".point-value").each(function(){
-		// from checkboxes
-			if ($(this).attr("type") === "checkbox"){
-				if($(this).attr("checked") === "checked"){
-					scoreUpdate += parseInt($(this).val());
-				}
-			}
-		// from sliders	
-			else if ($(this).attr("type") === "number"){
-				scoreUpdate += parseInt($(this).val());	
-			}
-		// from select
-			else if ($(this).hasClass("predictor-select")){
-				scoreUpdate += parseInt($(this).val());
-			}			
-			else if ($(this).hasClass("slider-value")){
-				scoreUpdate += removeCommas($(this).text());	
-			}else{
-				console.log("check for non-checkbox or slider case: "+$(this));
-				console.log("type: "+$(this).attr("type"));
-			}			
+	$("#reactions-missed .select-none").click(function(e){
+		e.preventDefault();		
+		$("#reactions-missed fieldset > .class-checkbox").each(function(){
+			$(this).attr("checked", false);
 		});
-		
-	// save new score for updated element 		
-		totalScore = 0;
-		for(i = 0; i < assignmentObjects.length; i++){
-			if(assignmentObjects[i].id === assignId){
-	// this requires an element in each assignment section with a class of '.current_score' which contains
-	// the user's current score on that particular assignment 
-				scoresArray[i].data = parseInt(removeCommas(assignSection.children().filter(".current_score").html())) + scoreUpdate;
-			}
-			totalScore += parseInt(scoresArray[i].data);
-		}		
-		$("#expectedPointsValue").text(addCommas(totalScore));
+		updateGrinding();
+	});
 
-	// set interval for progress bar
-		var courseInterval;
-		var setCourseInterval = function(){
-			if (courseTotal <= 100000){
-				courseInterval = 10000;
-			}
-			else if(courseTotal <= 500000){
-				courseInterval = 50000
-			}
-			else if(courseTotal <= 1000000){
-				courseInterval = 100000
-			}
-			else if(courseTotal <= 2000000){
-				courseInterval = 200000
-			}else{
-				courseInterval = 500000
-			}
+	$("#classes-missed fieldset > .class-checkbox").change(function(){
+		updateGrinding();					
+	});
+
+	$("#reactions-missed fieldset > .class-checkbox").change(function(){
+		updateGrinding();			
+	});
+
+	$("#reaction-semis").change(function(){
+		rxnSemiPts = ($(this).val())*2000;
+		updateGrinding();		
+	});
+	$("#reaction-finals").change(function(){
+		rxnFinalPts = ($(this).val())*3000;
+		updateGrinding();
+	});
+
+// adds points for blog posts
+	function updateBlogging(){
+		subBlogPts = ($("#substantial-blogposts").val())*5000;
+		shortBlogPts = ($("#short-blogposts").val())*1000;
+		blogTotalPts = blogPts + subBlogPts + shortBlogPts;
+		if (blogTotalPts > 60000){
+			blogTotalPts = 60000;
+		};
+	}
+
+	$("#substantial-blogposts").change(function(){
+		updateBlogging();
+		updateProgressBar();
+	});
+
+	$("#short-blogposts").change(function(){
+		updateBlogging();
+		updateProgressBar();
+	});
+
+	$("#game-selection-checkbox").click(function(){
+		gameSelectionStr = $(this).val();
+		if ($(this).attr("checked")){
+			gameSelectionPts = parseInt(gameSelectionStr)
 		}
-		setCourseInterval();
-		
-	// create progress bar
+		else{
+			gameSelectionPts = 0;
+		}
+		updateProgressBar();
+	});
+
+// create sliders for training missions and boss battles
+
+	$( "#3" ).slider({
+		value:0,
+		min: 0,
+		max: 120000,
+		step: 1000,
+		slide: function( event, ui ) {
+			$("#total-3" ).val( addCommas(ui.value) );				
+		},
+		change: function( event, ui ) {
+			updateProgressBar();				
+		}
+	});
+	// $( "#gameplay-poster-1-amount" ).val( $( "#3" ).slider( "value" ) );
+
+	$( "#2" ).slider({
+		value:0,
+		min: 0,
+		max: 120000,
+		step: 1000,
+		slide: function( event, ui ) {
+			$("#total-2" ).val( addCommas(ui.value) );				
+		},
+		change: function( event, ui ) {
+			updateProgressBar();				
+		}
+	});
+	// $( "#gameplay-poster-2-amount" ).val( $( "#2" ).slider( "value" ) );
+
+	$( "#5" ).slider({
+		value:0,
+		min: 0,
+		max: 200000,
+		step: 1000,
+		slide: function( event, ui ) {
+			$("#total-5" ).val( addCommas(ui.value) );				
+		},
+		change: function( event, ui ) {
+			updateProgressBar();
+		}
+	});
+	// $( "#individual-project-1-amount" ).val( $( "#5" ).slider( "value" ) );
+
+	$( "#6" ).slider({
+		value:0,
+		min: 0,
+		max: 300000,
+		step: 1000,
+		slide: function( event, ui ) {
+			$("#total-6" ).val( addCommas(ui.value) );
+		},
+		change: function( event, ui ) {
+			updateProgressBar();
+		}
+	});
+	// $( "#individual-project-2-amount" ).val( $( "#6" ).slider( "value" ) );
+
+	$( "#7" ).slider({
+		value:0,
+		min: 0,
+		max: 400000,
+		step: 1000,
+		slide: function( event, ui ) {
+			$("#total-7" ).val( addCommas(ui.value) );
+		},
+		change: function( event, ui ) {
+			updateProgressBar();
+		}
+	});
+	// $( "#game-design-project-amount" ).val( $( "#7" ).slider( "value" ) );
+
+	$( "#4" ).slider({
+		value:0,
+		min: 0,
+		max: 160000,
+		step: 1000,
+		slide: function( event, ui ) {
+			$("#total-4" ).val( addCommas(ui.value) );
+		},
+		change: function( event, ui ) {
+			updateProgressBar();
+		}
+	});
+	// $( "#gameplay-reflection-amount" ).val( $( "#4" ).slider( "value" ) );
+
+	$("#team-point-values").change(function(){
+		teamPtsVal = $(this).val();
+		teamPts = parseInt(teamPtsVal);				
+		updateProgressBar();
+	});
+
+// set slider values
+	var poster1Pts = 0;
+	var poster2Pts = 0;	
+	var individualProject1Pts = 0;
+	var individualProject2Pts = 0;
+	var finalProjectPts = 0;
+	var gameReflectionPts = 0;
+
+// get slider point values
+	function getSliderPts(){
+		poster1Pts = $( "#3" ).slider( "option", "value" );
+		poster2Pts = $( "#2" ).slider( "option", "value" );		
+		individualProject1Pts = $( "#5" ).slider( "option", "value" );
+		individualProject2Pts = $( "#6" ).slider( "option", "value" );
+		finalProjectPts = $( "#7" ).slider( "option", "value" );
+		gameReflectionPts = $( "#4" ).slider( "option", "value" );
+
+		if (isNaN(poster1Pts)){
+			poster1Pts = 0;
+		}
+		else{
+			poster1Pts = $( "#3" ).slider( "option", "value" );
+		};
+
+		if (isNaN(poster2Pts)){
+			poster2Pts = 0;
+		}
+		else{
+			poster2Pts = $( "#2" ).slider( "option", "value" );		
+		};
+
+		if (isNaN(individualProject1Pts)){
+			individualProject1Pts = 0;
+		}
+		else{
+			individualProject1Pts = $( "#5" ).slider( "option", "value" );
+		};
+
+		if (isNaN(individualProject2Pts)){
+			individualProject2Pts = 0;
+		}
+		else{
+			individualProject2Pts = $( "#6" ).slider( "option", "value" );			
+		};
+
+		if (isNaN(finalProjectPts)){
+			finalProjectPts = 0;
+		}
+		else{
+			finalProjectPts = $( "#7" ).slider( "option", "value" );
+		};
+
+		if (isNaN(gameReflectionPts)){
+			gameReflectionPts = 0;
+		}
+		else{
+			gameReflectionPts = $( "#4" ).slider( "option", "value" );
+		};
+
+		lfpgTotalPts = poster1Pts + poster2Pts + gameReflectionPts + lfpgPts;
+		// console.log(poster1Pts +", " +poster2Pts +", " +gameReflectionPts +", " +lfpgPts)
+		bossTotalPts = individualProject1Pts + individualProject2Pts + finalProjectPts + bossPts;
+		// console.log(individualProject1Pts +", " +individualProject2Pts +", " +finalProjectPts +", " +bossPts)		
+		// console.log(poster1Pts+", "+poster2Pts+", "+individualProject1Pts+", "+individualProject2Pts+", "+finalProjectPts+", "+gameReflectionPts)
+		sliderPts = lfpgTotalPts + bossTotalPts;
+		// console.log(sliderPts);
+	};
+
+// add commas to large numbers
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+// update the progress bar
+	function updateProgressBar(){
+		getSliderPts();
+		// console.log(lfpgTotalPts+", "+bossTotalPts+", "+gameSelectionPts+", "+sliderPts)
+		assignments_score = gameSelectionPts + sliderPts
+		// console.log(assignments_score);
+		attendance_score = attendanceTotalPts
+		reading_reaction_score = rxnTotalPts
+		blogging_score = blogTotalPts
+		team_score = teamPts
+		coursePts = 1400000
+		// available_points = coursePts - totalPts
+		getTotalPts();
+
 		var chart;
-		if ($("#predictionWrapper").hasClass("toggleOn")){
-			var legend = {
-				align: 'left',				
-				backgroundColor: null,
-				borderColor:null,				
-				enabled: true,				
-				itemHoverStyle: {
-					color: '#fff',
-					cursor: "default"
-				},
-				itemMarginTop:10,
-				itemStyle: {
-					color: '#fff'
-				},
-				layout: 'vertical',				
-				padding:15,
-				reversed: true
-			};
-			var chartDetails = {
-				renderTo: 'score',
-				type: 'column',
-				backgroundColor:null,
-				height:250,
-				width:450
-			}
-		}else{
-			var chartDetails = {
-				renderTo: 'score',
-				type: 'column',
-				backgroundColor:null,
-				width:150,
-			}
-		}
 		chart = new Highcharts.Chart({
-			chart: chartDetails,
+			colors: [
+				'#AA4643',			
+				'#DB843D',  
+				'#89A54E', 
+				'#80699B', 
+				'#3D96AE'
+			],
+			chart: {
+				renderTo: 'progressbar',
+				type: 'bar',
+				reflow: true,
+				height:200,
+				backgroundColor:null,
+				width:932
+			},
 			credits: {
 			        enabled: false
 			    },
@@ -211,14 +378,11 @@ if ($("#predictorWrapper").length > 0){
 			},
 			yAxis: {
 				min: 0,
-// spec ranges				
-				max:(courseTotal*1.1),
-				tickInterval: courseInterval,
-				tickLength: 5,
+				max:1400000,
+				tickInterval: 200000,
 				title: {
 					text: 'Points'
 				},
-				opposite: true,
 				labels: {
 					formatter: function(){
 						return addCommas(this.value);
@@ -226,72 +390,109 @@ if ($("#predictorWrapper").length > 0){
 					style: {
 						color: "#FFFFFF"
 					},
-					x: 10
+					x: -20
 				}
 			},
-			legend: legend,
+			legend: {
+				backgroundColor: null,
+				borderColor:null,
+				reversed: true,
+				itemStyle: {
+					color: '#CCCCCC'
+				},
+				itemHoverStyle: {
+					color: '#CCCCCC',
+					cursor: "default"
+				},
+				itemHiddenStyle: {
+					color: '#3E576F'
+				},
+				width:932,
+				style: {
+					padding: 10
+				}
+			},
 			tooltip: {
-				enabled: false				
+				formatter: function() {
+					return ''+
+						this.series.name +': '+ addCommas(this.y) +'';
+				}
 			},
 			plotOptions: {
 				series: {
-					pointWidth: 30,
-					stacking: 'normal'
+					stacking: 'normal',
+					events: {
+						legendItemClick: function(event){
+							return false;
+						}
+					}
 				}	
 			},
-			series: scoresArray
+			series: [{
+				name: 'Team Points',
+				data: [team_score]	
+			},{
+				name: 'Assignments',
+				data: [assignments_score]	
+			},{
+				name: 'Blogging',
+				data: [blogging_score]	
+			},{
+				name: 'Reading Reactions',
+				data: [reading_reaction_score]	
+			},{
+				name: 'Attendance',
+				data: [attendance_score]	
+			}]
 		});
-		
-	}
 
-// iterate through array, creating data for each grade type
-	var courseTotal = 0;
-	// create array to hold progress bar point totals 
-	
-	for(i = 0; i < assignmentObjects.length; i++){
+		ptsCommas = numberWithCommas(totalPts);
 
-		scoresArray.push({
-			name: assignmentObjects[i].name,
-			data: [0]	
-		});
-		
-		// find course point total
-		courseTotal += assignmentObjects[i].max_value;	
+		$("#expected-points").html(ptsCommas);
 
-	// generate UI elements
 
-	if (assignmentObjects[i].points_predictor_display === "slider"){
-		// create sliders
-			var sliderId = "#slider-"+parseInt(assignmentObjects[i].id);
-			var sliderTotalId = "#total-slider-"+parseInt(assignmentObjects[i].id);
-			var step = assignmentObjects[i].step_value;
-			$(sliderId).slider({
-				value: 0,
-				min: 0,
-				max: assignmentObjects[i].max_value,
-				range: "min",
-				step: step,
-				slide: function(event, ui) {
-					sliderTotalId = "#total-"+$(this).attr('id');
-					var sliderMin = assignmentObjects[($(this).parents().filter(".gradeSection").attr('id'))-1].minimum_score;
-					if (ui.value < sliderMin){
-						$(sliderTotalId).text((addCommas(0+" points - you haven't met the minimum of "+sliderMin+" points")));						
-					}else{
-						$(sliderTotalId).text((addCommas((ui.value).toFixed(0)))+" points");
-					}
-				},
-				change: function(event,ui) {
-					updateProgressBar($(this));				
+// update the points --> letter grade table
+		$("#expected-grade > span").hide();
+
+		if (totalPts < 600000){
+			$("#doomgrade").show();
+		}
+		else if (totalPts < 650000){
+			$("#dplusgrade").show();
+		}
+		else if(totalPts < 700000){
+			$("#cminusgrade").show();
 				}
-			});
-		}	
-	}
-	
-// event handler for UI elements
-	$("#predictorWrapper .point-value").change(function(){
-		updateProgressBar($(this));
-	});
-	
-// create initial progress bar on page load
-	updateProgressBar();
-};
+		else if(totalPts < 750000){
+			$("#cgrade").show();
+		}
+		else if(totalPts < 800000){
+			$("#cplusgrade").show();
+		}
+		else if(totalPts < 850000){
+			$("#bminusgrade").show();
+		}
+		else if(totalPts < 900000){
+			$("#bgrade").show();
+		}
+		else if(totalPts < 950000){
+			$("#bplusgrade").show();
+		}
+		else if(totalPts < 1000000){
+			$("#aminusgrade").show();
+		}
+		else if(totalPts < 1245000){
+			$("#agrade").show();
+		}
+		else{
+			$("#aplusgrade").show();
+		};
+	};
+
+	updateGrinding();
+	updateBlogging();
+	getSliderPts();
+	// getTotalPts();
+	updateProgressBar();	
+};	
+});

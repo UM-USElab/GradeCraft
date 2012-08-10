@@ -62,13 +62,15 @@ class UsersController < ApplicationController
   def new
     @title = "Register"
     @teams = current_course.teams.all
-    @user.course = current_course.users.new(params[:users])
+    @courses = Course.all
+    @user = current_course.users.new(params[:users])
     respond_with @user
   end
 
   def edit
     @title = "Edit #{current_course.user_term}"
     @teams = current_course.teams.all
+    @courses = Course.all
     @user = current_course.users.find(params[:id])
     respond_with @user
   end
@@ -77,7 +79,7 @@ class UsersController < ApplicationController
     @teams = current_course.teams.all
     @user = current_course.users.create(params[:user])
     
-    @user.course ||= current_course
+    #@user.course ||= current_course
     
     respond_with @user
   end
@@ -99,8 +101,14 @@ class UsersController < ApplicationController
 
   def destroy
     @user = current_course.users.find(params[:id])
+    
     @user.destroy
-    respond_with @user
+
+    respond_to do |format|
+      format.html { redirect_to users_url }
+      format.json { head :ok }
+    end
+
   end
 
   def edit_profile
@@ -111,7 +119,7 @@ class UsersController < ApplicationController
   def update_profile
     @user = current_user
     @user.update_attribute(:password, params[:password]) if params[:password] == params[:confirm_password]
-    respond_with @user
+    respond_with(@user)
   end
   
   
