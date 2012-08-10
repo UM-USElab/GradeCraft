@@ -10,7 +10,7 @@
       %td= grade.score
       %td= grade.status
       
-= simple_form_for :grade, :url => update_status_grades_path, :html => { :method => :put, :class => "form-horizontal" } do |f|
+= simple_form_for :grade, :url => update_status_assignment_grades_path, :html => { :method => :put, :class => "form-horizontal" } do |f|
   - for grade in @grades
     = hidden_field_tag "grade_ids[]", grade.id
   = f.input :status, :as => :select, :collection => [["New"], ["Graded"],["Released"]]

@@ -30,18 +30,18 @@
       %th
       %th
   %tbody
-    - @assignment.grades.each do |grade|
+    - @assignment.assignment_grades.each do |grade|
       %tr
         %td= check_box_tag "grade_ids[]", grade.id
-        %td= grade.graded_id
+        %td= grade.user.name
         %td #{number_with_delimiter(grade.score, :delimiter => ',') }
         %td
         %td 
           - grade.earned_badges.each do |badge|
             %img{:src => badge.icon, :alt => badge.title, :width => 40}
         %td= grade.status
-        %td= grade
-        %td= link_to "View", assignment_grade_path(grade.id)
+        %td
+        %td= link_to "View", assignment_grade_path(@assignment.id, grade.id)
         %td= link_to "Edit", edit_assignment_grade_path(grade.id)
         %td= link_to "Delete", assignment_grade_path(grade.id), :confirm => 'Are you sure?', :method => :delete
   %p
