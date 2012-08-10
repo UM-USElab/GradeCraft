@@ -4,9 +4,9 @@ class GradesController < ApplicationController
   before_filter :ensure_staff?
 
   def index
-    @grades = Grades.find(params[:assignment_id])
+    @grades = @assignment.assignment_grades.find(params[:assignment_id])
     @title = "View All Grades"
-    @grades = current_course.grades.all
+    #@grades = current_course.grades.all
     
     respond_to do |format|
       format.html # index.html.erb
@@ -63,17 +63,19 @@ class GradesController < ApplicationController
   def edit
     @title = "Edit Grade"
     @badges = current_course.badges.all
+    @assignment = Assignment.find(params[:assignment_id])
+    @grade = @assignment.assignment_grades.find(params[:id])
     respond_with @grade = Grade.find(params[:id])
   end
 
   def create
     @assignment = Assignment.find(params[:assignment_id])
-    @grade = @assignment.grades.create(params[:grade])
+    @grade = @assignment.assignment_grades.create(params[:grade])
     @users = current_course.users.all
     @badges = current_course.badges.all
     @teams = current_course.teams.all
     
-    respond to do |format|
+    respond_to do |format|
       if @grade.save
         format.html { redirect_to([@assignment, @grade], :notice => 'Grade was successfully created.') }
         format.json { render :xml => @grade, :status => :created, :location => @grade }
@@ -85,11 +87,12 @@ class GradesController < ApplicationController
   end
 
   def update
-    @grade = Grade.find(params[:id])
+    @assignment = Assignment.find(params[:assignment_id])
+    @grade = @assignment.assignment_grades.find(params[:grade])
 
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
-        format.html { redirect_to assignment_grades_path(@grade), notice: 'Grade was successfully updated.' }
+        format.html { redirect_to assignment_grades_path(@assignment.id, grade.id), notice: 'Grade was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -99,11 +102,12 @@ class GradesController < ApplicationController
   end
 
   def destroy
-    @grade = Grade.find(params[:id])
+    @assignment = Assignment.find(params[:assignment_id])
+    @grade = @assignment.assignment_grades.find(params[:id])
     @grade.destroy
 
     respond_to do |format|
-      format.html { redirect_to grades_url }
+      format.html { redirect_to assignment_path(@assignment), notice: 'Grade was successfully deleted.' }
       format.json { head :ok }
     end
   end

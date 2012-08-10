@@ -148,6 +148,30 @@ class User < ActiveRecord::Base
       end
     end
   end
+  
+  def attendance_score
+    10000
+  end
+  
+  def readings_score
+  
+  end
+  
+  def section_score
+  
+  end
+  
+  def blogging_score
+  
+  end
+  
+  def essays_score
+  
+  end
+  
+  def group_project_score
+  
+  end
 
 
 end

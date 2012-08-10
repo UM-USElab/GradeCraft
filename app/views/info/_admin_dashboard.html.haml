@@ -4,7 +4,7 @@
     
 %div.span6
   %h4= "Top 10" 
-  %table.table
+  %table.table.table-bordered
     %thead
       %tr
         %th= current_course.user_term
@@ -14,6 +14,8 @@
         %th Logins
         %th Pageviews
         %th Predictor Views
+        %th
+        %th
     %tbody
       - @top_ten_students.each do |student|
         %tr
@@ -24,11 +26,16 @@
           %td= student.visit_count
           %td= student.page_views
           %td= student.predictor_views
-          
+          %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-primary btn-mini"
+          %td
+            - student.team_leader.tap do |team_leader|
+              - if team_leader.present?
+                %div= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary"
+                  
 
 %div.row.span6
   %h4= "Bottom 10"  
-  %table.table
+  %table.table.table-bordered
     %thead
       %tr
         %th= current_course.user_term
@@ -38,6 +45,8 @@
         %th Logins
         %th Pageviews
         %th Predictor Views
+        %th
+        %th
     %tbody
       - @bottom_ten_students.each do |student|
         %tr
@@ -48,3 +57,8 @@
           %td= student.visit_count
           %td= student.page_views
           %td= student.predictor_views
+          %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-primary btn-mini"
+          %td
+            - student.team_leader.tap do |team_leader|
+              - if team_leader.present?
+                %div= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary"

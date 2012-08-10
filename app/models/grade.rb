@@ -17,32 +17,32 @@ class Grade < ActiveRecord::Base
   after_save :save_user_score
   
   scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
-  # 
-#    scope :reading_reaction, where(:type => "ReadingReactionGrade")
-#    scope :lfpg, where(:type=> "LFPGGrade")
-#    scope :bossbattle, where(:type=> "BossBattleGrade")
-#    scope :blogging, where(:type=> "BloggingGrade")
-    scope :attendance, where(:type=> "AttendanceGrade")
-#    scope :team_assignment, where(:type=> "TeamAssignmentGrade")
-#   
-#    def grade_type
-#      case assignment
-#      when ReadingReaction
-#        ReadingReactionGrade
-#      when Blogging
-#        BloggingGrade
-#      when Attendance
-#        AttendanceGrade
-#      when LFPG
-#        LFPGGrade
-#      when BossBattle
-#        BossBattleGrade
-#      when TeamAssignment
-#        TeamAssignmentGrade
-#      else
-#        Grade
-#      end
-#    end
+
+   scope :attendance, where(:type => "AttendanceGrade")
+   scope :reading, where(:type => "ReadingGrade")
+   scope :section, where(:type=> "SectionGrade")
+   scope :essays, where(:type=> "EssaysGrade")
+   scope :blogging, where(:type=> "BloggingGrade")
+   scope :group_project, where(:type=> "GroupProjectGrade")
+   
+   def grade_type
+     case assignment_type_id
+     when 9
+       AttedanceGrade
+     when 10
+       ReadingGrade
+     when 11
+       SectionGrade
+     when 12
+       EssaysGrade
+     when 13
+       BloggingGrade
+     when 14
+       GroupProjectGrade
+     else
+       Grade
+     end
+   end
 #     
   def score
     super || 0

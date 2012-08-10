@@ -160,7 +160,8 @@ if ($("#userScoreSection").length > 0){
 		  '#DB843D',  
 		  '#89A54E', 
 			'#80699B', 
-			'#3D96AE'
+			'#3D96AE',
+			'#f9ee14'
 		],
 		chart: {
 			renderTo: 'userBarTotal',
@@ -239,6 +240,9 @@ if ($("#userScoreSection").length > 0){
 			}	
 		},
 		series: [{
+			name: 'Essays',
+			data: [essays_score]	
+		},{
 			name: 'Team Points',
 			data: [team_assignment_score]	
 		},{

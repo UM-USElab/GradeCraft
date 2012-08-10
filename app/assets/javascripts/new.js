@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	
 // Collapsible tables in Assignments section
 	$('.collapsible').hide();
 
@@ -15,7 +15,7 @@ $(document).ready(function(){
            });
     var firstpsa = psas.slice(1,2);
 	$(firstpsa).show();
-
+	
 	var chart;
 
 // Remove commas from numbers when grabbing them from page
@@ -35,9 +35,9 @@ $(document).ready(function(){
 if ($("#progressbar").length > 0){		
 // hide grade estimations
 	$("#expected-grade > span").hide();
-
+					
 // set initial point values
-
+		
 	var attendancePts = removeCommas($("#attendanceScore").html());
 	var attendanceTotalPts = 0;
 	var rxnPts = removeCommas($("#rxnScore").html());
@@ -56,16 +56,16 @@ if ($("#progressbar").length > 0){
 	var assignmentPts = 0;
 	var teamPts = 0;
 	var totalPts;						
-
+		
 //	---->
 	var gameSelectionPts = 0;	
-
+	
 // adds commas
 	function addCommas(i){
 		numWithCommas = i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		return numWithCommas;
 	};
-
+		
 // adds up total points
 	function getTotalPts(){
 		totalPts = attendanceTotalPts + rxnTotalPts + blogTotalPts + sliderPts + teamPts
@@ -271,49 +271,49 @@ if ($("#progressbar").length > 0){
 		individualProject2Pts = $( "#6" ).slider( "option", "value" );
 		finalProjectPts = $( "#7" ).slider( "option", "value" );
 		gameReflectionPts = $( "#4" ).slider( "option", "value" );
-
+		
 		if (isNaN(poster1Pts)){
 			poster1Pts = 0;
 		}
 		else{
 			poster1Pts = $( "#3" ).slider( "option", "value" );
 		};
-
+		
 		if (isNaN(poster2Pts)){
 			poster2Pts = 0;
 		}
 		else{
 			poster2Pts = $( "#2" ).slider( "option", "value" );		
 		};
-
+		
 		if (isNaN(individualProject1Pts)){
 			individualProject1Pts = 0;
 		}
 		else{
 			individualProject1Pts = $( "#5" ).slider( "option", "value" );
 		};
-
+		
 		if (isNaN(individualProject2Pts)){
 			individualProject2Pts = 0;
 		}
 		else{
 			individualProject2Pts = $( "#6" ).slider( "option", "value" );			
 		};
-
+		
 		if (isNaN(finalProjectPts)){
 			finalProjectPts = 0;
 		}
 		else{
 			finalProjectPts = $( "#7" ).slider( "option", "value" );
 		};
-
+		
 		if (isNaN(gameReflectionPts)){
 			gameReflectionPts = 0;
 		}
 		else{
 			gameReflectionPts = $( "#4" ).slider( "option", "value" );
 		};
-
+		
 		lfpgTotalPts = poster1Pts + poster2Pts + gameReflectionPts + lfpgPts;
 		// console.log(poster1Pts +", " +poster2Pts +", " +gameReflectionPts +", " +lfpgPts)
 		bossTotalPts = individualProject1Pts + individualProject2Pts + finalProjectPts + bossPts;
@@ -349,7 +349,8 @@ if ($("#progressbar").length > 0){
 				'#DB843D',  
 				'#89A54E', 
 				'#80699B', 
-				'#3D96AE'
+				'#3D96AE',
+				'#f9ee14'
 			],
 			chart: {
 				renderTo: 'progressbar',

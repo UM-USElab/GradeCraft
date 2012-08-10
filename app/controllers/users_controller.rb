@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :'ensure_admin?', :only=>[:all_users]
 
   def index
-    @title = "View all #{current_course.user_term}s"
+    @title = "View all Users"
     @users =  current_course.users.order(:last_name)
     respond_to do |format|
       format.html # index.html.erb
@@ -99,6 +99,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #TODO Not currently working
   def destroy
     @user = current_course.users.find(params[:id])
     
