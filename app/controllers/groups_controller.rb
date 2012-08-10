@@ -28,7 +28,8 @@ class GroupsController < ApplicationController
   def new
     @title = "Create a New Group"
     @group = current_course.groups.new
-
+    @users = current_course.users.students
+    @assignments = current_course.assignments.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @group }
@@ -39,13 +40,13 @@ class GroupsController < ApplicationController
   def edit
     @title = "Edit Group"
     @group = current_course.groups.find(params[:id])
+    @users = current_course.users.students
   end
 
   # POST /groups
   # POST /groups.json
   def create
     @group = current_course.groups.new(params[:group])
-
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   Roles = %w{student professor gsi admin}
   
   attr_accessor :remember_me
-  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank, :course_ids, :user_id, :display_name, :private_display, :default_course_id
+  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id
 
   has_attached_file :avatar,
                     :styles => { :medium => "300x300>",
@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :course_memberships
   accepts_nested_attributes_for :courses          
   has_many :grades, :dependent => :destroy
+  has_many :user_assignment_type_weights
   has_many :assignments, :through => :grades
   has_many :earned_badges, :through => :grades
   has_many :badges, :through => :earned_badges

@@ -2,7 +2,7 @@
 = simple_form_for @earned_badge do |f|
   = f.association :grade, :collection => @assignments
   = f.association :users, :collection => @users
-  = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span6' } 
+  = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' } 
   = hidden_field_tag "earned_badge[badge_ids][]", nil
   - Badge.all.each do |badge|
     = check_box_tag "earned_badge[badge_ids][]", badge.id

@@ -1,4 +1,6 @@
 GradeCraft::Application.routes.draw do
+  resources :assignment_submissions
+
   resources :group_memberships
 
   resources :user_assignment_type_weights

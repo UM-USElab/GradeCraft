@@ -1,6 +1,6 @@
 = simple_form_for(@badge, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :title
-  = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span6' }, :placeholder => "Describe what this badge means, and how it can be earned. Note that if this badge is marked as visible then this description will also be viewable in the list of badges."
+  = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span9' }, :placeholder => "Describe what this badge means, and how it can be earned. Note that if this badge is marked as visible then this description will also be viewable in the list of badges."
   = f.input :icon, :as => :file
   = f.input :visible, :as => :boolean
   = f.input :occurrence, :collection => [["Onetime", "onetime"], ["Multiple", "multiple"]], :hint => "Can this badge be given to one person multiple times through the semester, or only only once?", :prompt => "-- Select Occurrence --"

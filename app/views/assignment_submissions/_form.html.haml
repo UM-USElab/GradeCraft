@@ -1,0 +1,11 @@
+= simple_form_for(@assignment_submission) do |f|
+
+  .form-inputs
+    = f.input :assignment_id
+    = f.input :user_id
+    = f.input :group_id
+    = f.input :feedback
+    = f.input :comment
+
+  .form-actions
+    = f.button :submit

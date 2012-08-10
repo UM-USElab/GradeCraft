@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120809221813) do
+ActiveRecord::Schema.define(:version => 20120810034214) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -34,6 +34,20 @@ ActiveRecord::Schema.define(:version => 20120809221813) do
     t.string   "default_value"
     t.string   "api_id"
     t.string   "display_type"
+  end
+
+  create_table "assignment_submissions", :force => true do |t|
+    t.integer  "assignment_id"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.string   "feedback"
+    t.string   "comment"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "assignment_types", :force => true do |t|
@@ -157,6 +171,8 @@ ActiveRecord::Schema.define(:version => 20120809221813) do
     t.boolean  "status"
     t.boolean  "group_setting"
     t.integer  "user_weight_amount"
+    t.integer  "min_size"
+    t.integer  "max_size"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -205,6 +221,7 @@ ActiveRecord::Schema.define(:version => 20120809221813) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "grade_scheme_id"
+    t.string   "description"
   end
 
   create_table "grade_schemes", :force => true do |t|

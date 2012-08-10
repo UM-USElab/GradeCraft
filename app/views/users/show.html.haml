@@ -18,7 +18,8 @@
      
   %div#helpInfo
     - if current_user.is_staff?
-      %div= link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-primary"
+      - if current_course.has_badges? 
+        %div= link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-primary"
       %div= link_to "Email #{@user.first_name}", "mailto:#{@user.email}", :class => "btn btn-primary"
     - @user.team_leader.tap do |team_leader|
       - if team_leader.present?

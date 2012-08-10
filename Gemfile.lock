@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rweng/jquery-datatables-rails.git
-  revision: 8e38453e001049b50b5ac5eae65992cfd2782328
+  revision: a6bde0aed270e9d3dac239d331f84f9c22817750
   specs:
     jquery-datatables-rails (1.10.0)
       jquery-rails
@@ -73,7 +73,7 @@ GEM
       actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    fabrication (2.2.1)
+    fabrication (2.2.2)
     faraday (0.8.1)
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
@@ -96,7 +96,7 @@ GEM
     hike (1.2.1)
     httpauth (0.1)
     i18n (0.6.0)
-    jbuilder (0.4.0)
+    jbuilder (0.4.3)
       activesupport (>= 3.0.0)
       blankslate (>= 2.1.2.4)
     journey (1.0.4)

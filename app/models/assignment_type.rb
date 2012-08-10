@@ -4,15 +4,22 @@ class AssignmentType < ActiveRecord::Base
   belongs_to :course
   belongs_to :grade_scheme
   has_many :assignments
+  has_many :user_assignment_type_weights
   
   default_scope :order => 'order_placement ASC'
   
   def weight 
     if percentage_course?
       percentage_course.to_s << "%"
-    else 
+    elsif max_value?
       max_value.to_s << " possible points"
+    else
+      "You decide!"
     end
+  end
+  
+  def student_choice?
+    user_percentage_set == "true"
   end
   
 end

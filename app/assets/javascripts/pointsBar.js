@@ -37,13 +37,13 @@ $(document).ready(function() {
 
 if ($("#userScoreSection").length > 0){
 
-	var lfpg_score = removeCommas($("#lfpg_score").html());
-	var boss_battle_score = removeCommas($("#boss_battle_score").html());
+//TODO Hardcoded Assignment Types
+	var group_project_score = removeCommas($("#group_project_score").html());
+	var blogging_score = removeCommas($("#blogging_score").html());
 	var attendance_score = removeCommas($("#attendance_score").html());
-	var reading_reaction_score = removeCommas($("#reading_reaction_score").html());
-	var blogging_score = removeCommas($("#blogging_score").html());	
-	var team_assignment_score = removeCommas($("#team_assignment_score").html());	
-	var assignment_score = lfpg_score + boss_battle_score	
+	var reading_score = removeCommas($("#reading_score").html());
+	var section_score = removeCommas($("#section_score").html());	
+	var essays_score = removeCommas($("#team_assignment_score").html());	
 	var total_points = removeCommas($("#courseTotalPts").html());
 	var totalSoFar = removeCommas($("#userBarTotal").html());
 
@@ -53,7 +53,8 @@ if ($("#userScoreSection").length > 0){
 		  '#DB843D',  
 		  '#89A54E', 
 			'#80699B', 
-			'#3D96AE'
+			'#3D96AE',
+			'#f9ee14'
 
 		],
 		chart: {
@@ -131,18 +132,22 @@ if ($("#userScoreSection").length > 0){
 				}
 			}	
 		},
+		// user profile  TODO Hardcoded graph labels
 		series: [{
-			name: 'Team Points',
-			data: [team_assignment_score]	
-		},{
-			name: 'Assignments',
-			data: [assignment_score]	
+			name: 'Group Project',
+			data: [group_project_score]	
 		},{
 			name: 'Blogging',
 			data: [blogging_score]	
 		},{
-			name: 'Reading Reactions',
-			data: [reading_reaction_score]	
+			name: 'Essays',
+			data: [essays_score]	
+		},{
+			name: 'Section',
+			data: [section_score]	
+		},{
+			name: 'Keeping Up With The Reading',
+			data: [reading_score]	
 		},{
 			name: 'Attendance',
 			data: [attendance_score]	
@@ -183,8 +188,8 @@ if ($("#userScoreSection").length > 0){
 		},
 		yAxis: {
 			min: 0,
-			max:1400000,
-			tickInterval: 200000,
+			max:100,
+			tickInterval: 5,
 			title: {
 				text: 'Total Points in Course'
 			},
@@ -243,7 +248,7 @@ if ($("#userScoreSection").length > 0){
 			name: 'Blogging',
 			data: [blogging_score]	
 		},{
-			name: 'Reading Reactions',
+			name: 'Keeping Up With The Reading',
 			data: [reading_reaction_score]	
 		},{
 			name: 'Attendance',

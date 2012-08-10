@@ -6,7 +6,7 @@
   - else 
     = f.association :assignment
     = f.input :score
-    = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span7' }
+    = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
     = fields_for @earned_badge
       - Badge.all.each do |badge|
         = check_box_tag "earned_badge[badge_ids][]", badge.id
