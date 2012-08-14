@@ -19,8 +19,9 @@ class InfoController < ApplicationController
     @title = "My Dashboard"
     @teams = current_course.teams.all
     @students = current_course.users.students
-    @top_ten_students = @students.order('sortable_score DESC').limit(10)
-    @bottom_ten_students = @students.order('sortable_score ASC').limit(10)
+    @top_ten_students = @students.order('sortable_score ASC').limit(10)
+    #TODO This is listing the students in the wrong order (The same order as the top ten - why??)
+    @bottom_ten_students = @students.order('sortable_score DESC').limit(10)
   end
 
 end

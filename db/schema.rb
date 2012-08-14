@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810034214) do
+ActiveRecord::Schema.define(:version => 20120810163643) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -173,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20120810034214) do
     t.integer  "user_weight_amount"
     t.integer  "min_size"
     t.integer  "max_size"
+    t.datetime "user_weight_amount_close_date"
   end
 
   create_table "dashboards", :force => true do |t|

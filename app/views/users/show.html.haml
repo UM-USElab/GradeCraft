@@ -49,7 +49,7 @@
           %button.btn.btn-inverse{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name)}
           %span.badge.badge-warning= assignment_type.weight
           - if assignment_type.student_choice?
-            = link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+            %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
           %div{:id => "assignment_type-#{assignment_type.id}", :class => "collapse"}
             %div.assignmentsGroup
               - assignments.each do |assignment|

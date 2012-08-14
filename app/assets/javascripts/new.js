@@ -1,21 +1,5 @@
 $(document).ready(function(){
-	
-// Collapsible tables in Assignments section
-	$('.collapsible').hide();
 
-	$('.assignTitle').click(function(){
-		$(this).toggleClass('assignTitleOpen');
-		$(this).next('.collapsible').slideToggle();
-	});
-
-// Random PSA tip
-	$("#psaBox p").hide();
-	var psas = $("#psaBox p").get().sort(function(){ 
-            return Math.round(Math.random())-0.5; //so we get the right +/- combo
-           });
-    var firstpsa = psas.slice(1,2);
-	$(firstpsa).show();
-	
 	var chart;
 
 // Remove commas from numbers when grabbing them from page
@@ -455,7 +439,7 @@ if ($("#progressbar").length > 0){
 // update the points --> letter grade table
 		$("#expected-grade > span").hide();
 
-		if (totalPts < 600000){
+		if (totalPts < 42.25){
 			$("#doomgrade").show();
 		}
 		else if (totalPts < 650000){
@@ -482,7 +466,7 @@ if ($("#progressbar").length > 0){
 		else if(totalPts < 1000000){
 			$("#aminusgrade").show();
 		}
-		else if(totalPts < 1245000){
+		else if(totalPts < 97.5){
 			$("#agrade").show();
 		}
 		else{

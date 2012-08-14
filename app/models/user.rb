@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
                     :url => '/assets/avatars/:id/:style/:basename.:extension',
                     :path => ':rails_root/public/assets/avatars/:id/:style/:basename.:extension',
                     :default_url => '/images/missing_:style.png'
-  default_scope :order => 'last_name ASC'
+  scope :alpha, :order => 'last_name ASC'
   scope :winning, :order => 'sortable_score DESC'
   
   has_many :course_memberships, :dependent => :destroy
@@ -36,11 +36,7 @@ class User < ActiveRecord::Base
   validates :email, :presence => true,
                     :format   => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
-
-  %w{student gsi professor admin}.each do |role|
-    scope role.pluralize, where(:role => role)
-  end 
-  
+  #Names
   def name
     @name = [first_name,last_name].reject(&:blank?).join(' ').presence || "User #{id}"
   end
@@ -52,6 +48,11 @@ class User < ActiveRecord::Base
       name
     end
   end
+  
+  #Roles
+  %w{student gsi professor admin}.each do |role|
+    scope role.pluralize, where(:role => role)
+  end 
 
   def is_prof?
     role == "professor"
@@ -77,11 +78,18 @@ class User < ActiveRecord::Base
     is_prof? || is_gsi? || is_admin?
   end
   
-  # TODO
+  # Score
+  
+  #TODO
   def assignment_type_score
     grades.assignment_type.sum(:score) || 0
   end
+  
+  def assignment_type_score
+    grades.attendance.sum(:score) || 0
+  end
    
+  #Why both? 
   def score
     grades.map(&:score).inject(&:+) || 0
   end
@@ -90,6 +98,8 @@ class User < ActiveRecord::Base
     grades.map(&:score).inject(&:+) || 0 
   end
   
+  #Status
+  #TODO
   def rank
     
   end
@@ -98,6 +108,7 @@ class User < ActiveRecord::Base
   
   end
   
+  #Badges
   def user_badge_count
     earned_badges.count
   end
@@ -120,7 +131,7 @@ class User < ActiveRecord::Base
   end
 
   def assignment_type_score_possible
-    grades.where(:type => "").map(&:points_possible).inject(&:+) || 0
+    #grades.where(:type => "").map(&:points_possible).inject(&:+) || 0
   end
 
   def possible_score
@@ -140,6 +151,7 @@ class User < ActiveRecord::Base
     #attendance_grade /attendance_dates.count TODO
   end
   
+  #Export Users and Final Scores [need to add final grade]
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << ["First Name", "Last Name", "Score"]
@@ -149,29 +161,5 @@ class User < ActiveRecord::Base
     end
   end
   
-  def attendance_score
-    10000
-  end
-  
-  def readings_score
-  
-  end
-  
-  def section_score
-  
-  end
-  
-  def blogging_score
-  
-  end
-  
-  def essays_score
-  
-  end
-  
-  def group_project_score
-  
-  end
-
 
 end
