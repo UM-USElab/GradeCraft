@@ -39,6 +39,22 @@ class User < ActiveRecord::Base
   validates :email, :presence => true,
                     :format   => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
+  
+  #Course
+  
+  def find_scoped_courses(course_id)
+    course_id = BSON::ObjectId(course_id) if course_id.is_a?(String)
+    if is_admin? || self.course_ids.include?(course_id)
+      Course.find(course_id)
+    else
+      raise 
+    end
+  end
+  
+  def default_course
+    @default_course ||= (self.courses.where(:id => self.default_course_id).first || self.courses.first)
+  end
+  
   #Names
   def name
     @name = [first_name,last_name].reject(&:blank?).join(' ').presence || "User #{id}"
@@ -52,6 +68,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def team_leader
+    team.try(:team_leader)
+  end
+
   #Roles
   %w{student gsi professor admin}.each do |role|
     scope role.pluralize, where(:role => role)
@@ -81,16 +101,7 @@ class User < ActiveRecord::Base
     is_prof? || is_gsi? || is_admin?
   end
   
-  # Score
-  
-  #TODO
-  def assignment_type_score
-    grades.assignment_type.sum(:score) || 0
-  end
-  
-  def assignment_type_score
-    grades.attendance.sum(:score) || 0
-  end
+  #Score
    
   #Why both? 
   def score
@@ -98,17 +109,26 @@ class User < ActiveRecord::Base
   end
   
   def sortable_score
-    grades.map(&:score).inject(&:+) || 0 
+    grades.map(&:score).inject(&:+) || 0
+  end
+  
+  #TODO
+  def assignment_type_score
+    grades.assignment_type.sum(:score) || 0
+  end
+
+  def assignment_type_score_possible
+    grades.where(:type => @assignment_type).map(&:points_possible).inject(&:+) || 0
+  end
+  
+  def attendance_rate
+    #(attendance_grade /assignments(type => attendance).count)*100 TODO
   end
   
   #Status
   #TODO
   def rank
     
-  end
-  
-  def alpha
-  
   end
   
   #Badges
@@ -118,40 +138,6 @@ class User < ActiveRecord::Base
 
   def team_badges
     team.try(:earned_badges) || []
-  end
-  
-  def find_scoped_courses(course_id)
-    course_id = BSON::ObjectId(course_id) if course_id.is_a?(String)
-    if is_admin? || self.course_ids.include?(course_id)
-      Course.find(course_id)
-    else
-      raise 
-    end
-  end
-  
-  def default_course
-    @default_course ||= (self.courses.where(:id => self.default_course_id).first || self.courses.first)
-  end
-
-  def assignment_type_score_possible
-    #grades.where(:type => "").map(&:points_possible).inject(&:+) || 0
-  end
-
-  def possible_score
-    assignment_type_score_possible || 0
-  end
-
-  def team_assignment_score
-    0 # TODO: Remove this or make it calculate score
-  end
- 
-  def team_leader
-    team.try(:team_leader)
-  end
-
-  
-  def attendance_rate
-    #attendance_grade /attendance_dates.count TODO
   end
   
   #Export Users and Final Scores [need to add final grade]

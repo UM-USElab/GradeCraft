@@ -30,7 +30,7 @@
           %td
             - student.team_leader.tap do |team_leader|
               - if team_leader.present?
-                %div= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary"
+                %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
                   
 
 %div.row.span6
@@ -61,4 +61,4 @@
           %td
             - student.team_leader.tap do |team_leader|
               - if team_leader.present?
-                %div= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary"
+                %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
