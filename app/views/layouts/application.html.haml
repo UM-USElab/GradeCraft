@@ -16,7 +16,7 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container-fluid
-          %a.brand(href="/")
+          %a.brand(href="/dashboard")
             - if current_course
               #{current_course.name}
             - else
@@ -42,7 +42,6 @@
                   //%li= link_to "Gradebook", gradebook_assignment_grades_path
                   %li= link_to "#{current_course.user_term}s", students_users_path
                   %li= link_to "Staff", staff_users_path
-                  %li= link_to "News", news_index_path
                   - if current_course.has_teams?    
                     %li= link_to "#{current_course.team_term} Challenges", challenges_path
                   - if current_course.has_groups?    
