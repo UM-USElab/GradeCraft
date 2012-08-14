@@ -78,7 +78,7 @@ class UsersController < ApplicationController
   def create
     @teams = current_course.teams.all
     @user = current_course.users.create(params[:user])
-    
+    @user.save
     #@user.course ||= current_course
     
     respond_with @user
@@ -87,9 +87,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @teams = Team.all
-
+    
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        @user.save
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :ok }
       else

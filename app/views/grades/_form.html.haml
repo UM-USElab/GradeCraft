@@ -1,9 +1,9 @@
-= simple_form_for([@assignment, @grade]) do |f|
+= simple_form_for([@assignment, @grade], :html => {:class => 'form-horizontal' }) do |f|
   = f.input :assignment_id, :collection => @assignments
   = f.association :user, :collection => @students
   = f.input :score
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
-  = f.input :status, :as => :select, :collection => [["New"], ["Graded"],["Released"]]
+  = f.input :status, :as => :radio, :collection => [["New"], ["Graded"],["Released"]]
   = f.button :submit, :class => 'btn btn-primary'
 
 = link_to 'Cancel', assignments_path, :class => 'btn btn-primary'

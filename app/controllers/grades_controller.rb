@@ -73,6 +73,7 @@ class GradesController < ApplicationController
   def create
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @assignment.assignment_grades.create(params[:grade])
+    @user = User.find(params[:user_id])
     @users = current_course.users.all
     @badges = current_course.badges.all
     @teams = current_course.teams.all
@@ -92,7 +93,7 @@ class GradesController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     #@grade = @assignment.assignment_grades.find(params[:grade])
     @grade = Grade.find(params[:id])
-    
+    #@user = @grade.find(params[:user_id])
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
         format.html { redirect_to assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id), notice: 'Grade was successfully updated.' }
