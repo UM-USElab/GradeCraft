@@ -17,6 +17,7 @@ class GradesController < ApplicationController
   def show
     @title = "View Grade"
     @grade = Grade.find(params[:id])
+    @assignment = Assignment.find(params[:assignment_id])
     @earned_badges = EarnedBadge.all
   end
   
@@ -64,6 +65,7 @@ class GradesController < ApplicationController
     @title = "Edit Grade"
     @badges = current_course.badges.all
     @assignment = Assignment.find(params[:assignment_id])
+    @assignments = current_course.assignments.all
     @grade = @assignment.assignment_grades.find(params[:id])
     respond_with @grade = Grade.find(params[:id])
   end
@@ -88,11 +90,12 @@ class GradesController < ApplicationController
 
   def update
     @assignment = Assignment.find(params[:assignment_id])
-    @grade = @assignment.assignment_grades.find(params[:grade])
-
+    #@grade = @assignment.assignment_grades.find(params[:grade])
+    @grade = Grade.find(params[:id])
+    
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
-        format.html { redirect_to assignment_grades_path(@assignment.id, grade.id), notice: 'Grade was successfully updated.' }
+        format.html { redirect_to assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id), notice: 'Grade was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

@@ -1,5 +1,5 @@
 = simple_form_for([@assignment, @grade]) do |f|
-  = f.association :assignment, :collection => @assignments
+  = f.input :assignment_id, :collection => @assignments
   = f.association :user, :collection => @students
   = f.input :score
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }

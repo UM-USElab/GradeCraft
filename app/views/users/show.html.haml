@@ -59,7 +59,7 @@
                     - if grade.attempted? 
                       %span.assignmentGrade #{ grade.score } / #{grade.point_total} 
                       - if current_user.is_staff?
-                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path(grade.id)  
+                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id)  
                       - if grade.has_feedback?
                         %button.btn.btn-mini.btn-inverse{"data-target" => "#assignment-#{assignment.id}", "data-toggle" => "collapse"}= "See Feedback"
                         %div{:id => "assignment-#{assignment.id}", :class => "collapse"}
