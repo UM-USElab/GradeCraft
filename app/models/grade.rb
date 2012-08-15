@@ -61,7 +61,7 @@ class Grade < ActiveRecord::Base
   end
   
   def save_user_score
-    #@user.save
+    user.save
   end
   
   def is_released?

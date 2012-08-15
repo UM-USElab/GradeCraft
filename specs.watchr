@@ -23,16 +23,19 @@ def run(cmd)
 end
 
 def run_all_specs
+  system('clear')
   run "bundle exec rspec -b spec"
 end
 
 def run_single_spec *spec
+  system('clear')
   spec = spec.join(' ')
   result = run "bundle exec rspec -d -b #{spec}"
   notify (result ? "Pass" : "Fail")
 end
 
 def run_specs_with_shared_examples(shared_example_filename, spec_path = 'spec')
+  system('clear')
 
   # Returns the names of the shared examples in filename
   def shared_examples(filename)

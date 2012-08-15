@@ -17,13 +17,14 @@ describe User do
     end
   end
 
-  context "when grading a student" do
-    let(:student) { Fabricate(:student_with_grades) }
-    it "sums scores for all student's grades" do
-      student.grades[0].score = 2000
-      student.grades[1].score = 3000
-      student.score.should == 5000
-    end
+  context "When sorting" do
+    course = Fabricate(:course)
+    user = Fabricate(:user, :courses => [course])
+    a1 = Fabricate(:assignment, :course => course)
+    a2 = Fabricate(:assignment, :course => course)
+    Fabricate(:grade, :user => user, :assignment => a1, :score => 200)
+    Fabricate(:grade, :user => user, :assignment => a2, :score => 300)
+    user.grades.count.should == 2
+    user.sortable_score.should == 500
   end
-
 end

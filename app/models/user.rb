@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
   
-  before_save :sortable_score
+  before_save :set_sortable_score
   
   Roles = %w{student professor gsi admin}
   
   attr_accessor :remember_me
-  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :sortable_score, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id
+  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id
 
 
   has_attached_file :avatar,
@@ -102,13 +102,12 @@ class User < ActiveRecord::Base
   end
   
   #Score
+  def sortable_score
+    super || 0
+  end
    
   #Why both? 
   def score
-    grades.map(&:score).inject(&:+) || 0
-  end
-  
-  def sortable_score
     grades.map(&:score).inject(&:+) || 0
   end
   
@@ -150,5 +149,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  private
+
+  def set_sortable_score
+    self.sortable_score = grades.map(&:score).inject(&:+) || 0
+  end
 
 end
