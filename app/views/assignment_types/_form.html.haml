@@ -2,9 +2,9 @@
   = f.input :name, :label => "Assignment Type Name"
   = f.input :point_setting, :label => "How will points be set?", :hint => "Do all assignments have the same point value? Or is this set individually?", :collection => [["Individually"], ["Universally"]]
   = f.input :universal_point_value, :label => "Universal Value"
-  = f.input :levels, :label => "Will there be levels to the grading?", :hint => "This includes normal A - F grading schemes.", :as => :boolean
-  = f.input :due_date_present, :label => "Will assignments have due dates?"
-  = f.input :resubmission, :label => "Resubmission allowed", :hint => "Can this assignment type be resubmitted for a better grade?", :collection => [["Yes", "1"], ["No", "0"], ["Set per Assignment", "2"]]
+  = f.input :levels, :label => "Will there be levels to the grading?", :hint => "This includes normal A - F grading schemes.", :as => :radio
+  = f.input :due_date_present, :label => "Will assignments have due dates?", :as => :radio
+  = f.input :resubmission, :label => "Resubmission allowed", :hint => "Can this assignment type be resubmitted for a better grade?", :collection => [["Yes", "1"], ["No", "0"], ["Set per Assignment", "2"]], :as => :radio
   = f.input :max_value, :label => "Max Value", :hint => "Does this assignment type have a maximum value within the course?"
   = f.input :percentage_course, :label => "Course Percentage", :hint => "What percentage of the course total grade does this assignment type make up?"
   = f.input :user_percentage_set, :label => "Do students decide how much this assignment type is worth?", :as => :radio_buttons

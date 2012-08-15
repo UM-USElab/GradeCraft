@@ -15,6 +15,7 @@
   - if @assignment.mass_gradeable?
     (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
 
+//TODO Why is the path for this not working?
 //= form_tag edit_status_assignment_grades_path do
 %table#assignments.display.table-bordered.table
   %thead
@@ -44,7 +45,7 @@
         %td= link_to "View", assignment_grade_path(@assignment.id, grade.id)
         %td= link_to "Edit", edit_assignment_grade_path(@assignment.id, grade.id)
         %td= link_to "Delete", assignment_grade_path(@assignment.id, grade.id), :confirm => 'Are you sure?', :method => :delete
-  %p
+%p
 //= submit_tag "Update Grade Statuses", :class => "btn btn-info"
 
 %div#footerNav
