@@ -20,6 +20,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'responders'
 gem 'brakeman'
 gem 'surveyor'
+gem 'ranked-model'
 
 # To use Jbuilder templates for JSON
 gem 'jbuilder'

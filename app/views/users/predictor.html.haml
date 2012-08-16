@@ -17,84 +17,20 @@
       %span#dplusgrade D+
     %div#progressbar
   %div.flexslider
-    %ul.slides
-      %li#slide-1
-        %div.slide-panel#attendance
-          %h2 Step 1 - Attendance
-          %p 
-            Current Score: 
-            %span#attendanceScore #{number_with_delimiter(@user.attendance_score, :delimiter => ',') || 0}
-          Weekly engagement in this course, in the form of attendance and readings, is required. 
-          %br
-          Which classes do you expect to attend?
-          %span.point-value (5,000 pts/class)
-          %div#classes-missed
-            %div.select-checkboxes <a href="#" class="select-all">select all</a> | <a href="#" class="select-none">select none</a>
-            %fieldset.checkbox-group
-              %legend September
-              - Grade.completion.where(:user_id => @user.id).each do |grade|
-                - if grade.assignment.assignment_type_id == "9" && grade.assignment.due_date.strftime("%B").include?("September")
-                  - if grade.attempted? 
-                    %span #{grade.title} –
-                    %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
-                    %br
-                  - else
-                    %span #{grade.title} –
-                    %span #{number_with_delimiter(grade.score, :delimiter => ',') || 0}
-                    %br
-              - Assignment.future.each do |assignment|
-                - if assignment.type == "Attendance" && assignment.due_date.strftime("%B").include?("September")
-                  %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
-                  = assignment.title
-                  %br
-            %fieldset.checkbox-group
-              %legend October
-              - Grade.completion.where(:user_id => @user.id).each do |grade|
-                - if grade.assignment.assignment_type_id == "9" && grade.assignment.due_date.strftime("%B").include?("October")
-                  - if grade.attempted? 
-                    %span #{grade.title} –
-                    %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
-                    %br
-                  - else
-                    %span #{grade.title} –
-                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
-                    %br
-              - Assignment.future.each do |assignment|
-                - if assignment.assignment_type_id == "9" && assignment.due_date.strftime("%B").include?("October")
-                  %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
-                  = assignment.title
-                  %br
-            %fieldset.checkbox-group
-              %legend November
-              - Grade.completion.where(:user_id => @user.id).each do |grade|
-                - if grade.assignment.assignment_type_id == "9" && grade.assignment.due_date.strftime("%B").include?("November")
-                  - if grade.attempted? 
-                    %span #{grade.title} –
-                    %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
-                    %br
-                  - else
-                    %span #{grade.title} –
-                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
-                    %br
-              - Assignment.future.each do |assignment|
-                - if assignment.assignment_type_id == "9" && assignment.due_date.strftime("%B").include?("November")
-                  %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
-                  = assignment.title
-                  %br
-            %fieldset.checkbox-group
-              %legend December
-              - Grade.completion.where(:user_id => @user.id).each do |grade|
-                - if grade.assignment.assignment_type_id == "9" && grade.assignment.due_date.strftime("%B").include?("December")
-                  - if grade.attempted? 
-                    %span #{grade.title} –
-                    %span #{number_with_delimiter(grade.score, :delimiter => ',')} 
-                    %br
-                  - else
-                    %span #{grade.title} –
-                    %span #{number_with_delimiter(grade.score, :delimiter => ',')}
-                    %br
-              - Assignment.future.each do |assignment|
-                - if assignment.assignment_type_id == "9" && assignment.due_date.strftime("%B").include?("December")
-                  %input{:type => "checkbox", :name => "class-attendance", :value => "5000", :class => "class-checkbox"} 
-                  = assignment.title
-                  %br
+    - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
+      %li{:id => "slide-#{assignment_type.id}"}
+        %div.slide-panel
+          %h2= assignment_type.try(:name)
+          %p Current Score:
+          %span= @user.assignment_type_score
+          %span#assignmentTypeScore= assignment_type.possible_score
+          = assignment_type.predictor_description
+          = assignment_type.weight
+          - if assignment_type.student_choice?
+            %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+          - assignments.each do |assignment|
+            %div.assignment
+              %span.assignmentTitle= assignment.try(:title)
+              - assignment.assignment_grades.where(:user_id => @user.id).each do |grade|
+                - if grade.attempted? 
+                  %span.assignmentGrade #{ grade.score } / #{grade.point_total}

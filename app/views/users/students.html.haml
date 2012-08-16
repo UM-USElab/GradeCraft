@@ -1,6 +1,7 @@
 %table#users.display.table-bordered
   %thead
     %tr
+      //%th Ranking
       %th Email
       %th Name
       %th Team
@@ -17,6 +18,8 @@
   %tbody
     - for student in @students
       %tr
+        //TODO Add ranking function
+        //%td= student.rank(:course_rank)
         %td= student.email
         %td= student.name
         %td= student.team.try(:name)

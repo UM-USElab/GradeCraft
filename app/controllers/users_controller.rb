@@ -28,6 +28,7 @@ class UsersController < ApplicationController
     @users = current_course.users
     @students = current_course.users.students.order(:last_name)
     @teams = current_course.teams.all 
+    @ranking = current_course.users.rank(:sortable_score).students
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -51,6 +52,8 @@ class UsersController < ApplicationController
   
   def predictor
     @title = "Predict Course Grade"
+    @assignment_types = current_course.assignment_types
+    @assignments = current_course.assignments
     if current_user.is_staff?
       @user = User.find(params[:user_id])
     else

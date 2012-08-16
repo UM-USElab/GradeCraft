@@ -29,6 +29,12 @@ class User < ActiveRecord::Base
   belongs_to :team
   has_many :group_memberships, :dependent => :destroy
   has_many :groups, :through => :group_memberships
+  
+  include RankedModel
+  ranks :sortable_score
+  
+  ranks :course_rank,
+    :with_same => :course_id
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -105,19 +111,14 @@ class User < ActiveRecord::Base
   def sortable_score
     super || 0
   end
-   
-  #Why both? 
+
   def score
     grades.map(&:score).inject(&:+) || 0
   end
   
-  #TODO
+  #TODO 
   def assignment_type_score
-    grades.assignment_type.sum(:score) || 0
-  end
-
-  def assignment_type_score_possible
-    grades.where(:type => @assignment_type).map(&:points_possible).inject(&:+) || 0
+    grades.where(:assignment_type_id => assignment_type.id).map(&:score).inject(&:+) || 0
   end
   
   def attendance_rate
@@ -125,10 +126,6 @@ class User < ActiveRecord::Base
   end
   
   #Status
-  #TODO
-  def rank
-    
-  end
   
   #Badges
   def user_badge_count

@@ -4,6 +4,7 @@ class AssignmentType < ActiveRecord::Base
   belongs_to :course
   belongs_to :grade_scheme
   has_many :assignments
+  has_many :grades, :through => :assignments
   has_many :user_assignment_type_weights
   
   accepts_nested_attributes_for :assignments
@@ -15,13 +16,20 @@ class AssignmentType < ActiveRecord::Base
       percentage_course.to_s << "%"
     elsif max_value?
       max_value.to_s << " possible points"
-    else
+    elsif student_choice?
       "You decide!"
+    else
+      possible_score
     end
   end
   
   def student_choice?
     user_percentage_set == "true"
   end
+  
+  def possible_score
+    self.assignments.sum(:point_total) || 0
+  end
+
   
 end
