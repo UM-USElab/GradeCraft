@@ -18,8 +18,7 @@ class User < ActiveRecord::Base
   scope :alpha, :order => 'last_name ASC'
   scope :winning, :order => 'sortable_score DESC'
   
-  has_many :course_memberships, :dependent => :destroy
-  has_many :courses, :through => :course_memberships
+  has_and_belongs_to_many :courses, :join_table => :course_memberships
   accepts_nested_attributes_for :courses          
   has_many :grades, :dependent => :destroy
   has_many :user_assignment_type_weights

@@ -2,7 +2,7 @@
   %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
   %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})"
   %span.assignmentChoice
-    - if assignment_type.student_choice?
+    - if assignment_type.try(:student_choice?)
       - if current_user.is_student?
         = link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
   %table.table.table-bordered

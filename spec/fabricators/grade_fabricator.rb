@@ -1,4 +1,4 @@
 Fabricator(:grade) do
-  user { Fabricate(:user) }
-  assignment { Fabricate(:assignment) }
+  user
+  assignment
 end

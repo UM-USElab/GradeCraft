@@ -1,8 +1,8 @@
 Fabricator(:user) do
   first_name 'Test'
   last_name 'User'
-  username { sequence(:username) { |i| "testuser#{i}" } }
-  email { sequence(:email) { |i| "user#{i}@gradetracker.local" } }
+  username { Fabricate.sequence(:username) { |i| "testuser#{i}" } }
+  email { Fabricate.sequence(:email) { |i| "user#{i}@gradetracker.local" } }
 end
 
 Fabricator(:student, :from => :user) do

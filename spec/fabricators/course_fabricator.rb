@@ -1,8 +1,8 @@
 Fabricator(:course) do
-  name "MyString"
-  courseno "MyString"
-  year "2012-06-16 21:02:25"
-  semester "MyString"
+  name 'Defense Against the Dark Arts'
+  courseno 101
+  year Date.today.year
+  semester %w{Fall Winter Spring Summer}.sample
   badge_set
   theme
 end

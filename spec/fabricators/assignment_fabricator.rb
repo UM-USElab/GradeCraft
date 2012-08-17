@@ -1,1 +1,3 @@
-Fabricator(:assignment)
+Fabricator(:assignment) do
+  course
+end
