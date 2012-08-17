@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :'ensure_admin?', :only=>[:all_users]
 
   def index
-    @title = "View all #{current_course.user_term}s"
+    @title = "View all Users"
     @users =  current_course.users.order(:last_name)
     respond_to do |format|
       format.html # index.html.erb
@@ -26,8 +26,9 @@ class UsersController < ApplicationController
   
   def students
     @users = current_course.users
-    @students = current_course.users.students.order(:last_name)
+    @students = current_course.users.students
     @teams = current_course.teams.all 
+    @sorted_students = @students.order('sortable_score DESC')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -51,6 +52,8 @@ class UsersController < ApplicationController
   
   def predictor
     @title = "Predict Course Grade"
+    @assignment_types = current_course.assignment_types
+    @assignments = current_course.assignments
     if current_user.is_staff?
       @user = User.find(params[:user_id])
     else
@@ -62,13 +65,15 @@ class UsersController < ApplicationController
   def new
     @title = "Register"
     @teams = current_course.teams.all
-    @user.course = current_course.users.new(params[:users])
+    @courses = Course.all
+    @user = current_course.users.new(params[:users])
     respond_with @user
   end
 
   def edit
     @title = "Edit #{current_course.user_term}"
     @teams = current_course.teams.all
+    @courses = Course.all
     @user = current_course.users.find(params[:id])
     respond_with @user
   end
@@ -76,8 +81,8 @@ class UsersController < ApplicationController
   def create
     @teams = current_course.teams.all
     @user = current_course.users.create(params[:user])
-    
-    @user.course ||= current_course
+    @user.save
+    #@user.course ||= current_course
     
     respond_with @user
   end
@@ -85,9 +90,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @teams = Team.all
-
+    
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        @user.save
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :ok }
       else
@@ -97,10 +103,17 @@ class UsersController < ApplicationController
     end
   end
 
+  #TODO Not currently working
   def destroy
     @user = current_course.users.find(params[:id])
+    
     @user.destroy
-    respond_with @user
+
+    respond_to do |format|
+      format.html { redirect_to users_url }
+      format.json { head :ok }
+    end
+
   end
 
   def edit_profile
@@ -111,7 +124,7 @@ class UsersController < ApplicationController
   def update_profile
     @user = current_user
     @user.update_attribute(:password, params[:password]) if params[:password] == params[:confirm_password]
-    respond_with @user
+    respond_with(@user)
   end
   
   

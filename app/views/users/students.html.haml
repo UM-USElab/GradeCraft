@@ -1,6 +1,7 @@
 %table#users.display.table-bordered
   %thead
     %tr
+      %th Course Rank
       %th Email
       %th Name
       %th Team
@@ -8,14 +9,18 @@
       %th Log ins
       %th Page Views
       %th Predictor Views
-      %th Badges Earned
+      - if current_course.has_badges? 
+        %th Badges Earned
       %th 
       %th
       %th
       %th
   %tbody
-    - for student in @students
+    - i = 1
+    - @sorted_students.each do |student|
       %tr
+        //TODO Add ranking function
+        %td= i
         %td= student.email
         %td= student.name
         %td= student.team.try(:name)
@@ -23,13 +28,15 @@
         %td= student.visit_count
         %td= student.page_views
         %td= student.predictor_views
-        %td
-          - student.earned_badges.each do |badge|
-            %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+        - if current_course.has_badges? 
+          %td
+            - student.earned_badges.each do |badge|
+              %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
         %td= link_to 'Dashboard', student
         %td= link_to 'Predictor', predictor_users_path(:user_id => student)
         %td= link_to 'Edit', edit_user_path(student)
         %td= link_to 'Delete', student, :confirm => 'Are you sure?', :method => :delete
+      - i += 1
 = "Download:"
 = link_to "CSV", users_path(format: "csv") |
 = link_to "Excel", users_path(format: "xls")

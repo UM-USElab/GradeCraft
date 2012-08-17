@@ -120,7 +120,7 @@ class GradesController < ApplicationController
     if @assignment.update_attributes(params[:assignment])
       respond_with @assignment, :location => assignment_path(@assignment)
     else
-      respond_with @assignment, :location => mass_edit_grades_path(:assignment_id => @assignment)
+      respond_with @assignment, :location => mass_edit_assignment_grades_path(:assignment_id => @assignment)
     end
   end
 

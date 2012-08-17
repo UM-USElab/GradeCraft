@@ -3,19 +3,23 @@
 %div#leftSidebar
   %div#userGravatar
     = gravatar_for @user, :size => 230
-  %div#badgesWrapper
-    %span.title Badges Earned
-    %div#badgesEarned
-      - @user.earned_badges.each do |badge|
-        %div.earned-badge
-          %img{:src => badge.icon, :alt => badge.title}
-          .badgeTitle= badge.title
-      %div.clear
-      
+  - if current_course.has_badges? 
+    %div#badgesWrapper
+      %span.title Badges Earned
+      %div#badgesEarned
+        - @user.earned_badges.each do |badge|
+          %div.earned-badge
+            %img{:src => badge.icon, :alt => badge.title}
+            .badgeTitle= badge.title
+        %div.clear
+  - else
+    %div.clear
+        
      
   %div#helpInfo
     - if current_user.is_staff?
-      %div= link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-primary"
+      - if current_course.has_badges? 
+        %div= link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-primary"
       %div= link_to "Email #{@user.first_name}", "mailto:#{@user.email}", :class => "btn btn-primary"
     - @user.team_leader.tap do |team_leader|
       - if team_leader.present?
@@ -44,15 +48,18 @@
           //#TODO Add Assignment Type point totals
           %button.btn.btn-inverse{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name)}
           %span.badge.badge-warning= assignment_type.weight
+          - if assignment_type.student_choice?
+            %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
           %div{:id => "assignment_type-#{assignment_type.id}", :class => "collapse"}
             %div.assignmentsGroup
               - assignments.each do |assignment|
                 %div.assignment
                   %span.assignmentTitle= assignment.try(:title)
-                  - assignment.grades.where(:user_id => @user.id).each do |grade|
+                  - assignment.assignment_grades.where(:user_id => @user.id).each do |grade|
                     - if grade.attempted? 
                       %span.assignmentGrade #{ grade.score } / #{grade.point_total} 
-                      %span.editLink= link_to "Edit Grade", edit_assignment_grade_path(grade.id)  
+                      - if current_user.is_staff?
+                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id)  
                       - if grade.has_feedback?
                         %button.btn.btn-mini.btn-inverse{"data-target" => "#assignment-#{assignment.id}", "data-toggle" => "collapse"}= "See Feedback"
                         %div{:id => "assignment-#{assignment.id}", :class => "collapse"}

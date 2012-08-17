@@ -28,8 +28,8 @@ class TeamsController < ApplicationController
   # GET /teams/new
   # GET /teams/new.json
   def new
-    @title = "Create a New #{current_course.user_term}"
-    @team =  current_course.team.new
+    @title = "Create a New #{current_course.team_term}"
+    @team =  Team.new
     @users = current_course.users
 
     respond_to do |format|

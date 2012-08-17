@@ -1,18 +1,9 @@
-= @grade.assignment.title
-= simple_form_for(@grade, :html => {:class => 'form-horizontal' }) do |f|
-  = f.input :graded_id, :collection => User.students, :include_blank => false
-  - if @assignment
-    = f.input :assignment_id, :as => :hidden
-  - else 
-    = f.association :assignment
-    = f.input :score
-    = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span7' }
-    = fields_for @earned_badge
-      - Badge.all.each do |badge|
-        = check_box_tag "earned_badge[badge_ids][]", badge.id
-        %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "50"}    
-        = badge.title
-    = f.input :status, :as => :select, :collection => [["New"], ["Graded"],["Released"]]
-
+= simple_form_for([@assignment, @grade], :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :assignment_id, :collection => @assignments
+  = f.association :user, :collection => @students
+  = f.input :score
+  = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
+  = f.input :status, :as => :radio, :collection => [["New"], ["Graded"],["Released"]]
   = f.button :submit, :class => 'btn btn-primary'
-  = link_to 'Cancel', grades_path, :class => 'btn btn-primary'
+
+= link_to 'Cancel', assignments_path, :class => 'btn btn-primary'

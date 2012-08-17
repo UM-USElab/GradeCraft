@@ -1,4 +1,4 @@
-Gradecraft is a gameified gradebook. 
+Gradecraft is a gamified gradebook. 
 
 Current features: 
 - Badges
@@ -10,6 +10,9 @@ Current features:
 - Grade Predictor
 - Grading schemes
 - Export students and final grades
+- User analytics
+- Team analytics
+- Assignment stats
 
 Upcoming:
 - Automated attendance logging & scoring

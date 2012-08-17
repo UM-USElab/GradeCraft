@@ -1,4 +1,4 @@
-%table#teams.table.table-bordered
+%table.table.table-bordered
   %thead
     %tr
       %th ID
@@ -28,5 +28,5 @@
           %td= link_to 'Delete', team, :confirm => 'Are you sure?', :method => :delete
 %div#footerNav
   - if current_user.is_staff?
-    = link_to "Add a New Team", new_team_path, :class => "btn btn-primary"
-    = link_to "Grade a Team Assignment", assignments_path, :class => "btn btn-inverse"
+    = link_to "Add a #{current_course.team_term}", new_team_path, :class => "btn btn-primary"
+    //= link_to "Grade a #{current_course.team_term} Assignment", assignments_path, :class => "btn btn-inverse"

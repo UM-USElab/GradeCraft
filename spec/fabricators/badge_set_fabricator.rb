@@ -1,4 +1,3 @@
 Fabricator(:badge_set) do
-  name "MyString"
-  notes "MyString"
+  name { sequence(:name) { |i| "Badge Set #{i}" } } 
 end

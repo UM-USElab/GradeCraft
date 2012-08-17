@@ -1,9 +1,12 @@
 = @assignment
 = simple_form_for(@group, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :name
-  = f.association :assignment, :collection => @assignments, :as => :select
+  - if @assignment
+    = f.association :assignment_id, :as => :hidden
+  - else
+    = f.association :assignment, :collection => @assignments, :as => :select
   = f.association :users, :collection => @users, :as => :check_boxes
-  = f.input :proposal, :as => :text
+  = f.input :proposal, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   - if current_user.is_staff?
     = f.input :approved, :as => :select, :collection => [["Approved"], ["Rejected"]]
   

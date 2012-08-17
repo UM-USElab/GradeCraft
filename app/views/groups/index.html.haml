@@ -4,6 +4,7 @@
       %th Assignment
       %th Group Name
       %th Status
+      %th Grade
       %th 
       %th
       %th
@@ -13,6 +14,9 @@
         %td= group.assignment.title
         %td= group.name
         %td= group.approved
+        %td
+        //#TODO need to make grades polymorphic
+        //%td= group.grade.final_grade
         %td= link_to 'View', group
         %td= link_to 'Edit', edit_group_path(group)
         %td= link_to 'Delete', group, :confirm => 'Are you sure?', :method => :delete

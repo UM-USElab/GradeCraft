@@ -1,0 +1,19 @@
+%p
+  %b Assignment:
+  = @assignment_submission.assignment_id
+%p
+  %b User:
+  = @assignment_submission.user_id
+%p
+  %b Group:
+  = @assignment_submission.group_id
+%p
+  %b Feedback:
+  = @assignment_submission.feedback
+%p
+  %b Comment:
+  = @assignment_submission.comment
+
+= link_to 'Edit', edit_assignment_submission_path(@assignment_submission)
+\|
+= link_to 'Back', assignment_submissions_path

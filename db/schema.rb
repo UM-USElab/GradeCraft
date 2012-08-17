@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120809042441) do
+ActiveRecord::Schema.define(:version => 20120817021554) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -36,6 +36,20 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
     t.string   "display_type"
   end
 
+  create_table "assignment_submissions", :force => true do |t|
+    t.integer  "assignment_id"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.string   "feedback"
+    t.string   "comment"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+  end
+
   create_table "assignment_types", :force => true do |t|
     t.string   "name"
     t.string   "point_setting"
@@ -54,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
     t.integer  "grade_scheme_id"
     t.boolean  "due_date_present"
     t.integer  "order_placement"
+    t.string   "user_percentage_set"
   end
 
   create_table "assignments", :force => true do |t|
@@ -71,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
     t.string   "grade_scope"
     t.string   "visible"
     t.datetime "close_time"
+    t.datetime "open_time"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -97,27 +113,6 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
   end
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
-
-  create_table "challenge_grades", :force => true do |t|
-    t.integer   "score"
-    t.string    "feedback"
-    t.integer   "team_id"
-    t.integer   "challenge_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "type"
-  end
-
-  create_table "challenges", :force => true do |t|
-    t.string   "title"
-    t.integer  "points"
-    t.string   "description"
-    t.datetime "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "type"
-    t.integer  "course_id"
-  end
 
   create_table "course_grade_schemes", :force => true do |t|
     t.string   "name"
@@ -154,6 +149,10 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
     t.string   "homepage_message"
     t.boolean  "status"
     t.boolean  "group_setting"
+    t.integer  "user_weight_amount"
+    t.integer  "min_size"
+    t.integer  "max_size"
+    t.datetime "user_weight_amount_close_date"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -202,6 +201,7 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "grade_scheme_id"
+    t.string   "description"
   end
 
   create_table "grade_schemes", :force => true do |t|
@@ -251,14 +251,6 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
     t.integer   "course_id"
     t.string    "approved"
     t.string    "proposal"
-  end
-
-  create_table "news", :force => true do |t|
-    t.string   "title"
-    t.string   "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "course_id"
   end
 
   create_table "question_groups", :force => true do |t|
@@ -387,8 +379,11 @@ ActiveRecord::Schema.define(:version => 20120809042441) do
   end
 
   create_table "user_assignment_type_weights", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "user_id"
+    t.integer  "assignment_type_id"
+    t.integer  "value"
   end
 
   create_table "user_grade_weights", :force => true do |t|

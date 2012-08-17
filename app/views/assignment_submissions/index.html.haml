@@ -1,0 +1,27 @@
+%h1 Listing assignment_submissions
+
+%table
+  %tr
+    %th Assignment
+    %th User
+    %th Group
+    %th Feedback
+    %th Comment
+    %th
+    %th
+    %th
+
+  - @assignment_submissions.each do |assignment_submission|
+    %tr
+      %td= assignment_submission.assignment_id
+      %td= assignment_submission.user_id
+      %td= assignment_submission.group_id
+      %td= assignment_submission.feedback
+      %td= assignment_submission.comment
+      %td= link_to 'Show', assignment_submission
+      %td= link_to 'Edit', edit_assignment_submission_path(assignment_submission)
+      %td= link_to 'Destroy', assignment_submission, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Assignment submission', new_assignment_submission_path

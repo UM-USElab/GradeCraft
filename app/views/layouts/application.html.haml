@@ -16,7 +16,7 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container-fluid
-          %a.brand(href="/")
+          %a.brand(href="/dashboard")
             - if current_course
               #{current_course.name}
             - else
@@ -30,7 +30,7 @@
                   = link_to "Badges", badges_path, :class => "btn"
                 - if current_course.has_teams?                
                   = link_to "#{current_course.team_term}s", teams_path, :class => "btn"
-                = link_to "Predictor",  predictor_users_path(:user_id), :class => "btn"
+                = link_to "Predictor",  predictor_users_path(:user_id => current_user.id), :class => "btn"
             - if current_user.try(:is_staff?) && current_course
               %div{:class => 'btn-group pull-right'}
                 %button.btn.btn-info Course
@@ -39,14 +39,16 @@
                 %ul{:class => 'dropdown-menu well'}
                   %li= link_to "New Assignment", new_assignment_path
                   %li= link_to "Assignment Types", assignment_types_path
+                  //TODO - This is also not getting the routes correct from nested grades
                   //%li= link_to "Gradebook", gradebook_assignment_grades_path
                   %li= link_to "#{current_course.user_term}s", students_users_path
-                  %li= link_to "Staff", staff_users_path
-                  %li= link_to "News", news_index_path
-                  - if current_course.has_teams?    
-                    %li= link_to "#{current_course.team_term} Challenges", challenges_path
                   - if current_course.has_groups?    
                     %li= link_to "Groups", groups_path
+                  - if current_course.has_teams?    
+                    %li= link_to "#{current_course.team_term}s", teams_path
+                  %li= link_to "Predictor Settings", predictor_users_path
+                  %li= link_to "Staff", staff_users_path
+                  %li= link_to "Grade Scheme", course_grade_schemes_path
                   %li= link_to "Course Settings", edit_course_path(current_course)
             - if current_user
               %div{:class => 'btn-group pull-right'}

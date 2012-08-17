@@ -2,12 +2,13 @@
   = f.association :assignment_type, :collection => @assignment_types
   = f.input :title
   = f.input :grade_scope, :as => :select, :collection => [["Individual"], ["Group"], ["Team"]]
-  = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span7' }
+  = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span9' }
   = f.input :point_total, :label => "Total Points Possible"
+  = f.input :open_time
   = f.input :due_date, :as => :datetime
   = f.input :visible, :as => :boolean
   = f.association :grade_schemes, :collection => @grade_schemes, :as => :select
   
-  .form-actions  
+  .form-actions
     = f.button :submit, :class => 'btn btn-inverse'
     = link_to 'Cancel', assignments_path, :class => 'btn btn-inverse'

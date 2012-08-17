@@ -1,6 +1,20 @@
 %p
   %b Name:
   = @group.name
+  
+%p
+  %b Assignment:
+  = @group.assignment.title 
+
+%p
+  %b Proposal:
+  = @group.proposal 
+
+%p 
+  %b Members:
+- @group.users.each do |user|
+  %ul
+    %li= user.name
 
 %div#footerNav
   = link_to 'Edit', edit_group_path(@group), :class => 'btn btn-primary'

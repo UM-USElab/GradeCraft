@@ -3,7 +3,6 @@ Fabricator(:course) do
   courseno "MyString"
   year "2012-06-16 21:02:25"
   semester "MyString"
-  badgeset 1
-  theme "MyString"
-  coursegradescheme 1
+  badge_set
+  theme
 end

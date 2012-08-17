@@ -11,9 +11,7 @@
   %b Feedback:
   %br
   = raw @grade.feedback
-%p
-  %b Attempted:
-  = @grade.attempted
+
 %p
   %b Badges:
   - @grade.earned_badges.each do |badge|
@@ -23,6 +21,6 @@
   = @grade.status
 
 %div#footerNav
-  = link_to 'Edit', edit_grade_path(@grade), :class => 'btn btn-primary'
+  = link_to 'Edit', edit_assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id), :class => 'btn btn-primary'
   = link_to 'Back', assignment_path(@grade.assignment_id), :class => 'btn btn-primary'
-  = link_to "Grade Another " +@grade.assignment.title, new_grade_path("assignment_id"=>@grade.assignment.id), :class => 'btn btn-primary'
+  = link_to "Grade Another " +@grade.assignment.title, new_assignment_grade_path("assignment_id"=>@grade.assignment.id), :class => 'btn btn-primary'

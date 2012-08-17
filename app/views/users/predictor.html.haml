@@ -1,8 +1,36 @@
-%div#predictorWrapper
-  %div#predictionWrapper
-    %div#projectedPoints
-      %span#pointsArw
-      %p= #{current_user.name}'s total projected points: 
-      %span#expectedPointsValue
-    %div#prediction 
-      %div#score    
+%div#predictor-wrapper
+  %div#prediction 
+    #{@user.name}'s total projected points: 
+    %span#expected-points
+    %br 
+    Projected Course Grade:
+    %span#expected-grade
+      %span#aplusgrade A+
+      %span#agrade A
+      %span#aminusgrade A-
+      %span#bplusgrade B+
+      %span#bgrade B
+      %span#bminusgrade B-
+      %span#cplusgrade C+
+      %span#cgrade C
+      %span#cminusgrade C-
+      %span#dplusgrade D+
+    %div#progressbar
+  %div.flexslider
+    - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
+      %li{:id => "slide-#{assignment_type.id}"}
+        %div.slide-panel
+          %h2= assignment_type.try(:name)
+          %p Current Score:
+          %span= @user.assignment_type_score
+          %span#assignmentTypeScore= assignment_type.possible_score
+          = assignment_type.predictor_description
+          = assignment_type.weight
+          - if assignment_type.student_choice?
+            %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+          - assignments.each do |assignment|
+            %div.assignment
+              %span.assignmentTitle= assignment.try(:title)
+              - assignment.assignment_grades.where(:user_id => @user.id).each do |grade|
+                - if grade.attempted? 
+                  %span.assignmentGrade #{ grade.score } / #{grade.point_total}
