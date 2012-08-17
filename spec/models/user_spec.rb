@@ -20,12 +20,20 @@ describe User do
 
   context 'as a student' do
     let(:student) { Fabricate(:student_with_grades) }
+    let(:team) { Fabricate(:team, :users => [student]) }
 
     it "sums up grades correctly" do
       lambda do
         student.grades << Fabricate(:grade, :score => 150)
         student.save
       end.should change(student, :sortable_score).by(150)
+    end
+
+    it "combines grades and team grades" do
+      grades = [Fabricate(:grade, :user => student),Fabricate(:grade, :team => team)]
+      grades.each do |grade|
+        student.earned_grades.should include(grade)
+      end
     end
   end
 end
