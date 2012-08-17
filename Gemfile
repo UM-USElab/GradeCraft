@@ -19,7 +19,6 @@ gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'responders'
 gem 'brakeman'
-gem 'ranked-model'
 
 # To use Jbuilder templates for JSON
 gem 'jbuilder'
