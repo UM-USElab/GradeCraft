@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe User do
-  let!(:user) { Fabricate(:user) }
+  context 'when validating' do
+    before(:each) { Fabricate(:user) }
 
-  context "when validating" do
     it { should validate_presence_of :username }
     it { should ensure_length_of(:username).is_at_most(50) }
     it { should validate_presence_of :email }
@@ -18,11 +18,14 @@ describe User do
     end
   end
 
-  it "sums up grades correctly" do
-    Fabricate(:grade, :user => user, :score => 200)
-    Fabricate(:grade, :user => user, :score => 300)
-    user.save
-    user.grades.count.should == 2
-    user.sortable_score.should == 500
+  context 'as a student' do
+    let(:student) { Fabricate(:student_with_grades) }
+
+    it "sums up grades correctly" do
+      lambda do
+        student.grades << Fabricate(:grade, :score => 150)
+        student.save
+      end.should change(student, :sortable_score).by(150)
+    end
   end
 end

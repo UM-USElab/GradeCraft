@@ -7,5 +7,9 @@ end
 
 Fabricator(:student, :from => :user) do
   role 'student'
-  courses(count: 1)
+  courses(:count => 1)
+end
+
+Fabricator(:student_with_grades, :from => :student) do
+  grades { [Fabricate(:grade)] }
 end

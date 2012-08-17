@@ -138,6 +138,16 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  # Putting this here just so things don't break... remove if needed.
+  def possible_score
+    0
+  end
+
+  # Same with this
+  def team_assignment_score
+    0
+  end
   
   private
 
