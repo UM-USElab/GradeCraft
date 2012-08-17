@@ -112,7 +112,7 @@ class User < ActiveRecord::Base
   
   #TODO 
   def assignment_type_score
-    grades.where(:assignment_type_id => assignment_type.id).map(&:score).inject(&:+) || 0
+    grades.where(assignment_type).map(&:score).inject(&:+) || 0
   end
   
   def attendance_rate

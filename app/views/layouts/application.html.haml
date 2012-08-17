@@ -39,8 +39,7 @@
                 %ul{:class => 'dropdown-menu well'}
                   %li= link_to "New Assignment", new_assignment_path
                   %li= link_to "Assignment Types", assignment_types_path
-                  //TODO - This is also not getting the routes correct from nested grades
-                  //%li= link_to "Gradebook", gradebook_assignment_grades_path
+                  %li= link_to "Gradebook", gradebook_path
                   %li= link_to "#{current_course.user_term}s", students_users_path
                   - if current_course.has_groups?    
                     %li= link_to "Groups", groups_path

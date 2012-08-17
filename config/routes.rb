@@ -1,13 +1,4 @@
 GradeCraft::Application.routes.draw do
-  resources :assignment_submissions
-
-  resources :group_memberships
-
-  resources :user_assignment_type_weights
-
-  resources :user_grade_weights
-
-  root :to => "home#index"
 
   %w{students gsis professors admins}.each do |role|
     get "users/#{role}/new" => 'users#new', :as => "new_#{role.singularize}", :role => role.singularize
@@ -26,10 +17,12 @@ GradeCraft::Application.routes.draw do
   end
   resources :user_sessions
   resources :password_resets
-  
   resources :info
   resources :home
-  
+  resources :assignment_submissions
+  resources :group_memberships
+  resources :user_assignment_type_weights
+  resources :user_grade_weights
   resources :courses
   resources :course_grade_schemes
   resources :themes
@@ -44,7 +37,6 @@ GradeCraft::Application.routes.draw do
       collection do
         get :mass_edit
         put :mass_update
-        get :gradebook
         post :edit_status
         put :update_status
       end
@@ -53,7 +45,6 @@ GradeCraft::Application.routes.draw do
   end
   resources :challenges
   resources :challenge_grades
- 
   resources :grade_schemes do
     collection do
       post :destroy_multiple 
@@ -61,10 +52,11 @@ GradeCraft::Application.routes.draw do
   end
   resources :grade_scheme_elements 
 
-
-  get "info/index"
-  get "home/index"
+  get 'gradebook' => 'grades#gradebook'
+  get 'info/index'
+  get 'home/index'
   get 'dashboard' => 'info#dashboard'
+  root :to => "home#index"
   
   post '/current_course/change' => 'current_courses#change', :as => :change_current_course
 

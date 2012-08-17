@@ -15,7 +15,6 @@
   - if @assignment.mass_gradeable?
     (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
 
-//TODO Why is the path for this not working?
 = form_tag edit_status_assignment_grades_path(@assignment) do
   %table#assignments.display.table-bordered.table
     %thead
