@@ -1,6 +1,6 @@
 class EarnedBadge < ActiveRecord::Base
 
-#   belongs_to :earnable, :polymorphic => true
+# belongs_to :earnable, :polymorphic => true
   
   belongs_to :badge
   belongs_to :grade
