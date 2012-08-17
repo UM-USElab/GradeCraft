@@ -30,12 +30,6 @@ class User < ActiveRecord::Base
   has_many :group_memberships, :dependent => :destroy
   has_many :groups, :through => :group_memberships
   
-  include RankedModel
-  ranks :sortable_score
-  
-  ranks :course_rank,
-    :with_same => :course_id
-
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates_length_of :password, :minimum => 3, :message => "password must be at least 3 characters long", :if => :password

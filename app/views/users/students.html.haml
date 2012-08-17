@@ -1,7 +1,7 @@
 %table#users.display.table-bordered
   %thead
     %tr
-      //%th Ranking
+      %th Course Rank
       %th Email
       %th Name
       %th Team
@@ -16,10 +16,11 @@
       %th
       %th
   %tbody
-    - for student in @students
+    - i = 1
+    - @sorted_students.each do |student|
       %tr
         //TODO Add ranking function
-        //%td= student.rank(:course_rank)
+        %td= i
         %td= student.email
         %td= student.name
         %td= student.team.try(:name)
@@ -35,6 +36,7 @@
         %td= link_to 'Predictor', predictor_users_path(:user_id => student)
         %td= link_to 'Edit', edit_user_path(student)
         %td= link_to 'Delete', student, :confirm => 'Are you sure?', :method => :delete
+      - i += 1
 = "Download:"
 = link_to "CSV", users_path(format: "csv") |
 = link_to "Excel", users_path(format: "xls")

@@ -26,9 +26,9 @@ class UsersController < ApplicationController
   
   def students
     @users = current_course.users
-    @students = current_course.users.students.order(:last_name)
+    @students = current_course.users.students
     @teams = current_course.teams.all 
-    @ranking = current_course.users.rank(:sortable_score).students
+    @sorted_students = @students.order('sortable_score DESC')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }

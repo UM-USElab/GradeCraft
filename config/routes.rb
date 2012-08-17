@@ -7,8 +7,6 @@ GradeCraft::Application.routes.draw do
 
   resources :user_grade_weights
 
-  resources :news
-
   root :to => "home#index"
 
   %w{students gsis professors admins}.each do |role|
