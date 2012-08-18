@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   
   has_and_belongs_to_many :courses, :join_table => :course_memberships
   accepts_nested_attributes_for :courses          
-  has_many :grades, :dependent => :destroy
+  has_many :grades, :as => :gradeable, :dependent => :destroy
   has_many :user_assignment_type_weights
   has_many :assignments, :through => :grades
   has_many :earned_badges, :through => :grades

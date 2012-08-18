@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
   has_many :users
-  has_many :grades, :dependent => :destroy, :as => :graded
+  has_many :grades, :as => :gradeable, :dependent => :destroy
   has_many :earned_badges, :through => :users
   
   belongs_to :course

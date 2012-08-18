@@ -1,15 +1,17 @@
 class Grade < ActiveRecord::Base
-  set_inheritance_column 'something_you_will_not_use'
+  self.inheritance_column = 'something_you_will_not_use'
     
-  belongs_to :user
+  belongs_to :gradeable, :polymorphic => :true
+    
+  #belongs_to :user
   belongs_to :assignment
   has_many :earned_badges
   has_many :badges, :through => :earned_badges
   
   accepts_nested_attributes_for :earned_badges
-  attr_accessible :type, :score, :feedback, :user_id, :assignment_id, :badge_id, :created_at, :updated_at, :complete, :semis, :finals, :status, :attempted, :substantial, :user, :badge_ids, :grade, :graded_id, :graded_type
+  attr_accessible :type, :score, :feedback, :user_id, :assignment_id, :badge_id, :created_at, :updated_at, :complete, :semis, :finals, :status, :attempted, :substantial, :user, :badge_ids, :grade, :gradeable_id, :gradeable_type
 
-  validates_presence_of :user
+  validates_presence_of :gradeable
   validates_presence_of :assignment
   
   delegate :title, :description, :point_total, :due_date, :to => :assignment

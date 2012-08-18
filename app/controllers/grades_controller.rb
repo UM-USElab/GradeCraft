@@ -66,6 +66,7 @@ class GradesController < ApplicationController
     @badges = current_course.badges.all
     @assignment = Assignment.find(params[:assignment_id])
     @assignments = current_course.assignments.all
+    @students = current_course.users.students
     @grade = @assignment.assignment_grades.find(params[:id])
     respond_with @grade = Grade.find(params[:id])
   end
@@ -73,7 +74,7 @@ class GradesController < ApplicationController
   def create
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @assignment.assignment_grades.create(params[:grade])
-    @user = User.find(params[:user_id])
+    #@user = User.find(params[:user_id])
     @users = current_course.users.all
     @badges = current_course.badges.all
     @teams = current_course.teams.all
@@ -152,6 +153,15 @@ class GradesController < ApplicationController
     end
     flash[:notice] = "Updated grades!"
     redirect_to assignments_path
+  end
+  
+  def find_gradeable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
   end
 
 end
