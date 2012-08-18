@@ -45,5 +45,13 @@ describe User do
         student.reload.earned_grades.should include(grade)
       end
     end
+
+    let(:assignment_type) { Fabricate(:assignment_type) }
+    let(:assignment) { Fabricate(:assignment, :assignment_type => assignment_type)
+    let(:grade) { Fabricate(:grade, :gradeable => student, :assignment => assignment)
+
+    it "sums score by for grades of a certain assignment type"
+      student.assignment_type_score(assignment_type).should == grade.score
+    end
   end
 end
