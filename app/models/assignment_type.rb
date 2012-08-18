@@ -31,5 +31,16 @@ class AssignmentType < ActiveRecord::Base
     self.assignments.sum(:point_total) || 0
   end
 
+  def slider?
+    points_predictor_display == "Slider"
+  end
   
+  def fixed?
+    points_predictor_display == "Fixed"
+  end
+  
+  def select_list?
+    points_predictor_display == "Select List"
+  end
+
 end

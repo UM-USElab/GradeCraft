@@ -19,8 +19,9 @@ describe User do
   end
 
   context 'as a student' do
-    let(:student) { Fabricate(:student_with_grades) }
-    let(:team) { Fabricate(:team, :users => [student]) }
+    let(:team) { Fabricate(:team)}
+    let(:student) { Fabricate(:student_with_grades, :team => team)}
+    let(:student_without_team) { Fabricate(:student)}
 
     it "sums up grades correctly" do
       lambda do
@@ -34,7 +35,7 @@ describe User do
       student.reload.earned_grades.should include(grade)
     end
 
-    it "return team grades" do
+    it "returns team grades" do
       grade = Fabricate(:grade, :gradeable => team)
       student.reload.earned_grades.should include(grade)
     end
@@ -44,6 +45,11 @@ describe User do
       grades.each do |grade|
         student.reload.earned_grades.should include(grade)
       end
+    end
+    
+    it "shouldn't fail when student doesn't have a team" do 
+      grade = Fabricate(:grade, :gradeable => student)
+      student_without_team.earned_grades.should =~ [grade]
     end
   end
 end

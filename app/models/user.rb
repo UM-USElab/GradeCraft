@@ -103,7 +103,8 @@ class User < ActiveRecord::Base
   #Grades
   
   def earned_grades
-    grades
+    grades + team.grades
+    
   end
   
   #Score
@@ -116,8 +117,8 @@ class User < ActiveRecord::Base
   end
   
   #TODO 
-  def assignment_type_score
-    grades.where(assignment_type).map(&:score).inject(&:+) || 0
+  def assignment_type_score(assignment_type)
+    grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map(&:score).inject(&:+) || 0 
   end
   
   def attendance_rate
