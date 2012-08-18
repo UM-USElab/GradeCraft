@@ -29,10 +29,20 @@ describe User do
       end.should change(student, :sortable_score).by(150)
     end
 
+    it "returns user grades" do
+      grade = Fabricate(:grade, :gradeable => student)
+      student.reload.earned_grades.should include(grade)
+    end
+
+    it "return team grades" do
+      grade = Fabricate(:grade, :gradeable => team)
+      student.reload.earned_grades.should include(grade)
+    end
+
     it "combines grades and team grades" do
       grades = [Fabricate(:grade, :gradeable => student),Fabricate(:grade, :gradeable => team)]
       grades.each do |grade|
-        student.earned_grades.should include(grade)
+        student.reload.earned_grades.should include(grade)
       end
     end
   end
