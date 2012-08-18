@@ -100,6 +100,12 @@ class User < ActiveRecord::Base
     is_prof? || is_gsi? || is_admin?
   end
   
+  #Grades
+  
+  def earned_grades
+    grades
+  end
+  
   #Score
   def sortable_score
     super || 0

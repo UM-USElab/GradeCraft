@@ -2,7 +2,7 @@ class GradeSchemeElementsController < ApplicationController
   # GET /grade_scheme_elements
   # GET /grade_scheme_elements.xml
   def index
-    @grade_scheme_elements = GradeSchemeElement.all
+    @grade_scheme_elements = current_course.gradeschemeelements.all
     respond_with(@grade_scheme_elements)
   end
 

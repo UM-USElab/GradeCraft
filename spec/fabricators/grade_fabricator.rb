@@ -1,5 +1,5 @@
 Fabricator(:grade) do
-  user
+  gradeable { Fabricate(:user) }
   assignment
   score { rand(1000) }
 end

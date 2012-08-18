@@ -30,7 +30,7 @@ describe User do
     end
 
     it "combines grades and team grades" do
-      grades = [Fabricate(:grade, :user => student),Fabricate(:grade, :team => team)]
+      grades = [Fabricate(:grade, :gradeable => student),Fabricate(:grade, :gradeable => team)]
       grades.each do |grade|
         student.earned_grades.should include(grade)
       end

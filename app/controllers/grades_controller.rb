@@ -68,6 +68,7 @@ class GradesController < ApplicationController
     @assignments = current_course.assignments.all
     @students = current_course.users.students
     @grade = @assignment.assignment_grades.find(params[:id])
+    @gradeable = Grade.find(params[:gradeable_id])
     respond_with @grade = Grade.find(params[:id])
   end
 

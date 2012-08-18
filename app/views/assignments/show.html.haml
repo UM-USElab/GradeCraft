@@ -33,7 +33,7 @@
       - @assignment.assignment_grades.each do |grade|
         %tr
           %td= check_box_tag "grade_ids[]", grade.id
-          %td= grade.gradeable_id
+          %td= link_to grade.gradeable.try(:name), grade.gradeable
           %td #{number_with_delimiter(grade.score, :delimiter => ',') }
           %td
           %td 
