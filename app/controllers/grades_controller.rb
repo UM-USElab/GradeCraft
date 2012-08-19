@@ -28,14 +28,15 @@ class GradesController < ApplicationController
     @users = current_course.users.all
   end
 
-  def new
+  def new    
+    @title = "Submit A New Grade"
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @assignment.assignment_grades.create(params[:grade])
     @badges = current_course.badges.all
     @teams = current_course.teams.all
     @students = current_course.users.students
-    @grade_schemes = current_course.grade_schemes.all
-    @title = "Submit A New Grade"
+    @grade_schemes = @assignment.grade_schemes
+    @grade_scheme_elements = @grade_schemes.grade_scheme_elements
     respond_with @grade
   end
 

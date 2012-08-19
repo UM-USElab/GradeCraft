@@ -1,8 +1,8 @@
-= simple_form_for(@grade_scheme_element, :html => {:class => 'form-horizontal' }) do |f|
+= simple_form_for([@grade_scheme, @grade_scheme_element], :html => {:class => 'form-horizontal' }) do |f|
     = f.association :grade_scheme, :collection => @grade_schemes, :label_method => :scheme_name
     = f.input :name
     = f.input :low_range
     = f.input :high_range
     = f.input :letter_grade
-    = f.input :description, :input_html => {:id => 'some-textarea', :class => 'span9' }
-    = f.button :submit
+    = f.input :description, :input_html => {:id => 'some-textarea', :class => 'span9' }, :as => :text
+    = f.button :submit, :class => 'btn btn-primary'

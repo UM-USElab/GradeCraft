@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120817232141) do
+ActiveRecord::Schema.define(:version => 20120819031711) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20120817232141) do
     t.boolean  "present"
     t.integer  "course_id"
     t.integer  "assignment_type_id"
-    t.integer  "grade_schemes_id"
+    t.integer  "grade_scheme_id"
     t.string   "grade_scope"
     t.string   "visible"
     t.datetime "close_time"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20120817232141) do
     t.integer  "min_size"
     t.integer  "max_size"
     t.datetime "user_weight_amount_close_date"
+    t.string   "user_weight_type"
   end
 
   create_table "dashboards", :force => true do |t|

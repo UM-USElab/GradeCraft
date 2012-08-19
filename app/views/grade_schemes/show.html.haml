@@ -1,12 +1,12 @@
 %p
-  %b Assignment:
+  %b Scheme Name:
   = @grade_scheme.scheme_name
   
 %h3
 Scheme Elements:
-(#{link_to 'Add Element', new_grade_scheme_element_path(:grade_scheme => @grade_scheme.id)})
+(#{link_to 'Add Element', new_grade_scheme_grade_scheme_element_path(@grade_scheme)})
 
-%table#grade_schemes.display.table-bordered.table
+%table.display.table-bordered.table
   %thead
     %tr
       %th Name
@@ -23,9 +23,9 @@ Scheme Elements:
         %td #{number_with_delimiter(grade_scheme_element.low_range, :delimiter => ',') }
         %td #{number_with_delimiter(grade_scheme_element.high_range, :delimiter => ',') }
         %td #{grade_scheme_element.letter_grade} 
-        //%td= link_to "View", grade_scheme_grade_scheme_element(@grade_scheme_element)
-        %td= link_to "Edit", edit_grade_scheme_grade_scheme_element(@grade_scheme_element)
-        %td= link_to "Delete", grade_scheme_grade_scheme_element(@grade_scheme_element), :confirm => 'Are you sure?', :method => :delete
+        %td= link_to "View", grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id)
+        %td= link_to "Edit", edit_grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id)
+        %td= link_to "Delete", grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id), :confirm => 'Are you sure?', :method => :delete
   
 
 %div#footerNav

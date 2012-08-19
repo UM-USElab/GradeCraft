@@ -1,7 +1,6 @@
-%table#grade_schemes.display.table-bordered
+%table.display.table-bordered.table
   %thead
     %tr
-      %th
       %th Scheme Name
       %th 
       %th
@@ -9,7 +8,7 @@
   %tbody
     - for grade_scheme in @grade_schemes
       %tr
-        %td= check_box_tag "grade_scheme_ids[]", grade_scheme.id
+        //%td= check_box_tag "grade_scheme_ids[]", grade_scheme.id
         %td= grade_scheme.scheme_name
         %td= link_to 'View', grade_scheme
         %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme)
