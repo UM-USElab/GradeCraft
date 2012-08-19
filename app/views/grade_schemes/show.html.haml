@@ -10,8 +10,7 @@ Scheme Elements:
   %thead
     %tr
       %th Name
-      %th Low Value
-      %th High Value
+      %th Value
       %th Letter Grade
       %th
       %th
@@ -20,8 +19,7 @@ Scheme Elements:
     - @grade_scheme.grade_scheme_elements.each do |grade_scheme_element|
       %tr
         %td #{grade_scheme_element.name} 
-        %td #{number_with_delimiter(grade_scheme_element.low_range, :delimiter => ',') }
-        %td #{number_with_delimiter(grade_scheme_element.high_range, :delimiter => ',') }
+        %td #{number_with_delimiter(grade_scheme_element.value, :delimiter => ',') }
         %td #{grade_scheme_element.letter_grade} 
         %td= link_to "View", grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id)
         %td= link_to "Edit", edit_grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id)
