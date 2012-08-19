@@ -1,4 +1,0 @@
-class Blogging < Assignment
-
-
-end

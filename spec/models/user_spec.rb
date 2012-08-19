@@ -19,8 +19,9 @@ describe User do
   end
 
   context 'as a student' do
-    let(:student) { Fabricate(:student_with_grades) }
-    let(:team) { Fabricate(:team, :users => [student]) }
+    let(:team) { Fabricate(:team)}
+    let(:student) { Fabricate(:student_with_grades, :team => team)}
+    let(:student_without_team) { Fabricate(:student)}
 
     it "sums up grades correctly" do
       lambda do
@@ -29,11 +30,35 @@ describe User do
       end.should change(student, :sortable_score).by(150)
     end
 
+    it "returns user grades" do
+      grade = Fabricate(:grade, :gradeable => student)
+      student.reload.earned_grades.should include(grade)
+    end
+
+    it "returns team grades" do
+      grade = Fabricate(:grade, :gradeable => team)
+      student.reload.earned_grades.should include(grade)
+    end
+
     it "combines grades and team grades" do
-      grades = [Fabricate(:grade, :user => student),Fabricate(:grade, :team => team)]
+      grades = [Fabricate(:grade, :gradeable => student),Fabricate(:grade, :gradeable => team)]
       grades.each do |grade|
-        student.earned_grades.should include(grade)
+        student.reload.earned_grades.should include(grade)
       end
     end
+    
+    it "shouldn't fail when student doesn't have a team" do 
+      grade = Fabricate(:grade, :gradeable => student)
+      student_without_team.earned_grades.should =~ [grade]
+    end
+    
+    let(:assignment_type) { Fabricate(:assignment_type) }
+    let(:assignment) { Fabricate(:assignment, :assignment_type => assignment_type) }
+    let(:grade) { Fabricate(:grade, :gradeable => student, :assignment => assignment) }
+
+    it "sums score by for grades of a certain assignment type"
+      student.assignment_type_score(assignment_type).should == grade.score
+    end
+
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120817022942) do
+ActiveRecord::Schema.define(:version => 20120819190025) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20120817022942) do
     t.boolean  "present"
     t.integer  "course_id"
     t.integer  "assignment_type_id"
-    t.integer  "grade_schemes_id"
+    t.integer  "grade_scheme_id"
     t.string   "grade_scope"
     t.string   "visible"
     t.datetime "close_time"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20120817022942) do
     t.integer  "min_size"
     t.integer  "max_size"
     t.datetime "user_weight_amount_close_date"
+    t.string   "user_weight_type"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -147,8 +148,7 @@ ActiveRecord::Schema.define(:version => 20120817022942) do
 
   create_table "grade_scheme_elements", :force => true do |t|
     t.string   "name"
-    t.integer  "low_range"
-    t.integer  "high_range"
+    t.integer  "value"
     t.string   "letter_grade"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
@@ -164,28 +164,25 @@ ActiveRecord::Schema.define(:version => 20120817022942) do
   end
 
   create_table "grades", :force => true do |t|
-    t.integer   "score"
-    t.integer   "user_id"
-    t.integer   "assignment_id"
-    t.text      "feedback"
-    t.integer   "badge_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.boolean   "complete"
-    t.boolean   "semis"
-    t.boolean   "finals"
-    t.string    "type"
-    t.string    "status"
-    t.boolean   "attempted"
-    t.boolean   "substantial"
-    t.integer   "graded_id"
-    t.string    "graded_type"
+    t.integer  "raw_score"
+    t.integer  "assignment_id"
+    t.text     "feedback"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "complete"
+    t.boolean  "semis"
+    t.boolean  "finals"
+    t.string   "type"
+    t.string   "status"
+    t.boolean  "attempted"
+    t.boolean  "substantial"
+    t.integer  "gradeable_id"
+    t.string   "gradeable_type"
+    t.integer  "final_score"
   end
 
   add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"
-  add_index "grades", ["badge_id"], :name => "index_grades_on_badge_id"
-  add_index "grades", ["graded_id", "graded_type"], :name => "index_grades_on_graded_id_and_graded_type"
-  add_index "grades", ["user_id"], :name => "index_grades_on_user_id"
+  add_index "grades", ["gradeable_id", "gradeable_type"], :name => "index_grades_on_graded_id_and_graded_type"
 
   create_table "group_memberships", :force => true do |t|
     t.integer  "group_id"

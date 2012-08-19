@@ -43,14 +43,12 @@ GradeCraft::Application.routes.draw do
       resources :earned_badges
     end 
   end
-  resources :challenges
-  resources :challenge_grades
   resources :grade_schemes do
+    resources :grade_scheme_elements 
     collection do
       post :destroy_multiple 
     end
   end
-  resources :grade_scheme_elements 
 
   get 'gradebook' => 'grades#gradebook'
   get 'info/index'

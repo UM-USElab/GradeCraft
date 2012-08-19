@@ -3,10 +3,10 @@
   = f.input :courseno, :label => "Course Number"
   = f.input :semester, :collection => [["Winter", "winter"], ["Spring", "spring"], ["Summer", "summer"], ["Fall", "fall"]]
   = f.input :year, :collection => (Date.today.year)..(Date.today.year + 2) 
-  = f.input :badge_setting, :hint => "Do you want to use badges in your course?", :label => "Badges", :as => :radio
+  = f.input :badge_setting, :hint => "Do you want to use badges in your course?", :label => "Badges", :as => :radio_buttons
   = f.association :badge_set, :collection => @badge_sets, :prompt => "-- Select a Badge Set --", :label => "Badge Set"
   = f.input :theme_id, :collection => @themes, :prompt => "-- Select a Theme --"
-  = f.input :team_setting, :hint => "Will you have semester-long teams in your course?", :label => "Teams", :as => :radio
+  = f.input :team_setting, :hint => "Will you have semester-long teams in your course?", :label => "Teams", :as => :radio_buttons
   = f.input :team_term, :label => "Team Term", :hint => "What will you call these? Team, Group, Section..."
   = f.input :group_setting, :hint => "Will students work in groups on any assignments, and thus all receive the same grade?", :as => :radio
   = f.input :user_term, :hint => "What will you call your user? Student, Learner, Player...", :label => "User Term"
