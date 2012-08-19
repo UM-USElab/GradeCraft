@@ -9,11 +9,11 @@ Scheme Elements:
 %table#grade_schemes.display.table-bordered.table
   %thead
     %tr
-      %th 
       %th Name
       %th Low Value
       %th High Value
       %th Letter Grade
+      %th
       %th
       %th
   %tbody
@@ -23,9 +23,9 @@ Scheme Elements:
         %td #{number_with_delimiter(grade_scheme_element.low_range, :delimiter => ',') }
         %td #{number_with_delimiter(grade_scheme_element.high_range, :delimiter => ',') }
         %td #{grade_scheme_element.letter_grade} 
-        %td= link_to "View", grade_scheme_element
-        %td= link_to "Edit", edit_grade_scheme_element_path
-        %td= link_to "Delete", grade_scheme_element, :confirm => 'Are you sure?', :method => :delete
+        //%td= link_to "View", grade_scheme_grade_scheme_element(@grade_scheme_element)
+        %td= link_to "Edit", edit_grade_scheme_grade_scheme_element(@grade_scheme_element)
+        %td= link_to "Delete", grade_scheme_grade_scheme_element(@grade_scheme_element), :confirm => 'Are you sure?', :method => :delete
   
 
 %div#footerNav

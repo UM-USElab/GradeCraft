@@ -20,7 +20,7 @@
     %thead
       %tr
         %th
-        %th User
+        %th= current_course.user_term
         %th Score
         %th Level
         %th Badges Earned
@@ -33,7 +33,7 @@
       - @assignment.assignment_grades.each do |grade|
         %tr
           %td= check_box_tag "grade_ids[]", grade.id
-          %td= grade.user.name
+          %td= link_to grade.gradeable.name, user_path(grade.gradeable_id)
           %td #{number_with_delimiter(grade.score, :delimiter => ',') }
           %td
           %td 
@@ -45,7 +45,7 @@
           %td= link_to "Edit", edit_assignment_grade_path(@assignment.id, grade.id)
           %td= link_to "Delete", assignment_grade_path(@assignment.id, grade.id), :confirm => 'Are you sure?', :method => :delete
   %p
-  //= submit_tag "Update Grade Statuses", :class => "btn btn-info"
+  = submit_tag "Update Grade Statuses", :class => "btn btn-info"
 
 %div#footerNav
   = link_to 'Add Grade', new_assignment_grade_path(:assignment_id => @assignment), :class => 'btn btn-primary'

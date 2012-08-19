@@ -134,23 +134,8 @@ if ($("#userScoreSection").length > 0){
 		},
 		// user profile  TODO Hardcoded graph labels
 		series: [{
-			name: 'Group Project',
-			data: [group_project_score]	
-		},{
-			name: 'Blogging',
-			data: [blogging_score]	
-		},{
-			name: 'Essays',
-			data: [essays_score]	
-		},{
-			name: 'Section',
-			data: [section_score]	
-		},{
-			name: 'Keeping Up With The Reading',
-			data: [reading_score]	
-		},{
-			name: 'Attendance',
-			data: [attendance_score]	
+			name: assignment_type.name,
+			data: assigment_type_score	
 		}]
 	});
 
@@ -240,23 +225,8 @@ if ($("#userScoreSection").length > 0){
 			}	
 		},
 		series: [{
-			name: 'Essays',
-			data: [essays_score]	
-		},{
-			name: 'Team Points',
-			data: [team_assignment_score]	
-		},{
-			name: 'Assignments',
-			data: [assignment_score]	
-		},{
-			name: 'Blogging',
-			data: [blogging_score]	
-		},{
-			name: 'Keeping Up With The Reading',
-			data: [reading_reaction_score]	
-		},{
-			name: 'Attendance',
-			data: [attendance_score]	
+			name: assignment_type.name,
+			data: assigment_type_score	
 		}]
 	});
 
