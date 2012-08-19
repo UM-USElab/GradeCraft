@@ -3,15 +3,10 @@ class GradesController < ApplicationController
 
   before_filter :ensure_staff?
 
-  #TODO assignment_grades is undefined?
   def index
+    @assignment = Assignment.find(params[:assignment_id])
     @grades = @assignment.assignment_grades.where(params[:assignment_id])
     @title = "View All Grades"
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @grades }
-    end
   end
 
   def show
@@ -36,7 +31,7 @@ class GradesController < ApplicationController
     @teams = current_course.teams.all
     @students = current_course.users.students
     @grade_scheme_elements = @assignment.grade_scheme_elements
-    respond_with @grade
+    respond_with(@grade)
   end
 
   def edit
@@ -49,27 +44,27 @@ class GradesController < ApplicationController
     @grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with @grade = Grade.find(params[:id])
   end
-
+  
+  #TODO Something is failing, redirecting you to the grade form 
   def create
     @assignment = Assignment.find(params[:assignment_id])
-    @grade = @assignment.assignment_grades.create(params[:grade])
-
+    @students = current_course.users.students 
+    @grade = Grade.create(params[:grade])
     respond_to do |format|
       if @grade.save
-        format.html { redirect_to([@assignment.id], :notice => 'Grade was successfully created.') }
-        format.json { render :xml => @grade, :status => :created, :location => @grade }
+        format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
+        format.json { render json: @grade, status: :created, location: @grade }
       else
         format.html { render action: "new" }
-        format.json { render :xml => @grade.errors, :notice => 'Grade could not be submitted properly.', :status => :unprocessable_entity }
+        format.json { render json: @grade.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
-    @assignment = Assignment.find(params[:assignment_id])
-    #@grade = @assignment.assignment_grades.find(params[:grade])
     @grade = Grade.find(params[:id])
-    #@user = @grade.find(params[:user_id])
+    @assignment = @grade.find(params[:assignment_id])
+    @user = @grade.find(params[:user_id])
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
         format.html { redirect_to assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id), notice: 'Grade was successfully updated.' }

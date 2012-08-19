@@ -1,5 +1,5 @@
 = render 'form'
 
 %div#footerNav
-  = link_to 'Back', assignment_grades_path, :class => 'btn btn-primary'
+  = link_to 'Back', assignment_grades_path(@assignment), :class => 'btn btn-primary'
   = link_to 'Cancel', assignments_path, :class => 'btn btn-primary'

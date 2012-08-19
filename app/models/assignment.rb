@@ -9,6 +9,7 @@ class Assignment < ActiveRecord::Base
   belongs_to :assignment_type
   has_many :groups
   accepts_nested_attributes_for :assignment_grades
+  accepts_nested_attributes_for :assignment_type
     attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id
 
 
@@ -40,19 +41,19 @@ class Assignment < ActiveRecord::Base
   end
   
   def high_score
-    assignment_grades.maximum(:score)
+    assignment_grades.maximum(:raw_score)
   end
   
   def low_score
-    assignment_grades.minimum(:score)
+    assignment_grades.minimum(:raw_score)
   end
 
   def average 
-    assignment_grades.average(:score).try(:round)
+    assignment_grades.average(:raw_score).try(:round)
   end  
   
   def assignment_grades_attempted
-    assignment_grades.where(:score != 0).count
+    assignment_grades.where(:raw_score != 0).count
   end
 
   def type
@@ -76,8 +77,13 @@ class Assignment < ActiveRecord::Base
     visible == "true"
   end
   
+  #TODO I need this to be either - guessing hte assignment type isn't working properly
   def has_levels?
     assignment_type.levels = 1
+  end
+  
+  def binary?
+    assignment_type.levels = 0
   end
   
 end
