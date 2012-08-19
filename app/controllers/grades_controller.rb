@@ -35,8 +35,7 @@ class GradesController < ApplicationController
     @badges = current_course.badges.all
     @teams = current_course.teams.all
     @students = current_course.users.students
-    @grade_schemes = @assignment.grade_schemes
-    @grade_scheme_elements = @grade_schemes.grade_scheme_elements
+    @grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with @grade
   end
 

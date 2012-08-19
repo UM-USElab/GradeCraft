@@ -3,8 +3,9 @@ class Assignment < ActiveRecord::Base
   
   has_many :assignment_grades, :dependent => :destroy
   belongs_to :course
-  belongs_to :grade_schemes
   validates_presence_of :course
+  belongs_to :grade_scheme
+  has_many :grade_scheme_elements, :through => :grade_scheme
   belongs_to :assignment_type
   has_many :groups
   accepts_nested_attributes_for :assignment_grades
