@@ -5,7 +5,7 @@ class GradesController < ApplicationController
 
   #TODO assignment_grades is undefined?
   def index
-    @grades = @assignment.assignment_grades.find(params[:assignment_id])
+    @grades = @assignment.assignment_grades.where(params[:assignment_id])
     @title = "View All Grades"
     
     respond_to do |format|
@@ -42,10 +42,11 @@ class GradesController < ApplicationController
   def edit
     @title = "Edit Grade"
     @badges = current_course.badges.all
-    @assignment = Assignment.find(params[:assignment_id])
     @assignments = current_course.assignments.all
+    @assignment = Assignment.find(params[:assignment_id])
     @students = current_course.users.students
-    @grade = @assignment.assignment_grades.find(params[:id])
+    @grade = @assignment.grades.find(params[:id])
+    @grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with @grade = Grade.find(params[:id])
   end
 
