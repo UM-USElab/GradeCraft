@@ -1,52 +1,52 @@
 class GradeSchemeElementsController < ApplicationController
-  # GET /grade_scheme_elements
-  # GET /grade_scheme_elements.xml
-  def index
-    @grade_scheme_elements = GradeSchemeElement.all
+  
+  def index 
+    @grade_scheme = GradeScheme.find(params[:grade_scheme_id])
+    @title = "#{@grade_scheme.scheme_name} Grading"
+    @grade_scheme_elements = @grade_scheme.grade_scheme_elements.all
     respond_with(@grade_scheme_elements)
   end
 
-  # GET /grade_scheme_elements/1
-  # GET /grade_scheme_elements/1.xml
   def show
+    @grade_scheme = GradeScheme.find(params[:grade_scheme_id])
+    @title = "#{@grade_scheme.scheme_name} Grading"
     @grade_scheme_element = GradeSchemeElement.find(params[:id])
     respond_with(@grade_scheme_element)
   end
 
-  # GET /grade_scheme_elements/new
-  # GET /grade_scheme_elements/new.xml
   def new
-    @grade_scheme_element = GradeSchemeElement.new
-    @grade_schemes = current_course.grade_schemes
-    respond_with(@grade_scheme_element)
+    @grade_schemes = current_course.grade_schemes.all
+    @grade_scheme = GradeScheme.find(params[:grade_scheme_id])
+    @title = "Create a New #{@grade_scheme.scheme_name} Grading Element"
+    @grade_scheme_element = @grade_scheme.grade_scheme_elements.create(params[:grade_scheme_element])
+    respond_with(@grade_scheme)
   end
 
-  # GET /grade_scheme_elements/1/edit
   def edit
-    @grade_scheme_element = GradeSchemeElement.find(params[:id])
+    @grade_scheme = GradeScheme.find(params[:grade_scheme_id])
+    @title = "Edit #{@grade_scheme.scheme_name} Grading Element"
+    @grade_scheme_element = @grade_scheme.grade_scheme_elements.find(params[:id])
+    respond_with(@grade_scheme)
   end
 
-  # POST /grade_scheme_elements
-  # POST /grade_scheme_elements.xml
   def create
     @grade_scheme_element = GradeSchemeElement.new(params[:grade_scheme_element])
     @grade_scheme_element.save
-    respond_with(@grade_scheme_element)
+    respond_with @grade_scheme_element
   end
 
-  # PUT /grade_scheme_elements/1
-  # PUT /grade_scheme_elements/1.xml
   def update
-    @grade_scheme_element = GradeSchemeElement.find(params[:id])
+    @grade_scheme = GradeScheme.find(params[:grade_scheme_id])
+    @grade_scheme_element = @grade_scheme.grade_scheme_elements.find(params[:id])
     @grade_scheme_element.update_attributes(params[:grade_scheme_element])
-    respond_with(@grade_scheme_element)
+    respond_with @grade_scheme
   end
 
-  # DELETE /grade_scheme_elements/1
-  # DELETE /grade_scheme_elements/1.xml
   def destroy
-    @grade_scheme_element = GradeSchemeElement.find(params[:id])
+    @grade_scheme = GradeScheme.find(params[:grade_scheme_id])
+    @grade_scheme_element = @grade_scheme.grade_scheme_elements.find(params[:id])
     @grade_scheme_element.destroy
-    respond_with(@grade_scheme_element)
+
+    respond_with(@grade_scheme)
   end
 end

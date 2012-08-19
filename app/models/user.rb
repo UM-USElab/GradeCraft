@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   
   has_and_belongs_to_many :courses, :join_table => :course_memberships
   accepts_nested_attributes_for :courses          
-  has_many :grades, :dependent => :destroy
+  has_many :grades, :as => :gradeable, :dependent => :destroy
   has_many :user_assignment_type_weights
   has_many :assignments, :through => :grades
   has_many :earned_badges, :through => :grades
@@ -100,6 +100,13 @@ class User < ActiveRecord::Base
     is_prof? || is_gsi? || is_admin?
   end
   
+  #Grades
+  
+  def earned_grades
+    grades + team.grades
+    
+  end
+  
   #Score
   def sortable_score
     super || 0
@@ -110,8 +117,8 @@ class User < ActiveRecord::Base
   end
   
   #TODO 
-  def assignment_type_score
-    grades.where(assignment_type).map(&:score).inject(&:+) || 0
+  def assignment_type_score(assignment_type)
+    grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map(&:score).inject(&:+) || 0 
   end
   
   def attendance_rate

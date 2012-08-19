@@ -55,7 +55,7 @@
               - assignments.each do |assignment|
                 %div.assignment
                   %span.assignmentTitle= assignment.try(:title)
-                  - assignment.assignment_grades.where(:user_id => @user.id).each do |grade|
+                  - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
                     - if grade.attempted? 
                       %span.assignmentGrade #{ grade.score } / #{grade.point_total} 
                       - if current_user.is_staff?

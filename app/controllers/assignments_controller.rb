@@ -7,6 +7,7 @@ class AssignmentsController < ApplicationController
     @title = "View All Assignments"
     @assignments = current_course.assignments
     @assignment_types = current_course.assignment_types
+    @grade_schemes = current_course.grade_schemes.all
     respond_with @assignments
   end
 
@@ -25,7 +26,7 @@ class AssignmentsController < ApplicationController
     @title = "Edit this Assignment"
     @assignment = current_course.assignments.all
     @assignment_types = current_course.assignment_types.all
-    @grade_schemes = current_course.grade_schemes
+    @grade_schemes = current_course.grade_schemes.all
     respond_with @assignment = current_course.assignments.find(params[:id])
   end
 
