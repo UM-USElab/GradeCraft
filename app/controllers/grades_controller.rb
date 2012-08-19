@@ -3,10 +3,10 @@ class GradesController < ApplicationController
 
   before_filter :ensure_staff?
 
+  #TODO assignment_grades is undefined?
   def index
     @grades = @assignment.assignment_grades.find(params[:assignment_id])
     @title = "View All Grades"
-    #@grades = current_course.grades.all
     
     respond_to do |format|
       format.html # index.html.erb
@@ -36,29 +36,7 @@ class GradesController < ApplicationController
     @students = current_course.users.students
     @grade_schemes = current_course.grade_schemes.all
     @title = "Submit A New Grade"
-    #@assignment = Assignment.find(params[:assignment_id]) if params[:assignment_id]
-    #@grade.user = User.students.find(params[:user_id]) if params[:user_id]
-    #@grade.assignment = @assignment
     respond_with @grade
-  end
-  
-  def grade_class(assignment)
-#     case assignment
-#     when ReadingReaction
-#       ReadingReactionGrade
-#     when Blogging
-#       BloggingGrade
-#     when Attendance
-#       AttendanceGrade
-#     when LFPG
-#       LFPGGrade
-#     when BossBattle
-#       BossBattleGrade
-#     when TeamAssignment
-#       TeamAssignmentGrade
-#     else
-       Grade
-#     end
   end
 
   def edit
@@ -74,11 +52,7 @@ class GradesController < ApplicationController
   def create
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @assignment.assignment_grades.create(params[:grade])
-    #@user = User.find(params[:user_id])
-    @users = current_course.users.all
-    @badges = current_course.badges.all
-    @teams = current_course.teams.all
-    
+
     respond_to do |format|
       if @grade.save
         format.html { redirect_to([@assignment.id], :notice => 'Grade was successfully created.') }
@@ -141,6 +115,8 @@ class GradesController < ApplicationController
   end
   
   def edit_status
+    #TODO check
+    @title = grade.assignment.name
     @grades = Grade.find(params[:grade_ids])
     #@assignments = Assignment.find(params[:assignment_id])
   end

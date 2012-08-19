@@ -11,5 +11,3 @@
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]
   = f.button :submit, :class => 'btn btn-primary'
-
-= link_to 'Cancel', assignments_path, :class => 'btn btn-primary'
