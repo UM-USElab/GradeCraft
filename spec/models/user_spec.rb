@@ -51,5 +51,14 @@ describe User do
       grade = Fabricate(:grade, :gradeable => student)
       student_without_team.earned_grades.should =~ [grade]
     end
+    
+    let(:assignment_type) { Fabricate(:assignment_type) }
+    let(:assignment) { Fabricate(:assignment, :assignment_type => assignment_type) }
+    let(:grade) { Fabricate(:grade, :gradeable => student, :assignment => assignment) }
+
+    it "sums score by for grades of a certain assignment type"
+      student.assignment_type_score(assignment_type).should == grade.score
+    end
+
   end
 end

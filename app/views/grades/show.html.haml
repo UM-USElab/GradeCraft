@@ -1,6 +1,6 @@
 %p
   %b User:
-  = link_to @grade.gradeable_id, user_path(@grade.user_id)
+  = link_to @grade.gradeable.try(:name)
 %p
   %b Assignment:
   = link_to @grade.assignment.title, assignment_path(@grade.assignment_id)

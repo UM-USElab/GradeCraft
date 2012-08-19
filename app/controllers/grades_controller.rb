@@ -35,11 +35,11 @@ class GradesController < ApplicationController
     @teams = current_course.teams.all
     @students = current_course.users.students
     @grade_schemes = current_course.grade_schemes.all
-    @title = "Submit New Grade"
+    @title = "Submit A New Grade"
     #@assignment = Assignment.find(params[:assignment_id]) if params[:assignment_id]
     #@grade.user = User.students.find(params[:user_id]) if params[:user_id]
     #@grade.assignment = @assignment
-    #respond_with @grade
+    respond_with @grade
   end
   
   def grade_class(assignment)
@@ -68,7 +68,6 @@ class GradesController < ApplicationController
     @assignments = current_course.assignments.all
     @students = current_course.users.students
     @grade = @assignment.assignment_grades.find(params[:id])
-    @gradeable = Grade.find(params[:gradeable_id])
     respond_with @grade = Grade.find(params[:id])
   end
 
@@ -82,11 +81,11 @@ class GradesController < ApplicationController
     
     respond_to do |format|
       if @grade.save
-        format.html { redirect_to([@assignment, @grade], :notice => 'Grade was successfully created.') }
+        format.html { redirect_to([@assignment.id], :notice => 'Grade was successfully created.') }
         format.json { render :xml => @grade, :status => :created, :location => @grade }
       else
-        format.html { render :action => "new" }
-        format.json { render :xml => @grade.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render :xml => @grade.errors, :notice => 'Grade could not be submitted properly.', :status => :unprocessable_entity }
       end
     end
   end

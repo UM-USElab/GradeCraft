@@ -8,6 +8,7 @@ class Assignment < ActiveRecord::Base
   belongs_to :assignment_type
   has_many :groups
   accepts_nested_attributes_for :assignment_grades
+  #accepts_nested_attributes_for :assignment_types
   
   #default_scope :order => 'due_date ASC'
     attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id
@@ -71,6 +72,10 @@ class Assignment < ActiveRecord::Base
   
   def is_visible?
     visible == "true"
+  end
+  
+  def has_levels?
+    assignment_type.levels = 1
   end
   
 end

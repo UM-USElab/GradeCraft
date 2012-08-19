@@ -7,8 +7,6 @@ class AssignmentType < ActiveRecord::Base
   has_many :grades, :through => :assignments
   has_many :user_assignment_type_weights
   
-  accepts_nested_attributes_for :assignments
-  
   default_scope :order => 'order_placement ASC'
   
   def weight 

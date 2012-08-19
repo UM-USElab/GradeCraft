@@ -20,7 +20,7 @@
     %thead
       %tr
         %th
-        %th User
+        %th= current_course.user_term
         %th Score
         %th Level
         %th Badges Earned
@@ -33,7 +33,7 @@
       - @assignment.assignment_grades.each do |grade|
         %tr
           %td= check_box_tag "grade_ids[]", grade.id
-          %td= link_to grade.gradeable.try(:name), grade.gradeable
+          %td= link_to grade.gradeable.name, user_path(grade.gradeable_id)
           %td #{number_with_delimiter(grade.score, :delimiter => ',') }
           %td
           %td 
