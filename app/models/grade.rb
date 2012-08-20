@@ -2,8 +2,6 @@ class Grade < ActiveRecord::Base
   self.inheritance_column = 'something_you_will_not_use'
     
   belongs_to :gradeable, :polymorphic => :true
-    
-  #belongs_to :user
   belongs_to :assignment
   has_many :grade_scheme_elements, :through => :assignment
   has_many :earned_badges
@@ -27,27 +25,8 @@ class Grade < ActiveRecord::Base
    scope :essays, where(:type=> "EssaysGrade")
    scope :blogging, where(:type=> "BloggingGrade")
    scope :group_project, where(:type=> "GroupProjectGrade")
-   
-   def grade_type
-     case assignment_type_id
-     when 9
-       AttedanceGrade
-     when 10
-       ReadingGrade
-     when 11
-       SectionGrade
-     when 12
-       EssaysGrade
-     when 13
-       BloggingGrade
-     when 14
-       GroupProjectGrade
-     else
-       Grade
-     end
-   end
 #     
-  def score
+  def raw_score
     super || 0
   end
   
@@ -57,10 +36,6 @@ class Grade < ActiveRecord::Base
   
   def has_feedback?
     feedback != nil
-  end
-  
-  def short?
-    !substantial?
   end
   
   def save_user_score

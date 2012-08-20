@@ -113,12 +113,12 @@ class User < ActiveRecord::Base
   end
 
   def score
-    grades.map(&:score).inject(&:+) || 0
+    grades.map(&:raw_score).inject(&:+) || 0
   end
   
-  #TODO 
+  #TODO CHECK
   def assignment_type_score(assignment_type)
-    grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map(&:score).inject(&:+) || 0 
+    grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map(&:raw_score).inject(&:+) || 0 
   end
   
   def attendance_rate
@@ -159,7 +159,7 @@ class User < ActiveRecord::Base
   private
 
   def set_sortable_score
-    self.sortable_score = grades.map(&:score).inject(&:+) || 0
+    self.sortable_score = grades.map(&:raw_score).inject(&:+) || 0
   end
 
 end

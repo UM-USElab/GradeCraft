@@ -1,6 +1,5 @@
 = render 'form'
 
 %div#footerNav
-  //TODO Wrong path
-  = link_to 'Back', assignment_grades_url, :class => 'btn btn-primary'
-  = link_to 'View', assignment_grades_path(@grade), :class => 'btn btn-primary'
+  = link_to 'Back', assignment_path(@assignment), :class => 'btn btn-primary'
+  = link_to 'View', assignment_grade_path(@assignment, @grade), :class => 'btn btn-primary'
