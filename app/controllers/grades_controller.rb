@@ -78,9 +78,10 @@ class GradesController < ApplicationController
 
   def destroy
     @assignment = Assignment.find(params[:assignment_id])
+    #TODO Need to update score when a grade is deleted
     @grade = @assignment.assignment_grades.find(params[:id])
     @grade.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to assignment_path(@assignment), notice: 'Grade was successfully deleted.' }
       format.json { head :ok }

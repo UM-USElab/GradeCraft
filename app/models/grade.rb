@@ -31,7 +31,7 @@ class Grade < ActiveRecord::Base
   end
   
   def attempted?
-    score > 0
+    raw_score > 0
   end
   
   def has_feedback?
@@ -51,7 +51,7 @@ class Grade < ActiveRecord::Base
   end
  
   def assignment_type
-    assignment.assignment_type
+    #assignment.assignment_type
   end 
 
 end

@@ -22,7 +22,7 @@
         %div.slide-panel
           %h2= assignment_type.try(:name)
           %p Current Score:
-          %span= @user.assignment_type_score
+          //%span= @user.assignment_type_score
           %span#assignmentTypeScore= assignment_type.possible_score
           = assignment_type.predictor_description
           = assignment_type.weight
@@ -31,6 +31,6 @@
           - assignments.each do |assignment|
             %div.assignment
               %span.assignmentTitle= assignment.try(:title)
-              - assignment.assignment_grades.where(:user_id => @user.id).each do |grade|
+              - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
                 - if grade.attempted? 
-                  %span.assignmentGrade #{ grade.score } / #{grade.point_total}
+                  %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total}

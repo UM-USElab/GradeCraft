@@ -11,10 +11,7 @@
           %div.earned-badge
             %img{:src => badge.icon, :alt => badge.title}
             .badgeTitle= badge.title
-        %div.clear
-  - else
-    %div.clear
-        
+  %div.clear
      
   %div#helpInfo
     - if current_user.is_staff?
@@ -57,21 +54,18 @@
                   %span.assignmentTitle= assignment.try(:title)
                   - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
                     - if grade.attempted? 
-                      %span.assignmentGrade #{ grade.score } / #{grade.point_total} 
+                      %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total} 
                       - if current_user.is_staff?
                         %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id)  
                       - if grade.has_feedback?
                         %button.btn.btn-mini.btn-inverse{"data-target" => "#assignment-#{assignment.id}", "data-toggle" => "collapse"}= "See Feedback"
                         %div{:id => "assignment-#{assignment.id}", :class => "collapse"}
                           %div.feedback= raw grade.feedback
-                          - grade.earned_badges.each do |badge|
-                            %img{:src => badge.icon, :alt => badge.title, :width => "40"}  
+                          //- grade.earned_badges.each do |badge|
+                          //%img{:src => badge.icon, :alt => badge.title, :width => "40"}  
                     - else
-                      %span.alert.alert-error.assignmentGrade #{grade.score} / #{grade.point_total}
-
+                      %span.alert.alert-error.assignmentGrade #{grade.raw_score} / #{grade.point_total}
     %div.clear
-
-          
 
 %div#footerNav
   = link_to 'Edit', edit_user_path(@user), :class => "btn btn-inverse"

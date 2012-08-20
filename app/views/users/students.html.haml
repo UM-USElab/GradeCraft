@@ -41,4 +41,4 @@
 = link_to "Excel", users_path(format: "xls")
 
 %div#footerNav
-  = link_to 'Create a '#{current_course.user_term}, new_user_path, :class => "btn btn-primary"
+  = link_to "Create a New #{current_course.user_term}", new_user_path, :class => "btn btn-primary"
