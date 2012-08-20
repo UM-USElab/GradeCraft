@@ -5,8 +5,8 @@
     %th Current Status
   - for grade in @grades 
     %tr
-      %td= grade.user.name
-      %td= grade.score
+      %td= grade.gradeable.name
+      %td= grade.raw_score
       %td= grade.status
       
 = simple_form_for :grade, :url => update_status_assignment_grades_path, :html => { :method => :put, :class => "form-horizontal" } do |f|
