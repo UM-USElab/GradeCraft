@@ -6,7 +6,8 @@
   = link_to @grade.assignment.title, assignment_path(@grade.assignment_id)
 %p
   %b Score:
-  = @grade.score
+  = @grade.raw_score
+  = @grade.final_score
 %p
   %b Feedback:
   %br
@@ -14,8 +15,8 @@
 
 %p
   %b Badges:
-  - @grade.earned_badges.each do |badge|
-    %img{:src => badge.icon, :alt => badge.title, :width => "50", :height => "50"}
+  //- @grade.earned_badges.each do |badge|
+  //%img{:src => badge.icon, :alt => badge.title, :width => "50", :height => "50"}
 %p
   %b Status:
   = @grade.status

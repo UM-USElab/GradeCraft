@@ -77,7 +77,7 @@ class Assignment < ActiveRecord::Base
     visible == "true"
   end
   
-  #TODO I need this to be either - guessing hte assignment type isn't working properly
+  #TODO I need this to be either - guessing the assignment type isn't working properly
   def has_levels?
     assignment_type.levels = 1
   end

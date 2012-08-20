@@ -29,6 +29,7 @@ class GradesController < ApplicationController
     @grade = @assignment.assignment_grades.create(params[:grade])
     @badges = current_course.badges.all
     @teams = current_course.teams.all
+    @groups = current_course.groups.all
     @students = current_course.users.students
     @grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with(@grade)
@@ -37,19 +38,18 @@ class GradesController < ApplicationController
   def edit
     @title = "Edit Grade"
     @badges = current_course.badges.all
-    @assignments = current_course.assignments.all
     @assignment = Assignment.find(params[:assignment_id])
     @students = current_course.users.students
-    @grade = @assignment.grades.find(params[:id])
+    @grade = @assignment.assignment_grades.find(params[:id])
     @grade_scheme_elements = @assignment.grade_scheme_elements
-    respond_with @grade = Grade.find(params[:id])
+    respond_with @grade
   end
   
-  #TODO Something is failing, redirecting you to the grade form 
   def create
+    @gradeable = find_gradeable
     @assignment = Assignment.find(params[:assignment_id])
     @students = current_course.users.students 
-    @grade = @assignment.assignment_grades.build(params[:grade])
+    @grade = @gradeable.assignment_grades.build(params[:grade])
     respond_to do |format|
       if @grade.save
         format.html { redirect_to @assignment, notice: 'Grade was successfully created.' }
@@ -63,11 +63,11 @@ class GradesController < ApplicationController
 
   def update
     @grade = Grade.find(params[:id])
-    @assignment = @grade.find(params[:assignment_id])
-    @user = @grade.find(params[:user_id])
+    @assignment = Assignment.find(params[:assignment_id])
+    
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
-        format.html { redirect_to assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id), notice: 'Grade was successfully updated.' }
+        format.html { redirect_to @assignment, notice: 'Grade was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
