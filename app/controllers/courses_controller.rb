@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
+    @title = "Course Index"
     @courses = Course.all
 
     respond_to do |format|
@@ -14,6 +15,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @title = "Course Settings"
     @course = Course.find(params[:id])
     @themes = Theme.all
     @users = current_course.users.all

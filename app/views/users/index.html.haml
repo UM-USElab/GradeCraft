@@ -36,4 +36,4 @@
         %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
-  = link_to 'Create a New Player', new_user_path, :class => "btn btn-primary"
+  = link_to "Create a New #{current_course.user_term}", new_user_path, :class => "btn btn-primary"

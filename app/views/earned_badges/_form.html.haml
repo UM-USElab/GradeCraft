@@ -1,10 +1,8 @@
-#TODO Make it possible to award badges outside of a grade
-= simple_form_for @earned_badge do |f|
-  = f.association :grade, :collection => @assignments
-  = f.association :users, :collection => @users
+= simple_form_for(@earned_badge, :html => {:class => 'form-horizontal' }) do |f|
+  = f.association :earnable, :label => "Awarded To...", :collection => @students
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' } 
   = hidden_field_tag "earned_badge[badge_ids][]", nil
-  - Badge.all.each do |badge|
+  - @badges.each do |badge|
     = check_box_tag "earned_badge[badge_ids][]", badge.id
     %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "50"}    
     = badge.title

@@ -103,10 +103,8 @@ class UsersController < ApplicationController
     end
   end
 
-  #TODO Not currently working
   def destroy
-    @user = current_course.users.find(params[:id])
-    
+    @user = current_course.users.find(params[:id])    
     @user.destroy
 
     respond_to do |format|

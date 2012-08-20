@@ -1,4 +1,4 @@
-%table#badges.display.table-bordered
+%table.display.table-bordered
   %thead
     %tr
       %th#icon Icon
@@ -22,9 +22,9 @@
                 Yes
               - else
                 No
-            %td= link_to 'View', badge
-            %td= link_to 'Edit', edit_badge_path(badge)
-            %td= link_to 'Delete', badge, :confirm => 'Are you sure?', :method => :delete
+            %td= link_to 'View', badge_set_badge_path(@badge_set, badge)
+            %td= link_to 'Edit', edit_badge_set_badge_path(@badge_set, badge)
+            %td= link_to 'Delete', badge_set_badge_path(@badge_set, badge), :confirm => 'Are you sure?', :method => :delete
       - else
         - if badge.visible == "1"
           %tr
@@ -35,4 +35,4 @@
               
 %div#footerNav
   - if current_user.is_staff?
-    = link_to 'Create a New Badge', new_badge_path, :class => "btn btn-primary"
+    = link_to 'Create a New Badge', new_badge_set_badge_path, :class => "btn btn-primary"

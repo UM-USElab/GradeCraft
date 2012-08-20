@@ -49,10 +49,10 @@ class GradesController < ApplicationController
   def create
     @assignment = Assignment.find(params[:assignment_id])
     @students = current_course.users.students 
-    @grade = Grade.create(params[:grade])
+    @grade = @assignment.assignment_grades.build(params[:grade])
     respond_to do |format|
       if @grade.save
-        format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
+        format.html { redirect_to @assignment, notice: 'Grade was successfully created.' }
         format.json { render json: @grade, status: :created, location: @grade }
       else
         format.html { render action: "new" }

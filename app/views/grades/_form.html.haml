@@ -9,7 +9,7 @@
   - if @assignment.has_levels?
     = f.input :raw_score, :collection => @grade_scheme_elements, :as => :select
   - if @assignment.binary?
-    = f.input :raw_score, :as => :radio_buttons
+    = f.input :raw_score, :as => :radio_buttons, :input_html => { :value => @assignment.point_total }
   //= f.input :final_score
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]

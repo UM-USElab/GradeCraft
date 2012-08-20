@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120819190025) do
+ActiveRecord::Schema.define(:version => 20120820005210) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -73,6 +73,11 @@ ActiveRecord::Schema.define(:version => 20120819190025) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "badge_sets_courses", :id => false, :force => true do |t|
+    t.integer "course_id"
+    t.integer "badge_set_id"
+  end
+
   create_table "badges", :force => true do |t|
     t.integer   "assignment_id"
     t.string    "title"
@@ -87,6 +92,8 @@ ActiveRecord::Schema.define(:version => 20120819190025) do
     t.timestamp "image_updated_at"
     t.string    "occurrence"
     t.integer   "badge_set_id"
+    t.integer   "value"
+    t.integer   "multiplier"
   end
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
@@ -143,7 +150,8 @@ ActiveRecord::Schema.define(:version => 20120819190025) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "feedback"
-    t.integer  "grade_id"
+    t.integer  "earnable_id"
+    t.string   "earnable_type"
   end
 
   create_table "grade_scheme_elements", :force => true do |t|

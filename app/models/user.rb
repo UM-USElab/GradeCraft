@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :grades, :as => :gradeable, :dependent => :destroy
   has_many :user_assignment_type_weights
   has_many :assignments, :through => :grades
-  has_many :earned_badges, :through => :grades
+  has_many :earned_badges, :as => :earnable
   has_many :badges, :through => :earned_badges
   belongs_to :team
   has_many :group_memberships, :dependent => :destroy

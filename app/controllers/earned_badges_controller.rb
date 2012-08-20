@@ -2,10 +2,8 @@ class EarnedBadgesController < ApplicationController
 
   def index
     @title = "View All Awarded Badges"
-    @earned_badges = EarnedBadge.all
+    @earned_badges = current_course.earned_badges.all
     @users = current_course.users.all
-    @assignments = current_course.assignments.all
-    @grades = current_course.grades.all
     @badges = current_course.badges.all
     respond_to do |format|
       format.html # index.html.erb
@@ -32,7 +30,7 @@ class EarnedBadgesController < ApplicationController
     @assignments = current_course.assignments.all
     @earned_badge = EarnedBadge.new
     @badges = current_course.badges
-    @user = User.students.find(params[:user_id]) if params[:user_id]
+    @students = current_course.users.students.all
   end
   
 
@@ -48,9 +46,9 @@ class EarnedBadgesController < ApplicationController
   # POST /badges
   # POST /badges.json
   def create
-    @badge_sets = BadgeSet.all
-    @badges = Badge.all
-    @earned_badge = EarnedBadge.new(params[:earned_badge])
+    @badge_sets = current_course.badge_sets.all 
+    @badges = current_course.badges.all
+    @earned_badge = EarnedBadge.build(params[:earned_badge])
     if @earned_badge.save 
       redirect_to[:earned_badges], notice = "Badge awarded!"
     else

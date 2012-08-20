@@ -26,8 +26,9 @@ GradeCraft::Application.routes.draw do
   resources :courses
   resources :course_grade_schemes
   resources :themes
-  resources :badge_sets
-  resources :badges
+  resources :badge_sets do
+    resources :badges
+  end
   resources :earned_badges
   resources :groups
   resources :teams

@@ -1,9 +1,34 @@
+%h3= @badge_set.name
+%br
 %p
-  %b Name:
-  = @badge_set.name
-%p
-  %b Notes:
-  = @badge_set.notes
+  %b Description:
+  = raw @badge_set.notes
+
+%h3
+  Badges
+  (#{link_to 'Add New Badge', new_badge_set_badge_path(@badge_set)})
+
+%table.display.table-bordered.table
+  %thead
+    %tr
+      %th Badge
+      %th Name
+      %th Value
+      %th Description
+      %th
+      %th
+      %th
+  %tbody
+    - @badge_set.badges.each do |badge|
+      %tr
+        %td 
+          %img{:src => badge.icon, :alt => badge.title}
+        %td= badge.title
+        %td= badge.value
+        %td= raw badge.description
+        %td= link_to "View", badge_set_badge_path(@badge_set, badge.id)
+        %td= link_to "Edit", edit_badge_set_badge_path(@badge_set, badge.id)
+        %td= link_to "Delete", badge_set_badge_path(@badge_set, badge.id), :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
   = link_to 'Edit', edit_badge_set_path(@badge_set), {:class => 'btn btn-primary'}
