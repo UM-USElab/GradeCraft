@@ -4,10 +4,10 @@
       %th #{current_course.user_term}
       - for assignment in @assignments
         %th= assignment.title
-    - @users.each do |user|
+    - @students.each do |student|
       %tr 
-        %td= user.name
-        - user.grades.each do |grade|
+        %td= student.name
+        - student.grades.each do |grade|
           %td= grade.score
 
 %div#footerNav

@@ -19,7 +19,8 @@
         %th Low Score
         %th # Submitted
         %th
-        %th
+        - if assignment_type.mass_grade?
+          %th
         %th
         %th
         %th
@@ -46,7 +47,7 @@
               %td= assignment.assignment_grades_attempted
               %td= link_to 'View', assignment
               %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>assignment.id)
-              - if assignment.mass_gradeable?
+              - if assignment_type.mass_grade?
                 %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id)
               %td= link_to 'Edit', edit_assignment_path(assignment)
               %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete

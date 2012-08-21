@@ -18,9 +18,9 @@ class GradesController < ApplicationController
   
   def gradebook
     @title = "Class Gradebook"
-    @assignments = Assignment.all.sort_by &:id
-    @grades = Grade.all.sort_by &:assignment_id
-    @users = current_course.users.all
+    @assignments = current_course.assignments.all.sort_by &:id
+    @grades = current_course.grades.all.sort_by &:due_date
+    @students = current_course.users.students
   end
 
   def new    
@@ -98,7 +98,8 @@ class GradesController < ApplicationController
     end
     @students = current_course.users.students.where(user_search_options)
     @grades = @students.map do |s| 
-      @assignment.grades.find_by_user_id(s.id) || grade_class(@assignment).create(:user => s, :assignment_id => @assignment.id) 
+      @assignment.assignment_grades.find_by_gradeable_id(s.id)
+      #|| grade_class(@assignment).create(:user => s, :assignment_id => @assignment.id) 
     end
   end
 

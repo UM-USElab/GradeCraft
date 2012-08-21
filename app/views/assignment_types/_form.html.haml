@@ -4,13 +4,14 @@
   = f.input :universal_point_value, :label => "Universal Value"
   = f.input :levels, :label => "Will there be levels to the grading?", :hint => "This includes normal A - F grading schemes.", :as => :radio_buttons
   = f.input :due_date_present, :label => "Will assignments have due dates?", :as => :radio
-  = f.input :resubmission, :label => "Resubmission allowed", :hint => "Can this assignment type be resubmitted for a better grade?", :collection => [["Yes", "1"], ["No", "0"], ["Set per Assignment", "2"]], :as => :radio
+  = f.input :resubmission, :label => "Is resubmission allowed?", :collection => [["Yes", "1"], ["No", "0"], ["Set per Assignment", "2"]], :as => :radio
   = f.input :max_value, :label => "Max Value", :hint => "Does this assignment type have a maximum value within the course?"
   = f.input :percentage_course, :label => "Course Percentage", :hint => "What percentage of the course total grade does this assignment type make up?"
   = f.input :user_percentage_set, :label => "Do students decide how much this assignment type is worth?", :as => :radio_buttons
   = f.input :points_predictor_display, :collection => [["Fixed"], ["Slider"], ["Select List"], ["Set per Assignment"]]
   = f.input :predictor_description, :as => :text, :label => "Predictor Display Text", :hint => "How would you like to describe this assignment type in the predictor? Are there hints that you can give students that will help them understand how to succeed?", :input_html => {:id => 'some-textarea', :class => 'span9' }
   = f.input :order_placement, :label => "What order would you like the assignment types to appear in?"
+  = f.input :mass_grade, :label => "Do you want to be able to grade all students who submit this assignment in a single screen?"
   
   .form-actions
     = f.button :submit, :class => 'btn-inverse'

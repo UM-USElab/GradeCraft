@@ -12,7 +12,7 @@
 
 %h3
   Grades
-  - if @assignment.mass_gradeable?
+  - if @assignment.is_mass_gradeable?
     (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
 
 = form_tag edit_status_assignment_grades_path(@assignment) do
@@ -33,7 +33,8 @@
       - @assignment.assignment_grades.each do |grade|
         %tr
           %td= check_box_tag "grade_ids[]", grade.id
-          %td= link_to grade.gradeable.name, user_path(grade.gradeable_id)
+          %td= link_to grade.gradeable.try(:name)
+          // gradeable_path(grade.gradeable_id)
           %td #{number_with_delimiter(grade.raw_score, :delimiter => ',') }
           %td
           %td 

@@ -4,15 +4,15 @@
     %br
     %br
     %br
-    = select_tag :team_id, options_for_select(Team.all.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => 'Select a team'
+    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_term}"
     = submit_tag 'Filter'
 
 #massGrade  
   %ul.grades
-    = simple_form_for @assignment, :html => {:class => 'form-horizontal' }, :url => mass_update_grades_path(:assignment_id => @assignment.id) do |f|
-      = f.simple_fields_for :grades, @grades do |grade_form|
-        = grade_form.input :score, :label => @grade.user.name, :as => :boolean
-        = grade_form.association :badges, :as => :check_boxes, :collection => @badges
+    = simple_form_for @assignment, :html => {:class => 'form-horizontal' }, :url => mass_update_assignment_grades_path(:assignment_id => @assignment.id) do |f|
+      = f.simple_fields_for :grades do |grade_form|
+        = grade_form.input :score, :as => :boolean
+        //= grade_form.association :earnable, :as => :check_boxes, :collection => @badges
       = f.button :submit
 
 %div#footerNav

@@ -6,7 +6,7 @@
 
 %h3
   Badges
-  (#{link_to 'Add New Badge', new_badge_set_badge_path(@badge_set)})
+  (#{link_to 'Add New Badge', new_badge_path})
 
 %table.display.table-bordered.table
   %thead
@@ -26,9 +26,9 @@
         %td= badge.title
         %td= badge.value
         %td= raw badge.description
-        %td= link_to "View", badge_set_badge_path(@badge_set, badge.id)
-        %td= link_to "Edit", edit_badge_set_badge_path(@badge_set, badge.id)
-        %td= link_to "Delete", badge_set_badge_path(@badge_set, badge.id), :confirm => 'Are you sure?', :method => :delete
+        %td= link_to "View", badge_path(badge)
+        %td= link_to "Edit", edit_badge_path(badge)
+        %td= link_to "Delete", badge_path(badge), :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
   = link_to 'Edit', edit_badge_set_path(@badge_set), {:class => 'btn btn-primary'}
