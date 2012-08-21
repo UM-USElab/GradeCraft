@@ -9,7 +9,7 @@
       %div#badgesEarned
         - @user.earned_badges.each do |badge|
           %div.earned-badge
-            %img{:src => badge.icon, :alt => badge.title}
+            %img{:src => badge.try(:icon), :alt => badge.try(:title)}
             .badgeTitle= badge.title
   %div.clear
      

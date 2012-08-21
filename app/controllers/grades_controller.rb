@@ -4,16 +4,16 @@ class GradesController < ApplicationController
   before_filter :ensure_staff?
 
   def index
+    @title = "View All Grades"
     @assignment = Assignment.find(params[:assignment_id])
     @grades = @assignment.assignment_grades.where(params[:assignment_id])
-    @title = "View All Grades"
   end
 
   def show
     @title = "View Grade"
     @grade = Grade.find(params[:id])
     @assignment = Assignment.find(params[:assignment_id])
-    @earned_badges = EarnedBadge.all
+    #@earned_badges = EarnedBadge.all
   end
   
   def gradebook

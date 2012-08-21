@@ -4,6 +4,8 @@
       %th#icon Icon
       %th#title Title
       %th#description Description
+      %th Value
+      %th Multiplier
       - if current_user.is_staff?
         %th#visible Visible to Students
         %th
@@ -17,14 +19,16 @@
             %img{:src => badge.icon, :alt => badge.title}
             %td= badge.title
             %td= raw badge.description
+            %td= badge.value
+            %td= badge.multiplier
             %td 
               - if badge.visible == "1"
                 Yes
               - else
                 No
-            %td= link_to 'View', badge_set_badge_path(@badge_set, badge)
-            %td= link_to 'Edit', edit_badge_set_badge_path(@badge_set, badge)
-            %td= link_to 'Delete', badge_set_badge_path(@badge_set, badge), :confirm => 'Are you sure?', :method => :delete
+            %td= link_to 'View', badge_path(badge)
+            %td= link_to 'Edit', edit_badge_path(badge)
+            %td= link_to 'Delete', badge_path(badge), :confirm => 'Are you sure?', :method => :delete
       - else
         - if badge.visible == "1"
           %tr
@@ -35,4 +39,4 @@
               
 %div#footerNav
   - if current_user.is_staff?
-    = link_to 'Create a New Badge', new_badge_set_badge_path, :class => "btn btn-primary"
+    = link_to 'Create a New Badge', new_badge_path, :class => "btn btn-primary"

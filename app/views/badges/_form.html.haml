@@ -1,4 +1,5 @@
-= simple_form_for([@badge_set, @badge], :html => {:class => 'form-horizontal' }) do |f|
+= simple_form_for(@badge, :html => {:class => 'form-horizontal' }) do |f|
+  = f.association :badge_set, :collection => @badge_sets
   = f.input :title
   = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span9' }, :placeholder => "Describe what this badge means, and how it can be earned. Note that if this badge is marked as visible then this description will also be viewable in the list of badges."
   = f.input :icon, :as => :file
@@ -9,4 +10,4 @@
 
   .form-actions
     = f.button :submit, :class => 'btn btn-primary'
-    = link_to 'Cancel', badge_set_path(@badge_set), :class => 'btn btn-primary'
+    = link_to 'Cancel', badges_path, :class => 'btn btn-primary'

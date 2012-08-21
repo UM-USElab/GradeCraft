@@ -1,18 +1,14 @@
 class BadgeSetsController < ApplicationController
-  # GET /badge_sets
-  # GET /badge_sets.json
+
   def index
     @title = "Badge Sets"
     @badge_sets = current_course.badge_sets.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @badge_sets }
     end
   end
 
-  # GET /badge_sets/1
-  # GET /badge_sets/1.json
   def show
     @badge_set = BadgeSet.find(params[:id])
 
@@ -22,8 +18,6 @@ class BadgeSetsController < ApplicationController
     end
   end
 
-  # GET /badge_sets/new
-  # GET /badge_sets/new.json
   def new
     @badge_set = BadgeSet.new
     @title = "Create a New Badge Set"
@@ -34,13 +28,10 @@ class BadgeSetsController < ApplicationController
     end
   end
 
-  # GET /badge_sets/1/edit
   def edit
     @badge_set = BadgeSet.find(params[:id])
   end
 
-  # POST /badge_sets
-  # POST /badge_sets.json
   def create
     @badge_set = BadgeSet.new(params[:badge_set])
 
@@ -55,8 +46,6 @@ class BadgeSetsController < ApplicationController
     end
   end
 
-  # PUT /badge_sets/1
-  # PUT /badge_sets/1.json
   def update
     @badge_set = BadgeSet.find(params[:id])
 
@@ -71,8 +60,6 @@ class BadgeSetsController < ApplicationController
     end
   end
 
-  # DELETE /badge_sets/1
-  # DELETE /badge_sets/1.json
   def destroy
     @badge_set = BadgeSet.find(params[:id])
     @badge_set.destroy

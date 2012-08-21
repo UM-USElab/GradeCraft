@@ -16,10 +16,9 @@ class Assignment < ActiveRecord::Base
   scope :individual_assignment, where(:grade_scope => "Individual")
   scope :group_assignment, where(:grade_scope => "Group")
   scope :team_assignment, where(:grade_scope => "Team")
-  
+
   scope :order, :chronological => 'due_date ASC'
 
-  
   scope :future, lambda {
     { :conditions => 
       ["assignments.due_date IS NOT nulL AND assignments.due_date >=?", Date.today]
@@ -30,6 +29,7 @@ class Assignment < ActiveRecord::Base
       ["assignments.due_date IS NOT nulL AND assignments.due_date <?", Date.today]
     }
   }
+
   scope :grading_done, where(:assignment_grades.present? == 1)
 
   def mass_gradeable?
@@ -41,15 +41,15 @@ class Assignment < ActiveRecord::Base
   end
   
   def high_score
-    assignment_grades.maximum(:raw_score)
+    assignment_grades.maximum(:score)
   end
   
   def low_score
-    assignment_grades.minimum(:raw_score)
+    assignment_grades.minimum(:score)
   end
 
   def average 
-    assignment_grades.average(:raw_score).try(:round)
+    assignment_grades.average(:score).try(:round)
   end  
   
   def assignment_grades_attempted

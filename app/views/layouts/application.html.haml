@@ -27,7 +27,7 @@
                 = link_to "My Dashboard",  dashboard_path, :class => "btn"
                 = link_to "Assignments", assignments_path, :class => "btn"
                 - if current_course.has_badges?                
-                  //= link_to "Badges", badges_path, :class => "btn"
+                  = link_to "Badges", badges_path, :class => "btn"
                 - if current_course.has_teams?                
                   = link_to "#{current_course.team_term}s", teams_path, :class => "btn"
                 = link_to "Predictor",  predictor_users_path(:user_id => current_user.id), :class => "btn"

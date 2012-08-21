@@ -11,9 +11,10 @@
     - @earned_badges.each do |earned_badge|
       %tr        
         %td= earned_badge.earnable.try(:name)
-        //%td= earned_badge.grade.try(@assignment)
+        //TODO Add conditional display of assignment if present
+        %td 
         %td
-          %img{:src => earned_badge.badge.icon, :alt => earned_badge.badge.title, :width => "25", :height => "25"}
+          %img{:src => earned_badge.badge.try(:icon), :alt => earned_badge.badge.try(:title), :width => "25", :height => "25"}
         %td= link_to 'View', earned_badge
         %td= link_to 'Edit', edit_earned_badge_path(earned_badge)
         %td= link_to 'Delete', earned_badge, :confirm => 'Are you sure?', :method => :delete

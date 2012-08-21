@@ -1,11 +1,9 @@
 = simple_form_for(@earned_badge, :html => {:class => 'form-horizontal' }) do |f|
-  = f.association :earnable, :label => "Awarded To...", :collection => @students
+  = f.input :earnable_id, :label => "Awarded To...", :collection => @students
+  = f.input :earnable_type, :input_html => { :value => "User" }, :as => :hidden
+  = f.input :badge_id, :as => :select, :collection => @badges 
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' } 
   = hidden_field_tag "earned_badge[badge_ids][]", nil
-  - @badges.each do |badge|
-    = check_box_tag "earned_badge[badge_ids][]", badge.id
-    %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "50"}    
-    = badge.title
   .form-actions
     = f.button :submit, :class => 'btn btn-primary'
     = link_to 'Cancel', earned_badges_path, :class => 'btn btn-primary'

@@ -4,17 +4,10 @@ class BadgesController < ApplicationController
 
   def index
     @title = "View All Badges"
-    @badge_set = BadgeSet.find(params[:badge_set_id])
-    @badges = @badge_sets.badges.where(params[:badge_set_id])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @badges }
-    end
+    @badges = current_course.badges.all
   end
 
   def show
-    @badge_set = BadgeSet.find(params[:badge_set_id])
     @title = "View Badge"
     @badge = Badge.find(params[:id])
 
@@ -27,7 +20,6 @@ class BadgesController < ApplicationController
   def new
     @title = "Create a New Badge"
     @badge = Badge.new
-    @badge_set = BadgeSet.find(params[:badge_set_id])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @badge }
@@ -36,17 +28,15 @@ class BadgesController < ApplicationController
 
   def edit
     @title = "Edit Badge"
-    @badge_set = BadgeSet.find(params[:badge_set_id])
     @badge = Badge.find(params[:id])
   end
 
   def create
-    @badge_set = BadgeSet.find(params[:badge_set_id])
-    @badge = @badge_set.badges.build(params[:badge])
+    @badge = Badge.create(params[:badge])
 
     respond_to do |format|
       if @badge.save
-        format.html { redirect_to @badge_set, notice: 'Badge was successfully created.' }
+        format.html { redirect_to @badge, notice: 'Badge was successfully created.' }
         format.json { render json: @badge, status: :created, location: @badge }
       else
         format.html { render action: "new" }
@@ -56,12 +46,11 @@ class BadgesController < ApplicationController
   end
 
   def update
-    @badge_set = BadgeSet.find(params[:badge_set_id])
     @badge = Badge.find(params[:id])
 
     respond_to do |format|
       if @badge.update_attributes(params[:badge])
-        format.html { redirect_to @badge_set, notice: 'Badge was successfully updated.' }
+        format.html { redirect_to @badge, notice: 'Badge was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

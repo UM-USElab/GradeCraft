@@ -30,6 +30,14 @@ class Grade < ActiveRecord::Base
     super || 0
   end
   
+  def score
+    if final_score?
+      final_score
+    else 
+      raw_score
+    end
+  end
+  
   def attempted?
     raw_score > 0
   end
