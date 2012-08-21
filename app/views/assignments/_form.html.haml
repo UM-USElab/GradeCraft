@@ -7,6 +7,7 @@
   = f.input :open_time
   = f.input :due_date, :as => :datetime
   = f.input :visible, :as => :boolean
+  = f.input :required, :as => :boolean
   = f.input :grade_scheme_id, :collection => @grade_schemes, :as => :select, :label_method => :scheme_name
   
   .form-actions

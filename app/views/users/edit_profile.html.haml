@@ -10,6 +10,7 @@
   = f.input :last_name
   = f.input :display_name
   = f.input :private_display, :label => "Private Browsing", :hint => "For privacy purposes would you like to hide all identifying information (name and email address) while browsing?"
+  = f.input :team_role, :hint => "What will you contribute to your team?"
   = f.input :password
   = f.input :password_confirmation
   = submit_tag 'Update Settings', :class => 'btn btn-inverse'

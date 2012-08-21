@@ -11,7 +11,7 @@ class Assignment < ActiveRecord::Base
   has_many :assignment_submissions
   accepts_nested_attributes_for :grades
   accepts_nested_attributes_for :assignment_type
-    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id
+    attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id, :required
 
   scope :individual_assignment, where(:grade_scope => "Individual")
   scope :group_assignment, where(:grade_scope => "Group")

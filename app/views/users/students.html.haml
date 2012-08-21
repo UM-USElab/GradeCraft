@@ -4,7 +4,9 @@
       %th Rank
       %th Email
       %th Name
-      %th Team
+      %th #{current_course.team_term}
+      - if current_course.team_roles?
+        %th Role
       %th Score
       %th Log ins
       %th Page Views
@@ -23,6 +25,8 @@
         %td= student.email
         %td= student.name
         %td= student.team.try(:name)
+        - if current_course.team_roles?
+          %td= student.try(:team_role)
         %td= student.try(:sortable_score)
         %td= student.visit_count
         %td= student.page_views

@@ -23,9 +23,10 @@
           %h2= assignment_type.try(:name)
           %p Current Score:
           //%span= @user.assignment_type_score
-          %span#assignmentTypeScore= assignment_type.possible_score
+          = "/"
+          %span#assignmentTypeScore= assignment_type.possible_score 
           = assignment_type.predictor_description
-          = assignment_type.weight
+          %span.badge.badge-warning= assignment_type.weight
           - if assignment_type.student_choice?
             %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
           - assignments.each do |assignment|

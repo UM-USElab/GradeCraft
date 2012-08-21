@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120821141952) do
+ActiveRecord::Schema.define(:version => 20120821175041) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20120821141952) do
   create_table "assignment_types", :force => true do |t|
     t.string   "name"
     t.string   "point_setting"
-    t.integer  "levels"
+    t.boolean  "levels"
     t.string   "points_predictor_display"
     t.integer  "resubmission"
     t.integer  "max_value"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20120821141952) do
     t.string   "visible"
     t.datetime "close_time"
     t.datetime "open_time"
+    t.boolean  "required"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -139,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20120821141952) do
     t.integer  "max_size"
     t.datetime "user_weight_amount_close_date"
     t.string   "user_weight_type"
+    t.boolean  "team_roles"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -274,6 +276,7 @@ ActiveRecord::Schema.define(:version => 20120821141952) do
     t.integer   "visit_count"
     t.integer   "predictor_views"
     t.integer   "page_views"
+    t.string    "team_role"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
