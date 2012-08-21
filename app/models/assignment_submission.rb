@@ -3,4 +3,7 @@ class AssignmentSubmission < ActiveRecord::Base
   
   has_attached_file :attachment
   
+  belongs_to :user
+  belongs_to :assignment
+  
 end

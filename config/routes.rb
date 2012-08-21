@@ -19,7 +19,6 @@ GradeCraft::Application.routes.draw do
   resources :password_resets
   resources :info
   resources :home
-  resources :assignment_submissions
   resources :group_memberships
   resources :user_assignment_type_weights
   resources :user_grade_weights
@@ -33,6 +32,7 @@ GradeCraft::Application.routes.draw do
   resources :teams
   resources :assignment_types
   resources :assignments do 
+    resources :assignment_submissions
     resources :grades do
       collection do
         get :mass_edit

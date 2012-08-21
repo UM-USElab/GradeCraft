@@ -15,8 +15,8 @@
 
 %p
   %b Badges:
-  //- @grade.earned_badges.each do |badge|
-  //%img{:src => badge.icon, :alt => badge.title, :width => "50", :height => "50"}
+  - @grade.earned_badges.each do |badge|
+    %img{:src => badge.try(:icon), :alt => badge.title, :width => "50", :height => "50"}
 %p
   %b Status:
   = @grade.status

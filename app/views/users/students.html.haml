@@ -1,7 +1,7 @@
-%table#users.display.table-bordered
+%table.display.table-bordered
   %thead
     %tr
-      %th Course Rank
+      %th Rank
       %th Email
       %th Name
       %th Team
@@ -29,8 +29,9 @@
         %td= student.predictor_views
         - if current_course.has_badges? 
           %td
-            - student.earned_badges.each do |badge|
-              %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+            //#TODO Fix
+            //- student.earned_badges.each do |badge|
+            //%img{:src => badge.try(:icon), :alt => badge.try(:title), :width => "25"}
         %td= link_to 'Dashboard', student
         %td= link_to 'Predictor', predictor_users_path(:user_id => student)
         %td= link_to 'Edit', edit_user_path(student)

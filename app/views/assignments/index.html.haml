@@ -13,6 +13,7 @@
       %th Due Date
       %th Grade Type
       %th Total Points
+      //%th Submit
       - if current_user.is_staff?
         %th Average
         %th High Score
@@ -26,26 +27,27 @@
         %th
       %tbody
         - assignments.each do |assignment|
-          - if current_user.is_staff?
-            %tr
-              %td= assignment.id
-              %td= assignment.title
-              %td
-                - if assignment.due_date?
-                  = assignment.due_date
-              %td
-                - if assignment.has_groups?
-                  = link_to 'Create Group', new_group_path("assignment_id"=>assignment.id)
-                - else 
-                  = #{assignment.grade_scope}
-                - if assignment.has_teams? && current_user.is_student?
-                  = link_to 'My Team', team_path("team_id" => current_user.team_id)
-              %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
-              %td= number_with_delimiter(assignment.average, :delimiter => ',') 
-              %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 
-              %td= number_with_delimiter(assignment.low_score, :delimiter => ',')
-              %td= assignment.assignment_grades_attempted
-              %td= link_to 'View', assignment
+          %tr
+            %td= assignment.id
+            %td= assignment.title
+            %td
+              - if assignment.due_date?
+                = assignment.due_date
+            %td
+              - if assignment.has_groups?
+                = link_to 'Create Group', new_group_path("assignment_id"=>assignment.id)
+              - else 
+                = #{assignment.grade_scope}
+              - if assignment.has_teams? && current_user.is_student?
+                = link_to 'My Team', team_path("team_id" => current_user.team_id)
+            //%td= link to "Submit", new_assignment_assignment_submission_path(assignment.id)
+            %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
+            %td= number_with_delimiter(assignment.average, :delimiter => ',') 
+            %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 
+            %td= number_with_delimiter(assignment.low_score, :delimiter => ',')
+            %td= assignment.assignment_grades_attempted
+            %td= link_to 'View', assignment
+            - if current_user.is_staff?
               %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>assignment.id)
               - if assignment_type.mass_grade?
                 %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id)

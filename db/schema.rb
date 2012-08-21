@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120821042447) do
+ActiveRecord::Schema.define(:version => 20120821141952) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(:version => 20120821042447) do
     t.integer  "gradeable_id"
     t.string   "gradeable_type"
     t.integer  "final_score"
+    t.integer  "assignment_submission_id"
   end
 
   add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"
