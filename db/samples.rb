@@ -32,7 +32,7 @@ user_names.each do |name|
     u.email = "#{username}@hogwarts.edu"
     u.password = 'uptonogood'
     u.default_course_id = default_course.id
-    u.courses = [default_course] + courses.sample(rand(courses.count))
+    u.courses = [default_course] + (courses.sample(rand(courses.count)) - default_course)
   end
 end
 puts "Generated #{students.count} unruly students"
@@ -88,6 +88,7 @@ courses.each do |course|
       assignment.grades.create! do |g|
         g.gradeable = student
         g.raw_score = assignment.point_total * ((6 + rand(5)) / 10.0)
+        g.raw_score = assignment.point_total if student.name == 'Hermione Granger'
       end
     end
   end
