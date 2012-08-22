@@ -1,0 +1,4 @@
+= form_tag upload_url, :multipart => true do
+  %label{:for => "file"} File to Upload
+  = file_field_tag "file"
+  = submit_tag

@@ -12,6 +12,7 @@ GradeCraft::Application.routes.draw do
       get 'students'
       get 'staff'
       get 'final_grades'
+      get 'upload'
     end
     resources :earned_badges
   end
