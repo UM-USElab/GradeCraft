@@ -18,9 +18,8 @@ class GradesController < ApplicationController
   
   def gradebook
     @title = "Class Gradebook"
-    @assignments = current_course.assignments.all.sort_by &:id
-    @grades = current_course.grades.all.sort_by &:due_date
-    @students = current_course.users.students
+    @assignments = current_course.assignments.sort_by &:id
+    @students = current_course.users.students.includes(:grades)
   end
 
   def new    
