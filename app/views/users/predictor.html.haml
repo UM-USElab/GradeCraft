@@ -22,7 +22,7 @@
         %div.slide-panel
           %h2= assignment_type.try(:name)
           %p Current Score:
-          //%span= @user.assignment_type_score
+          //%span= @user.assignment_type_score(assignment_type)
           = "/"
           %span#assignmentTypeScore= assignment_type.possible_score 
           = assignment_type.predictor_description

@@ -42,8 +42,10 @@
     %div#Grades
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %div.assignmentType
-          //#TODO Add Assignment Type point totals
           %button.btn.btn-inverse{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name)}
+          %span= @user.assignment_type_score
+          = '/'
+          %span= assignment_type.possible_score
           %span.badge.badge-warning= assignment_type.weight
           - if assignment_type.student_choice?
             %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)

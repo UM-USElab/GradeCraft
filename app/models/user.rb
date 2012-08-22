@@ -117,7 +117,7 @@ class User < ActiveRecord::Base
   end
   
   #TODO CHECK
-  def assignment_type_score(assignment_type)
+  def assignment_type_score
     grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map(&:raw_score).inject(&:+) || 0 
   end
   
