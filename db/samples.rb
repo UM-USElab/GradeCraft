@@ -45,6 +45,7 @@ User.create! do |u|
   u.role = 'admin'
   u.email = 'dumbledore@hogwarts.edu'
   u.password = 'fawkes'
+  u.courses = courses
 end
 puts "Albus Dumbledore just apparated into Hogwarts"
 
@@ -56,6 +57,7 @@ User.create! do |u|
   u.role = 'professor'
   u.email = 'snape@hogwarts.edu'
   u.password = 'lily'
+  u.courses = courses
 end
 puts "Severus Snape has been spotted in Slytherin House"
 
@@ -67,6 +69,7 @@ students << User.create! do |u|
   u.role = 'gsi'
   u.email = 'percy.weasley@hogwarts.edu'
   u.password = 'bestprefect'
+  u.courses = courses
 end
 puts "Percy Weasley has arrived on campus, on time as usual"
 
@@ -77,8 +80,9 @@ courses.each do |course|
   for n in 1..10 do
     assignment = course.assignments.create! do |a|
       a.title = "Assignment #{n}"
+      a.due_date = rand(10).weeks.from_now
       a.assignment_type = course.assignment_types.sample
-      a.point_total = rand(10) * 100
+      a.point_total = 100 + rand(10) * 100
     end
     students.each do |student|
       assignment.grades.create! do |g|
