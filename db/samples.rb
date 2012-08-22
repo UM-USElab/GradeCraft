@@ -32,7 +32,7 @@ user_names.each do |name|
     u.email = "#{username}@hogwarts.edu"
     u.password = 'uptonogood'
     u.default_course_id = default_course.id
-    u.courses = [default_course] + (courses.sample(rand(courses.count)) - default_course)
+    u.courses = [default_course] + (courses.sample(rand(courses.count)) - [default_course])
   end
 end
 puts "Generated #{students.count} unruly students"
