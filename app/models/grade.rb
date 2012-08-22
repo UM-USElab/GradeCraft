@@ -18,13 +18,6 @@ class Grade < ActiveRecord::Base
   after_save :save_user_score
   
   scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
-
-   scope :attendance, where(:type => "AttendanceGrade")
-   scope :reading, where(:type => "ReadingGrade")
-   scope :section, where(:type=> "SectionGrade")
-   scope :essays, where(:type=> "EssaysGrade")
-   scope :blogging, where(:type=> "BloggingGrade")
-   scope :group_project, where(:type=> "GroupProjectGrade")
 #     
   def raw_score
     super || 0
@@ -43,7 +36,7 @@ class Grade < ActiveRecord::Base
   end
   
   def has_feedback?
-    #TODO feedback.empty?
+    feedback != nil
   end
   
   def save_user_score

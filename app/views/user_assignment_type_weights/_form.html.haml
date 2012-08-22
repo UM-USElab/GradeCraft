@@ -2,5 +2,7 @@
   = f.input :user_id, :collection => @users
   = f.input :assignment_type_id, :collection => @assignments
   = f.input :value, :hint => "You can set #{current_course.user_weight_amount}% of your course grade"
+  
   .form-actions
     = f.button :submit
+    = link_to 'Cancel', user_assignment_type_weights_path, :class => 'btn'

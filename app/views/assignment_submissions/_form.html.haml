@@ -1,11 +1,10 @@
-= simple_form_for(@assignment_submission) do |f|
+= simple_form_for([@assignment, @assignment_submission], :html => {:class => 'form-horizontal' }) do |f|
 
   .form-inputs
-    = f.input :assignment_id
-    = f.input :user_id
-    = f.input :group_id
-    = f.input :feedback
-    = f.input :comment
+    = f.association :assignment
+    = f.association :user
+    = f.input :comment, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
 
   .form-actions
     = f.button :submit
+    = link_to 'Cancel', assignments_path, :class => 'btn'

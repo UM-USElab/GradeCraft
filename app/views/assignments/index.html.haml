@@ -8,12 +8,11 @@
   %table.table.table-bordered
     %thead
     %tr
-      %th ID
       %th Title
       %th Due Date
       %th Grade Type
       %th Total Points
-      //%th Submit
+      %th Submit
       - if current_user.is_staff?
         %th Average
         %th High Score
@@ -25,10 +24,10 @@
         %th
         %th
         %th
+        %th
       %tbody
         - assignments.each do |assignment|
           %tr
-            %td= assignment.id
             %td= assignment.title
             %td
               - if assignment.due_date?
@@ -40,19 +39,23 @@
                 = #{assignment.grade_scope}
               - if assignment.has_teams? && current_user.is_student?
                 = link_to 'My Team', team_path("team_id" => current_user.team_id)
-            //%td= link to "Submit", new_assignment_assignment_submission_path(assignment.id)
+            %td= assignment.point_total
+            %td= link_to "Submit", new_assignment_assignment_submission_path(assignment), {:class => 'btn btn-primary btn-mini'}
+            //#TODO FIX
+            //- if assignment.open?
+                
             %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
             %td= number_with_delimiter(assignment.average, :delimiter => ',') 
             %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 
             %td= number_with_delimiter(assignment.low_score, :delimiter => ',')
             %td= assignment.assignment_grades_attempted
-            %td= link_to 'View', assignment
+            %td= link_to 'View', assignment, {:class => 'btn btn-primary btn-mini'}
             - if current_user.is_staff?
-              %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>assignment.id)
+              %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>assignment.id), {:class => 'btn btn-primary btn-mini'}
               - if assignment_type.mass_grade?
-                %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id)
-              %td= link_to 'Edit', edit_assignment_path(assignment)
-              %td= link_to 'Delete', assignment_path(assignment), :confirm => 'Are you sure?', :method => :delete
+                %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), {:class => 'btn btn-primary btn-mini'}
+              %td= link_to 'Edit', edit_assignment_path(assignment), {:class => 'btn btn-primary btn-mini'}
+              %td= link_to 'Delete', assignment_path(assignment), {:class => 'btn btn-primary btn-mini'}, :confirm => 'Are you sure?', :method => :delete
 
           - if current_user.is_student? && assignment.is_visible?
             %tr

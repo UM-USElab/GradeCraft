@@ -11,5 +11,5 @@
   = f.input :grade_scheme_id, :collection => @grade_schemes, :as => :select, :label_method => :scheme_name
   
   .form-actions
-    = f.button :submit, :class => 'btn btn-inverse'
-    = link_to 'Cancel', assignments_path, :class => 'btn btn-inverse'
+    = f.button :submit
+    = link_to 'Cancel', assignments_path, :class => 'btn'

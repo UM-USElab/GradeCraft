@@ -16,4 +16,7 @@
   //= f.input :final_score
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]
-  = f.button :submit, :class => 'btn btn-primary'
+  
+  .form-actions
+    = f.button :submit, :class => 'btn'
+    = link_to 'Cancel', assignment_path(@assignment), :class => 'btn'

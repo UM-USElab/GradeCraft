@@ -29,7 +29,23 @@ class Course < ActiveRecord::Base
     if team_term?
       team_term
     else 
-      "team"
+      "Team"
+    end
+  end
+  
+  def group_ref
+    if group_term?
+      group_term
+    else 
+      "Group"
+    end
+  end
+  
+  def section_leader_ref
+    if section_leader_term?
+      section_leader_term
+    else 
+      "Team Leader"
     end
   end
   

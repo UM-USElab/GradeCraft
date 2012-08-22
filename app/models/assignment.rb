@@ -87,7 +87,8 @@ class Assignment < ActiveRecord::Base
   end
   
   def open?
-    Time.open_date < Time.Now < Time.close_date 
+    #TODO Time comparisons in rails
+    open_time < Time.now < close_time 
   end
   
 end

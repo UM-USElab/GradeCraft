@@ -4,6 +4,7 @@
   = f.input :badge_id, :as => :select, :collection => @badges 
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' } 
   = hidden_field_tag "earned_badge[badge_ids][]", nil
+  
   .form-actions
-    = f.button :submit, :class => 'btn btn-primary'
-    = link_to 'Cancel', earned_badges_path, :class => 'btn btn-primary'
+    = f.button :submit, :class => 'btn'
+    = link_to 'Cancel', earned_badges_path, :class => 'btn'
