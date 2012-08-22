@@ -34,7 +34,7 @@
     %span.assignmentPointsSpan 
       %span#team_assignment_score #{current_user.team_assignment_score}
   %div.collapsible
-    - Grade.completion.where(:user_id => current_user.id).each do |grade|
+    - Grade.completion.where(:gradeable_id => current_user.id, :gradeable_type => 'User').each do |grade|
       - if grade.assignment.type == "TeamAssignment"
         - if grade.attempted? 
           %div.completedAssignment 
@@ -57,7 +57,7 @@
     %span Bonus Points!
     %span.assignmentPointsSpan
   %div.collapsible
-    - Grade.where(:user_id => current_user.id).each do |grade|
+    - Grade.where(:gradeable_id => current_user.id, :gradeable_type => 'User').each do |grade|
       - if grade.assignment.type == nil
         %div.completedAssignment
           %span.assignmentTitle= grade.title
