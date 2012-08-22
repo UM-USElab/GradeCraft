@@ -1,6 +1,6 @@
 - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
   %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
-  %span.assignmentTypeValue= "(#{assignment_type.try(:weight)} points possible)" 
+  %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})" 
   %span.assignmentChoice
     - if assignment_type.try(:student_choice?)
       - if current_user.is_student?

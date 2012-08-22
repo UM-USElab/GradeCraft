@@ -43,7 +43,7 @@ class Grade < ActiveRecord::Base
   end
   
   def has_feedback?
-    feedback != nil
+    #TODO feedback.empty?
   end
   
   def save_user_score

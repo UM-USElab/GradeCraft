@@ -36,6 +36,17 @@
   %b Students will be called:
   = @course.user_term
 
+%p 
+  %b Section Leaders will be called:
+  = @course.section_leader_term
+
+%p 
+  %b Students will work in groups:
+  = @course.group_setting
+
+%p 
+  %b Groups will be called:
+  = @course.group_term
 
 %div#footerNav
   = link_to 'Edit', edit_course_path(@course), :class => 'btn btn-primary'

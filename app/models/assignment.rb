@@ -86,4 +86,8 @@ class Assignment < ActiveRecord::Base
     assignment_type.mass_grade = true
   end
   
+  def open?
+    Time.open_date < Time.Now < Time.close_date 
+  end
+  
 end

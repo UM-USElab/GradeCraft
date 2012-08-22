@@ -17,7 +17,7 @@ class AssignmentType < ActiveRecord::Base
     elsif student_choice?
       "You decide!"
     else
-      possible_score
+      possible_score.to_s << " possible points"
     end
   end
   
