@@ -3,7 +3,7 @@ course_names = ['Defense Against the Dark Arts','Muggle Studies','Potions','Tran
 assignment_type_names = ['Hexes','Potions','Wards']
 semester = %w{Autumn Winter Spring}.sample
 
-puts "#{semester} term at Hogwarts has begun!"
+puts "\n#{semester} term at Hogwarts has begun!"
 
 
 # Generate sample courses
@@ -16,8 +16,6 @@ course_names.each do |course_name|
     c.semester = semester
   end
 end
-puts courses.first.inspect
-puts courses.last.inspect
 default_course = courses.first
 puts "Conjured #{courses.count} Hogwarts courses for the #{semester} term"
 
@@ -74,22 +72,27 @@ end
 puts "Percy Weasley has arrived on campus, on time as usual"
 
 courses.each do |course|
-  course.assignment_types.create! do |a|
-    a.name = assignment_type_names.sample
+  assignment_types = []
+  assignment_type_names.each do |assignment_type_name|
+    assignment_types << course.assignment_types.create! do |a|
+      a.name = assignment_type_name
+    end
   end
   for n in 1..10 do
     assignment = course.assignments.create! do |a|
       a.title = "Assignment #{n}"
       a.due_date = rand(10).weeks.from_now
-      a.assignment_type = course.assignment_types.sample
+      a.assignment_type = assignment_types.sample
       a.point_total = 100 + rand(10) * 100
     end
     students.each do |student|
-      assignment.grades.create! do |g|
+      Grade.create! do |g|
+        g.assignment = assignment
         g.gradeable = student
         g.raw_score = assignment.point_total * ((6 + rand(5)) / 10.0)
         g.raw_score = assignment.point_total if student.name == 'Hermione Granger'
       end
+      student.save
     end
   end
 end
