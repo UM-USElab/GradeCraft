@@ -10,8 +10,13 @@
 #massGrade  
   %ul.grades
     = simple_form_for @assignment, :html => {:class => 'form-horizontal' }, :url => mass_update_assignment_grades_path(:assignment_id => @assignment.id) do |f|
-      = f.simple_fields_for :grades do |grade_form|
-        = grade_form.input :score, :as => :boolean
+      - @students.each_with_index do |student,i|
+        - student.grade_for_assignment(@assignment).tap do |grade|
+          - "assignment[grades_attributes][#{grade.id}][raw_score]".tap do |raw_score_field_name|
+            = hidden_field_tag raw_score_field_name, 0
+            = label_tag do
+              = check_box_tag raw_score_field_name, grade.points_possible, grade.attempted?
+              = student.name
         //= grade_form.association :earnable, :as => :check_boxes, :collection => @badges
       = f.button :submit
 

@@ -112,7 +112,7 @@ class User < ActiveRecord::Base
   end
 
   def grade_for_assignment(assignment)
-    grades_by_assignment_id[assignment.id]
+    grades_by_assignment_id[assignment.id].try(:first)
   end
   
   #Score
