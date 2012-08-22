@@ -167,7 +167,7 @@ class User < ActiveRecord::Base
   private
 
   def set_sortable_score
-    self.sortable_score = grades.map(&:score).inject(&:+) || 0
+    self.sortable_score = grades.reload.map(&:score).inject(&:+) || 0
   end
 
 end

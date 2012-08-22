@@ -16,6 +16,7 @@ class Grade < ActiveRecord::Base
   delegate :title, :description, :point_total, :due_date, :to => :assignment
   
   after_save :save_user_score
+  after_destroy :save_user_score
   
   scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
 #     

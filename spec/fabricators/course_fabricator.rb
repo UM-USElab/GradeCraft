@@ -3,6 +3,5 @@ Fabricator(:course) do
   courseno 101
   year Date.today.year
   semester %w{Fall Winter Spring Summer}.sample
-  badge_set
   theme
 end
