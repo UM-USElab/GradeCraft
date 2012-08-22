@@ -7,7 +7,11 @@
     - @students.each do |student|
       %tr 
         %td= student.name
-        - student.grades.each do |grade|
-          %td= grade.score
+        - @assignments.each do |assignment|
+          - student.grade_for_assignment(assignment).tap do |grade|
+            - if grade
+              %td= grade.score
+            - else
+              %td
 
 %div#footerNav

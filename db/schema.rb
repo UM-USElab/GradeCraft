@@ -81,21 +81,21 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
   end
 
   create_table "badges", :force => true do |t|
-    t.integer   "assignment_id"
-    t.string    "title"
-    t.text      "description"
-    t.string    "icon"
-    t.binary    "visible"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "image_file_name"
-    t.string    "image_content_type"
-    t.integer   "image_file_size"
-    t.timestamp "image_updated_at"
-    t.string    "occurrence"
-    t.integer   "badge_set_id"
-    t.integer   "value"
-    t.integer   "multiplier"
+    t.integer  "assignment_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "icon"
+    t.binary   "visible"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "occurrence"
+    t.integer  "badge_set_id"
+    t.integer  "value"
+    t.integer  "multiplier"
   end
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
@@ -123,31 +123,31 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
     t.string   "courseno"
     t.string   "year"
     t.string   "semester"
-    t.decimal  "badge_set_id"
+    t.integer  "badge_sets_id"
     t.string   "theme_id"
     t.integer  "coursegradescheme"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "team_setting"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+    t.boolean  "badge_setting",                 :default => true
+    t.boolean  "team_setting",                  :default => false
     t.string   "user_term"
-    t.boolean  "badge_setting"
     t.string   "team_term"
     t.string   "homepage_message"
-    t.boolean  "status"
+    t.boolean  "status",                        :default => true
     t.boolean  "group_setting"
+    t.integer  "badge_set_id"
     t.integer  "user_weight_amount"
     t.integer  "min_size"
     t.integer  "max_size"
     t.datetime "user_weight_amount_close_date"
-    t.string   "user_weight_type"
     t.boolean  "team_roles"
     t.string   "section_leader_term"
     t.string   "group_term"
   end
 
   create_table "dashboards", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "earned_badges", :force => true do |t|
@@ -170,9 +170,12 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
   end
 
   create_table "grade_schemes", :force => true do |t|
+    t.integer  "assignment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "scheme_name"
+    t.string   "grade_name"
+    t.integer  "range_bottom"
+    t.integer  "range_top"
     t.integer  "course_id"
   end
 
@@ -207,13 +210,13 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
   end
 
   create_table "groups", :force => true do |t|
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "assignment_id"
-    t.integer   "course_id"
-    t.string    "approved"
-    t.string    "proposal"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "assignment_id"
+    t.integer  "course_id"
+    t.string   "approved"
+    t.string   "proposal"
   end
 
   create_table "teams", :force => true do |t|
@@ -250,35 +253,35 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
   end
 
   create_table "users", :force => true do |t|
-    t.string    "username",                                               :null => false
-    t.string    "email"
-    t.string    "crypted_password"
-    t.string    "salt"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "reset_password_token"
-    t.timestamp "reset_password_token_expires_at"
-    t.timestamp "reset_password_email_sent_at"
-    t.string    "remember_me_token"
-    t.timestamp "remember_me_token_expires_at"
-    t.string    "avatar_file_name"
-    t.string    "avatar_content_type"
-    t.integer   "avatar_file_size"
-    t.timestamp "avatar_updated_at"
-    t.string    "role",                            :default => "student"
-    t.integer   "team_id"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.integer   "sortable_score"
-    t.integer   "rank"
-    t.string    "display_name"
-    t.boolean   "private_display",                 :default => false
-    t.integer   "default_course_id"
-    t.string    "final_grade"
-    t.integer   "visit_count"
-    t.integer   "predictor_views"
-    t.integer   "page_views"
-    t.string    "team_role"
+    t.string   "username",                                               :null => false
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.string   "remember_me_token"
+    t.datetime "remember_me_token_expires_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "role",                            :default => "student"
+    t.integer  "team_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "sortable_score"
+    t.integer  "rank"
+    t.string   "display_name"
+    t.boolean  "private_display",                 :default => false
+    t.integer  "default_course_id"
+    t.string   "final_grade"
+    t.integer  "visit_count"
+    t.integer  "predictor_views"
+    t.integer  "page_views"
+    t.string   "team_role"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

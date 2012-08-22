@@ -106,6 +106,14 @@ class User < ActiveRecord::Base
   def earned_grades
     grades + team.grades + group.grades + badge.values
   end
+
+  def grades_by_assignment_id
+    @grades_by_assignment ||= grades.group_by(&:assignment_id)
+  end
+
+  def grade_for_assignment(assignment)
+    grades_by_assignment_id[assignment.id]
+  end
   
   #Score
   def sortable_score
