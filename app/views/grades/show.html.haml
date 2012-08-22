@@ -1,6 +1,6 @@
 %p
   %b User:
-  = link_to @grade.gradeable.try(:name)
+  = link_to @grade.gradeable.try(:name), "/#{@grade.gradeable_type.downcase}s/#{@grade.gradeable_id}"
 %p
   %b Assignment:
   = link_to @grade.assignment.title, assignment_path(@grade.assignment_id)
@@ -15,8 +15,8 @@
 
 %p
   %b Badges:
-  - @grade.earned_badges.each do |badge|
-    %img{:src => badge.try(:icon), :alt => badge.title, :width => "50", :height => "50"}
+  //- @grade.earned_badges.each do |badge|
+  //%img{:src => badge.try(:icon), :alt => badge.title, :width => "50", :height => "50"}
 %p
   %b Status:
   = @grade.status

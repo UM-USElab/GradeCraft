@@ -33,8 +33,7 @@
       - @assignment.assignment_grades.each do |grade|
         %tr
           %td= check_box_tag "grade_ids[]", grade.id
-          %td= grade.gradeable.try(:name) 
-          //TODO Fix: is there a better way to write this? "/#{grade.gradeable_type}s/#{grade.gradeable_id}"
+          %td= link_to grade.gradeable.try(:name), "/#{grade.gradeable_type.downcase}s/#{grade.gradeable_id}"
           %td #{number_with_delimiter(grade.raw_score, :delimiter => ',') }
           %td
           %td 
