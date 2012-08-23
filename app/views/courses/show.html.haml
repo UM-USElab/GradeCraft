@@ -15,7 +15,7 @@
   = @course.badge_setting
 %p
   %b Theme:
-  = @course.theme.name
+  = @course.theme.try(:name)
 %p
   %b Course Grade Scheme:
   = @course.coursegradescheme

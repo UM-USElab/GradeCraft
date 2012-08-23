@@ -14,7 +14,7 @@
       - if user.is_staff? 
         %tr
           %td= user.username
-          %td= user.name
+          %td= link_to user.name, user_path(user)
           %td= user.role
           %td= user.team.try(:name)
           %td 

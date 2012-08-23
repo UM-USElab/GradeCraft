@@ -23,7 +23,7 @@
       %tr
         %td= i
         %td= student.email
-        %td= student.name
+        %td= link_to student.name, user_path(student)
         %td= student.team.try(:name)
         - if current_course.team_roles?
           %td= student.try(:team_role)

@@ -20,7 +20,7 @@
       %tbody
         - @top_ten_students.each do |student|
           %tr
-            %td= link_to student.name, user_path(:id => student.id)
+            %td= link_to student.name, user_path(student)
             %td= student.sortable_score
             %td= student.user_badge_count
             %td= student.attendance_rate
@@ -68,7 +68,7 @@
       %tbody
         - @bottom_ten_students.each do |student|
           %tr
-            %td= link_to student.name, user_path(:id => student.id)
+            %td= link_to student.name, user_path(student)
             %td= student.sortable_score
             %td= student.user_badge_count
             %td= student.attendance_rate
