@@ -1,7 +1,7 @@
 %table.table.table-bordered
   %thead
     %tr
-      %th #{current_course.user_term}
+      %th #{current_course.user_ref}
       - for assignment in @assignments
         %th= assignment.title
     - @students.each do |student|

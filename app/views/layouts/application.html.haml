@@ -29,7 +29,7 @@
                 - if current_course.has_badges?                
                   = link_to "Badges", badges_path, :class => "btn"
                 - if current_course.has_teams?                
-                  = link_to "#{current_course.team_term}s", teams_path, :class => "btn"
+                  = link_to "#{current_course.team_ref}s", teams_path, :class => "btn"
                 = link_to "Predictor",  predictor_users_path(:user_id => current_user.id), :class => "btn"
             - if current_user.try(:is_staff?) && current_course
               %div{:class => 'btn-group pull-right'}
@@ -40,11 +40,11 @@
                   %li= link_to "New Assignment", new_assignment_path
                   %li= link_to "Assignment Types", assignment_types_path
                   %li= link_to "Gradebook", gradebook_path
-                  %li= link_to "#{current_course.user_term}s", students_users_path
+                  %li= link_to "#{current_course.user_ref}s", students_users_path
                   - if current_course.has_groups?    
                     %li= link_to "Groups", groups_path
                   - if current_course.has_teams?    
-                    %li= link_to "#{current_course.team_term}s", teams_path
+                    %li= link_to "#{current_course.team_ref}s", teams_path
                   %li= link_to "Predictor Settings", predictor_users_path
                   %li= link_to "Staff", staff_users_path
                   %li= link_to "Grade Scheme", course_grade_schemes_path

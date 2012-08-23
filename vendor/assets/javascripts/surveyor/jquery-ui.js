@@ -289,7 +289,7 @@ $.extend( $.ui, {
 			return true;
 		}
 	
-		// TODO: determine which cases actually cause this to happen
+		// TODO: deefine which cases actually cause this to happen
 		// if the element doesn't have the scroll set, see if it's possible to
 		// set the scroll
 		el[ scroll ] = 1;

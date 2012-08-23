@@ -30,11 +30,11 @@
 
 %p
   %b These sections will be called:
-  = @course.team_term
+  = @course.team_ref
   
 %p 
   %b Students will be called:
-  = @course.user_term
+  = @course.user_ref
 
 %p 
   %b Section Leaders will be called:
@@ -46,7 +46,7 @@
 
 %p 
   %b Groups will be called:
-  = @course.group_term
+  = @course.group_ref
 
 %div#footerNav
   = link_to 'Edit', edit_course_path(@course), :class => 'btn btn-primary'

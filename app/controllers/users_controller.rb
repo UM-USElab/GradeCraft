@@ -71,7 +71,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title = "Edit #{current_course.user_term}"
+    @title = "Edit #{current_course.user_ref}"
     @teams = current_course.teams.all
     @courses = Course.all
     @user = current_course.users.find(params[:id])

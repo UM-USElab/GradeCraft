@@ -4,7 +4,7 @@
       %th Rank
       %th Email
       %th Name
-      %th #{current_course.team_term}
+      %th #{current_course.team_ref}
       - if current_course.team_roles?
         %th Role
       %th Score
@@ -46,4 +46,4 @@
 = link_to "Excel", users_path(format: "xls")
 
 %div#footerNav
-  = link_to "Create a New #{current_course.user_term}", new_user_path, :class => "btn btn-primary"
+  = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"

@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @title = "#{current_course.team_term}s"
+    @title = "#{current_course.team_ref}s"
     @teams = current_course.teams.all
 
     respond_to do |format|
@@ -28,7 +28,7 @@ class TeamsController < ApplicationController
   # GET /teams/new
   # GET /teams/new.json
   def new
-    @title = "Create a New #{current_course.team_term}"
+    @title = "Create a New #{current_course.team_ref}"
     @team =  Team.new
     @users = current_course.users
 
@@ -40,7 +40,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
-    @title = "Edit #{current_course.user_term}"
+    @title = "Edit #{current_course.user_ref}"
     @team =  current_course.teams.find(params[:id])
   end
 
