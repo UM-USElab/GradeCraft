@@ -33,9 +33,8 @@
         %td= student.predictor_views
         - if current_course.has_badges? 
           %td
-            //#TODO Fix
-            //- student.earned_badges.each do |badge|
-            //%img{:src => badge.try(:icon), :alt => badge.try(:title), :width => "25"}
+            - student.earned_badges.each do |badge|
+              %img{:src => badge.try(:icon), :alt => badge.try(:title), :width => "25"}
         %td= link_to 'Dashboard', student
         %td= link_to 'Predictor', predictor_users_path(:user_id => student)
         %td= link_to 'Edit', edit_user_path(student)

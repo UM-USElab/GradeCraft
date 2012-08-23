@@ -18,7 +18,7 @@
           %td= user.role
           %td= user.team.try(:name)
           %td 
-          //%td= user.team.try(:score)
+          %td= user.team.try(:score)
           %td
           - user.team_badges.each do |badge|
             %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}

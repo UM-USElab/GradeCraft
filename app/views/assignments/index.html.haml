@@ -24,7 +24,6 @@
         %th
         %th
         %th
-        %th
       %tbody
         - assignments.each do |assignment|
           %tr
@@ -39,12 +38,10 @@
                 = #{assignment.grade_scope}
               - if assignment.has_teams? && current_user.is_student?
                 = link_to 'My Team', team_path("team_id" => current_user.team_id)
-            %td= assignment.point_total
+            %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
             %td= link_to "Submit", new_assignment_assignment_submission_path(assignment), {:class => 'btn btn-primary btn-mini'}
             //#TODO FIX
             //- if assignment.open?
-                
-            %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
             %td= number_with_delimiter(assignment.average, :delimiter => ',') 
             %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 
             %td= number_with_delimiter(assignment.low_score, :delimiter => ',')
