@@ -14,12 +14,14 @@ class AssignmentSubmissionsController < ApplicationController
 
   def new
     @assignment = Assignment.find(params[:assignment_id])
+    @title = "Submit #{@assignment.title}"
     @assignment_submission = AssignmentSubmission.new
     respond_with(@assignment_submission)
   end
 
   def edit
     @assignment = Assignment.find(params[:assignment_id])
+    @title = "Edit Submission for #{@assignment.title}"
     @assignment_submission = AssignmentSubmission.find(params[:id])
   end
 
