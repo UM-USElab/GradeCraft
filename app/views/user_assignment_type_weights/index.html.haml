@@ -6,9 +6,9 @@
 
   - @user_assignment_type_weights.each do |user_assignment_type_weight|
     %tr
-      %td= link_to 'Show', user_assignment_type_weight
+      %td= link_to 'View', user_assignment_type_weight
       %td= link_to 'Edit', edit_user_assignment_type_weight_path(user_assignment_type_weight)
-      %td= link_to 'Destroy', user_assignment_type_weight, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Delete', user_assignment_type_weight, :confirm => 'Are you sure?', :method => :delete
 
 %br
 

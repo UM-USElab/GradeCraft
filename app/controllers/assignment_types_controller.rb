@@ -27,7 +27,7 @@ class AssignmentTypesController < ApplicationController
 
   def edit
     @assignment_type = current_course.assignment_types.find(params[:id])
-    @title = "Edit #{assignment_type.name}"
+    @title = "Edit #{@assignment_type.name}"
   end
 
   def create

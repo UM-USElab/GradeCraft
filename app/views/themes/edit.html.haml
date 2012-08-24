@@ -1,4 +1,5 @@
 = render 'form'
 
-= link_to 'Show', @theme, :class => 'btn btn-primary'
-= link_to 'Back', themes_path, :class => 'btn btn-primary'
+%div#footerNav
+  = link_to 'View', @theme, :class => 'btn btn-primary'
+  = link_to 'Back', themes_path, :class => 'btn btn-primary'
