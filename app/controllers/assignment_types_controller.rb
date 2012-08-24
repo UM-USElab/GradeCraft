@@ -11,7 +11,7 @@ class AssignmentTypesController < ApplicationController
 
   def show
     @assignment_type = current_course.assignment_types.find(params[:id])
-    @title = "View #{assignment_type.name}"
+    @title = "#{@assignment_type.name}"
     respond_to do |format|
       format.html
       format.json { render json: @assignment_types.as_json(only:[:id, :name, :point_setting, :levels, :points_predictor_display, :resubmission, :max_value, :percentage_course, :predictor_description, :universal_point_value, :minimum_score, :step_value, :due_date_present]) }

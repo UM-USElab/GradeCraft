@@ -2,5 +2,6 @@
   %b Name:
   = @course_grade_scheme.name
 
-= link_to 'Edit', edit_course_grade_scheme_path(@course_grade_scheme), :class => 'btn btn-primary'
-= link_to 'Back', course_grade_schemes_path, :class => 'btn btn-primary'
+%div#footerNav
+  = link_to 'Edit', edit_course_grade_scheme_path(@course_grade_scheme), :class => 'btn btn-primary'
+  = link_to 'Back', course_grade_schemes_path, :class => 'btn btn-primary'

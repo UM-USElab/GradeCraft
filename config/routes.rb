@@ -55,7 +55,7 @@ GradeCraft::Application.routes.draw do
   get 'using_gradecraft' => 'info#using_gradecraft'
   get 'home/index'
   get 'dashboard' => 'info#dashboard'
-  root :to => "home#index"
+  root :to => "info#dashboard"
   
   post '/current_course/change' => 'current_courses#change', :as => :change_current_course
 
