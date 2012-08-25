@@ -47,7 +47,14 @@
       %tbody
         - @teams.each do |team|
           %tr
-            %td= team
+            %td= team.name
+            %td= team.score
+            %td 
+              - team.earned_badges.each do |badge|
+                %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"} 
+            %td
+            %td
+            %td= team.team_leader
 
 
 %div.row

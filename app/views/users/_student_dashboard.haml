@@ -55,7 +55,7 @@
             %div.assignmentsGroup
               - assignments.each do |assignment|
                 %div.assignment
-                  %span.assignmentTitle= assignment.try(:title)
+                  %span.assignmentTitle= assignment.try(:name)
                   - assignment.assignment_grades.where(:gradeable_id => user.id).each do |grade|
                     - if grade.attempted? 
                       %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total} 

@@ -3,18 +3,11 @@
   = @team.score
 %p
   %b Rank:
-
-%p
-  %b Reading Reactions Score: 
-  = @team.reading_reaction_score
-%p
-  %b Challenge Score:
-  = @team.challenge_grade
 %p
   %b Badges:
-  - @team.earned_badges.each do |badge|
-    %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
-  = @team.earned_badges.count
+  //- @team.earned_badges.each do |badge|
+  //%img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
+  //= @team.earned_badges.count
 
 
 %div#footerNav

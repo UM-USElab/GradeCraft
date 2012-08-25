@@ -82,7 +82,6 @@ class UsersController < ApplicationController
     @teams = current_course.teams.all
     @user = current_course.users.create(params[:user])
     @user.save
-    #@user.course ||= current_course
     
     respond_with @user
   end
