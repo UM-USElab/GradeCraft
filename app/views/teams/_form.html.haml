@@ -1,8 +1,7 @@
 = simple_form_for(@team, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :name, :label => "#{current_course.team_ref}s Name"
   = f.association :users, :collection => @users, :as => :check_boxes
-  //#TODO How can I hide this? 
-  = f.input :course_id, :default => current_course.id, :collection => @courses
+  = f.input :course_id, :collection => @courses, :as => :hidden, :input_html => { :value => current_course.id }
   
   .form-actions
     = f.button :submit, :class => 'btn', :value => "Create #{current_course.team_ref}"

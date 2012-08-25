@@ -53,11 +53,11 @@
               %td= assignment.assignment_grades_attempted
             %td= link_to 'View', assignment, {:class => 'btn btn-primary btn-mini'}
             - if current_user.is_staff?
-              %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>assignment.id), {:class => 'btn btn-primary btn-mini'}
+              %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>assignment.id), {:class => 'btn btn-mini'}
               - if assignment_type.mass_grade?
-                %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), {:class => 'btn btn-primary btn-mini'}
-              %td= link_to 'Edit', edit_assignment_path(assignment), {:class => 'btn btn-primary btn-mini'}
-              %td= link_to 'Delete', assignment_path(assignment), {:class => 'btn btn-primary btn-mini'}, :confirm => 'Are you sure?', :method => :delete
+                %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), {:class => 'btn btn-mini'}
+              %td= link_to 'Edit', edit_assignment_path(assignment), {:class => 'btn btn-mini'}
+              %td= link_to 'Delete', assignment_path(assignment), {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
 
           - if current_user.is_student? && assignment.is_visible?
             %tr

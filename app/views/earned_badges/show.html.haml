@@ -1,7 +1,7 @@
 %h4= link_to @earned_badge.earnable.name, user_path(@earned_badge.earnable_id)
 %h4= @earned_badge.feedback
 
-%img{:src => @earned_badge.badge.try(:icon), :alt => @earned_badge.badge.try(:title), :width => "25", :height => "25"}
+%img{:src => @earned_badge.badge.try(:icon), :alt => @earned_badge.badge.try(:name), :width => "25", :height => "25"}
 
 %div#footerNav
   = link_to 'Edit', edit_earned_badge_path(@earned_badge), :class => "btn btn-inverse"

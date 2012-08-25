@@ -11,9 +11,9 @@
       %tr
         %td= badge_set.name
         %td= badge_set.notes
-        %td= link_to 'View', badge_set
-        %td= link_to 'Edit', edit_badge_set_path(badge_set)
-        %td= link_to 'Delete', badge_set, :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'View', badge_set, {:class => 'btn btn-mini'}
+        %td= link_to 'Edit', edit_badge_set_path(badge_set), {:class => 'btn btn-mini'}
+        %td= link_to 'Delete', badge_set, {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
   = link_to 'New Badge set', new_badge_set_path, {:class => 'btn btn-primary'}

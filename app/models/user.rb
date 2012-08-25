@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_many :user_assignment_type_weights
   has_many :assignments, :through => :grades
   has_many :assignment_submissions
-  has_many :earned_badges, :as => :earnable
+  has_many :earned_badges, :as => :earnable, :dependent => :destroy
   has_many :badges, :through => :earned_badges
   belongs_to :team
   has_many :group_memberships, :dependent => :destroy
@@ -41,7 +41,6 @@ class User < ActiveRecord::Base
                     :uniqueness => { :case_sensitive => false }
   
   #Course
-  
   def find_scoped_courses(course_id)
     course_id = BSON::ObjectId(course_id) if course_id.is_a?(String)
     if is_admin? || self.course_ids.include?(course_id)

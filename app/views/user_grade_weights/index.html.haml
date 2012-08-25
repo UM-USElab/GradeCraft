@@ -6,9 +6,9 @@
 
   - @user_grade_weights.each do |user_grade_weight|
     %tr
-      %td= link_to 'View', user_grade_weight, :class => 'btn'
-      %td= link_to 'Edit', edit_user_grade_weight_path(user_grade_weight), :class => 'btn'
-      %td= link_to 'Delete', user_grade_weight, :class => 'btn', :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'View', user_grade_weight, {:class => 'btn btn-mini'}
+      %td= link_to 'Edit', edit_user_grade_weight_path(user_grade_weight), {:class => 'btn btn-mini'}
+      %td= link_to 'Delete', user_grade_weight, {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
   = link_to 'New User grade weight', new_user_grade_weight_path, :class => 'btn btn-primary'

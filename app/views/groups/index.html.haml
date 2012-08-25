@@ -15,11 +15,10 @@
         %td= group.name
         %td= group.approved
         %td
-        //#TODO need to make grades polymorphic
-        //%td= group.grade.final_grade
-        %td= link_to 'View', group
-        %td= link_to 'Edit', edit_group_path(group)
-        %td= link_to 'Delete', group, :confirm => 'Are you sure?', :method => :delete
+        %td= group.grade.final_grade
+        %td= link_to 'View', group, {:class => 'btn btn-mini'}
+        %td= link_to 'Edit', edit_group_path(group), {:class => 'btn btn-mini'}
+        %td= link_to 'Delete', group, {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
   = link_to 'New Group', new_group_path, {:class => 'btn btn-primary'}

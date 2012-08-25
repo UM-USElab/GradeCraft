@@ -14,6 +14,7 @@ class AssignmentsController < ApplicationController
   def show
     @assignment = current_course.assignments.find(params[:id])
     @title = "View #{@assignment.name}"
+    @earnables = current_course.earned_badges.all
     respond_with @assignment
   end
 
