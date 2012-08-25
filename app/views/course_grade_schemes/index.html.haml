@@ -1,4 +1,4 @@
-%table
+%table.table.table-bordered
   %tr
     %th Name
     %th Letter Grade
@@ -18,4 +18,4 @@
       %td= link_to 'Edit', edit_course_grade_scheme_path(course_grade_scheme)
       %td= link_to 'Delete', course_grade_scheme, :confirm => 'Are you sure?', :method => :delete
 
-= link_to 'New Course grade scheme', new_course_grade_scheme_path, :class => 'btn btn-primary'
+= link_to 'New Grading Element', new_course_grade_scheme_path, :class => 'btn btn-primary'

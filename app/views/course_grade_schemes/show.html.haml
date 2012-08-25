@@ -1,6 +1,15 @@
 %p
   %b Name:
   = @course_grade_scheme.name
+%p
+  %b Low Range:
+  = @course_grade_scheme.low_range
+%p
+  %b High Range:
+  = @course_grade_scheme.high_range
+%p
+  %b Letter Grade:
+  = @course_grade_scheme.letter_grade
 
 %div#footerNav
   = link_to 'Edit', edit_course_grade_scheme_path(@course_grade_scheme), :class => 'btn btn-primary'

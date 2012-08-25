@@ -29,7 +29,7 @@
       %tbody
         - assignments.each do |assignment|
           %tr
-            %td= assignment.title
+            %td= assignment.name
             %td
               - if assignment.due_date?
                 = assignment.due_date
@@ -62,7 +62,7 @@
           - if current_user.is_student? && assignment.is_visible?
             %tr
               %td= assignment.id
-              %td= assignment.title
+              %td= assignment.name
               %td
                 - if assignment.due_date?
                   = assignment.due_date

@@ -16,8 +16,8 @@
       - if current_user.is_staff?
         %tr
           %td
-            %img{:src => badge.icon, :alt => badge.title}
-            %td= badge.title
+            %img{:src => badge.icon, :alt => badge.name}
+            %td= badge.name
             %td= raw badge.description
             %td= badge.value
             %td= badge.multiplier
@@ -33,8 +33,8 @@
         - if badge.visible == "1"
           %tr
             %td
-              %img{:src => badge.icon, :alt => badge.title}
-              %td= badge.title
+              %img{:src => badge.icon, :alt => badge.name}
+              %td= badge.name
               %td= badge.description
               
 %div#footerNav

@@ -13,7 +13,7 @@ class AssignmentsController < ApplicationController
 
   def show
     @assignment = current_course.assignments.find(params[:id])
-    @title = "View #{@assignment.title}"
+    @title = "View #{@assignment.name}"
     respond_with @assignment
   end
 
@@ -28,7 +28,7 @@ class AssignmentsController < ApplicationController
     @assignment = current_course.assignments.find(params[:id])
     @assignment_types = current_course.assignment_types.all
     @grade_schemes = current_course.grade_schemes.all
-    @title = "Edit #{@assignment.title}"
+    @title = "Edit #{@assignment.name}"
     respond_with @assignment = current_course.assignments.find(params[:id])
   end
 

@@ -5,7 +5,6 @@ class InfoController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
-  
   def dashboard
     @title = "My Dashboard"
     @teams = current_course.teams.all

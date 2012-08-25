@@ -3,7 +3,7 @@
   = link_to @grade.gradeable.try(:name), "/#{@grade.gradeable_type.downcase}s/#{@grade.gradeable_id}"
 %p
   %b Assignment:
-  = link_to @grade.assignment.title, assignment_path(@grade.assignment_id)
+  = link_to @grade.assignment.name, assignment_path(@grade.assignment_id)
 %p
   %b Score:
   = @grade.raw_score
@@ -16,7 +16,7 @@
 %p
   %b Badges:
   //- @grade.earned_badges.each do |badge|
-  //%img{:src => badge.try(:icon), :alt => badge.title, :width => "50", :height => "50"}
+  //%img{:src => badge.try(:icon), :alt => badge.name, :width => "50", :height => "50"}
 %p
   %b Status:
   = @grade.status
@@ -24,4 +24,4 @@
 %div#footerNav
   = link_to 'Edit', edit_assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id), :class => 'btn btn-primary'
   = link_to 'Back', assignment_path(@grade.assignment_id), :class => 'btn btn-primary'
-  = link_to "Grade Another " +@grade.assignment.title, new_assignment_grade_path("assignment_id"=>@grade.assignment.id), :class => 'btn btn-primary'
+  = link_to "Grade Another " +@grade.assignment.name, new_assignment_grade_path("assignment_id"=>@grade.assignment.id), :class => 'btn btn-primary'

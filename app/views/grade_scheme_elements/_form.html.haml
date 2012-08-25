@@ -1,10 +1,10 @@
 = simple_form_for([@grade_scheme, @grade_scheme_element], :html => {:class => 'form-horizontal' }) do |f|
-    = f.association :grade_scheme, :collection => @grade_schemes, :label_method => :scheme_name
-    = f.input :name
-    = f.input :value
-    = f.input :letter_grade
-    = f.input :description, :input_html => {:id => 'some-textarea', :class => 'span9' }, :as => :text
+  = f.association :grade_scheme, :collection => @grade_schemes, :label_method => :name
+  = f.input :name
+  = f.input :value
+  = f.input :letter_grade
+  = f.input :description, :input_html => {:id => 'some-textarea', :class => 'span9' }, :as => :text
     
   .form-actions
-    = f.button :submit, :class => 'btn'
+    = f.button :submit, 'Create'
     = link_to 'Cancel', grade_schemes_path, :class => 'btn'

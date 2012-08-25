@@ -2,8 +2,6 @@ class TeamsController < ApplicationController
 
   before_filter :ensure_staff?, :only=>[:new,:edit,:create,:destroy]
 
-  # GET /teams
-  # GET /teams.json
   def index
     @title = "#{current_course.team_ref}s"
     @teams = current_course.teams.all
@@ -14,8 +12,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # GET /teams/1
-  # GET /teams/1.json
   def show
     @team = current_course.teams.find(params[:id])
 
@@ -25,8 +21,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # GET /teams/new
-  # GET /teams/new.json
   def new
     @title = "Create a New #{current_course.team_ref}"
     @team =  Team.new
@@ -38,14 +32,11 @@ class TeamsController < ApplicationController
     end
   end
 
-  # GET /teams/1/edit
   def edit
     @title = "Edit #{current_course.user_ref}"
     @team =  current_course.teams.find(params[:id])
   end
 
-  # POST /teams
-  # POST /teams.json
   def create
     @team =  current_course.team.new(params[:team])
 
@@ -60,8 +51,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # PUT /teams/1
-  # PUT /teams/1.json
   def update
     @team =  current_course.team.find(params[:id])
 
@@ -76,8 +65,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # DELETE /teams/1
-  # DELETE /teams/1.json
   def destroy
     @team =  current_course.team.find(params[:id])
     @team.destroy

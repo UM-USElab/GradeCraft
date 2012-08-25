@@ -113,7 +113,7 @@ class GradesController < ApplicationController
   
   def edit_status
     @assignment = Assignment.find(params[:assignment_id])
-    @title = Assignment.name
+    @title = "#{@assignment.name} Grade Statuses"
     @grades = Grade.find(params[:grade_ids])
   end
   

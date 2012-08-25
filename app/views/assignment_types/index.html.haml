@@ -31,6 +31,5 @@
         %td= link_to 'Edit', edit_assignment_type_path(assignment_type)
         %td= link_to 'Delete', assignment_type, :confirm => 'Are you sure?', :method => :delete
 
-%br
-
-= link_to 'New Assignment Type', new_assignment_type_path, {:class => 'btn btn-primary'}
+%div#footerNav
+  = link_to 'New Assignment Type', new_assignment_type_path, {:class => 'btn btn-primary'}

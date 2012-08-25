@@ -1,5 +1,5 @@
 class GradeSchemeElement < ActiveRecord::Base
-  attr_accessible :high_range, :letter_grade, :low_range, :name, :grade_scheme_id
+  attr_accessible :letter_grade, :value, :name, :grade_scheme_id
   
   belongs_to :grade_scheme
 

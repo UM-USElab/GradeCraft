@@ -1,7 +1,7 @@
 class AssignmentSubmissionsController < ApplicationController
   def index
     @assignment = Assignment.find(params[:assignment_id])
-    @title = "View All Submissions for #{@assignment.title}"
+    @title = "View All Submissions for #{@assignment.name}"
     @assignment_submissions = @assignment.assignment_submissions.where(params[:assignment_id])
   end
 
@@ -14,14 +14,14 @@ class AssignmentSubmissionsController < ApplicationController
 
   def new
     @assignment = Assignment.find(params[:assignment_id])
-    @title = "Submit #{@assignment.title}"
+    @title = "Submit #{@assignment.name}"
     @assignment_submission = AssignmentSubmission.new
     respond_with(@assignment_submission)
   end
 
   def edit
     @assignment = Assignment.find(params[:assignment_id])
-    @title = "Edit Submission for #{@assignment.title}"
+    @title = "Edit Submission for #{@assignment.name}"
     @assignment_submission = AssignmentSubmission.find(params[:id])
   end
 

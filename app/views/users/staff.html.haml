@@ -21,7 +21,7 @@
           %td= user.team.try(:score)
           %td
           - user.team_badges.each do |badge|
-            %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+            %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
           %td= link_to 'Edit', edit_user_path(user)
           %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
 
