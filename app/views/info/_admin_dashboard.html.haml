@@ -47,7 +47,7 @@
       %tbody
         - @teams.each do |team|
           %tr
-            %td= team.name
+            %td= link_to team.name, team_path(team)
             %td= team.score
             %td 
               - team.earned_badges.each do |badge|
