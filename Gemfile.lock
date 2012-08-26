@@ -29,6 +29,9 @@ GEM
       activesupport (= 3.2.6)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-import (0.2.10)
+      activerecord (~> 3.0)
+      activerecord (~> 3.0)
     activeresource (3.2.6)
       activemodel (= 3.2.6)
       activesupport (= 3.2.6)
@@ -239,6 +242,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-import
   bootstrap-datepicker-rails
   bootstrap-wysihtml5-rails
   brakeman

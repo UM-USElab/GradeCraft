@@ -23,7 +23,7 @@ students = []
 user_names.each do |name|
   first_name, last_name = name.split(' ')
   username = name.parameterize.sub('-','.')
-  students << User.create! do |u|
+  students << User.new do |u|
     u.username = username
     u.first_name = first_name
     u.last_name = last_name
@@ -32,6 +32,7 @@ user_names.each do |name|
     u.default_course_id = default_course.id
     u.courses = [default_course] + (courses.sample(rand(courses.count)) - [default_course])
   end
+  User.import students
 end
 puts "Generated #{students.count} unruly students"
 
@@ -86,7 +87,7 @@ courses.each do |course|
       a.point_total = 100 + rand(10) * 100
     end
     students.each do |student|
-      Grade.create! do |g|
+      student.grades.new do |g|
         g.assignment = assignment
         g.gradeable = student
         g.raw_score = assignment.point_total * ((6 + rand(5)) / 10.0)
