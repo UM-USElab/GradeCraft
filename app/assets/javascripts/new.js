@@ -1,5 +1,10 @@
 $(window).load(function() {
-    $('.flexslider').flexslider();
+    $('.flexslider').flexslider({
+      animation: "slide",
+      slideshow: false
+      
+    });
+    
   });
 
 $(document).ready(function(){
@@ -19,32 +24,10 @@ $(document).ready(function(){
 		}
 	};
 
-if ($("#progressbar").length > 0){		
+if ($("#progressbar").length > 0){
 // hide grade estimations
 	$("#expected-grade > span").hide();
-					
-// set initial point values
-		
-	var attendancePts = removeCommas($("#attendanceScore").html());
-	var attendanceTotalPts = 0;
-	var rxnPts = removeCommas($("#rxnScore").html());
-	var rxnSemiPts = 0;
-	var rxnFinalPts = 0;
-	var rxnTotalPts = 0;
-	var blogPts = removeCommas($("#bloggingScore").html());
-	var subBlogPts = 0;
-	var shortBlogPts = 0;
-	var blogTotalPts = 0;
-	var gameSelectionPts = 0;
-    var lfpgPts = removeCommas($("#lfpgScore").html());
-	var lfpgTotalPts = 0;
-	var bossPts = removeCommas($("#bossBattleScore").html());
-	var bossTotalPts = 0;
-	var assignmentPts = 0;
-	var teamPts = 0;
-	var totalPts;						
-		
-//	---->
+
 	var gameSelectionPts = 0;		
 		
 // adds up total points

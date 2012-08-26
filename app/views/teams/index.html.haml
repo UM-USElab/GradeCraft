@@ -1,7 +1,6 @@
 %table.table.table-bordered
   %thead
     %tr
-      %th ID
       %th Name
       %th Rank
       %th Score
@@ -14,7 +13,6 @@
   %tbody
     - @teams.each do |team|
       %tr
-        %td= team.id
         %td= team.name
         %td= team.rank
         %td= team.score

@@ -1,34 +1,31 @@
 %div#predictor-wrapper
+  %div= "#{@user.name}'s total projected points:"
+  %div= "#{@user.name}'s current points:"
+  %div= number_with_delimiter(@user.sortable_score, :delimiter => ',') if @user.respond_to?(:sortable_score)
   %div#prediction 
-    #{@user.name}'s total projected points: 
     %span#expected-points
-    %br 
     Projected Course Grade:
-    %span#expected-grade
-      %span#aplusgrade A+
-      %span#agrade A
-      %span#aminusgrade A-
-      %span#bplusgrade B+
-      %span#bgrade B
-      %span#bminusgrade B-
-      %span#cplusgrade C+
-      %span#cgrade C
-      %span#cminusgrade C-
-      %span#dplusgrade D+
     %div#progressbar
   %div.flexslider
     %ul.slides
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %li{:id => "slide-#{assignment_type.id}"}
           %div.slide-panel
-            %h5= assignment_type.try(:name)
-            %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
-            = assignment_type.predictor_description
+            %div.headline
+              %span.aType= assignment_type.name
+              %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
+            %p.lead= assignment_type.predictor_description
             - if assignment_type.student_choice?
-              %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+              %div.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+            %div#pastAssignments  
             - assignments.each do |assignment|
               %div.assignment
                 %span.assignmentTitle= assignment.try(:name)
                 - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
                   - if grade.attempted? 
                     %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total}
+            %div#futureAssignments        
+            - assignments.each do |assignment|
+              %div.assignment
+                %input{:type => "checkbox", :name => "class-attendance", :input_html => assignment.point_total, :class => "class-checkbox"} 
+                = assignment.name
