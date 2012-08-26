@@ -15,7 +15,7 @@ class InfoController < ApplicationController
   end
   
   def cosign_test
-    render :text => session.inspect
+    render :text => request.inspect
   end
 
 end

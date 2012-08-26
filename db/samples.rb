@@ -28,31 +28,12 @@ end
 default_course = courses.first
 puts "Conjured #{courses.count} Hogwarts courses for the #{semester} term"
 
-# Generate Badge Sets
-badge_sets = []
-badge_set_names.each do |badge_set_name|
-  badge_sets << BadgeSet.create! do |b|
-    b.name = badge_set_name
-  end
-end
-puts "Magicked #{badge_sets.count} Badge Sets"
-
-badge_sets.each do |badge_set|
-  badges = []
-  badge_names.each do |badge_name|
-    badges << badge_set.badges.create! do |a|
-      a.name = badge_name
-      a.value = 100 + rand(10) * 100
-    end
-  end
-end
-puts "Bought #{badges.count} magical badges from Weasleys' Wizard Wheezes"
 
 teams = []
 team_names.each do |team_name|
-  teams << Team.crate! do |t|
+  teams << Team.create! do |t|
     t.name = team_name
-    c.course_id = courses.sample
+    t.course_id = courses.sample
   end
 end
 puts "The House Cup Tournament has officially begun!"
@@ -120,7 +101,6 @@ courses.each do |course|
     assignment = course.assignments.create! do |a|
       a.name = "Spell #{n}"
       a.due_date = rand(10).weeks.from_now
-      a.open_date = due_date - 3.hours
       a.assignment_type = assignment_types.sample
       a.point_total = 100 + rand(10) * 100
     end
