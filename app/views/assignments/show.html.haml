@@ -39,9 +39,9 @@
               %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}
           %td= grade.status
           %td
-          %td= link_to "View", assignment_grade_path(@assignment.id, grade.id), {:class => 'btn btn-mini'}
-          %td= link_to "Edit", edit_assignment_grade_path(@assignment.id, grade.id), {:class => 'btn btn-mini'}
-          %td= link_to "Delete", assignment_grade_path(@assignment.id, grade.id), {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
+          %td= link_to "View", assignment_grade_path(@assignment, grade), {:class => 'btn btn-mini'}
+          %td= link_to "Edit", edit_assignment_grade_path(@assignment, grade), {:class => 'btn btn-mini'}
+          %td= link_to "Delete", assignment_grade_path(@assignment, grade), {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
   
   %div
     = submit_tag "Update Grade Statuses", :class => "btn btn-info"

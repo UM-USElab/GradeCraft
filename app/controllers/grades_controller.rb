@@ -60,8 +60,8 @@ class GradesController < ApplicationController
   end
 
   def update
-    @grade = Grade.find(params[:id])
     @assignment = Assignment.find(params[:assignment_id])
+    @grade = @assignment.assignment_grades.find(params[:id])
     
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
@@ -74,6 +74,7 @@ class GradesController < ApplicationController
     end
   end
 
+  #TODO FIX!!!
   def destroy
     @assignment = Assignment.find(params[:assignment_id])
     #TODO Need to update score when a grade is deleted
@@ -86,8 +87,11 @@ class GradesController < ApplicationController
     end
   end
 
+  #TODO Fix
   def mass_edit
     @assignment = Assignment.find(params[:assignment_id])
+    @title = "Mass Grade #{@assignment.name}"
+    @grade = @assignment.assignment_grades.create(params[:grade])
     user_search_options = {}
 
     if params[:team_id].present?
@@ -102,11 +106,13 @@ class GradesController < ApplicationController
   end
 
   def mass_update
+    @gradeable = find_gradeable
     @assignment = Assignment.find(params[:assignment_id])
+    @grade = @gradeable.assignment_grades.build(params[:grade])
     if @assignment.update_attributes(params[:assignment])
       respond_with @assignment, :location => assignment_path(@assignment)
     else
-      respond_with @assignment, :location => mass_edit_assignment_grades_path(:assignment_id => @assignment)
+      respond_with @assignment, :location => mass_edit_assignment_grades_path(@assignment)
     end
   end
   

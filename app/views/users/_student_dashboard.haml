@@ -1,6 +1,7 @@
-- if user.team.present?
-  %h2= link_to user.team.name, team_path(user.team.id)
 %div#leftSidebar
+  %div#team
+    - if user.team.present?
+      %span.badge.badge-info= link_to user.team.name, team_path(user.team.id)
   %div#userGravatar
     = gravatar_for user, :size => 230
   - if current_course.has_badges? 

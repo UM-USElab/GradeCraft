@@ -17,21 +17,18 @@
       %span#dplusgrade D+
     %div#progressbar
   %div.flexslider
-    - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
-      %li{:id => "slide-#{assignment_type.id}"}
-        %div.slide-panel
-          %h2= assignment_type.try(:name)
-          %p Current Score:
-          %span= @user.assignment_type_score
-          = "/"
-          %span#assignmentTypeScore= assignment_type.possible_score 
-          = assignment_type.predictor_description
-          %span.badge.badge-warning= assignment_type.weight
-          - if assignment_type.student_choice?
-            %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
-          - assignments.each do |assignment|
-            %div.assignment
-              %span.assignmentTitle= assignment.try(:name)
-              - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
-                - if grade.attempted? 
-                  %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total}
+    %ul.slides
+      - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
+        %li{:id => "slide-#{assignment_type.id}"}
+          %div.slide-panel
+            %h5= assignment_type.try(:name)
+            %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
+            = assignment_type.predictor_description
+            - if assignment_type.student_choice?
+              %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+            - assignments.each do |assignment|
+              %div.assignment
+                %span.assignmentTitle= assignment.try(:name)
+                - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
+                  - if grade.attempted? 
+                    %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total}

@@ -7,13 +7,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jquery-ui
 //= require wysihtml5
 //= require bootstrap-wysihtml5
 //= require_tree .
 //= require dataTables/jquery.dataTables
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
+//= require highcharts
+//= require flexslider 
 
 
 $(document).ready(function(){

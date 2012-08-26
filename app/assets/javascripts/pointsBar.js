@@ -3,8 +3,8 @@ var soFarChart;
 
 $(document).ready(function() {
 
-// adds commas
 	function removeCommas(i){
+		console.log(i);
 		if (i == null) {
 			return 0;
 		}
@@ -17,12 +17,6 @@ $(document).ready(function() {
 		}
 	}; 
 
-// adds commas
-	function addCommas(i){
-		numWithCommas = i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		return numWithCommas;
-	};
-
 // Progress bars to student dashboard
 
 	$('#scoreTotal').hide();
@@ -30,32 +24,28 @@ $(document).ready(function() {
 	$('#showPossiblePts').hide();
     $('#soFarScoreToggle').hide();	
 
-    $('a.dashboard-toggle').click(function(){
-      $('.dashboard-toggle').toggle();
+    $('a.toggle').click(function(){
+      $('.toggle').toggle();
       return false;
 	})
 
 if ($("#userScoreSection").length > 0){
 
-//TODO Hardcoded Assignment Types
-	var group_project_score = removeCommas($("#group_project_score").html());
-	var blogging_score = removeCommas($("#blogging_score").html());
+	var lfpg_score = removeCommas($("#lfpg_score").html());
+	var boss_battle_score = removeCommas($("#boss_battle_score").html());
 	var attendance_score = removeCommas($("#attendance_score").html());
-	var reading_score = removeCommas($("#reading_score").html());
-	var section_score = removeCommas($("#section_score").html());	
-	var essays_score = removeCommas($("#team_assignment_score").html());	
+	var reading_reaction_score = removeCommas($("#reading_reaction_score").html());
+	var blogging_score = removeCommas($("#blogging_score").html());	
+	var assignment_score = lfpg_score + boss_battle_score	
 	var total_points = removeCommas($("#courseTotalPts").html());
 	var totalSoFar = removeCommas($("#userBarTotal").html());
 
 	chart = new Highcharts.Chart({
 		colors: [			
-			'#AA4643',			
-		  '#DB843D',  
-		  '#89A54E', 
+			'#DB843D',  
+			'#89A54E', 
 			'#80699B', 
-			'#3D96AE',
-			'#f9ee14'
-
+			'#3D96AE'
 		],
 		chart: {
 			renderTo: 'userBarInProgress',
@@ -89,7 +79,7 @@ if ($("#userScoreSection").length > 0){
 			},
 			labels: {
 				formatter: function(){
-					return addCommas(this.value);
+					return this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				},
 				style: {
 					color: "#FFFFFF"
@@ -119,7 +109,7 @@ if ($("#userScoreSection").length > 0){
 		tooltip: {
 			formatter: function() {
 				return ''+
-					this.series.name +': '+ addCommas(this.y) +'';
+					this.series.name +': '+ this.y +'';
 			}
 		},
 		plotOptions: {
@@ -132,21 +122,27 @@ if ($("#userScoreSection").length > 0){
 				}
 			}	
 		},
-		// user profile  TODO Hardcoded graph labels
 		series: [{
-			name: assignment_type.name,
-			data: assigment_type_score	
+			name: 'Assignments',
+			data: [assignment_score]	
+		},{
+			name: 'Blogging',
+			data: [blogging_score]	
+		},{
+			name: 'Reading Reactions',
+			data: [reading_reaction_score]	
+		},{
+			name: 'Attendance',
+			data: [attendance_score]	
 		}]
 	});
 
 	chart = new Highcharts.Chart({
 		colors: [			
-			'#AA4643',			
-		  '#DB843D',  
-		  '#89A54E', 
+			'#DB843D',  
+			'#89A54E', 
 			'#80699B', 
-			'#3D96AE',
-			'#f9ee14'
+			'#3D96AE'
 		],
 		chart: {
 			renderTo: 'userBarTotal',
@@ -174,8 +170,8 @@ if ($("#userScoreSection").length > 0){
 		},
 		yAxis: {
 			min: 0,
-			max:100,
-			tickInterval: 5,
+			max:1400000,
+			tickInterval: 200000,
 			title: {
 				text: 'Total Points in Course'
 			},
@@ -225,8 +221,17 @@ if ($("#userScoreSection").length > 0){
 			}	
 		},
 		series: [{
-			name: assignment_type.name,
-			data: assigment_type_score	
+			name: 'Assignments',
+			data: [assignment_score]	
+		},{
+			name: 'Blogging',
+			data: [blogging_score]	
+		},{
+			name: 'Reading Reactions',
+			data: [reading_reaction_score]	
+		},{
+			name: 'Attendance',
+			data: [attendance_score]	
 		}]
 	});
 
