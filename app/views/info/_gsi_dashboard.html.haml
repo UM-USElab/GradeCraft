@@ -20,7 +20,7 @@
         %td= user.score
         %td
           - user.earned_badges.each do |badge|
-            %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+            %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
         %td
           - if user.is_student?
             = link_to 'Dashboard', user

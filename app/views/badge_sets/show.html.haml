@@ -22,8 +22,8 @@
     - @badge_set.badges.each do |badge|
       %tr
         %td 
-          %img{:src => badge.icon, :alt => badge.title}
-        %td= badge.title
+          %img{:src => badge.icon, :alt => badge.name}
+        %td= badge.name
         %td= badge.value
         %td= raw badge.description
         %td= link_to "View", badge_path(badge)

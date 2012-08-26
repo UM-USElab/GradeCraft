@@ -54,6 +54,8 @@ class UsersController < ApplicationController
     @title = "Predict Course Grade"
     @assignment_types = current_course.assignment_types
     @assignments = current_course.assignments
+    @future_assignments = current_course.assignments.future
+    @past_assignments = current_course.assignments.past
     if current_user.is_staff?
       @user = User.find(params[:user_id])
     else
@@ -82,7 +84,6 @@ class UsersController < ApplicationController
     @teams = current_course.teams.all
     @user = current_course.users.create(params[:user])
     @user.save
-    #@user.course ||= current_course
     
     respond_with @user
   end

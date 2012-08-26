@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822025652) do
+ActiveRecord::Schema.define(:version => 20120824230829) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
   end
 
   create_table "assignments", :force => true do |t|
-    t.string   "title"
+    t.string   "name"
     t.text     "description"
     t.integer  "point_total"
     t.datetime "due_date"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
 
   create_table "badges", :force => true do |t|
     t.integer  "assignment_id"
-    t.string   "title"
+    t.string   "name"
     t.text     "description"
     t.string   "icon"
     t.binary   "visible"
@@ -173,10 +173,8 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
     t.integer  "assignment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "grade_name"
-    t.integer  "range_bottom"
-    t.integer  "range_top"
     t.integer  "course_id"
+    t.string   "name"
   end
 
   create_table "grades", :force => true do |t|

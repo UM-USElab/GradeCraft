@@ -16,9 +16,9 @@
       %td= assignment_submission.group_id
       %td= assignment_submission.feedback
       %td= assignment_submission.comment
-      %td= link_to 'Show', assignment_assignment_submission(@assignment, assignment_submission)
-      %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission)
-      %td= link_to 'Destroy', assignment_assignment_submission(@assignment, assignment_submission), :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission), {:class => 'btn btn-mini'}
+      %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission), {:class => 'btn btn-mini'}
+      %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
 
-
-= link_to 'New Assignment submission', new_assignment_assignment_submission_path(@assignment), {:class => 'btn btn-primary'}
+%div#footerNav
+  = link_to 'New Assignment submission', new_assignment_assignment_submission_path(@assignment), {:class => 'btn btn-primary'}

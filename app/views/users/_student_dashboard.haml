@@ -1,6 +1,7 @@
-- if user.team.present?
-  %h2= link_to user.team.name, team_path(user.team.id)
 %div#leftSidebar
+  %div#team
+    - if user.team.present?
+      %span.badge.badge-info= link_to user.team.name, team_path(user.team.id)
   %div#userGravatar
     = gravatar_for user, :size => 230
   - if current_course.has_badges? 
@@ -9,18 +10,19 @@
       %div#badgesEarned
         - user.earned_badges.each do |badge|
           %div.earned-badge
-            %img{:src => badge.try(:icon), :alt => badge.try(:title)}
-            .badgeTitle= badge.title
+            %img{:src => badge.try(:icon), :alt => badge.try(:name)}
+            .badgeTitle= badge.name
   %div.clear
      
   %div#helpInfo
     - if current_user.is_staff?
       - if current_course.has_badges? 
-        %div= link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-primary"
-      %div= link_to "Email #{user.first_name}", "mailto:#{user.email}", :class => "btn btn-primary"
+        %div= link_to "Award a Badge", new_earned_badge_url, :class => "btn"
+      %div= link_to "Email #{user.first_name}", "mailto:#{user.email}", :class => "btn"
+      = link_to "Edit #{user.first_name}", edit_user_path(user), :class => "btn"
     - user.team_leader.tap do |team_leader|
       - if team_leader.present?
-        %div= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary"
+        %div= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn"
 
 %div#mainInfo
   %h2#points
@@ -42,19 +44,16 @@
     %div#Grades
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %div.assignmentType
-          //#TODO Add Assignment Type point totals
           %button.btn.btn-inverse{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name)}
           %span
-            Assignment type score
-            = user.assignment_type_score(assignment_type)
-          %span.badge.badge-warning= assignment_type.weight
+            %span.badge.badge-warning= "#{user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
           - if assignment_type.student_choice?
             %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
           %div{:id => "assignment_type-#{assignment_type.id}", :class => "collapse"}
             %div.assignmentsGroup
               - assignments.each do |assignment|
                 %div.assignment
-                  %span.assignmentTitle= assignment.try(:title)
+                  %span.assignmentTitle= assignment.try(:name)
                   - assignment.assignment_grades.where(:gradeable_id => user.id).each do |grade|
                     - if grade.attempted? 
                       %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total} 
@@ -65,12 +64,11 @@
                         %div{:id => "assignment-#{assignment.id}", :class => "collapse"}
                           %div.feedback= raw grade.feedback
                           //- grade.earned_badges.each do |badge|
-                          //%img{:src => badge.icon, :alt => badge.title, :width => "40"}  
+                          //%img{:src => badge.icon, :alt => badge.name, :width => "40"}  
                     - else
                       %span.alert.alert-error.assignmentGrade #{grade.raw_score} / #{grade.point_total}
     %div.clear
 
 %div#footerNav
-  = link_to 'Edit', edit_user_path(user), :class => "btn btn-inverse"
-  = link_to 'Back', users_path, :class => "btn btn-inverse"
-  = link_to 'Create a New Player', new_user_path, :class => "btn btn-inverse"
+  = link_to "See All #{current_course.user_ref}s", users_path, :class => "btn btn-primary"
+  = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"

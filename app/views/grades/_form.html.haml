@@ -16,7 +16,12 @@
   //= f.input :final_score
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]
+  //TODO Fix earned badge submission
+  = f.fields_for :earned_badge, do |earned_badge|
+    = earned_badge.input :badge_id, :as => :check_boxes, :collection => @badges
+    = earned_badge.input :earnable_type, :input_html => { :value => "User" }, :as => :hidden
   
+
   .form-actions
     = f.button :submit, :class => 'btn'
     = link_to 'Cancel', assignment_path(@assignment), :class => 'btn'

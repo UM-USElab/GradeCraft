@@ -4,11 +4,11 @@ class Grade < ActiveRecord::Base
   belongs_to :gradeable, :polymorphic => :true
   belongs_to :assignment
   has_many :grade_scheme_elements, :through => :assignment
-  has_many :earned_badges
+  has_many :earned_badges, :as => :earnable, :dependent => :destroy
   has_many :badges, :through => :earned_badges
   
   accepts_nested_attributes_for :earned_badges
-  attr_accessible :type, :raw_score, :final_score, :feedback, :user_id, :assignment_id, :badge_id, :created_at, :updated_at, :complete, :semis, :finals, :status, :attempted, :substantial, :user, :badge_ids, :grade, :gradeable_id, :gradeable_type
+  attr_accessible :type, :raw_score, :final_score, :feedback, :user_id, :assignment_id, :badge_id, :created_at, :updated_at, :complete, :semis, :finals, :status, :attempted, :substantial, :user, :badge_ids, :grade, :gradeable_id, :gradeable_type, :earnable_id, :earnable_type, :earned_badges, :earned_badge
 
   validates_presence_of :gradeable
   validates_presence_of :assignment

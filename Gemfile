@@ -1,10 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.6'
-gem 'jquery-rails'
-gem 'jquery_datepicker'
-gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-rails', '~> 2.0'
 gem 'fabrication'
 gem 'haml'
 gem 'sorcery'
@@ -19,9 +16,7 @@ gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'responders'
 gem 'brakeman'
-
-# To use Jbuilder templates for JSON
-gem 'jbuilder'
+gem 'flexslider'
 
 group :production do
   gem 'pg'

@@ -2,51 +2,42 @@ class BadgesController < ApplicationController
 
   before_filter :ensure_staff?, :only=>[:new,:edit,:create,:update,:destroy]
 
-  # GET /badges
-  # GET /badges.json
   def index
     @title = "View All Badges"
     @badges = Badge.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @badges }
     end
   end
 
-  # GET /badges/1
-  # GET /badges/1.json
   def show
     @title = "View Badge"
     @badge = Badge.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @badge }
     end
   end
 
-  # GET /badges/new
-  # GET /badges/new.json
   def new
     @title = "Create a New Badge"
     @badge = Badge.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @badge }
     end
   end
 
-  # GET /badges/1/edit
   def edit
     @title = "Edit Badge"
     @badge_sets = BadgeSet.all
     @badge = Badge.find(params[:id])
   end
 
-  # POST /badges
-  # POST /badges.json
   def create
     @badge_sets = BadgeSet.all
     @badge = Badge.new(params[:badge])
@@ -62,8 +53,6 @@ class BadgesController < ApplicationController
     end
   end
 
-  # PUT /badges/1
-  # PUT /badges/1.json
   def update
     @badge_sets = BadgeSet.all
     @badge = Badge.find(params[:id])
@@ -79,8 +68,6 @@ class BadgesController < ApplicationController
     end
   end
 
-  # DELETE /badges/1
-  # DELETE /badges/1.json
   def destroy
     @badge = Badge.find(params[:id])
     @badge.destroy

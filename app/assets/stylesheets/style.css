@@ -1,6 +1,3 @@
-label {
-}
-
 #footerNav {
   margin-top: 15px;
 }
@@ -10,6 +7,10 @@ footer {
   text-align: right;
   border-top: 1px solid #666;
   padding-top: 15px;
+}
+
+.brand {
+  max-width: 250px;
 }
 
 .content {
@@ -51,3 +52,35 @@ h4, h3, .assignmentTypeTitle {
   padding-left: 5px;
 }
 
+.badge-info a {
+  text-decoration: none;
+  color: #FFF !important;
+}
+
+#team {
+  margin-bottom: 15px;
+}
+
+#predictor-wrapper .slide-panel {
+  background-color: #eee;
+  height: 400px;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+#predictor-wrapper .aType {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+#predictor-wrapper .headline {
+  height: 20px;
+}
+#predictor-wrapper div.badge {
+  margin-top: -10px;
+  position: relative;
+}
+
+#predictor-wrapper .lead {
+  margin-top: 10px;
+}
