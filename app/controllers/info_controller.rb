@@ -1,7 +1,5 @@
 class InfoController < ApplicationController
   respond_to :html
-  
-  skip_before_filter :require_login, :except => [:dashboard]
 
   helper_method :sort_column, :sort_direction
 
@@ -13,9 +11,10 @@ class InfoController < ApplicationController
     @bottom_ten_students = @students.order('sortable_score ASC').limit(10)
     @assignments = current_course.assignments
   end
-  
-  def cosign_test
-    render :text => request.inspect
-  end
+  # 
+#   def cosign_test
+#     render :text => request.env["REMOTE_USER"]
+#   end
+
 
 end

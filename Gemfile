@@ -19,8 +19,7 @@ gem 'brakeman'
 gem 'flexslider'
 
 group :production do
-  gem 'pg'
-  gem 'rack-google_analytics', :require => "rack/google_analytics"
+  gem 'mysql2'
 end
 
 # Gems used only for assets and not required
