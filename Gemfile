@@ -17,6 +17,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'responders'
 gem 'brakeman'
 gem 'flexslider'
+gem 'activerecord-import'
 
 group :production do
   gem 'mysql2'
