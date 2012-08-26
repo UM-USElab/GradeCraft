@@ -13,5 +13,9 @@ class InfoController < ApplicationController
     @bottom_ten_students = @students.order('sortable_score ASC').limit(10)
     @assignments = current_course.assignments
   end
+  
+  def cosign_test
+    render :text => session.inspect
+  end
 
 end

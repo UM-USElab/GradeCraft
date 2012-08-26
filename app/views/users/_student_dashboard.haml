@@ -17,12 +17,12 @@
   %div#helpInfo
     - if current_user.is_staff?
       - if current_course.has_badges? 
-        %div= link_to "Award a Badge", new_earned_badge_url, :class => "btn btn-inverse"
-      %div= link_to "Email #{user.first_name}", "mailto:#{user.email}", :class => "btn btn-inverse"
-      = link_to "Edit #{user.first_name}", edit_user_path(user), :class => "btn btn-inverse"
+        %div= link_to "Award a Badge", new_earned_badge_url, :class => "btn"
+      %div= link_to "Email #{user.first_name}", "mailto:#{user.email}", :class => "btn"
+      = link_to "Edit #{user.first_name}", edit_user_path(user), :class => "btn"
     - user.team_leader.tap do |team_leader|
       - if team_leader.present?
-        %div= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary"
+        %div= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn"
 
 %div#mainInfo
   %h2#points

@@ -54,6 +54,8 @@ class UsersController < ApplicationController
     @title = "Predict Course Grade"
     @assignment_types = current_course.assignment_types
     @assignments = current_course.assignments
+    @future_assignments = current_course.assignments.future
+    @past_assignments = current_course.assignments.past
     if current_user.is_staff?
       @user = User.find(params[:user_id])
     else

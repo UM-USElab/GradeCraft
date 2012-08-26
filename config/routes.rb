@@ -54,6 +54,7 @@ GradeCraft::Application.routes.draw do
   get 'credits' => 'info#show'
   get 'using_gradecraft' => 'info#using_gradecraft'
   get 'home/index'
+  get 'cosign_test' => 'info#cosign_test'
   get 'dashboard' => 'info#dashboard'
   root :to => "home#index"
   

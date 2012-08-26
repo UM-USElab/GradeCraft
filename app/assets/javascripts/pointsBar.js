@@ -31,12 +31,7 @@ $(document).ready(function() {
 
 if ($("#userScoreSection").length > 0){
 
-	var lfpg_score = removeCommas($("#lfpg_score").html());
-	var boss_battle_score = removeCommas($("#boss_battle_score").html());
-	var attendance_score = removeCommas($("#attendance_score").html());
-	var reading_reaction_score = removeCommas($("#reading_reaction_score").html());
-	var blogging_score = removeCommas($("#blogging_score").html());	
-	var assignment_score = lfpg_score + boss_battle_score	
+	var assignment_type_score = removeCommas($("#lfpg_score").html());
 	var total_points = removeCommas($("#courseTotalPts").html());
 	var totalSoFar = removeCommas($("#userBarTotal").html());
 

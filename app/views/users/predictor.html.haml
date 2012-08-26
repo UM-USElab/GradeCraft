@@ -19,13 +19,15 @@
               %div.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
             %div#pastAssignments  
             - assignments.each do |assignment|
-              %div.assignment
-                %span.assignmentTitle= assignment.try(:name)
-                - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
-                  - if grade.attempted? 
-                    %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total}
-            %div#futureAssignments        
-            - assignments.each do |assignment|
-              %div.assignment
-                %input{:type => "checkbox", :name => "class-attendance", :input_html => assignment.point_total, :class => "class-checkbox"} 
-                = assignment.name
+              - if assignment.past
+                %div.assignment
+                  %span.assignmentTitle= assignment.try(:name)
+                  - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
+                    - if grade.attempted? 
+                      %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total}
+              - if assignment.future
+                %div.assignment
+                  %input{:type => "checkbox", :name => "class-attendance", :input_html => assignment.point_total, :class => "class-checkbox"} 
+                  = assignment.name
+  
+  = link_to "Back to the Dashboard", user_path(@user)
