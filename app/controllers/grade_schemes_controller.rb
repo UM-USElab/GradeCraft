@@ -1,7 +1,5 @@
 class GradeSchemesController < ApplicationController
-  # GET /grade_schemes
-  # GET /grade_schemes.json
-  
+
   def index
     @title = "Grading Schemes"
     @grade_schemes = current_course.grade_schemes.all
@@ -12,8 +10,6 @@ class GradeSchemesController < ApplicationController
     end
   end
 
-  # GET /grade_schemes/1
-  # GET /grade_schemes/1.json
   def show
     @title = "View Grading Scheme"
     @grade_scheme = current_course.grade_schemes.find(params[:id])
@@ -24,8 +20,6 @@ class GradeSchemesController < ApplicationController
     end
   end
 
-  # GET /grade_schemes/new
-  # GET /grade_schemes/new.json
   def new
     @title = "Create a New Grading Scheme"
     @grade_scheme = current_course.grade_schemes.new
@@ -36,15 +30,12 @@ class GradeSchemesController < ApplicationController
     end
   end
 
-  # GET /grade_schemes/1/edit
   def edit
     @title = "Update Grading Scheme"
     @grade_scheme = current_course.grade_schemes.find(params[:id])
     @assignments = Assignment.all
   end
 
-  # POST /grade_schemes
-  # POST /grade_schemes.json
   def create
     @grade_scheme = current_course.grade_schemes.new(params[:grade_scheme])
     @assignments = Assignment.all
@@ -69,10 +60,7 @@ class GradeSchemesController < ApplicationController
       format.json { head :ok }
     end
   end
-  
 
-  # PUT /grade_schemes/1
-  # PUT /grade_schemes/1.json
   def update
     @grade_scheme = current_course.grade_schemes.find(params[:id])
     @assignments = Assignment.all
@@ -87,8 +75,6 @@ class GradeSchemesController < ApplicationController
     end
   end
 
-  # DELETE /grade_schemes/1
-  # DELETE /grade_schemes/1.json
   def destroy
     @grade_scheme = current_course.grade_schemes.find(params[:id])
     @grade_scheme.destroy

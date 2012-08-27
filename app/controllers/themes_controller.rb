@@ -1,6 +1,5 @@
 class ThemesController < ApplicationController
-  # GET /themes
-  # GET /themes.json
+
   def index
     @themes = Theme.all
 
@@ -10,8 +9,6 @@ class ThemesController < ApplicationController
     end
   end
 
-  # GET /themes/1
-  # GET /themes/1.json
   def show
     @theme = Theme.find(params[:id])
 
@@ -21,8 +18,6 @@ class ThemesController < ApplicationController
     end
   end
 
-  # GET /themes/new
-  # GET /themes/new.json
   def new
     @theme = Theme.new
     @title = "Create a New Theme"
@@ -32,13 +27,10 @@ class ThemesController < ApplicationController
     end
   end
 
-  # GET /themes/1/edit
   def edit
     @theme = Theme.find(params[:id])
   end
 
-  # POST /themes
-  # POST /themes.json
   def create
     @theme = Theme.new(params[:theme])
 
@@ -53,8 +45,6 @@ class ThemesController < ApplicationController
     end
   end
 
-  # PUT /themes/1
-  # PUT /themes/1.json
   def update
     @theme = Theme.find(params[:id])
 
@@ -69,8 +59,6 @@ class ThemesController < ApplicationController
     end
   end
 
-  # DELETE /themes/1
-  # DELETE /themes/1.json
   def destroy
     @theme = Theme.find(params[:id])
     @theme.destroy

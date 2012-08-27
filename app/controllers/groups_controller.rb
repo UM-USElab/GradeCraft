@@ -1,6 +1,5 @@
 class GroupsController < ApplicationController
-  # GET /groups
-  # GET /groups.json
+
   def index
     @title = "View All Groups"
     @groups = current_course.groups
@@ -11,8 +10,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/1
-  # GET /groups/1.json
   def show
     @title = "View Group"
     @group = current_course.groups.find(params[:id])
@@ -23,8 +20,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/new
-  # GET /groups/new.json
   def new
     @title = "Create a New Group"
     @group = current_course.groups.new
@@ -36,15 +31,12 @@ class GroupsController < ApplicationController
     end
   end
 
-  # GET /groups/1/edit
   def edit
     @title = "Edit Group"
     @group = current_course.groups.find(params[:id])
     @users = current_course.users.students
   end
 
-  # POST /groups
-  # POST /groups.json
   def create
     @group = current_course.groups.new(params[:group])
     respond_to do |format|
@@ -58,8 +50,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # PUT /groups/1
-  # PUT /groups/1.json
   def update
     @group = current_course.groups.find(params[:id])
     @group.update_attributes(params[:group])
@@ -75,8 +65,6 @@ class GroupsController < ApplicationController
     end
   end
 
-  # DELETE /groups/1
-  # DELETE /groups/1.json
   def destroy
     @group = current_course.groups.find(params[:id])
     @group.destroy

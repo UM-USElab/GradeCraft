@@ -13,7 +13,7 @@
   = @assignment_type.points_predictor_display
 %p
   %b Due date:
-  //= @assignment_type.due_date
+  = @assignment_type.due_date_present
 %p
   %b Resubmission:
   = @assignment_type.resubmission
@@ -26,10 +26,6 @@
 %p
   %b Predictor description:
   = raw @assignment_type.predictor_description
-  
-%p
-  %b Course ID:
-  = @assignment_type.course_id
 
 %p
   %b Order:
@@ -43,6 +39,6 @@
   %b Is this assignment mass gradeable?
   = @assignment_type.mass_grade
 
-.form-actions
-  = link_to 'Edit', edit_assignment_type_path(@assignment_type), :class => 'btn btn-inverse'
-= link_to 'Back', assignment_types_path, :class => 'btn btn-primary'
+%div#footerNav
+  = link_to 'Edit', edit_assignment_type_path(@assignment_type), :class => 'btn'
+  = link_to 'Back', assignment_types_path, :class => 'btn'

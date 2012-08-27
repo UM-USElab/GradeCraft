@@ -27,7 +27,7 @@
             %td= student.visit_count
             %td= student.page_views
             %td= student.predictor_views
-            %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-primary btn-mini"
+            %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-mini"
             %td
               - student.team_leader.tap do |team_leader|
                 - if team_leader.present?
@@ -47,7 +47,14 @@
       %tbody
         - @teams.each do |team|
           %tr
-            %td= team
+            %td= link_to team.name, team_path(team)
+            %td= team.score
+            %td 
+              - team.earned_badges.each do |badge|
+                %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"} 
+            %td
+            %td
+            %td= team.team_leader
 
 
 %div.row
@@ -75,7 +82,7 @@
             %td= student.visit_count
             %td= student.page_views
             %td= student.predictor_views
-            %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-primary btn-mini"
+            %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-mini"
             %td
               - student.team_leader.tap do |team_leader|
                 - if team_leader.present?

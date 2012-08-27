@@ -1,6 +1,6 @@
 = simple_form_for(@assignment, :html => {:class => 'form-horizontal' }) do |f|
   = f.association :assignment_type, :collection => @assignment_types
-  = f.input :title
+  = f.input :name
   = f.input :grade_scope, :as => :select, :collection => [["Individual"], ["Group"], ["Team"]]
   = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span9' }
   = f.input :point_total, :label => "Total Points Possible"
@@ -8,7 +8,7 @@
   = f.input :due_date, :as => :datetime
   = f.input :visible, :as => :boolean
   = f.input :required, :as => :boolean
-  = f.input :grade_scheme_id, :collection => @grade_schemes, :as => :select, :label_method => :scheme_name
+  = f.input :grade_scheme_id, :collection => @grade_schemes, :as => :select, :label_method => :name
   
   .form-actions
     = f.button :submit

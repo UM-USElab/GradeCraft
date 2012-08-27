@@ -56,9 +56,8 @@ class Assignment < ActiveRecord::Base
     assignment_type.try(:name)
   end
   
-  
   def is_individual?
-    grade_scope=="Individual"
+    !['Group','Team'].include? grade_scope
   end
   
   def has_groups?
@@ -71,6 +70,14 @@ class Assignment < ActiveRecord::Base
   
   def is_visible?
     visible == "true"
+  end
+  
+  def past?
+    due_date.past?
+  end
+  
+  def future?
+    due_date.future?
   end
   
   #TODO I need this to be either - guessing the assignment type isn't working properly
@@ -88,7 +95,7 @@ class Assignment < ActiveRecord::Base
   
   def open?
     #TODO Time comparisons in rails
-    open_time < Time.now < close_time 
+    Time.now < due_date
   end
   
 end

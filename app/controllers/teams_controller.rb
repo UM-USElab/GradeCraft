@@ -2,8 +2,6 @@ class TeamsController < ApplicationController
 
   before_filter :ensure_staff?, :only=>[:new,:edit,:create,:destroy]
 
-  # GET /teams
-  # GET /teams.json
   def index
     @title = "#{current_course.team_ref}s"
     @teams = current_course.teams.all
@@ -14,10 +12,9 @@ class TeamsController < ApplicationController
     end
   end
 
-  # GET /teams/1
-  # GET /teams/1.json
   def show
     @team = current_course.teams.find(params[:id])
+    @title = "View #{@team.name}s"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,33 +22,27 @@ class TeamsController < ApplicationController
     end
   end
 
-  # GET /teams/new
-  # GET /teams/new.json
   def new
     @title = "Create a New #{current_course.team_ref}"
     @team =  Team.new
+    @courses = Course.all
     @users = current_course.users
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @team }
-    end
+    respond_with @team
   end
 
-  # GET /teams/1/edit
   def edit
-    @title = "Edit #{current_course.user_ref}"
     @team =  current_course.teams.find(params[:id])
+    @title = "Edit #{@team.name}s"
   end
 
-  # POST /teams
-  # POST /teams.json
   def create
-    @team =  current_course.team.new(params[:team])
+    @course = Course.new(params[:course])
+    @team =  Team.new(params[:team])
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
+        format.html { redirect_to @team, notice: "#{current_course.team_ref} was successfully created." }
         format.json { render json: @team, status: :created, location: @team }
       else
         format.html { render action: "new" }
@@ -60,10 +51,8 @@ class TeamsController < ApplicationController
     end
   end
 
-  # PUT /teams/1
-  # PUT /teams/1.json
   def update
-    @team =  current_course.team.find(params[:id])
+    @team =  current_course.teams.find(params[:id])
 
     respond_to do |format|
       if @team.update_attributes(params[:team])
@@ -76,8 +65,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # DELETE /teams/1
-  # DELETE /teams/1.json
   def destroy
     @team =  current_course.team.find(params[:id])
     @team.destroy

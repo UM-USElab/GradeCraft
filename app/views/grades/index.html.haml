@@ -1,7 +1,7 @@
 %table#grades.display.table-bordered
   %thead
     %tr
-      %th current_course.user_ref
+      %th= current_course.user_ref
       %th Team
       %th Assignment
       %th Score
@@ -14,17 +14,18 @@
   %tbody
     - for grade in @grades
       %tr
-        %td= grade.gradeable_id.name
-        %td= grade.user.team_id
-        %td= grade.assignment.title
+        %td= link_to grade.gradeable.name, "/#{grade.gradeable_type.downcase}s/#{grade.gradeable_id}"
+        %td= grade.gradeable.team.try(:name)
+        %td= grade.assignment.name
+        %td= grade.raw_score
         %td= raw grade.feedback
         %td= grade.type
         %td
           - grade.earned_badges.each do |badge|
-            %img{:src => badge.icon, :alt => badge.title, :width => "25", :height => "25"}
-        %td= link_to 'View', assignment_grade_path(@assignment, grade)
-        %td= link_to 'Edit', edit_assignment_grade_path(@assignment, grade)
-        %td= link_to 'Delete', assignment_grade_path(@assignment, grade), :confirm => 'Are you sure?', :method => :delete
+            %img{:src => badge.icon, :alt => badge.name, :width => "25", :height => "25"}
+        %td= link_to 'View', assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
+        %td= link_to 'Delete', assignment_grade_path(@assignment, grade), :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
 
 %br
 

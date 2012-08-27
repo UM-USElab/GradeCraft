@@ -51,8 +51,10 @@ GradeCraft::Application.routes.draw do
   end
 
   get 'gradebook' => 'grades#gradebook'
-  get 'info/index'
+  get 'credits' => 'info#show'
+  get 'using_gradecraft' => 'info#using_gradecraft'
   get 'home/index'
+  get 'cosign_test' => 'info#cosign_test'
   get 'dashboard' => 'info#dashboard'
   root :to => "home#index"
   
@@ -60,6 +62,9 @@ GradeCraft::Application.routes.draw do
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
+  
+  # Helps for testing authentication!
+#   get 'cosign_test' => 'info#cosign_test'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

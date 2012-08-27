@@ -8,6 +8,6 @@
   %b Accepted:
   = @group_membership.accepted
 
-= link_to 'Edit', edit_group_membership_path(@group_membership)
-\|
-= link_to 'Back', group_memberships_path
+%div#footerNav
+  = link_to 'Edit', edit_group_membership_path(@group_membership), :class => 'btn btn-primary'
+  = link_to 'Back', group_memberships_path, :class => 'btn btn-primary'

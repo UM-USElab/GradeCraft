@@ -1,45 +1,41 @@
 class CourseGradeSchemesController < ApplicationController
-  # GET /course_grade_schemes
-  # GET /course_grade_schemes.json
+
   def index
     @title = "Grade Scheme Elements"
     @course_grade_schemes = current_course.course_grade_schemes
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @course_grade_schemes }
     end
   end
 
-  # GET /course_grade_schemes/1
-  # GET /course_grade_schemes/1.json
   def show
     @course_grade_scheme = current_course.course_grade_schemes.find(params[:id])
-
+    @title = "View #{@course_grade_scheme.name} Grade Range"
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @course_grade_scheme }
     end
   end
 
-  # GET /course_grade_schemes/new
-  # GET /course_grade_schemes/new.json
   def new
+    @title = "Create a New Grading Element"
     @course_grade_scheme = current_course.course_grade_schemes.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @course_grade_scheme }
     end
   end
 
-  # GET /course_grade_schemes/1/edit
+
   def edit
     @course_grade_scheme = current_course.course_grade_schemes.find(params[:id])
+    @title = "Edit #{@course_grade_scheme.name} Grade Range"
+    
   end
 
-  # POST /course_grade_schemes
-  # POST /course_grade_schemes.json
   def create
     @course_grade_scheme = current_course.course_grade_schemes.new(params[:course_grade_scheme])
 
@@ -54,8 +50,6 @@ class CourseGradeSchemesController < ApplicationController
     end
   end
 
-  # PUT /course_grade_schemes/1
-  # PUT /course_grade_schemes/1.json
   def update
     @course_grade_scheme = current_course.course_grade_schemes.find(params[:id])
 
@@ -70,8 +64,6 @@ class CourseGradeSchemesController < ApplicationController
     end
   end
 
-  # DELETE /course_grade_schemes/1
-  # DELETE /course_grade_schemes/1.json
   def destroy
     @course_grade_scheme = current_course.course_grade_schemes.find(params[:id])
     @course_grade_scheme.destroy

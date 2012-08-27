@@ -7,6 +7,7 @@
       %th Semester
       %th Badge Set
       %th Theme
+      %th Total Points
       %th Grade Scheme
       %th
       %th
@@ -20,10 +21,11 @@
         %td= course.semester
         %td= course.badge_set_id
         %td= course.theme_id
+        %td= course.total_points
         %td= course.coursegradescheme
-        %td= link_to 'View', course
-        %td= link_to 'Edit', edit_course_path(course)
-        %td= link_to 'Delete', course, :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'View', course, {:class => 'btn btn-mini'}
+        %td= link_to 'Edit', edit_course_path(course), {:class => 'btn btn-mini'}
+        %td= link_to 'Delete', course, {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
   = link_to 'New Course', new_course_path, {:class => 'btn btn-primary'}

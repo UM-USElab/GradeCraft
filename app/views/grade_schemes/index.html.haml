@@ -8,11 +8,10 @@
   %tbody
     - for grade_scheme in @grade_schemes
       %tr
-        //%td= check_box_tag "grade_scheme_ids[]", grade_scheme.id
-        %td= grade_scheme.scheme_name
-        %td= link_to 'View', grade_scheme
-        %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme)
-        %td= link_to 'Destroy', grade_scheme, :confirm => 'Are you sure?', :method => :delete
+        %td= grade_scheme.name
+        %td= link_to 'View', grade_scheme, {:class => 'btn btn-mini'}
+        %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme), {:class => 'btn btn-mini'}
+        %td= link_to 'Delete', grade_scheme, {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
 
 %div#footerNav
   = link_to 'New Grade scheme', new_grade_scheme_path, {:class => 'btn btn-primary'}

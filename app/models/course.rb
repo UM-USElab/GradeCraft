@@ -6,7 +6,7 @@ class Course < ActiveRecord::Base
   
   has_many :assignments, :dependent => :destroy
   has_many :assignment_types, :dependent => :destroy
-  has_and_belongs_to_many :badge_sets
+  has_and_belongs_to_many :badge_sets, :join_table => :course_badge_sets
   has_many :badges, :through => :badge_sets
   has_many :earned_badges, :through => :users
   has_many :course_grade_schemes, :dependent => :destroy
@@ -63,6 +63,10 @@ class Course < ActiveRecord::Base
   
   def team_roles?
     team_roles == true
+  end
+  
+  def total_points
+    assignments.sum(:point_total)
   end
   
 end

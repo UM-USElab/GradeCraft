@@ -16,8 +16,8 @@
       - if current_user.is_staff?
         %tr
           %td
-            %img{:src => badge.icon, :alt => badge.title}
-            %td= badge.title
+            %img{:src => badge.icon, :alt => badge.name}
+            %td= badge.name
             %td= raw badge.description
             %td= badge.value
             %td= badge.multiplier
@@ -26,15 +26,15 @@
                 Yes
               - else
                 No
-            %td= link_to 'View', badge_path(badge)
-            %td= link_to 'Edit', edit_badge_path(badge)
-            %td= link_to 'Delete', badge_path(badge), :confirm => 'Are you sure?', :method => :delete
+            %td= link_to 'View', badge_path(badge), {:class => 'btn btn-mini'}
+            %td= link_to 'Edit', edit_badge_path(badge), {:class => 'btn btn-mini'}
+            %td= link_to 'Delete', badge_path(badge), {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
       - else
         - if badge.visible == "1"
           %tr
             %td
-              %img{:src => badge.icon, :alt => badge.title}
-              %td= badge.title
+              %img{:src => badge.icon, :alt => badge.name}
+              %td= badge.name
               %td= badge.description
               
 %div#footerNav

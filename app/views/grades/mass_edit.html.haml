@@ -5,7 +5,7 @@
     %br
     %br
     = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
-    = submit_tag 'Filter'
+    = submit_tag 'Filter', :class => 'btn'
 
 #massGrade  
   %ul.grades
