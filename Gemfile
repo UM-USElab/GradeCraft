@@ -20,7 +20,7 @@ gem 'flexslider'
 gem 'activerecord-import'
 
 group :production do
-  gem 'mysql2'
+  #gem 'mysql2'
 end
 
 # Gems used only for assets and not required
