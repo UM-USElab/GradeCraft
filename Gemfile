@@ -16,15 +16,10 @@ gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'responders'
 gem 'brakeman'
-<<<<<<< HEAD
 gem 'activerecord-import'
 
-# To use Jbuilder templates for JSON
-gem 'jbuilder'
-=======
 gem 'flexslider'
 gem 'activerecord-import'
->>>>>>> predictor
 
 group :production do
   #gem 'mysql2'
