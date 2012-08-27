@@ -65,4 +65,8 @@ class Course < ActiveRecord::Base
     team_roles == true
   end
   
+  def total_points
+    assignments.sum(:point_total)
+  end
+  
 end

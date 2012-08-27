@@ -72,12 +72,12 @@ class Assignment < ActiveRecord::Base
     visible == "true"
   end
   
-  def past
-    Assignment.past
+  def past?
+    due_date.past?
   end
   
-  def future
-    Assignment.future
+  def future?
+    due_date.future?
   end
   
   #TODO I need this to be either - guessing the assignment type isn't working properly
