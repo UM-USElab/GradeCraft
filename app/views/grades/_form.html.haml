@@ -1,7 +1,9 @@
 = simple_form_for([@assignment, @grade], :html => {:class => 'form-horizontal' }) do |f|
-  = f.association :assignment, :collection => @assignments
+  %div.control-group
+    %label.control-label Assignment
+    %div.controls= @assignment.name
   - if @assignment.is_individual?
-    = f.input :gradeable_id, :collection => @students, :label => "#{current_course.user_ref}" 
+    = f.input :gradeable_id, :as => :select, :collection => @students, :label => "#{current_course.user_ref}", :include_blank => false
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'User' }
   - if @assignment.has_groups?
     = f.input :gradeable_id, :collection => @groups, :label => "Group"
@@ -17,10 +19,11 @@
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]
   //TODO Fix earned badge submission
-  = f.fields_for :earned_badge, do |earned_badge|
-    = earned_badge.input :badge_id, :as => :check_boxes, :collection => @badges
-    = earned_badge.input :earnable_type, :input_html => { :value => "User" }, :as => :hidden
-  
+  = f.simple_fields_for :earned_badges, @earned_badges do |ebf|
+    = ebf.input :earned, :as => :boolean, :label => ebf.object.name
+    = ebf.input :badge_id, :input_html => { :value => ebf.object.badge_id }, :as => :hidden
+    = ebf.input :earnable_id, :input_html => { :value => @grade.id }, :as => :hidden
+    = ebf.input :earnable_type, :input_html => { :value => 'Grade' }, :as => :hidden
 
   .form-actions
     = f.button :submit, :class => 'btn'

@@ -29,6 +29,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'jquery-ui-rails'
 end
 
 group :development do

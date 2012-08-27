@@ -25,7 +25,9 @@ class GradesController < ApplicationController
     @title = "Submit A New Grade"
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @assignment.assignment_grades.create(params[:grade])
-    @badges = current_course.badges.all
+    @earned_badges = current_course.badges.map do |b|
+      EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
+    end
     @teams = current_course.teams.all
     @groups = current_course.groups.all
     @students = current_course.users.students

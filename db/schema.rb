@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120824230829) do
+ActiveRecord::Schema.define(:version => 20120826220513) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -99,6 +99,11 @@ ActiveRecord::Schema.define(:version => 20120824230829) do
   end
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
+
+  create_table "course_badge_sets", :force => true do |t|
+    t.integer "course_id"
+    t.integer "badge_set_id"
+  end
 
   create_table "course_grade_schemes", :force => true do |t|
     t.string   "name"

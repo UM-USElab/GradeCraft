@@ -4,7 +4,7 @@ class BadgesController < ApplicationController
 
   def index
     @title = "View All Badges"
-    @badges = Badge.all
+    @badges = current_course.badges
 
     respond_to do |format|
       format.html
