@@ -10,7 +10,6 @@
 //= require wysihtml5
 //= require bootstrap-wysihtml5
 //= require_tree .
-//= require dataTables/jquery.dataTables
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require highcharts

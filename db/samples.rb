@@ -3,8 +3,10 @@ course_names = ['Defense Against the Dark Arts','Muggle Studies','Potions','Tran
 assignment_type_names = ['Hexes','Potions','Wards','Charms']
 semester = %w{Autumn Winter Spring}.sample
 team_names = ['Hufflepuff','Gryffindor','Ravenclaw','Slytherin']
-badge_names = ['Auror','Charm Master','House Cup','Chaser','Beater','Keeper','Seeker','Alchemist','Patronus Master','Parseltongue Speaker','Herbologist','Prescient']
-badge_set_names = ['Rudimentary','Advanced']
+badge_set_names = [
+  ['Quidditch',['Chaser','Beater','Keeper','Seeker']],
+  ['Careers',['Auror','Charm Master','House Cup','Alchemist','Patronus Master','Parseltongue Speaker','Herbologist','Prescient']]
+]
 
 puts "\n#{semester} term at Hogwarts has begun!"
 
@@ -28,7 +30,6 @@ end
 default_course = courses.first
 puts "Conjured #{courses.count} Hogwarts courses for the #{semester} term"
 
-
 teams = []
 team_names.each do |team_name|
   teams << Team.create! do |t|
@@ -42,7 +43,7 @@ students = []
 user_names.each do |name|
   first_name, last_name = name.split(' ')
   username = name.parameterize.sub('-','.')
-  students << User.create! do |u|
+  students << User.new do |u|
     u.username = username
     u.first_name = first_name
     u.last_name = last_name
@@ -52,6 +53,7 @@ user_names.each do |name|
     u.courses = [default_course] + (courses.sample(rand(courses.count)) - [default_course])
   end
 end
+students.map(&:save)
 puts "Generated #{students.count} unruly students"
 
 # Generate sample admin
@@ -97,24 +99,40 @@ courses.each do |course|
       a.name = assignment_type_name
     end
   end
+  assignments = []
   for n in 1..10 do
-    assignment = course.assignments.create! do |a|
+    assignments << course.assignments.new do |a|
       a.name = "Spell #{n}"
       a.due_date = rand(10).weeks.from_now
       a.assignment_type = assignment_types.sample
       a.point_total = 100 + rand(10) * 100
     end
-    students.each do |student|
-      Grade.create! do |g|
+  end
+  Assignment.import assignments
+
+  grades = []
+  students.each do |student|
+    assignments.each do |assignment|
+      grades << Grade.new do |g|
         g.assignment = assignment
         g.gradeable = student
         g.raw_score = assignment.point_total * ((6 + rand(5)) / 10.0)
         g.raw_score = assignment.point_total if student.name == 'Hermione Granger'
       end
-      student.save
     end
   end
+  Grade.import grades
 end
 puts "Assigned an impossible workload for each course (impossible, that is, unless you possess a Time-Turner)"
 
-  
+badge_sets = []
+badges = []
+badge_set_names.each do |badge_set_name,badge_names|
+  badge_set = BadgeSet.create!(:name => badge_set_name, :courses => courses)
+  badges = badge_names.map do |badge_name|
+    badge_set.badges.create!(:name => badge_name)
+  end
+  badge_sets << badge_set
+end
+puts "Course badges have been set for the term"
+

@@ -25,7 +25,9 @@ class GradesController < ApplicationController
     @title = "Submit A New Grade"
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @assignment.assignment_grades.create(params[:grade])
-    @badges = current_course.badges.all
+    @earned_badges = current_course.badges.map do |b|
+      EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
+    end
     @teams = current_course.teams.all
     @groups = current_course.groups.all
     @students = current_course.users.students
@@ -99,9 +101,8 @@ class GradesController < ApplicationController
       user_search_options[:team_id] = @team.id if @team
     end
     @students = current_course.users.students.where(user_search_options)
-    @grades = @students.map do |s| 
-      @assignment.assignment_grades.find_by_gradeable_id(s.id)
-      #|| grade_class(@assignment).create(:user => s, :assignment_id => @assignment.id) 
+    @grades = @students.map do |s|
+      @assignment.assignment_grades.where(:gradeable_id => s.id, :gradeable_type => 'User').first || @assignment.assignment_grades.new(:gradeable => s, :assignment => @assignment)
     end
   end
 
@@ -110,6 +111,7 @@ class GradesController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @gradeable.assignment_grades.build(params[:grade])
     if @assignment.update_attributes(params[:assignment])
+
       respond_with @assignment, :location => assignment_path(@assignment)
     else
       respond_with @assignment, :location => mass_edit_assignment_grades_path(@assignment)

@@ -57,7 +57,7 @@ class Assignment < ActiveRecord::Base
   end
   
   def is_individual?
-    grade_scope=="Individual"
+    !['Group','Team'].include? grade_scope
   end
   
   def has_groups?
