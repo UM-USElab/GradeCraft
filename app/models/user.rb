@@ -153,9 +153,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Putting this here just so things don't break... remove if needed.
   def possible_score
-    0
+    assignments.map(&:point_total).inject(&:+) || 0
   end
 
   # Same with this

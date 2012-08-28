@@ -127,9 +127,6 @@
   margin-bottom: 2px;
 }
 
-.completedAssignment {
-}
-
 .incompleteAssignment {
   background-color: #999;
   color: #000;
@@ -155,6 +152,80 @@
 
 // Predictor
 
+#predictorPage {
+  margin-top: 110px;
+  
+}
+
+#predictorPage .pageTitle {
+  font-weight: bold;
+  font-size: 16px;
+  padding-top: 15px;
+  margin-bottom: 10px;
+}
+
+	#predictorBar {
+  	width: 100%;
+  	height: 200px;
+	}
+	 
+	.slide-panel {
+  	background-color: #eee;
+  	border-radius: 15px;
+  	min-height: 350px;
+  	width: 800px;
+  	padding: 25px;
+  	margin: 0px 15px;
+	}
+
+	.slides {
+  	margin-bottom: 15px;
+	}
+	
+	.headline {
+  	font-weight: bold;
+  	text-transform: uppercase;
+  	font-size: 15px;
+	}
+
+	.slider{
+    height:1em;
+	  padding:0;
+	  width:60%;
+	  margin-bottom: 15px;
+	}
+	
+	.assignmentTitle {
+  	margin-bottom: 4px;
+	}
+	
+	#predictorPage input[type=text] {
+  	background-color: #eeeeee;
+  	border: none;
+  	box-shadow: none;
+  	color: green;
+  	margin: -4px 10px 0px;
+	}
+	
+	div.assignment {
+  	margin-bottom: 15px;
+	}
+	
+	#predictorPage select {
+  	margin: -4px 10px;
+	}
+	
+	#predictorPage input[type=checkbox].class-checkbox {
+  	margin: 0px 10px;
+	}
+	
+	#predictorPage .grade {
+  	margin-left: 10px;
+	}
+	
+	// STRIP BELOW HERE
+	
+	
   #predictionWrapper{	
   	background-color:rgba(55,55,55,.96);
     border-top:5px solid #2F96B4;
@@ -163,28 +234,16 @@
     border-top-left-radius:10px;
     border-bottom-left-radius:10px; 	
   	color:#fff;
-  	padding:10px 0 10px 10px;
-  	position:fixed;
-  	top:120px;
+  	padding:15px 0 10px 10px;
+  	position: fixed;
+  	top: 50px;
+  	height: 125px;
     right:0;
   	text-align:center;
-  	max-width:250px;
+  	width: 100%;
   	z-index:3;			
   }
-	#pointsArw{
-    background: url(arrow.png) no-repeat;
-	  display:block;
-	  height:17px;
-	  left:15px;
-	  overflow:hidden;
-	  position:relative;	  
-	  top:30px;	  
-	  width:17px;
-	}
-  #pointsArw.toggleOn{
-    background-position:-17px 0;
-  }
-	#projectedPoints{
+		#projectedPoints{
 	  cursor:pointer;
 	}
 	#projectedPoints p{
@@ -193,11 +252,11 @@
 	}
 	#predictionWrapper.toggleOn{
 	  display:block;
-	  max-width:500px;
-	  min-width:250px;
+	  max-width:1000px;
+	  min-width:850px;
 	}
 	.highcharts-grid{
-	  width:100px;
+	  width:1000px;
 	}
 	#prediction{
 		color:#FFF;
@@ -210,12 +269,6 @@
 	.gradeSection{
     clear:both
   }
-	.predictor-assignment-title{
-	  font-family:'Copse', serif;		
-	}
-	.predictor-subtitle{
-	  font-weight:bold;
-	}
 	.select-checkboxes{
 		float:left;
 		width:100%;
@@ -241,17 +294,10 @@
 		width:20%;
 		float:left;
 	}
-	.predictor-assignment-title{
-		font-size:1.3em;
-		margin:0;
-	}
-	.assignmentDescription{
-	  font-style:italic;
-	}
 	section.slider{
     height:1em;
 	  padding:0;
-	  width:80%;
+	  width:60%;
 	}
 	.slider-value{
 		display:block;
@@ -264,4 +310,3 @@
 		border:none;
 	}
 	
-

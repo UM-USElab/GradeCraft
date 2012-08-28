@@ -17,9 +17,8 @@ gem 'bootstrap-datepicker-rails'
 gem 'responders'
 gem 'brakeman'
 gem 'activerecord-import'
-
 gem 'flexslider'
-gem 'activerecord-import'
+gem "highcharts-rails", "~> 2.3.0"
 
 group :production do
   #gem 'mysql2'

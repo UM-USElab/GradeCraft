@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @title = "View all Users"
     @users =  current_course.users.order(:last_name)
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @users }
       format.csv { send_data @users.to_csv }
       format.xls { send_data @users.to_csv(col_sep: "\t") }
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @teams = current_course.teams.all 
     @sorted_students = @students.order('sortable_score DESC')
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @users }
       format.csv { send_data @users.to_csv }
       format.xls { send_data @users.to_csv(col_sep: "\t") }
@@ -51,11 +51,8 @@ class UsersController < ApplicationController
   end
   
   def predictor
-    @title = "Predict Course Grade"
-    @assignment_types = current_course.assignment_types
-    @assignments = current_course.assignments
-    @future_assignments = current_course.assignments.future
-    @past_assignments = current_course.assignments.past
+    @assignment_types = current_course.assignment_types.all
+    @assignments = current_course.assignments.all
     if current_user.is_staff?
       @user = User.find(params[:user_id])
     else

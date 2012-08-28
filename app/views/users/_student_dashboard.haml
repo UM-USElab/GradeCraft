@@ -30,15 +30,16 @@
     %div#userPointValues
       %span= "Your current score is "  
       %span#userScoreNum #{number_with_delimiter(user.sortable_score, :delimiter => ',') if user.respond_to?(:sortable_score)}
-    %a{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
-      Show me my score out of total course points
-    %a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
-      Show me my score out of available points so far
+      = "/"
+      #{number_with_delimiter(user.possible_score, :delimiter => ',')} 
+    //%a{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
+    //Show me my score out of total course points
+    //%a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
+    //Show me my score out of available points so far
 
     %div#predictorLink
       = link_to 'Predict Course Grade', predictor_users_path(:user_id => user.id)
-    %div#userBarTotal.dashboard-toggle
-      = #{user.possible_score}
+    //%div#userBarTotal.dashboard-toggle
     %div#userBarInProgress.dashboard-toggle
     
     %div#Grades

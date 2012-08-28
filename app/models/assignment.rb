@@ -11,6 +11,8 @@ class Assignment < ActiveRecord::Base
   has_many :assignment_submissions
   accepts_nested_attributes_for :grades
   accepts_nested_attributes_for :assignment_type
+  
+  delegate :points_predictor_display, :to => :assignment
     attr_accessible :type, :title, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id, :required
 
   scope :individual_assignment, where(:grade_scope => "Individual")
@@ -78,6 +80,18 @@ class Assignment < ActiveRecord::Base
   
   def future?
     due_date.future?
+  end
+  
+  def fixed?
+    points_predictor = "Fixed"
+  end
+  
+  def slider?
+    points_predictor = "Slider"
+  end
+  
+  def select?
+    points_predictor = "Select List"
   end
   
   #TODO I need this to be either - guessing the assignment type isn't working properly
