@@ -1,30 +1,26 @@
 %div#predictorWrapper
   %div#predictionWrapper
     %div#projectedPoints
-      %span#pointsArw
-      %p
-        #{@user.name}'s total projected points: 
+      %h3
+        = "#{@user.name}'s current points:"
+        = number_with_delimiter(@user.sortable_score, :delimiter => ',') if @user.respond_to?(:sortable_score)
+        = "/" 
+        = current_course.total_points  
+      %h6
+        Projected Points: 
       %span#expectedPointsValue
     %div#prediction 
       %div#score
 
-  %div= "#{@user.name}'s total projected points:"
-  %div
-    = "#{@user.name}'s current points:"
-    = number_with_delimiter(@user.sortable_score, :delimiter => ',') if @user.respond_to?(:sortable_score)
-    = "/" 
-    = current_course.total_points
-  %div#prediction 
-    %span#expected-points
-    Projected Course Grade:
-    
+%div#predictorPage
+  %div.pageTitle Predict Your Course Grade
   %div.flexslider
     %ul.slides
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %li{:id => "slide-#{assignment_type.id}"}
           %div.slide-panel
-            %div.headline
-              %span.aType= assignment_type.name
+            %div
+              %h3= assignment_type.name
               %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
             %p.lead= assignment_type.predictor_description
             - if assignment_type.student_choice?
@@ -33,13 +29,13 @@
             - assignments.each do |assignment|
               - if assignment.past?
                 %div.assignment
-                  %span.assignmentTitle= assignment.try(:name)
+                  %h6.assignmentTitle.pull-left= assignment.try(:name)
                   - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
                     - if grade.attempted? 
-                      %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total}
+                      %span.grade #{ grade.raw_score } / #{grade.point_total}
               - if assignment.future?
                 %div.assignment
-                  = assignment.name
+                  %h6.assignmentTitle.pull-left= assignment.name
                   - if assignment_type.fixed?
                     %input{:type => "checkbox", :name => assignment.name, :input_html => assignment.point_total, :class => "class-checkbox"} 
                   - if assignment_type.slider?
@@ -49,4 +45,4 @@
                     %select.point-value{:id => "total-"+assignment.id.to_s(), :type => "select", :name => assignment.name, :value => 0, :collection => @levels }
                     %div{:id => "select-"+assignment.id.to_s()}
   
-  = link_to "Back to the Dashboard", user_path(@user)
+  = link_to "Back to the Dashboard", user_path(@user), :class => 'btn btn-primary'

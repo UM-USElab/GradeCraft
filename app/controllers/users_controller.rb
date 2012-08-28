@@ -51,7 +51,6 @@ class UsersController < ApplicationController
   end
   
   def predictor
-    @title = "Predict Course Grade"
     @assignment_types = current_course.assignment_types.all
     @assignments = current_course.assignments.all
     if current_user.is_staff?

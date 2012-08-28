@@ -60,27 +60,3 @@ h4, h3, .assignmentTypeTitle {
 #team {
   margin-bottom: 15px;
 }
-
-#predictor-wrapper .slide-panel {
-  background-color: #eee;
-  height: 400px;
-  padding: 25px;
-  border-radius: 15px;
-}
-
-#predictor-wrapper .aType {
-  font-weight: bold;
-  font-size: 24px;
-}
-
-#predictor-wrapper .headline {
-  height: 20px;
-}
-#predictor-wrapper div.badge {
-  margin-top: -10px;
-  position: relative;
-}
-
-#predictor-wrapper .lead {
-  margin-top: 10px;
-}
