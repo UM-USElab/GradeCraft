@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120826220513) do
+ActiveRecord::Schema.define(:version => 20120828234506) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(:version => 20120826220513) do
     t.boolean  "team_roles"
     t.string   "section_leader_term"
     t.string   "group_term"
+    t.string   "user_weight_amount_type"
   end
 
   create_table "dashboards", :force => true do |t|
