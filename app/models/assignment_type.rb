@@ -37,7 +37,7 @@ class AssignmentType < ActiveRecord::Base
     points_predictor_display == "Fixed"
   end
   
-  def select_list?
+  def select?
     points_predictor_display == "Select List"
   end
 

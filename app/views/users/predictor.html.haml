@@ -1,11 +1,23 @@
-%div#predictor-wrapper
+%div#predictorWrapper
+  %div#predictionWrapper
+    %div#projectedPoints
+      %span#pointsArw
+      %p
+        #{@user.name}'s total projected points: 
+      %span#expectedPointsValue
+    %div#prediction 
+      %div#score
+
   %div= "#{@user.name}'s total projected points:"
-  %div= "#{@user.name}'s current points:"
-  %div= number_with_delimiter(@user.sortable_score, :delimiter => ',') if @user.respond_to?(:sortable_score)
+  %div
+    = "#{@user.name}'s current points:"
+    = number_with_delimiter(@user.sortable_score, :delimiter => ',') if @user.respond_to?(:sortable_score)
+    = "/" 
+    = current_course.total_points
   %div#prediction 
     %span#expected-points
     Projected Course Grade:
-    %div#progressbar
+    
   %div.flexslider
     %ul.slides
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
@@ -27,7 +39,14 @@
                       %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total}
               - if assignment.future?
                 %div.assignment
-                  %input{:type => "checkbox", :name => "class-attendance", :input_html => assignment.point_total, :class => "class-checkbox"} 
                   = assignment.name
+                  - if assignment_type.fixed?
+                    %input{:type => "checkbox", :name => assignment.name, :input_html => assignment.point_total, :class => "class-checkbox"} 
+                  - if assignment_type.slider?
+                    %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.name, :value => 0 }
+                    %div.slider.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all{:id => "slider-"+assignment.id.to_s()}
+                  - if assignment_type.select?
+                    %select.point-value{:id => "total-"+assignment.id.to_s(), :type => "select", :name => assignment.name, :value => 0, :collection => @levels }
+                    %div{:id => "select-"+assignment.id.to_s()}
   
   = link_to "Back to the Dashboard", user_path(@user)

@@ -31,3 +31,33 @@ $(function() {
 $('#course_id').change(function() { $(this).closest('form').submit(); });
 
 $('.nav-tabs').button();
+
+   $('.flexslider').flexslider({
+      animation: "slide",
+      slideshow: false
+      
+    });
+
+    
+	// add commas
+	function addCommas(i){
+		numWithCommas = i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		return numWithCommas;
+	};	
+	
+	// handle 'select all' button
+	$(".select-all").click(function(e){
+		e.preventDefault();
+		$(this).siblings().find("input").each(function(){
+			$(this).attr("checked","checked");
+		});
+		updateProgressBar($(this));		
+	});
+		
+	// handle 'select none' button
+	$(".select-none").click(function(e){
+		$(this).siblings().find("input").each(function(){
+			$(this).attr("checked", false);
+		});
+		updateProgressBar($(this));		
+	});

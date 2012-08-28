@@ -13,7 +13,7 @@ class Grade < ActiveRecord::Base
   validates_presence_of :gradeable
   validates_presence_of :assignment
   
-  delegate :title, :description, :point_total, :due_date, :to => :assignment
+  delegate :name, :description, :point_total, :due_date, :to => :assignment
   
   after_save :save_user_score
   after_destroy :save_user_score
@@ -51,9 +51,5 @@ class Grade < ActiveRecord::Base
   def points_possible
     assignment.point_total
   end
- 
-  def assignment_type
-    #assignment.assignment_type
-  end 
 
 end
