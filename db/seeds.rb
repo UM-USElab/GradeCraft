@@ -19,11 +19,11 @@ puts "And we have an admin"
 
 # Generate Barry
 User.create! do |u|
-  u.username = 'bfishman'
+  u.username = 'fishman'
   u.first_name = 'Barry'
   u.last_name = 'Fishman'
   u.role = 'admin'
-  u.email = 'bfishman@umich.edu'
+  u.email = 'fishman@umich.edu'
 end
 puts "Barry is here..."
 
