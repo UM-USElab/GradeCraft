@@ -55,11 +55,11 @@ GradeCraft::Application.routes.draw do
   get 'credits' => 'info#show'
   get 'using_gradecraft' => 'info#using_gradecraft'
   get 'home/index'
-  get 'cosign_test' => 'info#cosign_test'
   get 'dashboard' => 'info#dashboard'
   root :to => "home#index"
   
   post '/current_course/change' => 'current_courses#change', :as => :change_current_course
+  get 'current_course' => 'current_courses#show'
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout

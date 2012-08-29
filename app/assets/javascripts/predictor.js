@@ -2,19 +2,28 @@ $(document).ready(function(){
 
 	// get data from server
 	// loop through 
-	var jsonloop = function(){
+	var assignmentTypeInfo = function(){
 		addjsondata:
-		for(i=0; i<50; i++){
-			$.ajax('assignment_types/'+i+'.json', {
+			$.get('/assignment_types.json', {
 				dataType: 'json',
-				success: fillAssignArray,
+				success: function(){
+               }, 
 				error: function(){
-					break addjsondata;
 				} 
 			});
-		}
 	};
-	jsonloop();
+	var courseInfo = function(){
+		addjsondata:
+			$.get('/current_course.json', {
+				dataType: 'json',
+				success: function(){
+               }, 
+				error: function(){
+				} 
+			});
+	};
+	assignmentTypeInfo();
+	courseInfo();
 	
 	// create course total
 	var courseSum = current_course.total_points

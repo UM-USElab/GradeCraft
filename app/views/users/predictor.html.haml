@@ -18,7 +18,7 @@
     %ul.slides
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %li{:id => "slide-#{assignment_type.id}"}
-          %div.slide-panel
+          %div.slide-panel.span11
             %div
               %h3= assignment_type.name
               %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "

@@ -46,7 +46,6 @@
                     %li= link_to "Groups", groups_path
                   - if current_course.has_teams?    
                     %li= link_to "#{current_course.team_ref}s", teams_path
-                  %li= link_to "Predictor Settings", predictor_users_path
                   %li= link_to "Staff", staff_users_path
                   %li= link_to "Grade Scheme", course_grade_schemes_path
                   %li= link_to "Course Settings", edit_course_path(current_course)
