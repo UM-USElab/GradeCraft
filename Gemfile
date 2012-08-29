@@ -19,6 +19,7 @@ gem 'brakeman'
 gem 'activerecord-import'
 gem 'flexslider'
 gem "highcharts-rails", "~> 2.3.0"
+gem "airbrake"
 
 group :production do
   #gem 'mysql2'
