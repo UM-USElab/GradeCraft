@@ -5,7 +5,7 @@
  *= require_self
  *= require_tree .
  *= require bootstrap-wysihtml5
- *= require jquery.ui.all
+ *= require jquery.ui
  *= require bootstrap
  *= require flexslider.css
 */
