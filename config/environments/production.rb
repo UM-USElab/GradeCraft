@@ -24,7 +24,7 @@ GradeCraft::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  config.action_mailer.default_url_options = { :host => 'grade-tracker.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'gradecraft.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
@@ -36,7 +36,7 @@ GradeCraft::Application.configure do
     :authentication => :plain,
     :user_name      => ENV['SENDGRID_USERNAME'],
     :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'herokuapp.com'
+    :domain         => 'https://www.gradecraft.com'
   }
   ActionMailer::Base.delivery_method = :smtp
 
