@@ -11,8 +11,7 @@ class UserSessionsController < ApplicationController
     respond_to do |format|
       if @user = login(params[:user][:email],params[:user][:password],params[:user][:remember_me])
         User.increment_counter(:visit_count, current_user.id) if current_user
-        format.html { redirect_to dashboard_path, :notice => 'Login successful.' }
-        format.xml { render :xml => @users, :status => :created, :location => @user }
+        redirect_to dashboard_path, :notice => "Login successful."
       else
         @user = User.new
         format.html { flash.now[:alert] = "Login failed."; render :action => "new" }
@@ -23,7 +22,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to root_url, :notice => "Logged out!"
+    redirect_to "https://ctools.umich.edu/portal/logout", :notice => "Logged out!"
   end
 
 end
