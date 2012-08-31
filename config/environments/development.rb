@@ -35,6 +35,6 @@ GradeCraft::Application.configure do
   
   
   config.middleware.use ExceptionNotifier,
-    sender_address: 'noreply@grade-tracker.herokuapp.com',
+    #sender_address: 'noreply@grade-tracker.herokuapp.com',
     exception_recipients: 'caitlin.holman@gmail.com'
 end

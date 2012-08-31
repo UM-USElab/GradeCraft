@@ -23,7 +23,7 @@ gem "highcharts-rails", "~> 2.3.0"
 gem "airbrake"
 
 group :production do
-  #gem 'mysql2'
+  gem 'mysql2'
 end
 
 # Gems used only for assets and not required

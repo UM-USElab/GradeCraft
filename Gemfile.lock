@@ -119,6 +119,7 @@ GEM
     mime-types (1.19)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    mysql2 (0.3.11)
     oauth (0.4.6)
     oauth2 (0.6.1)
       faraday (~> 0.7)
@@ -249,6 +250,7 @@ DEPENDENCIES
   highcharts-rails (~> 2.3.0)
   jquery-rails (~> 2.0)
   jquery-ui-rails
+  mysql2
   pacecar
   rails (= 3.2.6)
   responders
