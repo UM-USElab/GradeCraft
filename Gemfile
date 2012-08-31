@@ -6,7 +6,7 @@ gem 'fabrication'
 gem 'haml'
 gem 'sorcery'
 gem 'exception_notification'
-gem "paperclip", "~> 3.0"
+gem 'carrierwave'
 gem 'gravatar_image_tag'
 gem 'pacecar'
 gem 'will_paginate'
