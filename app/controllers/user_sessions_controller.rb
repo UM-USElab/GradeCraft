@@ -23,7 +23,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to "https://ctools.umich.edu/portal/logout", :notice => "Logged out!"
+    redirect_to "https://weblogin.umich.edu/cgi-bin/logout?http://www.umich.edu", :notice => "Logged out!"
   end
 
 end

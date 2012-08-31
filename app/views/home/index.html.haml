@@ -1,7 +1,7 @@
 %div.hero-unit.span11
   - if current_user
     - if current_course
-      %div.span3.pull-right
+      = render 'info/dashboard', :user => @user, :assignments => @assignments
         
     - else
       %p Your account hasn't yet been connected to any courses. Contact us for help!
