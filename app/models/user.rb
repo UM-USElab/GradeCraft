@@ -8,13 +8,6 @@ class User < ActiveRecord::Base
   attr_accessor :remember_me
   attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id
 
-
-  has_attached_file :avatar,
-                    :styles => { :medium => "300x300>",
-                                 :thumb => "100x100>" },
-                    :url => '/assets/avatars/:id/:style/:basename.:extension',
-                    :path => ':rails_root/public/assets/avatars/:id/:style/:basename.:extension',
-                    :default_url => '/images/missing_:style.png'
   scope :alpha, :order => 'last_name ASC'
   scope :winning, :order => 'sortable_score DESC'
   
