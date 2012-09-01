@@ -21,9 +21,9 @@
             %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
         %td= team.badge_count
         - if current_user.is_staff?
-          %td= link_to 'View', team, {:class => 'btn btn-mini'}
-          %td= link_to 'Edit', edit_team_path(team), {:class => 'btn btn-mini'}
-          %td= link_to 'Delete', team, {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
+          %td= link_to 'View', team, :class => 'btn btn-mini'
+          %td= link_to 'Edit', edit_team_path(team), :class => 'btn btn-mini'
+          %td= link_to 'Delete', team, :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
 %div#footerNav
   - if current_user.is_staff?
     = link_to "Add a #{current_course.team_ref}", new_team_path, :class => "btn btn-primary"

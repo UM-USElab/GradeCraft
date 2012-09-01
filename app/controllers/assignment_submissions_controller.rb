@@ -23,11 +23,12 @@ class AssignmentSubmissionsController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @title = "Edit Submission for #{@assignment.name}"
     @assignment_submission = AssignmentSubmission.find(params[:id])
+    @assignment_submission = @assignment.assignment_submissions.find(params[:id])
   end
 
   def create
     @assignment = Assignment.find(params[:assignment_id])
-    @assignment_submission = AssignmentSubmission.new(params[:assignment_submission])
+    @assignment_submission = @assignment.assignment_submissions.build(params[:assignment_submission])
     @assignment_submission.save
     respond_with(@assignment_submission)
   end
@@ -39,8 +40,9 @@ class AssignmentSubmissionsController < ApplicationController
   end
 
   def destroy
+    debugger
     @assignment_submission = AssignmentSubmission.find(params[:id])
     @assignment_submission.destroy
-    respond_with(@assignment_submission)
+    respond_with(@assignment)
   end
 end

@@ -1,7 +1,5 @@
 class CoursesController < ApplicationController
   
-  # GET /courses
-  # GET /courses.json
   def index
     @title = "GradeCraft Courses"
     @courses = Course.all
@@ -12,8 +10,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/1
-  # GET /courses/1.json
   def show
     @course = Course.find(params[:id])
     @users = current_course.users
@@ -27,8 +23,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/new
-  # GET /courses/new.json
   def new
     @title = "Add a New Course"
     @course = Course.new
@@ -42,7 +36,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
     @title = "Edit Course" 
@@ -52,8 +45,6 @@ class CoursesController < ApplicationController
     
   end
 
-  # POST /courses
-  # POST /courses.json
   def create
     @course = Course.new(params[:course])
     @badge_sets = BadgeSet.all
@@ -69,8 +60,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # PUT /courses/1
-  # PUT /courses/1.json
   def update
     @course = Course.find(params[:id])
 
@@ -85,8 +74,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1
-  # DELETE /courses/1.json
   def destroy
     @course = Course.find(params[:id])
     @course.destroy

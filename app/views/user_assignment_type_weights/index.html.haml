@@ -9,9 +9,9 @@
       %td= user_assignment_type_weight.user.name
       %td= user_assignment_type_weight.assignment_type.name
       %td= user_assignment_type_weight.value
-      %td= link_to 'View', user_assignment_type_weight, {:class => 'btn btn-mini'}
-      %td= link_to 'Edit', edit_user_assignment_type_weight_path(user_assignment_type_weight), {:class => 'btn btn-mini'}
-      %td= link_to 'Delete', user_assignment_type_weight, {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'View', user_assignment_type_weight, :class => 'btn btn-mini'
+      %td= link_to 'Edit', edit_user_assignment_type_weight_path(user_assignment_type_weight), :class => 'btn btn-mini'
+      %td= link_to 'Delete', user_assignment_type_weight, :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
 
 %br
 

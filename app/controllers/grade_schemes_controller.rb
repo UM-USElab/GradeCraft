@@ -5,7 +5,7 @@ class GradeSchemesController < ApplicationController
     @grade_schemes = current_course.grade_schemes.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.json { render json: @grade_schemes }
     end
   end
@@ -15,7 +15,7 @@ class GradeSchemesController < ApplicationController
     @grade_scheme = current_course.grade_schemes.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.json { render json: @grade_scheme }
     end
   end
@@ -25,7 +25,7 @@ class GradeSchemesController < ApplicationController
     @grade_scheme = current_course.grade_schemes.new
     @assignments = Assignment.all
     respond_to do |format|
-      format.html # new.html.erb
+      format.html 
       format.json { render json: @grade_scheme }
     end
   end

@@ -15,8 +15,8 @@
         %td 
         %td
           %img{:src => earned_badge.badge.try(:icon), :alt => earned_badge.badge.try(:name), :width => "25", :height => "25"}
-        %td= link_to 'View', earned_badge, {:class => 'btn btn-mini'}
-        %td= link_to 'Edit', edit_earned_badge_path(earned_badge), {:class => 'btn btn-mini'}
-        %td= link_to 'Delete', earned_badge, {:class => 'btn btn-mini'}, :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'View', earned_badge, :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_earned_badge_path(earned_badge), :class => 'btn btn-mini'
+        %td= link_to 'Delete', earned_badge, :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
 %div#footerNav
   = link_to "Award a Badge", new_earned_badge_path, :class => "btn btn-primary"

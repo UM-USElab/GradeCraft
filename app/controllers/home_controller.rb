@@ -2,7 +2,7 @@ class HomeController < ApplicationController
     
   before_filter :require_login, :only => [:login, :register]
   
-  def index 
+  def index
     @title = "My Dashboard"
     @teams = current_course.teams.all
     @students = current_course.users.students
