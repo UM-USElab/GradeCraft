@@ -15,7 +15,9 @@ class AssignmentSubmissionsController < ApplicationController
   def new
     @assignment = Assignment.find(params[:assignment_id])
     @title = "Submit #{@assignment.name}"
+    @users = current_course.users
     @assignment_submission = AssignmentSubmission.new
+    @assignment_submission.user_id = params[:user_id]
     respond_with(@assignment_submission)
   end
 
@@ -30,7 +32,15 @@ class AssignmentSubmissionsController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @assignment_submission = @assignment.assignment_submissions.build(params[:assignment_submission])
     @assignment_submission.save
-    respond_with(@assignment_submission)
+    respond_to do |format|
+      if @assignment_submission.save
+        format.html { redirect_to @assignment, notice: 'Assignment was successfully submitted.' }
+        format.json { render json: @assignment, status: :created, location: @assignment }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @assignment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update

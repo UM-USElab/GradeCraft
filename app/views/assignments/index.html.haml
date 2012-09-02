@@ -45,7 +45,6 @@
               %td
                 - if assignment.open?
                   = link_to "Submit", new_assignment_assignment_submission_path(assignment), {:class => 'btn btn-mini'}
-            
             - if current_user.is_staff?  
               %td= number_with_delimiter(assignment.average, :delimiter => ',') 
               %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 

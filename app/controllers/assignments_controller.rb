@@ -17,7 +17,7 @@ class AssignmentsController < ApplicationController
     @student = @students.where(params[:id])
     @grades = @assignment.grades
     @title = "View #{@assignment.name}"
-    #@assignment_submissions = current_course.users.assignment_submissions
+    @assignment_submissions = @assignment.assignment_submissions
     @earnables = current_course.earned_badges.all
     respond_with @assignment
   end

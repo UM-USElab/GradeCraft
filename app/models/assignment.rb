@@ -42,6 +42,14 @@ class Assignment < ActiveRecord::Base
   def grade_for_student(student)
     grades_by_student_id[student.id].try(:first)
   end
+  
+  def submissions_by_student_id
+    @submissions_by_student || assignment_submissions.group_by(&:user_id)
+  end
+  
+  def submission_for_student(student)
+    submissions_by_student_id[student.id].try(:first)
+  end
 
   def assignment_grades
     Grade.where(:assignment_id => id)
