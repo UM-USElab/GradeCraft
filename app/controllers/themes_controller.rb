@@ -6,7 +6,7 @@ class ThemesController < ApplicationController
     @themes = Theme.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @themes }
     end
   end
@@ -15,7 +15,7 @@ class ThemesController < ApplicationController
     @theme = Theme.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @theme }
     end
   end
@@ -24,7 +24,7 @@ class ThemesController < ApplicationController
     @theme = Theme.new
     @title = "Create a New Theme"
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @theme }
     end
   end
