@@ -1,5 +1,7 @@
 class BadgeSetsController < ApplicationController
 
+  before_filter :ensure_staff?
+
   def index
     @title = "Badge Sets"
     @badge_sets = BadgeSet.all

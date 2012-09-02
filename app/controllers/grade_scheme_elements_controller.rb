@@ -1,4 +1,6 @@
 class GradeSchemeElementsController < ApplicationController
+
+  before_filter :ensure_staff?
   
   def index 
     @grade_scheme = GradeScheme.find(params[:grade_scheme_id])

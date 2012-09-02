@@ -1,5 +1,7 @@
 class EarnedBadgesController < ApplicationController
 
+  before_filter :ensure_staff?
+
   def index
     @title = "View All Awarded Badges"
     @earned_badges = current_course.earned_badges.all

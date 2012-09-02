@@ -1,4 +1,5 @@
 class InfoController < ApplicationController
+
   respond_to :html
 
   helper_method :sort_column, :sort_direction

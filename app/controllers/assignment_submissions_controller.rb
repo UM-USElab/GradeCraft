@@ -1,4 +1,7 @@
 class AssignmentSubmissionsController < ApplicationController
+
+  before_filter :ensure_staff?, :only=>[:index]
+
   def index
     @assignment = Assignment.find(params[:assignment_id])
     @title = "View All Submissions for #{@assignment.name}"

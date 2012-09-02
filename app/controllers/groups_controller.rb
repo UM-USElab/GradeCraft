@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
 
+  before_filter :ensure_staff?
+
   def index
     @title = "View All Groups"
     @groups = current_course.groups

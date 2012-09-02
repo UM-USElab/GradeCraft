@@ -1,4 +1,6 @@
 class AssignmentTypesController < ApplicationController
+  
+  before_filter :ensure_staff?
 
   def index
     @title = "Assignment Types"

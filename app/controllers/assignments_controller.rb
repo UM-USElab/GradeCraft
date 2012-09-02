@@ -1,7 +1,7 @@
 class AssignmentsController < ApplicationController
   respond_to :html, :json
 
-  before_filter :ensure_staff?, :except => [:index]
+  before_filter :ensure_staff?, :except => [:index, :view]
 
   def index
     @title = "View All Assignments"

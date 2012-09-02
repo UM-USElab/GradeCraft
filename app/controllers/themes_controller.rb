@@ -1,5 +1,7 @@
 class ThemesController < ApplicationController
 
+  before_filter :ensure_staff?
+
   def index
     @themes = Theme.all
 

@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
 
+  before_filter :ensure_staff?
+
   def index
     @title = "Course Index"
     @courses = Course.all
