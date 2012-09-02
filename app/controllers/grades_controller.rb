@@ -25,6 +25,7 @@ class GradesController < ApplicationController
     @title = "Submit A New Grade"
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @assignment.assignment_grades.create(params[:grade])
+    @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
     @earned_badges = current_course.badges.map do |b|
       EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
     end
@@ -76,10 +77,8 @@ class GradesController < ApplicationController
     end
   end
 
-  #TODO FIX!!!
   def destroy
     @assignment = Assignment.find(params[:assignment_id])
-    #TODO Need to update score when a grade is deleted
     @grade = @assignment.assignment_grades.find(params[:id])
     @grade.destroy
     
@@ -89,7 +88,6 @@ class GradesController < ApplicationController
     end
   end
 
-  #TODO Fix
   def mass_edit
     @assignment = Assignment.find(params[:assignment_id])
     @title = "Mass Grade #{@assignment.name}"

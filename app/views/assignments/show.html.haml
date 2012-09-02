@@ -8,44 +8,54 @@
   %b Due Date:
   = @assignment.due_date
 
-%h3
-  Grades
-  - if @assignment.assignment_type.mass_grade?
-    (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
-
-= form_tag edit_status_assignment_grades_path(@assignment) do
-  %table#assignments.display.table-bordered.table
-    %thead
-      %tr
-        %th
-        %th= current_course.user_ref
-        %th Score
-        %th Level
-        %th Badges Earned
-        %th Status
-        %th Group
-        %th
-        %th
-        %th
-    %tbody
-      - @assignment.assignment_grades.each do |grade|
-        %tr
-          %td= check_box_tag "grade_ids[]", grade.id
-          %td= link_to grade.gradeable.try(:name), "/#{grade.gradeable_type.downcase}s/#{grade.gradeable_id}"
-          %td #{number_with_delimiter(grade.raw_score, :delimiter => ',') }
-          %td
-          %td 
-            - grade.earned_badges.each do |badge|
-              %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}
-          %td= grade.status
-          %td
-          %td= link_to "View", assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
-          %td= link_to "Edit", edit_assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
-          %td= link_to "Delete", assignment_grade_path(@assignment, grade), :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
+- if current_user.is_staff? 
+  %h3
+    Grades
+    - if @assignment.assignment_type.mass_grade?
+      (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
   
-  %div
-    = submit_tag "Update Grade Statuses", :class => "btn btn-info"
-    = link_to 'Add Grade', new_assignment_grade_path(:assignment_id => @assignment), :class => 'btn btn-info'
+  = form_tag edit_status_assignment_grades_path(@assignment) do
+    %table.display.table-bordered.table
+      %thead
+        %tr
+          %th
+          %th= current_course.user_ref
+          %th Score
+          %th Level
+          %th Badges Earned
+          %th Status
+          %th Group
+          %th
+          %th
+          %th
+      %tbody
+        - @students.each do |student|
+          - @assignment.grade_for_student(student).tap do |grade|
+            %tr
+              %td
+                - if grade
+                  = check_box_tag "grade.ids[])", grade.id
+              %td= link_to student.name, student
+              %td #{number_with_delimiter(grade.try(:raw_score), :delimiter => ',') }
+              %td
+              %td 
+                - grade.try(:earned_badges) do |badge|
+                  %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}
+              %td= grade.try(:status)
+              %td= link_to "Submission", assignment_assignment_submissions_path(@assignment, @assignment_submission), :class => 'btn btn-mini'
+              - if grade
+                %td= link_to "See Grade", assignment_grade_path(@assignment.id, grade.id), :class => 'btn btn-mini'
+                %td= link_to "Edit Grade", edit_assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
+                %td= link_to "Delete Grade", assignment_grade_path(@assignment, grade), :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
+              - else
+                //TODO How do I pass a user id here? 
+                %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>@assignment.id, :gradeable_id => student.id, :gradeable_type => "User"), :class => 'btn btn-mini'
+                %td
+                %td
+    
+    %div
+      = submit_tag "Update Grade Statuses", :class => "btn btn-info"
+      = link_to 'Add Grade', new_assignment_grade_path(:assignment_id => @assignment), :class => 'btn btn-info'
 
 %div#footerNav
   = link_to 'Edit', edit_assignment_path(@assignment), :class => 'btn btn-primary'

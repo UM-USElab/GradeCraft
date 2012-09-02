@@ -80,7 +80,7 @@ courses.each do |course|
       a.name = assignment_type_name
       a.point_setting = "Individually"
       a.points_predictor_display = predictor_display.sample
-      a.max_value = 100 + rand(10)
+      a.max_value = 100 * rand(10)
       a.predictor_description = predictor_description.sample
       a.step_value = 1
     end
@@ -90,7 +90,7 @@ courses.each do |course|
       a.name = "Assignment #{n}"
       a.due_date = rand(10).weeks.from_now
       a.assignment_type = assignment_types.sample
-      a.point_total = 100 + rand(10) * 100
+      a.point_total = (100 + rand(10)) * 100
     end
     students.each do |student|
       Grade.create! do |g|

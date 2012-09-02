@@ -3,6 +3,7 @@ class Grade < ActiveRecord::Base
     
   belongs_to :gradeable, :polymorphic => :true
   belongs_to :assignment
+  belongs_to :assignment_submission
   has_many :grade_scheme_elements, :through => :assignment
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
   has_many :badges, :through => :earned_badges
