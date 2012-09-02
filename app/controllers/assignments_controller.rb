@@ -16,6 +16,7 @@ class AssignmentsController < ApplicationController
     @students = current_course.users.students.includes(:grades)
     @student = @students.where(params[:id])
     @grades = @assignment.grades
+    @groups = @assignment.groups
     @title = "View #{@assignment.name}"
     @assignment_submissions = @assignment.assignment_submissions
     @earnables = current_course.earned_badges.all

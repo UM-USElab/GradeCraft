@@ -16,7 +16,7 @@
   - if @assignment.binary?
     //TODO show default on new grade
     = f.input :raw_score, :default => @assignment.point_total, :label => "Score"
-  //= f.input :final_score
+  = f.input :final_score
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]
   = f.simple_fields_for :earned_badges, @earned_badges do |ebf|

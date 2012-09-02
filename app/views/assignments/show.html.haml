@@ -8,12 +8,34 @@
   %b Due Date:
   = @assignment.due_date
 
-- if current_user.is_staff? 
-  %h3
-    Grades
-    - if @assignment.assignment_type.mass_grade?
-      (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
-  
+- if current_user.is_staff?
+  - if @assignment.has_groups?
+    %h3 Groups
+    %table.table-bordered.table
+      %thead
+        %tr
+          %th
+          %th= current_course.group_ref
+          %th Score
+          %th Level
+          %th Badges Earned
+          %th Status
+          %th
+          %th
+          %th
+          %th
+      %tbody
+        - @groups.each do |group|
+          %tr
+            %td
+            %td= group.name
+            %td
+            %td
+ 
+  %h3 Individual Grades
+  - if @assignment.assignment_type.mass_grade?
+    (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
+
   = form_tag edit_status_assignment_grades_path(@assignment) do
     %table.display.table-bordered.table
       %thead

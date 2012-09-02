@@ -10,7 +10,6 @@
     %tr
       %th Title
       %th Due Date
-      %th Grade Type
       %th Total Points
       - if current_user.is_student?
         %th Submission
@@ -32,13 +31,6 @@
           %tr
             %td= assignment.name
             %td= assignment.try(:due_date)
-            %td
-              - if assignment.has_groups?
-                = link_to 'Create Group', new_group_path("assignment_id"=>assignment.id)
-              - else 
-                = #{assignment.grade_scope}
-              - if assignment.has_teams? && current_user.is_student?
-                = link_to 'My Team', team_path("team_id" => current_user.team_id)
             %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
             // TODO Students can modify the URL to see other students submissions. how to protect? 
             - if current_user.is_student?
@@ -70,6 +62,13 @@
                 %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-mini'
               %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'
               %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete 
+            %td
+              - if assignment.has_groups?
+                = link_to 'Create Group', new_group_path("assignment_id"=>assignment.id)
+              - else 
+                = #{assignment.grade_scope}
+              - if assignment.has_teams? && current_user.is_student?
+                = link_to 'My Team', team_path("team_id" => current_user.team_id)
 
                 
 
