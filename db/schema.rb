@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120901010327) do
+ActiveRecord::Schema.define(:version => 20120903174705) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -106,16 +106,6 @@ ActiveRecord::Schema.define(:version => 20120901010327) do
     t.integer "badge_set_id"
   end
 
-  create_table "course_grade_schemes", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "course_id"
-    t.integer  "low_range"
-    t.integer  "high_range"
-    t.string   "letter_grade"
-  end
-
   create_table "course_memberships", :id => false, :force => true do |t|
     t.integer "course_id"
     t.integer "user_id"
@@ -131,7 +121,7 @@ ActiveRecord::Schema.define(:version => 20120901010327) do
     t.string   "semester"
     t.integer  "badge_sets_id"
     t.string   "theme_id"
-    t.integer  "coursegradescheme"
+    t.integer  "grade_scheme_id"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
     t.boolean  "badge_setting",                 :default => true
@@ -168,12 +158,13 @@ ActiveRecord::Schema.define(:version => 20120901010327) do
 
   create_table "grade_scheme_elements", :force => true do |t|
     t.string   "name"
-    t.integer  "value"
+    t.integer  "low_range"
     t.string   "letter_grade"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "grade_scheme_id"
     t.string   "description"
+    t.integer  "high_range"
   end
 
   create_table "grade_schemes", :force => true do |t|

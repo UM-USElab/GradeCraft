@@ -8,30 +8,30 @@
   %b Due Date:
   = @assignment.due_date
 
-- if current_user.is_staff?
-  - if @assignment.has_groups?
-    %h3 Groups
-    %table.table-bordered.table
-      %thead
-        %tr
-          %th
-          %th= current_course.group_ref
-          %th Score
-          %th Level
-          %th Badges Earned
-          %th Status
-          %th
-          %th
-          %th
-          %th
-      %tbody
-        - @groups.each do |group|
-          %tr
-            %td
-            %td= group.name
-            %td
-            %td
- 
+
+//  - if @assignment.has_groups?
+//    %h3 Groups
+//    %table.table-bordered.table
+//      %thead
+//        %tr
+//          %th
+//          %th= current_course.group_ref
+//          %th Score
+//          %th Level
+//          %th Badges Earned
+//          %th Status
+//          %th
+//          %th
+//          %th
+//          %th
+//      %tbody
+//        - @groups.each do |group|
+//          %tr
+//            %td
+//            %td= group.name
+//            %td
+//            %td
+- if current_user.is_staff? 
   %h3 Individual Grades
   - if @assignment.assignment_type.mass_grade?
     (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
@@ -59,7 +59,7 @@
                   = check_box_tag "grade.ids[])", grade.id
               %td= link_to student.name, student
               %td #{number_with_delimiter(grade.try(:raw_score), :delimiter => ',') }
-              %td
+              %td= grade.try(:grade_level)
               %td 
                 - grade.try(:earned_badges) do |badge|
                   %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}

@@ -95,6 +95,9 @@ class User < ActiveRecord::Base
   
   #Grades
 
+  def grade_level(course)
+    course.grade_level(self)
+  end
   
   def team_grades
     team.try(&:sortable_score) || 0
@@ -124,6 +127,7 @@ class User < ActiveRecord::Base
   def score
     grades.map(&:score).inject(&:+) || 0
   end
+  
   
   #TODO CHECK
   def assignment_type_score(assignment_type)

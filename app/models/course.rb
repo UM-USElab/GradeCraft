@@ -9,8 +9,8 @@ class Course < ActiveRecord::Base
   has_and_belongs_to_many :badge_sets, :join_table => :course_badge_sets
   has_many :badges, :through => :badge_sets
   has_many :earned_badges, :through => :users
-  has_many :course_grade_schemes, :dependent => :destroy
-  has_many :grade_schemes
+  belongs_to :grade_scheme, :dependent => :destroy
+  has_many :grade_scheme_elements, :through => :grade_schemes
   has_many :grades, :through => :assignments
   has_many :groups, :dependent => :destroy
   has_many :teams, :dependent => :destroy
@@ -67,6 +67,15 @@ class Course < ActiveRecord::Base
   
   def total_points
     assignments.sum(:point_total)
+  end
+  
+  def score_for_student(student)
+   student.score
+  end
+
+  
+  def grade_level(student)
+    grade_scheme.grade_level(score_for_student(student))
   end
   
 end
