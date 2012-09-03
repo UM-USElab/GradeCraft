@@ -7,14 +7,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require wysihtml5
-//= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5-all
 //= require_tree .
-//= require twitter/bootstrap
-//= require bootstrap-datepicker
 //= require highcharts
 //= require flexslider 
-
 
 $(document).ready(function(){
   $('#some-textarea').wysihtml5();

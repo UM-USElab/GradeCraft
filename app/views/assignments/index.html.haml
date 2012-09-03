@@ -61,7 +61,7 @@
               - if assignment_type.mass_grade?
                 %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-mini'
               %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'
-              %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete 
+              %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete 
             %td
               - if assignment.has_groups?
                 = link_to 'Create Group', new_group_path("assignment_id"=>assignment.id)

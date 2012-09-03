@@ -25,7 +25,7 @@
             %img{:src => badge.icon, :alt => badge.name, :width => "25", :height => "25"}
         %td= link_to 'View', assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
         %td= link_to 'Edit', edit_assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
-        %td= link_to 'Delete', assignment_grade_path(@assignment, grade), :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Delete', assignment_grade_path(@assignment, grade), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %br
 

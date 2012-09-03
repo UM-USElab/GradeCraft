@@ -7,7 +7,7 @@ class EarnedBadge < ActiveRecord::Base
   attr_accessible :earnable, :badge, :badge_id, :created_at, :updated_at, :feedback, :earnable_id, :earnable_type
   attr_accessor :earned
 
-  delegate :name, :description, :icon, :to => :badge
+  delegate :name, :description, :icon, :value, :to => :badge
 
 end
 

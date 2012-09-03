@@ -13,6 +13,7 @@ GradeCraft::Application.routes.draw do
       get 'staff'
       get 'final_grades'
       get 'test'
+      get 'import'
     end
     resources :earned_badges
   end

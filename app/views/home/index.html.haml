@@ -1,9 +1,11 @@
 - if current_user
   - if current_course
-    = render "info/#{current_user.role}_dashboard", :user => @user, :assignments => @assignments 
+    = render "info/#{current_user.role}_dashboard", :user => @user, :assignments => current_course.assignments
   - else
     %p Your account hasn't yet been connected to any courses. Contact us for help!
 - else
-  %h1 Welcome to GradeCraft 
-  %br
-  %p Log in to build your grade
+  %div.hero-unit
+    %h1 Welcome to GradeCraft
+    %br
+    %br
+    %p Log in to build your grade

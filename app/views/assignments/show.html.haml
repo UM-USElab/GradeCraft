@@ -72,7 +72,7 @@
               - if grade
                 %td= link_to "See Grade", assignment_grade_path(@assignment.id, grade.id), :class => 'btn btn-mini'
                 %td= link_to "Edit Grade", edit_assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
-                %td= link_to "Delete Grade", assignment_grade_path(@assignment, grade), :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
+                %td= link_to "Delete Grade", assignment_grade_path(@assignment, grade), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
               - else
                 %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>@assignment.id, :gradeable_id => student.id, :gradeable_type => "User"), :class => 'btn btn-mini'
                 %td

@@ -10,7 +10,7 @@ class CurrentCoursesController < ApplicationController
   end
 
   def show
-    respond_with current_course
+    #respond_with current_course
   end
   
 end

@@ -94,9 +94,18 @@ class User < ActiveRecord::Base
   end
   
   #Grades
+
+  
+  def team_grades
+    team.try(&:sortable_score) || 0
+  end
+  
+  def group_grades
+    
+  end
   
   def earned_grades
-    grades + team.grades + group.grades + badge.values
+    (grades.map(&:score).sum) + (earned_badges.map(&:value).sum) + team_grades
   end
 
   def grades_by_assignment_id

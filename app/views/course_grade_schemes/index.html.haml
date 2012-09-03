@@ -16,6 +16,6 @@
       %td= course_grade_scheme.high_range
       %td= link_to 'View', course_grade_scheme, :class => 'btn btn-mini'
       %td= link_to 'Edit', edit_course_grade_scheme_path(course_grade_scheme), :class => 'btn btn-mini'
-      %td= link_to 'Delete', course_grade_scheme, :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Delete', course_grade_scheme, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 = link_to 'New Grading Element', new_course_grade_scheme_path, :class => 'btn btn-primary'

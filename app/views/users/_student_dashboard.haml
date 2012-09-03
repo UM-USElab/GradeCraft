@@ -29,7 +29,7 @@
   %div#userScoreSection
     %div#userPointValues
       %span= "Your current score is "  
-      %span#userScoreNum #{number_with_delimiter(user.sortable_score, :delimiter => ',') if user.respond_to?(:sortable_score)}
+      %span#userScoreNum #{number_with_delimiter(user.earned_grades, :delimiter => ',') if user.respond_to?(:sortable_score)}
     %a{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
       Show me my score out of total course points
     %a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
@@ -54,6 +54,11 @@
               - assignments.each do |assignment|
                 %div.assignment
                   %span.assignmentTitle= assignment.try(:name)
+                  - assignment.submission_for_student(user).tap do |submission|
+                    - if submission
+                      = link_to "See Submission", assignment_assignment_submission_path(assignment, submission)
+                    - else
+                      = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user)  
                   - assignment.assignment_grades.where(:gradeable_id => user.id).each do |grade|
                     - if grade.attempted? 
                       %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total} 
@@ -63,10 +68,11 @@
                         %button.btn.btn-mini.btn-inverse{"data-target" => "#assignment-#{assignment.id}", "data-toggle" => "collapse"}= "See Feedback"
                         %div{:id => "assignment-#{assignment.id}", :class => "collapse"}
                           %div.feedback= raw grade.feedback
-                          //- grade.earned_badges.each do |badge|
-                          //%img{:src => badge.icon, :alt => badge.name, :width => "40"}  
+                          - grade.earned_badges.each do |badge|
+                            %img{:src => badge.icon, :alt => badge.name, :width => "40"}  
                     - else
                       %span.alert.alert-error.assignmentGrade #{grade.raw_score} / #{grade.point_total}
+                    
     %div.clear
 
 %div#footerNav

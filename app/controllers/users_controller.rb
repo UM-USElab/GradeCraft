@@ -123,6 +123,13 @@ class UsersController < ApplicationController
     respond_with(@user)
   end
   
+  def import
+    require 'csv'    
+
+    CSV.foreach(csv_file, :headers => true) do |row|
+      User.create(:username => row[0], :email => row[1], :first_name => row[2], :last_name => row[3])
+    end
+  end
   
   private
 

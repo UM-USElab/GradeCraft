@@ -33,7 +33,7 @@
           %td
           %td
         %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini'
-        %td= link_to 'Delete', user, :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'Delete', user, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %div#footerNav
   = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"

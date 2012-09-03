@@ -28,7 +28,7 @@
                 No
             %td= link_to 'View', badge_path(badge), :class => 'btn btn-mini'
             %td= link_to 'Edit', edit_badge_path(badge), :class => 'btn btn-mini'
-            %td= link_to 'Delete', badge_path(badge), :class => 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
+            %td= link_to 'Delete', badge_path(badge), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
       - else
         - if badge.visible == "1"
           %tr
