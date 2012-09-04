@@ -33,13 +33,6 @@ class Grade < ActiveRecord::Base
     end
   end
   
-  def grade_level 
-#     # Find the grade scheme element which has a range below and above the final_score
-#     if grade_scheme_elements(:low_range) <= self.raw_score < grade_scheme_elements(:high_range)
-#       grade_scheme_element.name
-#     end
-  end
-  
   def attempted?
     raw_score > 0
   end

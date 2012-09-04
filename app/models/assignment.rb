@@ -129,16 +129,14 @@ class Assignment < ActiveRecord::Base
     #TODO Time comparisons in rails
     Time.now < due_date
   end
-  
-  
-    
-  def score_for_student(student)
-   student.raw_score
-  end
 
+    
+  def score_for_grade(grade)
+   grade.score
+  end
   
-  def grade_level(student)
-    grade_scheme.grade_level(score_for_student(student)) || "Not yet known"
+  def grade_level(grade)
+    grade_scheme.try(:grade_level, score_for_grade(grade)) || "--"
   end
 
   

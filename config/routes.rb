@@ -14,6 +14,7 @@ GradeCraft::Application.routes.draw do
       get 'final_grades'
       get 'test'
       get 'import'
+      put 'upload'
     end
     resources :earned_badges
   end

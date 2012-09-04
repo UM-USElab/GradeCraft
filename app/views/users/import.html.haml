@@ -1,4 +1,3 @@
-<form action='/users/import' method='post' enctype='multipart/form-data'>
-   <%= file_field_tag "csv_file" %><br/>
-   <%= submit_tag("Import") %>
-</form>
+= form_tag({:action => :upload}, :multipart => true) do
+  = file_field_tag 'csv_file'
+  = submit_tag("Import")

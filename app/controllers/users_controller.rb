@@ -122,12 +122,12 @@ class UsersController < ApplicationController
     @user.update_attribute(:password, params[:password]) if params[:password] == params[:confirm_password]
     respond_with(@user)
   end
-  
-  def upload 
     
+  def import
+  
   end
   
-  def import
+  def upload 
     require 'csv'    
     
     if params[:file].blank?
@@ -143,6 +143,7 @@ class UsersController < ApplicationController
       redirect_to new_upload_url, :notice => "Upload successful"
     end
   end
+
   
   private
 

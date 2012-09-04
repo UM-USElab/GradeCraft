@@ -75,9 +75,8 @@ class Course < ActiveRecord::Base
    student.sortable_score
   end
 
-  
   def grade_level(student)
-    course_grade_scheme.grade_level(score_for_student(student)) || "Not yet known"
+    course_grade_scheme.try(:grade_level, score_for_student(student)) || "Not yet known"
   end
   
 end
