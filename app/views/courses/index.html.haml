@@ -22,7 +22,7 @@
         %td= course.badge_set_id
         %td= course.theme_id
         %td= course.total_points
-        %td= course.coursegradescheme
+        %td= course.grade_scheme_id
         %td= link_to 'View', course, :class => 'btn btn-mini'
         %td= link_to 'Edit', edit_course_path(course), :class => 'btn btn-mini'
         %td= link_to 'Delete', course, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

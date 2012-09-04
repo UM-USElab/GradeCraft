@@ -130,4 +130,16 @@ class Assignment < ActiveRecord::Base
     Time.now < due_date
   end
   
+  
+    
+  def score_for_student(student)
+   student.raw_score
+  end
+
+  
+  def grade_level(student)
+    grade_scheme.grade_level(score_for_student(student)) || "Not yet known"
+  end
+
+  
 end

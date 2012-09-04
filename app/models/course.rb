@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :badge_set_ids, :coursegradescheme, :courseno, :name, :semester, :theme_id, :year, :badge_setting, :team_setting, :team_term, :user_term, :user_id, :course_id, :homepage_message, :group_setting, :user_weight_amount, :user_weight_amount_close_date, :team_roles, :section_leader_term, :group_term, :user_weight_amount_type
+  attr_accessible :badge_set_ids, :course_grade_scheme_id, :courseno, :name, :semester, :theme_id, :year, :badge_setting, :team_setting, :team_term, :user_term, :user_id, :course_id, :homepage_message, :group_setting, :user_weight_amount, :user_weight_amount_close_date, :team_roles, :section_leader_term, :group_term, :user_weight_amount_type
   
   has_and_belongs_to_many :users, :join_table => :course_memberships, :uniq => true
   accepts_nested_attributes_for :users
@@ -9,8 +9,10 @@ class Course < ActiveRecord::Base
   has_and_belongs_to_many :badge_sets, :join_table => :course_badge_sets
   has_many :badges, :through => :badge_sets
   has_many :earned_badges, :through => :users
-  belongs_to :grade_scheme, :dependent => :destroy
+  has_many :grade_schemes, :dependent => :destroy
   has_many :grade_scheme_elements, :through => :grade_schemes
+  belongs_to :course_grade_scheme
+  has_many :course_grade_scheme_elements, :through => :course_grade_scheme
   has_many :grades, :through => :assignments
   has_many :groups, :dependent => :destroy
   has_many :teams, :dependent => :destroy
@@ -70,12 +72,12 @@ class Course < ActiveRecord::Base
   end
   
   def score_for_student(student)
-   student.score
+   student.sortable_score
   end
 
   
   def grade_level(student)
-    grade_scheme.grade_level(score_for_student(student))
+    course_grade_scheme.grade_level(score_for_student(student)) || "Not yet known"
   end
   
 end

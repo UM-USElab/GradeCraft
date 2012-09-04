@@ -123,11 +123,24 @@ class UsersController < ApplicationController
     respond_with(@user)
   end
   
+  def upload 
+    
+  end
+  
   def import
     require 'csv'    
+    
+    if params[:file].blank?
+      flash[:notice] = "File missing"
+      redirect_to users_path
+    else
+      file = params[:file].read
 
-    CSV.foreach(csv_file, :headers => true) do |row|
-      User.create(:username => row[0], :email => row[1], :first_name => row[2], :last_name => row[3])
+      CSV.parse(file, headers: true, header_converters: :symbol).each do |row|
+          email, first_name, last_name, bio = row[0], row[1], row[2], row[3]
+          Author.update_all("first_name = '#{first_name}', last_name = '#{last_name}', bio = '#{bio}'", "email = '#{email}'")
+      end
+      redirect_to new_upload_url, :notice => "Upload successful"
     end
   end
   

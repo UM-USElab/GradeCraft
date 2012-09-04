@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
     @course = Course.new
     @themes = Theme.all
     @badge_sets = BadgeSet.all
-    @course_grade_schemes = CourseGradeScheme.all
+    @grade_schemes = GradeScheme.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,7 +41,7 @@ class CoursesController < ApplicationController
     @title = "Editing #{@course.name}"
     @badge_sets = BadgeSet.all
     @themes = Theme.all
-    @course_grade_schemes = CourseGradeScheme.all
+    @grade_schemes = GradeScheme.all
     
   end
 

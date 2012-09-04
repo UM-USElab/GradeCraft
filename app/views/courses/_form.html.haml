@@ -17,6 +17,7 @@
   = f.input :user_weight_amount, :label => "Student set what amount of the course?"
   = f.input :user_weight_amount_type, :label => "Amount type", :collection => [["Multiplier"],["Percent"]]
   = f.input :user_weight_amount_close_date, :label => "What date must they make this decision by?", :as => :date
+  = f.association :course_grade_scheme, :collection => @course_grade_schemes
   
   .form-actions    
     = f.button :submit, :class => 'btn'

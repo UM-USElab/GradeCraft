@@ -25,7 +25,9 @@ GradeCraft::Application.routes.draw do
   resources :user_assignment_type_weights
   resources :user_grade_weights
   resources :courses
-  resources :course_grade_schemes
+  resources :course_grade_schemes do 
+    resources :course_grade_scheme_elements 
+  end
   resources :themes
   resources :badge_sets 
   resources :badges

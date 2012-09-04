@@ -5,9 +5,9 @@ class GradeScheme < ActiveRecord::Base
   
   attr_accessible :created_at, :updated_at, :name, :course_id
   
-  def grade_level(score)
+  def grade_level(raw_score)
     element_names.each do |range,name|
-      return name if score.between?(*range)
+      return name if raw_score.between?(*range)
     end
   end
 

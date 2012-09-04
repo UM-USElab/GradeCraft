@@ -59,7 +59,7 @@
                   = check_box_tag "grade.ids[])", grade.id
               %td= link_to student.name, student
               %td #{number_with_delimiter(grade.try(:raw_score), :delimiter => ',') }
-              %td= grade.try(:grade_level)
+              %td= @assignment.grade_level(grade)
               %td 
                 - grade.try(:earned_badges) do |badge|
                   %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}
