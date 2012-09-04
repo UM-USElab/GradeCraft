@@ -4,9 +4,9 @@ assignment_type_names = ['Hexes','Potions','Wards']
 predictor_display = ['Fixed','Select List','Slider']
 predictor_description = ['It does not do to dwell on dreams and forget to live, remember that.','As much money and life as you could want!  The two things most human beings would choose above all - the trouble is, humans do have a knack of choosing precisely those things that are worst for them.','It is our choices that show what we truly are, far more than our abilities.','Happiness can be found, even in the darkest of times, if one only remembers to turn on the light.']
 semester = %w{Autumn Winter Spring}.sample
+grade_scheme_hash = { [0,59] => 'F', [60,69] => 'D', [70,79] => 'C', [80,89] => 'B', [90, 100] => 'A' }
 
 puts "\n#{semester} term at Hogwarts has begun!"
-
 
 # Generate sample courses
 courses = []
@@ -21,6 +21,7 @@ end
 default_course = courses.first
 puts "Conjured #{courses.count} Hogwarts courses for the #{semester} term"
 
+# Generate sample students
 students = []
 user_names.each do |name|
   first_name, last_name = name.split(' ')
@@ -104,3 +105,15 @@ courses.each do |course|
   end
 end
 puts "Assigned an impossible workload for each course (impossible, that is, unless you possess a Time-Turner)"
+
+course_grade_scheme = CourseGradeScheme.new
+grade_scheme_hash.each do |range,name|
+  course_grade_scheme.course_grade_scheme_elements.new do |e|
+    e.name = name
+    e.low_range = range.first
+    e.high_range = range.last
+  end
+end
+course_grade_scheme.courses = Course.all
+course_grade_scheme.save!
+puts "Installed a boring grade scheme for each course"

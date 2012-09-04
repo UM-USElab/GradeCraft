@@ -4,7 +4,7 @@ class CourseGradeScheme < ActiveRecord::Base
 
    attr_accessible :created_at, :updated_at, :name, :course_id
 
-  def elements_names
+  def element_names
     @names ||= {}.tap do |names|
       course_grade_scheme_elements.each do |element|
         names[[element.low_range,element.high_range]] = element.element_name
@@ -16,5 +16,6 @@ class CourseGradeScheme < ActiveRecord::Base
     element_names.each do |range,name|
       return name if sortable_score.between?(*range)
     end
+    nil
   end
 end

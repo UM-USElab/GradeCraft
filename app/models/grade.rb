@@ -16,8 +16,8 @@ class Grade < ActiveRecord::Base
   
   delegate :name, :description, :point_total, :due_date, :to => :assignment
   
-  after_save :save_user_score
-  after_destroy :save_user_score
+  after_save :save_gradeable_score
+  after_destroy :save_gradeabl_score
   
   scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
 
@@ -48,7 +48,7 @@ class Grade < ActiveRecord::Base
     feedback != nil
   end
   
-  def save_user_score
+  def save_gradeable_score
     gradeable.save
   end
   
