@@ -132,7 +132,7 @@ class Assignment < ActiveRecord::Base
 
     
   def score_for_grade(grade)
-   grade.score
+   grade.try(:score) || ""
   end
   
   def grade_level(grade)
