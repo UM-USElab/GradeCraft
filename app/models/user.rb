@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   Roles = %w{student professor gsi admin}
   
   attr_accessor :remember_me
-  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id
+  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id, :last_activity_at, :last_login_at, :last_logout_at
 
   scope :alpha, :order => 'last_name ASC'
   scope :winning, :order => 'sortable_score DESC'

@@ -1,3 +1,4 @@
+/*
 $(document).ready(function(){
 
 	// get data from server
@@ -260,3 +261,4 @@ $(document).ready(function(){
 // create initial progress bar on page load
 	updateProgressBar();
 });
+*/

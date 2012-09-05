@@ -21,7 +21,7 @@
     = @course.theme.try(:name)
   %p
     %b Course Grade Scheme:
-    = @course.course_grade_scheme.name
+    = @course.course_grade_scheme.try(:name)
   
   %p
     %b Students will be grouped into teams or sections:

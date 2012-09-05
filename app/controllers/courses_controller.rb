@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
     @courses = Course.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.json { render json: @courses }
     end
   end
@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
     @themes = Theme.all
     @users = current_course.users.all
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @course }
     end
   end
@@ -31,7 +31,7 @@ class CoursesController < ApplicationController
     @grade_schemes = GradeScheme.all
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @course }
     end
   end

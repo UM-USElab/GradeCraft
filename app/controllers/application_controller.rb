@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper
 
-  protected
   def not_authenticated
     if request.env["REMOTE_USER"] != nil
       @user = User.find_by_username(request.env["REMOTE_USER"])
@@ -34,6 +33,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, :alert => "Please login first."
     end
   end
+
+  protected
+
 
   def ensure_staff?
     return not_authenticated unless current_user.is_staff?
