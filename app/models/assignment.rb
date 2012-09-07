@@ -15,7 +15,7 @@ class Assignment < ActiveRecord::Base
   accepts_nested_attributes_for :assignment_type
   
   delegate :points_predictor_display, :to => :assignment
-    attr_accessible :type, :name, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id, :required, :open_time, :has_assignment_submissions
+    attr_accessible :type, :name, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id, :required, :open_time, :has_assignment_submissions, :student_logged_button_text, :student_logged
 
   scope :individual_assignment, where(:grade_scope => "Individual")
   scope :group_assignment, where(:grade_scope => "Group")
@@ -116,6 +116,14 @@ class Assignment < ActiveRecord::Base
     points_predictor = "Select List"
   end
   
+  def self_gradeable?
+    student_logged == true
+  end
+  
+  def is_required?
+    required == true
+  end
+  
   #TODO I need this to be either - guessing the assignment type isn't working properly
   def has_levels?
     assignment_type.levels = 1
@@ -131,7 +139,7 @@ class Assignment < ActiveRecord::Base
   
   def open?
     #TODO Time comparisons in rails
-    Time.now < due_date
+    #open_time <= Time.now < close_time
   end
 
     

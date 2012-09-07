@@ -1,8 +1,5 @@
-%div#subNav
-  - if current_course.has_badges?
-    = link_to "Award a Badge", new_earned_badge_path, :class => "btn btn-inverse"
-    
 %div.row
+  %div.span12
   %div.span6
     %h4= "Top 10" 
     %table.table.table-bordered.table-condensed
@@ -16,12 +13,12 @@
           %th Pageviews
           %th Predictor Views
           %th Email
-          %th GSI
+          %th #{current_course.section_leader_ref}
       %tbody
         - @top_ten_students.each do |student|
           %tr
             %td= link_to student.name, user_path(student)
-            %td= student.sortable_score
+            %td= student.earned_grades
             %td= student.user_badge_count
             %td= student.attendance_rate
             %td= student.visit_count
@@ -58,6 +55,7 @@
 
 
 %div.row
+  %div.span12
   %div.span6
     %h4= "Bottom 10"
     %table.table.table-bordered.table-condensed
@@ -76,7 +74,7 @@
         - @bottom_ten_students.each do |student|
           %tr
             %td= link_to student.name, user_path(student)
-            %td= student.sortable_score
+            %td= student.earned_grades
             %td= student.user_badge_count
             %td= student.attendance_rate
             %td= student.visit_count
