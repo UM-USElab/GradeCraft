@@ -8,11 +8,15 @@
     //= current_course.grade_level(user)
   - if current_course.has_badges? 
     %div#badgesWrapper
-      %span.title Badges Earned
+      %span.title Badges
       %div#badgesEarned
+        - @badges.each do |badge|
+          %div.badgeIcon
+            %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
+              .badgeTitle= badge.name
         - user.earned_badges.each do |badge|
-          %div.earned-badge
-            %img{:src => badge.try(:icon), :alt => badge.try(:name)}
+          %div.badgeIcon
+            %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
             .badgeTitle= badge.name
   %div.clear
      
@@ -28,7 +32,7 @@
 
 %div#mainInfo
   %h2#points
-  %div#userScoreSection
+  %div#userScoreSection{ :'data-user-id' => @user.id }
     %div#userPointValues
       %span= "Your current score is "  
       %span#userScoreNum #{number_with_delimiter(user.earned_grades, :delimiter => ',') if user.respond_to?(:sortable_score)}
@@ -57,11 +61,12 @@
                 %div.assignment
                   %span.assignmentTitle= assignment.try(:name)
                   %span.assignmentDate= "  |  Due: #{assignment.try(:due_date)}"
-                  //- assignment.submission_for_student(user).tap do |submission|
-                  //  - if submission
-                  //    = link_to "See Submission", assignment_assignment_submission_path(assignment, submission)
-                  //  - else
-                  //    = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user)  
+                  - if assignment.has_assignment_submissions? 
+                    - assignment.submission_for_student(user).tap do |submission|
+                      - if submission
+                        = link_to "See Submission", assignment_assignment_submission_path(assignment, submission)
+                      - else
+                        = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user)  
                   - assignment.assignment_grades.where(:gradeable_id => user.id).each do |grade|
                     - if grade.attempted? 
                       %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total} 

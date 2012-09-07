@@ -27,6 +27,7 @@
   text-align:center;
   font-size: 125%;
   clear: both;
+  min-height: 200px;
 }
 
 #badgesEarned {
@@ -36,7 +37,7 @@
   position: relative;
 }
 
-#badgesWrapper .earned-badge {
+#badgesWrapper .badgeIcon {
   float: left;
   text-align: center;
   height: 100px;
@@ -44,6 +45,7 @@
   font-size: 70%;
   margin-top: 5px;
 }
+
 #badgesWrapper .title {
   text-transform: uppercase;
   color: #FFF;
@@ -53,8 +55,12 @@
   line-height: 14px;
   font-size: 11px;
 }
-.badge img {
-  width: 60px;
+#badgesWrapper img {
+  width: 50px;
+}
+
+#badgesWrapper img.unearned {
+  opacity: .1;
 }
 
 .clear {
@@ -92,6 +98,10 @@
 }
 #scoreToggle:hover{
   text-decoration:underline;
+}
+
+.assignmentType {
+  margin-bottom: 10px;
 }
 .assignmentTypeTitle {
   font-size: 16px;

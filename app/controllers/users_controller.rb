@@ -44,6 +44,7 @@ class UsersController < ApplicationController
     @assignment_types = current_course.assignment_types
     @assignments = current_course.assignments
     @grades = @user.grades.all 
+    @badges = current_course.badges
     #@grade = @user.grades.find(params[:assignment_id => assignment_id])
     #@grades_by_assignment_type = @grades.group_by(&:assignment_type)
     #@grades_by_assignment_type = @user.grades(:include => :assignment).group_by(&:assignment_type)
@@ -59,9 +60,12 @@ class UsersController < ApplicationController
       @user = current_user
       User.increment_counter(:predictor_views, current_user.id) if current_user
     end
-    @grades = current_user.grades.all
-    predictor_array = grades.map { |g| { :score => g.score, :assignment_name => g.assignment.name, :assignment_type_name => g.assignment.assignment_type.name } }
-    predictor_array.group_by { |g| g[:assignment_type_name] }
+    @grades = current_course.grades_for_student(@user)
+    predictor_array = @grades.map { |g| { :score => g.score, :assignment_name => g.assignment.name, :assignment_type_name => g.assignment.assignment_type.name } }
+    predictor_array = predictor_array.group_by { |g| g[:assignment_type_name] }
+    respond_with @user do |format|
+      format.json { render :json => predictor_array.to_json }
+    end
   end
 
   def new

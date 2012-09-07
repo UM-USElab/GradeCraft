@@ -9,6 +9,10 @@
   = f.input :visible, :as => :boolean
   = f.input :required, :as => :boolean
   = f.input :grade_scheme_id, :collection => @grade_schemes, :as => :select, :label_method => :name
+  - if current_course.has_assignment_submissions?
+    = f.input :has_assignment_submissions, :hint=> "Will you be using GradeCraft to accept submissions for this assignment?", :label => "Assignment Submissions"
+  = f.input :student_logged, :hint => "Do students self-report their grade for this assignment?"
+  = f.input :student_logged_button_text, :hint => "If yes, what would you like the button that does this to say?", :label => "Button Text"
   
   .form-actions
     = f.button :submit

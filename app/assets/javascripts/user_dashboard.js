@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
 	var options = {
       chart: {
         renderTo: 'userBarInProgress',
@@ -73,11 +74,21 @@ $(document).ready(function() {
       };
       
     var chart;
-    // Get Assignment Type Info
-    $.getJSON('/assignment_types.json', function(data) {
-      // Populate series
-      options.series = data;
-      // Create the chart
-      chart = new Highcharts.Chart(options);
-    });
+    
+    var $wrapper = $('#userScoreSection');
+    if($wrapper) { var userID = $('#userScoreSection').data('user-id');
+      console.log(userID);
+      
+      // Get Assignment Type Info
+      $.getJSON('predictor.json', { user_id: userID }, function(data) {
+
+        // Populate series
+        options.series = data;
+        // Create the chart
+        chart = new Highcharts.Chart(options);
+      });
+      
+    };
+
+
 });

@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
   def grade_for_assignment(assignment)
     grades_by_assignment_id[assignment.id].try(:first)
   end
-  
+
   #Score
   def sortable_score
     super || 0

@@ -15,7 +15,7 @@ class Assignment < ActiveRecord::Base
   accepts_nested_attributes_for :assignment_type
   
   delegate :points_predictor_display, :to => :assignment
-    attr_accessible :type, :name, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id, :required, :open_time
+    attr_accessible :type, :name, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id, :required, :open_time, :has_assignment_submissions
 
   scope :individual_assignment, where(:grade_scope => "Individual")
   scope :group_assignment, where(:grade_scope => "Group")
@@ -102,6 +102,10 @@ class Assignment < ActiveRecord::Base
   
   def fixed?
     points_predictor = "Fixed"
+  end
+  
+  def has_assignment_submissions? 
+    has_assignment_submissions == true
   end
   
   def slider?
