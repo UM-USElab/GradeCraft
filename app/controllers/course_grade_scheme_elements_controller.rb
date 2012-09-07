@@ -6,7 +6,10 @@ class CourseGradeSchemeElementsController < ApplicationController
     @course_grade_scheme = CourseGradeScheme.find(params[:course_grade_scheme_id])
     @title = "#{@course_grade_scheme.name} Grading"
     @course_grade_scheme_elements = @course_grade_scheme.course_grade_scheme_elements.all
-    respond_with(@course_grade_scheme_elements)
+    respond_to do |format|
+      format.html 
+      format.json { render json: @course_grade_scheme_elements.as_json(only: [:id,:letter_grade, :name, :low_range, :high_range]) }
+    end
   end
 
   def show

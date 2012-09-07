@@ -1,14 +1,17 @@
 class AssignmentsController < ApplicationController
   respond_to :html, :json
 
-  before_filter :ensure_staff?, :except => [:index, :view]
+  before_filter :ensure_staff?
 
   def index
     @title = "View All Assignments"
     @assignments = current_course.assignments
     @assignment_types = current_course.assignment_types
     @grade_schemes = current_course.grade_schemes.all
-    respond_with @assignments
+    respond_to do |format|
+      format.html
+      format.json { render json: @assignments.as_json(only:[:id, :name, :description, :point_total, :due_date, :assignment_type_id, :grade_scheme_id, :grade_scope, :visible, :required ]) }
+    end
   end
 
   def show

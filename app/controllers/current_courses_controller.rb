@@ -10,7 +10,7 @@ class CurrentCoursesController < ApplicationController
   end
 
   def show
-    #respond_with current_course
+    respond_with current_course.as_json(only: [:id], methods: [:total_points])
   end
   
 end

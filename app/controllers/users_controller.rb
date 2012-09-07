@@ -59,6 +59,9 @@ class UsersController < ApplicationController
       @user = current_user
       User.increment_counter(:predictor_views, current_user.id) if current_user
     end
+    @grades = current_user.grades.all
+    predictor_array = grades.map { |g| { :score => g.score, :assignment_name => g.assignment.name, :assignment_type_name => g.assignment.assignment_type.name } }
+    predictor_array.group_by { |g| g[:assignment_type_name] }
   end
 
   def new

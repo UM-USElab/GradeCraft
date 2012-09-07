@@ -61,3 +61,17 @@ $('.nav-tabs').button();
 		});
 		updateProgressBar($(this));		
 	});
+	
+function removeCommas(i){
+		console.log(i);
+		if (i == null) {
+			return 0;
+		}
+		else if (i.indexOf(",") >= 0){
+			integer = parseInt(i.replace(/,/g, ""));
+			return integer
+		}
+		else{
+			return parseInt(i);
+		}
+	}; 

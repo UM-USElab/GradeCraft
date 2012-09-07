@@ -1,18 +1,7 @@
 /*
 $(document).ready(function(){
 
-	// get data from server
-	// loop through 
-	var assignmentTypeInfo = function(){
-		addjsondata:
-			$.get('/assignment_types.json', {
-				dataType: 'json',
-				success: function(){
-               }, 
-				error: function(){
-				} 
-			});
-	};
+// Get Course Info
 	var courseInfo = function(){
 		addjsondata:
 			$.get('/current_course.json', {
@@ -23,42 +12,100 @@ $(document).ready(function(){
 				} 
 			});
 	};
-	assignmentTypeInfo();
+
 	courseInfo();
 	
-	// create course total
-	var courseSum = current_course.total_points
+  // Course Constructor
+  	var Course = function(current_course,coursePoints){
+    	this.current_course = id;
+    	this.coursePoints = total_points
+  	}
+
+// Get Assignment Type Info
+	var assignmentTypeInfo = function(){
+		addjsondata:
+			$.get('/assignment_types.json', {
+				dataType: 'json',
+				success: function(){
+               }, 
+				error: function(){
+				} 
+			});
+	};	
 	
+	assignmentTypeInfo();
+	
+		// Assignment Constructor
+	var AssignmentType = function(assignmentID,assignmentTypeName,assignmentTypeDisplay,pointType,maxValue,currScore){
+  	this.assignmentID = id;
+		this.assignmentTypeName = name;
+		// assignment types: Slider, Select List, Fixed
+		this.assignmentTypeDisplay = points_predictor_display;
+		// point types: true, false
+		this.pointType = levels;
+		this.maxValue = max_value;
+		// current score for this assignment
+		this.currScore = (currScore > 0) ? currScore : 0;
+		// predictor score for this assignment
+		this.predictorScore = 0;
+	};
+
+	// Get Assignment Info
+	var assignmentInfo = function(){
+		addjsondata:
+			$.get('/assignments.json', {
+				dataType: 'json',
+				success: function(){
+               }, 
+				error: function(){
+				} 
+			});
+	};
+	
+	assignmentInfo();
+	
+	// Assignment Constructor
+  	var Assignment = function(id,coursePoints){
+    	this.assignmentID = id;
+    	this.assignmentName = name;
+    	this.assignmentPointTotal = point_total; 
+    	this.assignmentDescription = description;
+    	this.assignmentDueDate = due_date;
+    	this.assignmentTypeMaster = assignment_type_id;
+    	this.gradeSchemeMaster = grade_scheme_id;
+    	this.gradeScopeSetting = grade_scope;
+    	this.assignmentVisible = visible;
+    	this.assignmentRequired = required;
+  	}
+
+// Get Course Grade Scheme Info
+	var courseGradeSchemeInfo = function (){
+  	addjsondata:
+  	 $.get('/course_grade_schemes.json', {
+    	 dataType: 'json',
+    	 success: function(){
+    	 },
+    	 error: function (){
+    	 }
+    });
+	};
+
+	courseGradeSchemeInfo();
+	
+	// Course Grade Scheme Element constructor
+	var CourseGradeSchemeElement = function(courseGradeSchemeID,letterGrade,courseGradeSchemeElementName,lowFange,highRange){
+  	this.courseGradeSchemeID = id;
+  	this.letterGrade = letter_grade;
+  	this.courseGradeSchemeElementName = name;
+  	this.lowRange = low_range;
+  	this.highRange = high_range;
+	}
+
 	// create assignments array
 	var assignmentObjects = [];
 
 	// create scores array
 	var scoresArray = [];
-
-	// assignment constructor
-
-	var Assignment = function(id,name,assignmentType,pointType,maxScore,currScore){
-		// id number for assignment given by rails	
-		this.id = id;
-
-		// name of assignment
-		this.name = name;
-
-		// assignment types: Slider, Select List, Fixed
-		this.assignmentType = points_predictor_display;
-
-		// point types: true, false
-		this.pointType = levels;
-
-		// max total score for recurring items, max score of assignment for others 
-		this.maxScore = max_value;
-
-		// current score for this assignment
-		this.currScore = (currScore > 0) ? currScore : 0;
-
-		// predictor score for this assignment
-		this.predictorScore = 0;
-	};
 
 	// loop through data to construct each assignment
 
