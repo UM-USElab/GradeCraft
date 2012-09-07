@@ -54,6 +54,7 @@ class UsersController < ApplicationController
   def predictor
     @assignment_types = current_course.assignment_types.all
     @assignments = current_course.assignments.all
+    @badges = current_course.badges.all
     if current_user.is_staff?
       @user = User.find(params[:user_id])
     else

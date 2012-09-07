@@ -9,14 +9,13 @@ $(document).ready(function() {
         width:500
         },
       title: {
-        text: '',
+        text: 'Course Points',
         style: {
           color: "#FFFFFF"
           }
         },
       subtitle: {
-        text: 'Source:',
-        x: -20
+        text: '(so far)',
       },
       credits: {
         enabled: false

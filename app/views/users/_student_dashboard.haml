@@ -20,7 +20,6 @@
               %div.badgeIcon
                 %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
                 .badgeTitle= badge.name
-        
   %div.clear
      
   %div#helpInfo
@@ -41,11 +40,15 @@
       %span#userScoreNum #{number_with_delimiter(user.earned_grades, :delimiter => ',') if user.respond_to?(:sortable_score)}
     %a{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
       Show me my score out of total course points
-    %a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
-      Show me my score out of available points so far
+    //%a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
+    //Show me my score out of available points so far
 
     %div#predictorLink
-      = link_to 'Predict Course Grade', predictor_users_path(:user_id => user.id)
+      - if current_user.is_student?
+        = link_to 'Predict My Grade', predictor_users_path(:user_id => user.id)
+      - if current_user.is_staff?
+        = link_to 'Predict Course Grade', predictor_users_path(:user_id => user.id)
+        
     %div#userBarTotal.dashboard-toggle
       = #{user.possible_score}
     %div#userBarInProgress.dashboard-toggle

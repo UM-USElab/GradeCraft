@@ -2,11 +2,11 @@ $(document).ready(function() {
 
 	var options = {
       chart: {
-        renderTo: 'userBarInProgress',
+        renderTo: 'prediction',
         type: 'bar',
-        height:200,
+        height:100,
         backgroundColor:null,
-        width:500
+        width:800
         },
       title: {
         text: '',
@@ -15,8 +15,7 @@ $(document).ready(function() {
           }
         },
       subtitle: {
-        text: 'Source:',
-        x: -20
+        text: ''
       },
       credits: {
         enabled: false

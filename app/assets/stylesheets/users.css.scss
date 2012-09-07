@@ -180,16 +180,13 @@
 	}
 	 
 	.slide-panel {
-  	background-color: #eee;
-  	border-radius: 15px;
+  	background-color: #333;
+  	border-radius: 10px;
   	padding: 25px;
-  	margin: 0px 15px;
+  	margin: 15px;
+  	position: relative;
 	}
 
-	.slides {
-  	margin-bottom: 15px;
-	}
-	
 	.headline {
   	font-weight: bold;
   	text-transform: uppercase;
@@ -198,9 +195,9 @@
 
 	.slider{
     height:1em;
+    margin: 10px 0px;
 	  padding:0;
 	  width:60%;
-	  margin-bottom: 15px;
 	}
 	
 	.assignmentTitle {
@@ -231,10 +228,7 @@
   	margin-left: 10px;
 	}
 	
-	// STRIP BELOW HERE
-	
-	
-  #predictionWrapper{	
+	  #predictionWrapper{	
   	background-color:rgba(55,55,55,.96);
     border-top:5px solid #2F96B4;
     border-bottom:5px solid #2F96B4;
@@ -251,70 +245,8 @@
   	width: 100%;
   	z-index:3;			
   }
-		#projectedPoints{
-	  cursor:pointer;
-	}
-	#projectedPoints p{
-    margin:0 auto;
-	  width:60%;
-	}
-	#predictionWrapper.toggleOn{
-	  display:block;
-	  max-width:1000px;
-	  min-width:850px;
-	}
-	.highcharts-grid{
-	  width:1000px;
-	}
-	#prediction{
-		color:#FFF;
-		display:none;
-		padding-top:20px;
-	}
-	#score{	
-	  margin-right:10px;
-	}
-	.gradeSection{
-    clear:both
-  }
-	.select-checkboxes{
-		float:left;
-		width:100%;
-	}
-	.checkbox-group legend{
-    border:0;
-		font-weight:bold;
-		padding:10px 0px;
-	}
-	#predictionToggle{
-	  color:#FFF;
-	  float:left;
-	  padding-left:10px;
-	}
-	#expectedPointsValue{
-	  font-size:1.3em;
-	  text-align:center;
-	}
-	fieldset{
-	  margin-top:10px;
-	}
-	.checkbox-group{
-		width:20%;
-		float:left;
-	}
-	section.slider{
-    height:1em;
-	  padding:0;
-	  width:60%;
-	}
-	.slider-value{
-		display:block;
-		padding:10px 0;
-	}
-	.slider .ui-slider-range { 
-	  background: #8ae234; 
-	}
-	#predictorWrapper fieldset, #predictorWrapper input{
-		border:none;
-	}
 	
+	div.flexslider {
+	   min-height: 400px;
+  	margin-bottom: 15px;
+	}

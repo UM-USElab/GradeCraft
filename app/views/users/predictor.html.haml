@@ -9,13 +9,20 @@
       %h6
         Projected Points: 
       %span#expectedPointsValue
-    %div#prediction 
-      %div#score
+    %div#prediction
 
 %div#predictorPage
   %div.pageTitle Predict Your Course Grade
   %div.flexslider
     %ul.slides
+      %li{:id => "slide-#required"}
+        %div.slide-panel
+          %div
+            %h3 Required Assignments
+            - @assignments.each do |assignment|
+              - if assignment.is_required? 
+                %div
+                  %h6.assignmentTitle= assignment.name
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %li{:id => "slide-#{assignment_type.id}"}
           %div.slide-panel.span11
@@ -30,6 +37,8 @@
               - if assignment.past?
                 %div.assignment
                   %h6.assignmentTitle.pull-left= assignment.try(:name)
+                  - if assignment.is_required?
+                    %span.assignmentRequired.label.label-important Required!
                   - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
                     - if grade.attempted? 
                       %span.grade #{ grade.raw_score } / #{grade.point_total}
@@ -44,5 +53,19 @@
                   - if assignment_type.select?
                     %select.point-value{:id => "total-"+assignment.id.to_s(), :type => "select", :name => assignment.name, :value => 0, :collection => @levels }
                     %div{:id => "select-"+assignment.id.to_s()}
-  
+          %li{:id => "slide-#badges"}
+            %div.slide-panel.span11
+              %div
+                %h3 Badges
+                - @badges.each do |badge|
+                  - @user.earned_badges_by_badge(badge).tap do |earned_badge|
+                    - if earned_badge
+                      %div.badgeIcon
+                        %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
+                        .badgeTitle= badge.name
+                    - else
+                      %div.badgeIcon
+                        %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
+                        .badgeTitle= badge.name
+          
   = link_to "Back to the Dashboard", user_path(@user), :class => 'btn btn-primary'
