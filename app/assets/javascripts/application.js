@@ -14,15 +14,17 @@
 
 $(document).ready(function(){
   $('#some-textarea').wysihtml5();
-});
-
-$(function() {
- 
+  
+  $('#gradeCurious').popover({
+    placement: 'bottom'
+    });
+  
   // Fix input element click problem
   $('.dropdown input, .dropdown label').click(function(e) {
     e.stopPropagation();
   });
-});
+  
+  
 
 $('#course_id').change(function() { $(this).closest('form').submit(); });
 
@@ -62,6 +64,7 @@ $('.nav-tabs').button();
 		updateProgressBar($(this));		
 	});
 	
+	
 function removeCommas(i){
 		console.log(i);
 		if (i == null) {
@@ -75,3 +78,7 @@ function removeCommas(i){
 			return parseInt(i);
 		}
 	}; 
+
+  
+});
+	

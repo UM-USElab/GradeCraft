@@ -1,15 +1,16 @@
-%div#predictorWrapper{ :'data-user-id' => @user.id }
-  %div#predictionWrapper
-    %div#projectedPoints
-      %h3
-        = "#{@user.name}'s current points:"
-        = number_with_delimiter(@user.sortable_score, :delimiter => ',') if @user.respond_to?(:sortable_score)
-        = "/" 
-        = current_course.total_points  
-      %h6
-        Projected Points: 
-      %span#expectedPointsValue
-    %div#prediction
+%div#predictorWrapper
+  %div#userID{ :'data-user-id' => @user.id }
+    %div#predictionWrapper
+      %div#projectedPoints
+        %h3
+          = "#{@user.name}'s current points:"
+          = number_with_delimiter(@user.sortable_score, :delimiter => ',') if @user.respond_to?(:sortable_score)
+          = "/" 
+          = current_course.total_points  
+        %h6
+          Projected Points: 
+        %span#expectedPointsValue
+      %div#prediction
 
 %div#predictorPage
   %div.pageTitle Predict Your Course Grade

@@ -69,13 +69,14 @@ $(document).ready(function() {
           color: '#CCCCCC'
           }
         },
-      series: []
+      series: [
+        ]
       };
       
     var chart;
     
-    var $wrapper = $('#userScoreSection');
-    if($wrapper) { var userID = $('#userScoreSection').data('user-id');
+    var $wrapper = $('#userID');
+    if($wrapper) { var userID = $('#userID').data('user-id');
       console.log(userID);
       
       // Get Assignment Type Info
@@ -83,6 +84,7 @@ $(document).ready(function() {
 
         // Populate series
         options.series = data;
+        options.names = 
         // Create the chart
         chart = new Highcharts.Chart(options);
       });

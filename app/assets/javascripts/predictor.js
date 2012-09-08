@@ -74,8 +74,8 @@ $(document).ready(function() {
       
     var chart;
     
-    var $wrapper = $('#predictorWrapper');
-    if($wrapper) { var userID = $('#predictorWrapper').data('user-id');
+    var $wrapper = $('#userID');
+    if($wrapper) { var userID = $('#userID').data('user-id');
           
     console.log(userID);
     
