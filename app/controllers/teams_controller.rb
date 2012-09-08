@@ -34,6 +34,8 @@ class TeamsController < ApplicationController
   def edit
     @team =  current_course.teams.find(params[:id])
     @title = "Edit #{@team.name}s"
+    @users = current_course.users
+    @students = @users.students
   end
 
   def create
