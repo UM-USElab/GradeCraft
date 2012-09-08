@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822025652) do
+ActiveRecord::Schema.define(:version => 20120907051903) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.string   "link"
   end
 
   create_table "assignment_types", :force => true do |t|
@@ -50,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
   end
 
   create_table "assignments", :force => true do |t|
-    t.string   "title"
+    t.string   "name"
     t.text     "description"
     t.integer  "point_total"
     t.datetime "due_date"
@@ -66,6 +67,9 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
     t.datetime "close_time"
     t.datetime "open_time"
     t.boolean  "required"
+    t.boolean  "has_assignment_submissions"
+    t.boolean  "student_logged"
+    t.string   "student_logged_button_text"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -82,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
 
   create_table "badges", :force => true do |t|
     t.integer  "assignment_id"
-    t.string   "title"
+    t.string   "name"
     t.text     "description"
     t.string   "icon"
     t.binary   "visible"
@@ -100,14 +104,25 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
 
-  create_table "course_grade_schemes", :force => true do |t|
+  create_table "course_badge_sets", :force => true do |t|
+    t.integer "course_id"
+    t.integer "badge_set_id"
+  end
+
+  create_table "course_grade_scheme_elements", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "course_id"
+    t.string   "letter_grade"
     t.integer  "low_range"
     t.integer  "high_range"
-    t.string   "letter_grade"
+    t.integer  "course_grade_scheme_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  create_table "course_grade_schemes", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "course_memberships", :id => false, :force => true do |t|
@@ -125,7 +140,7 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
     t.string   "semester"
     t.integer  "badge_sets_id"
     t.string   "theme_id"
-    t.integer  "coursegradescheme"
+    t.integer  "course_grade_scheme_id"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
     t.boolean  "badge_setting",                 :default => true
@@ -143,6 +158,8 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
     t.boolean  "team_roles"
     t.string   "section_leader_term"
     t.string   "group_term"
+    t.string   "user_weight_amount_type"
+    t.boolean  "has_assignment_submissions"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -161,22 +178,21 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
 
   create_table "grade_scheme_elements", :force => true do |t|
     t.string   "name"
-    t.integer  "value"
+    t.integer  "low_range"
     t.string   "letter_grade"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "grade_scheme_id"
     t.string   "description"
+    t.integer  "high_range"
   end
 
   create_table "grade_schemes", :force => true do |t|
     t.integer  "assignment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "grade_name"
-    t.integer  "range_bottom"
-    t.integer  "range_top"
     t.integer  "course_id"
+    t.string   "name"
   end
 
   create_table "grades", :force => true do |t|
@@ -282,8 +298,12 @@ ActiveRecord::Schema.define(:version => 20120822025652) do
     t.integer  "predictor_views"
     t.integer  "page_views"
     t.string   "team_role"
+    t.datetime "last_login_at"
+    t.datetime "last_logout_at"
+    t.datetime "last_activity_at"
   end
 
+  add_index "users", ["last_logout_at", "last_activity_at"], :name => "index_users_on_last_logout_at_and_last_activity_at"
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
   add_index "users", ["sortable_score"], :name => "index_users_sortable_score"

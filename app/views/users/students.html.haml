@@ -1,9 +1,10 @@
-%table.display.table-bordered
+%table.table.table-bordered
   %thead
     %tr
       %th Rank
+      %th Email
       %th Name
-      %th #{current_course.team_term}
+      %th #{current_course.team_ref}
       - if current_course.team_roles?
         %th Role
       %th Score
@@ -16,13 +17,13 @@
       %th 
       %th
       %th
-      %th
   %tbody
     - i = 1
     - @sorted_students.each do |student|
       %tr
         %td= i
-        %td= student.name
+        %td= student.email
+        %td= link_to student.name, user_path(student)
         %td= student.team.try(:name)
         - if current_course.team_roles?
           %td= student.try(:team_role)
@@ -32,18 +33,16 @@
         %td= student.predictor_views
         - if current_course.has_badges? 
           %td
-            //#TODO Fix
-            //- student.earned_badges.each do |badge|
-            //%img{:src => badge.try(:icon), :alt => badge.try(:title), :width => "25"}
-        %td= link_to "Email", "mailto:#{student.email}", :class => "btn btn-primary btn-mini"
-        %td= link_to 'Dashboard', student, :class => "btn btn-primary btn-mini"
-        %td= link_to 'Predictor', predictor_users_path(:user_id => student), :class => "btn btn-primary btn-mini"
-        %td= link_to 'Edit', edit_user_path(student), :class => "btn btn-primary btn-mini"
-        %td= link_to 'Delete', student, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-primary btn-mini"
+            - student.earned_badges.each do |badge|
+              %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => "25"}
+        %td= link_to 'Dashboard', student, {:class => 'btn btn-mini'}
+        %td= link_to 'Predictor', predictor_users_path(:user_id => student), {:class => 'btn btn-mini'}
+        %td= link_to 'Edit', edit_user_path(student), {:class => 'btn btn-mini'}
+        %td= link_to 'Delete', student, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
       - i += 1
 = "Download:"
 = link_to "CSV", users_path(format: "csv") |
 = link_to "Excel", users_path(format: "xls")
 
 %div#footerNav
-  = link_to "Create a New #{current_course.user_term}", new_user_path, :class => "btn btn-primary"
+  = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"

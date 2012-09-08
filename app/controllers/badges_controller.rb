@@ -8,11 +8,11 @@ class BadgesController < ApplicationController
   end
 
   def show
-    @title = "View Badge"
-    @badge = Badge.find(params[:id])
+    @badge = current_course.badges.find(params[:id])
+    @title = @badge.name
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @badge }
     end
   end
@@ -21,14 +21,14 @@ class BadgesController < ApplicationController
     @title = "Create a New Badge"
     @badge = Badge.new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @badge }
     end
   end
 
   def edit
-    @title = "Edit Badge"
-    @badge = Badge.find(params[:id])
+    @badge = current_course.badges.find(params[:id])
+    @title = "Edit #{@badge.name} Badge"
   end
 
   def create

@@ -4,15 +4,23 @@
     %br
     %br
     %br
-    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_term}"
-    = submit_tag 'Filter'
+    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+    = submit_tag 'Filter', :class => 'btn'
 
 #massGrade  
   %ul.grades
     = simple_form_for @assignment, :html => {:class => 'form-horizontal' }, :url => mass_update_assignment_grades_path(:assignment_id => @assignment.id) do |f|
-      = f.simple_fields_for :grades do |grade_form|
-        = grade_form.input :score, :as => :boolean
-        //= grade_form.association :earnable, :as => :check_boxes, :collection => @badges
+      - @grades.each_with_index do |grade,i|
+        - if grade.persisted?
+          = hidden_field_tag "assignment[grades_attributes][#{i}][id]", grade.id
+        - else
+          = hidden_field_tag "assignment[grades_attributes][#{i}][gradeable_id]", grade.gradeable.id
+          = hidden_field_tag "assignment[grades_attributes][#{i}][gradeable_type]", grade.gradeable.class.name
+        - "assignment[grades_attributes][#{i}][raw_score]".tap do |raw_score_field_name|
+          = hidden_field_tag raw_score_field_name, 0
+          = label_tag do
+            = check_box_tag raw_score_field_name, grade.points_possible, grade.attempted?
+            = grade.gradeable.try(:name)
       = f.button :submit
 
 %div#footerNav

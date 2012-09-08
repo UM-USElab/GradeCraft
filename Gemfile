@@ -1,15 +1,13 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.6'
-gem 'jquery-rails'
-gem 'jquery_datepicker'
-gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-rails', '~> 2.0'
 gem 'fabrication'
 gem 'haml'
 gem 'sorcery'
 gem 'exception_notification'
-gem "paperclip", "~> 3.0"
+gem 'carrierwave'
+gem 'sendgrid'
 gem 'gravatar_image_tag'
 gem 'pacecar'
 gem 'will_paginate'
@@ -19,13 +17,17 @@ gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'responders'
 gem 'brakeman'
-
-# To use Jbuilder templates for JSON
-gem 'jbuilder'
+gem 'activerecord-import'
+gem 'flexslider'
+gem "highcharts-rails", "~> 2.3.0"
+gem "airbrake"
 
 group :production do
+  gem 'mysql2'
+end
+
+group :staging do
   gem 'pg'
-  gem 'rack-google_analytics', :require => "rack/google_analytics"
 end
 
 # Gems used only for assets and not required
@@ -34,6 +36,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'jquery-ui-rails'
 end
 
 group :development do

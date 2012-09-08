@@ -1,7 +1,7 @@
 class UserAssignmentTypeWeightsController < ApplicationController
   def index
     @title = "User set assignment weights"
-    @user_assignment_type_weights = UserAssignmentTypeWeight.all
+    @user_assignment_type_weights = current_course.userassignmenttypeweights.all
     respond_with(@user_assignment_type_weights)
   end
 

@@ -12,7 +12,10 @@ GradeCraft::Application.routes.draw do
       get 'students'
       get 'staff'
       get 'final_grades'
-      get 'upload'
+      get 'test'
+      get 'import'
+      post 'upload'
+      get 'all'
     end
     resources :earned_badges
   end
@@ -24,7 +27,9 @@ GradeCraft::Application.routes.draw do
   resources :user_assignment_type_weights
   resources :user_grade_weights
   resources :courses
-  resources :course_grade_schemes
+  resources :course_grade_schemes do 
+    resources :course_grade_scheme_elements 
+  end
   resources :themes
   resources :badge_sets 
   resources :badges
@@ -52,15 +57,20 @@ GradeCraft::Application.routes.draw do
   end
 
   get 'gradebook' => 'grades#gradebook'
-  get 'info/index'
+  get 'credits' => 'info#show'
+  get 'using_gradecraft' => 'info#using_gradecraft'
   get 'home/index'
   get 'dashboard' => 'info#dashboard'
   root :to => "home#index"
   
   post '/current_course/change' => 'current_courses#change', :as => :change_current_course
+  get 'current_course' => 'current_courses#show'
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
+  
+  # Helps for testing authentication!
+#   get 'cosign_test' => 'info#cosign_test'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

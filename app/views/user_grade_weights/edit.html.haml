@@ -1,7 +1,5 @@
-%h1 Editing user_grade_weight
-
 = render 'form'
 
-= link_to 'Show', @user_grade_weight
-\|
-= link_to 'Back', user_grade_weights_path
+%div#footerNav
+  = link_to 'View', @user_grade_weight, :class => 'btn btn-primary'
+  = link_to 'Back', user_grade_weights_path, :class => 'btn btn-primary'

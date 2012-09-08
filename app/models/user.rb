@@ -6,25 +6,18 @@ class User < ActiveRecord::Base
   Roles = %w{student professor gsi admin}
   
   attr_accessor :remember_me
-  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id
+  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id, :last_activity_at, :last_login_at, :last_logout_at
 
-
-  has_attached_file :avatar,
-                    :styles => { :medium => "300x300>",
-                                 :thumb => "100x100>" },
-                    :url => '/assets/avatars/:id/:style/:basename.:extension',
-                    :path => ':rails_root/public/assets/avatars/:id/:style/:basename.:extension',
-                    :default_url => '/images/missing_:style.png'
   scope :alpha, :order => 'last_name ASC'
   scope :winning, :order => 'sortable_score DESC'
   
-  has_and_belongs_to_many :courses, :join_table => :course_memberships
+  has_and_belongs_to_many :courses, :join_table => :course_memberships, :uniq => true
   accepts_nested_attributes_for :courses          
   has_many :grades, :as => :gradeable, :dependent => :destroy
   has_many :user_assignment_type_weights
   has_many :assignments, :through => :grades
   has_many :assignment_submissions
-  has_many :earned_badges, :as => :earnable
+  has_many :earned_badges, :as => :earnable, :dependent => :destroy
   has_many :badges, :through => :earned_badges
   belongs_to :team
   has_many :group_memberships, :dependent => :destroy
@@ -32,8 +25,8 @@ class User < ActiveRecord::Base
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates_length_of :password, :minimum => 3, :message => "password must be at least 3 characters long", :if => :password
-  validates_confirmation_of :password, :message => "should match confirmation", :if => :password
+  #validates_length_of :password, :minimum => 3, :message => "password must be at least 3 characters long", :if => :password
+  #validates_confirmation_of :password, :message => "should match confirmation", :if => :password
   validates :username, :presence => true,
                     :length => { :maximum => 50 }
   validates :email, :presence => true,
@@ -41,7 +34,6 @@ class User < ActiveRecord::Base
                     :uniqueness => { :case_sensitive => false }
   
   #Course
-  
   def find_scoped_courses(course_id)
     course_id = BSON::ObjectId(course_id) if course_id.is_a?(String)
     if is_admin? || self.course_ids.include?(course_id)
@@ -102,9 +94,21 @@ class User < ActiveRecord::Base
   end
   
   #Grades
+
+  def grade_level(course)
+    course.grade_level(self)
+  end
+  
+  def team_grades
+    team.try(&:sortable_score) || 0
+  end
+  
+  def group_grades
+    
+  end
   
   def earned_grades
-    grades + team.grades + group.grades + badge.values
+    (grades.map(&:score).sum) + (earned_badges.map(&:value).sum) + team_grades
   end
 
   def grades_by_assignment_id
@@ -113,8 +117,19 @@ class User < ActiveRecord::Base
 
   def grade_for_assignment(assignment)
     grades_by_assignment_id[assignment.id].try(:first)
+
   end
   
+  def earned_badges_by_badge_id
+    @earned_badges_by_badge ||= earned_badges.group_by(&:badge_id)
+
+  end
+  
+  def earned_badges_by_badge(badge)
+    earned_badges_by_badge_id[badge.id].try(:first)
+  end
+    
+
   #Score
   def sortable_score
     super || 0
@@ -123,6 +138,7 @@ class User < ActiveRecord::Base
   def score
     grades.map(&:score).inject(&:+) || 0
   end
+  
   
   #TODO CHECK
   def assignment_type_score(assignment_type)
@@ -172,8 +188,9 @@ class User < ActiveRecord::Base
 
 
   # Putting this here just so things don't break... remove if needed.
+
   def possible_score
-    0
+    assignments.map(&:point_total).inject(&:+) || 0
   end
 
   # Same with this
@@ -184,7 +201,7 @@ class User < ActiveRecord::Base
   private
 
   def set_sortable_score
-    self.sortable_score = grades.map(&:score).inject(&:+) || 0
+    self.sortable_score = grades.reload.map(&:score).inject(&:+) || 0
   end
 
 end

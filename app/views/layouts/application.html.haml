@@ -10,7 +10,7 @@
       = javascript_include_tag "https://html5shim.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag "application", :media => "all"
     - if current_course.try(:theme).present?
-      = stylesheet_link_tag current_course.theme.filename
+      %link{ :href => current_course.theme.try(:filename), :media => "all", :rel => "stylesheet"}
 
   %body
     .navbar.navbar-fixed-top
@@ -24,30 +24,33 @@
           %div.pull-right
             - if current_user && current_course
               %div{:class => 'btn-group pull-right inline-fix'}
-                = link_to "My Dashboard",  dashboard_path, :class => "btn"
-                = link_to "Assignments", assignments_path, :class => "btn"
+                - if current_user.is_admin? 
+                  = link_to "Course Dashboard",  dashboard_path, :class => "btn"
+                - else
+                  = link_to "My Dashboard",  dashboard_path, :class => "btn"    
+                - if current_user.is_staff?
+                  = link_to "Assignments", assignments_path, :class => "btn"
                 - if current_course.has_badges?                
                   = link_to "Badges", badges_path, :class => "btn"
                 - if current_course.has_teams?                
-                  = link_to "#{current_course.team_term}s", teams_path, :class => "btn"
-                = link_to "Predictor",  predictor_users_path(:user_id => current_user.id), :class => "btn"
+                  = link_to "#{current_course.team_ref}s", teams_path, :class => "btn"
+                //- if current_user.is_student?  
+                //= link_to "Predictor",  predictor_users_path(:user_id => current_user.id), :class => "btn"
             - if current_user.try(:is_staff?) && current_course
               %div{:class => 'btn-group pull-right'}
                 %button.btn.btn-info Course
                 %a{:class => 'btn btn-info dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
                   %span{:class => 'caret'}
                 %ul{:class => 'dropdown-menu well'}
+                  %li= link_to "Gradebook", gradebook_path
                   %li= link_to "New Assignment", new_assignment_path
                   %li= link_to "Assignment Types", assignment_types_path
-                  %li= link_to "Gradebook", gradebook_path
-                  %li= link_to "#{current_course.user_term}s", students_users_path
+                  %li= link_to "#{current_course.user_ref}s", students_users_path
                   - if current_course.has_groups?    
                     %li= link_to "Groups", groups_path
                   - if current_course.has_teams?    
-                    %li= link_to "#{current_course.team_term}s", teams_path
-                  %li= link_to "Predictor Settings", predictor_users_path
+                    %li= link_to "#{current_course.team_ref}s", teams_path
                   %li= link_to "Staff", staff_users_path
-                  %li= link_to "Grade Scheme", course_grade_schemes_path
                   %li= link_to "Course Settings", edit_course_path(current_course)
             - if current_user
               %div{:class => 'btn-group pull-right'}
@@ -81,8 +84,10 @@
             = render 'layouts/content'
   
       %footer#siteFooter
-        &copy; 2012 Barry Fishman &#124; 
-        = link_to "Site Credits", info_index_path
+        &copy; 2012 Regents of the University of Michigan &#124;
+        = link_to "Using Gradecraft", using_gradecraft_path
+        | 
+        = link_to "Site Credits", credits_path
         
     .navbar.navbar-fixed-bottom
       .navbar-inner

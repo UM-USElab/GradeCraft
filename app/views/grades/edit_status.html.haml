@@ -13,4 +13,5 @@
   - for grade in @grades
     = hidden_field_tag "grade_ids[]", grade.id
   = f.input :status, :as => :select, :collection => [["New"], ["Graded"],["Released"]]
-  = f.button :submit, :class => "btn btn-primary"
+  .form-actions
+    = f.button :submit, "Update Statuses"

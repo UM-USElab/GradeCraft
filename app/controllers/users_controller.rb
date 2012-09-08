@@ -46,18 +46,18 @@ class UsersController < ApplicationController
     @title = "View all Users"
     @users =  current_course.users.order(:last_name)
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @users }
       format.csv { send_data @users.to_csv }
       format.xls { send_data @users.to_csv(col_sep: "\t") }
     end
   end
   
-  def all_users
-    @users = current_course.users.all 
+  def all
+    @users = User.all 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
+      format.html
+      format.json { render json: @all_users }
     end
   end
   
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     @teams = current_course.teams.all 
     @sorted_students = @students.order('sortable_score DESC')
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @users }
       format.csv { send_data @users.to_csv }
       format.xls { send_data @users.to_csv(col_sep: "\t") }
@@ -81,21 +81,28 @@ class UsersController < ApplicationController
     @assignment_types = current_course.assignment_types
     @assignments = current_course.assignments
     @grades = @user.grades.all 
+    @badges = current_course.badges
     #@grade = @user.grades.find(params[:assignment_id => assignment_id])
     #@grades_by_assignment_type = @grades.group_by(&:assignment_type)
-    @grades_by_assignment_type = @user.grades(:include => :assignment).group_by(&:assignment_type)
+    #@grades_by_assignment_type = @user.grades(:include => :assignment).group_by(&:assignment_type)
     respond_with @user
   end
   
   def predictor
-    @title = "Predict Course Grade"
-    @assignment_types = current_course.assignment_types
-    @assignments = current_course.assignments
+    @assignment_types = current_course.assignment_types.all
+    @assignments = current_course.assignments.all
+    @badges = current_course.badges.all
     if current_user.is_staff?
       @user = User.find(params[:user_id])
     else
       @user = current_user
       User.increment_counter(:predictor_views, current_user.id) if current_user
+    end
+    @grades = current_course.grades_for_student(@user)
+    predictor_array = @grades.map { |g| { :score => g.score, :assignment_name => g.assignment.name, :assignment_type_name => g.assignment.assignment_type.name } }
+    predictor_array = predictor_array.group_by { |g| g[:assignment_type_name] }
+    respond_with @user do |format|
+      format.json { render :json => predictor_array.to_json }
     end
   end
 
@@ -108,7 +115,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title = "Edit #{current_course.user_term}"
+    @title = "Edit #{current_course.user_ref}"
     @teams = current_course.teams.all
     @courses = Course.all
     @user = current_course.users.find(params[:id])
@@ -119,7 +126,6 @@ class UsersController < ApplicationController
     @teams = current_course.teams.all
     @user = current_course.users.create(params[:user])
     @user.save
-    #@user.course ||= current_course
     
     respond_with @user
   end
@@ -161,7 +167,33 @@ class UsersController < ApplicationController
     @user.update_attribute(:password, params[:password]) if params[:password] == params[:confirm_password]
     respond_with(@user)
   end
+    
   
+  def import
+  
+  end
+  
+  def upload 
+    require 'csv'    
+    
+    if params[:file].blank?
+      flash[:notice] = "File missing"
+      redirect_to users_path
+    else
+      infile = params[:file].read
+      CSV.foreach(infile, :headers => false) do |row|
+          User.create!({
+            :first_name => row[0],
+            :last_name => row [1], 
+            :username => row[2], 
+            :email => [3], 
+            :role => ["student"]
+            })
+      end
+      redirect_to users_path, :notice => "Upload successful"
+    end
+  end
+
   
   private
 

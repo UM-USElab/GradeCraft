@@ -27,10 +27,9 @@
         %td= assignment_type.max_value
         %td= assignment_type.percentage_course
         %td= raw assignment_type.predictor_description
-        %td= link_to 'View', assignment_type
-        %td= link_to 'Edit', edit_assignment_type_path(assignment_type)
-        %td= link_to 'Destroy', assignment_type, :confirm => 'Are you sure?', :method => :delete
+        %td= link_to 'View', assignment_type, :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_assignment_type_path(assignment_type), :class => 'btn btn-mini'
+        %td= link_to 'Delete', assignment_type, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
-%br
-
-= link_to 'New Assignment Type', new_assignment_type_path, {:class => 'btn btn-primary'}
+%div#footerNav
+  = link_to 'New Assignment Type', new_assignment_type_path, {:class => 'btn btn-primary'}

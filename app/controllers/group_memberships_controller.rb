@@ -1,4 +1,7 @@
 class GroupMembershipsController < ApplicationController
+
+  before_filter :ensure_staff?
+  
   def index
     @group_memberships = GroupMembership.all
     respond_with(@group_memberships)

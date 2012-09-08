@@ -1,4 +1,4 @@
-%table#users.display.table-bordered
+%table.table.display.table-bordered
   %thead
     %tr
       %th Username
@@ -14,16 +14,16 @@
       - if user.is_staff? 
         %tr
           %td= user.username
-          %td= user.name
+          %td= link_to user.name, user_path(user)
           %td= user.role
           %td= user.team.try(:name)
           %td 
-          //%td= user.team.try(:score)
+          %td= user.team.try(:score)
           %td
           - user.team_badges.each do |badge|
-            %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
-          %td= link_to 'Edit', edit_user_path(user)
-          %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete
+            %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
+          %td= link_to 'Edit', edit_user_path(user), {:class => 'btn btn-mini'}
+          %td= link_to 'Delete', user, {:class => 'btn btn-mini'}, :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %div#footerNav
   = link_to 'Create a New Player', new_user_path, :class => "btn btn-primary"

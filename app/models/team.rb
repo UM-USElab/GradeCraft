@@ -1,11 +1,11 @@
 class Team < ActiveRecord::Base
   has_many :users
   has_many :grades, :as => :gradeable, :dependent => :destroy
-  has_many :earned_badges, :as => :earnable
+  has_many :earned_badges, :as => :earnable, :dependent => :destroy
   
   belongs_to :course
   
-  attr_accessible :name, :created_at, :updated_at, :banner_file_name, :banner_updated_at, :sortable_score, :rank, :team_id, :user_ids
+  attr_accessible :name, :created_at, :updated_at, :banner_file_name, :banner_updated_at, :sortable_score, :rank, :team_id, :user_ids, :course_id
 
   default_scope :order => 'id ASC'
 

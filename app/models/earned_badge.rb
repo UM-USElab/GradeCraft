@@ -4,9 +4,10 @@ class EarnedBadge < ActiveRecord::Base
   
   belongs_to :badge
   
-  attr_accessible :grade_id, :badge_id, :created_at, :updated_at, :feedback, :earnable_id, :earnable_type
+  attr_accessible :earnable, :badge, :badge_id, :created_at, :updated_at, :feedback, :earnable_id, :earnable_type
+  attr_accessor :earned
 
-  delegate :title, :description, :icon, :to => :badge
+  delegate :name, :description, :icon, :value, :to => :badge
 
 end
 

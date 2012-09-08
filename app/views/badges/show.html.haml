@@ -1,8 +1,8 @@
 %p
-  %img{:src => @badge.icon, :alt => @badge.title}
+  %img{:src => @badge.icon, :alt => @badge.name}
 %p
   %b Title:
-  = @badge.title
+  = @badge.name
 %p
   %b Description:
   = raw @badge.description
@@ -11,6 +11,6 @@
   = @badge.icon
 
 %div#footerNav
-  = link_to 'Edit', edit_badge_path(@badge), {:class => 'btn btn-primary'}
-  = link_to 'Back', badges_path, {:class => 'btn btn-primary'}
-  = link_to 'Create a New Badge', new_badge_path, {:class => 'btn btn-primary'}
+  = link_to 'Edit', edit_badge_path(@badge), :class => 'btn btn-primary'
+  = link_to 'Back', badges_path, :class => 'btn btn-primary'
+  = link_to 'Create a New Badge', new_badge_path, :class => 'btn btn-primary'

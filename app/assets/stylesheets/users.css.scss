@@ -27,6 +27,7 @@
   text-align:center;
   font-size: 125%;
   clear: both;
+  min-height: 200px;
 }
 
 #badgesEarned {
@@ -36,7 +37,7 @@
   position: relative;
 }
 
-#badgesWrapper .earned-badge {
+#badgesWrapper .badgeIcon {
   float: left;
   text-align: center;
   height: 100px;
@@ -44,6 +45,7 @@
   font-size: 70%;
   margin-top: 5px;
 }
+
 #badgesWrapper .title {
   text-transform: uppercase;
   color: #FFF;
@@ -53,8 +55,12 @@
   line-height: 14px;
   font-size: 11px;
 }
-.badge img {
-  width: 60px;
+#badgesWrapper img {
+  width: 50px;
+}
+
+#badgesWrapper img.unearned {
+  opacity: .1;
 }
 
 .clear {
@@ -93,6 +99,10 @@
 #scoreToggle:hover{
   text-decoration:underline;
 }
+
+.assignmentType {
+  margin-bottom: 10px;
+}
 .assignmentTypeTitle {
   font-size: 16px;
   color: orange;
@@ -127,9 +137,6 @@
   margin-bottom: 2px;
 }
 
-.completedAssignment {
-}
-
 .incompleteAssignment {
   background-color: #999;
   color: #000;
@@ -155,7 +162,73 @@
 
 // Predictor
 
-  #predictionWrapper{	
+#predictorPage {
+  margin-top: 110px;
+  
+}
+
+#predictorPage .pageTitle {
+  font-weight: bold;
+  font-size: 16px;
+  padding-top: 15px;
+  margin-bottom: 10px;
+}
+
+	#predictorBar {
+  	width: 100%;
+  	height: 200px;
+	}
+	 
+	.slide-panel {
+  	background-color: #333;
+  	border-radius: 10px;
+  	padding: 25px;
+  	margin: 15px;
+  	position: relative;
+	}
+
+	.headline {
+  	font-weight: bold;
+  	text-transform: uppercase;
+  	font-size: 15px;
+	}
+
+	.slider{
+    height:1em;
+    margin: 10px 0px;
+	  padding:0;
+	  width:60%;
+	}
+	
+	.assignmentTitle {
+  	margin-bottom: 4px;
+	}
+	
+	#predictorPage input[type=text] {
+  	background-color: #eeeeee;
+  	border: none;
+  	box-shadow: none;
+  	color: green;
+  	margin: -4px 10px 0px;
+	}
+	
+	div.assignment {
+  	margin-bottom: 15px;
+	}
+	
+	#predictorPage select {
+  	margin: -4px 10px;
+	}
+	
+	#predictorPage input[type=checkbox].class-checkbox {
+  	margin: 0px 10px;
+	}
+	
+	#predictorPage .grade {
+  	margin-left: 10px;
+	}
+	
+	  #predictionWrapper{	
   	background-color:rgba(55,55,55,.96);
     border-top:5px solid #2F96B4;
     border-bottom:5px solid #2F96B4;
@@ -163,105 +236,17 @@
     border-top-left-radius:10px;
     border-bottom-left-radius:10px; 	
   	color:#fff;
-  	padding:10px 0 10px 10px;
-  	position:fixed;
-  	top:120px;
+  	padding:15px 0 10px 10px;
+  	position: fixed;
+  	top: 50px;
+  	height: 125px;
     right:0;
   	text-align:center;
-  	max-width:250px;
+  	width: 100%;
   	z-index:3;			
   }
-	#pointsArw{
-    background: url(arrow.png) no-repeat;
-	  display:block;
-	  height:17px;
-	  left:15px;
-	  overflow:hidden;
-	  position:relative;	  
-	  top:30px;	  
-	  width:17px;
-	}
-  #pointsArw.toggleOn{
-    background-position:-17px 0;
-  }
-	#projectedPoints{
-	  cursor:pointer;
-	}
-	#projectedPoints p{
-    margin:0 auto;
-	  width:60%;
-	}
-	#predictionWrapper.toggleOn{
-	  display:block;
-	  max-width:500px;
-	  min-width:250px;
-	}
-	.highcharts-grid{
-	  width:100px;
-	}
-	#prediction{
-		color:#FFF;
-		display:none;
-		padding-top:20px;
-	}
-	#score{	
-	  margin-right:10px;
-	}
-	.gradeSection{
-    clear:both
-  }
-	.predictor-assignment-title{
-	  font-family:'Copse', serif;		
-	}
-	.predictor-subtitle{
-	  font-weight:bold;
-	}
-	.select-checkboxes{
-		float:left;
-		width:100%;
-	}
-	.checkbox-group legend{
-    border:0;
-		font-weight:bold;
-		padding:10px 0px;
-	}
-	#predictionToggle{
-	  color:#FFF;
-	  float:left;
-	  padding-left:10px;
-	}
-	#expectedPointsValue{
-	  font-size:1.3em;
-	  text-align:center;
-	}
-	fieldset{
-	  margin-top:10px;
-	}
-	.checkbox-group{
-		width:20%;
-		float:left;
-	}
-	.predictor-assignment-title{
-		font-size:1.3em;
-		margin:0;
-	}
-	.assignmentDescription{
-	  font-style:italic;
-	}
-	section.slider{
-    height:1em;
-	  padding:0;
-	  width:80%;
-	}
-	.slider-value{
-		display:block;
-		padding:10px 0;
-	}
-	.slider .ui-slider-range { 
-	  background: #8ae234; 
-	}
-	#predictorWrapper fieldset, #predictorWrapper input{
-		border:none;
-	}
 	
-
+	div.flexslider {
+	   min-height: 400px;
+  	margin-bottom: 15px;
+	}

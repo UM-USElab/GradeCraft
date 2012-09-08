@@ -1,10 +1,13 @@
 = simple_form_for([@assignment, @assignment_submission], :html => {:class => 'form-horizontal' }) do |f|
-
   .form-inputs
-    = f.association :assignment
-    = f.association :user
+    - if current_user.is_student?
+      = f.association :user, :default => current_user.id, :as => :hidden
+    - else
+      = f.input :user_id, :collection => @users
+    = f.association :assignment, :default => @assignment, :as => :hidden
+    = f.input :link, :hint => "Where is your assignment located on the web?"
     = f.input :comment, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, "Submit"
     = link_to 'Cancel', assignments_path, :class => 'btn'

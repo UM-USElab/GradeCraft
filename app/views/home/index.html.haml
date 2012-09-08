@@ -1,12 +1,11 @@
-%div.hero-unit.span11
-  - if current_user
-    - if current_course
-      %p.span8= raw current_course.homepage_message
-      %div.span3.pull-right
-        
-    - else
-      %p Your account hasn't yet been connected to any courses. Contact us for help!
+- if current_user
+  - if current_course
+    = render "info/#{current_user.role}_dashboard", :user => @user, :assignments => current_course.assignments
   - else
-    %h1 Welcome to GradeCraft 
+    %p Your account hasn't yet been connected to any courses. Contact us for help!
+- else
+  %div.hero-unit
+    %h1 Welcome to GradeCraft
+    %br
     %br
     %p Log in to build your grade

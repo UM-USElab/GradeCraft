@@ -3,22 +3,22 @@
     %th Assignment
     %th User
     %th Group
-    %th Feedback
     %th Comment
+    %th Feedback
     %th
     %th
     %th
 
   - @assignment_submissions.each do |assignment_submission|
     %tr
-      %td= assignment_submission.assignment_id
-      %td= assignment_submission.user_id
+      %td= assignment_submission.assignment.name
+      %td= assignment_submission.user.try(:name)
       %td= assignment_submission.group_id
-      %td= assignment_submission.feedback
       %td= assignment_submission.comment
-      %td= link_to 'Show', assignment_assignment_submission(@assignment, assignment_submission)
-      %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission)
-      %td= link_to 'Destroy', assignment_assignment_submission(@assignment, assignment_submission), :confirm => 'Are you sure?', :method => :delete
+      %td= assignment_submission.feedback
+      %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini'
+      %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini'
+      %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
-
-= link_to 'New Assignment submission', new_assignment_assignment_submission_path(@assignment), {:class => 'btn btn-primary'}
+%div#footerNav
+  = link_to 'New Assignment submission', new_assignment_assignment_submission_path(@assignment), {:class => 'btn btn-primary'}

@@ -13,7 +13,6 @@ class GradesController < ApplicationController
     @title = "View Grade"
     @grade = Grade.find(params[:id])
     @assignment = Assignment.find(params[:assignment_id])
-    #@earned_badges = EarnedBadge.all
   end
   
   def gradebook
@@ -26,7 +25,10 @@ class GradesController < ApplicationController
     @title = "Submit A New Grade"
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @assignment.assignment_grades.create(params[:grade])
-    @badges = current_course.badges.all
+    @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
+    @earned_badges = current_course.badges.map do |b|
+      EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
+    end
     @teams = current_course.teams.all
     @groups = current_course.groups.all
     @students = current_course.users.students
@@ -61,8 +63,8 @@ class GradesController < ApplicationController
   end
 
   def update
-    @grade = Grade.find(params[:id])
     @assignment = Assignment.find(params[:assignment_id])
+    @grade = @assignment.assignment_grades.find(params[:id])
     
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
@@ -77,7 +79,6 @@ class GradesController < ApplicationController
 
   def destroy
     @assignment = Assignment.find(params[:assignment_id])
-    #TODO Need to update score when a grade is deleted
     @grade = @assignment.assignment_grades.find(params[:id])
     @grade.destroy
     
@@ -89,6 +90,8 @@ class GradesController < ApplicationController
 
   def mass_edit
     @assignment = Assignment.find(params[:assignment_id])
+    @title = "Mass Grade #{@assignment.name}"
+    @grade = @assignment.assignment_grades.create(params[:grade])
     user_search_options = {}
 
     if params[:team_id].present?
@@ -96,24 +99,26 @@ class GradesController < ApplicationController
       user_search_options[:team_id] = @team.id if @team
     end
     @students = current_course.users.students.where(user_search_options)
-    @grades = @students.map do |s| 
-      @assignment.assignment_grades.find_by_gradeable_id(s.id)
-      #|| grade_class(@assignment).create(:user => s, :assignment_id => @assignment.id) 
+    @grades = @students.map do |s|
+      @assignment.assignment_grades.where(:gradeable_id => s.id, :gradeable_type => 'User').first || @assignment.assignment_grades.new(:gradeable => s, :assignment => @assignment)
     end
   end
 
   def mass_update
+    @gradeable = find_gradeable
     @assignment = Assignment.find(params[:assignment_id])
+    @grade = @gradeable.assignment_grades.build(params[:grade])
     if @assignment.update_attributes(params[:assignment])
+
       respond_with @assignment, :location => assignment_path(@assignment)
     else
-      respond_with @assignment, :location => mass_edit_assignment_grades_path(:assignment_id => @assignment)
+      respond_with @assignment, :location => mass_edit_assignment_grades_path(@assignment)
     end
   end
   
   def edit_status
     @assignment = Assignment.find(params[:assignment_id])
-    @title = Assignment.name
+    @title = "#{@assignment.name} Grade Statuses"
     @grades = Grade.find(params[:grade_ids])
   end
   

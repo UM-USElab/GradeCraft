@@ -14,5 +14,6 @@
   %b Comment:
   = @assignment_submission.comment
 
-= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, @assignment_submission)
-= link_to 'Back', assignment_assignment_submissions_path(@assignment)
+%div#footerNav
+  = link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, @assignment_submission), {:class => 'btn btn-primary'}
+  = link_to 'Back', assignment_assignment_submissions_path(@assignment), {:class => 'btn btn-primary'}

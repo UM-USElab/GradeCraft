@@ -22,13 +22,13 @@
     - @badge_set.badges.each do |badge|
       %tr
         %td 
-          %img{:src => badge.icon, :alt => badge.title}
-        %td= badge.title
+          %img{:src => badge.icon, :alt => badge.name}
+        %td= badge.name
         %td= badge.value
         %td= raw badge.description
         %td= link_to "View", badge_path(badge)
         %td= link_to "Edit", edit_badge_path(badge)
-        %td= link_to "Delete", badge_path(badge), :confirm => 'Are you sure?', :method => :delete
+        %td= link_to "Delete", badge_path(badge), :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %div#footerNav
   = link_to 'Edit', edit_badge_set_path(@badge_set), {:class => 'btn btn-primary'}

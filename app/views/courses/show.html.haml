@@ -1,53 +1,56 @@
-%p
-  %b Name:
-  = @course.name
-%p
-  %b Course No:
-  = @course.courseno
-%p
-  %b Year:
-  = @course.year
-%p
-  %b Semester:
-  = @course.semester
-%p
-  %b Badge Set:
-  = @course.badge_setting
-%p
-  %b Theme:
-  = @course.theme.name
-%p
-  %b Course Grade Scheme:
-  = @course.coursegradescheme
+%div.span2= render 'admin_subnav'
 
-%p
-  %b Students will be grouped into teams or sections:
-  = @course.team_setting
+%div.span8
+  %p
+    %b Name:
+    = @course.name
+  %p
+    %b Course No:
+    = @course.courseno
+  %p
+    %b Year:
+    = @course.year
+  %p
+    %b Semester:
+    = @course.semester
+  %p
+    %b Badge Set:
+    = @course.badge_setting
+  %p
+    %b Theme:
+    = @course.theme.try(:name)
+  %p
+    %b Course Grade Scheme:
+    = @course.course_grade_scheme.try(:name)
   
-%p
-  %b Students self-declare their group roles:
-  = @course.team_roles
-
-%p
-  %b These sections will be called:
-  = @course.team_term
+  %p
+    %b Students will be grouped into teams or sections:
+    = @course.team_setting
+    
+  %p
+    %b Students self-declare their group roles:
+    = @course.team_roles
   
-%p 
-  %b Students will be called:
-  = @course.user_term
+  %p
+    %b These sections will be called:
+    = @course.team_ref
+    
+  %p 
+    %b Students will be called:
+    = @course.user_ref
+  
+  %p 
+    %b Section Leaders will be called:
+    = @course.section_leader_term
+  
+  %p 
+    %b Students will work in groups:
+    = @course.group_setting
+  
+  %p 
+    %b Groups will be called:
+    = @course.group_ref
 
-%p 
-  %b Section Leaders will be called:
-  = @course.section_leader_term
-
-%p 
-  %b Students will work in groups:
-  = @course.group_setting
-
-%p 
-  %b Groups will be called:
-  = @course.group_term
-
-%div#footerNav
-  = link_to 'Edit', edit_course_path(@course), :class => 'btn btn-primary'
-  = link_to 'Back', courses_path, :class => 'btn btn-primary'
+  %div#footerNav
+    = link_to 'Edit', edit_course_path(@course), :class => 'btn btn-primary'
+    = link_to 'Back', courses_path, :class => 'btn btn-primary'

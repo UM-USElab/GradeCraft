@@ -1,6 +1,4 @@
-%h1 Listing user_grade_weights
-
-%table
+%table.table
   %tr
     %th
     %th
@@ -8,10 +6,9 @@
 
   - @user_grade_weights.each do |user_grade_weight|
     %tr
-      %td= link_to 'Show', user_grade_weight
-      %td= link_to 'Edit', edit_user_grade_weight_path(user_grade_weight)
-      %td= link_to 'Destroy', user_grade_weight, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'View', user_grade_weight, :class => 'btn btn-mini'
+      %td= link_to 'Edit', edit_user_grade_weight_path(user_grade_weight), :class => 'btn btn-mini'
+      %td= link_to 'Delete', user_grade_weight, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
-%br
-
-= link_to 'New User grade weight', new_user_grade_weight_path
+%div#footerNav
+  = link_to 'New User grade weight', new_user_grade_weight_path, :class => 'btn btn-primary'

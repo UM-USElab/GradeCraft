@@ -4,7 +4,7 @@
   
 %p
   %b Assignment:
-  = @group.assignment.title 
+  = @group.assignment.name 
 
 %p
   %b Proposal:
@@ -14,7 +14,7 @@
   %b Members:
 - @group.users.each do |user|
   %ul
-    %li= user.name
+    %li= link_to user.name, user_path(user)
 
 %div#footerNav
   = link_to 'Edit', edit_group_path(@group), :class => 'btn btn-primary'

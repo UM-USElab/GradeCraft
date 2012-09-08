@@ -1,8 +1,10 @@
 class BadgeSetsController < ApplicationController
 
+  before_filter :ensure_staff?
+
   def index
     @title = "Badge Sets"
-    @badge_sets = current_course.badge_sets.all
+    @badge_sets = BadgeSet.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @badge_sets }
@@ -11,6 +13,7 @@ class BadgeSetsController < ApplicationController
 
   def show
     @badge_set = BadgeSet.find(params[:id])
+    @title = @badge_set.name
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,6 +33,7 @@ class BadgeSetsController < ApplicationController
 
   def edit
     @badge_set = BadgeSet.find(params[:id])
+    @title = "Edit #{@badge_set.name}"
   end
 
   def create

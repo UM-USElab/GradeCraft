@@ -1,7 +1,6 @@
 %table.table.table-bordered
   %thead
     %tr
-      %th ID
       %th Name
       %th Rank
       %th Score
@@ -14,19 +13,18 @@
   %tbody
     - @teams.each do |team|
       %tr
-        %td= team.id
         %td= team.name
         %td= team.rank
         %td= team.score
         %td
           - team.earned_badges.each do |badge|
-            %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
+            %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
         %td= team.badge_count
         - if current_user.is_staff?
-          %td= link_to 'View', team
-          %td= link_to 'Edit', edit_team_path(team)
-          %td= link_to 'Delete', team, :confirm => 'Are you sure?', :method => :delete
+          %td= link_to 'View', team, :class => 'btn btn-mini'
+          %td= link_to 'Edit', edit_team_path(team), :class => 'btn btn-mini'
+          %td= link_to 'Delete', team, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 %div#footerNav
   - if current_user.is_staff?
-    = link_to "Add a #{current_course.team_term}", new_team_path, :class => "btn btn-primary"
-    //= link_to "Grade a #{current_course.team_term} Assignment", assignments_path, :class => "btn btn-inverse"
+    = link_to "Add a #{current_course.team_ref}", new_team_path, :class => "btn btn-primary"
+    //= link_to "Grade a #{current_course.team_ref} Assignment", assignments_path, :class => "btn btn-inverse"

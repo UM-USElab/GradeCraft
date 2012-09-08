@@ -1,55 +1,50 @@
 class CoursesController < ApplicationController
-  
-  # GET /courses
-  # GET /courses.json
+
+  before_filter :ensure_staff?
+
   def index
     @title = "Course Index"
     @courses = Course.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.json { render json: @courses }
     end
   end
 
-  # GET /courses/1
-  # GET /courses/1.json
   def show
     @title = "Course Settings"
     @course = Course.find(params[:id])
     @themes = Theme.all
     @users = current_course.users.all
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @course }
     end
   end
 
-  # GET /courses/new
-  # GET /courses/new.json
   def new
+    @title = "Create a New Course"
     @course = Course.new
     @themes = Theme.all
     @badge_sets = BadgeSet.all
-    @course_grade_schemes = CourseGradeScheme.all
+    @grade_schemes = GradeScheme.all
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @course }
     end
   end
 
-  # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
+    @title = "Editing #{@course.name}"
     @badge_sets = BadgeSet.all
     @themes = Theme.all
-    @course_grade_schemes = CourseGradeScheme.all
+    @grade_schemes = GradeScheme.all
     
   end
 
-  # POST /courses
-  # POST /courses.json
   def create
     @course = Course.new(params[:course])
     @badge_sets = BadgeSet.all
@@ -65,8 +60,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # PUT /courses/1
-  # PUT /courses/1.json
   def update
     @course = Course.find(params[:id])
 
@@ -81,8 +74,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1
-  # DELETE /courses/1.json
   def destroy
     @course = Course.find(params[:id])
     @course.destroy

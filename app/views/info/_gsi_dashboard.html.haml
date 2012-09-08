@@ -1,30 +1,87 @@
-%h3= current_user.team.name
-%br
-%table#dashboard
-  %thead
-    %tr
-      %th 
-      %th Username
-      %th First Name
-      %th Last Name
-      %th Score
-      %th Badges
-      %th View Profile
-  %tbody
-    - User.where(:team_id => current_user.team_id).each do |user|
-      %tr
-        %td= gravatar_for user
-        %td= user.username
-        %td= user.first_name
-        %td= user.last_name
-        %td= user.score
-        %td
-          - user.earned_badges.each do |badge|
-            %img{:src => asset_path(badge.icon), :alt => badge.title, :width => "25"}
-        %td
-          - if user.is_student?
-            = link_to 'Dashboard', user
+%div.row
+  %div.span12
+  %div.span6
+    %h4= "Top 10" 
+    %table.table.table-bordered.table-condensed
+      %thead
+        %tr
+          %th= current_course.user_ref
+          %th Score
+          %th Badges Earned
+          %th Attendance Rate
+          %th Logins
+          %th Pageviews
+          %th Predictor Views
+          %th Email
+          %th #{current_course.section_leader_ref}
+      %tbody
+        - @top_ten_students.each do |student|
+          %tr
+            %td= link_to student.name, user_path(student)
+            %td= student.earned_grades
+            %td= student.user_badge_count
+            %td= student.attendance_rate
+            %td= student.visit_count
+            %td= student.page_views
+            %td= student.predictor_views
+            %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-mini"
+            %td
+              - student.team_leader.tap do |team_leader|
+                - if team_leader.present?
+                  %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
+                  
+  %div.offset8
+    %h4= current_course.team_term
+    %table.table.table-bordered.table-condensed
+      %thead
+        %tr
+          %th= current_course.team_ref
+          %th Score
+          %th Badges Earned
+          %th Attendance Rate
+          %th Average Grade
+          %th GSI
+      %tbody
+        - @teams.each do |team|
+          %tr
+            %td= link_to team.name, team_path(team)
+            %td= team.score
+            %td 
+              - team.earned_badges.each do |badge|
+                %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"} 
+            %td
+            %td
+            %td= team.team_leader
 
-%div#footerNav
-  = link_to "Grade an Assignment", new_grade_url, :class => "btn btn-inverse"
-  = link_to "Grade a Team Challenge", new_challenge_grade_url, :class => "btn btn-inverse"
+
+%div.row
+  %div.span12
+  %div.span6
+    %h4= "Bottom 10"
+    %table.table.table-bordered.table-condensed
+      %thead
+        %tr
+          %th= current_course.user_ref
+          %th Score
+          %th Badges Earned
+          %th Attendance Rate
+          %th Logins
+          %th Pageviews
+          %th Predictor Views
+          %th Email
+          %th GSI
+      %tbody
+        - @bottom_ten_students.each do |student|
+          %tr
+            %td= link_to student.name, user_path(student)
+            %td= student.earned_grades
+            %td= student.user_badge_count
+            %td= student.attendance_rate
+            %td= student.visit_count
+            %td= student.page_views
+            %td= student.predictor_views
+            %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-mini"
+            %td
+              - student.team_leader.tap do |team_leader|
+                - if team_leader.present?
+                  %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
