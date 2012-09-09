@@ -117,10 +117,12 @@ class User < ActiveRecord::Base
 
   def grade_for_assignment(assignment)
     grades_by_assignment_id[assignment.id].try(:first)
+
   end
   
   def earned_badges_by_badge_id
     @earned_badges_by_badge ||= earned_badges.group_by(&:badge_id)
+
   end
   
   def earned_badges_by_badge(badge)
@@ -158,7 +160,23 @@ class User < ActiveRecord::Base
     team.try(:earned_badges) || []
   end
   
-  #Export Users and Final Scores [need to add final grade]
+  #Import Users
+  def self.csv_header
+    "First Name,Last Name,Email,Username".split(',')
+  end
+#     
+#   def self.build_from_csv(row)
+#     # find existing user from email or create new
+#     user = find_or_initialize_by_email(row[2])
+#     user.attributes ={
+#       :first_name => row[0],
+#       :last_name => row[1],
+#       :email => row[3],
+#       :username => row[4]
+#     return user
+#   end
+  
+  #Export Users and Final Scores [TODO need to add final grade]
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << ["First Name", "Last Name", "Score"]
@@ -167,6 +185,9 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+
+  # Putting this here just so things don't break... remove if needed.
 
   def possible_score
     assignments.map(&:point_total).inject(&:+) || 0
