@@ -11,9 +11,9 @@
     %br
     %h3.btn.btn-primary= "Current Course Grade: #{current_course.grade_level(user)}"
   - if current_course.has_badges? 
-    %div#badgesWrapper.span3
+    %button.btn.btn-success.span12{"data-target" => "#badges", "data-toggle" => "collapse"}
       %h4 Badges
-      %div#badges
+      %div{:id => "badges", :class => "collapse"}
         - @badges.each do |badge|
           - @user.earned_badges_by_badge(badge).tap do |earned_badge|
             - if earned_badge
@@ -24,17 +24,21 @@
               %div.badgeIcon
                 %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
                 .badgeTitle= badge.name
-  %div.clear
+        %span.hint Badges you've earned will shine brightly!
+    %button.btn.btn-warning.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
+      %h4 To Do List
+      %div{:id => "toDoList", :class => "collapse"}
+        "Test"
      
-  %div#helpInfo
-    - if current_user.is_staff?
-      - if current_course.has_badges? 
-        %div= link_to "Award a Badge", new_earned_badge_url, :class => "btn"
-      %div= link_to "Email #{user.first_name}", "mailto:#{user.email}", :class => "btn"
-      = link_to "Edit #{user.first_name}", edit_user_path(user), :class => "btn"
-    - user.team_leader.tap do |team_leader|
-      - if team_leader.present?
-        %div= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn"
+    %div.span12
+      - if current_user.is_staff?
+        - if current_course.has_badges? 
+          = button_to "Award a Badge", new_earned_badge_path, :class => "btn span8"
+        = button_to "Email #{user.first_name}", "mailto:#{user.email}", :class => "btn span8"
+        = button_to "Edit #{user.first_name}", edit_user_path(user), :class => "btn span8"
+      - user.team_leader.tap do |team_leader|
+        - if team_leader.present?
+          = link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn span8"
 
 %div.span8
   %h2#points

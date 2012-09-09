@@ -5,11 +5,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.span3 #badgesWrapper {
-  margin-top: 15px;
-  background-color: #333;
-}
 
+button h4 {
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  font-family: Verdana, sans-serif;
+  font-weight: bold;
+}
 
 #badgesEarned {
   height: auto;
@@ -18,7 +21,7 @@
   position: relative;
 }
 
-#badgesWrapper .badgeIcon {
+#badges .badgeIcon {
   float: left;
   text-align: center;
   height: 100px;
@@ -27,15 +30,15 @@
   margin-top: 15px;
 }
 
-#badgesWrapper .badgeTitle {
+#badges .badgeTitle {
   line-height: 14px;
   font-size: 11px;
 }
-#badgesWrapper img {
+#badges img {
   width: 50px;
 }
 
-#badgesWrapper img.unearned {
+#badges img.unearned {
   opacity: .1;
 }
 

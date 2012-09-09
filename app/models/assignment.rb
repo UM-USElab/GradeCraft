@@ -100,6 +100,10 @@ class Assignment < ActiveRecord::Base
     due_date.future?
   end
   
+  def soon?
+    due_date < Time.now + 7.days
+  end
+  
   def fixed?
     points_predictor = "Fixed"
   end

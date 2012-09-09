@@ -1,17 +1,18 @@
-%table.display.table-bordered.table
-  %thead
-    %tr
-      %th Scheme Name
-      %th 
-      %th
-      %th
-  %tbody
-    - for grade_scheme in @grade_schemes
+%div.span8
+  %table.display.table-bordered.table
+    %thead
       %tr
-        %td= grade_scheme.name
-        %td= link_to 'View', grade_scheme, :class => 'btn btn-mini'
-        %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme), :class => 'btn btn-mini'
-        %td= link_to 'Delete', grade_scheme, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+        %th Scheme Name
+        %th 
+        %th
+        %th
+    %tbody
+      - for grade_scheme in @grade_schemes
+        %tr
+          %td= grade_scheme.name
+          %td= link_to 'View', grade_scheme, :class => 'btn btn-mini'
+          %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme), :class => 'btn btn-mini'
+          %td= link_to 'Delete', grade_scheme, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %div.span12
   = link_to 'New Grade scheme', new_grade_scheme_path, {:class => 'btn btn-primary'}

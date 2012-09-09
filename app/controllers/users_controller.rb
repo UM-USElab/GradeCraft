@@ -5,6 +5,43 @@ class UsersController < ApplicationController
   before_filter :'ensure_staff?', :only=>[:index,:destroy]
   before_filter :'ensure_admin?', :only=>[:all_users]
 
+  def import
+    if request.post? && params[:file].present?
+      infile = params[:file].read
+      n, errs = 0, []
+
+      CSV.parse(infile) do |row|
+        n += 1
+        # SKIP: header i.e. first row OR blank row
+        next if n == 1 or row.join.blank?
+        # build_from_csv method will map customer attributes & 
+        # build new customer record
+        user = User.build_from_csv(row)
+        # Save upon valid 
+        # otherwise collect error records to export
+        if user.valid?
+          user.save
+        else
+          errs << row
+        end
+      end
+      # Export Error file for later upload upon correction
+      if errs.any?
+        errFile ="errors_#{Date.today.strftime('%d%b%y')}.csv"
+        errs.insert(0, User.csv_header)
+        errCSV = CSV.generate do |csv|
+          errs.each {|row| csv << row}
+        end
+        send_data errCSV,
+          :type => 'text/csv; charset=iso-8859-1; header=present',
+          :disposition => "attachment; filename=#{errFile}.csv"
+      else
+        flash[:notice] = I18n.t('user.import.success')
+        redirect_to import_url #GET
+      end
+    end
+  end
+
   def index
     @title = "View all Users"
     @users =  current_course.users.order(:last_name)
@@ -16,11 +53,11 @@ class UsersController < ApplicationController
     end
   end
   
-  def all_users
-    @users = current_course.users.all 
+  def all
+    @users = User.all 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
+      format.html
+      format.json { render json: @all_users }
     end
   end
   
@@ -131,6 +168,7 @@ class UsersController < ApplicationController
     respond_with(@user)
   end
     
+  
   def import
   
   end
@@ -142,13 +180,16 @@ class UsersController < ApplicationController
       flash[:notice] = "File missing"
       redirect_to users_path
     else
-      file = params[:file].read
-
-      CSV.parse(file, headers: true, header_converters: :symbol).each do |row|
-          email, first_name, last_name, bio = row[0], row[1], row[2], row[3]
-          Author.update_all("first_name = '#{first_name}', last_name = '#{last_name}', bio = '#{bio}'", "email = '#{email}'")
+      CSV.foreach(params[:file].tempfile, :headers => false) do |row|
+        User.create! do |u|
+          u.first_name = row[0]
+          u.last_name = row[1] 
+          u.username = row[2] 
+          u.email = row[3]
+          u.role = 'student'
+        end
       end
-      redirect_to new_upload_url, :notice => "Upload successful"
+      redirect_to users_path, :notice => "Upload successful"
     end
   end
 
