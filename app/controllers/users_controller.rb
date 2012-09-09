@@ -180,15 +180,14 @@ class UsersController < ApplicationController
       flash[:notice] = "File missing"
       redirect_to users_path
     else
-      infile = params[:file].read
-      CSV.foreach(infile, :headers => false) do |row|
-          User.create!({
-            :first_name => row[0],
-            :last_name => row [1], 
-            :username => row[2], 
-            :email => [3], 
-            :role => ["student"]
-            })
+      CSV.foreach(params[:file].tempfile, :headers => false) do |row|
+        User.create! do |u|
+          u.first_name = row[0]
+          u.last_name = row[1] 
+          u.username = row[2] 
+          u.email = row[3]
+          u.role = 'student'
+        end
       end
       redirect_to users_path, :notice => "Upload successful"
     end
