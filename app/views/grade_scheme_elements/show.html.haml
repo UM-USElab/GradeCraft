@@ -11,6 +11,6 @@
   %b Letter grade:
   = @grade_scheme_element.letter_grade
 
-%div#footerNav
+%div.span12
   = link_to 'Edit', edit_grade_scheme_grade_scheme_element_path(@grade_scheme, @grade_scheme_element), {:class => 'btn btn-primary'}
   = link_to 'Back', grade_scheme_grade_scheme_elements_path, {:class => 'btn btn-primary'}

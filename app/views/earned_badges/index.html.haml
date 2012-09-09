@@ -18,5 +18,5 @@
         %td= link_to 'View', earned_badge, :class => 'btn btn-mini'
         %td= link_to 'Edit', edit_earned_badge_path(earned_badge), :class => 'btn btn-mini'
         %td= link_to 'Delete', earned_badge, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-%div#footerNav
+%div.span12
   = link_to "Award a Badge", new_earned_badge_path, :class => "btn btn-primary"

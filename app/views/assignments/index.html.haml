@@ -72,6 +72,6 @@
 
                 
 
-%div#footerNav
+%div.span12
   - if current_user.is_staff?
     = link_to 'New Assignment', new_assignment_path, {:class => 'btn btn-primary'}

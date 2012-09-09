@@ -30,6 +30,6 @@
         %td= link_to "Edit", edit_badge_path(badge)
         %td= link_to "Delete", badge_path(badge), :data => { :confirm => 'Are you sure?' }, :method => :delete
 
-%div#footerNav
+%div.span12
   = link_to 'Edit', edit_badge_set_path(@badge_set), {:class => 'btn btn-primary'}
   = link_to 'Back', badge_sets_path, {:class => 'btn btn-primary'}

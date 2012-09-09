@@ -77,11 +77,10 @@
                     = link_to "Forgot your password?", login_path, :class => 'btn btn-info'
 
     .container-fluid.container
-      .content
-        .row-fluid
-          .span12
-            %h3#pageTitle= @title
-            = render 'layouts/content'
+      .row-fluid
+        .span12
+          %h3#pageTitle= @title
+          = render 'layouts/content'
   
       %footer#siteFooter
         &copy; 2012 Regents of the University of Michigan &#124;

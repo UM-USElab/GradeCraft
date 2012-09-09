@@ -3,6 +3,6 @@
 
 %img{:src => @earned_badge.badge.try(:icon), :alt => @earned_badge.badge.try(:name), :width => "25", :height => "25"}
 
-%div#footerNav
+%div.span12
   = link_to 'Edit', edit_earned_badge_path(@earned_badge), :class => "btn btn-inverse"
   = link_to 'Back', earned_badges_path, :class => "btn btn-inverse"

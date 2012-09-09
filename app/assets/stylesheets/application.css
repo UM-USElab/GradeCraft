@@ -6,6 +6,7 @@
  *= require_tree .
  *= require jquery.ui.all
  *= require bootstrap
+ *= require bootstrap-responsive
  *= require bootstrap-wysihtml5
  *= require flexslider.css
 */

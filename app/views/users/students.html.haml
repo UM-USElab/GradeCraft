@@ -44,5 +44,5 @@
 = link_to "CSV", users_path(format: "csv") |
 = link_to "Excel", users_path(format: "xls")
 
-%div#footerNav
+%div.span12
   = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"

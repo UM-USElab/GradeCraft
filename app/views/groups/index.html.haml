@@ -20,5 +20,5 @@
         %td= link_to 'Edit', edit_group_path(group), :class => 'btn btn-mini'
         %td= link_to 'Delete', group, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
-%div#footerNav
+%div.span12
   = link_to 'New Group', new_group_path, {:class => 'btn btn-primary'}

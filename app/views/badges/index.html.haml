@@ -37,6 +37,6 @@
               %td= badge.name
               %td= badge.description
               
-%div#footerNav
+%div.span12
   - if current_user.is_staff?
     = link_to 'Create a New Badge', new_badge_path, :class => "btn btn-primary"

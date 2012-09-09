@@ -1,7 +1,7 @@
 - if current_user.is_staff? 
   = render 'form'
 
-%div#footerNav
+%div.span12
   = link_to 'View', @user, :class => "btn btn-inverse"
   = link_to 'Back', users_path, :class => "btn btn-inverse"
 

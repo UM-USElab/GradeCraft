@@ -27,7 +27,7 @@ Scheme Elements:
         %td= link_to "Edit", edit_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme.id, element.id)
         %td= link_to "Delete", course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme.id, element.id), :data => { :confirm => 'Are you sure?' }, :method => :delete
         
-%div#footerNav
+%div.span12
   = link_to 'Edit', edit_course_grade_scheme_path(@course_grade_scheme), :class => 'btn btn-primary'
   = link_to 'Back', course_grade_schemes_path, :class => 'btn btn-primary'
   = link_to 'Create a New Course Grade Scheme', new_course_grade_scheme_path, :class => 'btn btn-primary'

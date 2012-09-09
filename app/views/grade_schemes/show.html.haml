@@ -28,6 +28,6 @@ Scheme Elements:
         %td= link_to "Delete", grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id), :data => { :confirm => 'Are you sure?' }, :method => :delete
   
 
-%div#footerNav
+%div.span12
   = link_to 'Edit', edit_grade_scheme_path(@grade_scheme), :class => 'btn btn-primary'
   = link_to 'Back', grade_schemes_path, :class => 'btn btn-primary'

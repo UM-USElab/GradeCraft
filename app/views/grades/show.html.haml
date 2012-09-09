@@ -21,7 +21,7 @@
   %b Status:
   = @grade.status
 
-%div#footerNav
+%div.span12
   = link_to 'Edit', edit_assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id), :class => 'btn btn-primary'
   = link_to 'Back', assignment_path(@grade.assignment_id), :class => 'btn btn-primary'
   = link_to "Grade Another " +@grade.assignment.name, new_assignment_grade_path("assignment_id"=>@grade.assignment.id), :class => 'btn btn-primary'

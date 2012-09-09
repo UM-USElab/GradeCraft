@@ -1,4 +1,4 @@
-%div#leftSidebar
+%div.span3
   %div#team
     - if user.team.present?
       %span.badge.badge-info= link_to user.team.name, team_path(user.team.id)
@@ -11,9 +11,9 @@
     %br
     %h3.btn.btn-primary= "Current Course Grade: #{current_course.grade_level(user)}"
   - if current_course.has_badges? 
-    %div#badgesWrapper
-      %span.title Badges
-      %div#badgesEarned
+    %div#badgesWrapper.span3
+      %h4 Badges
+      %div#badges
         - @badges.each do |badge|
           - @user.earned_badges_by_badge(badge).tap do |earned_badge|
             - if earned_badge
@@ -36,7 +36,7 @@
       - if team_leader.present?
         %div= link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn"
 
-%div#mainInfo
+%div.span8
   %h2#points
   %div#userScoreSection
     %div#userID{ :'data-user-id' => @user.id }
@@ -100,8 +100,8 @@
                     - else
                       %span.alert.alert-error.assignmentGrade #{grade.raw_score} / #{grade.point_total}
                     
-    %div.clear
+
 - if current_user.is_staff?
-  %div#footerNav
+  %div.span12
     = link_to "See All #{current_course.user_ref}s", users_path, :class => "btn btn-primary"
     = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"
