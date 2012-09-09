@@ -74,6 +74,10 @@ class Course < ActiveRecord::Base
   def total_points
     assignments.sum(:point_total)
   end
+
+  def running_total_points
+    assignments.past.sum(:point_total)
+  end
   
   def score_for_student(student)
    student.sortable_score
@@ -83,9 +87,24 @@ class Course < ActiveRecord::Base
     course_grade_scheme.try(:grade_level, score_for_student(student)) || "Not yet known"
   end
   
-    
   def grades_for_student(student)
     self.grades.where(:gradeable_id => student.id, :gradeable_type => 'User')
+  end
+
+  def scores_by_assignment_type_for_student(student)
+    assignment_type_scores = {}
+    self.grades_for_student(student).group_by { |g| g.assignment.assignment_type_id }.each { |assignment_type_id,grades| assignment_type_scores[assignment_type_id] = grades.map(&:score).inject(&:+) }
+    assignment_type_scores
+  end
+
+  def current_scores_by_assignment_type_for_student(student)
+    assignment_type_scores = {}
+    self.assignments.past.map { |a| a.grades.where(:gradeable_id => student.id, :gradeable_type => 'User') }.flatten.group_by { |g| g.assignment.assignment_type_id }.each { |assignment_type_id,grades| assignment_type_scores[assignment_type_id] = grades.map(&:score).inject(&:+) }
+    assignment_type_scores
+  end
+
+  def assignment_type_score_for_student(assignment_type,student)
+    scores_by_assignment_type_for_student(student)[assignment_type.id]
   end
   
   

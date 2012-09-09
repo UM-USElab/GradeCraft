@@ -18,21 +18,6 @@
     %ul.slides
       %li{:id => "slide-#required"}
         %div.slide-panel
-          %h2= assignment_type.try(:name)
-          %p Current Score:
-          //%span= @user.assignment_type_score(assignment_type)
-          = "/"
-          %span#assignmentTypeScore= assignment_type.possible_score 
-          = assignment_type.predictor_description
-          %span.badge.badge-warning= assignment_type.weight
-          - if assignment_type.student_choice?
-            %span.badge.badge-important= link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
-          - assignments.each do |assignment|
-            %div.assignment
-              %span.assignmentTitle= assignment.try(:title)
-              - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
-                - if grade.attempted? 
-                  %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total}
           %div
             %h3 Required Assignments
             - @assignments.each do |assignment|
@@ -64,7 +49,7 @@
                 %div.assignment.clear
                   %h6.assignmentTitle.pull-left= assignment.name
                   - if assignment_type.fixed?
-                    %input{:type => "checkbox", :name => assignment.name, :input_html => assignment.point_total, :class => "class-checkbox"} 
+                    %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-original-value' => 0 }
                   - if assignment_type.slider?
                     %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.name, :value => 0 }
                     %div.slider.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all{:id => "slider-"+assignment.id.to_s()}

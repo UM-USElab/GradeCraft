@@ -98,11 +98,17 @@ class UsersController < ApplicationController
       @user = current_user
       User.increment_counter(:predictor_views, current_user.id) if current_user
     end
-    @grades = current_course.grades_for_student(@user)
-    predictor_array = @grades.map { |g| { :score => g.score, :assignment_name => g.assignment.name, :assignment_type_name => g.assignment.assignment_type.name } }
-    predictor_array = predictor_array.group_by { |g| g[:assignment_type_name] }
+    if params[:in_progress]
+      @assignment_type_scores = @assignment_types.map { |assignment_type| { :data => [current_course.current_scores_by_assignment_type_for_student(@user)[assignment_type.id]], :name => assignment_type.name } }
+    else
+      @assignment_type_scores = @assignment_types.map { |assignment_type| { :data => [current_course.scores_by_assignment_type_for_student(@user)[assignment_type.id]], :name => assignment_type.name } }
+    end
     respond_with @user do |format|
-      format.json { render :json => predictor_array.to_json }
+      format.json { render :json => {
+        :student_name => @user.name,
+        :scores => @assignment_type_scores,
+        :course_total => params[:in_progress] ? current_course.running_total_points : current_course.total_points
+      }.to_json }
     end
   end
 
