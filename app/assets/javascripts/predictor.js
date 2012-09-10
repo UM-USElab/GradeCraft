@@ -5,12 +5,12 @@ $(document).ready(function() {
     chart: {
       renderTo: 'prediction',
       type: 'bar',
-      height:200,
+      height:170,
       backgroundColor:null,
-      width:800
+      width:900
     },
     title: {
-      text: 'Course Points',
+      text: ' ',
       style: {
         color: "#FFFFFF"
       }
@@ -78,8 +78,7 @@ $(document).ready(function() {
 
     $.getJSON('predictor.json?in_progress=true', { user_id: userID }, function(data) {
       options.chart.renderTo = 'prediction';
-      options.subtitle = { text: '(predictor)' };
-      options.xAxis.categories = [data.student_name];
+      options.xAxis.categories = { text: ' ' };
       options.yAxis.max = data.course_total
       options.series = data.scores
       $wrapper.data('scores',data.scores)
