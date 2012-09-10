@@ -15,6 +15,7 @@ class TeamsController < ApplicationController
   def show
     @team = current_course.teams.find(params[:id])
     @title = "View #{@team.name}s"
+    @users = @team.users
 
     respond_to do |format|
       format.html # show.html.erb
