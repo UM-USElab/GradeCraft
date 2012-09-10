@@ -6,9 +6,7 @@
           = "#{@user.name}'s current points:"
           = number_with_delimiter(@user.sortable_score, :delimiter => ',') if @user.respond_to?(:sortable_score)
           = "/" 
-          = current_course.total_points  
-        %h6
-          Projected Points: 
+          = current_course.total_points 
         %span#expectedPointsValue
         %div#prediction
 

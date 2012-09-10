@@ -10,7 +10,7 @@ $(document).ready(function() {
       width:900
     },
     title: {
-      text: ' ',
+      text: 'PROJECTED POINTS:',
       style: {
         color: "#FFFFFF"
       }
@@ -79,6 +79,7 @@ $(document).ready(function() {
     $.getJSON('predictor.json?in_progress=true', { user_id: userID }, function(data) {
       options.chart.renderTo = 'prediction';
       options.xAxis.categories = { text: ' ' };
+     /* options.subtitle = { text: data.scores.sum } */
       options.yAxis.max = data.course_total
       options.series = data.scores
       $wrapper.data('scores',data.scores)
