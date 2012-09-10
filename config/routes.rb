@@ -57,6 +57,7 @@ GradeCraft::Application.routes.draw do
   end
 
   get 'gradebook' => 'grades#gradebook'
+  #get 'predictor.json' => 'users#predictor.json'
   get 'credits' => 'info#show'
   get 'using_gradecraft' => 'info#using_gradecraft'
   get 'home/index'

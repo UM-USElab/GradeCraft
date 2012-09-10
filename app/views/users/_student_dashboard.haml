@@ -65,12 +65,14 @@
     %a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
       Show me my score out of available points so far
 
-    %div#predictorLink
-      - if current_user.is_student?
-        = link_to 'Predict My Grade', predictor_users_path(:user_id => user.id)
-      - if current_user.is_staff?
-        = link_to 'Predict Course Grade', predictor_users_path(:user_id => user.id)
-        
+    //%div#predictorLink
+    //  - if current_user.is_student?
+    //    = link_to 'Predict My Grade', predictor_users_path(:user_id => user.id)
+    // - if current_user.is_staff?
+    //    = link_to 'Predict Course Grade', predictor_users_path(:user_id => user.id)
+    
+    %br
+    %br    
     %div#userBarTotal.dashboard-toggle
     %div#userBarInProgress.dashboard-toggle
     
