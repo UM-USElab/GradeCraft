@@ -97,11 +97,13 @@ class Assignment < ActiveRecord::Base
   end
   
   def future?
-    due_date.future?
+    #due_date.future?
   end
   
   def soon?
-    due_date < Time.now + 7.days
+    if due_date?
+      due_date < Time.now + 7.days
+    end
   end
   
   def fixed?

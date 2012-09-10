@@ -30,9 +30,11 @@
                   = link_to "My Dashboard",  dashboard_path, :class => "btn"    
                 - if current_user.is_staff?
                   = link_to "Assignments", assignments_path, :class => "btn"
+                  - if current_course.has_teams?
+                    = link_to "#{current_course.team_ref}s", teams_path, :class => "btn"
                 - if current_course.has_badges?                
                   = link_to "Badges", badges_path, :class => "btn"
-                - if current_course.has_teams?                
+                - if current_user.is_student? && current_course.has_teams? && current_course.teams_visible?                
                   = link_to "#{current_course.team_ref}s", teams_path, :class => "btn"
                 //- if current_user.is_student?  
                 //= link_to "Predictor",  predictor_users_path(:user_id => current_user.id), :class => "btn"

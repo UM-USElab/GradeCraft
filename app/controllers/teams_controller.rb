@@ -14,7 +14,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = current_course.teams.find(params[:id])
-    @title = "View #{@team.name}s"
+    @title = "View #{@team.name}"
     @users = @team.users
 
     respond_to do |format|
@@ -34,7 +34,7 @@ class TeamsController < ApplicationController
 
   def edit
     @team =  current_course.teams.find(params[:id])
-    @title = "Edit #{@team.name}s"
+    @title = "Edit #{@team.name}"
     @users = current_course.users
     @students = @users.students
   end

@@ -1,59 +1,64 @@
+%div.pull-right
+  - if current_user.is_staff?
+    %div.btn-group.span12
+      - if current_course.has_badges? 
+        = link_to "Award a Badge", new_earned_badge_path, :class => "btn"
+      = link_to "Email", "mailto:#{user.email}", :class => "btn"
+      = link_to "Edit", edit_user_path(user.id), :class => "btn"
+  - user.team_leader.tap do |team_leader|
+    - if team_leader.present?
+      = link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn span8"
+
 %div.span3
-  %div#team
-    - if user.team.present?
+  .span12
+    - if current_user.is_staff? && user.team.present?
       %span.badge.badge-info= link_to user.team.name, team_path(user.team.id)
-  %div#userGravatar
+    - if current_user.is_student? && user.team.present? && current_course.teams_visible?
+      %span.badge.badge-info= link_to user.team.name, team_path(user.team.id)
+    - elsif current_user.is_student? && user.team.present? 
+      %span.badge.badge-info= user.team.name
+  .span12
     = gravatar_for user, :size => 230
   - if current_user.is_student?
-    %br
-    %h3#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)} How am I doing?
-  - if current_user.is_staff? 
-    %br
-    %h3.btn.btn-primary= "Current Course Grade: #{current_course.grade_level(user)}"
-  - if current_course.has_badges? 
-    %button.btn.btn-success.span12{"data-target" => "#badges", "data-toggle" => "collapse"}
-      %h4 Badges
-      %div{:id => "badges", :class => "collapse"}
-        - @badges.each do |badge|
-          - @user.earned_badges_by_badge(badge).tap do |earned_badge|
-            - if earned_badge
-              %div.badgeIcon
-                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
-                .badgeTitle= badge.name
-            - else
-              %div.badgeIcon
-                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
-                .badgeTitle= badge.name
-        %div.span12
-          Badges you've earned will shine brightly!
-    %button.btn.btn-warning.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
-      %h4#tdTitle To Do List
-      %div{:id => "toDoList", :class => "collapse"}
-        - @assignments.each do |assignment|
-          - if assignment.soon? 
-            %div
-              %h6= "#{assignment.name}"
-              - if assignment.has_assignment_submissions?
-                - assignment.submission_for_student(user).tap do |submission|
-                  - if submission
-                    = "Already submitted, well done!"
-                  - else
-                    %span.due= assignment.due_date
-                    %span.submit= link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn btn-mini'
-              
+    .span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)} How am I doing?
+  - elsif current_user.is_staff? 
+    .span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)} How are they doing?
+    - if current_course.has_badges? 
+      %button.btn.btn-success.span12{"data-target" => "#badges", "data-toggle" => "collapse"}
+        %span.buttonTitle Badges
+        %div{:id => "badges", :class => "collapse"}
+          - @badges.each do |badge|
+            - @user.earned_badges_by_badge(badge).tap do |earned_badge|
+              - if earned_badge
+                %div.badgeIcon
+                  %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
+                  .badgeTitle= badge.name
+              - else
+                %div.badgeIcon
+                  %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
+                  .badgeTitle= badge.name
+          %div.span12
+            Badges you've earned will shine brightly!
+  %button.btn.btn-warning.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
+    %span.buttonTitle To Do List
+    %div{:id => "toDoList", :class => "collapse"}
+      - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
+        - assignments.each do |assignment|
+          - if assignment.soon?
+            %span4= "#{assignment.assignment_type.try(:name)}:"
+            %span4= assignment.try(:name)
+            %br
+            %span4= "Due: #{assignment.try(:due_date)}"
+            - if assignment.has_assignment_submissions?
+              - assignment.submission_for_student(user).tap do |submission|
+                - if submission
+                  = link_to "See Submission", assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-primary'
+                - else
+                  = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn'
+            - if assignment.self_gradeable?
+              //%button.btn.btn-primary #{assignment.student_logged_button_text}
 
-   
-    %div.span12
-      - if current_user.is_staff?
-        - if current_course.has_badges? 
-          = button_to "Award a Badge", new_earned_badge_path, :class => "btn span8"
-        = button_to "Email #{user.first_name}", "mailto:#{user.email}", :class => "btn span8"
-        = link_to "Edit #{user.first_name}", edit_user_path(user.id), :class => "btn span8"
-      - user.team_leader.tap do |team_leader|
-        - if team_leader.present?
-          = link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn span8"
-
-%div.span8
+%div.offset3
   %h2#points
   %div#userScoreSection
     %div#userID{ :'data-user-id' => @user.id }
