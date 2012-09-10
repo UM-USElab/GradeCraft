@@ -20,9 +20,11 @@
   .span12
     = gravatar_for user, :size => 230
   - if current_user.is_student?
-    .span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)} How am I doing?
+    .span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)}
+      %span.buttonTitle How am I doing?
   - elsif current_user.is_staff? 
-    .span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)} How are they doing?
+    .span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)} 
+      %span.buttonTitle How are they doing?
     - if current_course.has_badges? 
       %button.btn.btn-success.span12{"data-target" => "#badges", "data-toggle" => "collapse"}
         %span.buttonTitle Badges

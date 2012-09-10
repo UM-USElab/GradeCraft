@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   respond_to :html, :json
 
   skip_before_filter :require_login, :only=>[:create,:new]
-  before_filter :'ensure_staff?', :only=>[:index,:destroy,:show, :edit]
+  before_filter :'ensure_staff?', :only=>[:index,:destroy,:show, :edit, :new]
   before_filter :'ensure_admin?', :only=>[:all_users]
 
   def import
