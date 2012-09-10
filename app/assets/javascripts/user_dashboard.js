@@ -3,12 +3,11 @@ $(document).ready(function() {
 	var options = {
     chart: {
       type: 'bar',
-      height:200,
+      height:250,
       backgroundColor:null,
-      width:500
+      width:710
     },
     title: {
-      text: 'Course Points',
       style: {
         color: "#FFFFFF"
       }
@@ -17,9 +16,12 @@ $(document).ready(function() {
       enabled: false
     },
     xAxis: {
+      title: {
+        text: ' '
+      },
       labels: {
         style: {
-          color: "#FFFFFF"
+          color: "#222"
         }
       }
     },
@@ -37,7 +39,7 @@ $(document).ready(function() {
     tooltip: {
       formatter: function() {
         return '<b>'+ this.series.name +'</b><br/>'+
-        this.x +': '+ this.y;
+        this.y +' points';
       }
     },
     plotOptions: {
@@ -69,8 +71,8 @@ $(document).ready(function() {
       // Get Assignment Type Info
       $.getJSON('predictor.json?in_progress=true', { user_id: userID }, function(data) {
         options.chart.renderTo = 'userBarInProgress';
-        options.subtitle = { text: '(so far)' };
-        options.xAxis.categories = [data.student_name];
+        options.title = { text: 'Points so far' };
+        options.xAxis.categories = { text: ' ' };
         options.yAxis.max = data.course_total
         options.series = data.scores
         chart = new Highcharts.Chart(options);
@@ -78,8 +80,8 @@ $(document).ready(function() {
 
       $.getJSON('predictor.json', { user_id: userID }, function(data) {
         options.chart.renderTo = 'userBarTotal';
-        options.subtitle = { text: '(total)' };
-        options.xAxis.categories = [data.student_name];
+        options.title = { text: 'Total Points' };
+        options.xAxis.categories = { text: ' ' };
         options.yAxis.max = data.course_total
         options.series = data.scores
         chart = new Highcharts.Chart(options);

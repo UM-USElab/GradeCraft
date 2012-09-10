@@ -42,6 +42,23 @@ button h4 {
   opacity: .1;
 }
 
+#tdTitle {
+}
+
+#toDoList { 
+  text-align: left;
+}
+#toDoList h6 {
+  margin: 5px 0px;
+  color: #000;
+  font-size: 12px;
+}
+
+#toDoList .due, #toDoList .submit {
+  margin-left: 15px;
+}
+
+
 .clear {
   height: 5px;
   clear: both;
@@ -72,9 +89,12 @@ button h4 {
   cursor:pointer;
 }
 .dashboard-toggle .highcharts-container{
-  margin:0 auto;
-  width:90%;
+  margin:0;
+  width:100%;
+  padding: 0;
+  left: -30px;
 }
+
 #scoreToggle:hover{
   text-decoration:underline;
 }
@@ -110,19 +130,6 @@ button h4 {
 .assignmentEdit a {
   font-weight: bold;
   color: #333;
-}
-
-.completedAssignment, .incompleteAssignment, .missedAssignment {
-  margin-bottom: 2px;
-}
-
-.incompleteAssignment {
-  background-color: #999;
-  color: #000;
-}
-.missedAssignment {
-  background-color: #ffaea2;
-  color: #000;
 }
 
 #mainInfo {

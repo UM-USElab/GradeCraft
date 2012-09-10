@@ -24,12 +24,25 @@
               %div.badgeIcon
                 %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
                 .badgeTitle= badge.name
-        %span.hint Badges you've earned will shine brightly!
+        %div.span12
+          Badges you've earned will shine brightly!
     %button.btn.btn-warning.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
-      %h4 To Do List
+      %h4#tdTitle To Do List
       %div{:id => "toDoList", :class => "collapse"}
-        "Test"
-     
+        - @assignments.each do |assignment|
+          - if assignment.soon? 
+            %div
+              %h6= "#{assignment.name}"
+              - if assignment.has_assignment_submissions?
+                - assignment.submission_for_student(user).tap do |submission|
+                  - if submission
+                    = "Already submitted, well done!"
+                  - else
+                    %span.due= assignment.due_date
+                    %span.submit= link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn btn-mini'
+              
+
+   
     %div.span12
       - if current_user.is_staff?
         - if current_course.has_badges? 
