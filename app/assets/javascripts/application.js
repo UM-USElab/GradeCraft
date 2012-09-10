@@ -24,6 +24,15 @@ $(document).ready(function(){
     e.stopPropagation();
   });
   
+  	$('#scoreTotal').hide();
+	$('#userBarTotal').hide();
+	$('#showPossiblePts').hide();
+    $('#soFarScoreToggle').hide();	
+
+    $('a.dashboard-toggle').click(function(){
+      $('.dashboard-toggle').toggle();
+      return false;
+	})
   
 
 $('#course_id').change(function() { $(this).closest('form').submit(); });
