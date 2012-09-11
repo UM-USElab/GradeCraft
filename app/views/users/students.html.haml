@@ -27,7 +27,7 @@
         %td= student.team.try(:name)
         - if current_course.team_roles?
           %td= student.try(:team_role)
-        %td= student.try(:sortable_score)
+        %td= student.try(:earned_grades)
         %td= student.visit_count
         %td= student.page_views
         %td= student.predictor_views

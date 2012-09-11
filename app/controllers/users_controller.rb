@@ -82,9 +82,6 @@ class UsersController < ApplicationController
     @assignments = current_course.assignments
     @grades = @user.grades.all 
     @badges = current_course.badges
-    #@grade = @user.grades.find(params[:assignment_id => assignment_id])
-    #@grades_by_assignment_type = @grades.group_by(&:assignment_type)
-    #@grades_by_assignment_type = @user.grades(:include => :assignment).group_by(&:assignment_type)
     respond_with @user
   end
   

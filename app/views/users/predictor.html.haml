@@ -4,7 +4,7 @@
       %div#projectedPoints
         %h3
           = "#{@user.name}'s current points:"
-          = number_with_delimiter(@user.sortable_score, :delimiter => ',') if @user.respond_to?(:sortable_score)
+          = number_with_delimiter(@user.earned_grades, :delimiter => ',') if @user.respond_to?(:earned_grades)
           = "/" 
           = current_course.total_points 
         %span#expectedPointsValue
