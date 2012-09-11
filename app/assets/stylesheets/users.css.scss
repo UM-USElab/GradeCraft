@@ -25,7 +25,7 @@ button h4 {
   float: left;
   text-align: center;
   height: 100px;
-  width: 70px;
+  width: 62px;
   font-size: 70%;
   margin-top: 15px;
 }
@@ -34,12 +34,17 @@ button h4 {
   line-height: 14px;
   font-size: 11px;
 }
+
+.buttonTitle {
+  font-weight: bold;
+  font-family: Verdana, sans-serif;
+}
 #badges img {
-  width: 50px;
+  width: 45px;
 }
 
-#badges img.unearned {
-  opacity: .1;
+#badges img.unearned, #badges .badgeTitle.unearned {
+  opacity: .3;
 }
 
 #tdTitle {

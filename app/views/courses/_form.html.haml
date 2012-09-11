@@ -18,6 +18,7 @@
   = f.input :user_weight_amount_close_date, :label => "What date must they make this decision by?", :as => :date
   = f.association :course_grade_scheme, :collection => @course_grade_schemes
   = f.input :has_assignment_submissions, :hint=> "Will you be using GradeCraft to accept assignment submissions?", :label => "Assignment Submissions"
+  = f.input :teams_visible, :label => "Can students see the teams, their points, and their badges?"
   
   .form-actions    
     = f.button :submit, :class => 'btn'
