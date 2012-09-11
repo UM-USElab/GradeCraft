@@ -1,110 +1,139 @@
-
-$(document).ready(function() {
-
-	var options = {
-    chart: {
-      renderTo: 'prediction',
-      type: 'bar',
-      height:170,
-      backgroundColor:null,
-      width:900
-    },
-    title: {
-      text: 'PROJECTED POINTS:',
+var chartOptions = {
+  chart: {
+    renderTo: 'prediction',
+    type: 'bar',
+    height:170,
+    backgroundColor:null,
+    width:900
+  },
+  title: {
+    text: 'PROJECTED POINTS:',
+    style: {
+      color: "#FFFFFF"
+    }
+  },
+  subtitle: {
+    text: ''
+  },
+  credits: {
+    enabled: false
+  },
+  xAxis: {
+    labels: {
       style: {
         color: "#FFFFFF"
       }
+    }
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Available Points'
+    }
+  },
+  labels: {
+    formatter: function(){
+      return this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
-    subtitle: {
-      text: ''
-    },
-    credits: {
-      enabled: false
-    },
-    xAxis: {
-      labels: {
-        style: {
-          color: "#FFFFFF"
+    plotLines: [{
+      value: 0,
+      width: 1,
+      color: '#808080'
+    }]
+  },
+  tooltip: {
+    formatter: function() {
+      return '<b>'+ this.series.name +'</b><br/>'+
+      this.x +': '+ this.y;
+    }
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal',
+      events: {
+        legendItemClick: function(event){
+          return false;
         }
-      }
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: 'Available Points'
-      }
-    },
-    labels: {
-      formatter: function(){
-        return this.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      },
-      plotLines: [{
-        value: 0,
-        width: 1,
-        color: '#808080'
-      }]
-    },
-    tooltip: {
-      formatter: function() {
-        return '<b>'+ this.series.name +'</b><br/>'+
-        this.x +': '+ this.y;
-      }
-    },
-    plotOptions: {
-      series: {
-        stacking: 'normal',
-        events: {
-          legendItemClick: function(event){
-            return false;
-          }
-        }
-      }
-    },
-    legend: {
-      backgroundColor: null,
-      borderColor:null,
-      reversed: true,
-      itemStyle: {
-        color: '#CCCCCC'
       }
     }
-  };
-    
-  var chart;
-  
-  var $wrapper = $('#prediction');
-  if($wrapper.length) {
-    var userID = $('#userID').data('user-id');
+  },
+  legend: {
+    backgroundColor: null,
+    borderColor:null,
+    reversed: true,
+    itemStyle: {
+      color: '#CCCCCC'
+    }
+  },
+  series: []
+};
 
-    $.getJSON('predictor.json?in_progress=true', { user_id: userID }, function(data) {
-      options.chart.renderTo = 'prediction';
-      options.xAxis.categories = { text: ' ' };
-     /* options.subtitle = { text: data.scores.sum } */
-      options.yAxis.max = data.course_total
-      options.series = data.scores
-      $wrapper.data('scores',data.scores)
-      chart = new Highcharts.Chart(options);
+var AssignmentType = Backbone.Model.extend();
 
-      $('.assignment input').each(function() {
-        $input = $(this);
-        $input.click(function() {
-          if ($input.is(':checked')) {
-            change = $input.val() - $input.data('original-value');
-          } else {
-            change = 0 - $input.data('original-value');
-          };
-          chart.series[0].setData([change])
-        });
-      });
-
-/*
-      setTimeout(function() {
-        chart.series[0].setData([8000])
-      },3000);
-      */
-    });
-
-    
-  };
-
+var AssignmentTypesArray = Backbone.Collection.extend({
+  model: AssignmentType
 });
+
+var PredictorView = Backbone.View.extend({
+  el: $('#predictorPage'),
+  initialize: function() {
+    this.collection = new AssignmentTypesArray();
+    this.createAssignmentTypes();
+    this.calculateScores();
+    this.setupChart();
+    this.collection.bind('change',this.render,this);
+  },
+  render: function() {
+    var chart = this.model;
+    this.collection.forEach(function(assignmentType,i) {
+      chart.series[i].setData([assignmentType.get('score')])
+    });
+  },
+  createAssignmentTypes: function() {
+    var assignmentTypes = this.collection;
+    $.each($(this.el).find('.slide.assignment-type'),function(i,slide) {
+      $slide = $(slide);
+      var assignmentTypeName = $slide.data('assignment-type-name');
+      var assignmentTypeId = $slide.data('assignment-type-id');
+      assignmentTypes.add(new AssignmentType({ id: assignmentTypeId, name: assignmentTypeName, score: 0 }));
+    });
+  },
+  setupChart: function() {
+    this.collection.forEach(function(assignmentType,i) {
+      chartOptions.series.push({ name: assignmentType.get('name'), data: [assignmentType.get('score')] });
+    });
+    $el = $(this.el);
+    chartOptions.xAxis.categories = [$el.data('student-name')];
+    chartOptions.yAxis.max = $el.data('course-total');
+    this.model = new Highcharts.Chart(chartOptions);
+  },
+  events: { 
+    'change input': 'calculateScores'
+  },
+  calculateScores: function() {
+    var assignmentTypes = this.collection;
+    $.each($(this.el).find('.slide.assignment-type'),function(i,slide) {
+      $slide = $(slide);
+      var assignmentTypeId = $slide.data('assignment-type-id');
+      var score = 0;
+      $.each($slide.find('input, select'), function(i,item) {
+        var $item = $(item);
+        if($item.is(':checkbox') && $item.is(':checked')) {
+          score += parseInt($item.val());
+        }
+      });
+      assignmentTypes.get(assignmentTypeId).set('score',score);
+    });
+  }
+});
+  
+
+
+$(document).ready(function() {
+  var $wrapper = $('#prediction');
+  if ($wrapper.length) {
+    new PredictorView();
+  }
+});
+
+    

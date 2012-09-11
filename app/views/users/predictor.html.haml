@@ -10,7 +10,7 @@
         %span#expectedPointsValue
         %div#prediction
 
-%div#predictorPage
+%div#predictorPage{ 'data-student-name' => @user.name, 'data-course-total' => current_course.total_points }
   %div.pageTitle Predict Your Course Grade
   %div.flexslider
     %ul.slides
@@ -23,7 +23,7 @@
                 %div
                   %h6.assignmentTitle= assignment.name
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
-        %li{:id => "slide-#{assignment_type.id}"}
+        %li.assignment-type.slide{:id => "slide-#{assignment_type.id}", :data => { :'assignment-type-id' => assignment_type.id, :'assignment-type-name' => assignment_type.name } }
           %div.slide-panel.span11
             %div
               %h3= assignment_type.name
@@ -47,7 +47,7 @@
                 %div.assignment.clear
                   %h6.assignmentTitle.pull-left= assignment.name
                   - if assignment_type.fixed?
-                    %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-original-value' => 0 }
+                    %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
                   - if assignment_type.slider?
                     %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.name, :value => 0 }
                     %div.slider.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all{:id => "slider-"+assignment.id.to_s()}

@@ -8,9 +8,13 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap-wysihtml5-all
-//= require_tree .
 //= require highcharts
 //= require flexslider 
+//= require underscore.min
+//= require backbone.min
+//= require handlebars
+//= require ember.min
+//= require_tree .
 
 $(document).ready(function(){
   $('#some-textarea').wysihtml5();
