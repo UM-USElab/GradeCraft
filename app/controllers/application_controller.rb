@@ -2,6 +2,13 @@ require "application_responder"
 
 class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
+  
+  include Canable::Enforcers
+  
+  delegate :can_view?, :to => :current_user
+  helper_method :can_view? # so you can use it in your views
+  hide_action :can_view?
+  
   respond_to :html
   
   protect_from_forgery
@@ -45,5 +52,9 @@ class ApplicationController < ActionController::Base
   def increment_page_views
     User.increment_counter(:page_views, current_user.id) if current_user
   end   
+
+  def enforce_view_permission(resource)
+    raise Canable::Transgression unless can_view?(resource)
+  end
 
 end

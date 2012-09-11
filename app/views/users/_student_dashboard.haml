@@ -63,7 +63,7 @@
 %div.offset3
   %h2#points
   %div#userScoreSection
-    %div#userID{ :'data-user-id' => @user.id }
+    %div#userID{ :'data-user-id' => user.id }
     %div#userPointValues
       %span= "Your current score is "  
       %span#userScoreNum #{number_with_delimiter(user.earned_grades, :delimiter => ',') if user.respond_to?(:sortable_score)}

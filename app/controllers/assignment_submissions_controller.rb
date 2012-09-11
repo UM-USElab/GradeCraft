@@ -12,6 +12,7 @@ class AssignmentSubmissionsController < ApplicationController
     @title = "View Submission"
     @assignment = Assignment.find(params[:assignment_id])
     @assignment_submission = AssignmentSubmission.find(params[:id])
+    enforce_view_permission(@assignment_submission)
     respond_with(@assignment_submission)
   end
 

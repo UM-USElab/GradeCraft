@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
   
+  include Canable::Cans
+  
   before_save :set_sortable_score
   
   Roles = %w{student professor gsi admin}

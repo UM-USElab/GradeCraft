@@ -21,6 +21,7 @@ gem 'activerecord-import'
 gem 'flexslider'
 gem "highcharts-rails", "~> 2.3.0"
 gem "airbrake"
+gem 'canable'
 
 group :production do
   gem 'mysql2'
