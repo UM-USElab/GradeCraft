@@ -12,8 +12,6 @@
 //= require flexslider 
 //= require underscore.min
 //= require backbone.min
-//= require handlebars
-//= require ember.min
 //= require_tree .
 
 $(document).ready(function(){
