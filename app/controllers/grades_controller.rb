@@ -1,7 +1,7 @@
 class GradesController < ApplicationController
   respond_to :html, :json
 
-  before_filter :ensure_staff?
+  #before_filter :ensure_staff?
 
   def index
     @title = "View All Grades"
