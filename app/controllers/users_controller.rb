@@ -45,6 +45,12 @@ class UsersController < ApplicationController
   def index
     @title = "View all Users"
     @users =  current_course.users.order(:last_name)
+    user_search_options = {}
+    if params[:team_id].present?
+      @team = Team.find(params[:team_id])
+      user_search_options[:team_id] = @team.id if @team
+    end
+    @users = current_course.users.where(user_search_options)
     respond_to do |format|
       format.html
       format.json { render json: @users }
@@ -66,6 +72,12 @@ class UsersController < ApplicationController
     @students = current_course.users.students
     @teams = current_course.teams.all 
     @sorted_students = @students.order('sortable_score DESC')
+    user_search_options = {}
+    if params[:team_id].present?
+      @team = Team.find(params[:team_id])
+      user_search_options[:team_id] = @team.id if @team
+    end
+    @sorted_students = current_course.users.students.where(user_search_options).order('sortable_score DESC')
     respond_to do |format|
       format.html
       format.json { render json: @users }
