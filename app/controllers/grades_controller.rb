@@ -135,7 +135,6 @@ class GradesController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @gradeable.assignment_grades.build(params[:grade])
     if @assignment.update_attributes(params[:assignment])
-
       redirect_to assignment_path(@assignment)
     else
       redirect_to mass_edit_assignment_grades_path(@assignment)

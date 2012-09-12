@@ -46,16 +46,19 @@
   - if @assignment.assignment_type.mass_grade?
     (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
 
+
   = form_tag edit_status_assignment_grades_path(@assignment) do
     %table.display.table-bordered.table
       %thead
         %tr
-          %th
+          - if @assignment.release_necessary?
+            %th
           %th= current_course.user_ref
           %th Score
           %th Level
           %th Badges Earned
-          %th Status
+          - if @assignment.release_necessary?
+            %th Status
           %th Group
           %th
           %th
@@ -64,16 +67,18 @@
         - @students.each do |student|
           - @assignment.grade_for_student(student).tap do |grade|
             %tr
-              %td
-                - if grade
-                  = check_box_tag "grade.ids[])", grade.id
+              - if @assignment.release_necessary?
+                %td
+                  - if grade
+                    = check_box_tag "grade_ids[]", grade.id
               %td= link_to student.name, student
               %td #{number_with_delimiter(grade.try(:raw_score), :delimiter => ',') }
               %td= @assignment.grade_level(grade)
               %td 
                 - grade.try(:earned_badges) do |badge|
                   %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}
-              %td= grade.try(:status)
+              - if @assignment.release_necessary?
+                %td= grade.try(:status)
               - @assignment.submission_for_student(student).tap do |submission|
                 - if submission
                   %td= link_to "See Submission", assignment_assignment_submission_path(@assignment.id, submission), :class => 'btn btn-mini'
@@ -87,8 +92,7 @@
                 %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>@assignment.id, :gradeable_id => student.id, :gradeable_type => "User"), :class => 'btn btn-mini'
                 %td
                 %td
-      
-    %div
+    - if @assignment.release_necessary?
       = submit_tag "Update Grade Statuses", :class => "btn btn-info"
         
 %div.span12
