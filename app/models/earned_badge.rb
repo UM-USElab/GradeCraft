@@ -8,6 +8,14 @@ class EarnedBadge < ActiveRecord::Base
   attr_accessor :earned
 
   delegate :name, :description, :icon, :value, :to => :badge
+  
+  def point_value 
+    if value
+      value 
+    else
+      0
+    end
+  end
 
 end
 

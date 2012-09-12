@@ -15,4 +15,13 @@ class Badge < ActiveRecord::Base
     super || "onetime"
   end
   
+  
+  def point_value 
+    if value?
+      value 
+    else
+      0
+    end
+  end
+  
 end

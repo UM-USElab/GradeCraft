@@ -109,8 +109,12 @@ class User < ActiveRecord::Base
     
   end
   
+  def earned_badges_value
+    earned_badges.map(&:point_value).sum
+  end
+  
   def earned_grades
-    (grades.map(&:score).sum) + (earned_badges.map(&:value).sum) + team_grades
+    (grades.map(&:score).sum) + earned_badges_value + team_grades
   end
 
   def grades_by_assignment_id
