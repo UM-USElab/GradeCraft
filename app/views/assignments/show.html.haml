@@ -31,6 +31,16 @@
 //            %td= group.name
 //            %td
 //            %td
+
+%div
+  = form_tag assignment_path(@assignment), :method => :get do
+    = hidden_field_tag :assignment_id, @assignment.id
+    %br
+    %br
+    %br
+    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+    = submit_tag 'Filter', :class => 'btn'
+
 - if current_user.is_staff? 
   %h3 Individual Grades
   - if @assignment.assignment_type.mass_grade?
@@ -77,11 +87,10 @@
                 %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>@assignment.id, :gradeable_id => student.id, :gradeable_type => "User"), :class => 'btn btn-mini'
                 %td
                 %td
-    
+      
     %div
       = submit_tag "Update Grade Statuses", :class => "btn btn-info"
-      = link_to 'Add Grade', new_assignment_grade_path(:assignment_id => @assignment), :class => 'btn btn-info'
-
+        
 %div.span12
   = link_to 'Edit', edit_assignment_path(@assignment), :class => 'btn btn-primary'
   = link_to 'Back', assignments_path, :class => 'btn btn-primary'

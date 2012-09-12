@@ -23,7 +23,13 @@ class AssignmentsController < ApplicationController
     @title = "View #{@assignment.name}"
     @assignment_submissions = @assignment.assignment_submissions
     @earnables = current_course.earned_badges.all
-    respond_with @assignment
+    user_search_options = {}
+    if params[:team_id].present?
+      @team = Team.find(params[:team_id])
+      user_search_options[:team_id] = @team.id if @team
+    end
+    @students = current_course.users.students.where(user_search_options)
+    respond_with @assignment    
   end
 
   def new
