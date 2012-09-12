@@ -17,7 +17,7 @@ class Badge < ActiveRecord::Base
   
   
   def point_value 
-    if value?
+    if value
       value 
     else
       0

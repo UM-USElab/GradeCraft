@@ -45,6 +45,8 @@ GradeCraft::Application.routes.draw do
         put :mass_update
         post :edit_status
         put :update_status
+        get :self_log
+        post :self_log_create
       end
       resources :earned_badges
     end 

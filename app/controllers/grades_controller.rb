@@ -1,7 +1,7 @@
 class GradesController < ApplicationController
   respond_to :html, :json
 
-  #before_filter :ensure_staff?
+  before_filter :ensure_staff?, :except=>[:self_log, :self_log_create]
 
   def index
     @title = "View All Grades"
@@ -91,6 +91,26 @@ class GradesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to assignment_path(@assignment), notice: 'Grade was successfully deleted.' }
       format.json { head :ok }
+    end
+  end
+  
+  def self_log
+    @assignment = Assignment.find(params[:assignment_id])
+    @grade = @assignment.assignment_grades.create(params[:grade])
+    @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
+  end
+  
+  def self_log_create
+    @gradeable = find_gradeable
+    @assignment = Assignment.find(params[:assignment_id])
+    @grade = @gradeable.assignment_grades.build(params[:grade])
+    respond_to do |format|
+      if @grade.save
+        format.html { redirect_to dashboard_path, notice: 'Thank you for logging your grade!' }
+      else
+        format.html { redirect_to dashboard_path, notice: "We're sorry, this grade could not be added." }
+        
+      end
     end
   end
 

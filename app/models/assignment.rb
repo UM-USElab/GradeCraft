@@ -145,8 +145,10 @@ class Assignment < ActiveRecord::Base
   
   def open?
     #TODO Time comparisons in rails
-    #open_time <= Time.now < close_time
+    open_time <= Time.now == true && due_date > Time.now == true
   end
+  
+
 
     
   def score_for_grade(grade)
