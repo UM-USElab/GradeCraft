@@ -3,7 +3,7 @@ class Badge < ActiveRecord::Base
 
   #has_attached_file :image, :styles => { :small => "70x70>" }
   
-  mount_uploader :icon, ImageUploader
+  #mount_uploader :icon, ImageUploader
   has_many :earned_badges, :dependent => :destroy
   belongs_to :badge_set
   

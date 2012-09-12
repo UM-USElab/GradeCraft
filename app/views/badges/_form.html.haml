@@ -2,7 +2,7 @@
   = f.association :badge_set, :collection => @badge_sets
   = f.input :name
   = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span9' }, :placeholder => "Describe what this badge means, and how it can be earned. Note that if this badge is marked as visible then this description will also be viewable in the list of badges."
-  = f.input :icon, :as => :file
+  = f.input :icon, :as => :string
   = f.input :visible, :as => :boolean
   = f.input :value
   = f.input :multiplier

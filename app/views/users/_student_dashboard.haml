@@ -58,7 +58,8 @@
                 - else
                   = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn'
             - if assignment.self_gradeable?
-              //%button.btn.btn-primary #{assignment.student_logged_button_text}
+              //= render 'users/self_log_form'
+              //#{assignment.student_logged_button_text}
 
 %div.offset3
   %h2#points

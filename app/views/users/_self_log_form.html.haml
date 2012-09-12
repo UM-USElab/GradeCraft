@@ -1,0 +1,10 @@
+= simple_form_for @assignment, :remote => true do |grade|
+  - if grade.persisted?
+    = hidden_field_tag "assignment[grades_attributes][#{i}][id]", grade.id
+  - else
+    = hidden_field_tag "assignment[grades_attributes][#{i}][gradeable_id]", grade.gradeable.id
+    = hidden_field_tag "assignment[grades_attributes][#{i}][gradeable_type]", grade.gradeable.class.name
+  - "assignment[grades_attributes][#{i}][raw_score]".tap do |raw_score_field_name|
+    = hidden_field_tag raw_score_field_name, 0
+    = label_tag do
+      = check_box_tag raw_score_field_name, grade.points_possible, grade.attempted?
