@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910212537) do
+ActiveRecord::Schema.define(:version => 20120912011020) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20120910212537) do
     t.boolean  "has_assignment_submissions"
     t.boolean  "student_logged"
     t.string   "student_logged_button_text"
+    t.integer  "badge_set_id"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -161,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20120910212537) do
     t.string   "user_weight_amount_type"
     t.boolean  "has_assignment_submissions"
     t.boolean  "teams_visible"
+    t.string   "badge_use_scope"
   end
 
   create_table "dashboards", :force => true do |t|

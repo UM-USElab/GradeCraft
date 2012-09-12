@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
       @user = User.find_by_username(request.env["REMOTE_USER"])
       if @user
         auto_login(@user)
+        User.increment_counter(:visit_count, current_user.id) if current_user  
         redirect_to dashboard_path
       else
         redirect_to root_url, :alert => "Please login first."
@@ -50,7 +51,7 @@ class ApplicationController < ActionController::Base
   
   private 
   def increment_page_views
-    User.increment_counter(:page_views, current_user.id) if current_user
+    #User.increment_counter(:page_views, current_user.id) if current_user
   end   
 
   def enforce_view_permission(resource)
