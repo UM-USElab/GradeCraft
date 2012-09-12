@@ -2,7 +2,7 @@
   - if current_user.is_staff?
     %div.btn-group.span12
       - if current_course.has_badges? && current_course.course_badges? or current_course.has_badges? && current_course.multi_badges?
-        = link_to "Award a Badge", new_earned_badge_path, :class => "btn"
+        = link_to "Award a Badge", new_earned_badge_path(:earnable_id => @user.id, :earnable_type => "User"), :class => "btn"
       = link_to "Email", "mailto:#{user.email}", :class => "btn"
       = link_to "Edit", edit_user_path(user.id), :class => "btn"
   - user.team_leader.tap do |team_leader|

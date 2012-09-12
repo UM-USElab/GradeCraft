@@ -26,6 +26,7 @@ class EarnedBadgesController < ApplicationController
     @title = "Award a New Badge"
     @assignments = current_course.assignments.all
     @earned_badge = EarnedBadge.new
+    @earned_badge.earnable = params[:earnable_type].constantize.find(params[:earnable_id])    
     @badges = current_course.badges.all
     @students = current_course.users.students.all
   end
