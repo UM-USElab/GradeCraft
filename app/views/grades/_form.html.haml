@@ -26,7 +26,12 @@
       = ebf.input :badge_id, :input_html => { :value => ebf.object.badge_id }, :as => :hidden
       = ebf.input :earnable_id, :input_html => { :value => @grade.id }, :as => :hidden
       = ebf.input :earnable_type, :input_html => { :value => 'Grade' }, :as => :hidden
-
+    
   .form-actions
     = f.button :submit, :class => 'btn'
     = link_to 'Cancel', assignment_path(@assignment), :class => 'btn'
+
+#TODO Trying to display the currently earned badges for a user if they exist
+- if current_course.has_badges? && current_course.assignment_badges? or current_course.has_badges? && current_course.multi_badges?
+  - @gradeable_earned_badges.each do |badge|
+    - badge.name

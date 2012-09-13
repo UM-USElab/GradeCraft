@@ -48,6 +48,9 @@ class GradesController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @students = current_course.users.students
     @grade = @assignment.assignment_grades.find(params[:id])
+    #TODO FIX Trying to display the currently earned badges for a user if they exist
+    #@gradeable = Grade.find(params[:gradeable_id])
+    #@gradeable_earned_badges = @gradeable.earnable
     @grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with @grade
   end
