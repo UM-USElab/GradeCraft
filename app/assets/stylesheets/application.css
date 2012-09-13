@@ -4,7 +4,7 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  *= require_tree .
- *= require jquery.ui.all
+ *= require jquery.ui
  *= require bootstrap
  *= require bootstrap-responsive
  *= require bootstrap-wysihtml5
