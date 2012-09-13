@@ -98,11 +98,11 @@ class Assignment < ActiveRecord::Base
   end
   
   def past?
-    due_date.past?
+    due_date != nil && due_date < Date.today
   end
   
   def future?
-    #due_date.future?
+    due_date != nil && due_date >= Date.today
   end
   
   def soon?
