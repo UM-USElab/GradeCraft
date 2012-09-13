@@ -40,9 +40,9 @@
                 //= link_to "Predictor",  predictor_users_path(:user_id => current_user.id), :class => "btn"
             - if current_user.try(:is_staff?) && current_course
               %div{:class => 'btn-group pull-right'}
-                %button.btn.btn-info Course
-                %a{:class => 'btn btn-info dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
-                  %span{:class => 'caret'}
+                %a{:class => 'btn btn-success dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                  Course
+                  %i.caret
                 %ul{:class => 'dropdown-menu well'}
                   %li= link_to "Gradebook", gradebook_path
                   %li= link_to "New Assignment", new_assignment_path
@@ -56,16 +56,16 @@
                   %li= link_to "Course Settings", edit_course_path(current_course)
             - if current_user
               %div{:class => 'btn-group pull-right'}
-                %button.btn.btn-info= current_user.public_name
-                %a{:class => 'btn btn-info dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
-                  %span{:class => 'caret'}
+                %a{:class => 'btn dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                  = current_user.public_name
+                  %i.caret
                 %ul{:class => 'dropdown-menu well'}
                   %li= link_to "My Account", edit_profile_users_path
                   %li= link_to "Logout", :logout
             - else
               %div{:class => 'btn-group pull-right'}
-                %button.btn.btn-primary Login
                 %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                  Login
                   %span{:class => 'caret'}
                 %ul{:class => 'dropdown dropdown-menu well'}
                   = simple_form_for User.new, :url => user_sessions_path do |f|
