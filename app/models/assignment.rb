@@ -70,7 +70,7 @@ class Assignment < ActiveRecord::Base
   end  
   
   def assignment_grades_attempted
-    assignment_grades.where(:raw_score != 0).count
+    #assignment_grades.where(:raw_score != 0).count
   end
 
   def type
