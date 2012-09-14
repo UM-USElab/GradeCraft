@@ -1,16 +1,19 @@
-%p
-  %img{:src => @badge.icon, :alt => @badge.name}
-%p
-  %b Title:
-  = @badge.name
-%p
-  %b Description:
-  = raw @badge.description
-%p
-  %b Icon:
-  = @badge.icon
+%div.span2= render 'layouts/admin_subnav'
 
-%div.span12
-  = link_to 'Edit', edit_badge_path(@badge), :class => 'btn btn-primary'
-  = link_to 'Back', badges_path, :class => 'btn btn-primary'
-  = link_to 'Create a New Badge', new_badge_path, :class => 'btn btn-primary'
+%div.span8
+  %p
+    %img{:src => @badge.icon, :alt => @badge.name}
+  %p
+    %b Title:
+    = @badge.name
+  %p
+    %b Description:
+    = raw @badge.description
+  %p
+    %b Icon:
+    = @badge.icon
+  
+  %div.span12
+    = link_to 'Edit', edit_badge_path(@badge), :class => 'btn btn-primary'
+    = link_to 'Back', badges_path, :class => 'btn btn-primary'
+    = link_to 'Create a New Badge', new_badge_path, :class => 'btn btn-primary'

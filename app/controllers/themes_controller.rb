@@ -22,7 +22,6 @@ class ThemesController < ApplicationController
 
   def new
     @theme = Theme.new
-    @title = "Create a New Theme"
     respond_to do |format|
       format.html
       format.json { render json: @theme }

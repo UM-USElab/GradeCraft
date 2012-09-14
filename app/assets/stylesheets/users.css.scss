@@ -187,11 +187,19 @@ h3.popover-title {
   	margin-bottom: 4px;
 	}
 	
+	#predictorPage div.assignmentType {
+  	margin-bottom: 10px;
+	}
+	
 	#predictorPage .assignmentTypeTitle {
   	color: #000;
-  	font-weight: bolder;
   	margin: 0;
-  	font-size: 18px; 
+  	padding: 0;
+  	font-weight: bolder;
+  	font-size: 22px; 
+	}
+	
+	p.lead {
 	}
 	
 	//Styling the color of the point entry text
@@ -221,7 +229,7 @@ h3.popover-title {
   	margin-left: 10px;
 	}
 	
-	  #predictionWrapper{	
+	#predictionWrapper{	
   	background-color:rgba(55,55,55,.96);
     border-top:5px solid #2F96B4;
     border-bottom:5px solid #2F96B4;
@@ -237,8 +245,7 @@ h3.popover-title {
   	text-align:center;
   	width: 100%;
   	z-index:3;			
-  }
-  
+  }  
   
 	#prediction {
   	margin: 0 auto;

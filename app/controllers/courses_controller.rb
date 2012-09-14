@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
   before_filter :ensure_staff?
 
   def index
-    @title = "Course Index"
     @courses = Course.all
 
     respond_to do |format|
@@ -13,7 +12,6 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @title = "Course Settings"
     @course = Course.find(params[:id])
     @themes = Theme.all
     @users = current_course.users.all
@@ -24,7 +22,6 @@ class CoursesController < ApplicationController
   end
 
   def new
-    @title = "Create a New Course"
     @course = Course.new
     @themes = Theme.all
     @badge_sets = BadgeSet.all
@@ -38,7 +35,6 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find(params[:id])
-    @title = "Editing #{@course.name}"
     @badge_sets = BadgeSet.all
     @themes = Theme.all
     @grade_schemes = GradeScheme.all
