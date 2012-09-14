@@ -1,42 +1,46 @@
-%table.display.table-bordered.table
-  %thead
-    %tr
-      %th#icon Icon
-      %th#title Title
-      %th#description Description
-      %th Value
-      %th Multiplier
-      - if current_user.is_staff?
-        %th#visible Visible to Students
-        %th
-        %th
-        %th
-  %tbody
-    - @badges.each do |badge|
-      - if current_user.is_staff?
-        %tr
-          %td
-            %img{:src => badge.icon, :alt => badge.name}
-            %td= badge.name
-            %td= raw badge.description
-            %td= badge.value
-            %td= badge.multiplier
-            %td 
-              - if badge.visible == "1"
-                Yes
-              - else
-                No
-            %td= link_to 'View', badge_path(badge), :class => 'btn btn-mini'
-            %td= link_to 'Edit', edit_badge_path(badge), :class => 'btn btn-mini'
-            %td= link_to 'Delete', badge_path(badge), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-      - else
-        - if badge.visible == "1"
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
+
+%div.span8
+  %table.display.table-bordered.table
+    %thead
+      %tr
+        %th#icon Icon
+        %th#title Title
+        %th#description Description
+        %th Value
+        %th Multiplier
+        - if current_user.is_staff?
+          %th#visible Visible to Students
+          %th
+          %th
+          %th
+    %tbody
+      - @badges.each do |badge|
+        - if current_user.is_staff?
           %tr
             %td
               %img{:src => badge.icon, :alt => badge.name}
               %td= badge.name
-              %td= badge.description
-              
-%div.span12
-  - if current_user.is_staff?
-    = link_to 'Create a New Badge', new_badge_path, :class => "btn btn-primary"
+              %td= raw badge.description
+              %td= badge.value
+              %td= badge.multiplier
+              %td 
+                - if badge.visible == "1"
+                  Yes
+                - else
+                  No
+              %td= link_to 'View', badge_path(badge), :class => 'btn btn-mini'
+              %td= link_to 'Edit', edit_badge_path(badge), :class => 'btn btn-mini'
+              %td= link_to 'Delete', badge_path(badge), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+        - else
+          - if badge.visible == "1"
+            %tr
+              %td
+                %img{:src => badge.icon, :alt => badge.name}
+                %td= badge.name
+                %td= badge.description
+                
+  %div.span12
+    - if current_user.is_staff?
+      = link_to 'Create a New Badge', new_badge_path, :class => "btn btn-primary"

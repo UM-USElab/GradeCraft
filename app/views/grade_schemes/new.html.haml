@@ -1,4 +1,7 @@
-= render 'form'
+%div.span2= render 'layouts/admin_subnav'
 
-%div.span12
+%div.span8
+  %h3 Create a New Grading Scheme
+  = render 'form'
+
   = link_to 'Back', grade_schemes_path, :class => 'btn btn-primary'

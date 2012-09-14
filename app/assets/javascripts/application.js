@@ -5,7 +5,9 @@
 // the compiled file.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
+//= require jquery.ui.datepicker
 //= require twitter/bootstrap
 //= require bootstrap-wysihtml5-all
 //= require highcharts
@@ -20,6 +22,8 @@ $(document).ready(function(){
   $('#gradeCurious').popover({
     placement: 'bottom'
     });
+  
+  $( ".slider" ).slider();
   
   // Fix input element click problem
   $('.dropdown input, .dropdown label').click(function(e) {

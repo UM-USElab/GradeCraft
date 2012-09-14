@@ -1,19 +1,23 @@
-%table.display.table-bordered.table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-      %th
-  %tbody
-    - @course_grade_schemes.each do |scheme|
-      %tr
-        %td= scheme.name
-        %td= link_to 'View', course_grade_scheme_path(scheme), :class => 'btn btn-mini'
-        %td= link_to 'Edit', edit_course_grade_scheme_path(scheme), :class => 'btn btn-mini'
-        %td= link_to 'Delete', course_grade_scheme_path(scheme), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+%div.span2= render 'layouts/admin_subnav'
 
-              
-%div.span12
-  - if current_user.is_staff?
-    = link_to 'Create a New Course Grading Scheme', new_course_grade_scheme_path, :class => "btn btn-primary"
+%div.span8
+  %h3 Course Grading Schemes
+  %table.display.table-bordered.table
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+    %tbody
+      - @course_grade_schemes.each do |scheme|
+        %tr
+          %td= scheme.name
+          %td= link_to 'View', course_grade_scheme_path(scheme), :class => 'btn btn-mini'
+          %td= link_to 'Edit', edit_course_grade_scheme_path(scheme), :class => 'btn btn-mini'
+          %td= link_to 'Delete', course_grade_scheme_path(scheme), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+  
+                
+  %div.span12
+    - if current_user.is_staff?
+      = link_to 'Create a New Course Grading Scheme', new_course_grade_scheme_path, :class => "btn btn-primary"

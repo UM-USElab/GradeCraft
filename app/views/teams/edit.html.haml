@@ -1,5 +1,7 @@
-= render 'form'
+%div.span2= render 'layouts/admin_subnav'
 
-%div.span12
+%div.span8
+  = render 'form'
+
   = link_to 'View', @team, :class => "btn btn-inverse"
   = link_to 'Back', teams_path, :class => "btn btn-inverse"

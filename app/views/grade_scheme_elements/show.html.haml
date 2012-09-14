@@ -1,16 +1,19 @@
-%p
-  %b Name:
-  = @grade_scheme_element.name
-%p
-  %b Low range:
-  = @grade_scheme_element.low_range
-%p
-  %b High range:
-  = @grade_scheme_element.high_range
-%p
-  %b Letter grade:
-  = @grade_scheme_element.letter_grade
+%div.span2= render 'layouts/admin_subnav'
 
-%div.span12
-  = link_to 'Edit', edit_grade_scheme_grade_scheme_element_path(@grade_scheme, @grade_scheme_element), {:class => 'btn btn-primary'}
-  = link_to 'Back', grade_scheme_grade_scheme_elements_path, {:class => 'btn btn-primary'}
+%div.span8
+  %p
+    %b Name:
+    = @grade_scheme_element.name
+  %p
+    %b Low range:
+    = @grade_scheme_element.low_range
+  %p
+    %b High range:
+    = @grade_scheme_element.high_range
+  %p
+    %b Letter grade:
+    = @grade_scheme_element.letter_grade
+  
+  %div.span12
+    = link_to 'Edit', edit_grade_scheme_grade_scheme_element_path(@grade_scheme, @grade_scheme_element), {:class => 'btn btn-primary'}
+    = link_to 'Back', grade_scheme_grade_scheme_elements_path, {:class => 'btn btn-primary'}

@@ -3,7 +3,6 @@ class GradeSchemesController < ApplicationController
   before_filter :ensure_staff?
 
   def index
-    @title = "Grading Schemes"
     @grade_schemes = current_course.grade_schemes.all
 
     respond_to do |format|
@@ -13,7 +12,6 @@ class GradeSchemesController < ApplicationController
   end
 
   def show
-    @title = "View Grading Scheme"
     @grade_scheme = current_course.grade_schemes.find(params[:id])
 
     respond_to do |format|
@@ -23,7 +21,6 @@ class GradeSchemesController < ApplicationController
   end
 
   def new
-    @title = "Create a New Grading Scheme"
     @grade_scheme = current_course.grade_schemes.new
     @assignments = Assignment.all
     respond_to do |format|
@@ -33,7 +30,6 @@ class GradeSchemesController < ApplicationController
   end
 
   def edit
-    @title = "Update Grading Scheme"
     @grade_scheme = current_course.grade_schemes.find(params[:id])
     @assignments = Assignment.all
   end

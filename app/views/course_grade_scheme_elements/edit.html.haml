@@ -1,5 +1,8 @@
-= render 'form'
+%div.span2= render 'layouts/admin_subnav'
 
-%div.span12
-  = link_to 'View', course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, @course_grade_scheme_element), :class => 'btn btn-primary'
-  = link_to 'Back', course_grade_scheme_path(@course_grade_scheme), :class => 'btn btn-primary'
+%div.span8
+  = render 'form'
+  
+  %div.span12
+    = link_to 'View', course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, @course_grade_scheme_element), :class => 'btn btn-primary'
+    = link_to 'Back', course_grade_scheme_path(@course_grade_scheme), :class => 'btn btn-primary'

@@ -1,7 +1,12 @@
 - if current_user.is_staff? 
-  = render 'form'
+  %div.span2= render 'layouts/admin_subnav'
 
-%div.span12
-  = link_to 'View', @user, :class => "btn btn-inverse"
-  = link_to 'Back', users_path, :class => "btn btn-inverse"
+%div.span8
+  %h3= "Edit #{@user.name}"
+  - if current_user.is_staff? 
+    = render 'form'
+
+  %div.span12
+    = link_to 'View', @user, :class => "btn btn-inverse"
+    = link_to 'Back', users_path, :class => "btn btn-inverse"
 

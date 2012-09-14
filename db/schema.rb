@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120913004824) do
+ActiveRecord::Schema.define(:version => 20120914033457) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -140,7 +140,6 @@ ActiveRecord::Schema.define(:version => 20120913004824) do
     t.string   "courseno"
     t.string   "year"
     t.string   "semester"
-    t.integer  "badge_sets_id"
     t.string   "theme_id"
     t.integer  "course_grade_scheme_id"
     t.datetime "created_at",                                       :null => false
@@ -296,7 +295,6 @@ ActiveRecord::Schema.define(:version => 20120913004824) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "role",                            :default => "student"
-    t.integer  "team_id"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "sortable_score"

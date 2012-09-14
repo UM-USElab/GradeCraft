@@ -75,9 +75,9 @@ class UsersController < ApplicationController
     @teams = current_course.teams.all
     @sorted_students = @students.order('sortable_score DESC')
     user_search_options = {}
-    if params[:team_id].present?
+    if params[:teams].present?
       @team = Team.find(params[:team_id])
-      user_search_options[:team_id] = @team.id if @team
+      user_search_options[:team] = @team if @team
     end
     @sorted_students = current_course.users.students.where(user_search_options).order('sortable_score DESC')
     respond_to do |format|
