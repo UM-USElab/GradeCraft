@@ -1,4 +1,7 @@
-= render 'form'
+%div.span2= render 'layouts/admin_subnav'
+
+%div.span8
+  = render 'form'
 
 %div.span12
   = link_to 'View', @badge_set, :class => 'btn btn-primary'

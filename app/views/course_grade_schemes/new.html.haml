@@ -1,4 +1,8 @@
-= render 'form'
+%div.span2= render 'layouts/admin_subnav'
 
-%div.span12
-  = link_to 'Back', course_grade_schemes_path, :class => 'btn btn-primary'
+%div.span8
+  %h3 Create Your Course Grade Scheme
+  = render 'form'
+  
+  %div.span12
+    = link_to 'Back', course_grade_schemes_path, :class => 'btn btn-primary'

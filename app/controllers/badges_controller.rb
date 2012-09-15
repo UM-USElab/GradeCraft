@@ -8,7 +8,7 @@ class BadgesController < ApplicationController
   end
 
   def show
-    @badge = current_course.badges.find(params[:id])
+    @badge = Badge.find(params[:id])
     @title = @badge.name
 
     respond_to do |format|
@@ -18,7 +18,6 @@ class BadgesController < ApplicationController
   end
 
   def new
-    @title = "Create a New Badge"
     @badge = Badge.new
     respond_to do |format|
       format.html
@@ -27,8 +26,7 @@ class BadgesController < ApplicationController
   end
 
   def edit
-    @badge = current_course.badges.find(params[:id])
-    @title = "Edit #{@badge.name} Badge"
+    @badge = Badge.find(params[:id])
   end
 
   def create

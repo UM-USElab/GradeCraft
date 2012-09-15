@@ -1,3 +1,4 @@
+%h3= @user.name
 %div.pull-right
   - if current_user.is_staff?
     %div.btn-group.span12
@@ -11,12 +12,12 @@
 
 %div.span3
   .span12
-    - if current_user.is_staff? && user.team.present?
-      %span.badge.badge-info= link_to user.team.name, team_path(user.team.id)
-    - if current_user.is_student? && user.team.present? && current_course.teams_visible?
-      %span.badge.badge-info= link_to user.team.name, team_path(user.team.id)
-    - elsif current_user.is_student? && user.team.present? 
-      %span.badge.badge-info= user.team.name
+    - if current_user.is_staff? && user.teams.present?
+      %span.badge.badge-info= link_to user.teams.first.name, team_path(user.teams.first.id)
+    - if current_user.is_student? && user.teams.present? && current_course.teams_visible?
+      %span.badge.badge-info= link_to user.teams.first.name, team_path(user.teams.first.id)
+    - elsif current_user.is_student? && user.teams.present? 
+      %span.badge.badge-info= user.teams.first.name
   .span12
     = gravatar_for user, :size => 230
   - if current_user.is_student?

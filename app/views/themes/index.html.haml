@@ -1,19 +1,23 @@
-%table.table.table-bordered
-  %tr
-    %th Name
-    %th Filename
-    %th
-    %th
-    %th
+%div.span2= render 'layouts/admin_subnav'
 
-  - @themes.each do |theme|
+%div.span8
+  %h3 GradeCraft Themes
+  %table.table.table-bordered
     %tr
-      %td= theme.name
-      %td= theme.filename
-      %td= link_to 'View', theme, :class => 'btn btn-mini'
-      %td= link_to 'Edit', edit_theme_path(theme), :class => 'btn btn-mini'
-      %td= link_to 'Delete', theme, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-
-%br
-
-= link_to 'New Theme', new_theme_path, :class => 'btn btn-primary'
+      %th Name
+      %th Filename
+      %th
+      %th
+      %th
+  
+    - @themes.each do |theme|
+      %tr
+        %td= theme.name
+        %td= theme.filename
+        %td= link_to 'View', theme, :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_theme_path(theme), :class => 'btn btn-mini'
+        %td= link_to 'Delete', theme, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+  
+  %br
+  
+  = link_to 'New Theme', new_theme_path, :class => 'btn btn-primary'

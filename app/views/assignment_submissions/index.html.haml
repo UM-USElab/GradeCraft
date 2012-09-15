@@ -1,24 +1,27 @@
-%table.table.table-bordered
-  %tr
-    %th Assignment
-    %th User
-    %th Group
-    %th Comment
-    %th Feedback
-    %th
-    %th
-    %th
+%div.span2= render 'layouts/admin_subnav'
 
-  - @assignment_submissions.each do |assignment_submission|
+%div.span8
+  %table.table.table-bordered
     %tr
-      %td= assignment_submission.assignment.name
-      %td= assignment_submission.user.try(:name)
-      %td= assignment_submission.group_id
-      %td= assignment_submission.comment
-      %td= assignment_submission.feedback
-      %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini'
-      %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini'
-      %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-
-%div.span12
-  = link_to 'New Assignment submission', new_assignment_assignment_submission_path(@assignment), {:class => 'btn btn-primary'}
+      %th Assignment
+      %th User
+      %th Group
+      %th Comment
+      %th Feedback
+      %th
+      %th
+      %th
+  
+    - @assignment_submissions.each do |assignment_submission|
+      %tr
+        %td= assignment_submission.assignment.name
+        %td= assignment_submission.user.try(:name)
+        %td= assignment_submission.group_id
+        %td= assignment_submission.comment
+        %td= assignment_submission.feedback
+        %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini'
+        %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+  
+  %div.span12
+    = link_to 'New Assignment submission', new_assignment_assignment_submission_path(@assignment), {:class => 'btn btn-primary'}

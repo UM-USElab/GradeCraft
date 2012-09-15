@@ -1,5 +1,8 @@
-= render 'form'
+%div.span2= render 'layouts/admin_subnav'
 
-%div.span12
+%div.span8
+  %h3 Edit This Assignment Type
+  = render 'form'
+
   = link_to 'View', @assignment_type, {:class => 'btn btn-primary'}
   = link_to 'Back', assignment_types_path, {:class => 'btn btn-primary'}

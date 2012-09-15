@@ -3,10 +3,32 @@ course_names = ['Defense Against the Dark Arts','Muggle Studies','Potions','Tran
 assignment_type_names = ['Hexes','Potions','Wards']
 predictor_display = ['Fixed','Select List','Slider']
 predictor_description = ['It does not do to dwell on dreams and forget to live, remember that.','As much money and life as you could want!  The two things most human beings would choose above all - the trouble is, humans do have a knack of choosing precisely those things that are worst for them.','It is our choices that show what we truly are, far more than our abilities.','Happiness can be found, even in the darkest of times, if one only remembers to turn on the light.']
+badge_names = ['Dream Interpreter','Inner Eye','Patronus Producer','Cheerful Charmer','Invisiblity Cloak','Marauders Map','Lumos','Rune Reader','Tea Leaf Guru','Wizard Chess Grand Master','Green Thumb','Gamekeeper','Seeker','Alchemist','Healer','Parseltongue','House Cup']
+team_names = ['Gryffindor','Slytherin','Hufflepuff','Ravenclaw']
 semester = %w{Autumn Winter Spring}.sample
+badge_icons = ['/badges/pos101/above_and_beyond.png','/badges/pos101/always_learning.png','/badges/pos101/awesome_aggregator.png','/badges/pos101/concentrator.png','/badges/pos101/courageous_failure.png','/badges/pos101/early_bird_special.png','/badges/pos101/examination_expert.png','/badges/pos101/gaining_experience.png','/badges/pos101/gamer.png','/badges/pos101/great_critic.png','/badges/pos101/learning_from_mistakes.png','/badges/pos101/level_one.png','/badges/pos101/participatory_democrat.png','/badges/pos101/personal.png','/badges/pos101/practice_makes_perfect.png','/badges/pos101/presentation_of_self.png','/badges/pos101/public_speaker.png']
 grade_scheme_hash = { [0,59] => 'F', [60,69] => 'D', [70,79] => 'C', [80,89] => 'B', [90, 100] => 'A' }
 
 puts "\n#{semester} term at Hogwarts has begun!"
+
+#Generate badge set
+BadgeSet.create! do |bs|
+  bs.name = "Hogwarts Most Officially Official Badge Set"
+end
+puts "Awards may now be given!"
+
+badges = []
+badge_names.each do |badge_name|
+  badges << Badge.create! do |b|
+    b.badge_set_id = 1
+    b.name = badge_name
+    b.value = 100 * rand(10)
+    b.icon = badge_icons.sample
+    b.visible = 1
+  end
+end
+puts "Did someone need motivation? We found these badges in the Room of Requirements..."
+
 
 # Generate sample courses
 courses = []
@@ -16,6 +38,10 @@ course_names.each do |course_name|
     c.courseno = 101 + courses.count 
     c.year = Date.today.year
     c.semester = semester
+    c.team_setting = true
+    c.team_term = "House"
+    c.user_term = "Wizard"
+    c.section_leader_term = "Prefect"
   end
 end
 default_course = courses.first
@@ -74,7 +100,20 @@ students << User.create! do |u|
 end
 puts "Percy Weasley has arrived on campus, on time as usual"
 
+
 courses.each do |course|
+  teams = []
+  team_names.each do |team_name|
+    teams << course.teams.create! do |t|
+      t.name = team_name
+    end
+  end
+  students.each do |student|
+    TeamMembership.create! do |tm|
+      tm.user = student
+      tm.team = teams.sample
+    end
+  end
   assignment_types = []
   assignment_type_names.each do |assignment_type_name|
     assignment_types << course.assignment_types.create! do |a|

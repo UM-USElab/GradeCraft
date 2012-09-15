@@ -3,7 +3,6 @@ class TeamsController < ApplicationController
   before_filter :ensure_staff?, :only=>[:new,:edit,:create,:destroy]
 
   def index
-    @title = "#{current_course.team_ref}s"
     @teams = current_course.teams.all
 
     respond_to do |format|
@@ -14,7 +13,6 @@ class TeamsController < ApplicationController
 
   def show
     @team = current_course.teams.find(params[:id])
-    @title = "View #{@team.name}"
     @users = @team.users
 
     respond_to do |format|
@@ -24,7 +22,6 @@ class TeamsController < ApplicationController
   end
 
   def new
-    @title = "Create a New #{current_course.team_ref}"
     @team =  Team.new
     @courses = Course.all
     @users = current_course.users
@@ -34,7 +31,6 @@ class TeamsController < ApplicationController
 
   def edit
     @team =  current_course.teams.find(params[:id])
-    @title = "Edit #{@team.name}"
     @users = current_course.users
     @students = @users.students
   end

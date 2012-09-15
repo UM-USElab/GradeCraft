@@ -15,16 +15,16 @@
     %ul.slides
       %li{:id => "slide-required"}
         %div.slide-panel.span12
-          %div
+          %div.assignmentType
             %span.assignmentTypeTitle Required Assignments
-            - @assignments.each do |assignment|
-              - if assignment.is_required? 
-                %div
-                  %h6.assignmentTitle= assignment.name
+          - @assignments.each do |assignment|
+            - if assignment.is_required? 
+              %div
+                %h6.assignmentTitle= assignment.name
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %li{:id => "slide-#{assignment_type.id}", :data => { :'assignment-type-id' => assignment_type.id, :'assignment-type-name' => assignment_type.name } }
           %div.slide-panel.span12
-            %div
+            %div.assignmentType
               %span.assignmentTypeTitle= assignment_type.name
               %span.badge.badge-warning.pull-right= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
             %p.lead= raw assignment_type.predictor_description
