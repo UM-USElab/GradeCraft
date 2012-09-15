@@ -125,10 +125,10 @@ courses.each do |course|
       a.step_value = 1
     end
   end
-  for n in 1..10 do
+  for n in 1..5 do
     assignment = course.assignments.create! do |a|
       a.name = "Assignment #{n}"
-      a.due_date = rand(10).weeks.from_now
+      a.due_date = rand(10).weeks.ago
       a.assignment_type = assignment_types.sample
       a.point_total = (100 + rand(10)) * 100
     end
@@ -140,6 +140,14 @@ courses.each do |course|
         g.raw_score = assignment.point_total if student.name == 'Hermione Granger'
       end
       student.save
+    end
+  end
+  for n in 6..10 do
+    assignment = course.assignments.create! do |a|
+      a.name = "Assignment #{n}"
+      a.due_date = rand(10).weeks.from_now
+      a.assignment_type = assignment_types.sample
+      a.point_total = (100 + rand(10)) * 100
     end
   end
 end

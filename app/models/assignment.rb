@@ -97,6 +97,10 @@ class Assignment < ActiveRecord::Base
     visible == "true"
   end
   
+  def point_total
+    super || assignment_type.universal_point_value 
+  end
+  
   def past?
     due_date != nil && due_date < Date.today
   end

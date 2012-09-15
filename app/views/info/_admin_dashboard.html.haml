@@ -82,4 +82,4 @@
                   %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"} 
               %td
               %td
-              %td= team.team_leader
+              %td= team.team_leader.try(:name)
