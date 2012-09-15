@@ -73,13 +73,10 @@ class UsersController < ApplicationController
     @users = current_course.users
     @students = current_course.users.students
     @teams = current_course.teams.all
-    @sorted_students = @students.order('sortable_score DESC')
+    @sorted_students = @students.order('users.sortable_score DESC')
     user_search_options = {}
-    if params[:teams].present?
-      @team = Team.find(params[:team_id])
-      user_search_options[:team] = @team if @team
-    end
-    @sorted_students = current_course.users.students.where(user_search_options).order('sortable_score DESC')
+    user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
+    @sorted_students = current_course.users.students.includes(:teams).where(user_search_options).order('users.sortable_score DESC')
     respond_to do |format|
       format.html
       format.json { render json: @users }
