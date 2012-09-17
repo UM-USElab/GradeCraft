@@ -6,6 +6,8 @@ predictor_description = ['It does not do to dwell on dreams and forget to live, 
 badge_names = ['Dream Interpreter','Inner Eye','Patronus Producer','Cheerful Charmer','Invisiblity Cloak','Marauders Map','Lumos','Rune Reader','Tea Leaf Guru','Wizard Chess Grand Master','Green Thumb','Gamekeeper','Seeker','Alchemist','Healer','Parseltongue','House Cup']
 team_names = ['Gryffindor','Slytherin','Hufflepuff','Ravenclaw']
 semester = %w{Autumn Winter Spring}.sample
+theme_names = ['Amelia','Cerulean','Gamestyle','Cyborg','Journal','Slate','Spruce','Superhero','United']
+theme_paths = ['assets/amelia.min.css','assets/cerulean.min.css','assets/gamestyle.css.scss','assets/cyborg.min.css','assets/journal.min.css','assets/slate.min.css','assets/spruce.min.css','assets/superhero.min.css','assets/united.min.css']
 badge_icons = ['/badges/pos101/above_and_beyond.png','/badges/pos101/always_learning.png','/badges/pos101/awesome_aggregator.png','/badges/pos101/concentrator.png','/badges/pos101/courageous_failure.png','/badges/pos101/early_bird_special.png','/badges/pos101/examination_expert.png','/badges/pos101/gaining_experience.png','/badges/pos101/gamer.png','/badges/pos101/great_critic.png','/badges/pos101/learning_from_mistakes.png','/badges/pos101/level_one.png','/badges/pos101/participatory_democrat.png','/badges/pos101/personal.png','/badges/pos101/practice_makes_perfect.png','/badges/pos101/presentation_of_self.png','/badges/pos101/public_speaker.png']
 grade_scheme_hash = { [0,59] => 'F', [60,69] => 'D', [70,79] => 'C', [80,89] => 'B', [90, 100] => 'A' }
 
@@ -29,6 +31,15 @@ badge_names.each do |badge_name|
 end
 puts "Did someone need motivation? We found these badges in the Room of Requirements..."
 
+
+themes = []
+theme_names.each do |theme_name|
+  themes << Theme.create! do |t|
+    t.name = theme_name
+    t.filename = theme_paths.sample
+  end
+end
+puts "What was that about window dressings?"
 
 # Generate sample courses
 courses = []

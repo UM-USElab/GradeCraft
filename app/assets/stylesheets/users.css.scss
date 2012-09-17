@@ -53,6 +53,13 @@ button h4 {
 #toDoList { 
   text-align: left;
 }
+#toDoList ul {
+  margin: 0;
+}
+
+#toDoList li {
+  margin-left: 15px;
+}
 #toDoList h6 {
   margin: 5px 0px;
   color: #000;

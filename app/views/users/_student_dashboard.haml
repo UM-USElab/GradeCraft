@@ -40,18 +40,18 @@
                 %div.badgeIcon
                   %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
                   .badgeTitle= badge.name
-          %div.span12
+          %div.span12.clear_fix
             Badges you've earned will shine brightly!
+  %div.clear
   %button.btn.btn-warning.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
     %span.buttonTitle To Do List
     %div{:id => "toDoList", :class => "collapse"}
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
+        %ul.assignmentTypeToDo
+          %h6= "#{assignment_type.try(:name)}:"
         - assignments.each do |assignment|
-          - if assignment.soon?
-            %span4= "#{assignment.assignment_type.try(:name)}:"
-            %span4= assignment.try(:name)
-            %br
-            %span4= "Due: #{assignment.try(:due_date)}"
+          - if assignment.soon? && assignment.future? 
+            %li= "#{assignment.try(:name)} (Due: #{assignment.try(:due_date).strftime("%b-%d")})"
             - if assignment.has_assignment_submissions?
               - assignment.submission_for_student(user).tap do |submission|
                 - if submission
@@ -59,8 +59,8 @@
                 - else
                   = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn'
             - if assignment.self_gradeable?
-              //= render 'users/self_log_form'
-              //#{assignment.student_logged_button_text}
+              = render 'users/self_log_form'
+              #{assignment.student_logged_button_text}
 
 %div.offset3
   %h2#points
