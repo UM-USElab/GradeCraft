@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917002823) do
+ActiveRecord::Schema.define(:version => 20120917022849) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20120917002823) do
     t.string   "student_logged_button_text"
     t.integer  "badge_set_id"
     t.boolean  "release_necessary"
+    t.datetime "open_date"
   end
 
   create_table "badge_sets", :force => true do |t|
