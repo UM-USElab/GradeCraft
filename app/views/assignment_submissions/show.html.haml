@@ -1,18 +1,24 @@
 %p
   %b Assignment:
-  = @assignment_submission.assignment_id
+  = @assignment_submission.assignment.try(:name)
 %p
   %b User:
-  = @assignment_submission.user_id
+  = @assignment_submission.user.try(:name)
 %p
   %b Group:
   = @assignment_submission.group_id
+%p
+  %b Link:
+  = link_to @assignment_submission.link
 %p
   %b Feedback:
   = @assignment_submission.feedback
 %p
   %b Comment:
   = @assignment_submission.comment
+
+- if current_user.is_staff? 
+  = render 'grade_form'
 
 %div.span12
   = link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, @assignment_submission), {:class => 'btn btn-primary'}

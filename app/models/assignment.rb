@@ -141,13 +141,8 @@ class Assignment < ActiveRecord::Base
     required == true
   end
   
-  #TODO I need this to be either - guessing the assignment type isn't working properly
   def has_levels?
-    assignment_type.levels = 1
-  end
-  
-  def binary?
-    assignment_type.levels = 0
+    assignment_type.levels == true
   end
   
   def mass_grade?
