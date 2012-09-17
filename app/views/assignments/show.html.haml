@@ -81,7 +81,7 @@
                 %td= grade.try(:status)
               - @assignment.submission_for_student(student).tap do |submission|
                 - if submission
-                  %td= link_to "See Submission", assignment_assignment_submission_path(@assignment.id, submission), :class => 'btn btn-mini'
+                  %td= link_to "See Submission", assignment_assignment_submission_path(@assignment.id, submission, :gradeable_id => student.id, :gradeable_type => "User"), :class => 'btn btn-mini'
                 - else
                   %td= link_to "Submit", new_assignment_assignment_submission_path(@assignment, @assignment_submission, :user_id => student), :class => 'btn btn-mini'
               - if grade

@@ -3,8 +3,8 @@ require "application_responder"
 class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
   
+  #Canable details
   include Canable::Enforcers
-  
   delegate :can_view?, :to => :current_user
   helper_method :can_view? # so you can use it in your views
   hide_action :can_view?
