@@ -5,6 +5,7 @@
     - if assignment_type.try(:student_choice?)
       - if current_user.is_student?
         = link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+  = link_to "Edit", edit_assignment_type_path(assignment_type), :class => "btn btn-mini"
   %table.table.table-bordered
     %thead
     %tr
