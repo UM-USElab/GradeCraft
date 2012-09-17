@@ -1,0 +1,6 @@
+= simple_form_for([@assignment, @grade], :html => {:class => 'form-horizontal' }, :url => self_log_create_assignment_grades_path(:assignment_id => @assignment.id)) do |f|
+  = f.input :gradeable_id, :as => :hidden, :include_blank => false, :value => @user
+  = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'User' }
+  = f.input :raw_score, :as => :select, :label => "#{@assignment.student_logged_button_text}", :collection => [["Yes", @assignment.point_total]]
+  = f.submit "Submit", :class => "btn btn-primary"
+  
