@@ -42,6 +42,8 @@ course_names.each do |course_name|
     c.team_term = "House"
     c.user_term = "Wizard"
     c.section_leader_term = "Prefect"
+    c.user_weight_amount = 1 * rand(10)
+    c.user_weight_amount_close_date = rand(4).weeks.from_now
   end
 end
 default_course = courses.first

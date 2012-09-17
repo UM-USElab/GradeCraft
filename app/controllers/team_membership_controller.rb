@@ -1,5 +1,5 @@
 class TeamMembershipController < ApplicationController
 
-    before_filter :ensure_staff?
+  before_filter :ensure_staff?
 
 end

@@ -1,0 +1,7 @@
+%div.span2= render 'layouts/admin_subnav'
+
+%div.span8
+  = render 'form'
+
+  = link_to 'View', @score_level, :class => "btn btn-inverse"
+  = link_to 'Back', score_levels_path, :class => "btn btn-inverse"

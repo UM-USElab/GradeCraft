@@ -45,7 +45,6 @@ class UsersController < ApplicationController
   def index
     @title = "View all Users"
     @users =  current_course.users.order(:last_name)
-    
     user_search_options = {}
     user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
     @users = current_course.users.includes(:teams).where(user_search_options)

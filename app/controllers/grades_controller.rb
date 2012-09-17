@@ -27,8 +27,11 @@ class GradesController < ApplicationController
   def new    
     @title = "Submit A New Grade"
     @assignment = Assignment.find(params[:assignment_id])
+    @assignment_type = @assignment.assignment_type
     @grade = @assignment.assignment_grades.create(params[:grade])
     @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
+    @score_levels = @assignment_type.score_levels
+    #@score_level = ScoreLevel.find(params[:id])
     @earned_badges = current_course.badges.map do |b|
       EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
     end
@@ -43,6 +46,8 @@ class GradesController < ApplicationController
     @title = "Edit Grade"
     @badges = current_course.badges.all
     @assignment = Assignment.find(params[:assignment_id])
+    @assignment_type = @assignment.assignment_type    
+    @score_levels = @assignment_type.score_levels
     @students = current_course.users.students
     @grade = @assignment.assignment_grades.find(params[:id])
     @grade_scheme_elements = @assignment.grade_scheme_elements

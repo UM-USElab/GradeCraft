@@ -20,7 +20,7 @@ class AssignmentTypesController < ApplicationController
   
   def new
     @assignment_type = current_course.assignment_types.new
-    @courses = Course.all
+    @assignment_type.score_levels.build
     respond_with(@assignment_type)
   end
 

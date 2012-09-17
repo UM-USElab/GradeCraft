@@ -4,6 +4,10 @@
     = f.input :point_setting, :label => "How will points be set?", :hint => "Do all assignments have the same point value? Or is this set individually?", :collection => [["Individually"], ["Universally"]]
     = f.input :universal_point_value, :label => "Universal Value"
     = f.input :levels, :label => "Will there be levels to the grading?", :hint => "This includes normal A - F grading schemes.", :as => :radio_buttons
+    %h5 Score Levels
+    = f.simple_fields_for :score_levels do |score_level|
+      = render 'score_level_fields', f: score_level
+    = link_to_add_fields "Add a Level", f, :score_levels
     = f.input :due_date_present, :label => "Will assignments have due dates?", :as => :radio_buttons
     = f.input :resubmission, :label => "Resubmission?", :collection => [["Yes", "1"], ["No", "0"], ["Set per Assignment", "2"]], :as => :radio_buttons
     = f.input :max_value, :label => "Max Value", :hint => "Does this assignment type have a maximum value within the course?"

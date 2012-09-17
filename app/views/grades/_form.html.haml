@@ -11,11 +11,10 @@
   - if @assignment.has_teams?
     = f.input :gradeable_id, :collection => @teams, :label => "#{current_course.team_ref}"
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'Team' }
-  //- if @assignment.has_levels?
-  //= f.input :raw_score, :collection => @grade_scheme_elements, :as => :select, :input_html => { :value => @grade_scheme_element.value }
-  - if @assignment.binary?
-    //TODO show default on new grade
-    = f.input :raw_score, :default => @assignment.point_total, :label => "Score"
+  - if @assignment.has_levels?
+    = f.input :raw_score, :collection => @score_levels.map { |l| [l.name,l.value] }, :as => :select
+  - elsif @assignment.binary?
+    = f.input :raw_score, :default => @assignment.point_total, :label => "Score", :hint => "Total Assignment Points: #{@assignment.point_total}"
   = f.input :final_score
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   - if @assignment.release_necessary?
