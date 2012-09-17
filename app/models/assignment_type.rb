@@ -1,5 +1,5 @@
 class AssignmentType < ActiveRecord::Base
-  attr_accessible :due_date_present, :levels, :max_value, :name, :percentage_course, :point_setting, :points_predictor_display, :predictor_description, :resubmission, :universal_point_value, :course_id, :order_placement, :user_percentage_set, :mass_grade, :score_levels_attributes, :score_level
+  attr_accessible :due_date_present, :levels, :max_value, :name, :percentage_course, :point_setting, :points_predictor_display, :predictor_description, :resubmission, :universal_point_value, :course_id, :order_placement, :user_percentage_set, :mass_grade, :score_levels_attributes, :score_level, :mass_grade_type
   
   belongs_to :course
   belongs_to :grade_scheme
@@ -45,6 +45,18 @@ class AssignmentType < ActiveRecord::Base
   
   def has_level? 
     levels == 1
+  end
+  
+  def grade_checkboxes?
+    mass_grade_type == "Checkbox"
+  end 
+  
+  def grade_select? 
+    mass_grade_type == "Select List"
+  end 
+  
+  def grade_radio?
+    mass_grade_type =="Radio Buttons"
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120914233204) do
+ActiveRecord::Schema.define(:version => 20120917002823) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20120914233204) do
     t.integer  "order_placement"
     t.string   "user_percentage_set"
     t.boolean  "mass_grade"
+    t.string   "mass_grade_type"
   end
 
   create_table "assignments", :force => true do |t|

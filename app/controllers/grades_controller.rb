@@ -120,6 +120,8 @@ class GradesController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @title = "Mass Grade #{@assignment.name}"
     @grade = @assignment.assignment_grades.create(params[:grade])
+    @assignment_type = @assignment.assignment_type    
+    @score_levels = @assignment_type.score_levels
     user_search_options = {}
 
     if params[:team_id].present?

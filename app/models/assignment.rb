@@ -154,6 +154,18 @@ class Assignment < ActiveRecord::Base
     assignment_type.mass_grade = true
   end
   
+  def grade_checkboxes?
+    assignment_type.mass_grade_type == "Checkbox"
+  end 
+  
+  def grade_select? 
+    assignment_type.mass_grade_type == "Select List"
+  end 
+  
+  def grade_radio?
+    assignment_type.mass_grade_type =="Radio Buttons"
+  end
+  
   def open?
     #TODO Time comparisons in rails
     open_time <= Time.now == true && due_date > Time.now == true
