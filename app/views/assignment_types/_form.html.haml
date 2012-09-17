@@ -20,7 +20,7 @@
       = f.input :levels, :label => "Will there be levels to the grading?", :hint => "This includes normal A - F grading schemes.", :as => :radio_buttons
       %div.well
         %h5 Score Levels
-        = f.simple_fields_for :score_levels do |score_level|
+        = f.simple_fields_for(:score_levels, :class => "form-inline") do |score_level|
           = render 'score_level_fields', f: score_level
         %hr
         = link_to_add_fields "Add a Level", f, :score_levels
