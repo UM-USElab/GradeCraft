@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912230339) do
+ActiveRecord::Schema.define(:version => 20120917022849) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20120912230339) do
     t.integer  "order_placement"
     t.string   "user_percentage_set"
     t.boolean  "mass_grade"
+    t.string   "mass_grade_type"
   end
 
   create_table "assignments", :force => true do |t|
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20120912230339) do
     t.string   "student_logged_button_text"
     t.integer  "badge_set_id"
     t.boolean  "release_necessary"
+    t.datetime "open_date"
   end
 
   create_table "badge_sets", :force => true do |t|
@@ -140,7 +142,6 @@ ActiveRecord::Schema.define(:version => 20120912230339) do
     t.string   "courseno"
     t.string   "year"
     t.string   "semester"
-    t.integer  "badge_sets_id"
     t.string   "theme_id"
     t.integer  "course_grade_scheme_id"
     t.datetime "created_at",                                       :null => false
@@ -239,6 +240,22 @@ ActiveRecord::Schema.define(:version => 20120912230339) do
     t.string   "proposal"
   end
 
+  create_table "score_levels", :force => true do |t|
+    t.string   "name"
+    t.integer  "value"
+    t.integer  "assignment_type_id"
+    t.integer  "assignment_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "team_memberships", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "teams", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -289,7 +306,6 @@ ActiveRecord::Schema.define(:version => 20120912230339) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "role",                            :default => "student"
-    t.integer  "team_id"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "sortable_score"

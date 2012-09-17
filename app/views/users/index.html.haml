@@ -27,7 +27,9 @@
         %td= user.email
         %td= link_to user.name, user_path(user)
         %td= user.role
-        %td= user.team.try(:name)
+        %td 
+          - user.teams.each do |team|
+            = team.name
         %td= user.try(:earned_grades)
         %td= user.visit_count
         - if current_course.has_badges? 

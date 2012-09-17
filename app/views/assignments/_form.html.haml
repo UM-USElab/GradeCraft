@@ -4,8 +4,10 @@
   = f.input :grade_scope, :as => :select, :collection => [["Individual"], ["Group"], ["Team"]]
   = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span9' }
   = f.input :point_total, :label => "Total Points Possible"
-  = f.input :open_time, :as => :string, :input_html => { :class => 'date_picker' }
+  = f.input :open_date, :as => :string, :input_html => { :class => 'date_picker' }
+  = f.input :open_time, :as => :time
   = f.input :due_date, :as => :string, :input_html => { :class => 'date_picker' }
+  = f.input :close_time, :as => :time
   = f.input :visible, :as => :boolean
   = f.input :required, :as => :boolean
   = f.input :grade_scheme_id, :collection => @grade_schemes, :as => :select, :label_method => :name

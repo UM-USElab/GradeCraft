@@ -5,6 +5,7 @@
     - if assignment_type.try(:student_choice?)
       - if current_user.is_student?
         = link_to "Set Percentage", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+  = link_to "Edit", edit_assignment_type_path(assignment_type), :class => "btn btn-mini"
   %table.table.table-bordered
     %thead
     %tr
@@ -37,7 +38,8 @@
               %td
                 - assignment.submission_for_student(current_user).tap do |submission|
                   - if submission
-                    = link_to "See Submission", assignment_assignment_submission_path(assignment.id, submission), :class => 'btn btn-mini'
+                    = link_to "See Submission", assignment_assignment_submission_path(assignment.id, submission, :gradeable_id => student.id, :gradeable_type => "User"), :class => 'btn btn-mini'
+                  
                   - else
                     - if assignment.open?
                       = link_to "Submit", new_assignment_assignment_submission_path(assignment), {:class => 'btn btn-mini'}

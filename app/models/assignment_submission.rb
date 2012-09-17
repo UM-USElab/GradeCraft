@@ -1,7 +1,15 @@
 class AssignmentSubmission < ActiveRecord::Base
   attr_accessible :assignment_id, :comment, :feedback, :group_id, :user_id, :attachment, :link
   
-  include Canable::Ables
+  include Canable::Ables  
+  
+  def updatable_by?(user)
+    creator == user
+  end
+  
+  def destroyable_by?(user)
+    updatable_by?(user)
+  end
   
   #has_attached_file :attachment
   

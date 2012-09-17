@@ -53,6 +53,13 @@ button h4 {
 #toDoList { 
   text-align: left;
 }
+#toDoList ul {
+  margin: 0;
+}
+
+#toDoList li {
+  margin-left: 15px;
+}
 #toDoList h6 {
   margin: 5px 0px;
   color: #000;
@@ -122,6 +129,10 @@ button h4 {
 .feedback {
   padding: 15px
 }
+
+.assignment {
+  margin-bottom: 15px;
+}
 .assignmentTitle {
   font-size: 14px;
   color: #61cbf9;
@@ -158,41 +169,51 @@ h3.popover-title {
 // Predictor
 
 #predictorPage {
-  margin-top: 110px;
+  padding-top: 165px;
 }
 
-#predictorPage .pageTitle {
-  font-weight: bold;
-  font-size: 16px;
-  padding-top: 15px;
-  margin-bottom: 10px;
-}
-
-	.slide-panel {
-  	background-color: #333;
+	div.slide-panel {
   	border-radius: 10px;
-  	padding: 25px;
-  	margin: 15px;
-  	position: relative;
+  	padding: 0px 25px;
+  	height: 400px;
 	}
-
+	
 	.headline {
   	font-weight: bold;
   	text-transform: uppercase;
   	font-size: 15px;
+  	color: #000;
 	}
-
+	
+	
+	//This is the jquery ui slider element!
 	.slider{
     height:1em;
-    margin: 10px 0px;
+    margin: 15px;
 	  padding:0;
-	  width:60%;
+	  width: 60%;
 	}
 	
 	.assignmentTitle {
   	margin-bottom: 4px;
 	}
 	
+	#predictorPage div.assignmentType {
+  	margin-bottom: 10px;
+	}
+	
+	#predictorPage .assignmentTypeTitle {
+  	color: #000;
+  	margin: 0;
+  	padding: 0;
+  	font-weight: bolder;
+  	font-size: 22px; 
+	}
+	
+	p.lead {
+	}
+	
+	//Styling the color of the point entry text
 	#predictorPage input[type=text] {
   	background-color: #eeeeee;
   	border: none;
@@ -201,7 +222,9 @@ h3.popover-title {
   	margin: -4px 10px 0px;
 	}
 	
-	div.assignment {
+  #predictorPage div.assignment {
+    position: relative;
+    padding-bottom: 15px;
   	margin-bottom: 15px;
 	}
 	
@@ -217,7 +240,7 @@ h3.popover-title {
   	margin-left: 10px;
 	}
 	
-	  #predictionWrapper{	
+	#predictionWrapper{	
   	background-color:rgba(55,55,55,.96);
     border-top:5px solid #2F96B4;
     border-bottom:5px solid #2F96B4;
@@ -233,8 +256,7 @@ h3.popover-title {
   	text-align:center;
   	width: 100%;
   	z-index:3;			
-  }
-  
+  }  
   
 	#prediction {
   	margin: 0 auto;
@@ -244,8 +266,13 @@ h3.popover-title {
   	position: relative;
 	}
 	 
-	
 	div.flexslider {
 	   min-height: 400px;
   	margin-bottom: 15px;
+  	padding: 25px;
+  	width: 100%;
+	}
+	
+	div.badges .badgeIcon {
+  	float: left;
 	}

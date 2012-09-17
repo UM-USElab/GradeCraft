@@ -24,11 +24,8 @@ class AssignmentsController < ApplicationController
     @assignment_submissions = @assignment.assignment_submissions
     @earnables = current_course.earned_badges.all
     user_search_options = {}
-    if params[:team_id].present?
-      @team = Team.find(params[:team_id])
-      user_search_options[:team_id] = @team.id if @team
-    end
-    @students = current_course.users.students.where(user_search_options)
+    user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
+    @students = current_course.users.students.includes(:teams).where(user_search_options)
     respond_with @assignment    
   end
 

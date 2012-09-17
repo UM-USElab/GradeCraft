@@ -46,11 +46,8 @@ class UsersController < ApplicationController
     @title = "View all Users"
     @users =  current_course.users.order(:last_name)
     user_search_options = {}
-    if params[:team_id].present?
-      @team = Team.find(params[:team_id])
-      user_search_options[:team_id] = @team.id if @team
-    end
-    @users = current_course.users.where(user_search_options)
+    user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
+    @users = current_course.users.includes(:teams).where(user_search_options)
     respond_to do |format|
       format.html
       format.json { render json: @users }
@@ -70,14 +67,11 @@ class UsersController < ApplicationController
   def students
     @users = current_course.users
     @students = current_course.users.students
-    @teams = current_course.teams.all 
-    @sorted_students = @students.order('sortable_score DESC')
+    @teams = current_course.teams.all
+    @sorted_students = @students.order('users.sortable_score DESC')
     user_search_options = {}
-    if params[:team_id].present?
-      @team = Team.find(params[:team_id])
-      user_search_options[:team_id] = @team.id if @team
-    end
-    @sorted_students = current_course.users.students.where(user_search_options).order('sortable_score DESC')
+    user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
+    @sorted_students = current_course.users.students.includes(:teams).where(user_search_options).order('users.sortable_score DESC')
     respond_to do |format|
       format.html
       format.json { render json: @users }

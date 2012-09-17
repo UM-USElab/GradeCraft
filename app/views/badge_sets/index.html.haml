@@ -1,19 +1,22 @@
-%table.table.display.table-bordered
-  %thead
-    %tr
-      %th Name
-      %th Notes
-      %th
-      %th
-      %th
-  %tbody
-    - @badge_sets.each do |badge_set|
-      %tr
-        %td= badge_set.name
-        %td= badge_set.notes
-        %td= link_to 'View', badge_set, :class => 'btn btn-mini'
-        %td= link_to 'Edit', edit_badge_set_path(badge_set), :class => 'btn btn-mini'
-        %td= link_to 'Delete', badge_set, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+%div.span2= render 'layouts/admin_subnav'
 
-%div.span12
+%div.span8
+  %h3 Badge Sets
+  %table.table.display.table-bordered
+    %thead
+      %tr
+        %th Name
+        %th Notes
+        %th
+        %th
+        %th
+    %tbody
+      - @badge_sets.each do |badge_set|
+        %tr
+          %td= badge_set.name
+          %td= badge_set.notes
+          %td= link_to 'View', badge_set, :class => 'btn btn-mini'
+          %td= link_to 'Edit', edit_badge_set_path(badge_set), :class => 'btn btn-mini'
+          %td= link_to 'Delete', badge_set, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+
   = link_to 'New Badge set', new_badge_set_path, {:class => 'btn btn-primary'}

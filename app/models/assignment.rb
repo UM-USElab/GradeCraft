@@ -14,9 +14,11 @@ class Assignment < ActiveRecord::Base
   has_many :assignment_submissions
   accepts_nested_attributes_for :grades
   accepts_nested_attributes_for :assignment_type
+  has_many :score_levels  
+  accepts_nested_attributes_for :score_levels, allow_destroy: true
   
   delegate :points_predictor_display, :to => :assignment
-    attr_accessible :type, :name, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id, :required, :open_time, :has_assignment_submissions, :student_logged_button_text, :student_logged, :badge_set_id, :release_necessary
+    attr_accessible :type, :name, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id, :required, :open_time, :has_assignment_submissions, :student_logged_button_text, :student_logged, :badge_set_id, :release_necessary, :score_levels_attributes, :open_date, :close_time
 
   scope :individual_assignment, where(:grade_scope => "Individual")
   scope :group_assignment, where(:grade_scope => "Group")
@@ -70,7 +72,7 @@ class Assignment < ActiveRecord::Base
   end  
   
   def assignment_grades_attempted
-    assignment_grades.where(:raw_score != 0).count
+    #assignment_grades.where(:raw_score != 0).count
   end
 
   def type
@@ -97,12 +99,16 @@ class Assignment < ActiveRecord::Base
     visible == "true"
   end
   
+  def point_total
+    super || assignment_type.universal_point_value 
+  end
+  
   def past?
-    due_date.past?
+    due_date != nil && due_date < Date.today
   end
   
   def future?
-    #due_date.future?
+    due_date != nil && due_date >= Date.today
   end
   
   def soon?
@@ -135,22 +141,32 @@ class Assignment < ActiveRecord::Base
     required == true
   end
   
-  #TODO I need this to be either - guessing the assignment type isn't working properly
   def has_levels?
-    assignment_type.levels = 1
-  end
-  
-  def binary?
-    assignment_type.levels = 0
+    assignment_type.levels == true
   end
   
   def mass_grade?
     assignment_type.mass_grade = true
   end
   
-  def open?
-    #TODO Time comparisons in rails
-    open_time <= Time.now == true && due_date > Time.now == true
+  def grade_checkboxes?
+    assignment_type.mass_grade_type == "Checkbox"
+  end 
+  
+  def grade_select? 
+    assignment_type.mass_grade_type == "Select List"
+  end 
+  
+  def grade_radio?
+    assignment_type.mass_grade_type =="Radio Buttons"
+  end
+  
+  def open_dates?
+    #open_date <= Date.today == true && due_date > Date.today == true 
+  end
+  
+  def open_hours?
+    #open_time <= Time.now == true && close_time > Time.now == true || false
   end
   
 

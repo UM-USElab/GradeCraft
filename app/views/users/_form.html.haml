@@ -9,8 +9,10 @@
   /= f.input :token, :as => :hidden
   - if current_user.is_staff?
     = f.input :role, :collection => [["Student", "student"],["GSI", "gsi"],["Professor", "professor"],["Admin", "admin"]], :prompt => "Select Role"
-    = f.input :team_id, :collection => @teams, :prompt => "Select a #{current_course.team_ref}", :label => "#{current_course.team_ref}"
-  - if current_user.is_admin?
+    //TODO Sort out what would happen if a user had many courses
+    - if current_course.has_teams?
+      = f.association :teams, :collection => @teams, :prompt => "Select a #{current_course.team_ref}", :label => "#{current_course.team_ref}", :as => :check_boxes
+
     = f.association :courses, :as => :check_boxes
     = f.input :default_course_id, :collection => @courses
   

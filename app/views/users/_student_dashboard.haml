@@ -1,3 +1,4 @@
+%h3= @user.name
 %div.pull-right
   - if current_user.is_staff?
     %div.btn-group.span12
@@ -11,12 +12,12 @@
 
 %div.span3
   .span12
-    - if current_user.is_staff? && user.team.present?
-      %span.badge.badge-info= link_to user.team.name, team_path(user.team.id)
-    - if current_user.is_student? && user.team.present? && current_course.teams_visible?
-      %span.badge.badge-info= link_to user.team.name, team_path(user.team.id)
-    - elsif current_user.is_student? && user.team.present? 
-      %span.badge.badge-info= user.team.name
+    - if current_user.is_staff? && user.teams.present?
+      %span.badge.badge-info= link_to user.teams.first.name, team_path(user.teams.first.id)
+    - if current_user.is_student? && user.teams.present? && current_course.teams_visible?
+      %span.badge.badge-info= link_to user.teams.first.name, team_path(user.teams.first.id)
+    - elsif current_user.is_student? && user.teams.present? 
+      %span.badge.badge-info= user.teams.first.name
   .span12
     = gravatar_for user, :size => 230
   - if current_user.is_student?
@@ -39,18 +40,18 @@
                 %div.badgeIcon
                   %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
                   .badgeTitle= badge.name
-          %div.span12
+          %div.span12.clear_fix
             Badges you've earned will shine brightly!
+  %div.clear
   %button.btn.btn-warning.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
     %span.buttonTitle To Do List
     %div{:id => "toDoList", :class => "collapse"}
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
+        %ul.assignmentTypeToDo
+          %h6= "#{assignment_type.try(:name)}:"
         - assignments.each do |assignment|
-          - if assignment.soon?
-            %span4= "#{assignment.assignment_type.try(:name)}:"
-            %span4= assignment.try(:name)
-            %br
-            %span4= "Due: #{assignment.try(:due_date)}"
+          - if assignment.soon? && assignment.future? 
+            %li= "#{assignment.try(:name)} (Due: #{assignment.try(:due_date).strftime("%b-%d")})"
             - if assignment.has_assignment_submissions?
               - assignment.submission_for_student(user).tap do |submission|
                 - if submission
@@ -58,8 +59,8 @@
                 - else
                   = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn'
             - if assignment.self_gradeable?
-              //= render 'users/self_log_form'
-              //#{assignment.student_logged_button_text}
+              //= render 'grades/self_log_form'
+              #{assignment.student_logged_button_text}
 
 %div.offset3
   %h2#points
@@ -100,7 +101,6 @@
                   %span.assignmentTitle= assignment.try(:name)
                   - if assignment.is_required?
                     %span.assignmentRequired.label.label-important Required!
-                  %br
                   - if assignment.future?
                     %span.assignmentDate= "Due: #{assignment.try(:due_date)}"
                   - if assignment.has_assignment_submissions?
@@ -109,16 +109,16 @@
                         = link_to "See Submission", assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-primary'
                       - else
                         = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn'
-                  - if assignment.self_gradeable? && assignment.open? &&
+                  - if assignment.self_gradeable? && assignment.open_hours?
                     = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => user.id, :gradeable_type => "User"), :class => "btn btn-info"
                     
                   %br
                   - assignment.assignment_grades.where(:gradeable_id => user.id).each do |grade|
                     - if grade.attempted? 
-                      Your score:
-                      %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total} 
+                      You earned
+                      %span.assignmentGrade #{ grade.raw_score } out of #{grade.point_total} points 
                       - if current_user.is_staff?
-                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-info'
+                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
                       - if grade.has_feedback?
                         %button.btn.btn-mini.btn-inverse{"data-target" => "#assignment-#{assignment.id}", "data-toggle" => "collapse"}= "See Feedback"
                         %div{:id => "assignment-#{assignment.id}", :class => "collapse"}
@@ -126,7 +126,9 @@
                           - grade.earned_badges.each do |badge|
                             %img{:src => badge.icon, :alt => badge.name, :width => "40"}  
                     - else
-                      %span.alert.alert-error.assignmentGrade #{grade.raw_score} / #{grade.point_total}
+                      %span #{grade.raw_score} / #{grade.point_total} points
+                      - if current_user.is_staff?
+                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
                     
 
 - if current_user.is_staff?

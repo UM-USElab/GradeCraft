@@ -11,23 +11,22 @@
         %div#prediction
 
 %div#predictorPage{ 'data-student-name' => @user.name, 'data-course-total' => current_course.total_points }
-  %div.pageTitle Predict Your Course Grade
   %div.flexslider
     %ul.slides
-      %li{:id => "slide-#required"}
-        %div.slide-panel
-          %div
-            %h3 Required Assignments
-            - @assignments.each do |assignment|
-              - if assignment.is_required? 
-                %div
-                  %h6.assignmentTitle= assignment.name
+      %li{:id => "slide-required"}
+        %div.slide-panel.span12
+          %div.assignmentType
+            %span.assignmentTypeTitle Required Assignments
+          - @assignments.each do |assignment|
+            - if assignment.is_required? 
+              %div
+                %h6.assignmentTitle= assignment.name
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
-        %li.assignment-type.slide{:id => "slide-#{assignment_type.id}", :data => { :'assignment-type-id' => assignment_type.id, :'assignment-type-name' => assignment_type.name } }
-          %div.slide-panel.span11
-            %div
-              %h3= assignment_type.name
-              %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
+        %li{:id => "slide-#{assignment_type.id}", :data => { :'assignment-type-id' => assignment_type.id, :'assignment-type-name' => assignment_type.name } }
+          %div.slide-panel.span12
+            %div.assignmentType
+              %span.assignmentTypeTitle= assignment_type.name
+              %span.badge.badge-warning.pull-right= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
             %p.lead= raw assignment_type.predictor_description
             - if assignment_type.student_choice?
               %span.badge.badge-important= link_to "Set Kapital", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
@@ -50,27 +49,10 @@
                     %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
                   - if assignment_type.slider?
                     %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.name, :value => 0 }
-                    %div.slider.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all{:id => "slider-"+assignment.id.to_s()}
-                    %br
-                    %br
-                    
+                    %div.slider{:id => "slider-"+assignment.id.to_s()}
                   - if assignment_type.select?
                     %select.point-value{:id => "total-"+assignment.id.to_s(), :type => "select", :name => assignment.name, :value => 0, :collection => @levels }
                     %div{:id => "select-"+assignment.id.to_s()}
-      %li{:id => "slide-#badges"}
-        %div.slide-panel.span11
-          %div
-            %h3 Badges
-            %div#badgesEarned  
-              - @badges.each do |badge|
-                - @user.earned_badges_by_badge(badge).tap do |earned_badge|
-                  - if earned_badge
-                    %div.badgeIcon
-                      %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
-                      .badgeTitle= badge.name
-                  - else
-                    %div.badgeIcon
-                      %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
-                      .badgeTitle= badge.name
+
           
   = link_to "Back to the Dashboard", user_path(@user), :class => 'btn btn-primary'

@@ -8,11 +8,8 @@ class GradesController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @grades = @assignment.assignment_grades.where(params[:assignment_id])
     user_search_options = {}
-    if params[:team_id].present?
-      @team = Team.find(params[:team_id])
-      user_search_options[:team_id] = @team.id if @team
-    end
-    @students = current_course.users.students.where(user_search_options)
+    user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
+    @students = current_course.users.students.includes(:teams).where(user_search_options)
   end
 
   def show
@@ -30,8 +27,10 @@ class GradesController < ApplicationController
   def new    
     @title = "Submit A New Grade"
     @assignment = Assignment.find(params[:assignment_id])
+    @assignment_type = @assignment.assignment_type
     @grade = @assignment.assignment_grades.create(params[:grade])
     @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
+    @score_levels = @assignment_type.score_levels
     @earned_badges = current_course.badges.map do |b|
       EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
     end
@@ -46,6 +45,8 @@ class GradesController < ApplicationController
     @title = "Edit Grade"
     @badges = current_course.badges.all
     @assignment = Assignment.find(params[:assignment_id])
+    @assignment_type = @assignment.assignment_type    
+    @score_levels = @assignment_type.score_levels
     @students = current_course.users.students
     @grade = @assignment.assignment_grades.find(params[:id])
     #TODO FIX Trying to display the currently earned badges for a user if they exist
@@ -121,6 +122,8 @@ class GradesController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @title = "Mass Grade #{@assignment.name}"
     @grade = @assignment.assignment_grades.create(params[:grade])
+    @assignment_type = @assignment.assignment_type    
+    @score_levels = @assignment_type.score_levels
     user_search_options = {}
 
     if params[:team_id].present?

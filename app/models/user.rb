@@ -8,20 +8,22 @@ class User < ActiveRecord::Base
   Roles = %w{student professor gsi admin}
   
   attr_accessor :remember_me
-  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :team_id, :first_name, :last_name, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id, :last_activity_at, :last_login_at, :last_logout_at
+  attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :first_name, :last_name, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id, :last_activity_at, :last_login_at, :last_logout_at, :team_ids, :course_ids
 
   scope :alpha, :order => 'last_name ASC'
   scope :winning, :order => 'sortable_score DESC'
   
   has_and_belongs_to_many :courses, :join_table => :course_memberships, :uniq => true
-  accepts_nested_attributes_for :courses          
+  #has_and_belongs_to_many :teams, :join_table => :team_memberships
+  accepts_nested_attributes_for :courses      
   has_many :grades, :as => :gradeable, :dependent => :destroy
   has_many :user_assignment_type_weights
   has_many :assignments, :through => :grades
   has_many :assignment_submissions
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
   has_many :badges, :through => :earned_badges
-  belongs_to :team
+  has_many :team_memberships, :dependent => :destroy
+  has_many :teams, :through => :team_memberships
   has_many :group_memberships, :dependent => :destroy
   has_many :groups, :through => :group_memberships
   
@@ -63,7 +65,7 @@ class User < ActiveRecord::Base
   end
   
   def team_leader
-    team.try(:team_leader)
+    teams.first.try(:team_leader)
   end
 
   #Roles
@@ -102,7 +104,7 @@ class User < ActiveRecord::Base
   end
   
   def team_grades
-    team.try(&:sortable_score) || 0
+    teams.first.try(&:sortable_score) || 0
   end
   
   def group_grades

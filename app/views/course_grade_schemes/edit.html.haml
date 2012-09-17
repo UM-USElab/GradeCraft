@@ -1,5 +1,9 @@
-= render 'form'
+%div.span2= render 'layouts/admin_subnav'
 
-%div.span12
-  = link_to 'View', badge_path(@badge), :class => 'btn btn-primary'
-  = link_to 'Back', badges_path, :class => 'btn btn-primary'
+%div.span8
+  %h3= "Edit #{@course_grade_scheme.name} Grading Scheme"
+  = render 'form'
+  
+  %div.span12
+    = link_to 'View', course_grade_scheme_path(@course_grade_scheme), :class => 'btn btn-primary'
+    = link_to 'Back', course_grade_schemes_path, :class => 'btn btn-primary'

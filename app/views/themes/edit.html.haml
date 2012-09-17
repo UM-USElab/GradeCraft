@@ -1,5 +1,7 @@
-= render 'form'
+%div.span2= render 'layouts/admin_subnav'
 
-%div.span12
+%div.span8
+  = render 'form'
+
   = link_to 'View', @theme, :class => 'btn btn-primary'
   = link_to 'Back', themes_path, :class => 'btn btn-primary'
