@@ -59,8 +59,8 @@
                 - else
                   = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn'
             - if assignment.self_gradeable?
-              //= render 'users/self_log_form'
-              //#{assignment.student_logged_button_text}
+              //= render 'grades/self_log_form'
+              #{assignment.student_logged_button_text}
 
 %div.offset3
   %h2#points
@@ -101,7 +101,6 @@
                   %span.assignmentTitle= assignment.try(:name)
                   - if assignment.is_required?
                     %span.assignmentRequired.label.label-important Required!
-                  %br
                   - if assignment.future?
                     %span.assignmentDate= "Due: #{assignment.try(:due_date)}"
                   - if assignment.has_assignment_submissions?
@@ -110,16 +109,16 @@
                         = link_to "See Submission", assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-primary'
                       - else
                         = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn'
-                  - if assignment.self_gradeable? && assignment.open? &&
+                  - if assignment.self_gradeable? && assignment.open_hours?
                     = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => user.id, :gradeable_type => "User"), :class => "btn btn-info"
                     
                   %br
                   - assignment.assignment_grades.where(:gradeable_id => user.id).each do |grade|
                     - if grade.attempted? 
-                      Your score:
-                      %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total} 
+                      You earned:
+                      %span.assignmentGrade #{ grade.raw_score } / #{grade.point_total} points 
                       - if current_user.is_staff?
-                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-info'
+                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
                       - if grade.has_feedback?
                         %button.btn.btn-mini.btn-inverse{"data-target" => "#assignment-#{assignment.id}", "data-toggle" => "collapse"}= "See Feedback"
                         %div{:id => "assignment-#{assignment.id}", :class => "collapse"}

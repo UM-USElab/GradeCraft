@@ -158,7 +158,7 @@ puts "Assigned an impossible workload for each course (impossible, that is, unle
 course_grade_scheme = CourseGradeScheme.new
 grade_scheme_hash.each do |range,name|
   course_grade_scheme.course_grade_scheme_elements.new do |e|
-    e.name = "Boring Grade Scheme"
+    e.name = "Extremely Boring Grade Scheme"
     e.low_range = range.first
     e.high_range = range.last
   end
