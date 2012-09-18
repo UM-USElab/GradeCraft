@@ -9,7 +9,8 @@
     /[if lt IE 9]
       = javascript_include_tag "https://html5shim.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag "application", :media => "all"
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    = javascript_include_tag 'application'
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
     - if current_course.try(:theme).present?
       %link{ :href => current_course.theme.try(:filename), :media => "all", :rel => "stylesheet"}
 

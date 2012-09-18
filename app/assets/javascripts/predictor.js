@@ -91,8 +91,11 @@ var PredictorView = Backbone.View.extend({
   },
   createAssignmentTypes: function() {
     var assignmentTypes = this.collection;
-    $.each($(this.el).find('.slide.assignment-type'),function(i,slide) {
+    $.each($(this.el).find('.slides li').not('.clone'),function(i,slide) {
       $slide = $(slide);
+      if ($slide.attr('id') == 'slide-required') {
+        return true; // Required slide just duplicates assignments from other slides, so we can ignore it
+      }
       var assignmentTypeName = $slide.data('assignment-type-name');
       var assignmentTypeId = $slide.data('assignment-type-id');
       assignmentTypes.add(new AssignmentType({ id: assignmentTypeId, name: assignmentTypeName, score: 0 }));
@@ -108,18 +111,25 @@ var PredictorView = Backbone.View.extend({
     this.model = new Highcharts.Chart(chartOptions);
   },
   events: { 
-    'change input': 'calculateScores'
+    'change input': 'calculateScores',
+    'change select': 'calculateScores'
   },
   calculateScores: function() {
     var assignmentTypes = this.collection;
-    $.each($(this.el).find('.slide.assignment-type'),function(i,slide) {
+    $.each($(this.el).find('.slides li').not('.clone'),function(i,slide) {
       $slide = $(slide);
+      if ($slide.attr('id') == 'slide-required') {
+        return true;
+      }
       var assignmentTypeId = $slide.data('assignment-type-id');
       var score = 0;
       $.each($slide.find('input, select'), function(i,item) {
         var $item = $(item);
+        console.log($item);
         if($item.is(':checkbox') && $item.is(':checked')) {
           score += parseInt($item.val());
+        } else if ($item.is('select')) {
+          score += parseInt($item.children('option:selected').val());
         }
       });
       assignmentTypes.get(assignmentTypeId).set('score',score);
