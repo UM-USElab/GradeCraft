@@ -47,9 +47,6 @@ button h4 {
   opacity: .3;
 }
 
-#tdTitle {
-}
-
 #toDoList { 
   text-align: left;
 }
@@ -80,10 +77,8 @@ button h4 {
   background-color:#222;
   border-radius:10px;
   margin-bottom:15px;
-  min-height:250px;
   text-align: left;
   padding:10px 0;
-  width: 700px;
   padding: 20px;
   color: #FFF;
 }
@@ -186,6 +181,7 @@ h3.popover-title {
 	}
 	
 	
+/*
 	//This is the jquery ui slider element!
 	.slider{
     height:1em;
@@ -193,6 +189,7 @@ h3.popover-title {
 	  padding:0;
 	  width: 60%;
 	}
+*/
 	
 	.assignmentTitle {
   	margin-bottom: 4px;

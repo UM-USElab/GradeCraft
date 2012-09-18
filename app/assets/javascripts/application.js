@@ -23,7 +23,7 @@ $(document).ready(function(){
     placement: 'bottom'
     });
   
-  $( ".slider" ).slider();
+  $( ".slider" ).slider( {  });
   
   // Fix input element click problem
   $('.dropdown input, .dropdown label').click(function(e) {

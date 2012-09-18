@@ -1,49 +1,40 @@
 %h3= @user.name
-%div.pull-right
-  - if current_user.is_staff?
-    %div.btn-group.span12
-      - if current_course.has_badges? && current_course.course_badges? or current_course.has_badges? && current_course.multi_badges?
-        = link_to "Award a Badge", new_earned_badge_path(:earnable_id => @user.id, :earnable_type => "User"), :class => "btn"
-      = link_to "Email", "mailto:#{user.email}", :class => "btn"
-      = link_to "Edit", edit_user_path(user.id), :class => "btn"
-  - user.team_leader.tap do |team_leader|
-    - if team_leader.present?
-      = link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn span8"
 
-%div.span3
-  .span12
+
+
+%div.span2
+  %div.span12
     - if current_user.is_staff? && user.teams.present?
       %span.badge.badge-info= link_to user.teams.first.name, team_path(user.teams.first.id)
     - if current_user.is_student? && user.teams.present? && current_course.teams_visible?
       %span.badge.badge-info= link_to user.teams.first.name, team_path(user.teams.first.id)
     - elsif current_user.is_student? && user.teams.present? 
       %span.badge.badge-info= user.teams.first.name
-  .span12
-    = gravatar_for user, :size => 230
+  %div.span12
+    = gravatar_for user, :size => 240
   - if current_user.is_student?
-    .span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)}
+    %div.span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)}
       %span.buttonTitle How am I doing?
   - elsif current_user.is_staff? 
-    .span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)} 
+    %div.span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)} 
       %span.buttonTitle How are they doing?
-    - if current_course.has_badges? 
-      %button.btn.btn-success.span12{"data-target" => "#badges", "data-toggle" => "collapse"}
-        %span.buttonTitle Badges
-        %div{:id => "badges", :class => "collapse"}
-          - @badges.each do |badge|
-            - @user.earned_badges_by_badge(badge).tap do |earned_badge|
-              - if earned_badge
-                %div.badgeIcon
-                  %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
-                  .badgeTitle= badge.name
-              - else
-                %div.badgeIcon
-                  %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
-                  .badgeTitle= badge.name
-          %div.span12.clear_fix
-            Badges you've earned will shine brightly!
-  %div.clear
-  %button.btn.btn-warning.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
+  - if current_course.has_badges? 
+    %div.btn.btn-success.span12{"data-target" => "#badges", "data-toggle" => "collapse"}
+      %span.buttonTitle Badges
+      %div{:id => "badges", :class => "collapse"}
+        - @badges.each do |badge|
+          - @user.earned_badges_by_badge(badge).tap do |earned_badge|
+            - if earned_badge
+              %div.badgeIcon
+                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
+                .badgeTitle= badge.name
+            - else
+              %div.badgeIcon
+                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
+                .badgeTitle= badge.name
+        %div.span12.clear_fix
+          Badges you've earned will shine brightly!
+  %div.btn.btn-warning.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
     %span.buttonTitle To Do List
     %div{:id => "toDoList", :class => "collapse"}
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
@@ -61,20 +52,31 @@
             - if assignment.self_gradeable? && assignment.open?
               = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => user.id, :gradeable_type => "User"), :class => "btn btn-info btn-mini"
 
-%div.offset3
-  %h2#points
-  %div#userScoreSection
+%div.span9
+  %h2#points.span12
+  %div#userScoreSection.span12
+    %div.pull-right.hidden-phone
+      - if current_user.is_staff?
+        %div.btn-group.span12
+          - if current_course.has_badges? && current_course.course_badges? or current_course.has_badges? && current_course.multi_badges?
+            = link_to "Award a Badge", new_earned_badge_path(:earnable_id => @user.id, :earnable_type => "User"), :class => "btn"
+          = link_to "Email", "mailto:#{user.email}", :class => "btn"
+          = link_to "Edit", edit_user_path(user.id), :class => "btn"
+      - user.team_leader.tap do |team_leader|
+        - if team_leader.present?
+          = link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn"
+
     %div#userID{ :'data-user-id' => user.id }
     %div#userPointValues
-      %span= "Your current score is "  
+      %span= "Your current score is "
       %span#userScoreNum #{number_with_delimiter(user.earned_grades, :delimiter => ',') if user.respond_to?(:earned_grades)}
-    %a{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
+    %a.hidden-phone{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
       Show me my score out of total course points
-    %a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
+    %a.hidden-phone{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
       Show me my score out of available points so far
 
     - if current_user.is_staff?  
-      %div#predictorLink
+      %div#predictorLink.hidden-phone
         - if current_user.is_student?
           = link_to 'Predict My Grade', predictor_users_path(:user_id => user.id)
         - if current_user.is_staff?
@@ -82,8 +84,8 @@
     
     %br
     %br    
-    %div#userBarTotal.dashboard-toggle
-    %div#userBarInProgress.dashboard-toggle
+    %div#userBarTotal.dashboard-toggle.hidden-phone
+    %div#userBarInProgress.dashboard-toggle.hidden-phone
     
     %div#Grades
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|

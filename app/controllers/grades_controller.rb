@@ -136,7 +136,7 @@ class GradesController < ApplicationController
   def mass_update
     @gradeable = find_gradeable
     @assignment = Assignment.find(params[:assignment_id])
-    @grade = @gradeable.assignment_grades.build(params[:grade])
+    @assignment.update_attributes(params[:assignment])
     if @assignment.update_attributes(params[:assignment])
       redirect_to assignment_path(@assignment)
     else
