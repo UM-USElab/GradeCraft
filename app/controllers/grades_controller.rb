@@ -49,9 +49,11 @@ class GradesController < ApplicationController
     @score_levels = @assignment_type.score_levels
     @students = current_course.users.students
     @grade = @assignment.assignment_grades.find(params[:id])
-    #TODO FIX Trying to display the currently earned badges for a user if they exist
-    #@gradeable = Grade.find(params[:gradeable_id])
-    #@gradeable_earned_badges = @gradeable.earnable
+    @earned_badges = current_course.badges.map do |b|
+      EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
+    end
+    @gradeable = @grade.gradeable
+    @gradeable_earned_badges = @gradeable.earned_badges
     @grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with @grade
   end
@@ -61,6 +63,9 @@ class GradesController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @students = current_course.users.students 
     @grade = @gradeable.assignment_grades.build(params[:grade])
+    @earnable = find_earnable
+    @badges = current_course.badges.all
+    @earned_badge = EarnedBadge.new(params[:earned_badge])
     respond_to do |format|
       if @grade.save
         format.html { redirect_to @assignment, notice: 'Grade was successfully created.' }
@@ -75,7 +80,9 @@ class GradesController < ApplicationController
   def update
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @assignment.assignment_grades.find(params[:id])
-    
+    @earnable = find_earnable
+    @badges = current_course.badges.all
+    @earned_badge = EarnedBadge.new(params[:earned_badge])
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
         format.html { redirect_to @assignment, notice: 'Grade was successfully updated.' }
@@ -164,6 +171,15 @@ class GradesController < ApplicationController
   end
   
   def find_gradeable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
+  end
+  
+  def find_earnable
     params.each do |name, value|
       if name =~ /(.+)_id$/
         return $1.classify.constantize.find(value)

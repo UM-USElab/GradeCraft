@@ -12,7 +12,7 @@ class Grade < ActiveRecord::Base
   validates_uniqueness_of :gradeable_id, :scope => :assignment_id
   
   accepts_nested_attributes_for :earned_badges, :reject_if => Proc.new { |earned_badge_attrs| earned_badge_attrs[:earned] != '1' }
-  attr_accessible :type, :raw_score, :final_score, :feedback, :user_id, :assignment_id, :badge_id, :created_at, :updated_at, :complete, :semis, :finals, :status, :attempted, :substantial, :user, :badge_ids, :grade, :gradeable, :gradeable_id, :gradeable_type, :earned_badges_attributes
+  attr_accessible :type, :raw_score, :final_score, :feedback, :user_id, :assignment_id, :badge_id, :created_at, :updated_at, :complete, :semis, :finals, :status, :attempted, :substantial, :user, :badge_ids, :grade, :gradeable, :gradeable_id, :gradeable_type, :earned_badges_attributes, :earned
 
   validates_presence_of :gradeable
   validates_presence_of :assignment
