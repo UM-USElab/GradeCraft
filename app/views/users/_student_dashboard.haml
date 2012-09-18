@@ -11,7 +11,7 @@
     - elsif current_user.is_student? && user.teams.present? 
       %span.badge.badge-info= user.teams.first.name
   %div.span12
-    = gravatar_for user, :size => 240
+    = gravatar_for user, :size => 150
   - if current_user.is_student?
     %div.span12#gradeCurious.btn.btn-primary{:rel => "popover", :title => "Current Final Grade:", "data-content" => current_course.grade_level(user)}
       %span.buttonTitle How am I doing?
@@ -68,7 +68,10 @@
 
     %div#userID{ :'data-user-id' => user.id }
     %div#userPointValues
-      %span= "Your current score is "
+      - if current_user.is_student?
+        %span= "Your current score is "
+      - elsif current_user.is_staff?
+        %span= "Current Score: "
       %span#userScoreNum #{number_with_delimiter(user.earned_grades, :delimiter => ',') if user.respond_to?(:earned_grades)}
     %a.hidden-phone{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
       Show me my score out of total course points
