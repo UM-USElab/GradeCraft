@@ -51,8 +51,7 @@
                     %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.name, :value => 0 }
                     %div.slider{:id => "slider-"+assignment.id.to_s()}
                   - if assignment_type.select?
-                    %select.point-value{:id => "total-"+assignment.id.to_s(), :type => "select", :name => assignment.name, :value => 0, :collection => @levels }
-                    %div{:id => "select-"+assignment.id.to_s()}
+                    = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name',assignment_type.universal_point_value), :class => 'point-value', :id => "total-#{assignment.id}"
 
           
   = link_to "Back to the Dashboard", user_path(@user), :class => 'btn btn-primary'
