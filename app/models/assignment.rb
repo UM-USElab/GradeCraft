@@ -161,16 +161,9 @@ class Assignment < ActiveRecord::Base
     assignment_type.mass_grade_type =="Radio Buttons"
   end
   
-  def open_dates?
-    #open_date <= Date.today == true && due_date > Date.today == true 
+  def open?
+    (open_date <= Time.now) && (due_date > Time.now)
   end
-  
-  def open_hours?
-    #open_time <= Time.now == true && close_time > Time.now == true || false
-  end
-  
-
-
     
   def score_for_grade(grade)
    grade.try(:score) || ""

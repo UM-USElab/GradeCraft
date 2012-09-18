@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $('#assignment_open_date').datepicker(dateFormat: 'yy-mm-dd';)
+  $('#assignment_open_date').datepicker()
     
-  $('#assignment_due_date').datepicker(dateFormat: 'yy-mm-dd';)
+  $('#assignment_due_date').datepicker()
     

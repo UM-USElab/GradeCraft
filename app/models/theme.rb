@@ -3,6 +3,6 @@ class Theme < ActiveRecord::Base
   
   has_many :courses
   
-  mount_uploader :filename, ImageUploader
+  #mount_uploader :filename, ImageUploader
   
 end
