@@ -102,7 +102,7 @@
                     %span.assignmentRequired.label.label-important Required!
                   - if assignment.future?
                     %span.assignmentDate= "(#{assignment.try(:due_date).strftime("%A, %B %d")})"
-                    %span.assignmentDesc= assignment.description
+                    %span.assignmentDesc= raw assignment.description
                   - if assignment.has_assignment_submissions?
                     - assignment.submission_for_student(user).tap do |submission|
                       - if submission
@@ -118,7 +118,7 @@
                   - assignment.assignment_grades.where(:gradeable_id => user.id).each do |grade|
                     - if grade.attempted? 
                       You earned
-                      %span.assignmentGrade #{ grade.raw_score } out of #{grade.point_total} points 
+                      %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points 
                       - if current_user.is_staff?
                         %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
                       - if grade.has_feedback?
