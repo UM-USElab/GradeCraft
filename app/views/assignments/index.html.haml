@@ -10,7 +10,9 @@
     %thead
     %tr
       %th Title
+      %th Open Date
       %th Due Date
+      %th Button Preview
       %th Total Points
       - if current_user.is_student?
         %th Submission
@@ -31,7 +33,11 @@
         - assignments.each do |assignment|
           %tr
             %td= assignment.name
+            %td= assignment.try(:open_date)
             %td= assignment.try(:due_date)
+            %td 
+              - if assignment.self_gradeable?                
+                %button.btn.btn-info.btn-mini #{assignment.student_logged_button_text}
             %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
             // TODO Students can modify the URL to see other students submissions. how to protect? 
             - if current_user.is_student?
