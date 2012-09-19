@@ -3,7 +3,7 @@
   - if @assignment.is_individual?
     = f.input :gradeable_id, :collection => @students, :as => :hidden
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'User' }
-  - if @assignment.has_groups?
+  - elsif @assignment.has_groups?
     = f.input :gradeable_id, :collection => @groups, :as => :hidden
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'Group' }
   - if @assignment.has_teams?
@@ -25,4 +25,4 @@
       = ebf.input :badge_id, :input_html => { :value => ebf.object.badge_id }, :as => :hidden
       = ebf.input :earnable_id, :input_html => { :value => @grade.id }, :as => :hidden
       = ebf.input :earnable_type, :input_html => { :value => 'Grade' }, :as => :hidden
-  = f.submit
+  = f.submit :class => 'btn btn-primary'

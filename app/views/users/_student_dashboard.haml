@@ -106,9 +106,9 @@
                   - if assignment.has_assignment_submissions?
                     - assignment.submission_for_student(user).tap do |submission|
                       - if submission
-                        = link_to "See Submission", assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-primary'
+                        = link_to "See Submission", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-primary btn-mini'
                       - else
-                        = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn'
+                        = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :user_id => @user), :class => 'btn btn-mini'
                   - if assignment.self_gradeable? && assignment.open?
                     %br
                     %br
