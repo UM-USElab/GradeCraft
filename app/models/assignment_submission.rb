@@ -16,4 +16,6 @@ class AssignmentSubmission < ActiveRecord::Base
   belongs_to :user
   belongs_to :assignment
   
+  validates_presence_of :assignment_id, :user_id
+  
 end
