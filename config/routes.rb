@@ -39,6 +39,9 @@ GradeCraft::Application.routes.draw do
   resources :assignment_types
   resources :score_levels
   resources :assignments do 
+    collection do 
+      get :settings
+    end
     resources :assignment_submissions
     resources :grades do
       collection do
