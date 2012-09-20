@@ -20,5 +20,5 @@
   = render 'grade_form'
 
 %div.span12
-  = link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, @assignment_submission), {:class => 'btn btn-primary'}
+  = link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, @assignment_submission, :gradeable_id => @user, :gradeable_type => "User"), {:class => 'btn btn-primary'}
   = link_to 'Back', assignment_assignment_submissions_path(@assignment), {:class => 'btn btn-primary'}

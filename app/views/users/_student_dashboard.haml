@@ -1,4 +1,4 @@
-%h3= @user.name
+%h3= @user.try(:name)
 %div.pull-right
   - if current_user.is_staff?
     %div.btn-group.span12
