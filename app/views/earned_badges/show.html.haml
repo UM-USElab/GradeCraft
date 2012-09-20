@@ -1,8 +1,12 @@
-%h4= link_to @earned_badge.earnable.name, user_path(@earned_badge.earnable_id)
-%h4= @earned_badge.feedback
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
 
-%img{:src => @earned_badge.badge.try(:icon), :alt => @earned_badge.badge.try(:name), :width => "25", :height => "25"}
-
-%div.span12
-  = link_to 'Edit', edit_earned_badge_path(@earned_badge), :class => "btn btn-inverse"
-  = link_to 'Back', earned_badges_path, :class => "btn btn-inverse"
+%div.span8
+  %h4= link_to @earned_badge.earnable.name, user_path(@earned_badge.earnable_id)
+  %h4= @earned_badge.feedback
+  
+  %img{:src => @earned_badge.badge.try(:icon), :alt => @earned_badge.badge.try(:name), :width => "25", :height => "25"}
+  
+  %div.span12
+    = link_to 'Edit', edit_earned_badge_path(@earned_badge), :class => "btn btn-inverse"
+    = link_to 'Back', earned_badges_path, :class => "btn btn-inverse"

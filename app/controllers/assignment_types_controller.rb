@@ -12,6 +12,7 @@ class AssignmentTypesController < ApplicationController
 
   def show
     @assignment_type = current_course.assignment_types.find(params[:id])
+    @score_levels = @assignment_type.score_levels
     respond_to do |format|
       format.html
       format.json { render json: @assignment_types }

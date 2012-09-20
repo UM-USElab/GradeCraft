@@ -9,6 +9,8 @@ class AssignmentType < ActiveRecord::Base
   has_many :score_levels
   accepts_nested_attributes_for :score_levels, allow_destroy: true
   
+  validates_presence_of :name, :points_predictor_display, :point_setting
+  
   default_scope :order => 'order_placement ASC'
   
   def weight 

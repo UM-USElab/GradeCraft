@@ -1,5 +1,9 @@
-= render 'form'
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
 
-%div.span12
-  = link_to 'View', @earned_badges, :class => "btn btn-inverse"
-  = link_to 'Back', earned_badges_path, :class => "btn btn-inverse"
+%div.span8
+  = render 'form'
+
+  %div.span12
+    = link_to 'View', @earned_badges, :class => "btn btn-inverse"
+    = link_to 'Back', earned_badges_path, :class => "btn btn-inverse"

@@ -9,6 +9,8 @@ class Badge < ActiveRecord::Base
   
   accepts_nested_attributes_for :badge_set
   
+  validates_presence_of :name
+  
   default_scope :order => 'id ASC'
   
   def occurance

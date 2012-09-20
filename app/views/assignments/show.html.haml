@@ -5,9 +5,11 @@
   %b Point Total:
   = number_with_delimiter(@assignment.point_total, :delimiter => ',') 
 %p
-  %b Due Date:
-  = @assignment.open_time 
-  = @assignment.close_time
+  %b Open date:
+  = @assignment.open_date
+  
+  %b Close date:
+  = @assignment.close_date
 
 
 - if @assignment.has_groups?

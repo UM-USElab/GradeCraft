@@ -1,22 +1,26 @@
-%table.table.table-bordered
-  %thead
-    %tr
-      %th User    
-      %th Assignment
-      %th Badge
-      %th
-      %th
-      %th
-  %tbody
-    - @earned_badges.each do |earned_badge|
-      %tr        
-        %td= link_to earned_badge.earnable.try(:name), "/#{earned_badge.earnable_type.downcase}s/#{earned_badge.earnable_id}"
-        //TODO Add conditional display of assignment if present
-        %td 
-        %td
-          %img{:src => earned_badge.badge.try(:icon), :alt => earned_badge.badge.try(:name), :width => "25", :height => "25"}
-        %td= link_to 'View', earned_badge, :class => 'btn btn-mini'
-        %td= link_to 'Edit', edit_earned_badge_path(earned_badge), :class => 'btn btn-mini'
-        %td= link_to 'Delete', earned_badge, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-%div.span12
-  = link_to "Award a Badge", new_earned_badge_path, :class => "btn btn-primary"
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
+
+%div.span8
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th User    
+        %th Assignment
+        %th Badge
+        %th
+        %th
+        %th
+    %tbody
+      - @earned_badges.each do |earned_badge|
+        %tr        
+          %td= link_to earned_badge.earnable.try(:name), "/#{earned_badge.earnable_type.downcase}s/#{earned_badge.earnable_id}"
+          //TODO Add conditional display of assignment if present
+          %td 
+          %td
+            %img{:src => earned_badge.badge.try(:icon), :alt => earned_badge.badge.try(:name), :width => "25", :height => "25"}
+          %td= link_to 'View', earned_badge, :class => 'btn btn-mini'
+          %td= link_to 'Edit', edit_earned_badge_path(earned_badge), :class => 'btn btn-mini'
+          %td= link_to 'Delete', earned_badge, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+  %div.span12
+    = link_to "Award a Badge", new_earned_badge_path, :class => "btn btn-primary"
