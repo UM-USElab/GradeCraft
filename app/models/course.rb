@@ -19,6 +19,8 @@ class Course < ActiveRecord::Base
   has_many :team_assignments, :dependent => :destroy
   belongs_to :theme
   
+  validates_presence_of :name, :badge_setting, :team_setting, :group_setting
+  
   def user_ref
     if user_term?
       user_term

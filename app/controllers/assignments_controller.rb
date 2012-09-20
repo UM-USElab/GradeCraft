@@ -21,6 +21,7 @@ class AssignmentsController < ApplicationController
     @grades = @assignment.grades
     @groups = @assignment.groups
     @title = "View #{@assignment.name}"
+    @teams = current_course.teams
     @assignment_submissions = @assignment.assignment_submissions
     @earnables = current_course.earned_badges.all
     user_search_options = {}

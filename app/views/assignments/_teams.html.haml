@@ -1,0 +1,27 @@
+%h3= current_course.team_ref
+%table.table-bordered.table
+  %thead
+    %tr
+      %th
+        %th= current_course.team_ref
+        %th Score
+        %th Level
+        %th Badges Earned
+        %th Status
+        %th
+        %th
+        %th
+        %th
+    %tbody
+      - @teams.each do |team|
+        %tr
+          %td
+          %td= team.try(:name)
+          %td
+          %td
+          %td
+          %td
+          %td
+          %td
+          %td
+          %td
