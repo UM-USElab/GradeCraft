@@ -4,9 +4,8 @@ class Group < ActiveRecord::Base
   has_many :grades, :as => :gradeable, :dependent => :destroy
   
   belongs_to :course
-  validates_presence_of :course
   belongs_to :assignment
-  validates_presence_of :assignment
+  validates_presence_of :assignment, :course, :name
   
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
   has_many :badges, :through => :earned_badges

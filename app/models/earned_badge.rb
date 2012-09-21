@@ -9,6 +9,8 @@ class EarnedBadge < ActiveRecord::Base
 
   delegate :name, :description, :icon, :value, :to => :badge
   
+  validates_presence_of :earnable_id, :badge_id
+  
   def point_value 
     if value
       value 

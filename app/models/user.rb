@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :teams, :through => :team_memberships
   has_many :group_memberships, :dependent => :destroy
   has_many :groups, :through => :group_memberships
+  has_many :user_assignment_type_weights
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

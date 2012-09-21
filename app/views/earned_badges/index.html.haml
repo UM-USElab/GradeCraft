@@ -2,11 +2,12 @@
   %div.span2= render 'layouts/admin_subnav'
 
 %div.span8
+  %h3 #{@user}
   %table.table.table-bordered
     %thead
-      %tr
-        %th User    
-        %th Assignment
+      %tr   
+        - if current_course.assignment_badges?
+          %th Assignment
         %th Badge
         %th
         %th
@@ -14,9 +15,9 @@
     %tbody
       - @earned_badges.each do |earned_badge|
         %tr        
-          %td= link_to earned_badge.earnable.try(:name), "/#{earned_badge.earnable_type.downcase}s/#{earned_badge.earnable_id}"
           //TODO Add conditional display of assignment if present
-          %td 
+          - if current_course.assignment_badges? 
+            %td 
           %td
             %img{:src => earned_badge.badge.try(:icon), :alt => earned_badge.badge.try(:name), :width => "25", :height => "25"}
           %td= link_to 'View', earned_badge, :class => 'btn btn-mini'

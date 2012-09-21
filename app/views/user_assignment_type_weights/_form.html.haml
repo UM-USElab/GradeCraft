@@ -1,9 +1,10 @@
 = simple_form_for(@user_assignment_type_weight, :html => {:class => 'form-horizontal' }) do |f|
   - if current_user.is_student?
     = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
-  = f.input :user_id, :collection => @users
-  = f.input :assignment_type_id, :collection => @assignments, :value => @assignment_type_id
-  = f.input :value, :hint => "You can set #{current_course.user_weight_amount}% of your course grade"
+  - elsif current_user.is_staff?
+    = f.association :user, :collection => @users
+  = f.input :assignment_type_id, :collection => @assignment_types, :value => @assignment_type_id
+  = f.input :value, :hint => "You may set #{current_course.user_weight_amount} #{current_course.user_weight_amount_type}s", :collection => @amounts
   
   .form-actions
     = f.button :submit

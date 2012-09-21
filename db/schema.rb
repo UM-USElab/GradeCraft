@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917022849) do
+ActiveRecord::Schema.define(:version => 20120920190257) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(:version => 20120917022849) do
     t.boolean  "has_assignment_submissions"
     t.boolean  "teams_visible"
     t.string   "badge_use_scope"
+    t.integer  "multiplier_default"
   end
 
   create_table "dashboards", :force => true do |t|
@@ -282,11 +283,6 @@ ActiveRecord::Schema.define(:version => 20120917022849) do
     t.integer  "user_id"
     t.integer  "assignment_type_id"
     t.integer  "value"
-  end
-
-  create_table "user_grade_weights", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

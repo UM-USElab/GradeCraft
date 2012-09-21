@@ -1,9 +1,11 @@
 class GradeScheme < ActiveRecord::Base
   has_many :assignments
-  has_many :courses
+  belongs_to :courses
   has_many :grade_scheme_elements
   
   attr_accessible :created_at, :updated_at, :name, :course_id
+  
+  validates_presence_of :name, :course_id
 
   def element_names
     @names ||= {}.tap do |names|
