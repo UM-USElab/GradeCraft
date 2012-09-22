@@ -43,7 +43,7 @@ class AssignmentType < ActiveRecord::Base
     points_predictor_display == "Select List"
   end
   
-  def has_level? 
+  def has_levels? 
     levels == 1
   end
   

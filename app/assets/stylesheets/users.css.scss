@@ -170,7 +170,6 @@ h3.popover-title {
 	div.slide-panel {
   	border-radius: 10px;
   	padding: 0px 25px;
-  	height: 400px;
 	}
 	
 	.headline {
@@ -181,16 +180,19 @@ h3.popover-title {
 	}
 	
 	
-/*
 	//This is the jquery ui slider element!
 	.slider{
     height:1em;
-    margin: 15px;
-	  padding:0;
+    margin: 15px 5px 0px;
+	  padding: 0;
 	  width: 60%;
 	}
-*/
 	
+	div.sliderContainer {
+  	padding: 10px;
+  	margin: 10px;
+  	background-color: #eee;
+	}
 	.assignmentTitle {
   	margin-bottom: 4px;
 	}

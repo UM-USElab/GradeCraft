@@ -35,7 +35,7 @@
             %div#pastAssignments
             - assignments.each do |assignment|
               - if assignment.past?
-                %div.assignment.clear
+                %div.assignment.well
                   %h6.assignmentTitle.pull-left= assignment.try(:name)
                   - if assignment.is_required?
                     %span.assignmentRequired.label.label-important Required!
@@ -43,13 +43,18 @@
                     - if grade.attempted? 
                       %span.grade #{ grade.raw_score } / #{grade.point_total}
               - if assignment.future?
-                %div.assignment.clear
+                %div.assignment.well
                   %h6.assignmentTitle.pull-left= assignment.name
                   - if assignment_type.fixed?
                     %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
                   - if assignment_type.slider?
                     %input.point-value{:id => "total-"+assignment.id.to_s(), :type => "text", :name => assignment.name, :value => 0 }
-                    %div.slider{:id => "slider-"+assignment.id.to_s()}
+                    - if assignment_type.has_levels?
+                      %select
+                        - assignment.score_levels.each do |sl|
+                          %option= sl.name
+                    - else 
+                      %div.slider{:id => "slider-"+assignment.id.to_s(), :max => assignment.point_total, :value => 0 }
                   - if assignment_type.select?
                     = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name',assignment_type.universal_point_value), :class => 'point-value', :id => "total-#{assignment.id}"
 

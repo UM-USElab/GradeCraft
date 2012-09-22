@@ -14,6 +14,7 @@
 //= require flexslider 
 //= require underscore.min
 //= require backbone.min
+//= require selectToUISlider.jQuery
 //= require_tree .
 
 $(document).ready(function(){
@@ -24,6 +25,8 @@ $(document).ready(function(){
     });
   
   $( ".slider" ).slider( {  });
+  
+  $('select').selectToUISlider();
   
   // Fix input element click problem
   $('.dropdown input, .dropdown label').click(function(e) {
