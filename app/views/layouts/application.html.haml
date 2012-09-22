@@ -9,7 +9,7 @@
     /[if lt IE 9]
       = javascript_include_tag "https://html5shim.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag "application", :media => "all"
-    = javascript_include_tag 'application'
+    //= javascript_include_tag 'application'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     //= javascript_include_tag :defaults, "rails.validations" 
     - if current_course.try(:theme).present?

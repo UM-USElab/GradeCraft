@@ -11,12 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120920190257) do
+ActiveRecord::Schema.define(:version => 20120922152856) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
     t.integer  "user_id"
-    t.integer  "group_id"
     t.string   "feedback"
     t.string   "comment"
     t.datetime "created_at",              :null => false
@@ -26,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20120920190257) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.string   "link"
+    t.integer  "submittable_id"
+    t.string   "submittable_type"
   end
 
   create_table "assignment_types", :force => true do |t|

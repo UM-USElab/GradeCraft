@@ -31,6 +31,9 @@ class AssignmentSubmissionsController < ApplicationController
     @assignment = Assignment.find(params[:assignment_id])
     @title = "Submit #{@assignment.name}"
     @users = current_course.users
+    @groups = @assignment.groups 
+    @teams = current_course.teams
+    @students = @users.students
     @assignment_submission = AssignmentSubmission.new
     @assignment_submission.user_id = params[:user_id]
     respond_with(@assignment_submission)

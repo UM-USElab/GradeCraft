@@ -26,10 +26,13 @@ class EarnedBadgesController < ApplicationController
   def new
     @title = "Award a New Badge"
     @assignments = current_course.assignments.all
-    @earned_badge = EarnedBadge.new
-    @earned_badge.earnable = params[:earnable_type].constantize.find(params[:earnable_id])    
     @badges = current_course.badges.all
     @students = current_course.users.students.all
+    @earned_badge = EarnedBadge.new
+    @user = User.find(params[:user_id])
+    #@group = Group.find(params[:group_id])
+    #@team = Team.find(params[:team_id])
+    #@earned_badge.earnable = params[:earnable_type].constantize.find(params[:earnable_id])    
   end
   
   def edit
@@ -46,10 +49,11 @@ class EarnedBadgesController < ApplicationController
     @earnable = find_earnable
     @badge_sets = current_course.badge_sets.all 
     @badges = current_course.badges.all
+    @user = User.find(params[:user_id])
     @earned_badge = EarnedBadge.new(params[:earned_badge])
     respond_to do |format|
       if @earned_badge.save
-        format.html { redirect_to users_path(@earnable.id), notice: 'Badge was successfully awarded.' }
+        format.html { redirect_to @user, notice: 'Badge was successfully awarded.' }
         format.json { render json: @earnable, status: :created, location: @earnable}
       else
         format.html { render action: "new" }

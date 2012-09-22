@@ -9,6 +9,8 @@ class Team < ActiveRecord::Base
   attr_accessible :name, :created_at, :updated_at, :banner_file_name, :banner_updated_at, :sortable_score, :rank, :team_id, :user_ids, :course_id
   
   validates_presence_of :name, :course_id
+  
+  has_many :assignment_submissions, :as => :submittable, :dependent => :destroy
 
   default_scope :order => 'id ASC'
 

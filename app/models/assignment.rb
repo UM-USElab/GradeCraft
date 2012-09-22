@@ -49,12 +49,47 @@ class Assignment < ActiveRecord::Base
     grades_by_student_id[student.id].try(:first)
   end
   
+  def grades_by_group_id
+    @grades_by_group ||= grades.group_by(&:gradeable_id)
+  end
+  
+  def grade_for_group(group)
+    grades_by_group_id[group.id].try(:first)
+  end 
+  
+  def grades_by_team_id
+    @grades_by_team ||= grades.group_by(&:gradeable_id)
+  end 
+  
+  def grade_for_team(team)
+    grades_by_team_id[team.id].try(:first)
+  end
+
+  #submissions by student  
   def submissions_by_student_id
     @submissions_by_student || assignment_submissions.group_by(&:user_id)
   end
   
   def submission_for_student(student)
     submissions_by_student_id[student.id].try(:first)
+  end
+  
+    #submissions by groups
+  def submissions_by_group_id
+    @submissions_by_group || assignment_submissions.group_by(&:group_id)
+  end
+  
+  def submission_for_group(group)
+    submissions_by_group_id[group.id].try(:first)
+  end
+  
+    #submissions by teams
+  def submissions_by_team_id
+    @submissions_by_team || assignment_submissions.group_by(&:team_id)
+  end
+  
+  def submission_for_team(team)
+    submissions_by_team_id[team.id].try(:first)
   end
 
   def assignment_grades

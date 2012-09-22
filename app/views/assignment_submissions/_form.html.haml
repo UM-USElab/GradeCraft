@@ -1,9 +1,14 @@
 = simple_form_for([@assignment, @assignment_submission], :html => {:class => 'form-horizontal' }) do |f|
   .form-inputs
-    - if current_user.is_student?
-      = f.association :user, :default => current_user.id, :as => :hidden
-    - else
-      = f.input :user_id, :collection => @users
+    - if @assignment.has_groups?
+      = f.input :submittable_id, :collection => @groups, :label => "Group"
+    - elsif @assignment.has_teams? 
+      = f.input :submittable_id, :collection => @teams, :label => "Team"
+    - elsif @assignment.is_individual? 
+      - if current_user.is_student?
+        = f.association :user, :default => current_user.id, :as => :hidden
+      - else
+        = f.input :submittable_id, :collection => @students, :label => "#{current_course.user_ref}"
     = f.association :assignment, :default => @assignment, :as => :hidden
     = f.input :link, :hint => "Where is your assignment located on the web?", :input_html => {:class => 'span9' }
     = f.input :comment, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span12' }, :label => "Text/Comment"
