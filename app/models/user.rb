@@ -125,12 +125,14 @@ class User < ActiveRecord::Base
 
   def grade_for_assignment(assignment)
     grades_by_assignment_id[assignment.id].try(:first)
-
+  end
+  
+  def earnable
+    @user.earned_badges.all 
   end
   
   def earned_badges_by_badge_id
     @earned_badges_by_badge ||= earned_badges.group_by(&:badge_id)
-
   end
   
   def earned_badges_by_badge(badge)

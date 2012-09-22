@@ -47,7 +47,7 @@ class AssignmentType < ActiveRecord::Base
   end
   
   def has_levels? 
-    levels == 1
+    levels == true
   end
   
   def grade_checkboxes?
