@@ -29,7 +29,7 @@
               %span.badge.badge-warning.pull-right= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
             %p.lead= raw assignment_type.predictor_description
             - if assignment_type.student_choice?
-              %span.badge.badge-important= link_to "Set Kapital", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+              //%span.badge.badge-important= link_to "Set Kapital", new_user_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
               %br
               %br
             %div#pastAssignments
@@ -47,6 +47,7 @@
                   %h6.assignmentTitle.pull-left= assignment.name
                   - if assignment_type.fixed?
                     %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
+                    %span= "#{assignment.point_total} possible points"
                   - if assignment_type.slider?
                     //%input.point-value{:id => "total-"+assignment.id.to_s(), :name => assignment.name, :value => 0 }
                     - if assignment_type.has_levels?

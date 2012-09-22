@@ -2,26 +2,33 @@
   %div.span2= render 'layouts/admin_subnav'
 
 %div.span8
-  %h3 #{@user}
+  %h3 #{@user.try(:name)}'s Badges
   %table.table.table-bordered
     %thead
       %tr   
-        - if current_course.assignment_badges?
+        - if current_course.assignment_badges?  
+          %th Assignment
+        - if current_course.multi_badges? 
           %th Assignment
         %th Badge
-        %th
+        %th Name
+        %th Value
         %th
         %th
     %tbody
       - @earned_badges.each do |earned_badge|
         %tr        
-          //TODO Add conditional display of assignment if present
-          - if current_course.assignment_badges? 
-            %td 
           %td
+          - if current_course.assignment_badges? && earned_badge.earnable_type == "Assignment"
+            = earned_badge.earnable.try(:name)
+          - elsif current_course.multi_badges? && earned_badge.earnable_type == "Assignment"
+            = earned_badge.earnable.try(:name)
+          %td 
             %img{:src => earned_badge.badge.try(:icon), :alt => earned_badge.badge.try(:name), :width => "25", :height => "25"}
-          %td= link_to 'View', earned_badge, :class => 'btn btn-mini'
-          %td= link_to 'Edit', edit_earned_badge_path(earned_badge), :class => 'btn btn-mini'
-          %td= link_to 'Delete', earned_badge, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+          %td= earned_badge.name
+          %td= earned_badge.value
+          %td= link_to 'View', user_earned_badge_path(@user.id, earned_badge), :class => 'btn btn-mini'
+          %td= link_to 'Edit', edit_user_earned_badge_path(@user.id, earned_badge), :class => 'btn btn-mini'
+          %td= link_to 'Delete', user_earned_badge_path(@user.id, earned_badge), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
   %div.span12
-    = link_to "Award a Badge", new_earned_badge_path, :class => "btn btn-primary"
+    = link_to "Award a Badge", new_user_earned_badge_path(@user), :class => "btn btn-primary"

@@ -106,7 +106,7 @@ var PredictorView = Backbone.View.extend({
       chartOptions.series.push({ name: assignmentType.get('name'), data: [assignmentType.get('score')] });
     });
     $el = $(this.el);
-    chartOptions.xAxis.categories = [$el.data('student-name')];
+    chartOptions.xAxis.categories = ' ';
     chartOptions.yAxis.max = $el.data('course-total');
     this.model = new Highcharts.Chart(chartOptions);
   },

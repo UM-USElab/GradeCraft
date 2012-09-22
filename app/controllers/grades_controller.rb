@@ -53,7 +53,7 @@ class GradesController < ApplicationController
       EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
     end
     @gradeable = @grade.gradeable
-    @gradeable_earned_badges = @gradeable.earned_badges
+    #@gradeable_earned_badges = @gradeable.earned_badges
     @grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with @grade
   end

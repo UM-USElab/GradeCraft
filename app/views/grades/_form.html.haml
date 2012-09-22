@@ -20,16 +20,19 @@
   - if @assignment.release_necessary?
     = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]
   - if current_course.has_badges? && current_course.assignment_badges? or current_course.has_badges? && current_course.multi_badges?
-    = f.simple_fields_for :earned_badges, @earned_badges do |ebf|
-      = ebf.input :earned, :as => :boolean, :label => ebf.object.name
-      = ebf.input :badge_id, :input_html => { :value => ebf.object.badge_id }, :as => :hidden
-      = ebf.input :earnable_id, :input_html => { :value => @grade.id }, :as => :hidden
-      = ebf.input :earnable_type, :input_html => { :value => 'Grade' }, :as => :hidden
-      %img{:src => "#{ebf.object.badge.try(:icon)}"}
+    %div#badgeForm
+      = f.simple_fields_for :earned_badges, @earned_badges do |ebf|
+        %div.badgeField
+          %img{:src => "#{ebf.object.badge.try(:icon)}"}
+          = ebf.input :earned, :as => :boolean, :label => ebf.object.name
+          = ebf.input :badge_id, :input_html => { :value => ebf.object.badge_id }, :as => :hidden
+          = ebf.input :earnable_id, :input_html => { :value => @grade.id }, :as => :hidden
+          = ebf.input :earnable_type, :input_html => { :value => 'Grade' }, :as => :hidden
+    %div.clear
   .form-actions
     = f.button :submit, :class => 'btn'
     = link_to 'Cancel', assignment_path(@assignment), :class => 'btn'
 
 - if current_course.has_badges? && current_course.assignment_badges? or current_course.has_badges? && current_course.multi_badges?
-  - @gradeable_earned_badges.each do |badge|
-    - badge.name
+  //- @gradeable_earned_badges.each do |badge|
+  //- badge.name

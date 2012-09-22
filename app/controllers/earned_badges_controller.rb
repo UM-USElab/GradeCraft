@@ -4,8 +4,9 @@ class EarnedBadgesController < ApplicationController
 
   def index
     @title = "Awarded Badges"
-    @earnable = User.find(params[:earnable_id])
-    @grades = @assignment.assignment_grades.where(params[:assignment_id])
+    @user = User.find(params[:user_id])
+    @earned_badges = @user.earned_badges
+    #@grades = @assignment.assignment_grades.where(params[:assignment_id])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @earned_badge }
@@ -48,8 +49,8 @@ class EarnedBadgesController < ApplicationController
     @earned_badge = EarnedBadge.new(params[:earned_badge])
     respond_to do |format|
       if @earned_badge.save
-        format.html { redirect_to earned_badges_path, notice: 'Badge was successfully awarded.' }
-        format.json { render json: @earned_badge, status: :created, location: @earned_badge }
+        format.html { redirect_to users_path(@earnable.id), notice: 'Badge was successfully awarded.' }
+        format.json { render json: @earnable, status: :created, location: @earnable}
       else
         format.html { render action: "new" }
         format.json { render json: @earned_badge.errors, status: :unprocessable_entity }
