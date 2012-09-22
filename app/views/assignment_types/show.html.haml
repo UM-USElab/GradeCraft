@@ -24,7 +24,7 @@
       = @assignment_type.percentage_course
     %p
       %b Students set course weight?
-      = @assignment_type.user_percentage_set
+      = @assignment_type.user_percentage_set? ? "Yes" : "No"
   
   %div.well
     %h4 Predictor Settings
@@ -42,18 +42,19 @@
     %h4 Grading
     %p
       %b Is this assignment mass gradeable?
-      = @assignment_type.mass_grade
+      = @assignment_type.mass_grade? ? "Yes" : "No"
     %p
       %b In what form? 
       = @assignment_type.mass_grade_type
     %p
       %b Are there levels to the grading? (This includes normal A - F grading schemes.)
-      = @assignment_type.levels
+      = @assignment_type.levels? ? "Yes" : "No"
     
     %div.well
       %h5 Score Levels
+      %ul
       - @score_levels.each do |sl|
-        = "#{sl.name} - #{sl.value}"
+        %li= "#{sl.name} - #{sl.value}"
 
   = link_to 'Edit', edit_assignment_type_path(@assignment_type), :class => 'btn'
   = link_to 'Back', assignment_types_path, :class => 'btn'
