@@ -162,7 +162,7 @@ class Assignment < ActiveRecord::Base
   end
   
   def open?
-    (open_date <= Time.now) && (due_date > Time.now)
+    (open_date !=nil && open_date < Time.now) && (due_date != nil && due_date > Time.now)
   end
     
   def score_for_grade(grade)

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_filter :require_login, :only=>[:create,:new]
   before_filter :'ensure_staff?', :only=>[:index,:destroy,:show, :edit, :new]
   before_filter :'ensure_admin?', :only=>[:all_users]
-
+  
   def import
     if request.post? && params[:file].present?
       infile = params[:file].read
@@ -99,7 +99,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:user_id])
     else
       @user = current_user
-      #User.increment_counter(:predictor_views, current_user.id) if current_user
     end
     if params[:in_progress]
       @assignment_type_scores = @assignment_types.map { |assignment_type| { :data => [current_course.current_scores_by_assignment_type_for_student(@user)[assignment_type.id]], :name => assignment_type.name } }

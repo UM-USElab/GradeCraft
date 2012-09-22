@@ -1,3 +1,4 @@
+User.increment_counter(:predictor_views, current_user.id) if current_user
 %div#predictorWrapper
   %div#userID{ :'data-user-id' => @user.id }
     %div#predictionWrapper

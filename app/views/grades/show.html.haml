@@ -5,8 +5,10 @@
   %b Assignment:
   = link_to @grade.assignment.name, assignment_path(@grade.assignment_id)
 %p
-  %b Score:
+  %b Raw Score:
   = @grade.raw_score
+%p
+  %b Final Score:
   = @grade.final_score
 %p
   %b Feedback:

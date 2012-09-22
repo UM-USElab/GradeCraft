@@ -37,11 +37,11 @@ class Grade < ActiveRecord::Base
   end
   
   def attempted?
-    raw_score > 0
+    score > 0
   end
   
   def has_feedback?
-    feedback != nil
+    feedback != "" && feedback != nil 
   end
   
   def save_gradeable_score

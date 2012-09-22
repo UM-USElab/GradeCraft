@@ -59,9 +59,17 @@ class AssignmentSubmissionsController < ApplicationController
   end
 
   def update
-    @assignment_submission = AssignmentSubmission.find(params[:id])
-    @assignment_submission.update_attributes(params[:assignment_submission])
-    respond_with(@assignment_submission)
+    @assignment = Assignment.find(params[:assignment_id])
+    @assignment_submission = @assignment.assignment_submissions.find(params[:id])
+    respond_to do |format|
+      if @assignment_submission.update_attributes(params[:assignment_submission])
+        format.html { redirect_to dashboard_path, notice: 'Your Assignment Submission was successfully updated.' }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @assignment_submission.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy

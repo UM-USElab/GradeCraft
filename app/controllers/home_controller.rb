@@ -8,6 +8,7 @@ class HomeController < ApplicationController
         @title = "Course Dashboard"
       else
         @title = "My Dashboard"
+        @user = current_user
       end
       @teams = current_course.try(:teams)
       @users = current_course.try(:users)
