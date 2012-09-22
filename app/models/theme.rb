@@ -3,6 +3,8 @@ class Theme < ActiveRecord::Base
   
   has_many :courses
   
+  validates_presence_of :filename, :name
+  
   #mount_uploader :filename, ImageUploader
   
 end

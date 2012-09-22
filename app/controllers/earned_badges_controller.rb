@@ -3,9 +3,9 @@ class EarnedBadgesController < ApplicationController
   before_filter :ensure_staff?
 
   def index
-    @title = "View All Awarded Badges"
-    @earned_badges = current_course.earned_badges.all
-    @users = current_course.users.students.all
+    @title = "Awarded Badges"
+    @earnable = User.find(params[:earnable_id])
+    @grades = @assignment.assignment_grades.where(params[:assignment_id])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @earned_badge }

@@ -1,7 +1,8 @@
 class UserAssignmentTypeWeightsController < ApplicationController
   def index
     @title = "User set assignment weights"
-    @user_assignment_type_weights = current_course.userassignmenttypeweights.all
+    @user = User.find(params[:user_id])
+    @user_assignment_type_weights = @user.user_assignment_type_weights
     respond_with(@user_assignment_type_weights)
   end
 
@@ -13,11 +14,11 @@ class UserAssignmentTypeWeightsController < ApplicationController
 
   def new
     @title = "Assignment Weight"
+    @user = User.find(params[:user_id])
     @users = current_course.users.students
-    #TODO Filter these down to just the assignments where students set percentages
-    @assignments = current_course.assignments.all
+    @assignment_types = current_course.assignment_types.where(:user_percentage_set => "true")
     @user_assignment_type_weight = UserAssignmentTypeWeight.new
-    respond_with(@user_assignment_type_weight)
+    respond_with(user_user_assignment_type_weights_path)
   end
 
   def edit
@@ -28,8 +29,16 @@ class UserAssignmentTypeWeightsController < ApplicationController
 
   def create
     @user_assignment_type_weight = UserAssignmentTypeWeight.new(params[:user_assignment_type_weight])
-    @user_assignment_type_weight.save
-    respond_with(@user_assignment_type_weight)
+    @user = User.find(params[:user_id])
+    respond_to do |format|
+      if @user_assignment_type_weight.save
+        format.html { redirect_to user_user_assignment_type_weights_path(@user), notice: 'Choice was successfully created.' }
+        format.json { render json: @user_assignment_type_weight, status: :created, location: @user_assignment_type_weight }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @user_assignment_type_weight.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update

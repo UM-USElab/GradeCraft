@@ -6,8 +6,9 @@ class Team < ActiveRecord::Base
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
   
   belongs_to :course
-  
   attr_accessible :name, :created_at, :updated_at, :banner_file_name, :banner_updated_at, :sortable_score, :rank, :team_id, :user_ids, :course_id
+  
+  validates_presence_of :name, :course_id
 
   default_scope :order => 'id ASC'
 

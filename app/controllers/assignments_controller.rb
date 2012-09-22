@@ -13,6 +13,17 @@ class AssignmentsController < ApplicationController
       format.json { render json: @assignments.as_json(only:[:id, :name, :description, :point_total, :due_date, :assignment_type_id, :grade_scheme_id, :grade_scope, :visible, :required ]) }
     end
   end
+  
+   def settings
+    @title = "View All Assignments"
+    @assignments = current_course.assignments
+    @assignment_types = current_course.assignment_types
+    @grade_schemes = current_course.grade_schemes.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @assignments.as_json(only:[:id, :name, :description, :point_total, :due_date, :assignment_type_id, :grade_scheme_id, :grade_scope, :visible, :required ]) }
+    end
+  end
 
   def show
     @assignment = current_course.assignments.find(params[:id])
@@ -21,6 +32,7 @@ class AssignmentsController < ApplicationController
     @grades = @assignment.grades
     @groups = @assignment.groups
     @title = "View #{@assignment.name}"
+    @teams = current_course.teams
     @assignment_submissions = @assignment.assignment_submissions
     @earnables = current_course.earned_badges.all
     user_search_options = {}

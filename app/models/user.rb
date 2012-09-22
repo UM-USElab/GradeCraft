@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   scope :winning, :order => 'sortable_score DESC'
   
   has_and_belongs_to_many :courses, :join_table => :course_memberships, :uniq => true
-  #has_and_belongs_to_many :teams, :join_table => :team_memberships
   accepts_nested_attributes_for :courses      
   has_many :grades, :as => :gradeable, :dependent => :destroy
   has_many :user_assignment_type_weights
@@ -26,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :teams, :through => :team_memberships
   has_many :group_memberships, :dependent => :destroy
   has_many :groups, :through => :group_memberships
+  has_many :user_assignment_type_weights
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

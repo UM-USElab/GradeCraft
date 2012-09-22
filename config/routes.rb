@@ -18,14 +18,13 @@ GradeCraft::Application.routes.draw do
       get 'all'
     end
     resources :earned_badges
+    resources :user_assignment_type_weights
   end
   resources :user_sessions
   resources :password_resets
   resources :info
   resources :home
   resources :group_memberships
-  resources :user_assignment_type_weights
-  resources :user_grade_weights
   resources :courses
   resources :course_grade_schemes do 
     resources :course_grade_scheme_elements 
@@ -39,6 +38,9 @@ GradeCraft::Application.routes.draw do
   resources :assignment_types
   resources :score_levels
   resources :assignments do 
+    collection do 
+      get :settings
+    end
     resources :assignment_submissions
     resources :grades do
       collection do

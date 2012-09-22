@@ -21,7 +21,7 @@ class GradeSchemeElementsController < ApplicationController
     @grade_scheme = GradeScheme.find(params[:grade_scheme_id])
     @title = "Create a New #{@grade_scheme.name} Grading Element"
     @grade_scheme_element = @grade_scheme.grade_scheme_elements.create(params[:grade_scheme_element])
-    respond_with(@grade_scheme)
+
   end
 
   def edit
@@ -33,8 +33,16 @@ class GradeSchemeElementsController < ApplicationController
 
   def create
     @grade_scheme_element = GradeSchemeElement.new(params[:grade_scheme_element])
-    @grade_scheme_element.save
-    respond_with @grade_scheme_element
+    @grade_scheme = GradeScheme.find(params[:grade_scheme_id])
+    respond_to do |format|
+      if @grade_scheme_element.save
+        format.html { redirect_to @grade_scheme, notice: 'Grade Scheme Element was successfully created.' }
+        format.json { render json: @grade_scheme_element, status: :created, location: @grade_scheme_element }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @grade_scheme_element.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update

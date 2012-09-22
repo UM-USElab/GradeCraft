@@ -9,6 +9,7 @@ predictor_description = ['It does not do to dwell on dreams and forget to live, 
 badge_names = ['Dream Interpreter','Inner Eye','Patronus Producer','Cheerful Charmer','Invisiblity Cloak','Marauders Map','Lumos','Rune Reader','Tea Leaf Guru','Wizard Chess Grand Master','Green Thumb','Gamekeeper','Seeker','Alchemist','Healer','Parseltongue','House Cup']
 team_names = ['Gryffindor','Slytherin','Hufflepuff','Ravenclaw']
 semester = %w{Autumn Winter Spring}.sample
+grade_scope_names = ['Team','Individual','Group']
 theme_names = ['Amelia','Cerulean','Gamestyle','Cyborg','Journal','Slate','Spruce','Superhero','United']
 theme_paths = ['assets/amelia.min.css','assets/cerulean.min.css','assets/gamestyle.css.scss','assets/cyborg.min.css','assets/journal.min.css','assets/slate.min.css','assets/spruce.min.css','assets/superhero.min.css','assets/united.min.css']
 badge_icons = ['/badges/pos101/above_and_beyond.png','/badges/pos101/always_learning.png','/badges/pos101/awesome_aggregator.png','/badges/pos101/concentrator.png','/badges/pos101/courageous_failure.png','/badges/pos101/early_bird_special.png','/badges/pos101/examination_expert.png','/badges/pos101/gaining_experience.png','/badges/pos101/gamer.png','/badges/pos101/great_critic.png','/badges/pos101/learning_from_mistakes.png','/badges/pos101/level_one.png','/badges/pos101/participatory_democrat.png','/badges/pos101/personal.png','/badges/pos101/practice_makes_perfect.png','/badges/pos101/presentation_of_self.png','/badges/pos101/public_speaker.png']
@@ -54,6 +55,8 @@ course_names.each do |course_name|
     c.year = Date.today.year
     c.semester = semester
     c.team_setting = true
+    c.group_setting = true
+    c.badge_setting = true
     c.team_term = "House"
     c.user_term = "Wizard"
     c.section_leader_term = "Prefect"
@@ -155,6 +158,7 @@ courses.each do |course|
     assignment = course.assignments.create! do |a|
       a.name = "Assignment #{n}"
       a.due_date = rand(10).weeks.ago
+      a.grade_scope = grade_scope_names.sample
       a.assignment_type = assignment_types.sample
       a.point_total = (100 + rand(10)) * 100
     end
@@ -171,6 +175,7 @@ courses.each do |course|
   for n in 6..10 do
     assignment = course.assignments.create! do |a|
       a.name = "Assignment #{n}"
+      a.grade_scope = grade_scope_names.sample
       a.due_date = rand(10).weeks.from_now
       a.assignment_type = assignment_types.sample
       a.point_total = (100 + rand(10)) * 100
@@ -182,7 +187,7 @@ puts "Assigned an impossible workload for each course (impossible, that is, unle
 course_grade_scheme = CourseGradeScheme.new
 grade_scheme_hash.each do |range,name|
   course_grade_scheme.course_grade_scheme_elements.new do |e|
-    e.name = "Extremely Boring Grade Scheme"
+    e.name = name
     e.low_range = range.first
     e.high_range = range.last
   end

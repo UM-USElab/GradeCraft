@@ -1,0 +1,21 @@
+%h3= current_course.group_ref
+%table.table-bordered.table
+  %thead
+    %tr
+      %th
+        %th= current_course.group_ref
+        %th Score
+        %th Level
+        %th Badges Earned
+        %th Status
+        %th
+        %th
+        %th
+        %th
+    %tbody
+      - @groups.each do |group|
+        %tr
+          %td
+          %td= group.try(:name)
+          %td
+          %td

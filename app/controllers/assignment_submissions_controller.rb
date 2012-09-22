@@ -73,10 +73,13 @@ class AssignmentSubmissionsController < ApplicationController
   end
 
   def destroy
-    debugger
+    @assignment = Assignment.find(params[:assignment_id])
     @assignment_submission = AssignmentSubmission.find(params[:id])
     @assignment_submission.destroy
-    respond_with(@assignment)
+    respond_to do |format|
+      format.html { redirect_to assignment_assignment_submissions_path(@assignment), notice: 'Submission was successfully deleted.' }
+      format.json { head :ok }
+    end
   end
   
   def find_gradeable

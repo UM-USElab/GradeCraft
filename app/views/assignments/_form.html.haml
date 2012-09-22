@@ -1,19 +1,24 @@
 = simple_form_for(@assignment, :html => {:class => 'form-horizontal' }) do |f|
-  = f.association :assignment_type, :collection => @assignment_types
-  = f.input :name
-  = f.input :grade_scope, :as => :select, :collection => [["Individual"], ["Group"], ["Team"]]
-  = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span9' }
-  = f.input :point_total, :label => "Total Points Possible"
-  = f.input :open_date, :include_blank => true 
-  = f.input :due_date, :include_blank => true
-  = f.input :visible, :as => :boolean
-  = f.input :required, :as => :boolean
-  = f.input :grade_scheme_id, :collection => @grade_schemes, :as => :select, :label_method => :name
-  - if current_course.has_assignment_submissions?
-    = f.input :has_assignment_submissions, :hint=> "Will you be using GradeCraft to accept submissions for this assignment?", :label => "Assignment Submissions"
-  = f.input :student_logged, :hint => "Do students self-report their grade for this assignment?"
-  = f.input :student_logged_button_text, :hint => "If yes, what would you like the button that does this to say?", :label => "Button Text"
-  = f.input :release_necessary, :hint => "Do you want to release all grades at once? This is particularly useful for situations where extensive feedback is important."
+  %div.well
+    %h3 The Basics
+    = f.association :assignment_type, :collection => @assignment_types
+    = f.input :name
+    = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span9' }
+    = f.input :point_total, :label => "Total Score Possible"
+    = f.input :open_date, :include_blank => true 
+    = f.input :due_date, :include_blank => true
+    = f.input :visible, :as => :boolean, :hint => "Can students see this assignment in their dashboard?"
+    = f.input :required, :as => :boolean, :hint => "Are ALL students expected to complete this assignment to pass the course?"
+
+  %div.well
+    %h3 Grading
+    = f.input :grade_scope, :as => :select, :collection => [["Individual"], ["Group"], ["Team"]]
+    = f.input :grade_scheme_id, :collection => @grade_schemes, :as => :select, :label_method => :name
+    - if current_course.has_assignment_submissions?
+      = f.input :has_assignment_submissions, :hint=> "Will you be using GradeCraft to accept submissions for this assignment?", :label => "Assignment Submissions"
+    = f.input :student_logged, :hint => "Do students self-report their grade for this assignment?"
+    = f.input :student_logged_button_text, :hint => "If yes, what would you like the button that does this to say?", :label => "Button Text"
+    = f.input :release_necessary, :hint => "Do you want to release all grades at once? This is particularly useful for situations where extensive feedback is important."
   
   .form-actions
     = f.button :submit

@@ -5,96 +5,20 @@
   %b Point Total:
   = number_with_delimiter(@assignment.point_total, :delimiter => ',') 
 %p
-  %b Due Date:
-  = @assignment.open_time 
-  = @assignment.close_time
+  %b Open date:
+  = @assignment.open_date
+  
+  %b Close date:
+  = @assignment.due_date
 
 
-//  - if @assignment.has_groups?
-//    %h3 Groups
-//    %table.table-bordered.table
-//      %thead
-//        %tr
-//          %th
-//          %th= current_course.group_ref
-//          %th Score
-//          %th Level
-//          %th Badges Earned
-//          %th Status
-//          %th
-//          %th
-//          %th
-//          %th
-//      %tbody
-//        - @groups.each do |group|
-//          %tr
-//            %td
-//            %td= group.name
-//            %td
-//            %td
+- if @assignment.has_groups?
+  = render "groups"
+- elsif @assignment.has_teams? 
+  = render "teams"
+- elsif @assignment.is_individual? 
+  = render "individuals"
 
-%div
-  = form_tag assignment_path(@assignment), :method => :get do
-    = hidden_field_tag :assignment_id, @assignment.id
-    %br
-    %br
-    %br
-    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
-    = submit_tag 'Filter', :class => 'btn'
-
-- if current_user.is_staff? 
-  %h3 Individual Grades
-  - if @assignment.assignment_type.mass_grade?
-    (#{link_to 'log grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id)})
-
-
-  = form_tag edit_status_assignment_grades_path(@assignment) do
-    %table.display.table-bordered.table
-      %thead
-        %tr
-          - if @assignment.release_necessary?
-            %th
-          %th= current_course.user_ref
-          %th Score
-          %th Level
-          %th Badges Earned
-          - if @assignment.release_necessary?
-            %th Status
-          %th Group
-          %th
-          %th
-          %th
-      %tbody
-        - @students.each do |student|
-          - @assignment.grade_for_student(student).tap do |grade|
-            %tr
-              - if @assignment.release_necessary?
-                %td
-                  - if grade
-                    = check_box_tag "grade_ids[]", grade.id
-              %td= link_to student.name, student
-              %td #{number_with_delimiter(grade.try(:score), :delimiter => ',') }
-              %td= @assignment.grade_level(grade)
-              %td 
-                - grade.try(:earned_badges) do |badge|
-                  %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}
-              - if @assignment.release_necessary?
-                %td= grade.try(:status)
-              - @assignment.submission_for_student(student).tap do |submission|
-                - if submission
-                  %td= link_to "See Submission", assignment_assignment_submission_path(@assignment.id, submission, :gradeable_id => student.id, :gradeable_type => "User"), :class => 'btn btn-mini'
-                - else
-                  %td= link_to "Submit", new_assignment_assignment_submission_path(@assignment, @assignment_submission, :user_id => student), :class => 'btn btn-mini'
-              - if grade
-                %td= link_to "See Grade", assignment_grade_path(@assignment.id, grade.id), :class => 'btn btn-mini'
-                %td= link_to "Edit Grade", edit_assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
-                %td= link_to "Delete Grade", assignment_grade_path(@assignment, grade), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-              - else
-                %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>@assignment.id, :gradeable_id => student.id, :gradeable_type => "User"), :class => 'btn btn-mini'
-                %td
-                %td
-    - if @assignment.release_necessary?
-      = submit_tag "Update Grade Statuses", :class => "btn btn-info"
         
 %div.span12
   = link_to 'Edit', edit_assignment_path(@assignment), :class => 'btn btn-primary'

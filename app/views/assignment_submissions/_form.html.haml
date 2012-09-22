@@ -6,7 +6,7 @@
       = f.input :user_id, :collection => @users
     = f.association :assignment, :default => @assignment, :as => :hidden
     = f.input :link, :hint => "Where is your assignment located on the web?", :input_html => {:class => 'span9' }
-    = f.input :comment, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }, :label => "Text/Comment"
+    = f.input :comment, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span12' }, :label => "Text/Comment"
 
   .form-actions
     = f.button :submit, "Submit"

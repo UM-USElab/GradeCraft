@@ -7,7 +7,7 @@
       %tr
         %th Order
         %th Name
-        %th Point
+        %th Points
         %th Levels
         %th Predictor Display
         %th Due Date
@@ -24,7 +24,7 @@
           %td= assignment_type.order_placement
           %td= assignment_type.name
           %td= assignment_type.point_setting
-          %td= assignment_type.levels
+          %td= assignment_type.levels? ? "Yes" : "No"
           %td= assignment_type.points_predictor_display
           %td= assignment_type.due_date_present
           %td= assignment_type.resubmission

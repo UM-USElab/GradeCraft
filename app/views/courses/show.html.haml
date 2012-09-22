@@ -2,92 +2,93 @@
 
 %div.span8
   %h3= "Course Settings"
-  %p
-    %b Name:
-    = @course.name
-  %p
-    %b Course No:
-    = @course.courseno
-  %p
-    %b Year:
-    = @course.year
-  %p
-    %b Semester:
-    = @course.semester
-  %p
-    %b Badge Set:
-    = @course.badge_setting
-  %p
-    %b Badge Set Used
-    - @course.badge_sets.each do |b|
-      = b.try(:name)
-  %p
-    %b Theme:
-    = @course.theme.try(:name)
-  %p
-    %b Course Grade Scheme:
-    = @course.course_grade_scheme.try(:name)
+  %div.well
+    %h4 THE BASICS
+    %p
+      %b Course Title:
+      = @course.name
+    %p
+      %b Course Number:
+      = @course.courseno
+    %p
+      %b Semester:
+      = @course.semester
+    %p
+      %b Year:
+      = @course.year
+    %p
+      %b Theme:
+      = @course.theme.try(:name)
+    %p
+      %b Course Grade Scheme:
+      = @course.course_grade_scheme.try(:name)
+    %p
+      %b GradeCraft will accept assignment submissions for this course:
+      = @course.has_assignment_submissions? ? 'Yes' : 'No'
+    %p
+      %b Course Status:
+      = @course.status? ? 'Active' : 'Archived'
   
-  %p
-    %b Students will be grouped into teams or sections:
-    = @course.team_setting
-    
-  %p
-    %b Students self-declare their group roles:
-    = @course.team_roles
-  
-  %p
-    %b These sections will be called:
-    = @course.team_ref
-    
-  %p 
-    %b Students will be called:
-    = @course.user_ref
-  
-  %p 
-    %b Section Leaders will be called:
-    = @course.section_leader_term
-  
-  %p 
-    %b Students will work in groups:
-    = @course.group_setting
-  
-  %p 
-    %b Groups will be called:
-    = @course.group_ref
-    
-  %p
-    %b Course Status
-    = @course.status
-  
-  %p
-    %b User's set  
-    = @course.user_weight_amount
-    = @course.user_weight_amount_type
-    
-  %p
-    %b 
-    = @course.min_size
-    
-  %p
-    %b 
-    = @course.max_size
+  %div.well  
+    %h4 BADGES
+    %p
+      %b Badges will be used:
+      = @course.badge_setting? ? 'Yes' : 'No'
+    %p
+      %b Badge Set:
+      - @course.badge_sets.each do |b|
+        = b.try(:name)
+    %p
+      %b Badges will be awarded through...
+      = @course.badge_use_scope
 
-  %p
-    %b 
-    = @course.user_weight_amount_close_date
-  %p
-    %b 
-    = @course.team_roles
-  %p
-    %b GradeCraft will accept assignment submissions for this course? 
-    = @course.has_assignment_submissions
-  %p
-    %b Students can see the teams, the team's points, and the team's badges
-    = @course.teams_visible
-  %p
-    %b Badges will be awarded through...
-    = @course.badge_use_scope
+  %div.well
+    %h4 TEAMS & GROUPS  
+    %p
+      %b Students will be grouped into teams or sections:
+      = @course.team_setting? ? 'Yes' : 'No'
+    %p
+      %b These sections will be called:
+      = @course.team_ref
+    %p
+      %b Students can see the teams, the team's points, and the team's badges:
+      = @course.teams_visible? ? 'Yes' : 'No'
+    %p 
+      %b Students will work in groups:
+      = @course.group_setting? ? 'Yes' : 'No'    
+    %p 
+      %b Groups will be called:
+      = @course.group_ref
+    %p
+      %b Students self-declare their group roles:
+      = @course.team_roles? ? 'Yes' : 'No'
+    %p 
+      %b Section Leaders will be called:
+      = @course.section_leader_term
+  
+      
+  %div.well
+    %h4 STUDENTS
+    %p 
+      %b Students will be called:
+      = @course.user_ref
+  
+  %div.well
+    %h4 MULTIPLIERS
+    %p
+      %b User's set: 
+      = @course.user_weight_amount
+      = @course.user_weight_amount_type
+    %p
+      %b 
+      = @course.min_size
+    %p
+      %b 
+      = @course.max_size
+    %p
+      %b Multipliers must be set by: 
+      = @course.user_weight_amount_close_date
+
 
   %div.span12
     = link_to 'Edit', edit_course_path(@course), :class => 'btn btn-primary'

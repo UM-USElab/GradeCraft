@@ -1,18 +1,22 @@
-%table.table.table-bordered
-  %tr
-    %th
-    %th
-    %th
+%div.span2= render 'layouts/admin_subnav'
 
-  - @user_assignment_type_weights.each do |user_assignment_type_weight|
+%div.span8
+  %table.table.table-bordered
     %tr
-      %td= user_assignment_type_weight.user.name
-      %td= user_assignment_type_weight.assignment_type.name
-      %td= user_assignment_type_weight.value
-      %td= link_to 'View', user_assignment_type_weight, :class => 'btn btn-mini'
-      %td= link_to 'Edit', edit_user_assignment_type_weight_path(user_assignment_type_weight), :class => 'btn btn-mini'
-      %td= link_to 'Delete', user_assignment_type_weight, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-
-%br
-
-= link_to 'New User assignment type weight', new_user_assignment_type_weight_path, {:class => 'btn btn-primary'}
+      %th #{current_course.user_ref}
+      %th Assignment Type
+      %th Value
+      %th
+      %th
+      %th
+  
+    - @user_assignment_type_weights.each do |user_assignment_type_weight|
+      %tr
+        %td= user_assignment_type_weight.user.name
+        %td= user_assignment_type_weight.assignment_type.name
+        %td= user_assignment_type_weight.value
+        %td= link_to 'View', user_assignment_type_weight, :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_user_assignment_type_weight_path(user_assignment_type_weight), :class => 'btn btn-mini'
+        %td= link_to 'Delete', user_assignment_type_weight, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+  
+= link_to 'New User assignment type weight', new_user_user_assignment_type_weight_path(:user_id => @user), {:class => 'btn btn-primary'}
