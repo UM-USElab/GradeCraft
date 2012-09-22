@@ -7,19 +7,11 @@
         = link_to "Award a Badge", new_earned_badge_path(:earnable_id => @user.id, :earnable_type => "User"), :class => "btn btn-small"
       = link_to "Email", "mailto:#{user.email}", :class => "btn btn-small"
       = link_to "Edit", edit_user_path(user.id), :class => "btn btn-small"
-  %br
-  - user.team_leader.tap do |team_leader|
-    - if team_leader.present?
-      = link_to "Email #{current_course.section_leader_term} (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-mini btn-info"
+      - user.team_leader.tap do |team_leader|
+        - if team_leader.present?
+          = link_to "Email #{current_course.section_leader_term} (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-small btn-info"
 
 %div.span2
-  %div.span12
-    - if current_user.is_staff? && user.teams.present?
-      %span.badge.badge-info= link_to user.teams.first.name, team_path(user.teams.first.id)
-    - if current_user.is_student? && user.teams.present? && current_course.teams_visible?
-      %span.badge.badge-info= link_to user.teams.first.name, team_path(user.teams.first.id)
-    - elsif current_user.is_student? && user.teams.present? 
-      %span.badge.badge-info= user.teams.first.name
   %div.span12
     = gravatar_for user, :size => 150
   - if current_user.is_student?
@@ -65,17 +57,6 @@
 %div.span9
   %h2#points.span12
   %div#userScoreSection.span12
-    %div.pull-right.hidden-phone
-      - if current_user.is_staff?
-        %div.btn-group.span12
-          - if current_course.has_badges? && current_course.course_badges? or current_course.has_badges? && current_course.multi_badges?
-            = link_to "Award a Badge", new_earned_badge_path(:earnable_id => @user.id, :earnable_type => "User"), :class => "btn"
-          = link_to "Email", "mailto:#{user.email}", :class => "btn"
-          = link_to "Edit", edit_user_path(user.id), :class => "btn"
-      - user.team_leader.tap do |team_leader|
-        - if team_leader.present?
-          = link_to "Email GSI (#{team_leader.public_name})", "mailto:#{team_leader.email}", :class => "btn"
-
     %div#userID{ :'data-user-id' => user.id }
     %div#userPointValues
       - if current_user.is_student?
@@ -99,7 +80,6 @@
     %br    
     %div#userBarTotal.dashboard-toggle.hidden-phone
     %div#userBarInProgress.dashboard-toggle.hidden-phone
-    
     %div#Grades
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %div.assignmentType
@@ -107,7 +87,7 @@
           %span
             %span.badge.badge-warning= "#{user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
           - if assignment_type.student_choice?
-            %span.badge.badge-important= link_to "Set Kapital", new_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+            //%span.badge.badge-important= link_to "Set Kapital", new_user_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
           %div{:id => "assignment_type-#{assignment_type.id}", :class => "collapse"}
             %div.assignmentsGroup
               - assignments.each do |assignment|
@@ -131,21 +111,39 @@
                     
                   %br
                   - assignment.assignment_grades.where(:gradeable_id => user.id).each do |grade|
-                    - if grade.attempted? 
-                      You earned
-                      %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points 
-                      - if current_user.is_staff?
-                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
-                      - if grade.has_feedback?
-                        %button.btn.btn-mini.btn-inverse{"data-target" => "#assignment-#{assignment.id}", "data-toggle" => "collapse"}= "See Feedback"
-                        %div{:id => "assignment-#{assignment.id}", :class => "collapse"}
-                          %div.feedback= raw grade.feedback
-                          - grade.earned_badges.each do |badge|
-                            %img{:src => badge.icon, :alt => badge.name, :width => "40"}  
+                    - if assignment.release_necessary?
+                      - if grade.attempted? && grade.is_released?
+                        You earned
+                        %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points 
+                        - if current_user.is_staff?
+                          %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
+                        - if grade.has_feedback?
+                          %button.btn.btn-mini.btn-inverse{"data-target" => "#assignment-#{assignment.id}", "data-toggle" => "collapse"}= "See Feedback"
+                          %div{:id => "assignment-#{assignment.id}", :class => "collapse"}
+                            %div.feedback= raw grade.feedback
+                            - grade.earned_badges.each do |badge|
+                              %img{:src => badge.icon, :alt => badge.name, :width => "40"}  
+                      - else
+                        %span #{grade.point_total} points possible
+                        - if current_user.is_staff?
+                          %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
                     - else
-                      %span #{grade.raw_score} / #{grade.point_total} points
-                      - if current_user.is_staff?
-                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
+                      - if grade.attempted?
+                        You earned
+                        %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points 
+                        - if current_user.is_staff?
+                          %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
+                        - if grade.has_feedback?
+                          %button.btn.btn-mini.btn-inverse{"data-target" => "#assignment-#{assignment.id}", "data-toggle" => "collapse"}= "See Feedback"
+                          %div{:id => "assignment-#{assignment.id}", :class => "collapse"}
+                            %div.feedback= raw grade.feedback
+                            - grade.earned_badges.each do |badge|
+                              %img{:src => badge.icon, :alt => badge.name, :width => "40"}  
+                      - else
+                        %span #{grade.point_total} points possible
+                        - if current_user.is_staff?
+                          %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
+
                     
 
 - if current_user.is_staff?
