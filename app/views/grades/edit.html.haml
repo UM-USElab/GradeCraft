@@ -1,4 +1,7 @@
-= render 'form'
+%div.span2= render 'layouts/admin_subnav'
+
+%div.span8
+  = render 'form'
 
 %div.span12
   = link_to 'Back', assignment_path(@assignment), :class => 'btn btn-primary'

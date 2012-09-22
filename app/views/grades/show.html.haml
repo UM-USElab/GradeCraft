@@ -1,27 +1,30 @@
-%p
-  %b User:
-  = link_to @grade.gradeable.try(:name), "/#{@grade.gradeable_type.downcase}s/#{@grade.gradeable_id}"
-%p
-  %b Assignment:
-  = link_to @grade.assignment.name, assignment_path(@grade.assignment_id)
-%p
-  %b Raw Score:
-  = @grade.raw_score
-%p
-  %b Final Score:
-  = @grade.final_score
-%p
-  %b Feedback:
-  %br
-  = raw @grade.feedback
+%div.span2= render 'layouts/admin_subnav'
 
-%p
-  %b Badges:
-  - @grade.earned_badges.each do |badge|
-    %img{:src => badge.try(:icon), :alt => badge.name, :width => "50", :height => "50"}
-%p
-  %b Status:
-  = @grade.status
+%div.span8
+  %p
+    %b User:
+    = link_to @grade.gradeable.try(:name), "/#{@grade.gradeable_type.downcase}s/#{@grade.gradeable_id}"
+  %p
+    %b Assignment:
+    = link_to @grade.assignment.name, assignment_path(@grade.assignment_id)
+  %p
+    %b Raw Score:
+    = @grade.raw_score
+  %p
+    %b Final Score:
+    = @grade.final_score
+  %p
+    %b Feedback:
+    %br
+    = raw @grade.feedback
+  
+  %p
+    %b Badges:
+    - @grade.earned_badges.each do |badge|
+      %img{:src => badge.try(:icon), :alt => badge.name, :width => "50", :height => "50"}
+  %p
+    %b Status:
+    = @grade.status
 
 %div.span12
   = link_to 'Edit', edit_assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id), :class => 'btn btn-primary'

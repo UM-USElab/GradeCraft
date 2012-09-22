@@ -3,7 +3,7 @@ class CourseGradeSchemeElement < ActiveRecord::Base
   
   belongs_to :course_grade_scheme
   
-  validates_presence_of :course_grade_scheme_id, :low_range, :high_range
+  validates_presence_of :low_range, :high_range
 
   def element_name
     if name?

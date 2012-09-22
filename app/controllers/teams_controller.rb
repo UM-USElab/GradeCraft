@@ -65,7 +65,7 @@ class TeamsController < ApplicationController
   end
 
   def destroy
-    @team =  current_course.team.find(params[:id])
+    @team =  current_course.teams.find(params[:id])
     @team.destroy
 
     respond_to do |format|

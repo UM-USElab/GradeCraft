@@ -22,7 +22,7 @@ class CourseGradeSchemeElementsController < ApplicationController
   def new
     @course_grade_scheme = CourseGradeScheme.find(params[:course_grade_scheme_id])
     @title = "Create a New #{@course_grade_scheme.name} Grading Element"
-    @course_grade_scheme_element = @course_grade_scheme.course_grade_scheme_elements.create(params[:course_grade_scheme_element])
+    @course_grade_scheme_element = @course_grade_scheme.course_grade_scheme_elements.new(params[:course_grade_scheme_element])
     respond_with(@course_grade_scheme)
   end
 
@@ -34,9 +34,18 @@ class CourseGradeSchemeElementsController < ApplicationController
   end
 
   def create
-    @course_grade_scheme_element = CourseGradeSchemeElement.new(params[:course_grade_scheme_element])
-    @course_grade_scheme_element.save
-    respond_with @course_grade_scheme_element
+    @course_grade_scheme = CourseGradeScheme.find(params[:course_grade_scheme_id])
+    @course_grade_scheme_element = @course_grade_scheme.course_grade_scheme_elements.build(params[:course_grade_scheme_element])
+    
+    respond_to do |format|
+      if @course_grade_scheme_element.save
+        format.html { redirect_to @course_grade_scheme, notice: 'Grade scheme was successfully created.' }
+        format.json { render json: @course_grade_scheme_element, status: :created, location: @course_grade_scheme_element }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @course_grade_scheme_element.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update

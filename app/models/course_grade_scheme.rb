@@ -4,7 +4,7 @@ class CourseGradeScheme < ActiveRecord::Base
 
    attr_accessible :created_at, :updated_at, :name, :course_id
    
-   validates_presence_of :name, :course_id
+   validates_presence_of :name
 
   def element_names
     @names ||= {}.tap do |names|
