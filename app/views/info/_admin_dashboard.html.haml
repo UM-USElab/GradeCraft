@@ -18,7 +18,7 @@
           - @top_ten_students.each do |student|
             %tr
               %td= link_to student.name, user_path(student)
-              %td= student.earned_grades
+              %td= student.earned_grades(current_course)
               %td= student.user_badge_count
               %td= student.attendance_rate
               %td= student.visit_count
@@ -48,7 +48,7 @@
           - @bottom_ten_students.each do |student|
             %tr
               %td= link_to student.name, user_path(student)
-              %td= student.earned_grades
+              %td= student.earned_grades(current_course)
               %td= student.user_badge_count
               %td= student.attendance_rate
               %td= student.visit_count

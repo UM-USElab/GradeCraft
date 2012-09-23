@@ -89,8 +89,8 @@ class Course < ActiveRecord::Base
     has_assignment_submissions == true
   end
   
-  def total_points
-    assignments.sum(:point_total)
+  def total_points(in_progress = false)
+    (in_progress ? assignments.past : assignments).sum(:point_total)
   end
 
   def running_total_points
@@ -108,7 +108,7 @@ class Course < ActiveRecord::Base
   def grades_for_student(student)
     self.grades.where(:gradeable_id => student.id, :gradeable_type => 'User')
   end
-
+  
   def scores_by_assignment_type_for_student(student)
     assignment_type_scores = {}
     self.grades_for_student(student).group_by { |g| g.assignment.assignment_type_id }.each { |assignment_type_id,grades| assignment_type_scores[assignment_type_id] = grades.map(&:score).inject(&:+) }

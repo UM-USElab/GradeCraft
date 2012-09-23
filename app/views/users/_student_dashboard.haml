@@ -62,7 +62,7 @@
         %span= "Your current score is "
       - elsif current_user.is_staff?
         %span= "Current Score: "
-      %span#userScoreNum #{number_with_delimiter(user.earned_grades, :delimiter => ',') if user.respond_to?(:earned_grades)}
+      %span#userScoreNum #{number_with_delimiter(user.earned_grades(current_course), :delimiter => ',') if user.respond_to?(:earned_grades)}
     %a.hidden-phone{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
       Show me my score out of total course points
     %a.hidden-phone{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
@@ -142,6 +142,10 @@
                         %span #{grade.point_total} points possible
                         - if current_user.is_staff?
                           %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
+      %div.badges
+        %button.btn.btn-inverse(data-target="#badges" data-toggle="collapse") Badges
+        %span
+          %span.badge.badge-warning= "#{user.earned_badges_value(current_course)} points"
 
                     
 

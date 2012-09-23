@@ -105,11 +105,12 @@ class UsersController < ApplicationController
     else
       @assignment_type_scores = @assignment_types.map { |assignment_type| { :data => [current_course.scores_by_assignment_type_for_student(@user)[assignment_type.id]], :name => assignment_type.name } }
     end
+    @assignment_type_scores += [{ :data => [@user.earned_badges_value(current_course)], :name => 'Badges' }]
     respond_with @user do |format|
       format.json { render :json => {
         :student_name => @user.name,
         :scores => @assignment_type_scores,
-        :course_total => params[:in_progress] ? current_course.running_total_points : current_course.total_points
+        :course_total => @user.total_points_for_course(current_course,params[:in_progress])
       }.to_json }
     end
   end
