@@ -37,6 +37,7 @@ GradeCraft::Application.routes.draw do
   resources :teams
   resources :assignment_types
   resources :score_levels
+  resources :groups, :only => :index
   resources :assignments do 
     collection do 
       get :settings
