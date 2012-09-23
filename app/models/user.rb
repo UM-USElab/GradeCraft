@@ -103,20 +103,22 @@ class User < ActiveRecord::Base
     course.grade_level(self)
   end
   
-  def team_grades
-    teams.first.try(&:sortable_score) || 0
+  def team_grades(course)
+    teams.where(:course_id => course.id).first.try(&:sortable_score) || 0
   end
   
   def group_grades
     
   end
   
-  def earned_badges_value
+  def earned_badges_value(course)
+    # earned_badges.where(:course_id => course.id).map(&:point_value).sum
     earned_badges.map(&:point_value).sum
   end
-  
-  def earned_grades
-    (grades.map(&:score).sum) + earned_badges_value + team_grades
+ 
+  # TODO: rename team_grades or make it return grades and not a score. earned_grades(course) and team_grades(course) should have the same return 'type' (array of grades) to be consistent.
+  def earned_grades(course)
+    (course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_grades(course)
   end
 
   def grades_by_assignment_id
@@ -208,6 +210,10 @@ class User < ActiveRecord::Base
     0
   end
   
+  def total_points_for_course(course, in_progress = false)
+    course.total_points(in_progress) + earned_badges_value(course)
+  end
+
   private
 
   def set_sortable_score
