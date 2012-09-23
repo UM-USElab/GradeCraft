@@ -21,7 +21,7 @@
               %td
                 - if grade
                   = check_box_tag "grade_ids[]", grade.id
-            %td= link_to group.name, group
+            %td= link_to group.name, assignment_group_path(@assignment, group)
             %td #{number_with_delimiter(grade.try(:score), :delimiter => ',') }
             %td= @assignment.grade_level(grade)
             %td 

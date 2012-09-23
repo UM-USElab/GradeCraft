@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @rubric.name
+%p
+  %b Assignment:
+  = @rubric.assignment_id
+%p
+  %b Description:
+  = @rubric.description
+
+= link_to 'Edit', edit_rubric_path(@rubric)
+\|
+= link_to 'Back', rubrics_path

@@ -1,5 +1,10 @@
-= render 'form'
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
+
+%div.span8
+  %h3 Edit Your Kapital Choice
+  = render 'form'
 
 %div.span12
-  = link_to 'View', @user_assignment_type_weight
-  = link_to 'Back', user_assignment_type_weights_path
+  = link_to 'View', user_user_assignment_type_weight_path(@user, @user_assignment_type_weight)
+  = link_to 'Back', user_user_assignment_type_weights_path(@user)

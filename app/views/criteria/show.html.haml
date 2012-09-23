@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @criterium.name
+%p
+  %b Ruberic:
+  = @criterium.ruberic_id
+%p
+  %b Description:
+  = @criterium.description
+
+= link_to 'Edit', edit_criterium_path(@criterium)
+\|
+= link_to 'Back', criteria_path

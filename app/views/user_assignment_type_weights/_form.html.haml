@@ -1,4 +1,4 @@
-= simple_form_for(@user_assignment_type_weight, :html => {:class => 'form-horizontal' }) do |f|
+= simple_form_for([@user, @user_assignment_type_weight], :html => {:class => 'form-horizontal' }) do |f|
   - if current_user.is_student?
     = f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id }
   - elsif current_user.is_staff?
@@ -8,4 +8,4 @@
   
   .form-actions
     = f.button :submit
-    = link_to 'Cancel', user_assignment_type_weights_path, :class => 'btn'
+    = link_to 'Cancel', user_user_assignment_type_weights_path(@user), :class => 'btn'

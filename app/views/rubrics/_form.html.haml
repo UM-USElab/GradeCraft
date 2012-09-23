@@ -1,0 +1,8 @@
+= simple_form_for([@assignment, @rubric]) do |f|
+  .form-inputs
+    = f.input :name
+    = f.input :assignment_id
+    = f.input :description
+
+  .form-actions
+    = f.button :submit

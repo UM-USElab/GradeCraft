@@ -148,5 +148,5 @@
 
 - if current_user.is_staff?
   %div.span12
-    = link_to "See All #{current_course.user_ref}s", users_path, :class => "btn btn-primary"
+    = link_to "See All #{current_course.user_ref}s", students_users_path, :class => "btn btn-primary"
     = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"

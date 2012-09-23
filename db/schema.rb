@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120922152856) do
+ActiveRecord::Schema.define(:version => 20120923034019) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -167,6 +167,24 @@ ActiveRecord::Schema.define(:version => 20120922152856) do
     t.boolean  "teams_visible"
     t.string   "badge_use_scope"
     t.integer  "multiplier_default"
+    t.string   "multiplier_term"
+  end
+
+  create_table "criteria", :force => true do |t|
+    t.string   "name"
+    t.integer  "ruberic_id"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "criteria_levels", :force => true do |t|
+    t.string   "name"
+    t.integer  "criteria_id"
+    t.text     "description"
+    t.integer  "value"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "dashboards", :force => true do |t|
@@ -240,6 +258,14 @@ ActiveRecord::Schema.define(:version => 20120922152856) do
     t.integer  "course_id"
     t.string   "approved"
     t.string   "proposal"
+  end
+
+  create_table "rubrics", :force => true do |t|
+    t.string   "name"
+    t.integer  "assignment_id"
+    t.text     "description"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "score_levels", :force => true do |t|

@@ -1,9 +1,10 @@
-%div.span2= render 'layouts/admin_subnav'
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
 
 %div.span8
+  %h3= "#{@user.try(:name)}'s Kapital Choices"
   %table.table.table-bordered
     %tr
-      %th #{current_course.user_ref}
       %th Assignment Type
       %th Value
       %th
@@ -12,11 +13,10 @@
   
     - @user_assignment_type_weights.each do |user_assignment_type_weight|
       %tr
-        %td= user_assignment_type_weight.user.name
         %td= user_assignment_type_weight.assignment_type.name
         %td= user_assignment_type_weight.value
-        %td= link_to 'View', user_assignment_type_weight, :class => 'btn btn-mini'
-        %td= link_to 'Edit', edit_user_assignment_type_weight_path(user_assignment_type_weight), :class => 'btn btn-mini'
-        %td= link_to 'Delete', user_assignment_type_weight, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+        %td= link_to 'View', user_user_assignment_type_weight_path(@user, user_assignment_type_weight), :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, user_assignment_type_weight), :class => 'btn btn-mini'
+        %td= link_to 'Delete', user_user_assignment_type_weight_path(@user, user_assignment_type_weight), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
   
-= link_to 'New User assignment type weight', new_user_user_assignment_type_weight_path(:user_id => @user), {:class => 'btn btn-primary'}
+= link_to 'New User assignment type weight', new_user_user_assignment_type_weight_path(@user), {:class => 'btn btn-primary'}

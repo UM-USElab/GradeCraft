@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @criteria_level.name
+%p
+  %b Criteria:
+  = @criteria_level.criteria_id
+%p
+  %b Description:
+  = @criteria_level.description
+%p
+  %b Value:
+  = @criteria_level.value
+
+= link_to 'Edit', edit_criteria_level_path(@criteria_level)
+\|
+= link_to 'Back', criteria_levels_path

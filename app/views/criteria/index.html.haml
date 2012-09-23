@@ -1,0 +1,23 @@
+%h1 Listing criteria
+
+%table
+  %tr
+    %th Name
+    %th Ruberic
+    %th Description
+    %th
+    %th
+    %th
+
+  - @criteria.each do |criterium|
+    %tr
+      %td= criterium.name
+      %td= criterium.ruberic_id
+      %td= criterium.description
+      %td= link_to 'Show', criterium
+      %td= link_to 'Edit', edit_criterium_path(criterium)
+      %td= link_to 'Destroy', criterium, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Criterium', new_criterium_path

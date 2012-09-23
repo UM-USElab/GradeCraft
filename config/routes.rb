@@ -1,5 +1,6 @@
 GradeCraft::Application.routes.draw do
 
+
   %w{students gsis professors admins}.each do |role|
     get "users/#{role}/new" => 'users#new', :as => "new_#{role.singularize}", :role => role.singularize
   end
@@ -42,6 +43,11 @@ GradeCraft::Application.routes.draw do
     end
     resources :assignment_submissions
     resources :groups
+    resources :rubrics do 
+      resources :criteria do 
+        resources :criteria_levels 
+      end
+    end
     resources :grades do
       collection do
         get :mass_edit
