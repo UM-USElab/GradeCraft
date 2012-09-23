@@ -9,12 +9,10 @@
     /[if lt IE 9]
       = javascript_include_tag "https://html5shim.googlecode.com/svn/trunk/html5.js"
     = stylesheet_link_tag "application", :media => "all"
-    //= javascript_include_tag 'application'
+    = javascript_include_tag 'application'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    //= javascript_include_tag :defaults, "rails.validations" 
     - if current_course.try(:theme).present?
       %link{ :href => current_course.theme.try(:filename), :media => "all", :rel => "stylesheet"}
-
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -97,5 +95,3 @@
           %div{:class => 'btn-group pull-left'}
             = form_tag change_current_course_path do
               = select_tag 'course_id', options_from_collection_for_select(current_user.courses, 'id', 'name', current_course.id)
-      
-= javascript_include_tag "application"

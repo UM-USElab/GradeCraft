@@ -184,7 +184,7 @@ courses.each do |course|
 end
 puts "Assigned an impossible workload for each course (impossible, that is, unless you possess a Time-Turner)"
 
-course_grade_scheme = CourseGradeScheme.new
+course_grade_scheme = CourseGradeScheme.new(:name => 'N.E.W.T. Grades')
 grade_scheme_hash.each do |range,name|
   course_grade_scheme.course_grade_scheme_elements.new do |e|
     e.name = name
@@ -194,4 +194,4 @@ grade_scheme_hash.each do |range,name|
 end
 course_grade_scheme.courses = Course.all
 course_grade_scheme.save!
-puts "Installed a boring grade scheme for each course"
+puts "Installed N.E.W.T. grade scheme for each course"

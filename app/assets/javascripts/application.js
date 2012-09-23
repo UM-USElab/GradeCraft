@@ -15,6 +15,7 @@
 //= require underscore.min
 //= require backbone.min
 //= require selectToUISlider.jQuery
+//= require rails.validations
 //= require_tree .
 
 $(document).ready(function(){
