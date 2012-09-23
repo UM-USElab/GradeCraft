@@ -6,9 +6,8 @@ class EarnedBadgesController < ApplicationController
   def index
     @title = "Awarded Badges"
     @earned_badges = @earnable.earned_badges
-    #@grades = @assignment.assignment_grades.where(params[:assignment_id])
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @earned_badge }
     end
   end
@@ -18,7 +17,7 @@ class EarnedBadgesController < ApplicationController
     @earned_badge = @earnable.earned_badges.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @earned_badge }
     end
   end
@@ -62,7 +61,7 @@ class EarnedBadgesController < ApplicationController
 
     respond_to do |format|
       if @earned_badge.update_attributes(params[:earned_badge])
-        format.html { redirect_to @earned_badge, notice: 'Awarded badge was successfully updated.' }
+        format.html { redirect_to @earnable, notice: 'Awarded badge was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -76,7 +75,7 @@ class EarnedBadgesController < ApplicationController
     @earned_badge.destroy
 
     respond_to do |format|
-      format.html { redirect_to earned_badges_url }
+      format.html { redirect_to @earnable }
       format.json { head :ok }
     end
   end

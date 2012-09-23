@@ -2,8 +2,9 @@
   %div.span2= render 'layouts/admin_subnav'
 
 %div.span8
+  %h3= "Edit #{@earned_badge.earnable.name}'s Badge"
   = render 'form'
 
   %div.span12
-    = link_to 'View', [:show, @earnable, :earned_badge], :class => "btn btn-inverse"
-    = link_to 'Back', [:index, @earnable, :earned_badge], :class => "btn btn-inverse"
+    = link_to 'View', "#{@earned_badge.earnable_type}_earned_badges_path", :class => "btn btn-inverse"
+    = link_to 'Back', @earnable, :class => "btn btn-inverse"
