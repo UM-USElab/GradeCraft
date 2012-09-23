@@ -2,7 +2,7 @@
   %div.span2= render 'layouts/admin_subnav'
 
 %div.span8
-  %h3 Kapital Choices
+  %h3 #{current_course.multiplier_term} Choices
   %p
     %b User:
     = @user_assignment_type_weight.user.try(:name)

@@ -61,5 +61,15 @@ class AssignmentType < ActiveRecord::Base
   def grade_radio?
     mass_grade_type =="Radio Buttons"
   end
+  
+  #assignment type weights by student  
+  def weights_by_student_id
+    @weights_by_student || user_assignment_type_weights.group_by(&:user_id)
+  end
+  
+  def weights_for_student(student)
+    weights_by_student_id[student.id].try(:first)
+  end
+  
 
 end

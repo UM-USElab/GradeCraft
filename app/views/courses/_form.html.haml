@@ -32,6 +32,7 @@
     = f.input :user_weight_amount_type, :label => "Amount type", :collection => [["Multiplier"],["Percent"]]
     = f.input :user_weight_amount_close_date, :label => "What date must they make this decision by?", :as => :date
     = f.input :multiplier_default, :label => "What amount should other assignment types be multiplied by?"
+    = f.input :multiplier_term, :label => "What do you want to call these weights/multipliers?"
   
   .form-actions    
     = f.button :submit, :class => 'btn'

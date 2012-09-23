@@ -2,7 +2,7 @@
   %div.span2= render 'layouts/admin_subnav'
 
 %div.span8
-  %h3= "#{@user.try(:name)}'s Kapital Choices"
+  %h3= "#{@user.try(:name)}'s #{current_course.multiplier_term} Choices"
   %table.table.table-bordered
     %tr
       %th Assignment Type
