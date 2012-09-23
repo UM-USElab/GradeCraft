@@ -12,12 +12,11 @@ class Badge < ActiveRecord::Base
   
   validates_presence_of :name
   
-  default_scope :order => 'id ASC'
+  default_scope :order => 'badges.id ASC'
   
   def occurance
     super || "onetime"
   end
-  
   
   def point_value 
     if value

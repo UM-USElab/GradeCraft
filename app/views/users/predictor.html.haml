@@ -4,9 +4,9 @@
       %div#projectedPoints
         %h3
           = "#{@user.name}'s current points:"
-          = number_with_delimiter(@user.earned_grades, :delimiter => ',') if @user.respond_to?(:earned_grades)
+          %span#predictor-score-display= number_with_delimiter(@user.earned_grades(current_course), :delimiter => ',') if @user.respond_to?(:earned_grades)
           = "/" 
-          = current_course.total_points 
+          %span#predictor-course-total-display= current_course.total_points 
         %span#expectedPointsValue
         %div#prediction
 
@@ -39,9 +39,10 @@
                   %h6.assignmentTitle.pull-left= assignment.try(:name)
                   - if assignment.is_required?
                     %span.assignmentRequired.label.label-important Required!
-                  - assignment.assignment_grades.where(:gradeable_id => @user.id).each do |grade|
+                  - assignment.assignment_grades.where(:gradeable_id => @user.id).first.tap do |grade|
                     - if grade.attempted? 
                       %span.grade #{ grade.raw_score } / #{grade.point_total}
+                      = hidden_field_tag assignment.name, assignment.point_total, :'data-assignment-type-id' => assignment.assignment_type_id
               - if assignment.future?
                 %div.assignment.well
                   %h6.assignmentTitle.pull-left= assignment.name
@@ -57,7 +58,17 @@
                     - else 
                       %div.slider{:id => "slider-"+assignment.id.to_s(), :max => assignment.point_total, :value => 0 }
                   - if assignment_type.select?
-                    = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name',assignment_type.universal_point_value), :class => 'point-value', :id => "total-#{assignment.id}"
-
-          
+                    = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
+      %li#slide-badges{ :data => { 'assignment-type-id' => 'badges', 'assignment-type-name' => 'Badges' } }
+        %div.slide-panel.span12
+          %div.assignmentType
+            %span.assignmentTypeTitle Badges
+            %span.badge.badge-warning.pull-right= "#{@user.earned_badges_value(current_course)} points"
+          %p.lead Badges description goes here...
+          %div#pastAssignments
+            - current_course.badges.each do |badge|
+              %div.assignment.well
+                %h6.assignmentTitle.pull-left= badge.name
+                = check_box_tag badge.name, badge.point_value, @user.badges.include?(badge), :class => 'class-checkbox', :'data-assignment-type-id' => 'grades'
+                %span.grade= badge.point_value
   = link_to "Back to the Dashboard", user_path(@user), :class => 'btn btn-primary'

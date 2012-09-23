@@ -75,23 +75,30 @@ var AssignmentTypesArray = Backbone.Collection.extend({
 });
 
 var PredictorView = Backbone.View.extend({
-  el: $('#predictorPage'),
+  el: '#predictorPage',
   initialize: function() {
     this.collection = new AssignmentTypesArray();
     this.createAssignmentTypes();
     this.calculateScores();
     this.setupChart();
     this.collection.bind('change',this.render,this);
+    this.$el = $(this.el);
+    this.render();
   },
   render: function() {
     var chart = this.model;
+    chart.yAxis[0].setExtremes(0,this.calculateCourseTotal());
+    var scoreTotal = 0;
     this.collection.forEach(function(assignmentType,i) {
       chart.series[i].setData([assignmentType.get('score')])
+      scoreTotal += assignmentType.get('score');
     });
+    $('#predictor-score-display').html(scoreTotal);
+    $('#predictor-course-total-display').html(this.calculateCourseTotal());
   },
   createAssignmentTypes: function() {
     var assignmentTypes = this.collection;
-    $.each($(this.el).find('.slides li').not('.clone'),function(i,slide) {
+    $.each(this.$el.find('.slides li').not('.clone'),function(i,slide) {
       $slide = $(slide);
       if ($slide.attr('id') == 'slide-required') {
         return true; // Required slide just duplicates assignments from other slides, so we can ignore it
@@ -105,31 +112,46 @@ var PredictorView = Backbone.View.extend({
     this.collection.forEach(function(assignmentType,i) {
       chartOptions.series.push({ name: assignmentType.get('name'), data: [assignmentType.get('score')] });
     });
-    $el = $(this.el);
     chartOptions.xAxis.categories = ' ';
-    chartOptions.yAxis.max = $el.data('course-total');
+    chartOptions.yAxis.max = this.calculateCourseTotal();
     this.model = new Highcharts.Chart(chartOptions);
   },
   events: { 
     'change input': 'calculateScores',
-    'change select': 'calculateScores'
+    'change select': 'calculateScores',
+    'slide .slider': 'calculateScores'
+  },
+  calculateCourseTotal: function() {
+    var courseTotal = 0;
+    var $slide = this.$el.find('li#slide-badges')
+    $.each($slide.find('input'), function(i,item) {
+      var $item = $(item);
+      if ($item.is(':checked')) {
+        courseTotal += parseInt($item.val());
+      }
+    });
+    courseTotal += parseInt(this.$el.data('course-total'));
+    return courseTotal;
   },
   calculateScores: function() {
     var assignmentTypes = this.collection;
-    $.each($(this.el).find('.slides li').not('.clone'),function(i,slide) {
-      $slide = $(slide);
+    $.each(this.$el.find('.slides li').not('.clone'),function(i,slide) {
+      var $slide = $(slide);
       if ($slide.attr('id') == 'slide-required') {
         return true;
       }
       var assignmentTypeId = $slide.data('assignment-type-id');
       var score = 0;
-      $.each($slide.find('input, select'), function(i,item) {
+      $.each($slide.find('input, select, .slider'), function(i,item) {
         var $item = $(item);
-        console.log($item);
         if($item.is(':checkbox') && $item.is(':checked')) {
           score += parseInt($item.val());
         } else if ($item.is('select')) {
-          score += parseInt($item.children('option:selected').val());
+          score += parseInt($item.children('option:selected').val() || 0);
+        } else if ($item.is('input[type="hidden"]')) {
+          score += parseInt($item.val());
+        } else if ($item.is('.ui-slider')) {
+          score += parseInt(($item.slider('value') / 100) * $item.attr('max'));
         }
       });
       assignmentTypes.get(assignmentTypeId).set('score',score);
