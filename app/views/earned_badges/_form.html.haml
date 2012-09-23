@@ -1,6 +1,4 @@
-= simple_form_for([@user, @earned_badge], :html => {:class => 'form-horizontal' }) do |f|
-  = f.input :earnable_id, :label => "Awarded To...", :collection => @students
-  = f.input :earnable_type, :input_html => { :value => "User" }, :as => "hidden"
+= simple_form_for([@earnable, @earned_badge], :html => {:class => 'form-horizontal' }) do |f|
   = f.input :badge_id, :as => :select, :collection => @badges 
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' } 
   = hidden_field_tag "earned_badge[badge_ids][]", nil

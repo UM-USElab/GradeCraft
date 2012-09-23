@@ -11,5 +11,5 @@
     = "(#{@earned_badge.value} points)"
   
   %div.span12
-    = link_to 'Edit', edit_user_earned_badge_path(@earned_badge.earnable_id, @earned_badge), :class => "btn btn-inverse"
-    = link_to 'Back', user_earned_badges_path(@earned_badge.earnable_id), :class => "btn btn-inverse"
+    = link_to 'Edit', [:edit, @earnable, :earned_badge], :class => "btn btn-inverse"
+    = link_to 'Back', [ @earnable, :earned_badge], :class => "btn btn-inverse"

@@ -6,6 +6,7 @@ class Badge < ActiveRecord::Base
   #mount_uploader :icon, ImageUploader
   has_many :earned_badges, :dependent => :destroy
   belongs_to :badge_set
+  belongs_to :course
   
   accepts_nested_attributes_for :badge_set
   

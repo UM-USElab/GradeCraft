@@ -5,5 +5,5 @@
   = render 'form'
 
   %div.span12
-    = link_to 'View', user_earned_badge(@user), :class => "btn btn-inverse"
-    = link_to 'Back', user_earned_badges_path(@user, :class => "btn btn-inverse"
+    = link_to 'View', [:show, @earnable, :earned_badge], :class => "btn btn-inverse"
+    = link_to 'Back', [:index, @earnable, :earned_badge], :class => "btn btn-inverse"

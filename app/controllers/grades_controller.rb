@@ -2,6 +2,7 @@ class GradesController < ApplicationController
   respond_to :html, :json
 
   before_filter :ensure_staff?, :except=>[:self_log, :self_log_create]
+  before_filter :find_earnable, :find_gradeable
 
   def index
     @title = "View All Grades"
@@ -143,7 +144,6 @@ class GradesController < ApplicationController
   def mass_update
     @gradeable = find_gradeable
     @assignment = Assignment.find(params[:assignment_id])
-    @assignment.update_attributes(params[:assignment])
     if @assignment.update_attributes(params[:assignment])
       redirect_to assignment_path(@assignment)
     else
