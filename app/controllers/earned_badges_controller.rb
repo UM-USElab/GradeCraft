@@ -42,7 +42,7 @@ class EarnedBadgesController < ApplicationController
   def create
     @badge_sets = current_course.badge_sets.all 
     @badges = current_course.badges.all
-    @earned_badge = @earnable.earned_badge.build(params[:earned_badge])
+    @earned_badge = @earnable.earned_badges.build(params[:earned_badge])
     respond_to do |format|
       if @earned_badge.save
         format.html { redirect_to @earnable, notice: 'Badge was successfully awarded.' }
