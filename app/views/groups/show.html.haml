@@ -1,21 +1,25 @@
-%p
-  %b Name:
-  = @group.name
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
+
+%div.span8
+  %p
+    %b Group Name:
+    = @group.name
+    
+  %p
+    %b Assignment:
+    = @group.assignment.name 
   
-%p
-  %b Assignment:
-  = @group.assignment.name 
-
-%p
-  %b Proposal:
-  = @group.proposal 
-
-%p 
-  %b Members:
-- @group.users.each do |user|
-  %ul
-    %li= link_to user.name, user_path(user)
-
-%div.span12
-  = link_to 'Edit', edit_group_path(@group), :class => 'btn btn-primary'
-  = link_to 'Back', groups_path, :class => 'btn btn-primary'
+  %p
+    %b Proposal:
+    = @group.proposal 
+  
+  %p 
+    %b Members:
+  - @group.users.each do |user|
+    %ul
+      %li= link_to user.name, user_path(user)
+  
+  %div.span12
+    = link_to 'Edit', edit_assignment_group_path(@assignment, @group), :class => 'btn btn-primary'
+    = link_to 'Back', assignment_groups_path(@assignment), :class => 'btn btn-primary'

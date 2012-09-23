@@ -50,7 +50,7 @@ class EarnedBadgesController < ApplicationController
     @badge_sets = current_course.badge_sets.all 
     @badges = current_course.badges.all
     @user = User.find(params[:user_id])
-    @earned_badge = EarnedBadge.new(params[:earned_badge])
+    @earned_badge = @earnable.earned_badge.build(params[:earned_badge])
     respond_to do |format|
       if @earned_badge.save
         format.html { redirect_to @user, notice: 'Badge was successfully awarded.' }

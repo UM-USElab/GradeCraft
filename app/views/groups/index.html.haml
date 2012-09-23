@@ -1,24 +1,29 @@
-%table.table.display.table-bordered
-  %thead
-    %tr
-      %th Assignment
-      %th Group Name
-      %th Status
-      %th Grade
-      %th 
-      %th
-      %th
-  %tbody
-    - @groups.each do |group|
-      %tr
-        %td= group.assignment.name
-        %td= group.name
-        %td= group.approved
-        %td
-        %td= group.grade.final_grade
-        %td= link_to 'View', group, :class => 'btn btn-mini'
-        %td= link_to 'Edit', edit_group_path(group), :class => 'btn btn-mini'
-        %td= link_to 'Delete', group, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
 
-%div.span12
-  = link_to 'New Group', new_group_path, {:class => 'btn btn-primary'}
+%div.span8
+  %h3= "#{@assignment.name} #{current_course.group_ref}s"
+  %table.table.display.table-bordered
+    %thead
+      %tr
+        %th Assignment
+        %th Group Name
+        %th Status
+        %th Grade
+        %th 
+        %th
+        %th
+    %tbody
+      - @groups.each do |group|
+        %tr
+          %td= link_to group.assignment.name, @assignment
+          %td= link_to group.name, assignment_group_path(@assignment, group)
+          %td= group.approved
+          %td
+          //%td= group.grade.try(:final_grade)
+          %td= link_to 'View', assignment_group_path(@assignment, group), :class => 'btn btn-mini'
+          %td= link_to 'Edit', edit_assignment_group_path(@assignment, group), :class => 'btn btn-mini'
+          %td= link_to 'Delete', assignment_group_path(@assignment, group), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+  
+  %div.span12
+    = link_to 'New Group', new_assignment_group_path(@assignment), {:class => 'btn btn-primary'}

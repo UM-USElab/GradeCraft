@@ -36,7 +36,6 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @course = Course.new(params[:course])
     @team =  Team.new(params[:team])
 
     respond_to do |format|

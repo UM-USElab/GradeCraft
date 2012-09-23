@@ -33,7 +33,6 @@ GradeCraft::Application.routes.draw do
   resources :badge_sets 
   resources :badges
   resources :earned_badges
-  resources :groups
   resources :teams
   resources :assignment_types
   resources :score_levels
@@ -42,6 +41,7 @@ GradeCraft::Application.routes.draw do
       get :settings
     end
     resources :assignment_submissions
+    resources :groups
     resources :grades do
       collection do
         get :mass_edit

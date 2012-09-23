@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   
   belongs_to :course
   belongs_to :assignment
-  validates_presence_of :assignment, :course, :name
+  validates_presence_of :assignment_id, :name
   
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
   has_many :badges, :through => :earned_badges

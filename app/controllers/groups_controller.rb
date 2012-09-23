@@ -3,9 +3,9 @@ class GroupsController < ApplicationController
   before_filter :ensure_staff?
 
   def index
-    @title = "View All Groups"
-    @groups = current_course.groups
-
+    @assignment = Assignment.find(params[:assignment_id])
+    @groups = Group.all
+ 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @groups }
@@ -13,8 +13,8 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @title = "View Group"
-    @group = current_course.groups.find(params[:id])
+    @assignment = Assignment.find(params[:assignment_id])
+    @group = Group.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -23,9 +23,9 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @title = "Create a New Group"
-    @group = current_course.groups.new
-    @users = current_course.users.students
+    @assignment = Assignment.find(params[:assignment_id])
+    @group = @assignment.groups.new
+    @students = current_course.users.students
     @assignments = current_course.assignments.all
     respond_to do |format|
       format.html # new.html.erb
@@ -35,15 +35,17 @@ class GroupsController < ApplicationController
 
   def edit
     @title = "Edit Group"
-    @group = current_course.groups.find(params[:id])
+    @assignment = Assignment.find(params[:assignment_id])
+    @group = @assignment.groups.find(params[:id])
     @users = current_course.users.students
   end
 
   def create
-    @group = current_course.groups.new(params[:group])
+    @assignment = Assignment.find(params[:assignment_id])
+    @group = @assignment.groups.build(params[:group])
     respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
+        format.html { redirect_to assignment_groups_path, notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
       else
         format.html { render action: "new" }
@@ -53,12 +55,13 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group = current_course.groups.find(params[:id])
+    @assignment = Assignment.find(params[:assignment_id])
+    @group = Group.find(params[:id])
     @group.update_attributes(params[:group])
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+        format.html { redirect_to assignment_group_path(@assignment, @group), notice: 'Group was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -68,11 +71,12 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    @group = current_course.groups.find(params[:id])
+    @assignment = Assignment.find(params[:assignment_id])
+    @group = Group.find(params[:id])
     @group.destroy
 
     respond_to do |format|
-      format.html { redirect_to groups_url }
+      format.html { redirect_to assignment_groups_path(@assignment) }
       format.json { head :ok }
     end
   end
