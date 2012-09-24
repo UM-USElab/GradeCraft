@@ -1,5 +1,5 @@
 %div.pull-right
-  = link_to "Assignments Index", assignments_path
+  = link_to "Assignments Index", assignments_path, :class => "badge"
 - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
   %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
   %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})" 

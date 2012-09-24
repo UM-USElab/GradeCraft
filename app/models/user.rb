@@ -151,8 +151,6 @@ class User < ActiveRecord::Base
     grades.map(&:score).inject(&:+) || 0
   end
   
-  
-  #TODO CHECK
   def assignment_type_score(assignment_type)
     grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map(&:score).inject(&:+) || 0 
   end
@@ -176,17 +174,7 @@ class User < ActiveRecord::Base
   def self.csv_header
     "First Name,Last Name,Email,Username".split(',')
   end
-#     
-#   def self.build_from_csv(row)
-#     # find existing user from email or create new
-#     user = find_or_initialize_by_email(row[2])
-#     user.attributes ={
-#       :first_name => row[0],
-#       :last_name => row[1],
-#       :email => row[3],
-#       :username => row[4]
-#     return user
-#   end
+
   
   #Export Users and Final Scores [TODO need to add final grade]
   def self.to_csv(options = {})
@@ -197,7 +185,6 @@ class User < ActiveRecord::Base
       end
     end
   end
-
 
   # Putting this here just so things don't break... remove if needed.
 

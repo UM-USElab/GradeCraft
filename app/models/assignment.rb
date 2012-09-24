@@ -67,7 +67,7 @@ class Assignment < ActiveRecord::Base
 
   #submissions by student  
   def submissions_by_student_id
-    @submissions_by_student || assignment_submissions.group_by(&:user_id)
+    @submissions_by_student || assignment_submissions.group_by(&:submittable_id)
   end
   
   def submission_for_student(student)

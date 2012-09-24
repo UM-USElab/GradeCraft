@@ -8,7 +8,7 @@
   - if @assignment_submission.assignment.is_individual? 
     %p
       %b User:
-      = link_to @assignment_submission.user.try(:name), @assignment_submission.user
+      = link_to @assignment_submission.submittable.try(:name), @assignment_submission.submittable
   - elsif @assignment_submission.has_groups?
     %p
       %b Group:
@@ -23,6 +23,10 @@
   - if current_user.is_staff? 
     = render 'grade_form'
 
-  %div.span12
-    = link_to 'Edit Submission', edit_assignment_assignment_submission_path(@assignment, @assignment_submission, :gradeable_id => @assignment_submission.user.id, :gradeable_type => "User"), {:class => 'btn btn-primary'}
-    = link_to 'Back', assignment_assignment_submissions_path(@assignment, @assignment_submission, :gradeable_id => @assignment_submission.user.id, :gradeable_type => "User"), {:class => 'btn btn-primary'}
+    %div.span12
+      = link_to 'Edit Submission', edit_assignment_assignment_submission_path(@assignment, @assignment_submission), {:class => 'btn btn-primary'}
+      = link_to 'Back', assignment_assignment_submissions_path(@assignment), {:class => 'btn btn-primary'}
+  
+  - elsif current_user.is_staff? 
+    = link_to 'Edit Submission', edit_assignment_assignment_submission_path(@assignment, @assignment_submission), {:class => 'btn btn-primary'}
+  
