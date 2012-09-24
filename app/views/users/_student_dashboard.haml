@@ -86,7 +86,14 @@
           %span
             %span.badge.badge-warning= "#{user.assignment_type_score(assignment_type)} / #{assignment_type.weight} "
           - if assignment_type.student_choice?
-            //%span.badge.badge-important= link_to "Set Kapital", new_user_user_assignment_type_weight_path("assignment_type_id" => assignment_type.id)
+            - assignment_type.weights_for_student(user).tap do |weight|
+              - if weight
+                %span.badge.badge-important= "#{weight.value} #{current_course.multiplier_term}"
+              - else
+                %span.badge.badge-important= link_to "Set #{current_course.multiplier_term}", new_user_user_assignment_type_weight_path(@user, :assignment_type_id => assignment_type.id)
+              
+                        
+            
           %div{:id => "assignment_type-#{assignment_type.id}", :class => "collapse"}
             %div.assignmentsGroup
               - assignments.each do |assignment|

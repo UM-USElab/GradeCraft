@@ -74,6 +74,7 @@ class Assignment < ActiveRecord::Base
     submissions_by_student_id[student.id].try(:first)
   end
   
+  
     #submissions by groups
   def submissions_by_group_id
     @submissions_by_group || assignment_submissions.group_by(&:group_id)
