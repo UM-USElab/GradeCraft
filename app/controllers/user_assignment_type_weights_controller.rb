@@ -14,7 +14,7 @@ class UserAssignmentTypeWeightsController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    @assignment_type = AssignmentType.find(params[:assignment_type_id])
+    @assignment_types = current_course.assignment_types.where(:user_percentage_set => "true")
     @user_assignment_type_weight = @user.user_assignment_type_weights.new
     respond_with(user_user_assignment_type_weights_path)
   end

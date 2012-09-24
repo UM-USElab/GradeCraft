@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   
   private 
   def increment_page_views
-    User.increment_counter(:page_views, current_user.id) if current_user
+    User.increment_counter(:page_views, current_user.id) if current_user && request.format.html?
   end
 
   def enforce_view_permission(resource)

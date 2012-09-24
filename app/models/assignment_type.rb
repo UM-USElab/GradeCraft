@@ -30,6 +30,10 @@ class AssignmentType < ActiveRecord::Base
     user_percentage_set == "true"
   end
   
+  def multiplier_open?
+    course.user_weight_amount_close_date > Date.today
+  end
+  
   def possible_score
     self.assignments.sum(:point_total) || 0
   end
