@@ -3,4 +3,3 @@
   = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'User' }
   = f.input :raw_score, :as => :select, :label => "#{@assignment.student_logged_button_text}", :collection => [["Yes", @assignment.point_total]]
   = f.submit "Submit", :class => "btn btn-primary"
-  

@@ -2,7 +2,8 @@ class GradesController < ApplicationController
   respond_to :html, :json
 
   before_filter :ensure_staff?, :except=>[:self_log, :self_log_create]
-  before_filter :find_earnable, :find_gradeable
+  before_filter :find_earnable
+  before_filter :find_gradeable
 
   def index
     @title = "View All Grades"
@@ -25,7 +26,8 @@ class GradesController < ApplicationController
     @students = current_course.users.students.includes(:grades)
   end
 
-  def new    
+  def new 
+    @gradeable = find_gradeable
     @title = "Submit A New Grade"
     @assignment = Assignment.find(params[:assignment_id])
     @assignment_type = @assignment.assignment_type
@@ -114,7 +116,6 @@ class GradesController < ApplicationController
   end
   
   def self_log_create
-    @gradeable = find_gradeable
     @assignment = Assignment.find(params[:assignment_id])
     @grade = @gradeable.assignment_grades.build(params[:grade])
     respond_to do |format|
