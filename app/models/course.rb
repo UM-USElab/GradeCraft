@@ -65,6 +65,14 @@ class Course < ActiveRecord::Base
     badge_setting == true
   end
   
+  def valuable_badges?
+    badges_value == true 
+  end
+  
+  def predictor_on?
+    predictor_setting == true
+  end
+  
   def has_groups?
     group_setting == true
   end

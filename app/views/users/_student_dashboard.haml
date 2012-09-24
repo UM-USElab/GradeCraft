@@ -52,9 +52,9 @@
             = link_to "Award a Badge", new_user_earned_badge_path(user), :class => "btn btn-small"
           = link_to "Email", "mailto:#{user.email}", :class => "btn btn-small"
           = link_to "Edit", edit_user_path(user.id), :class => "btn btn-small"
-          - user.team_leader.tap do |team_leader|
-            - if team_leader.present?
-              = link_to "Email #{current_course.section_leader_term} (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-small btn-info"
+      - user.team_leader.tap do |team_leader|
+        - if team_leader.present?
+          = link_to "Email #{current_course.section_leader_term} (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-small btn-info"
     %div#userID{ :'data-user-id' => user.id }
     %div#userPointValues
       - if current_user.is_student?
@@ -62,22 +62,19 @@
       - elsif current_user.is_staff?
         %span= "Current Score: "
       %span#userScoreNum #{number_with_delimiter(user.earned_grades(current_course), :delimiter => ',') if user.respond_to?(:earned_grades)}
-    %a.hidden-phone{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
+    %a{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
       Show me my score out of total course points
-    %a.hidden-phone{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
+    %a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
       Show me my score out of available points so far
 
-    - if current_user.is_staff?  
-      %div#predictorLink.hidden-phone
-        - if current_user.is_student?
-          = link_to 'Predict My Grade', predictor_users_path(:user_id => user.id)
-        - if current_user.is_staff?
-          = link_to 'Predict Course Grade', predictor_users_path(:user_id => user.id)
+    %div#predictorLink.hidden-phone
+      - if current_user.is_student? && current_course.predictor_on?
+        %div= link_to 'Predict My Grade', predictor_users_path(:user_id => user.id), :class => "btn btn-inverse"
+      - if current_user.is_staff?
+        %div= link_to 'Predict Course Grade', predictor_users_path(:user_id => user.id), :class => "btn btn-inverse"
     
-    %br
-    %br    
-    %div#userBarTotal.dashboard-toggle.hidden-phone
-    %div#userBarInProgress.dashboard-toggle.hidden-phone
+    %div#userBarInProgress{:class => "dashboard-toggle"}
+    %div#userBarTotal{:class => "dashboard-toggle"}
     %div#Grades
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %div.assignmentType
@@ -149,10 +146,11 @@
                         %span #{grade.point_total} points possible
                         - if current_user.is_staff?
                           %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
-      %div.badges
-        %button.btn.btn-inverse(data-target="#badges" data-toggle="collapse") Badges
-        %span
-          %span.badge.badge-warning= "#{user.earned_badges_value(current_course)} points"
+      - if current_course.valuable_badges?
+        %div.badges
+          %button.btn.btn-inverse(data-target="#badges" data-toggle="collapse") Badges
+          %span
+            %span.badge.badge-warning= "#{user.earned_badges_value(current_course)} points"
 
                     
 

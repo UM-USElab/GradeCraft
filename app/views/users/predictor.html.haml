@@ -51,17 +51,18 @@
                       %div.slider{:id => "slider-"+assignment.id.to_s(), :max => assignment.point_total, :value => 0 }
                   - if assignment_type.select?
                     = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
-      %li#slide-badges{ :data => { 'assignment-type-id' => 'badges', 'assignment-type-name' => 'Badges' } }
-        %div.slide-panel.span12
-          %div.assignmentType
-            %span.assignmentTypeTitle Badges
-            %span.badge.badge-warning.pull-right= "#{@user.earned_badges_value(current_course)} points"
-          %p.lead 
-          %div#pastAssignments
-            - current_course.badges.each do |badge|
-              %div.assignment.well
-                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
-                %h6.assignmentTitle.pull-left= badge.name
-                = check_box_tag badge.name, badge.point_value, @user.badges.include?(badge), :class => 'class-checkbox', :'data-assignment-type-id' => 'grades'
-                %span.grade= badge.point_value
+      - if current_course.valuable_badges?
+        %li#slide-badges{ :data => { 'assignment-type-id' => 'badges', 'assignment-type-name' => 'Badges' } }
+          %div.slide-panel.span12
+            %div.assignmentType
+              %span.assignmentTypeTitle Badges
+              %span.badge.badge-warning.pull-right= "#{@user.earned_badges_value(current_course)} points"
+            %p.lead 
+            %div#pastAssignments
+              - current_course.badges.each do |badge|
+                %div.assignment.well
+                  %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
+                  %h6.assignmentTitle.pull-left= badge.name
+                  = check_box_tag badge.name, badge.point_value, @user.badges.include?(badge), :class => 'class-checkbox', :'data-assignment-type-id' => 'grades'
+                  %span.grade= badge.point_value
   = link_to "Back to the Dashboard", user_path(@user), :class => 'btn btn-primary'
