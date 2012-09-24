@@ -30,7 +30,7 @@
         %td 
           - user.teams.each do |team|
             = team.name
-        %td= user.try(:earned_grades)
+        %td= user.earned_grades(current_course)
         %td= user.visit_count
         - if current_course.has_badges? 
           %td
