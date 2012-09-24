@@ -13,14 +13,6 @@
 %div#predictorPage{ 'data-student-name' => @user.name, 'data-course-total' => current_course.total_points }
   %div.flexslider
     %ul.slides
-      %li{:id => "slide-required"}
-        %div.slide-panel.span12
-          %div.assignmentType
-            %span.assignmentTypeTitle Required Assignments
-          - @assignments.each do |assignment|
-            - if assignment.is_required? 
-              %div
-                %h6.assignmentTitle= assignment.name
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %li{:id => "slide-#{assignment_type.id}", :data => { :'assignment-type-id' => assignment_type.id, :'assignment-type-name' => assignment_type.name } }
           %div.slide-panel.span12
@@ -64,10 +56,11 @@
           %div.assignmentType
             %span.assignmentTypeTitle Badges
             %span.badge.badge-warning.pull-right= "#{@user.earned_badges_value(current_course)} points"
-          %p.lead Badges description goes here...
+          %p.lead 
           %div#pastAssignments
             - current_course.badges.each do |badge|
               %div.assignment.well
+                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
                 %h6.assignmentTitle.pull-left= badge.name
                 = check_box_tag badge.name, badge.point_value, @user.badges.include?(badge), :class => 'class-checkbox', :'data-assignment-type-id' => 'grades'
                 %span.grade= badge.point_value
