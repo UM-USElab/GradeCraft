@@ -32,7 +32,7 @@
                   - if assignment.is_required?
                     %span.assignmentRequired.label.label-important Required!
                   - assignment.assignment_grades.where(:gradeable_id => @user.id).first.tap do |grade|
-                    - if grade.attempted? 
+                    - if grade.try(:attempted?) 
                       %span.grade #{ grade.raw_score } / #{grade.point_total}
                       = hidden_field_tag assignment.name, assignment.point_total, :'data-assignment-type-id' => assignment.assignment_type_id
               - if assignment.future?
