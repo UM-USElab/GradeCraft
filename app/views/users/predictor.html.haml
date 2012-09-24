@@ -35,6 +35,8 @@
                     - if grade.try(:attempted?) 
                       %span.grade= "#{ grade.raw_score } / #{grade.point_total} points"
                       = hidden_field_tag assignment.name, assignment.point_total, :'data-assignment-type-id' => assignment.assignment_type_id
+                    - else 
+                      %span.grade= "#{grade.point_total} possible points"
               - if assignment.future?
                 %div.assignment.well
                   %h6.assignmentTitle= assignment.name
