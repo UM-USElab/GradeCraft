@@ -41,6 +41,7 @@ class AssignmentSubmissionsController < ApplicationController
 
   def edit
     @assignment = Assignment.find(params[:assignment_id])
+    @students = current_course.users.students
     @title = "Edit Submission for #{@assignment.name}"
     @assignment_submission = AssignmentSubmission.find(params[:id])
     @assignment_submission = @assignment.assignment_submissions.find(params[:id])
