@@ -50,10 +50,15 @@ group :test do
   gem 'fuubar'
   gem 'shoulda-matchers'
   gem 'watchr'
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 group :test, :development do
   gem 'sqlite3'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'ruby-debug19'
 end
