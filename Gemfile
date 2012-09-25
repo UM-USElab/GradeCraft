@@ -51,7 +51,6 @@ group :test do
   gem 'shoulda-matchers'
   gem 'watchr'
   gem 'faker'
-  gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
 end
