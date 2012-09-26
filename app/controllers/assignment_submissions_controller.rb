@@ -55,7 +55,7 @@ class AssignmentSubmissionsController < ApplicationController
     @assignment_submission.save
     respond_to do |format|
       if @assignment_submission.save
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully submitted.' }
+        format.html { redirect_to dashboard_path, notice: 'Assignment was successfully submitted.' }
         format.json { render json: @assignment, status: :created, location: @assignment }
       else
         format.html { render action: "new" }

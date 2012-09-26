@@ -9,10 +9,10 @@
         = f.input :submittable_id, :default => current_user.team.first.id, :as => :hidden
         = f.input :submittable_type, :input_html => { :value => "Team" }, :as => :hidden
       - elsif @assignment.is_individual? 
-        = f.input :submittable_id, :default => current_user.id, :as => :hidden
-        = f.input :submittable_type, :input_html => { :value => current_course.id }, :as => :hidden
+        = f.input :submittable_id, :input_html => { :value => current_user.id }, :as => :hidden
+        = f.input :submittable_type, :input_html => { :value => "User" }, :as => :hidden
       - else
-        = f.input :submittable_id, :collection => @students, :label => "#{current_course.user_ref}", :include_blank => false
+        = f.input :submittable_id, :input_html => { :value => current_user.id }, :label => "#{current_course.user_ref}", :as => :hidden
         = f.input :submittable_type, :as => :hidden, :input_html => { :value => 'User' }
     - if current_user.is_staff?
       - if @assignment.has_groups?
