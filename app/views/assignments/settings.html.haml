@@ -26,7 +26,7 @@
       - assignments.each do |assignment|
         %tr
           %td= assignment.name
-          %td= assignment.description
+          %td= raw assignment.description
           %td= assignment.try(:open_date)
           %td= assignment.try(:due_date)
           %td 

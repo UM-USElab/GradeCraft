@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
     course.grade_level(self)
   end
   
-  def team_grades(course)
+  def team_score(course)
     teams.where(:course_id => course.id).first.try(&:sortable_score) || 0
   end
   
@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
  
   # TODO: rename team_grades or make it return grades and not a score. earned_grades(course) and team_grades(course) should have the same return 'type' (array of grades) to be consistent.
   def earned_grades(course)
-    (course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_grades(course)
+    (course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_score(course)
   end
 
   def grades_by_assignment_id

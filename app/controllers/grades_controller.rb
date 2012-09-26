@@ -7,6 +7,8 @@ class GradesController < ApplicationController
   def index
     @title = "View All Grades"
     @assignment = Assignment.find(params[:assignment_id])
+    @groups = @assignment.groups 
+    @teams = current_course.teams
     @grades = @assignment.assignment_grades.where(params[:assignment_id])
     user_search_options = {}
     user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
