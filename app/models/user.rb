@@ -112,11 +112,10 @@ class User < ActiveRecord::Base
   end
   
   def earned_badges_value(course)
-    # earned_badges.where(:course_id => course.id).map(&:point_value).sum
+    #earned_badges.where(:course_id => course.id).map(&:point_value).sum
     earned_badges.map(&:point_value).sum
   end
  
-  # TODO: rename team_grades or make it return grades and not a score. earned_grades(course) and team_grades(course) should have the same return 'type' (array of grades) to be consistent.
   def earned_grades(course)
     (course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_score(course)
   end

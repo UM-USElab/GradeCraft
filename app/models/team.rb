@@ -5,6 +5,8 @@ class Team < ActiveRecord::Base
   has_many :grades, :as => :gradeable, :dependent => :destroy
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
   
+  before_save :set_sortable_score
+  
   belongs_to :course
   attr_accessible :name, :created_at, :updated_at, :banner_file_name, :banner_updated_at, :sortable_score, :rank, :team_id, :user_ids, :course_id
   
@@ -30,4 +32,10 @@ class Team < ActiveRecord::Base
     users.gsis.first
   end
 
+  private
+
+  def set_sortable_score
+    self.sortable_score = grades.reload.map(&:score).inject(&:+) || 0
+  end
+  
 end
