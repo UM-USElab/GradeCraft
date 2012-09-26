@@ -2,7 +2,10 @@
   .form-inputs
     - if current_user.is_student?
       - if @assignment.has_groups?
-        = f.input :submittable_id, :input_html => { :value => current_user.id}, :as => :hidden
+        %b= "You are submitting this assignment as a representative of #{current_course.group_ref} #{current_user.groups.first.try(:name)}"
+        %br
+        %br
+        = f.input :submittable_id, :input_html => { :value => current_user.groups.first.id }, :as => :hidden
         = f.input :submittable_type, :input_html => { :value => "Group" }, :as => :hidden
       - elsif @assignment.has_teams? 
         %b= "You are submitting this assignment as a representative of #{current_course.team_ref} #{current_user.teams.first.try(:name)}"
