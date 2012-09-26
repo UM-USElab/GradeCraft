@@ -41,56 +41,40 @@ class Assignment < ActiveRecord::Base
 
   scope :grading_done, where(:assignment_grades.present? == 1)
   
-  def grades_by_student_id
-    @grades_by_student ||= grades.group_by(&:gradeable_id)
+  
+  #grades per role  
+  def grades_by_gradeable_id
+    @grades_by_gradeable_id ||= grades.group_by { |g| [g.gradeable_type,g.gradeable_id] }
   end
 
   def grade_for_student(student)
-    grades_by_student_id[student.id].try(:first)
-  end
-  
-  def grades_by_group_id
-    @grades_by_group ||= grades.group_by(&:gradeable_id)
+    grades_by_gradeable_id[['User',student.id]].try(:first)
   end
   
   def grade_for_group(group)
-    grades_by_group_id[group.id].try(:first)
-  end 
-  
-  def grades_by_team_id
-    @grades_by_team ||= grades.group_by(&:gradeable_id)
+    grades_by_gradeable_id[['Group',group.id]].try(:first)
   end 
   
   def grade_for_team(team)
-    grades_by_team_id[team.id].try(:first)
+    grades_by_gradeable_id[['Team',team.id]].try(:first)
   end
 
-  #submissions by student  
-  def submissions_by_student_id
-    @submissions_by_student || assignment_submissions.group_by(&:submittable_id)
+  #submissions per role
+  def submissions_by_submittable_id
+    @submissions_by_submittable_id || assignment_submissions.group_by { |s| [s.submittable_type,s.submittable_id] }
   end
   
   def submission_for_student(student)
-    submissions_by_student_id[student.id].try(:first)
+    submissions_by_submittable_id[['User',student.id]].try(:first)
   end
   
-  
-    #submissions by groups
-  def submissions_by_group_id
-    @submissions_by_group || assignment_submissions.group_by(&:group_id)
-  end
   
   def submission_for_group(group)
-    submissions_by_group_id[group.id].try(:first)
-  end
-  
-    #submissions by teams
-  def submissions_by_team_id
-    @submissions_by_team || assignment_submissions.group_by(&:team_id)
+    submissions_by_submittable_id[['Group',group.id]].try(:first)
   end
   
   def submission_for_team(team)
-    submissions_by_team_id[team.id].try(:first)
+    submissions_by_submittable_id[['Team',team.id]].try(:first)
   end
 
   def assignment_grades
