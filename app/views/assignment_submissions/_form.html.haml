@@ -21,10 +21,10 @@
         = f.input :submittable_type, :as => :hidden, :input_html => { :value => 'User' }
     - if current_user.is_staff?
       - if @assignment.has_groups?
-        = f.input :submittable_id, :collection => @groups, :label => "Group"
+        = f.input :submittable_id, :collection => @groups, :label => "#{current_course.group_ref}"
         = f.input :submittable_type, :input_html => { :value => "Group" }, :as => :hidden
       - elsif @assignment.has_teams? 
-        = f.input :submittable_id, :collection => @teams, :label => "Team"
+        = f.input :submittable_id, :collection => @teams, :label => "#{current_course.team_ref}"
         = f.input :submittable_type, :input_html => { :value => "Team" }, :as => :hidden
       - elsif @assignment.is_individual? 
         = f.input :submittable_id, :collection => @students, :label => "#{current_course.user_ref}"

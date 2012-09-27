@@ -127,19 +127,26 @@ class User < ActiveRecord::Base
   def grade_for_assignment(assignment)
     grades_by_assignment_id[assignment.id].try(:first)
   end
-  
+
   def earnable
     @user.earned_badges.all 
   end
-  
+
   def earned_badges_by_badge_id
     @earned_badges_by_badge ||= earned_badges.group_by(&:badge_id)
   end
-  
+
   def earned_badges_by_badge(badge)
     earned_badges_by_badge_id[badge.id].try(:first)
   end
-    
+  
+  def weights_by_student_id
+    @weights_by_student_id ||= user_assignment_type_weights.group_by(&:student_id)
+  end
+  
+  def weights_for_student(student)
+    weights_by_student_id[student.id].try(:first)
+  end
 
   #Score
   def sortable_score
@@ -149,11 +156,11 @@ class User < ActiveRecord::Base
   def score
     grades.map(&:score).inject(&:+) || 0
   end
-  
+
   def assignment_type_score(assignment_type)
     grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map(&:score).inject(&:+) || 0 
   end
-  
+
   def attendance_rate
     #(attendance_grade /assignments(type => attendance).count)*100 TODO
   end

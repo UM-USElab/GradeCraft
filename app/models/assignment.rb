@@ -76,6 +76,16 @@ class Assignment < ActiveRecord::Base
   def submission_for_team(team)
     submissions_by_submittable_id[['Team',team.id]].try(:first)
   end
+  
+  
+  def assignment_submissions_by_assignment_id
+    @assignment_submissions_by_assignment_id ||= assignment_submissions.group_by(&:assignment_id)
+  end
+
+  def assignment_submissions_for_assignment(assignment)
+    assignment_submissions_by_assignment_id[assignment.id].try(:first)
+  end
+
 
   def assignment_grades
     Grade.where(:assignment_id => id)
@@ -193,7 +203,6 @@ class Assignment < ActiveRecord::Base
   
   def grade_level(grade)
     grade_scheme.try(:grade_level, score_for_grade(grade)) || "--"
-  end
-
+  end  
   
 end

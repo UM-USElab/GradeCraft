@@ -6,6 +6,7 @@ class Course < ActiveRecord::Base
   
   has_many :assignments, :dependent => :destroy
   has_many :assignment_types, :dependent => :destroy
+  has_many :assignment_submissions, :through => :assignments
   has_and_belongs_to_many :badge_sets, :join_table => :course_badge_sets
   has_many :badges, :through => :badge_sets
   has_many :earned_badges, :through => :users
@@ -53,6 +54,14 @@ class Course < ActiveRecord::Base
     end
   end
   
+  def multiplier_ref 
+    if multiplier_term?
+      multiplier_term
+    else
+      "Multiplier"
+    end
+  end
+  
   def has_teams?
     team_setting == true
   end
@@ -87,6 +96,10 @@ class Course < ActiveRecord::Base
   
   def multi_badges? 
     badge_use_scope == "Both"
+  end
+  
+  def student_weighted? 
+    user_weight_amount != nil 
   end
   
   def team_roles?
@@ -132,6 +145,5 @@ class Course < ActiveRecord::Base
   def assignment_type_score_for_student(assignment_type,student)
     scores_by_assignment_type_for_student(student)[assignment_type.id]
   end
-  
   
 end

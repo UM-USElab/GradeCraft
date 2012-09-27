@@ -13,6 +13,7 @@
       %th Link
       %th Comment
       %th Feedback
+      %th Score
       %th
       %th
       %th
@@ -22,6 +23,7 @@
         %td= link_to assignment_submission.link, assignment_submission.link
         %td= raw assignment_submission.comment
         %td= raw assignment_submission.feedback
+        %td= assignment_submission.grade.try(:score)
         %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
         %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
         %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
