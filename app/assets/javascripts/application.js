@@ -24,8 +24,13 @@ $(document).ready(function(){
   $('#gradeCurious').popover({
     placement: 'bottom'
     });
-  
-  $( ".slider" ).slider( {  });
+ 
+  $('.slider').each(function(i,slider) {
+    $slider = $(slider)
+    $slider.slider({
+      max: $slider.attr('max')
+    });
+  });
   
   $('select').selectToUISlider();
   
