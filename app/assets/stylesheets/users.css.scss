@@ -40,7 +40,7 @@ button h4 {
   font-family: Verdana, sans-serif;
 }
 #badges img {
-  width: 45px;
+  width: 40px;
 }
 
 #badges img.unearned, #badges .badgeTitle.unearned {
@@ -167,11 +167,18 @@ h3.popover-title {
   padding-top: 165px;
 }
 
+
+#predictorPage .lead {
+  color: #FFF;
+}
+
 	div.slide-panel {
-  	border-radius: 10px;
-  	padding: 0px 25px;
+  	padding: 15px 35px;
+  	width: 100%;
+  	margin: 0 25px;
+  	background-color: #777;
 	}
-	
+	 
 	.headline {
   	font-weight: bold;
   	text-transform: uppercase;
@@ -264,12 +271,12 @@ h3.popover-title {
   	width: 900px;
   	position: relative;
 	}
-	 
 	div.flexslider {
 	   min-height: 400px;
   	margin-bottom: 15px;
   	padding: 25px;
   	width: 100%;
+  	background-color: #777;
 	}
 	
 	div.badges .badgeIcon {

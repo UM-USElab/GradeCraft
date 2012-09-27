@@ -32,22 +32,22 @@ $(document).ready(function(){
     });
   });
   
-  $('select').selectToUISlider();
+  //$('select').selectToUISlider();
   
   // Fix input element click problem
   $('.dropdown input, .dropdown label').click(function(e) {
     e.stopPropagation();
   });
   
-  	$('#scoreTotal').hide();
+  $('#userBarInProgress').show();
 	$('#userBarTotal').hide();
-	$('#showPossiblePts').hide();
-    $('#soFarScoreToggle').hide();	
+	$('#totalScoreToggle').show();
+  $('#soFarScoreToggle').hide();	
 
-    $('a.dashboard-toggle').click(function(){
-      $('.dashboard-toggle').toggle();
+  $('a.dashboard-toggle').click(function(){
+    $('.dashboard-toggle').toggle();
       return false;
-	})
+	});
   
 
 $('#course_id').change(function() { $(this).closest('form').submit(); });

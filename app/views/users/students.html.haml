@@ -33,7 +33,8 @@
         %td= student.teams.first.try(:name)
         - if current_course.team_roles?
           %td= student.try(:team_role)
-        %td= student.try(:earned_grades)
+        %td
+          = student.earned_grades(current_course)
         %td= student.visit_count
         %td= student.page_views
         %td= student.predictor_views

@@ -13,7 +13,7 @@
   
     - @user_assignment_type_weights.each do |user_assignment_type_weight|
       %tr
-        %td= user_assignment_type_weight.assignment_type.name
+        %td= user_assignment_type_weight.assignment_type.try(:name)
         %td= user_assignment_type_weight.value
         %td= link_to 'View', user_user_assignment_type_weight_path(@user, user_assignment_type_weight), :class => 'btn btn-mini'
         %td= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, user_assignment_type_weight), :class => 'btn btn-mini'

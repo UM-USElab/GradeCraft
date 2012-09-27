@@ -34,7 +34,7 @@
             %td= link_to user.name, user_path(user)
             %td= user.role
             %td= user.teams.first.try(:name)
-            %td= user.try(:earned_grades)
+            %td= user.earned_grades(current_course)
             %td= user.visit_count
             - if current_course.has_badges? 
               %td

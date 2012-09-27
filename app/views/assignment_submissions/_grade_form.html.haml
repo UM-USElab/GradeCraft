@@ -1,5 +1,6 @@
 = simple_form_for([@assignment, @grade], :html => {:class => 'form-horizontal' }) do |f|
   %div.control-group
+  = f.input :assignment_submission_id, :input_html => {:value => @assignment_submission.id}, :as => :hidden
   - if @assignment.is_individual?
     = f.input :gradeable_id, :collection => @students, :as => :hidden
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'User' }

@@ -92,6 +92,7 @@ class UsersController < ApplicationController
   end
   
   def predictor
+    increment_predictor_views
     @assignment_types = current_course.assignment_types.all
     @assignments = current_course.assignments.all
     @badges = current_course.badges.all
@@ -201,8 +202,18 @@ class UsersController < ApplicationController
       redirect_to users_path, :notice => "Upload successful"
     end
   end
+  
+  def choice
+    @students = current_course.users.students
+    @assignment_types = current_course.assignment_types
+  end
 
   
   private
+  
+  
+  def increment_predictor_views
+    User.increment_counter(:predictor_views, current_user.id) if current_user && request.format.html?
+  end
 
 end

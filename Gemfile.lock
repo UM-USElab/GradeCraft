@@ -22,7 +22,7 @@ GEM
       activesupport (= 3.2.6)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-import (0.2.10)
+    activerecord-import (0.2.11)
       activerecord (~> 3.0)
       activerecord (~> 3.0)
     activeresource (3.2.6)
@@ -31,19 +31,19 @@ GEM
     activesupport (3.2.6)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    airbrake (3.1.3)
-      activesupport
+    addressable (2.3.2)
+    airbrake (3.1.4)
       builder
       girl_friday
     ansi (1.4.3)
     archive-tar-minitar (0.5.2)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    bootstrap-datepicker-rails (0.6.17)
+    bootstrap-datepicker-rails (0.6.18)
       railties (>= 3.0)
-    bootstrap-wysihtml5-rails (0.3.1)
+    bootstrap-wysihtml5-rails (0.3.1.1)
       railties (>= 3.0)
-    brakeman (1.8.0)
+    brakeman (1.8.1)
       activesupport
       erubis (~> 2.6)
       fastercsv (~> 1.5)
@@ -78,6 +78,8 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fabrication (2.2.3)
+    faker (1.1.2)
+      i18n (~> 0.5)
     faraday (0.8.4)
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
@@ -89,6 +91,11 @@ GEM
     girl_friday (0.10.0)
       connection_pool (~> 0.9.0)
     gravatar_image_tag (1.1.3)
+    guard (1.3.3)
+      listen (>= 0.4.2)
+      thor (>= 0.14.6)
+    guard-rspec (1.2.1)
+      guard (>= 1.1)
     haml (3.1.7)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -97,19 +104,21 @@ GEM
       railties (>= 3.1, < 4.1)
     highcharts-rails (2.3.2)
       railties (~> 3.1)
-    highline (1.6.14)
+    highline (1.6.15)
     hike (1.2.1)
-    httpauth (0.1)
+    httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
-    jquery-rails (2.1.2)
+    jquery-rails (2.1.3)
       railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
-    jquery-ui-rails (2.0.0)
+    jquery-ui-rails (2.0.1)
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.5)
     json_pure (1.7.5)
+    launchy (2.1.2)
+      addressable (~> 2.3)
     less (2.2.2)
       commonjs (~> 0.2.6)
     less-rails (2.2.3)
@@ -118,6 +127,7 @@ GEM
     libv8 (3.3.10.4)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
+    listen (0.5.2)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -169,7 +179,7 @@ GEM
     rspec-expectations (2.11.3)
       diff-lcs (~> 1.1.3)
     rspec-instafail (0.2.4)
-    rspec-mocks (2.11.2)
+    rspec-mocks (2.11.3)
     rspec-rails (2.11.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -251,14 +261,17 @@ DEPENDENCIES
   coffee-rails
   exception_notification
   fabrication
+  faker
   flexslider
   fuubar
   gravatar_image_tag
+  guard-rspec
   haml
   haml-rails
   highcharts-rails (~> 2.3.0)
   jquery-rails (~> 2.0)
   jquery-ui-rails
+  launchy
   mysql2
   pacecar
   pg

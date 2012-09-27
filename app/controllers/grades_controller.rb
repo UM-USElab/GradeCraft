@@ -2,11 +2,13 @@ class GradesController < ApplicationController
   respond_to :html, :json
 
   before_filter :ensure_staff?, :except=>[:self_log, :self_log_create]
-  before_filter :find_earnable, :find_gradeable
+  
 
   def index
     @title = "View All Grades"
     @assignment = Assignment.find(params[:assignment_id])
+    @groups = @assignment.groups 
+    @teams = current_course.teams
     @grades = @assignment.assignment_grades.where(params[:assignment_id])
     user_search_options = {}
     user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
@@ -25,7 +27,7 @@ class GradesController < ApplicationController
     @students = current_course.users.students.includes(:grades)
   end
 
-  def new    
+  def new 
     @title = "Submit A New Grade"
     @assignment = Assignment.find(params[:assignment_id])
     @assignment_type = @assignment.assignment_type

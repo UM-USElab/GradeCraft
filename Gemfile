@@ -50,6 +50,9 @@ group :test do
   gem 'fuubar'
   gem 'shoulda-matchers'
   gem 'watchr'
+  gem 'faker'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 group :test, :development do

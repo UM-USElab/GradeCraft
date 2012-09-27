@@ -2,7 +2,8 @@
 %table.table-bordered.table
   %thead
     %tr
-      %th
+      - if @assignment.release_necessary?
+        %th
       %th= current_course.group_ref
       %th Score
       %th Level

@@ -18,11 +18,11 @@
   
   
   - if @assignment.has_groups?
-    = render "groups"
+    = render "assignments/groups"
   - elsif @assignment.has_teams? 
-    = render "teams"
+    = render "assignments/teams"
   - elsif @assignment.is_individual? 
-    = render "individuals"
+    = render "assignments/individuals"
   
           
   %div.span12

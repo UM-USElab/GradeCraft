@@ -41,6 +41,9 @@ class AssignmentSubmissionsController < ApplicationController
 
   def edit
     @assignment = Assignment.find(params[:assignment_id])
+    @students = current_course.users.students
+    @groups = @assignment.groups 
+    @teams = current_course.teams
     @title = "Edit Submission for #{@assignment.name}"
     @assignment_submission = AssignmentSubmission.find(params[:id])
     @assignment_submission = @assignment.assignment_submissions.find(params[:id])
@@ -52,7 +55,7 @@ class AssignmentSubmissionsController < ApplicationController
     @assignment_submission.save
     respond_to do |format|
       if @assignment_submission.save
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully submitted.' }
+        format.html { redirect_to dashboard_path, notice: 'Assignment was successfully submitted.' }
         format.json { render json: @assignment, status: :created, location: @assignment }
       else
         format.html { render action: "new" }

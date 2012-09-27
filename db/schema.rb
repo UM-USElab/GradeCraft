@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923034019) do
+ActiveRecord::Schema.define(:version => 20120924051812) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -168,6 +168,8 @@ ActiveRecord::Schema.define(:version => 20120923034019) do
     t.string   "badge_use_scope"
     t.integer  "multiplier_default"
     t.string   "multiplier_term"
+    t.boolean  "predictor_setting"
+    t.boolean  "badges_value"
   end
 
   create_table "criteria", :force => true do |t|
