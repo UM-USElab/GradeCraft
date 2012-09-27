@@ -119,7 +119,7 @@ var PredictorView = Backbone.View.extend({
   events: { 
     'change input': 'calculateScores',
     'change select': 'calculateScores',
-    'slide .slider': 'calculateScores'
+    'slidestop .slider': 'calculateScores'
   },
   calculateCourseTotal: function() {
     var courseTotal = 0;
@@ -151,7 +151,7 @@ var PredictorView = Backbone.View.extend({
         } else if ($item.is('input[type="hidden"]')) {
           score += parseInt($item.val());
         } else if ($item.is('.ui-slider')) {
-          score += parseInt(($item.slider('value') / 100) * $item.attr('max'));
+          score += parseInt($item.slider('value'));
         }
       });
       assignmentTypes.get(assignmentTypeId).set('score',score);
