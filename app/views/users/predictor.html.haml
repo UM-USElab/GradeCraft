@@ -3,7 +3,10 @@
     %div#predictionWrapper
       %div#projectedPoints
         %h3
-          = "#{@user.name}'s current points:"
+          - if current_user.is_student?
+            = "Your projected points:"
+          - elsif current_user.is_staff?
+            = "#{@user.name}'s projected points:"
           %span#predictor-score-display= number_with_delimiter(@user.earned_grades(current_course), :delimiter => ',') if @user.respond_to?(:earned_grades)
           = "/" 
           %span#predictor-course-total-display= current_course.total_points 
@@ -27,8 +30,8 @@
             %div#pastAssignments
             - assignments.each do |assignment|
               - if assignment.past?
-                %div.assignment.well
-                  %h6.assignmentTitle= assignment.try(:name)
+                %div.assignment
+                  %span.assignmentTitle= assignment.try(:name)
                   - if assignment.is_required?
                     %span.assignmentRequired.label.label-important Required!
                   - assignment.assignment_grades.where(:gradeable_id => @user.id).first.tap do |grade|
@@ -38,11 +41,11 @@
                     - else 
                       %span.grade= "0 / #{assignment.point_total} possible points"
               - if assignment.future?
-                %div.assignment.well
-                  %h6.assignmentTitle= assignment.name
+                %div.assignment
+                  %span.assignmentTitle= assignment.name
                   - if assignment_type.fixed?
                     %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
-                    %span= "#{assignment.point_total} possible points"
+                    = "#{assignment.point_total} possible points"
                   - if assignment_type.slider?
                     %span= "#{assignment.point_total} possible points"
                     //%input.point-value{:id => "total-"+assignment.id.to_s(), :name => assignment.name, :value => 0 }
@@ -64,9 +67,9 @@
             %p.lead 
             %div#pastAssignments
               - current_course.badges.each do |badge|
-                %div.assignment.well
+                %div.badgeField
                   %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
-                  %h6.assignmentTitle.pull-left= badge.name
+                  %span.assignmentTitle.pull-left= badge.name
                   = check_box_tag badge.name, badge.point_value, @user.badges.include?(badge), :class => 'class-checkbox', :'data-assignment-type-id' => 'grades'
                   %span.grade= badge.point_value
   = link_to "Back to the Dashboard", user_path(@user), :class => 'btn btn-primary'

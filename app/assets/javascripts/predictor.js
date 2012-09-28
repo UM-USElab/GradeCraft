@@ -7,7 +7,7 @@ var chartOptions = {
     width:900
   },
   title: {
-    text: 'PROJECTED POINTS:',
+    text: ' ',
     style: {
       color: "#FFFFFF"
     }

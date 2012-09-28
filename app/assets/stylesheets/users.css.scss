@@ -126,11 +126,11 @@ button h4 {
 }
 
 .assignment {
-  margin-bottom: 15px;
 }
 .assignmentTitle {
   font-size: 14px;
-  color: #61cbf9;
+  color: #000;
+  font-weight: bold;
 }
 .assignmentPointsSpan {
   color: green;
@@ -168,15 +168,11 @@ h3.popover-title {
 }
 
 
-#predictorPage .lead {
-  color: #FFF;
-}
-
 	div.slide-panel {
   	padding: 15px 35px;
   	width: 100%;
   	margin: 0 25px;
-  	background-color: #777;
+  	background-color: #eee;
 	}
 	 
 	.headline {
@@ -214,9 +210,6 @@ h3.popover-title {
   	padding: 0;
   	font-weight: bolder;
   	font-size: 22px; 
-	}
-	
-	p.lead {
 	}
 	
 	//Styling the color of the point entry text
@@ -276,7 +269,7 @@ h3.popover-title {
   	margin-bottom: 15px;
   	padding: 25px;
   	width: 100%;
-  	background-color: #777;
+  	background-color: #eee;
 	}
 	
 	div.badges .badgeIcon {

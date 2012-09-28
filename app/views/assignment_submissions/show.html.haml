@@ -15,7 +15,7 @@
       = link_to @assignment_submission.submittable.try(:name), assignment_group_path(@assignment_submission, @assignment_submission.submittable)
   %p
     %b Link:
-    = link_to @assignment_submission.link
+    = link_to @assignment_submission.link, @assignment_submission.link
   %p
     %b Comment:
     = raw @assignment_submission.comment

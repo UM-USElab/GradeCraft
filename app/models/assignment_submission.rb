@@ -10,9 +10,10 @@ class AssignmentSubmission < ActiveRecord::Base
   belongs_to :assignment
   has_one :grade
   
+  scope :ungraded
+  
   validates_presence_of :assignment_id, :submittable_id, :submittable_type
   
-  scope :been_graded, where(:grade != nil)
   
   def updatable_by?(user)
     creator == user
@@ -20,6 +21,19 @@ class AssignmentSubmission < ActiveRecord::Base
   
   def destroyable_by?(user)
     updatable_by?(user)
+  end
+  
+  
+  def status
+    if grade
+      grade.score
+    else
+      "Not yet graded"
+    end
+  end
+  
+  def ungraded
+    status == "Not yet graded"
   end
   
 end

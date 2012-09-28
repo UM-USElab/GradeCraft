@@ -20,8 +20,10 @@ class Course < ActiveRecord::Base
   has_many :team_assignments, :dependent => :destroy
   belongs_to :theme
   
+  #Validations
   validates_presence_of :name, :badge_setting, :team_setting, :group_setting
   
+  #Terms
   def user_ref
     if user_term?
       user_term
@@ -62,6 +64,7 @@ class Course < ActiveRecord::Base
     end
   end
   
+  #Conditions
   def has_teams?
     team_setting == true
   end
@@ -116,6 +119,10 @@ class Course < ActiveRecord::Base
 
   def running_total_points
     assignments.past.sum(:point_total)
+  end
+  
+  def badge_total
+    badges.sum(:value)
   end
   
   def score_for_student(student)

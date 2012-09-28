@@ -49,12 +49,12 @@
               = current_course.team_ref
           %th Link
           %th Comment
-          %th 
         %tbody
           %tr
             - assignment.assignment_submissions_for_assignment(assignment).tap do |submission|
-              %td= submission.submittable.try(:name)
-              %td= link_to submission.link, submission.link
-              %td= submission.comment
-              %td= link_to "Grade", assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
-                
+              - if submission.ungraded
+                %td= submission.submittable.try(:name)
+                %td= link_to submission.link, submission.link
+                %td= submission.comment
+
+              

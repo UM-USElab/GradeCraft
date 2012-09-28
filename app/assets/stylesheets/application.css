@@ -19,11 +19,15 @@ display: inline;
 
 .badgeField {
   float: left;
-  width: 200px;
+  width: 100px;
   height: 100px;
   text-align: center;
   margin: 10px;
   
+}
+
+.badgeField img {
+  width: 40px;
 }
 
 .badgeField .control-group {
