@@ -203,7 +203,7 @@ class UsersController < ApplicationController
     end
   end
   
-  def choice
+  def choices
     @students = current_course.users.students
     @assignment_types = current_course.assignment_types
   end

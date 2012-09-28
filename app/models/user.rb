@@ -140,12 +140,12 @@ class User < ActiveRecord::Base
     earned_badges_by_badge_id[badge.id].try(:first)
   end
   
-  def weights_by_student_id
-    @weights_by_student_id ||= user_assignment_type_weights.group_by(&:student_id)
+  def weights_by_assignment_type_id
+    @weights_by_assignment_type_id ||= user_assignment_type_weights.group_by(&:assignment_type_id)
   end
   
-  def weights_for_student(student)
-    weights_by_student_id[student.id].try(:first)
+  def weights_for_assignment_type_id(assignment_type)
+    weights_by_assignment_type_id[assignment_type.id].try(:first)
   end
 
   #Score
