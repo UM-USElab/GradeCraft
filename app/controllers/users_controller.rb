@@ -206,6 +206,10 @@ class UsersController < ApplicationController
   def choices
     @students = current_course.users.students
     @assignment_types = current_course.assignment_types
+    @teams = current_course.teams.all
+    user_search_options = {}
+    user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
+    @students = current_course.users.students.includes(:teams).where(user_search_options).order('users.sortable_score DESC')
   end
 
   

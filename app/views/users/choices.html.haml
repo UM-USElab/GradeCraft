@@ -3,8 +3,9 @@
 %div.span8
   %h3= "#{current_course.multiplier_ref} Choices"
   %div
-    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
-    = submit_tag 'Filter', :class => 'btn'
+    = form_tag choices_users_path, :method => :get do
+      = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+      = submit_tag 'Filter', :class => 'btn'
 
   %table.table.table-bordered
     %thead
