@@ -31,9 +31,9 @@ $(document).ready(function(){
       max: $slider.attr('max')
     });
     $slider.on('slide', function(event, ui){
-      $slider.next('.pScore').html(ui.value)
+      //$slider.next('.pScore').html(ui.value)
     });
-    $slider.after('<span class="pScore">0</span>');
+    //$slider.after('<span class="pScore">0</span>');
   });
   
   //$('select').selectToUISlider();

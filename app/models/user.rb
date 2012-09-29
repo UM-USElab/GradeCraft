@@ -148,15 +148,7 @@ class User < ActiveRecord::Base
     weights_by_assignment_type_id[assignment_type.id].try(:first)
   end
   
-  def assignment_type_multiplied_value(assignment_type)
-    (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)  * assignment_type.assignment_value_sum
-  end
-
-  #Score
-  def sortable_score
-    super || 0
-  end
-
+  
   def score
     grades.map(&:score).inject(&:+) || 0
   end
@@ -164,6 +156,20 @@ class User < ActiveRecord::Base
   def assignment_type_score(assignment_type)
     grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map(&:score).inject(&:+) || 0 
   end
+  
+  def assignment_type_multiplied_value(assignment_type)
+    (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)  * assignment_type.assignment_value_sum
+  end
+  
+  def assignment_type_multiplied_score(assignment_type)
+    assignment_type_score(assignment_type) * (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5) 
+  end
+
+  #Score
+  def sortable_score
+    super || 0
+  end
+
 
   def attendance_rate
     #(attendance_grade /assignments(type => attendance).count)*100 TODO
