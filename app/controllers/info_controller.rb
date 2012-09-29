@@ -15,8 +15,8 @@ class InfoController < ApplicationController
     #end
     @badges = current_course.badges
     @user = current_user# 
-#     @top_ten_students = @students.order('sortable_score DESC').limit(10)
-#     @bottom_ten_students = @students.order('sortable_score ASC').limit(10)
+     @top_ten_students = @students.order('sortable_score DESC').limit(10)
+    @bottom_ten_students = @students.order('sortable_score ASC').limit(10)
     @assignments = current_course.assignments
     @submissions = current_course.assignment_submissions
     @assignment_types = current_course.try(:assignment_types)
