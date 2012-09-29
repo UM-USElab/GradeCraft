@@ -31,7 +31,7 @@ $(document).ready(function(){
       max: $slider.attr('max')
     });
     $slider.on('slide', function(event, ui){
-      $slider.prev("div.assignment > span").html(ui.value)
+      $(slider).prev("div.assignment > span").html(ui.value)
     });
   });
   
