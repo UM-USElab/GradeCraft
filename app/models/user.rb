@@ -157,10 +157,12 @@ class User < ActiveRecord::Base
     grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map(&:score).inject(&:+) || 0 
   end
   
+  # If the student has selected this assignment type to be multiplied, calculate the total value possible
   def assignment_type_multiplied_value(assignment_type)
     (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)  * assignment_type.assignment_value_sum
   end
   
+    # If the student has selected this assignment type calculate their score
   def assignment_type_multiplied_score(assignment_type)
     assignment_type_score(assignment_type) * (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5) 
   end
@@ -169,7 +171,6 @@ class User < ActiveRecord::Base
   def sortable_score
     super || 0
   end
-
 
   def attendance_rate
     #(attendance_grade /assignments(type => attendance).count)*100 TODO

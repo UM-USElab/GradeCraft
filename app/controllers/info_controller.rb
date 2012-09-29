@@ -7,12 +7,12 @@ class InfoController < ApplicationController
   def dashboard
     @title = "My Dashboard"
     @teams = current_course.teams.all
-    #if current_user.is_gsi?
+    if current_user.is_gsi?
       @teams = current_user.teams.all
+      @students = @teams.users.students
+    elsif current_user.is_professor?
       @students = current_course.users.students
-    #elsif current_user.is_professor?
-      #@students = current_course.users.students
-    #end
+    end
     @badges = current_course.badges
     @user = current_user# 
      @top_ten_students = @students.order('sortable_score DESC').limit(10)

@@ -58,10 +58,11 @@
                 %div.assignment.future
                   %span.assignmentTitle= assignment.name
                   - if assignment_type.fixed?
-                    %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
                     = "#{assignment.point_total} possible points"
+                    %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
                   - if assignment_type.slider?
-                    %span= "#{assignment.point_total} possible points"
+                    %span.pScore= "0 "
+                    = "/ #{assignment.point_total} possible points"
                     //%input.point-value{:id => "total-"+assignment.id.to_s(), :name => assignment.name, :value => 0 }
                     //- if assignment_type.has_levels?
                     //%select{:name => "#{assignment.name}", :id => "#{assignment.id}"}

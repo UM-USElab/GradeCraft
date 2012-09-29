@@ -39,14 +39,14 @@
       %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 
       %table.table.table-bordered
         %thead
-        %tr
-          %th
-            - if assignment.is_individual?
-              = current_course.user_ref
-            - elsif assignment.has_groups? 
-              = current_course.group_ref
-            - elsif assignment.has_teams?
-              = current_course.team_ref
+        %tr            
+          - if assignment.is_individual?
+            %th= current_course.team_ref
+            %th= current_course.user_ref
+          - elsif assignment.has_groups? 
+            %th= current_course.group_ref
+          - elsif assignment.has_teams?
+            %th= current_course.team_ref
           %th Link
           %th Comment
           %th 
@@ -54,6 +54,8 @@
           %tr
             - assignment.assignment_submissions_for_assignment(assignment).tap do |submission|
               - if submission.ungraded
+                - if assignment.is_individual?
+                  %td= submission.submittable.teams.first.try(:name)
                 %td= submission.submittable.try(:name)
                 %td= link_to submission.link, submission.link
                 %td= submission.comment
