@@ -26,4 +26,8 @@ class Badge < ActiveRecord::Base
     end
   end
   
+  def badges_earned
+    EarnedBadge.where(:badge_id => id)
+  end
+  
 end

@@ -28,7 +28,6 @@ class GradesController < ApplicationController
   end
 
   def new 
-    @title = "Submit A New Grade"
     @assignment = Assignment.find(params[:assignment_id])
     @assignment_type = @assignment.assignment_type
     @grade = @assignment.assignment_grades.create(params[:grade])

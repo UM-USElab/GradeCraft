@@ -29,14 +29,14 @@ class AssignmentSubmissionsController < ApplicationController
 
   def new
     @assignment = Assignment.find(params[:assignment_id])
-    @title = "Submit #{@assignment.name}"
     @users = current_course.users
+    @assignment_submission = @assignment.assignment_submissions.create(params[:assignment_submission])
+    @assignment_submission.submittable = params[:submittable_type].constantize.find(params[:submittable_id])
     @groups = @assignment.groups 
     @teams = current_course.teams
     @students = @users.students
-    @assignment_submission = AssignmentSubmission.new
-    @assignment_submission.user_id = params[:user_id]
-    respond_with(@assignment_submission)
+    #@assignment_submission.user_id = params[:user_id]
+    #respond_with(@assignment_submission)
   end
 
   def edit
@@ -47,12 +47,13 @@ class AssignmentSubmissionsController < ApplicationController
     @title = "Edit Submission for #{@assignment.name}"
     @assignment_submission = AssignmentSubmission.find(params[:id])
     @assignment_submission = @assignment.assignment_submissions.find(params[:id])
+    @assignment_submission = @submittable.assignment_submissions.build(params[:grade])
   end
 
   def create
     @assignment = Assignment.find(params[:assignment_id])
     @assignment_submission = @assignment.assignment_submissions.build(params[:assignment_submission])
-    @assignment_submission.save
+    #@assignment_submission.save
     respond_to do |format|
       if @assignment_submission.save
         format.html { redirect_to dashboard_path, notice: 'Assignment was successfully submitted.' }

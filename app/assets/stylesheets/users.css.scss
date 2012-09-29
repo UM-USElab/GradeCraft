@@ -14,38 +14,49 @@ button h4 {
   font-weight: bold;
 }
 
-#badgesEarned {
-  height: auto;
-  margin: 2px;
-  padding: 2px;
-  position: relative;
-}
-
-#badges .badgeIcon {
-  float: left;
-  text-align: center;
-  height: 100px;
-  width: 62px;
-  font-size: 70%;
-  margin-top: 15px;
-}
-
-#badges .badgeTitle {
-  line-height: 14px;
-  font-size: 11px;
-}
-
 .buttonTitle {
   font-weight: bold;
   font-family: Verdana, sans-serif;
 }
-#badges img {
-  width: 40px;
+
+//** Badge section on the user dashboard **/
+
+.userDashboard {
+
+  #badges .badgeContainer {
+    padding-top: 15px;
+    }
+
+  #badges .badgeIcon {
+    float: left;
+    text-align: center;
+    height: 75px;
+    width: 62px;
+    font-size: 70%;
+    margin-bottom: 10px;
+  }
+  
+  #badges .badgeTitle {
+    line-height: 14px;
+    font-size: 11px;
+  }
+  #badges img {
+    width: 40px;
+  }
+  
+  #badges img.unearned, .userDashboard #badges .badgeTitle.unearned {
+    opacity: .3;
+  }
+
 }
 
-#badges img.unearned, #badges .badgeTitle.unearned {
-  opacity: .3;
+/*
+#badgeForm {
+width: 100%;
+display: inline;
 }
+*/
+
 
 #toDoList { 
   text-align: left;
@@ -67,11 +78,6 @@ button h4 {
   margin-left: 15px;
 }
 
-
-.clear {
-  height: 5px;
-  clear: both;
-}
 
 #userScoreSection {
   background-color:#222;
@@ -125,9 +131,6 @@ button h4 {
   padding: 15px
 }
 
-.assignment {
-}
-
 #Grades .assignmentTitle {
   color: aqua;
 }
@@ -165,84 +168,7 @@ h3.popover-title {
   color: #333;
 }
 
-// Predictor
 
-#predictorPage {
-  padding-top: 165px;
-}
-
-
-	div.slide-panel {
-  	padding: 15px 35px;
-  	width: 100%;
-  	margin: 0 25px;
-  	background-color: #eee;
-	}
-	 
-	.headline {
-  	font-weight: bold;
-  	text-transform: uppercase;
-  	font-size: 15px;
-  	color: #000;
-	}
-	
-	
-	//This is the jquery ui slider element!
-	.slider{
-    height:.8em;
-    margin: 25px 5px 0px;
-	  padding: 0px;
-	  width: 60%;
-	}
-	
-	div.sliderContainer {
-  	padding: 10px;
-  	margin: 10px;
-  	background-color: #eee;
-	}
-	.assignmentTitle {
-  	margin-bottom: 4px;
-	}
-	
-	#predictorPage div.assignmentType {
-  	margin-bottom: 10px;
-	}
-	
-	#predictorPage .assignmentTypeTitle {
-  	color: #000;
-  	margin: 0;
-  	padding: 0;
-  	font-weight: bolder;
-  	font-size: 22px; 
-	}
-	
-	//Styling the color of the point entry text
-	#predictorPage input[type=text] {
-  	background-color: #eeeeee;
-  	border: none;
-  	box-shadow: none;
-  	color: green;
-  	margin: -4px 10px 0px;
-	}
-	
-  #predictorPage div.assignment {
-    position: relative;
-    padding-bottom: 15px;
-  	margin-bottom: 15px;
-	}
-	
-	#predictorPage select {
-  	margin: -4px 10px;
-	}
-	
-	#predictorPage input[type=checkbox].class-checkbox {
-  	margin: 0px 10px;
-	}
-	
-	#predictorPage .grade {
-  	margin-left: 10px;
-	}
-	
 	#predictionWrapper{	
   	background-color:rgba(55,55,55,.96);
     border-top:5px solid #2F96B4;
@@ -268,14 +194,121 @@ h3.popover-title {
   	width: 900px;
   	position: relative;
 	}
+// Predictor
+
+#predictorPage {
+  padding-top: 165px;
+
+  div.slide-panel {
+  	padding: 15px 35px;
+  	width: 100%;
+  	margin: 0 25px;
+  	background-color: #eee;
+	}
+	 
+	.headline {
+  	font-weight: bold;
+  	text-transform: uppercase;
+  	font-size: 15px;
+  	color: #000;
+	}
+	
+	//This is the jquery ui slider element!
+	
+	.slider{
+    height:.8em;
+    margin: 5px 5px 0px;
+	  padding: 0px;
+	  width: 60%;
+  	float : right;
+	}
+	
+	.badge a {
+  	color: #FFF;
+	}
+	div.sliderContainer {
+  	padding: 10px;
+  	margin: 10px;
+  	background-color: #eee;
+	}
+	.assignmentTitle {
+  	margin-bottom: 4px;
+	}
+	
+	.assignmentTypeTitle {
+  	color: #000;
+  	margin: 0;
+  	padding: 0;
+  	font-weight: bolder;
+  	font-size: 22px; 
+	}
+	
+	//Styling the color of the point entry text
+	input[type=text] {
+  	background-color: #eeeeee;
+  	border: none;
+  	box-shadow: none;
+  	color: green;
+  	margin: -4px 10px 0px;
+	}
+	
+  div.assignment.future {
+  background-color: #f6c854;
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0px;
+	}
+	
+	select {
+  	margin: -4px 10px;
+	}
+	
+	input[type=checkbox].class-checkbox {
+  	margin: 0px 10px;
+	}
+	
+	.grade {
+  	margin-left: 10px;
+	}
+	
+	
+	/* Predictor Panels */ 
 	div.flexslider {
-	   min-height: 400px;
+	   min-height: 300px;
   	margin-bottom: 15px;
-  	padding: 25px;
+  	padding: 25px 50px 25px 0px;
   	width: 100%;
   	background-color: #eee;
 	}
 	
-	div.badges .badgeIcon {
-  	float: left;
+	.earnedBadgeField {
+  float: left;
+  width: 90px;
+  height: 120px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+    img {
+    text-align: center;
+    margin-left: 20px;
+  }	
 	}
+	
+	.badgeField {
+  float: left;
+  width: 90px;
+  height: 120px;
+  background-color: #f6c854;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  img {
+    text-align: center;
+    margin-left: 20px;
+  }
+  
+}
+	
+}
