@@ -147,6 +147,10 @@ class User < ActiveRecord::Base
   def weights_for_assignment_type_id(assignment_type)
     weights_by_assignment_type_id[assignment_type.id].try(:first)
   end
+  
+  def assignment_type_multiplied_value(assignment_type)
+    (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)  * assignment_type.assignment_value_sum
+  end
 
   #Score
   def sortable_score
