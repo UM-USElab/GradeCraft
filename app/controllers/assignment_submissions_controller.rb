@@ -15,22 +15,24 @@ class AssignmentSubmissionsController < ApplicationController
     enforce_view_permission(@assignment_submission)
     @assignment = Assignment.find(params[:assignment_id])
     @assignment_type = @assignment.assignment_type
-    @grade = @assignment.assignment_grades.create(params[:grade])
-    @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
-    @score_levels = @assignment_type.score_levels
-    @earned_badges = current_course.badges.map do |b|
+    if current_user.is_staff?
+      @grade = @assignment.assignment_grades.create(params[:grade])
+      @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
+      @score_levels = @assignment_type.score_levels
+      @earned_badges = current_course.badges.map do |b|
       EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
+      @grade_scheme_elements = @assignment.grade_scheme_elements
+      end
     end
     @teams = current_course.teams.all
     @groups = current_course.groups.all
-    @grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with(@grade)
   end
 
   def new
     @assignment = Assignment.find(params[:assignment_id])
     @users = current_course.users
-    @assignment_submission = @assignment.assignment_submissions.create(params[:assignment_submission])
+    @assignment_submission = @assignment.assignment_assignment_submissions.create(params[:assignment_submission])
     @assignment_submission.submittable = params[:submittable_type].constantize.find(params[:submittable_id])
     @groups = @assignment.groups 
     @teams = current_course.teams
@@ -46,8 +48,8 @@ class AssignmentSubmissionsController < ApplicationController
     @teams = current_course.teams
     @title = "Edit Submission for #{@assignment.name}"
     @assignment_submission = AssignmentSubmission.find(params[:id])
-    @assignment_submission = @assignment.assignment_submissions.find(params[:id])
-    @assignment_submission = @submittable.assignment_submissions.build(params[:grade])
+    #@assignment_submission = @assignment.assignment_submissions.find(params[:id])
+    #@assignment_submission = @submittable.assignment_submissions.build(params[:grade])
   end
 
   def create
