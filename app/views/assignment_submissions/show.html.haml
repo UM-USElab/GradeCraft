@@ -11,7 +11,10 @@
   - if @assignment_submission.assignment.is_individual? 
     %p
       %b User:
-      = link_to @assignment_submission.submittable.try(:name), @assignment_submission.submittable
+      - if current_user.is_staff?
+        = link_to @assignment_submission.submittable.try(:name), @assignment_submission.submittable
+      - else 
+        = @assignment_submission.submittable.try(:name)
   - elsif @assignment_submission.assignment.has_groups?
     %p
       %b Group:
