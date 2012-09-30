@@ -30,8 +30,12 @@
           %td= number_with_delimiter(assignment.average, :delimiter => ',') 
           %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 
           %td= number_with_delimiter(assignment.low_score, :delimiter => ',')
-          %td= "#{assignment.assignment_submissions.count}"
-          %td= link_to "View Submissions", assignment_assignment_submissions_path(assignment), :class => "btn btn-mini"
+          %td
+            - if assignment.has_assignment_submissions?
+              = "#{assignment.assignment_submissions.count}"
+          %td
+            - if assignment.has_assignment_submissions?
+              = link_to "View Submissions", assignment_assignment_submissions_path(assignment), :class => "btn btn-mini"
           %td= link_to 'View', assignment, :class => 'btn btn-mini'
           - if assignment_type.mass_grade?
             %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-mini'
