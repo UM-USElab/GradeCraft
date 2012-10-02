@@ -7,6 +7,7 @@ footer {
   text-align: right;
   border-top: 1px solid #666;
   padding-top: 15px;
+  height: 60px;
 }
 
 /* Course title in the top nav bar */ 
@@ -18,10 +19,6 @@ footer {
   min-height: 650px; 
 }
 
-/* Make sure that the footer links show and don't overlap with the admin course switching bar */ 
-.container.container-fluid {
- padding-bottom: 55px;
-}
 #pageTitle {
   margin-bottom: 10px;
 }
