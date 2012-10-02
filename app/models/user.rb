@@ -117,6 +117,9 @@ class User < ActiveRecord::Base
   end
  
   def earned_grades(course)
+    #if current_course.has_cumulative_team_score?
+    #(course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_score
+    #else
     (course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_score(course)
   end
 
@@ -148,8 +151,8 @@ class User < ActiveRecord::Base
     weights_by_assignment_type_id[assignment_type.id].try(:first)
   end
   
-  
-  def score
+  #changing name from score to grade_score to start to scope this better
+  def grade_score
     grades.map(&:score).inject(&:+) || 0
   end
 
@@ -166,7 +169,12 @@ class User < ActiveRecord::Base
   def assignment_type_multiplied_score(assignment_type)
     assignment_type_score(assignment_type) * (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5) 
   end
+  
 
+  def assignment_type_multiplier(assignment_type)
+    (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)
+  end
+    
   #Score
   def sortable_score
     super || 0

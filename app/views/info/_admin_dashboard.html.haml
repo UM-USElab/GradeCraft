@@ -8,7 +8,6 @@
             %th= current_course.user_ref
             %th Score
             %th Badges Earned
-            %th Attendance Rate
             %th Logins
             %th Pageviews
             %th Predictor Views
@@ -20,7 +19,6 @@
               %td= link_to student.name, user_path(student)
               %td= student.earned_grades(current_course)
               %td= student.user_badge_count
-              %td= student.attendance_rate
               %td= student.visit_count
               %td= student.page_views
               %td= student.predictor_views
@@ -49,7 +47,6 @@
               %td= link_to student.name, user_path(student)
               %td= student.earned_grades(current_course)
               %td= student.user_badge_count
-              %td= student.attendance_rate
               %td= student.visit_count
               %td= student.page_views
               %td= student.predictor_views
@@ -78,6 +75,5 @@
             %td 
               - team.earned_badges.each do |badge|
                 %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"} 
-            %td
             %td
             %td= team.team_leader.try(:name)

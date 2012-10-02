@@ -138,7 +138,11 @@
                     - if assignment.release_necessary?
                       - if grade.attempted? && grade.is_released?
                         You earned
-                        %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points 
+                        - assignment_type.weights_for_student(user).tap do |weight|
+                          - if weight  
+                            = grade.grade_multiplied_score(assignment_type)
+                          - else
+                            %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points 
                         - if current_user.is_staff?
                           %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
                         - if grade.has_feedback?
@@ -154,7 +158,11 @@
                     - else
                       - if grade.attempted?
                         You earned
-                        %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points 
+                        - assignment_type.weights_for_student(user).tap do |weight|
+                          - if weight  
+                            = "#{grade.score * @user.assignment_type_multiplier(assignment_type)} out of #{grade.point_total * @user.assignment_type_multiplier(assignment_type)}"
+                          - else
+                            %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points 
                         - if current_user.is_staff?
                           %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, "id" => grade.id), :class => 'btn btn-primary btn-mini'
                         - if grade.has_feedback?
