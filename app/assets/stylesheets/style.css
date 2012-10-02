@@ -1,4 +1,4 @@
-.span12 {
+div.span12 {
   margin-top: 15px;
 }
 
@@ -9,16 +9,18 @@ footer {
   padding-top: 15px;
 }
 
+/* Course title in the top nav bar */ 
 .brand {
-  max-width: 250px;
+  max-width: 300px;
 }
 
 .content {
   min-height: 650px; 
 }
 
+/* Make sure that the footer links show and don't overlap with the admin course switching bar */ 
 .container.container-fluid {
-  margin-bottom: 55px;
+ padding-bottom: 55px;
 }
 #pageTitle {
   margin-bottom: 10px;

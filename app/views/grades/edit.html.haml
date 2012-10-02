@@ -2,7 +2,7 @@
 
 %div.span8
   = render 'form'
-
-%div.span12
-  = link_to 'Back', assignment_path(@assignment), :class => 'btn btn-primary'
-  = link_to 'View', assignment_grade_path(@assignment, @grade), :class => 'btn btn-primary'
+  
+  %div.span12
+    = link_to 'Back', assignment_path(@assignment), :class => 'btn btn-primary'
+    = link_to 'View', assignment_grade_path(@assignment, @grade), :class => 'btn btn-primary'

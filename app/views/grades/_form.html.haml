@@ -4,10 +4,10 @@
   - if @assignment.is_individual?
     = f.input :gradeable_id, :collection => @students, :label => "#{current_course.user_ref}", :include_blank => false
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'User' }
-  - if @assignment.has_groups?
+  - elsif @assignment.has_groups?
     = f.input :gradeable_id, :collection => @groups, :label => "Group"
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'Group' }
-  - if @assignment.has_teams?
+  - elsif @assignment.has_teams?
     = f.input :gradeable_id, :collection => @teams, :label => "#{current_course.team_ref}"
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'Team' }
   - if @assignment.has_levels?

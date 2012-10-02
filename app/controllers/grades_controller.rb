@@ -5,7 +5,6 @@ class GradesController < ApplicationController
   
 
   def index
-    @title = "View All Grades"
     @assignment = Assignment.find(params[:assignment_id])
     @groups = @assignment.groups 
     @teams = current_course.teams
@@ -16,13 +15,11 @@ class GradesController < ApplicationController
   end
 
   def show
-    @title = "View Grade"
     @grade = Grade.find(params[:id])
     @assignment = Assignment.find(params[:assignment_id])
   end
   
   def gradebook
-    @title = "Class Gradebook"
     @assignments = current_course.assignments.sort_by &:id
     @students = current_course.users.students.includes(:grades)
   end
@@ -44,7 +41,6 @@ class GradesController < ApplicationController
   end
 
   def edit
-    @title = "Edit Grade"
     @badges = current_course.badges.all
     @assignment = Assignment.find(params[:assignment_id])
     @assignment_type = @assignment.assignment_type    
@@ -55,7 +51,7 @@ class GradesController < ApplicationController
     @earned_badges = current_course.badges.map do |b|
       EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
     end
-    @gradeable = @grade.gradeable
+    @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
     #@gradeable_earned_badges = @gradeable.earned_badges
     @grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with @grade
