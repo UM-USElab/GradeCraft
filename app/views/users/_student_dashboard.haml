@@ -18,7 +18,7 @@
           - @user.earned_badges_by_badge(badge).tap do |earned_badge|
             - if earned_badge
               %div.badgeIcon
-                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned"}
+                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned", :width => "40", :height => "40"}
                 .badgeTitle= badge.name
             - else
               %div.badgeIcon
