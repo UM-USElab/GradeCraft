@@ -34,13 +34,11 @@
                 - elsif assignment_type.student_choice?
                   - assignment_type.weights_for_student(@user).tap do |weight|
                     - if weight
-                      %span.badge.badge-warning= "#{@user.assignment_type_multiplied_score(assignment_type)} / #{user.assignment_type_multiplied_value(assignment_type)} possible points "
+                      %span.badge.badge-warning= "#{@user.assignment_type_multiplied_score(assignment_type)} / #{@user.assignment_type_multiplied_value(assignment_type)} possible points "
                       %span.badge.badge-important= "#{weight.value} #{current_course.multiplier_term}"
                 - else
                   %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.assignment_value_sum} possible points"
             %p.lead= raw assignment_type.predictor_description
-            %br
-            %br
             %div#pastAssignments
             - assignments.each do |assignment|
               - if assignment.past?
@@ -49,30 +47,61 @@
                   - if assignment.is_required?
                     %span.assignmentRequired.label.label-important Required!
                   - assignment.assignment_grades.where(:gradeable_id => @user.id).first.tap do |grade|
-                    - if grade.try(:attempted?) 
-                      %span.grade= "#{ grade.raw_score } / #{grade.point_total} points"
-                      = hidden_field_tag assignment.name, assignment.point_total, :'data-assignment-type-id' => assignment.assignment_type_id
-                    - else 
-                      %span.grade= "0 / #{assignment.point_total} possible points"
+                    - if assignment.release_necessary?
+                      - if grade.attempted? && grade.is_released?
+                        You earned
+                        - assignment_type.weights_for_student(@user).tap do |weight|
+                          - if weight  
+                            = grade.grade_multiplied_score(assignment_type)
+                          - else
+                            %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points
+                      - else
+                        %span #{grade.point_total} points possible
+                    - else
+                      - if grade.try(:attempted?)
+                        You earned
+                        - assignment_type.weights_for_student(@user).tap do |weight|
+                          - if weight  
+                            = "#{grade.score * @user.assignment_type_multiplier(assignment_type)} out of #{grade.point_total * @user.assignment_type_multiplier(assignment_type)}"
+                          - else
+                            %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points
+                      - else
+                        %span #{assignment.point_total} points possible
               - if assignment.future?
                 %div.assignment.future
                   %span.assignmentTitle= assignment.name
                   - if assignment_type.fixed?
-                    = "#{assignment.point_total} possible points"
-                    %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
+                    - assignment_type.weights_for_student(@user).tap do |weight|
+                      - if weight  
+                        = "#{(assignment.point_total * @user.assignment_type_multiplier(assignment_type))} possible points"
+                        %input{:type => "checkbox", :name => assignment.name, :value => (assignment.point_total * @user.assignment_type_multiplier(assignment_type)), :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
+                      - else
+                        = "#{assignment.point_total} possible points"
+                        %input{:type => "checkbox", :name => assignment.name, :value => assignment.point_total, :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
                   - if assignment_type.slider?
-                    %span.pScore= "0 "
-                    = "/ #{assignment.point_total} possible points"
-                    //%input.point-value{:id => "total-"+assignment.id.to_s(), :name => assignment.name, :value => 0 }
+                    - assignment_type.weights_for_student(@user).tap do |weight|
+                      - if weight  
+                        %span.pScore= "0 "
+                        = "/ #{(assignment.point_total * @user.assignment_type_multiplier(assignment_type))} possible points"
+                        %div.slider{:id => "slider-"+assignment.id.to_s(), :max => (assignment.point_total * @user.assignment_type_multiplier(assignment_type)) , :value => 0 }
+                      - else
+                        %span.pScore= "0 "
+                        = "/ #{assignment.point_total} possible points"
+                        %div.slider{:id => "slider-"+assignment.id.to_s(), :max => assignment.point_total, :value => 0 }
+                    
                     //- if assignment_type.has_levels?
                     //%select{:name => "#{assignment.name}", :id => "#{assignment.id}"}
                     //- assignment.score_levels.each do |sl|
                     //%option{:value => "sl.value"}= sl.name 
                     //- else 
-                    %div.slider{:id => "slider-"+assignment.id.to_s(), :max => assignment.point_total, :value => 0 }
                   - if assignment_type.select?
-                    %span= "#{assignment.point_total} possible points"
-                    = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
+                    - assignment_type.weights_for_student(@user).tap do |weight|
+                      - if weight  
+                        = "#{(assignment.point_total * @user.assignment_type_multiplier(assignment_type))} possible points"
+                        = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
+                      - else
+                        = "#{assignment.point_total} possible points"
+                        = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
       - if current_course.valuable_badges?
         %li#slide-badges{ :data => { 'assignment-type-id' => 'badges', 'assignment-type-name' => 'Badges' } }
           %div.slide-panel.span12
