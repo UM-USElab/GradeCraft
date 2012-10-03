@@ -66,7 +66,11 @@
                           - else
                             %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points
                       - else
-                        %span #{assignment.point_total} points possible
+                        - assignment_type.weights_for_student(@user).tap do |weight|
+                          - if weight  
+                            = "#{assignment.point_total * @user.assignment_type_multiplier(assignment_type)} points possible"
+                          - else
+                            %span= "#{assignment.point_total} points possible"
               - if assignment.future?
                 %div.assignment.future
                   %span.assignmentTitle= assignment.name
