@@ -15,7 +15,7 @@
       %div{:id => "badges", :class => "collapse"}
         %div.badgeContainer
         - @badges.each do |badge|
-          - @user.earned_badges_by_badge(badge).tap do |earned_badge|
+          - user.earned_badges_by_badge(badge).tap do |earned_badge|
             - if earned_badge
               %div.badgeIcon
                 %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "earned", :width => "40", :height => "40"}
@@ -42,23 +42,22 @@
                     - if submission
                       = link_to "See Submission", assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-primary'
                     - else
-                      = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user, :submittable_type => "User"), :class => 'btn btn-mini'
+                      = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => user, :submittable_type => "User"), :class => 'btn btn-mini'
                 - if assignment.self_gradeable? && assignment.open?
                   = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => user.id, :gradeable_type => "User"), :class => "btn btn-info btn-mini"
 
 %div.span9.userDashboard
   %div#userScoreSection.span12
     %div.pull-right
-      - if current_user.is_staff?
-        %div.btn-group.btn-small
+      %div.btn-group
+        - if current_user.is_staff?
           - if current_course.has_badges? && current_course.course_badges? or current_course.has_badges? && current_course.multi_badges?
             = link_to "Award a Badge", new_user_earned_badge_path(user), :class => "btn btn-small"
           = link_to "Email", "mailto:#{user.email}", :class => "btn btn-small"
-          = link_to "Edit", edit_user_path(user.id), :class => "btn btn-small"
-      - user.team_leader.tap do |team_leader|
-        - if team_leader.present?
-          = link_to "Email #{current_course.section_leader_term} (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-small btn-info"
-    %div#userID{ :'data-user-id' => user.id }
+        - user.team_leader.tap do |team_leader|
+          - if team_leader.present?
+            = link_to "Email #{current_course.section_leader_term} (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-small"
+      %div#userID{ :'data-user-id' => user.id }
     %div#userPointValues
       - if current_user.is_student?
         %span= "Your current score is "
@@ -88,10 +87,10 @@
               - if weight
                 %span.badge.badge-warning= "#{user.assignment_type_multiplied_score(assignment_type)} / #{user.assignment_type_multiplied_value(assignment_type)} possible points "
                 %span.badge.badge-important= "#{weight.value} #{current_course.multiplier_term}"
-                %span.badge.badge-important= link_to "Edit", edit_user_user_assignment_type_weight_path(@user, weight)
+                %span.badge.badge-important= link_to "Edit", edit_user_user_assignment_type_weight_path(user, weight)
               - else
                 %span.badge.badge-warning= "#{user.assignment_type_score(assignment_type)} / #{assignment_type.assignment_value_sum} possible points"
-                %span.badge.badge-important= link_to "Set #{current_course.multiplier_term}", new_user_user_assignment_type_weight_path(@user, :assignment_type_id => assignment_type.id)
+                %span.badge.badge-important= link_to "Set #{current_course.multiplier_term}", new_user_user_assignment_type_weight_path(user, :assignment_type_id => assignment_type.id)
           - elsif assignment_type.student_choice?
             - assignment_type.weights_for_student(user).tap do |weight|
               - if weight
@@ -116,24 +115,23 @@
                       //- if submission
                       //= link_to "See Submission", assignment_assignment_submission_path(assignment, submission, :gradeable_id => user.assignment.try(:group), :gradeable_type => "Group"), :class => 'btn btn-primary btn-mini'
                       //- else
-                      //= link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user.assignment.try(:group), :submittable_type => "Group"), :class => 'btn btn-mini'
+                      //= link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => user.assignment.try(:group), :submittable_type => "Group"), :class => 'btn btn-mini'
                     - elsif assignment.has_teams?
-                      - assignment.submission_for_team(@user.teams.first).tap do |submission|
+                      - assignment.submission_for_team(user.teams.first).tap do |submission|
                         - if submission
-                          = link_to "See Submission", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-primary btn-mini'
+                          = link_to "See Submission", assignment_assignment_submission_path(assignment, submission, :gradeable_id => user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-primary btn-mini'
                         - else
-                          = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user.teams.first, :submittable_type => "Team"), :class => 'btn btn-mini'
+                          = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => user.teams.first, :submittable_type => "Team"), :class => 'btn btn-mini'
                     - elsif assignment.is_individual?
                       - assignment.submission_for_student(user).tap do |submission|
                         - if submission
-                          = link_to "See Submission", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-primary btn-mini'
+                          = link_to "See Submission", assignment_assignment_submission_path(assignment, submission, :gradeable_id => user, :gradeable_type => "User"), :class => 'btn btn-primary btn-mini'
                         - else
-                          = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user, :submittable_type => "User"), :class => 'btn btn-mini'
+                          = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => user, :submittable_type => "User"), :class => 'btn btn-mini'
                   
                   - if assignment.self_gradeable? && assignment.open?
                     %br
-                    %br
-                    = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => user.id, :gradeable_type => "User"), :class => "btn btn-primary btn-small"
+                    = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => user.id, :gradeable_type => "User"), :class => "btn btn-primary btn-mini"
                     
                   %br
                   - assignment.assignment_grades.where(:gradeable_id => user.id).each do |grade|
@@ -162,7 +160,7 @@
                         You earned
                         - assignment_type.weights_for_student(user).tap do |weight|
                           - if weight  
-                            = "#{grade.score * @user.assignment_type_multiplier(assignment_type)} out of #{grade.point_total * @user.assignment_type_multiplier(assignment_type)}"
+                            = "#{grade.score * user.assignment_type_multiplier(assignment_type)} out of #{grade.point_total * user.assignment_type_multiplier(assignment_type)}"
                           - else
                             %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points 
                         - if current_user.is_staff?
