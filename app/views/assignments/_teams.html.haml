@@ -32,7 +32,7 @@
               - if submission
                 %td= link_to "See Submission", assignment_assignment_submission_path(@assignment.id, submission, :gradeable_id => team.id, :gradeable_type => "Team"), :class => 'btn btn-mini'
               - else
-                %td= link_to "Submit", new_assignment_assignment_submission_path(@assignment, @assignment_submission, :team_id => team), :class => 'btn btn-mini'
+                %td= link_to "Submit", new_assignment_assignment_submission_path(@assignment, @assignment_submission, :submittable_id => team.id, :submittable_type => "Team"), :class => 'btn btn-mini', :class => 'btn btn-mini'
             - if grade
               %td= link_to "See Grade", assignment_grade_path(@assignment.id, grade.id), :class => 'btn btn-mini'
               %td= link_to "Edit Grade", edit_assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
