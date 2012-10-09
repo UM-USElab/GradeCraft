@@ -20,6 +20,10 @@
 
 $(document).ready(function(){
   $('#some-textarea').wysihtml5();
+/*
+
+  $('.modal').modal();
+*/
   
   $('#gradeCurious').popover({
     placement: 'bottom'

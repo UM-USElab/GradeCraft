@@ -1,0 +1,5 @@
+= f.input :assignment_type_id, :collection => @assignment_types, :class => "span2"
+= f.input :value, :collection => @amounts, :class => "span2"
+
+= f.hidden_field :_destroy
+= link_to "Delete", '#', class: "remove_fields"

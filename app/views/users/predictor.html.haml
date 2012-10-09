@@ -46,31 +46,90 @@
                   %span.assignmentTitle= assignment.try(:name)
                   - if assignment.is_required?
                     %span.assignmentRequired.label.label-important Required!
-                  - assignment.assignment_grades.where(:gradeable_id => @user.id).first.tap do |grade|
-                    - if assignment.release_necessary?
-                      - if grade.attempted? && grade.is_released?
-                        You earned
-                        - assignment_type.weights_for_student(@user).tap do |weight|
-                          - if weight  
-                            = grade.grade_multiplied_score(assignment_type)
+                  - if assignment.is_individual?
+                    - assignment.assignment_grades.where(:gradeable_id => @user).each do |grade|
+                      - if grade
+                        - if assignment_type.student_choice? 
+                          - assignment_type.weights_for_student(@user).tap do |weight|
+                            - if @user.multipliers_assigned?
+                              - if weight 
+                                - if assignment.release_necessary? && grade.is_released? 
+                                  = "You earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
+                                - elsif assignment.release_necessary?
+                                  = "#{assignment.total_points * weight.value} points possible"
+                                - else
+                                  = "You earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
+                              - else
+                                - if assignment.release_necessary? && grade.is_released? 
+                                  = "You earned #{ grade.score * 0.5} out of #{grade.point_total * 0.5} points"
+                                - elsif assignment.release_necessary?
+                                  = "#{assignment.total_points * 0.5} points possible"
+                                - else
+                                  = "You earned #{ grade.score * 0.5} out of #{grade.point_total * 0.5} points"
+                            - else
+                              - if weight
+                                - if assignment.release_necessary? && grade.is_released? 
+                                  = "You earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
+                                - elsif assignment.release_necessary?
+                                  = "#{assignment.total_points * weight.value} points possible"
+                                - else
+                                  = "You earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
+                              - else
+                                - if assignment.release_necessary? && grade.is_released? 
+                                  = "You earned #{ grade.score } out of #{grade.point_total} points"
+                                - elsif assignment.release_necessary?
+                                  = "#{assignment.total_points} points possible"
+                                - else
+                                  = "You earned #{ grade.score} out of #{grade.point_total} points"
+                        - else
+                          - if assignment.release_necessary? && grade.is_released? 
+                            = "You earned #{ grade.try(:score)} / #{grade.try(:point_total)} points"
+                          - elsif assignment.release_necessary?
+                            = "#{grade.try(:point_total)} possible points"
                           - else
-                            %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points
+                            = "You earned #{ grade.score } / #{grade.point_total } points"
+                  - elsif assignment.has_teams?
+                    - assignment.assignment_grades.where(:gradeable_id => @user.teams.first).each do |grade|
+                      - if grade
+                        - if assignment_type.student_choice?
+                          - assignment_type.weights_for_student(@user).tap do |weight|
+                            - if @user.multipliers_assigned?
+                              - if weight 
+                                - if assignment.release_necessary? && grade.is_released? 
+                                  = "Your team earned #{ grade.try(:score) * weight.value} out of #{grade.try(:point_total) * weight.value} points"
+                                - elsif assignment.release_necessary?
+                                  = "#{grade.try(:point_total) * weight.value} points possible"
+                                - else
+                                  = "Your team earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
+                              - else
+                                - if assignment.release_necessary? && grade.is_released? 
+                                  = "Your team earned #{ grade.try(:score) * 0.5} out of #{grade.try(:point_total) * 0.5} points"
+                                - elsif assignment.release_necessary?
+                                  = "#{grade.try(:point_total) * 0.5} points possible"
+                                - else
+                                  = "Your team earned #{ grade.score * 0.5} out of #{grade.point_total * 0.5} points"
+                        - else
+                          - if weight 
+                            - if assignment.release_necessary? && grade.is_released? 
+                              = "Your team earned #{ grade.try(:score) * weight.value} out of #{grade.point_total * weight.value} points"
+                            - elsif assignment.release_necessary?
+                              = "#{assignment.total_points * weight.value} points possible"
+                            - else
+                              = "Your team earned #{ grade.try(:score) * weight.value} out of #{grade.try(:point_total) * weight.value} points"
+                          - else
+                            - if assignment.release_necessary? && grade.is_released? 
+                              = "Your team earned #{ grade.score } out of #{grade.point_total} points"
+                            - elsif assignment.release_necessary?
+                              = "#{assignment.total_points} points possible"
+                            - else
+                              = "Your team earned #{ grade.try(:score)} out of #{grade.try(:point_total) } points"
                       - else
-                        %span #{grade.point_total} points possible
-                    - else
-                      - if grade.try(:attempted?)
-                        You earned
-                        - assignment_type.weights_for_student(@user).tap do |weight|
-                          - if weight  
-                            = "#{grade.score * @user.assignment_type_multiplier(assignment_type)} out of #{grade.point_total * @user.assignment_type_multiplier(assignment_type)}"
-                          - else
-                            %span.assignmentGrade #{ grade.score } out of #{grade.point_total} points
-                      - else
-                        - assignment_type.weights_for_student(@user).tap do |weight|
-                          - if weight  
-                            = "#{assignment.point_total * @user.assignment_type_multiplier(assignment_type)} points possible"
-                          - else
-                            %span= "#{assignment.point_total} points possible"
+                        - if assignment.release_necessary? && grade.is_released? 
+                          = "Your team earned #{ grade.score} / #{grade.point_total} points"
+                        - elsif assignment.release_necessary?
+                          = "#{assignment.point_total} possible points"
+                        - else
+                          = "Your team earned #{ grade.score} / #{grade.point_total} points"
               - if assignment.future?
                 %div.assignment.future
                   %span.assignmentTitle= assignment.name
@@ -93,19 +152,20 @@
                         = "/ #{assignment.point_total} possible points"
                         %div.slider{:id => "slider-"+assignment.id.to_s(), :max => assignment.point_total, :value => 0 }
                     
-                    //- if assignment_type.has_levels?
-                    //%select{:name => "#{assignment.name}", :id => "#{assignment.id}"}
-                    //- assignment.score_levels.each do |sl|
-                    //%option{:value => "sl.value"}= sl.name 
-                    //- else 
-                  - if assignment_type.select?
-                    - assignment_type.weights_for_student(@user).tap do |weight|
-                      - if weight  
-                        = "#{(assignment.point_total * @user.assignment_type_multiplier(assignment_type))} possible points"
-                        = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
-                      - else
-                        = "#{assignment.point_total} possible points"
-                        = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
+                    
+                        //- if assignment_type.has_levels?
+                        //%select{:name => "#{assignment.name}", :id => "#{assignment.id}"}
+                        //- assignment.score_levels.each do |sl|
+                        //%option{:value => "sl.value"}= sl.name 
+                        //- else 
+                      - if assignment_type.select?
+                        - assignment_type.weights_for_student(@user).tap do |weight|
+                          - if weight  
+                            = "#{(assignment.point_total * @user.assignment_type_multiplier(assignment_type))} possible points"
+                            = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
+                          - else
+                            = "#{assignment.point_total} possible points"
+                            = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
       - if current_course.valuable_badges?
         %li#slide-badges{ :data => { 'assignment-type-id' => 'badges', 'assignment-type-name' => 'Badges' } }
           %div.slide-panel.span12

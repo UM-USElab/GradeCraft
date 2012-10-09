@@ -1,7 +1,8 @@
 class AssignmentSubmission < ActiveRecord::Base
   attr_accessible :assignment_id, :comment, :feedback, :group_id, :attachment, :link, :submittable_id, :submittable_type
   
-  include Canable::Ables  
+  include Canable::Ables 
+  #userstamps! # adds creator and updater 
   
   
   #has_attached_file :attachment
@@ -23,6 +24,9 @@ class AssignmentSubmission < ActiveRecord::Base
     updatable_by?(user)
   end
   
+  def viewable_by?(user)
+    submittable_id == user.id
+  end
   
   def status
     if grade

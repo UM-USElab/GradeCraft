@@ -27,7 +27,7 @@ class AssignmentType < ActiveRecord::Base
   end
   
   def student_choice?
-    user_percentage_set == "true"
+    self.user_percentage_set == "true"
   end
   
   def multiplier_open?
@@ -52,6 +52,11 @@ class AssignmentType < ActiveRecord::Base
   
   def has_levels? 
     levels == true
+  end
+  
+  def has_soon_assignments? 
+    #TODO FIX!
+    #self.assignments.map(:due_date) => soon?
   end
   
   def assignment_value_sum

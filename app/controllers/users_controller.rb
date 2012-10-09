@@ -85,6 +85,10 @@ class UsersController < ApplicationController
     @title = @user.name
     @earned_badges = @user.earned_badges
     @assignment_types = current_course.assignment_types
+    #TODO Why doesn't this work? 
+    #@assignment_type_choice = current_course.assignment_types.student_choice?
+    @user_assignment_type_weights = @user.user_assignment_type_weights.all
+    @user_assignment_type_weight = @user.user_assignment_type_weights.new
     @assignments = current_course.assignments
     @grades = @user.grades.all 
     @badges = current_course.badges

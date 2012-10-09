@@ -29,9 +29,13 @@
                 - student.team_leader.tap do |team_leader|
                   - if team_leader.present?
                     %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
-  %div.row
-    %hr
-    %h3= "Ungraded Assignment Submissions"
+                    
+%div.span12
+  %hr
+  %h3= "Ungraded Assignment Submissions"
+  - @user.teams.each do |team| 
+    //TODO FIX!!
+    %h4= team.try(:name)
     - @submissions.group_by(&:assignment).each do |assignment, submissions|
       %span.assignmentTypeTitle= link_to "#{assignment.try(:name)}", assignment_path(assignment)
       %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 

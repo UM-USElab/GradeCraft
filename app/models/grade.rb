@@ -1,6 +1,9 @@
 class Grade < ActiveRecord::Base
   self.inheritance_column = 'something_you_will_not_use'
     
+  include Canable::Ables 
+  #userstamps! # adds creator and updater
+  
   belongs_to :gradeable, :polymorphic => :true
   belongs_to :assignment
   belongs_to :assignment_submission
@@ -53,6 +56,18 @@ class Grade < ActiveRecord::Base
   
   def points_possible
     assignment.point_total
+  end
+  
+  def updatable_by?(user)
+    creator == user
+  end
+  
+  def creatable_by?(user)
+    gradeable_id = user.id
+  end
+  
+  def viewable_by?(user)
+    gradeable_id == user.id 
   end
 
 end

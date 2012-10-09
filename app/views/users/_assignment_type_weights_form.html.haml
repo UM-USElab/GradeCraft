@@ -1,0 +1,32 @@
+%div.modal-header
+  %button{"type" => "button", "class" => "close", "data-dismiss" => "modal", "aria-hidden" => "true"} ×
+  - if current_user.is_staff?
+    %h3= "#{@user.try(:name)}'s #{current_course.multiplier_term} Choices"
+  - else
+    %h3= "My #{current_course.multiplier_term} Choices"
+%div.modal-body
+  %table.table.table-bordered
+    %tr
+      %th Assignment Type
+      %th Value
+      %th
+      %th
+      - @assignment_types.each do |at|
+        - if at.student_choice? 
+          %tr
+            %td= at.try(:name)
+            %td= "#{@user.weights_for_assignment_type_id(at).try(:value)} #{current_course.multiplier_term}"
+            %td= link_to "Edit"
+            %td
+              %button{"type" => "button", "class" => "close"} x
+    
+  = simple_form_for([@user, @user_assignment_type_weight], :class => 'form-inline' ) do |user_assignment_type_weight|
+    = render 'users/weight_fields', f: user_assignment_type_weight
+    
+    .form-actions
+      = user_assignment_type_weight.button :submit, "Spend #{current_course.multiplier_term}"
+  = "You may set #{current_course.user_weight_amount} #{current_course.multiplier_term}s before #{current_course.user_weight_amount_close_date.strftime("%A, %B %d")}"
+
+%div.modal-footer
+  %button.btn{"data-dismiss" => "modal", "aria-hidden" => "true"}Close
+  %button.btn.btn-primary Save Changes

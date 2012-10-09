@@ -12,7 +12,9 @@ class AssignmentSubmissionsController < ApplicationController
     @title = "View Submission"
     @assignment = Assignment.find(params[:assignment_id])
     @assignment_submission = AssignmentSubmission.find(params[:id])
-    enforce_view_permission(@assignment_submission)
+    if current_user.is_student?
+      enforce_view_permission(@assignment_submission)
+    end
     @assignment = Assignment.find(params[:assignment_id])
     @assignment_type = @assignment.assignment_type
     if current_user.is_staff?
