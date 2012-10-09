@@ -23,10 +23,7 @@ gem "highcharts-rails", "~> 2.3.0"
 gem "airbrake"
 gem 'canable'
 gem 'client_side_validations'
-
-group :production do
-  gem 'mysql2'
-end
+gem 'mysql2'
 
 group :staging do
   gem 'pg'

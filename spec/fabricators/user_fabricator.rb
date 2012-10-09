@@ -13,3 +13,7 @@ end
 Fabricator(:student_with_grades, :from => :student) do
   grades { [Fabricate(:grade)] }
 end
+
+Fabricator(:student_with_weight, :from => :student) do
+  
+end
