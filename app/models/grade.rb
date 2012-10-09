@@ -34,8 +34,15 @@ class Grade < ActiveRecord::Base
     if final_score?
       final_score
     else 
-      raw_score
+      raw_score * multiplier
     end
+  end
+
+  def multiplier
+    if assignment.assignment_type.student_choice?
+      return assignment.assignment_type.weight_for_student(gradeable)
+    end
+    return 1
   end
   
   def attempted?

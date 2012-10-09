@@ -10,5 +10,5 @@ Fabricator(:assignment_type) do
 end
 
 Fabricator(:assignment_type_with_student_choice, :from => :assignment_type) do
-  user_percentage_set true
+  user_percentage_set 'true' # TODO: Change to boolean
 end

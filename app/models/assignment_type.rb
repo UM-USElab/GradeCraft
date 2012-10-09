@@ -77,11 +77,21 @@ class AssignmentType < ActiveRecord::Base
   
   #assignment type weights by student  
   def weights_by_student_id
-    @weights_by_student || user_assignment_type_weights.group_by(&:user_id)
+    @weights_by_student ||= {}.tap do |weights|
+      user_assignment_type_weights.each do |weight|
+        weights[weight.user_id] = weight
+      end
+    end
   end
   
-  def weights_for_student(student)
-    weights_by_student_id[student.id].try(:first)
+  def weight_for_student(student)
+    weights_by_student_id[student.id].tap do |weight|
+      if weight
+        return weight.value
+      else
+        return 0.5
+      end
+    end
   end
   
 
