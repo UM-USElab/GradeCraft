@@ -19,7 +19,7 @@ class Grade < ActiveRecord::Base
 
   validates_presence_of :gradeable_id, :assignment_id
   
-  delegate :name, :description, :point_total, :due_date, :to => :assignment
+  delegate :name, :description, :due_date, :to => :assignment
   
   after_save :save_gradeable_score
   after_destroy :save_gradeable_score
@@ -37,12 +37,13 @@ class Grade < ActiveRecord::Base
       raw_score * multiplier
     end
   end
-
+  
+  def point_total
+    assignment.point_total * multiplier
+  end
+  
   def multiplier
-    if assignment.assignment_type.student_choice?
-      return assignment.assignment_type.weight_for_student(gradeable)
-    end
-    return 1
+    assignment.multiplier_for_student(gradeable)
   end
   
   def attempted?

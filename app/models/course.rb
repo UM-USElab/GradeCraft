@@ -121,6 +121,10 @@ class Course < ActiveRecord::Base
     assignments.past.sum(:point_total)
   end
   
+  def total_for_student(student)
+    assignments.map { |assignment| assignment.point_total_for_student(student) }.sum
+  end
+  
   def badge_total
     badges.sum(:value)
   end
@@ -135,6 +139,12 @@ class Course < ActiveRecord::Base
   
   def grades_for_student(student)
     self.grades.where(:gradeable_id => student.id, :gradeable_type => 'User')
+  end
+  
+  def point_totals_by_assignment_type_for_student(student)
+    assignment_type_point_totals = {}
+    self.grades_for_student(student).group_by { |g| g.assignment.assignment_type_id }.each { |assignment_type_id,grades| assignment_type_point_totals[assignment_type_id] = grades.map(&:point_total).sum }
+    assignment_type_point_totals
   end
   
   def scores_by_assignment_type_for_student(student)

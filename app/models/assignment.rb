@@ -135,6 +135,14 @@ class Assignment < ActiveRecord::Base
     super || assignment_type.universal_point_value 
   end
   
+  def point_total_for_student(student)
+    point_total * multiplier_for_student(student)
+  end
+  
+  def multiplier_for_student(student)
+    assignment_type.multiplier_for_student(student)
+  end
+  
   def past?
     due_date != nil && due_date < Date.today
   end

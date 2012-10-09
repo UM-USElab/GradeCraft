@@ -89,11 +89,11 @@
           %button.btn.btn-inverse{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name)}
           %span
           - if assignment_type.student_choice? && assignment_type.multiplier_open?
-            - assignment_type.weights_for_student(@user).tap do |weight|
+            - assignment_type.weight_for_student(@user).tap do |weight|
               - if weight
-                %span.badge.badge-warning= "#{@user.assignment_type_multiplied_score(assignment_type)} / #{@user.assignment_type_multiplied_value(assignment_type)} possible points "
+                %span.badge.badge-warning= "#{@user.assignment_type_multiplied_score(assignment_type)} / #{current_course.point_totals_by_assignment_type_for_student(@user)[assignment_type.id]} possible points "
                 %a.badge.badge-important
-                  = "#{weight.value} #{current_course.multiplier_term} (Change)"
+                  = "#{weight} #{current_course.multiplier_term} (Change)"
               - else
                 %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.assignment_value_sum} possible points"
                 %a.badge.badge-important
@@ -102,7 +102,7 @@
             - assignment_type.weights_for_student(@user).tap do |weight|
               - if weight
                 %span.badge.badge-warning= "#{@user.assignment_type_multiplied_score(assignment_type)} / #{@user.assignment_type_multiplied_value(assignment_type)} possible points "
-                %span.badge.badge-important= "#{weight.value} #{current_course.multiplier_term}"
+                %span.badge.badge-important= "#{weight} #{current_course.multiplier_term}"
           - else
             %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.assignment_value_sum} possible points"
                         
@@ -136,7 +136,7 @@
                       
                     // Individually graded assignments
                     - if assignment.is_individual?
-                      - assignment.assignment_grades.where(:gradeable_id => @user).each do |grade|
+                      - assignment.assignment_grades.where(:gradeable_id => @user).first.tap do |grade|
                         
                         - if assignment.self_gradeable? && assignment.open?
                           = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user, :gradeable_type => "User"), :class => "btn btn-primary btn-mini"
@@ -144,101 +144,34 @@
                         - if grade
                           - if current_user.is_staff?
                             %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-primary btn-mini'
-                          - if assignment_type.student_choice? 
-                            - assignment_type.weights_for_student(@user).tap do |weight|
-                              - if @user.multipliers_assigned?
-                                - if weight 
-                                  - if assignment.release_necessary? && grade.is_released? 
-                                    = "You earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
-                                  - elsif assignment.release_necessary?
-                                    = "#{assignment.total_points * weight.value} points possible"
-                                  - else
-                                    = "You earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
-                                - else
-                                  - if assignment.release_necessary? && grade.is_released? 
-                                    = "You earned #{ grade.score * 0.5} out of #{grade.point_total * 0.5} points"
-                                  - elsif assignment.release_necessary?
-                                    = "#{assignment.total_points * 0.5} points possible"
-                                  - else
-                                    = "You earned #{ grade.score * 0.5} out of #{grade.point_total * 0.5} points"
-                              - else
-                                - if weight
-                                  - if assignment.release_necessary? && grade.is_released? 
-                                    = "You earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
-                                  - elsif assignment.release_necessary?
-                                    = "#{assignment.total_points * weight.value} points possible"
-                                  - else
-                                    = "You earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
-                                - else
-                                  - if assignment.release_necessary? && grade.is_released? 
-                                    = "You earned #{ grade.score } out of #{grade.point_total} points"
-                                  - elsif assignment.release_necessary?
-                                    = "#{assignment.total_points} points possible"
-                                  - else
-                                    = "You earned #{ grade.score} out of #{grade.point_total} points"
+                          - if assignment.release_necessary? && grade.is_released? 
+                            = "You earned #{ grade.score } out of #{grade.point_total} points"
+                          - elsif assignment.release_necessary?
+                            = "#{grade.point_total} points possible"
                           - else
-                            - if assignment.release_necessary? && grade.is_released? 
-                              = "You earned #{ grade.score} / #{grade.point_total} points"
-                            - elsif assignment.release_necessary?
-                              = "#{assignment.point_total} possible points"
-                            - else
-                              = "You earned #{ grade.score} / #{grade.point_total} points"
+                            = "You earned #{ grade.score} out of #{grade.point_total} points"
                         - else 
                           - if current_user.is_staff? 
                             %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-link btn-mini'
-                          No individual grade at all 
+                          = assignment.point_total
   
                     - elsif assignment.has_teams?
                       - if assignment.self_gradeable? && assignment.open?
                         = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => "btn btn-primary btn-mini"
-                      - assignment.assignment_grades.where(:gradeable_id => @user.teams.first).each do |grade|
+                      - assignment.assignment_grades.where(:gradeable_id => @user.teams.first).first.tap do |grade|
                         - if grade
                           - if current_user.is_staff?
                             %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-primary btn-mini'
-                          - if assignment_type.student_choice?
-                            - assignment_type.weights_for_student(@user).tap do |weight|
-                              - if @user.multipliers_assigned?
-                                - if weight 
-                                  - if assignment.release_necessary? && grade.is_released? 
-                                    = "Your team earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
-                                  - elsif assignment.release_necessary?
-                                    = "#{assignment.total_points * weight.value} points possible"
-                                  - else
-                                    = "Your team earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
-                                - else
-                                  - if assignment.release_necessary? && grade.is_released? 
-                                    = "Your team earned #{ grade.score * 0.5} out of #{grade.point_total * 0.5} points"
-                                  - elsif assignment.release_necessary?
-                                    = "#{assignment.total_points * 0.5} points possible"
-                                  - else
-                                    = "Your team earned #{ grade.score * 0.5} out of #{grade.point_total * 0.5} points"
-                              - else
-                                - if weight 
-                                  - if assignment.release_necessary? && grade.is_released? 
-                                    = "Your team earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
-                                  - elsif assignment.release_necessary?
-                                    = "#{assignment.total_points * weight.value} points possible"
-                                  - else
-                                    = "Your team earned #{ grade.score * weight.value} out of #{grade.point_total * weight.value} points"
-                                - else
-                                  - if assignment.release_necessary? && grade.is_released? 
-                                    = "Your team earned #{ grade.score } out of #{grade.point_total} points"
-                                  - elsif assignment.release_necessary?
-                                    = "#{assignment.total_points} points possible"
-                                  - else
-                                    = "Your team earned #{ grade.score} out of #{grade.point_total } points"
-                              
+                          - if assignment.release_necessary? && grade.is_released? 
+                            = "Your team earned #{ grade.score} out of #{grade.point_total} points"
+                          - elsif assignment.release_necessary?
+                            = "#{grade.point_total } points possible"
                           - else
-                            - if assignment.release_necessary? && grade.is_released? 
-                              = "Your team earned #{ grade.score} / #{grade.point_total} points"
-                            - elsif assignment.release_necessary?
-                              = "#{assignment.point_total} possible points"
-                            - else
-                              = "Your team earned #{ grade.score} / #{grade.point_total} points"
+                            = "Your team earned #{ grade.score } out of #{grade.point_total} points"
                         - else
                           - if current_user.is_staff? 
                             %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-link btn-mini'
-                          No team Grade at all
+                          = assignment.point_total
 
                     - elsif assignment.has_groups?
                       = "#{assignment.point_total} possible points"

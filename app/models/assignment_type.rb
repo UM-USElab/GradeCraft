@@ -75,6 +75,40 @@ class AssignmentType < ActiveRecord::Base
     mass_grade_type =="Radio Buttons"
   end
   
+  def assignment_type_scores(student)
+    grades.select { |g| g.gradeable_id == student.id }.map(&:score).sum || 0 
+  end
+  
+  # If the student has selected this assignment type to be multiplied, calculate the total value possible
+  def assignment_type_multiplied_value
+    (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)  * assignment_type.assignment_value_sum
+  end
+  
+  def point_totals_by_student_id
+    @point_totals_by_student_id ||= 
+  end
+  
+  def point_total_for_student(student)
+    point_totals_by_student_id[student.id] || 0
+  end
+  
+  def multiplier_for_student(student)
+    if student_choice?
+      return weight_for_student(student)
+    end
+    return 1
+  end
+  
+    # If the student has selected this assignment type calculate their score
+  def assignment_type_multiplied_score(assignment_type)
+    assignment_type_score(assignment_type) * (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5) 
+  end
+  
+
+  def assignment_type_multiplier(assignment_type)
+    (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)
+  end
+  
   #assignment type weights by student  
   def weights_by_student_id
     @weights_by_student ||= {}.tap do |weights|
