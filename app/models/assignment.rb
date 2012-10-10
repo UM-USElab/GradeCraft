@@ -153,7 +153,7 @@ class Assignment < ActiveRecord::Base
   
   def soon?
     if due_date?
-      due_date < Time.now + 7.days
+      Time.now <= due_date && due_date < (Time.now + 7.days)
     end
   end
   

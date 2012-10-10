@@ -35,7 +35,7 @@
             = "#{assignment_type.try(:name)}:"
           %ul
             - assignments.each do |assignment|
-              - if assignment.soon? && assignment.future? 
+              - if assignment.soon? 
                 %li
                   = "#{assignment.try(:name)}" 
                   %div= "(Due: #{assignment.try(:due_date).strftime("%b-%d")})"
@@ -86,19 +86,12 @@
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %div.assignmentType
           %button.btn.btn-inverse{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name)}
-          %span
-          - if assignment_type.student_choice? && assignment_type.multiplier_open?
-            %span.badge.badge-warning= "#{assignment_type.score_for_student(@user)} / #{current_course.point_totals_by_assignment_type_for_student(@user)[assignment_type.id]} possible points "
+          %span.badge.badge-warning= "#{assignment_type.assignment_type_scores(@user)} / #{current_course.point_totals_by_assignment_type_for_student(@user)[assignment_type.id]} possible points"
+          - if assignment_type.student_choice?
             %a.badge.badge-important
-              = "#{assignment_type.multiplier_for_student(@user)} #{current_course.multiplier_term} (Change)"
-          - elsif assignment_type.student_choice?
-            %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.assignment_value_sum} possible points"
-            %a.badge.badge-important
-              = "Set #{current_course.multiplier_term}"
-            %span.badge.badge-warning= "#{@user.assignment_type_multiplied_score(assignment_type)} / #{assignment_type.point_total_for_student(@user)} possible points "
-            %span.badge.badge-important= "#{weight} #{current_course.multiplier_term}"
-          - else
-            %span unmultiplied score
+              = "#{assignment_type.multiplier_for_student(@user)} #{current_course.multiplier_term} "
+              - if assignment_type.multiplier_open?
+                ="(Change)"
                         
           %div{:id => "assignment_type-#{assignment_type.id}", :class => "collapse"}
             %div.assignmentsGroup
@@ -132,9 +125,6 @@
                     - if assignment.is_individual?
                       - assignment.assignment_grades.where(:gradeable_id => @user).first.tap do |grade|
                         
-                        - if assignment.self_gradeable? && assignment.open?
-                          = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user, :gradeable_type => "User"), :class => "btn btn-primary btn-mini"
-                          
                         - if grade
                           - if current_user.is_staff?
                             %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-primary btn-mini'
@@ -145,14 +135,16 @@
                           - else
                             = "You earned #{ grade.score} out of #{grade.point_total} points"
                         - else 
-                          - if current_user.is_staff? 
+                          - if assignment.self_gradeable? && assignment.open?
+                            = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user, :gradeable_type => "User"), :class => "btn btn-primary btn-mini"
+                          - elsif current_user.is_staff? 
                             %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-link btn-mini'
-                          = assignment.point_total
+                          = "#{assignment.point_total} possible points"
   
                     - elsif assignment.has_teams?
                       - if assignment.self_gradeable? && assignment.open?
                         = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => "btn btn-primary btn-mini"
-                      - assignment.assignment_grades.where(:gradeable_id => @user.teams.first).first.tap do |grade|
+                      - assignment.assignment_grades.where(:gradeable_id => @user.teams.first.id).first.tap do |grade|
                         - if grade
                           - if current_user.is_staff?
                             %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-primary btn-mini'
@@ -165,7 +157,7 @@
                         - else
                           - if current_user.is_staff? 
                             %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-link btn-mini'
-                          = assignment.point_total
+                          = "#{assignment.point_total} possible points"
 
                     - elsif assignment.has_groups?
                       = "#{assignment.point_total} possible points"

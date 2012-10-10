@@ -164,7 +164,7 @@ class Course < ActiveRecord::Base
   end
   
   def multipliers_spent?(user)
-    user.user_assignment_type_weights.map(&:value).sum >= user_weight_amount
+    #user.user_assignment_type_weights.map(&:value).sum >= user_weight_amount
   end
 
 end
