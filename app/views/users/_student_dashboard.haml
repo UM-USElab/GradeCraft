@@ -89,22 +89,17 @@
           %button.btn.btn-inverse{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name)}
           %span
           - if assignment_type.student_choice? && assignment_type.multiplier_open?
-            - assignment_type.weight_for_student(@user).tap do |weight|
-              - if weight
-                %span.badge.badge-warning= "#{@user.assignment_type_multiplied_score(assignment_type)} / #{current_course.point_totals_by_assignment_type_for_student(@user)[assignment_type.id]} possible points "
-                %a.badge.badge-important
-                  = "#{weight} #{current_course.multiplier_term} (Change)"
-              - else
-                %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.assignment_value_sum} possible points"
-                %a.badge.badge-important
-                  = "Set #{current_course.multiplier_term}"
+            %span.badge.badge-warning= "#{assignment_type.score_for_student(@user)} / #{current_course.point_totals_by_assignment_type_for_student(@user)[assignment_type.id]} possible points "
+            %a.badge.badge-important
+              = "#{assignment_type.multiplier_for_student(@user)} #{current_course.multiplier_term} (Change)"
           - elsif assignment_type.student_choice?
-            - assignment_type.weights_for_student(@user).tap do |weight|
-              - if weight
-                %span.badge.badge-warning= "#{@user.assignment_type_multiplied_score(assignment_type)} / #{@user.assignment_type_multiplied_value(assignment_type)} possible points "
-                %span.badge.badge-important= "#{weight} #{current_course.multiplier_term}"
-          - else
             %span.badge.badge-warning= "#{@user.assignment_type_score(assignment_type)} / #{assignment_type.assignment_value_sum} possible points"
+            %a.badge.badge-important
+              = "Set #{current_course.multiplier_term}"
+            %span.badge.badge-warning= "#{@user.assignment_type_multiplied_score(assignment_type)} / #{assignment_type.point_total_for_student(@user)} possible points "
+            %span.badge.badge-important= "#{weight} #{current_course.multiplier_term}"
+          - else
+            %span unmultiplied score
                         
           %div{:id => "assignment_type-#{assignment_type.id}", :class => "collapse"}
             %div.assignmentsGroup

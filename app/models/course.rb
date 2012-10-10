@@ -163,4 +163,8 @@ class Course < ActiveRecord::Base
     scores_by_assignment_type_for_student(student)[assignment_type.id]
   end
   
+  def multipliers_spent?(user)
+    user.user_assignment_type_weights.map(&:value).sum >= user_weight_amount
+  end
+
 end

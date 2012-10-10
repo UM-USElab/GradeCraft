@@ -35,6 +35,11 @@ describe Grade do
       grade.score.should == 1800
     end
 
+    it "doesn't devalue score if not all multipliers have been allocated and there is no weight" do
+      Fabricate(:user_assignment_type_weight, :user => student, :assignment_type => other_assignment_type, :value => 3)
+      grade.score.should == 300
+    end
+
     it "calculates devaluation after multipliers have been allocated" do
       Fabricate(:user_assignment_type_weight, :user => student, :assignment_type => other_assignment_type, :value => course.user_weight_amount)
       grade.score.should == 150

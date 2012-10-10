@@ -85,11 +85,15 @@ class AssignmentType < ActiveRecord::Base
   end
   
   def point_totals_by_student_id
-    @point_totals_by_student_id ||= 
+    # TODO: Build this method for performance
   end
   
   def point_total_for_student(student)
-    point_totals_by_student_id[student.id] || 0
+    assignments.map { |a| a.point_total_for_student(student) }.sum || 0
+  end
+
+  def score_for_student(student)
+    grades.select { |g| g.gradeable_id == student.id && g.gradeable_type == 'User' }.sum(&:score) || 0
   end
   
   def multiplier_for_student(student)
@@ -123,7 +127,7 @@ class AssignmentType < ActiveRecord::Base
       if weight
         return weight.value
       else
-        return 0.5
+        return course.multipliers_spent?(student) ? 0.5 : 1
       end
     end
   end
