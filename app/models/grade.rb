@@ -25,6 +25,7 @@ class Grade < ActiveRecord::Base
   after_destroy :save_gradeable_score
   
   scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
+  scope :for_gradeable, ->(gradeable) { where(:gradeable_id => gradeable.id, :gradeable_type => gradeable.class) }
 
   def raw_score
     super || 0

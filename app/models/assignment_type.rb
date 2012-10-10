@@ -55,8 +55,7 @@ class AssignmentType < ActiveRecord::Base
   end
   
   def has_soon_assignments? 
-    #TODO FIX!
-    #self.assignments.map(:due_date) => soon?
+    assignments.any?(&:soon?)
   end
   
   def assignment_value_sum
@@ -93,7 +92,7 @@ class AssignmentType < ActiveRecord::Base
   end
 
   def score_for_student(student)
-    grades.select { |g| g.gradeable_id == student.id && g.gradeable_type == 'User' }.sum(&:score) || 0
+    grades.for_gradeable(student).sum(&:score) || 0
   end
   
   def multiplier_for_student(student)
