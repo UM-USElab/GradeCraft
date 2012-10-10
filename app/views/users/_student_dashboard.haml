@@ -142,7 +142,7 @@
                             = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user, :gradeable_type => "User"), :class => "btn btn-primary btn-mini"
                           - elsif current_user.is_staff? 
                             %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-link btn-mini'
-                          = "#{assignment.point_total} possible points"
+                          = "#{assignment.point_total_for_student(@user)} possible points"
   
                     - elsif assignment.has_teams?
                       - if assignment.self_gradeable? && assignment.open?
@@ -160,7 +160,7 @@
                         - else
                           - if current_user.is_staff? 
                             %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-link btn-mini'
-                          = "#{assignment.point_total} possible points"
+                          = "#{assignment.point_total_for_student(@user)} possible points"
 
                     - elsif assignment.has_groups?
                       - if assignment.self_gradeable? && assignment.open?
@@ -178,7 +178,7 @@
                         - else
                           - if current_user.is_staff? 
                             %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user.groups.first, :gradeable_type => "Group"), :class => 'btn btn-link btn-mini'
-                          = "#{assignment.point_total} possible points"
+                          = "#{assignment.point_total_for_student(@user)} possible points"
                             
       - if current_course.valuable_badges?
         %div.badges

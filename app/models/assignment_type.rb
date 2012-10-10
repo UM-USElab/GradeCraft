@@ -75,7 +75,7 @@ class AssignmentType < ActiveRecord::Base
   end
   
   def assignment_type_scores(student)
-    grades.select { |g| g.gradeable_id == student.id }.map(&:score).sum || 0 
+    grades.select { |g| g.gradeable_id == student.id && g.gradeable_type == "User" }.map(&:score).sum || 0 
   end
   
   def point_totals_by_student_id

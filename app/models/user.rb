@@ -169,10 +169,6 @@ class User < ActiveRecord::Base
     (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)
   end
   
-  def multipliers_assigned?
-    user_assignment_type_weights.sum(:value) == 6
-  end
-    
   #Score
   def sortable_score
     super || 0

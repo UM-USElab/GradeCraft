@@ -3,9 +3,10 @@ class UserAssignmentTypeWeightsController < ApplicationController
     @user = User.find(params[:user_id])
     @user_assignment_type_weights = @user.user_assignment_type_weights.all
     respond_with(@user_assignment_type_weights)
-    if current_user.is_student?
-      enforce_view_permission(@user_assignment_type_weight)
-    end
+    #TODO FIX
+    # if current_user.is_student?
+#       enforce_view_permission(@user_assignment_type_weight)
+#     end
   end
 
   def show

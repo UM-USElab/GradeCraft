@@ -46,9 +46,9 @@
                         - else
                           = "You earned #{ grade.score} out of #{grade.point_total} points"
                       - else
-                        = "#{assignment.point_total} possible points"
+                        = "#{assignment.point_total_for_student(@user)} possible points"
                   - elsif assignment.has_teams?
-                    - assignment.assignment_grades.where(:gradeable_id => @user.teams.first.id).first.tap do |grade|
+                    - assignment.assignment_grades.where(:gradeable_id => @user.teams.first).first.tap do |grade|
                       - if grade
                         - if assignment.release_necessary? && grade.is_released? 
                           = "Your team earned #{ grade.score } out of #{grade.point_total} points"
@@ -57,37 +57,41 @@
                         - else
                           = "Your team earned #{ grade.score} out of #{grade.point_total} points"
                       - else
-                        = "#{assignment.point_total} possible points"
+                        = "#{assignment.point_total_for_student(@user)} possible points"
                   - elsif assignment.has_groups?
-                    - assignment.assignment_grades.where(:gradeable_id => @user.groups.first.id).first.tap do |grade|
+                    - assignment.assignment_grades.where(:gradeable_id => @user.groups.first).first.tap do |grade|
                       - if grade
                         - if assignment.release_necessary? && grade.is_released? 
-                          = "Your group earned #{ grade.score } out of #{grade.point_total} points"
+                          //= "Your group earned #{ grade.score } out of #{grade.point_total} points"
                         - elsif assignment.release_necessary?
-                          = "#{grade.point_total} points possible"
+                          //= "#{grade.point_total} points possible"
                         - else
-                          = "Your group earned #{ grade.score} out of #{grade.point_total} points"
+                          //= "Your group earned #{ grade.score} out of #{grade.point_total} points"
                       - else
-                        = "#{assignment.point_total} possible points"
+                        = "#{assignment.point_total_for_student(@user)} possible points"
               - if assignment.future?
                 %div.assignment.future
                   %span.assignmentTitle= assignment.name
+                  
                   - if assignment_type.fixed?
-                    = "#{(assignment.point_total)} possible points"
-                    %input{:type => "checkbox", :name => assignment.name, :value => (assignment.point_total * @user.assignment_type_multiplier(assignment_type)), :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
+                    = "#{assignment.point_total_for_student(@user)} possible points"
+                    %input{:type => "checkbox", :name => assignment.name, :value => (assignment.point_total_for_student(@user)), :class => "class-checkbox", :'data-assignment-type-id' => assignment.assignment_type_id }
+                    
                   - elsif assignment_type.slider?
                     %span.pScore= "0 "
-                    = "/ #{(assignment.point_total)} possible points"
-                    %div.slider{:id => "slider-"+assignment.id.to_s(), :max => (assignment.point_total * @user.assignment_type_multiplier(assignment_type)) , :value => 0 }
+                    = "/ #{assignment.point_total_for_student(@user)} multiplied possible points"
+                    %div.slider{:id => "slider-"+assignment.id.to_s(), :max => (assignment.point_total_for_student(@user)) , :value => 0 }
                     
                     //- if assignment_type.has_levels?
                     //%select{:name => "#{assignment.name}", :id => "#{assignment.id}"}
                     //- assignment.score_levels.each do |sl|
                     //%option{:value => "sl.value"}= sl.name 
                     //- else 
+                    
                   - elsif assignment_type.select?
-                    = "#{(assignment.point_total)} possible points"
+                    = "#{assignment.point_total_for_student(@user)} possible points"
                     = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
+                    
                     
       - if current_course.valuable_badges?
         %li#slide-badges{ :data => { 'assignment-type-id' => 'badges', 'assignment-type-name' => 'Badges' } }
