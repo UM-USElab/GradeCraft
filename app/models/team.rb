@@ -28,6 +28,14 @@ class Team < ActiveRecord::Base
     earned_badges.count 
   end
   
+  def student_count
+    users.count
+  end
+  
+  def student_badge_count
+    users.map(&:user_badge_count).sum
+  end
+  
   def team_leader
     users.gsis.first
   end

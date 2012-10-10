@@ -107,19 +107,7 @@ class User < ActiveRecord::Base
     teams.where(:course_id => course.id).first.try(&:sortable_score) || 0
   end
   
-  def group_grades
-    
-  end
-  
-  def earned_badges_value(course)
-    #earned_badges.where(:course_id => course.id).map(&:point_value).sum
-    earned_badges.map(&:point_value).sum
-  end
- 
   def earned_grades(course)
-    #if current_course.has_cumulative_team_score?
-    #(course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_score
-    #else
     (course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_score(course)
   end
 
@@ -129,6 +117,16 @@ class User < ActiveRecord::Base
 
   def grade_for_assignment(assignment)
     grades_by_assignment_id[assignment.id].try(:first)
+  end
+  
+  #Badges
+
+  def earned_badges_value(course)
+    earned_badges.map(&:point_value).sum
+  end
+  
+  def user_badge_count
+    earned_badges.count
   end
 
   def earnable
@@ -175,27 +173,17 @@ class User < ActiveRecord::Base
   end
 
   def attendance_rate
-    #(attendance_grade /assignments(type => attendance).count)*100 TODO
-  end
-  
-  #Status
-  
-  #Badges
-  def user_badge_count
-    earned_badges.count
-  end
-
-  def team_badges
-    team.try(:earned_badges) || []
+    #TODO FIX
+    #(attendance_grade /assignments(type => attendance).count)*100 
   end
   
   #Import Users
   def self.csv_header
     "First Name,Last Name,Email,Username".split(',')
   end
-
   
-  #Export Users and Final Scores [TODO need to add final grade]
+  #Export Users and Final Scores
+  #TODO Need to add final grade
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << ["First Name", "Last Name", "Score"]
@@ -206,15 +194,15 @@ class User < ActiveRecord::Base
   end
 
   # Putting this here just so things don't break... remove if needed.
-
-  def possible_score
-    assignments.map(&:point_total).inject(&:+) || 0
-  end
-
-  # Same with this
-  def team_assignment_score
-    0
-  end
+# 
+#   def possible_score
+#     assignments.map(&:point_total).inject(&:+) || 0
+#   end
+# 
+#   # Same with this
+#   def team_assignment_score
+#     0
+#   end
   
   def total_points_for_course(course, in_progress = false)
     course.total_points(in_progress) + earned_badges_value(course)

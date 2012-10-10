@@ -164,7 +164,11 @@ class Course < ActiveRecord::Base
   end
   
   def multipliers_spent?(student)
-    #student.user_assignment_type_weights.map(&:value).sum >= user_weight_amount
+    return false if student.is_a?(Team)
+    return false if student.is_a?(Group)
+    if student.is_a?(User)
+      student.user_assignment_type_weights.map(&:value).sum >= user_weight_amount
+    end
   end
 
 end

@@ -2,6 +2,7 @@ class UserAssignmentTypeWeightsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @user_assignment_type_weights = @user.user_assignment_type_weights.all
+    @assignment_types = current_course.assignment_types
     respond_with(@user_assignment_type_weights)
     #TODO FIX
     # if current_user.is_student?

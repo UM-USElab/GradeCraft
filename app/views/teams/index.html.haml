@@ -7,6 +7,7 @@
     %thead
       %tr
         %th Name
+        %th No. of Students
         %th Rank
         %th Score
         %th Badges Earned
@@ -18,13 +19,14 @@
     %tbody
       - @teams.each do |team|
         %tr
-          %td= team.name
+          %td= link_to team.name, team
+          %td= team.student_count
           %td= team.rank
           %td= team.score
           %td
             - team.earned_badges.each do |badge|
               %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
-          %td= team.badge_count
+          %td= team.student_badge_count
           - if current_user.is_staff?
             %td= link_to 'View', team, :class => 'btn btn-mini'
             %td= link_to 'Edit', edit_team_path(team), :class => 'btn btn-mini'
