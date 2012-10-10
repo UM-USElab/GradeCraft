@@ -31,6 +31,14 @@ class Team < ActiveRecord::Base
   def team_leader
     users.gsis.first
   end
+  
+  def students_by_team_id
+    @students_by_team_id ||= students.group_by(&:team_id)
+  end
+
+  def students_in_team(team)
+    students_by_team_id[team.id].try(:first)
+  end
 
   private
 

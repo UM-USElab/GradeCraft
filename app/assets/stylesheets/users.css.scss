@@ -288,6 +288,21 @@ h3.popover-title {
   	background-color: #eee;
 	}
 	 
+	 
+ .badge {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    
+  }
+  .badge.badge-important a, #userScoreSection .badge.badge-important, #userScoreSection a.btn.btn-primary {
+    color: #FFF;
+  }
+  
+   .badge.badge-important a:hover {
+    text-decoration: underline;
+  }
+	 
 	.headline {
   	font-weight: bold;
   	text-transform: uppercase;
