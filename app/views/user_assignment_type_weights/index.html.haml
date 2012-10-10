@@ -18,5 +18,5 @@
         %td= link_to 'View', user_user_assignment_type_weight_path(@user, user_assignment_type_weight), :class => 'btn btn-mini'
         %td= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, user_assignment_type_weight), :class => 'btn btn-mini'
         %td= link_to 'Delete', user_user_assignment_type_weight_path(@user, user_assignment_type_weight), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-  
-= link_to 'New User assignment type weight', new_user_user_assignment_type_weight_path(@user), {:class => 'btn btn-primary'}
+        
+  = link_to "New #{current_course.multiplier_term}", new_user_user_assignment_type_weight_path(@user), {:class => 'btn btn-primary'}

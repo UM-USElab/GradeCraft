@@ -78,11 +78,6 @@ class AssignmentType < ActiveRecord::Base
     grades.select { |g| g.gradeable_id == student.id }.map(&:score).sum || 0 
   end
   
-  # If the student has selected this assignment type to be multiplied, calculate the total value possible
-  def assignment_type_multiplied_value
-    (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)  * assignment_type.assignment_value_sum
-  end
-  
   def point_totals_by_student_id
     # TODO: Build this method for performance
   end
@@ -92,7 +87,7 @@ class AssignmentType < ActiveRecord::Base
   end
 
   def score_for_student(student)
-    grades.for_gradeable(student).sum(&:score) || 0
+    grades.select { |g| g.gradeable_id == student.id && g.gradeable_type == 'User' }.sum(&:score) || 0
   end
   
   def multiplier_for_student(student)
@@ -100,16 +95,6 @@ class AssignmentType < ActiveRecord::Base
       return weight_for_student(student)
     end
     return 1
-  end
-  
-    # If the student has selected this assignment type calculate their score
-  def assignment_type_multiplied_score(assignment_type)
-    assignment_type_score(assignment_type) * (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5) 
-  end
-  
-
-  def assignment_type_multiplier(assignment_type)
-    (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)
   end
   
   #assignment type weights by student  
@@ -130,6 +115,25 @@ class AssignmentType < ActiveRecord::Base
       end
     end
   end
+  
+  # If the student has selected this assignment type to be multiplied, calculate the total value possible
+  # def assignment_type_multiplied_value
+#     (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)  * assignment_type.assignment_value_sum
+#   end
+  
+  
+  # I Think these can be deleted, but leaving them here just in case
+#     # If the student has selected this assignment type calculate their score
+#   def assignment_type_multiplied_score(assignment_type)
+#     assignment_type_score(assignment_type) * (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5) 
+#   end
+#   
+# 
+#   def assignment_type_multiplier(assignment_type)
+#     (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)
+#   end
+  
+  
   
 
 end

@@ -3,5 +3,5 @@
   = f.input :value, :hint => "You may set #{current_course.user_weight_amount} #{current_course.multiplier_term}s", :collection => @amounts
   
   .form-actions
-    = f.button :submit
+    = f.button :submit, "Update #{current_course.multiplier_term}"
     = link_to 'Cancel', user_user_assignment_type_weights_path(@user), :class => 'btn'
