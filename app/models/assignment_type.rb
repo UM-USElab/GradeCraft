@@ -120,7 +120,7 @@ class AssignmentType < ActiveRecord::Base
       if weight
         return weight.value
       else
-       return 1
+        return course.multipliers_spent?(student) ? 0.5 : 1
       end
     end
   end

@@ -189,13 +189,13 @@ class User < ActiveRecord::Base
   end
   
   def earned_grades(course)
-     grade_score(course) + earned_badges_value(course) + team_score(course) || 0
+     grade_score(course) + earned_badges_value(course) || 0
   end
 
   private
 
   def set_sortable_score
-    self.sortable_score = grades.reload.map(&:score).sum  || 0
+    self.sortable_score = earned_grades(course)  || 0
   end
   
   

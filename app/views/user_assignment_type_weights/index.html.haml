@@ -16,6 +16,6 @@
           %tr
             %td= at.try(:name)
             %td= "#{@user.weights_for_assignment_type_id(at).try(:value)} #{current_course.multiplier_term}"
-            //%td= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, user_assignment_type_weight), :class => 'btn btn-mini'
+            %td= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, @user.user_assignment_type_weight), :class => 'btn btn-mini'
         
   = link_to "Back to My Dashboard", dashboard_path, {:class => 'btn btn-primary'}

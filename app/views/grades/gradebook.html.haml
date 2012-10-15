@@ -4,6 +4,10 @@
       %th #{current_course.user_ref}
       - for assignment in @assignments
         %th= assignment.name
+      - if current_course.valuable_badges?
+        %th Badge Score
+      %th Total Score
+      %th Final Grade
     - @students.each do |student|
       %tr 
         %td= link_to student.name, user_path(student)
@@ -13,5 +17,8 @@
               %td= grade.score(student)
             - else
               %td
+        %td= student.earned_badges_value(current_course)
+        %td= student.earned_grades(current_course)
+        %td= current_course.grade_level(student)
 
 %div.span12

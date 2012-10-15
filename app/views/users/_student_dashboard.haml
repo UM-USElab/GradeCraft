@@ -92,10 +92,11 @@
           - if assignment_type.present_weight_for_student(@user)
             %span.badge.badge-important
               = "#{assignment_type.multiplier_for_student(@user)} #{current_course.multiplier_term} "
-              - if assignment_type.multiplier_open?
+              - if assignment_type.student_choice? && assignment_type.multiplier_open?
                 = link_to "(Change)", user_user_assignment_type_weights_path(@user)
-          - else 
-            %span.badge.badge-important= link_to "Set #{current_course.multiplier_term}", user_user_assignment_type_weights_path(@user)
+          - else
+            - if assignment_type.student_choice? && assignment_type.multiplier_open?
+              %span.badge.badge-important= link_to "Set #{current_course.multiplier_term}", user_user_assignment_type_weights_path(@user)
           
           %div{:id => "assignment_type-#{assignment_type.id}", :class => "collapse"}
             %div.assignmentsGroup

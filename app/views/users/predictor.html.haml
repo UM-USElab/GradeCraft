@@ -45,10 +45,12 @@
                       - if grade
                         - if assignment.release_necessary? && grade.is_released? 
                           = "You earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
+                          = hidden_field_tag assignment.name, grade.score(@user), :'data-assignment-type-id' => assignment.assignment_type_id
                         - elsif assignment.release_necessary?
                           = "#{assignment.point_total_for_student(@user)} points possible"
                         - else
                           = "You earned #{ grade.score(@user)} out of #{assignment.point_total_for_student(@user)} points"
+                          = hidden_field_tag assignment.name, grade.score(@user), :'data-assignment-type-id' => assignment.assignment_type_id
                       - else
                         = "#{assignment.point_total_for_student(@user)} possible points"
                   - elsif assignment.has_teams?
@@ -56,10 +58,12 @@
                       - if grade
                         - if assignment.release_necessary? && grade.is_released? 
                           = "Your team earned #{ grade.score(@user) } out of #{grade.point_total(@user)} points"
+                          = hidden_field_tag assignment.name, grade.score(@user), :'data-assignment-type-id' => assignment.assignment_type_id
                         - elsif assignment.release_necessary?
                           = "#{assignment.point_total_for_student(@user)} points possible"
                         - else
                           = "Your team earned #{ grade.score(@user)} out of #{assignment.point_total_for_student(@user)} points"
+                          = hidden_field_tag assignment.name, grade.score(@user), :'data-assignment-type-id' => assignment.assignment_type_id
                       - else
                         = "#{assignment.point_total_for_student(@user)} possible points"
                   - elsif assignment.has_groups?
@@ -67,10 +71,12 @@
                       - if grade
                         - if assignment.release_necessary? && grade.is_released? 
                           //= "Your group earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
+                          //= hidden_field_tag assignment.name, grade.score(@user), :'data-assignment-type-id' => assignment.assignment_type_id
                         - elsif assignment.release_necessary?
                           //= "#{grade.point_total} points possible"
                         - else
                           //= "Your group earned #{ grade.score(@user)} out of #{assignment.point_total_for_student(@user)} points"
+                          //= hidden_field_tag assignment.name, grade.score(@user), :'data-assignment-type-id' => assignment.assignment_type_id
                       - else
                         = "#{assignment.point_total_for_student(@user)} possible points"
               - if assignment.future?

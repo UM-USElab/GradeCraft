@@ -71,11 +71,26 @@ class EarnedBadgesController < ApplicationController
   end
   
   
-  def mass_award
-  
+  def mass_edit
+    @badges = Badge.all
+    @earned_badge = EarnedBadge.create(params[:earned_badge])
+    user_search_options = {}
+    user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
+    @students = current_course.users.students.includes(:teams).where(user_search_options)
+    @earned_badges = @students.map do |s|
+      EarnedBadge.where(:earnable_id => s.id, :gradeable_type => 'User').first || EarnedBadge.new(:earnable => s, :earnable_type => "User")
+    end
   end
   
   def mass_update
+    @earnable = find_earnable
+    
+    respond_to do |format|
+      if @earnable.update_attributes(params[:earned_badge])
+      redirect_to chart_earned_badges_path
+    else
+      redirect_to mass_edit_earned_badges_path(@badge)
+    end
   end
 
   def destroy
