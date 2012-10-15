@@ -149,13 +149,13 @@ class Course < ActiveRecord::Base
   
   def scores_by_assignment_type_for_student(student)
     assignment_type_scores = {}
-    self.grades_for_student(student).group_by { |g| g.assignment.assignment_type_id }.each { |assignment_type_id,grades| assignment_type_scores[assignment_type_id] = grades.map(&:score).inject(&:+) }
+    self.grades_for_student(student).group_by { |g| g.assignment.assignment_type_id }.each { |assignment_type_id,grades| assignment_type_scores[assignment_type_id] = grades.map { |g| g.score(self) }.sum }
     assignment_type_scores
   end
 
   def current_scores_by_assignment_type_for_student(student)
     assignment_type_scores = {}
-    self.assignments.past.map { |a| a.grades.where(:gradeable_id => student.id, :gradeable_type => 'User') }.flatten.group_by { |g| g.assignment.assignment_type_id }.each { |assignment_type_id,grades| assignment_type_scores[assignment_type_id] = grades.map(&:score).inject(&:+) }
+    self.assignments.past.map { |a| a.grades.where(:gradeable_id => student.id, :gradeable_type => 'User') }.flatten.group_by { |g| g.assignment.assignment_type_id }.each { |assignment_type_id,grades| assignment_type_scores[assignment_type_id] = grades.map { |g| g.score(self) }.sum }
     assignment_type_scores
   end
 
@@ -163,12 +163,19 @@ class Course < ActiveRecord::Base
     scores_by_assignment_type_for_student(student)[assignment_type.id]
   end
   
+  def multiplier_count(student)
+    if student.is_a?(User)
+      student.user_assignment_type_weights.map(&:value).sum
+    end
+  end
+  
   def multipliers_spent?(student)
     return false if student.is_a?(Team)
     return false if student.is_a?(Group)
     if student.is_a?(User)
-      student.user_assignment_type_weights.map(&:value).sum >= user_weight_amount
+      multiplier_count(student) >= 6
     end
   end
+  
 
 end

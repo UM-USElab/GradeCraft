@@ -10,7 +10,7 @@
         - @assignments.each do |assignment|
           - student.grade_for_assignment(assignment).tap do |grade|
             - if grade
-              %td= grade.score
+              %td= grade.score(student)
             - else
               %td
 

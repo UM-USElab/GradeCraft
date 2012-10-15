@@ -1,23 +1,26 @@
-%h1 Listing rubrics
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
 
-%table
-  %tr
-    %th Name
-    %th Assignment
-    %th Description
-    %th
-    %th
-    %th
-
-  - @rubrics.each do |rubric|
+%div.span8
+  %h3 Rubrics
+  %table.table.display.table-bordered
     %tr
-      %td= rubric.name
-      %td= rubric.assignment_id
-      %td= rubric.description
-      %td= link_to 'Show', rubric
-      %td= link_to 'Edit', edit_rubric_path(rubric)
-      %td= link_to 'Destroy', rubric, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Rubric', new_rubric_path
+      %th Name
+      %th Assignment
+      %th Description
+      %th
+      %th
+      %th
+  
+    - @rubrics.each do |rubric|
+      %tr
+        %td= rubric.name
+        %td= rubric.assignment_id
+        %td= rubric.description
+        %td= link_to 'Show', rubric
+        %td= link_to 'Edit', edit_rubric_path(rubric)
+        %td= link_to 'Destroy', rubric, method: :delete, data: { confirm: 'Are you sure?' }
+  
+  %br
+  
+  = link_to 'New Rubric', new_rubric_path

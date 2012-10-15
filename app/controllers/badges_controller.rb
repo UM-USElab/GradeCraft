@@ -19,6 +19,7 @@ class BadgesController < ApplicationController
 
   def new
     @badge = Badge.new
+    @badge_sets = current_course.badge_sets.all
     respond_to do |format|
       format.html
       format.json { render json: @badge }
@@ -27,6 +28,7 @@ class BadgesController < ApplicationController
 
   def edit
     @badge = Badge.find(params[:id])
+    @badge_sets = current_course.badge_sets.all
   end
 
   def create

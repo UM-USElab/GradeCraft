@@ -1,6 +1,7 @@
 %div.span2= render 'layouts/admin_subnav'
 
 %div.span8
+  %h3 Grade Schemes
   %div.span8
     %table.display.table-bordered.table
       %thead
@@ -17,5 +18,5 @@
             %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme), :class => 'btn btn-mini'
             %td= link_to 'Delete', grade_scheme, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
-  %div.clear
-    = link_to 'New Grade scheme', new_grade_scheme_path, {:class => 'btn btn-primary'}
+  %div.span8
+    = link_to 'New Grade Scheme', new_grade_scheme_path, {:class => 'btn btn-primary'}

@@ -33,8 +33,13 @@ GradeCraft::Application.routes.draw do
   end
   resources :themes
   resources :badge_sets 
-  resources :badges
-  resources :earned_badges
+  resources :badge
+  resources :earned_badgess do 
+    collection do 
+      get :mass_award
+      put :mass_update
+    end
+  end
   resources :teams do 
     resources :earned_badges
   end

@@ -1,25 +1,28 @@
-%h1 Listing criteria_levels
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
 
-%table
-  %tr
-    %th Name
-    %th Criteria
-    %th Description
-    %th Value
-    %th
-    %th
-    %th
-
-  - @criteria_levels.each do |criteria_level|
+%div.span8
+  %h3 Criteria Levels
+  %table.table.display.table-bordered
     %tr
-      %td= criteria_level.name
-      %td= criteria_level.criteria_id
-      %td= criteria_level.description
-      %td= criteria_level.value
-      %td= link_to 'Show', criteria_level
-      %td= link_to 'Edit', edit_criteria_level_path(criteria_level)
-      %td= link_to 'Destroy', criteria_level, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Criteria level', new_criteria_level_path
+      %th Name
+      %th Criteria
+      %th Description
+      %th Value
+      %th
+      %th
+      %th
+  
+    - @criteria_levels.each do |criteria_level|
+      %tr
+        %td= criteria_level.name
+        %td= criteria_level.criteria_id
+        %td= criteria_level.description
+        %td= criteria_level.value
+        %td= link_to 'Show', criteria_level
+        %td= link_to 'Edit', edit_criteria_level_path(criteria_level)
+        %td= link_to 'Destroy', criteria_level, method: :delete, data: { confirm: 'Are you sure?' }
+  
+  %br
+  
+  = link_to 'New Criteria level', new_criteria_level_path

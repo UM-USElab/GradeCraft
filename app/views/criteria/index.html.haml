@@ -1,23 +1,26 @@
-%h1 Listing criteria
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
 
-%table
-  %tr
-    %th Name
-    %th Ruberic
-    %th Description
-    %th
-    %th
-    %th
-
-  - @criteria.each do |criterium|
+%div.span8
+  %h3 Rubric Criteria
+  %table.table.display.table-bordered
     %tr
-      %td= criterium.name
-      %td= criterium.ruberic_id
-      %td= criterium.description
-      %td= link_to 'Show', criterium
-      %td= link_to 'Edit', edit_criterium_path(criterium)
-      %td= link_to 'Destroy', criterium, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Criterium', new_criterium_path
+      %th Name
+      %th Ruberic
+      %th Description
+      %th
+      %th
+      %th
+  
+    - @criteria.each do |criterium|
+      %tr
+        %td= criterium.name
+        %td= criterium.ruberic_id
+        %td= criterium.description
+        %td= link_to 'Show', criterium
+        %td= link_to 'Edit', edit_criterium_path(criterium)
+        %td= link_to 'Destroy', criterium, method: :delete, data: { confirm: 'Are you sure?' }
+  
+  %br
+  
+  = link_to 'New Criterium', new_criterium_path

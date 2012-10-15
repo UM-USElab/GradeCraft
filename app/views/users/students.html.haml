@@ -37,7 +37,8 @@
           - if current_course.team_roles?
             %td= student.try(:team_role)
           %td
-            = student.earned_grades(current_course)
+            // TODO FIX
+            //= student.grade_score(student)
           %td= student.visit_count
           %td= student.page_views
           %td= student.predictor_views

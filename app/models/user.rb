@@ -103,10 +103,6 @@ class User < ActiveRecord::Base
     course.grade_level(self)
   end
   
-  def team_score(course)
-    teams.where(:course_id => course.id).first.try(&:sortable_score) || 0
-  end
-  
   def earned_grades(course)
     (course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_score(course)
   end
@@ -149,19 +145,10 @@ class User < ActiveRecord::Base
     weights_by_assignment_type_id[assignment_type.id].try(:first)
   end
   
-  #changing name from score to grade_score to start to scope this better
-  def grade_score
-    grades.map(&:score).inject(&:+) || 0
-  end
-
   def assignment_type_score(assignment_type)
-    grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map(&:score).inject(&:+) || 0 
+    grades.select { |g| g.assignment.assignment_type_id == assignment_type.id }.map { |g| g.score(self) }.sum || 0 
   end
   
-  # If the student has selected this assignment type to be multiplied, calculate the total value possible
-  def assignment_type_multiplied_value(assignment_type)
-    (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)  * assignment_type.assignment_value_sum
-  end
   
   def assignment_type_multiplier(assignment_type)
     (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)
@@ -170,11 +157,6 @@ class User < ActiveRecord::Base
   #Score
   def sortable_score
     super || 0
-  end
-
-  def attendance_rate
-    #TODO FIX
-    #(attendance_grade /assignments(type => attendance).count)*100 
   end
   
   #Import Users
@@ -192,26 +174,30 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-  # Putting this here just so things don't break... remove if needed.
-# 
-#   def possible_score
-#     assignments.map(&:point_total).inject(&:+) || 0
-#   end
-# 
-#   # Same with this
-#   def team_assignment_score
-#     0
-#   end
   
   def total_points_for_course(course, in_progress = false)
     course.total_points(in_progress) + earned_badges_value(course)
+  end
+  
+  
+  def grade_score(course)
+    course.grades_for_student(self).map { |g| g.score(self) }.sum || 0
+  end
+  
+  def team_score(course)
+    teams.where(:course_id => course.id).first.try(&:score) || 0
+  end
+  
+  def earned_grades(course)
+     grade_score(course) + earned_badges_value(course) + team_score(course) || 0
   end
 
   private
 
   def set_sortable_score
-    self.sortable_score = grades.reload.map(&:score).inject(&:+) || 0
+    self.sortable_score = grades.reload.map(&:score).sum  || 0
   end
+  
+  
 
 end

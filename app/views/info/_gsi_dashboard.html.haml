@@ -19,7 +19,9 @@
           - @top_ten_students.each do |student|
             %tr
               %td= link_to student.name, user_path(student)
-              %td= student.earned_grades(current_course)
+              %td
+                // TODO FIX
+                //= student.earned_grades(current_course)
               %td= student.user_badge_count
               %td= student.visit_count
               %td= student.page_views
@@ -38,23 +40,23 @@
     %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 
     %table.table.table-bordered
       %thead
-      %tr            
-        - if assignment.is_individual?
-          %th= current_course.team_ref
-          %th= current_course.user_ref
-        - elsif assignment.has_groups? 
-          %th= current_course.group_ref
-        - elsif assignment.has_teams?
-          %th= current_course.team_ref
+      %tr 
+        %th           
+          - if assignment.is_individual?
+            = current_course.user_ref
+          - elsif assignment.has_groups? 
+            = current_course.group_ref
+          - elsif assignment.has_teams?
+            = current_course.team_ref
         %th Link
         %th Comment
         %th 
+        %th
+        %th
       %tbody
         %tr
           - assignment.assignment_submissions_for_assignment(assignment).tap do |submission|
             - if submission.ungraded
-              - if assignment.is_individual?
-                %td= submission.submittable.teams.first.try(:name)
               %td= submission.submittable.try(:name)
               %td= link_to submission.link, submission.link
               %td= submission.comment

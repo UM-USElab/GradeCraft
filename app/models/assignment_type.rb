@@ -14,20 +14,23 @@ class AssignmentType < ActiveRecord::Base
   
   default_scope :order => 'order_placement ASC'
   
+  
+  
+  def student_choice?
+    self.user_percentage_set == "true"
+  end
+  
+  #Displays how much the assignment type is worth in the list view
   def weight 
     if percentage_course?
       percentage_course.to_s << "%"
     elsif max_value?
       max_value.to_s << " possible points"
     elsif student_choice?
-      "You decide!"
+      "#{course.user_ref}s decide!"
     else
       possible_score.to_s << " possible points"
     end
-  end
-  
-  def student_choice?
-    self.user_percentage_set == "true"
   end
   
   def multiplier_open?
@@ -74,8 +77,8 @@ class AssignmentType < ActiveRecord::Base
     mass_grade_type =="Radio Buttons"
   end
   
-  def assignment_type_scores(student)
-    grades.select { |g| g.gradeable_id == student.id && g.gradeable_type == "User" }.map(&:score).sum || 0 
+  def scores_for_student(student)
+    assignments.map { |a| a.grade_for_student(student)}.sum || 0 
   end
   
   def point_totals_by_student_id
@@ -83,13 +86,9 @@ class AssignmentType < ActiveRecord::Base
   end
   
   def point_total_for_student(student)
-    assignments.map { |a| a.point_total_for_student(student) }.sum || 0
+    assignments.map { |a| a.point_total_for_student(student)}.sum || 0
   end
 
-  def score_for_student(student)
-    grades.select { |g| g.gradeable_id == student.id && g.gradeable_type == 'User' }.sum(&:score) || 0
-  end
-  
   def multiplier_for_student(student)
     if student_choice?
       return weight_for_student(student)
@@ -106,34 +105,24 @@ class AssignmentType < ActiveRecord::Base
     end
   end
   
+  def present_weight_for_student(student)
+    weights_by_student_id[student.id].tap do |weight|
+      if weight 
+        return true
+      else
+        return false
+      end
+    end
+  end
+  
   def weight_for_student(student)
     weights_by_student_id[student.id].tap do |weight|
       if weight
         return weight.value
       else
-        return course.multipliers_spent?(student) ? 0.5 : 1
+       return 1
       end
     end
   end
-  
-  # If the student has selected this assignment type to be multiplied, calculate the total value possible
-  # def assignment_type_multiplied_value
-#     (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)  * assignment_type.assignment_value_sum
-#   end
-  
-  
-  # I Think these can be deleted, but leaving them here just in case
-#     # If the student has selected this assignment type calculate their score
-#   def assignment_type_multiplied_score(assignment_type)
-#     assignment_type_score(assignment_type) * (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5) 
-#   end
-#   
-# 
-#   def assignment_type_multiplier(assignment_type)
-#     (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)
-#   end
-  
-  
-  
 
 end

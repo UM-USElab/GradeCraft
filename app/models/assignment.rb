@@ -77,7 +77,6 @@ class Assignment < ActiveRecord::Base
     submissions_by_submittable_id[['Team',team.id]].try(:first)
   end
   
-  
   def assignment_submissions_by_assignment_id
     @assignment_submissions_by_assignment_id ||= assignment_submissions.group_by(&:assignment_id)
   end
@@ -85,8 +84,8 @@ class Assignment < ActiveRecord::Base
   def assignment_submissions_for_assignment(assignment)
     assignment_submissions_by_assignment_id[assignment.id].try(:first)
   end
-
-
+  
+  #Assignment grade data
   def assignment_grades
     Grade.where(:assignment_id => id)
   end
@@ -101,12 +100,8 @@ class Assignment < ActiveRecord::Base
 
   def average 
     assignment_grades.average(:raw_score).try(:round)
-  end  
+  end 
   
-  def assignment_grades_attempted
-    #assignment_grades.where(:raw_score != 0).count
-  end
-
   def type
     assignment_type.try(:name)
   end

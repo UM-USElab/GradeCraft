@@ -1,16 +1,17 @@
 %div.span2= render 'layouts/admin_subnav'
 
 %div.span8
+  %h3= @badge.name
   %p
     %img{:src => @badge.icon, :alt => @badge.name}
   %p
-    %b Title:
-    = @badge.name
+    %b Value:
+    = "#{@badge.value} points"
   %p
     %b Description:
     = raw @badge.description
   %p
-    %b Icon:
+    %b Icon URL:
     = @badge.icon
   
   %div.span12

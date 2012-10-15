@@ -19,7 +19,6 @@
         %th Email
         %th Name
         %th Role
-        %th Team
         %th Score
         %th Logins
         - if current_course.has_badges? 
@@ -33,8 +32,8 @@
             %td= user.email
             %td= link_to user.name, user_path(user)
             %td= user.role
-            %td= user.teams.first.try(:name)
-            %td= user.earned_grades(current_course)
+            %td
+              //= user.earned_grades(current_course)
             %td= user.visit_count
             - if current_course.has_badges? 
               %td

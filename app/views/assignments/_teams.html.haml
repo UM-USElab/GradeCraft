@@ -21,8 +21,10 @@
                 - if grade
                   = check_box_tag "grade_ids[]", grade.id
             %td= link_to team.name, team
-            %td #{number_with_delimiter(grade.try(:score), :delimiter => ',') }
-            %td= @assignment.grade_level(grade)
+            %td= grade.try(:unmultiplied_score)
+            %td
+              // TODO FIX
+              //= @assignment.grade_level(grade)
             %td 
               - grade.try(:earned_badges) do |badge|
                 %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}

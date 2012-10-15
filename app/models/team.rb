@@ -21,7 +21,7 @@ class Team < ActiveRecord::Base
   end
 
   def score
-    grades.map(&:score).inject(&:+) || 0
+    grades.map(&:unmultiplied_score).sum || 0
   end
 
   def badge_count
@@ -51,7 +51,7 @@ class Team < ActiveRecord::Base
   private
 
   def set_sortable_score
-    self.sortable_score = grades.reload.map(&:score).inject(&:+) || 0
+    self.sortable_score = grades.reload.map(&:unmultiplied_score).sum || 0
   end
   
 end

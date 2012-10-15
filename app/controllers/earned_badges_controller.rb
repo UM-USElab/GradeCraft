@@ -69,6 +69,14 @@ class EarnedBadgesController < ApplicationController
       end
     end
   end
+  
+  
+  def mass_award
+  
+  end
+  
+  def mass_update
+  end
 
   def destroy
     @earned_badge = EarnedBadge.find(params[:id])

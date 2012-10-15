@@ -31,24 +31,28 @@ class Grade < ActiveRecord::Base
     super || 0
   end
   
-  def score
+  def score(student)
     if final_score?
       final_score
     else 
-      raw_score * multiplier
+      raw_score * multiplier(student)
     end
   end
   
-  def point_total
-    assignment.point_total * multiplier
+  def unmultiplied_score
+    if final_score?
+      final_score
+    else 
+      raw_score
+    end
   end
   
-  def multiplier
-    assignment.multiplier_for_student(gradeable)
+  def point_total(student)
+    assignment.point_total * multiplier(student)
   end
   
-  def attempted?
-    score > 0
+  def multiplier(student)
+    assignment.multiplier_for_student(student)
   end
   
   def has_feedback?
@@ -63,10 +67,7 @@ class Grade < ActiveRecord::Base
     status == "Released"
   end
   
-  def points_possible
-    assignment.point_total
-  end
-  
+  #Canable Permissions
   def updatable_by?(user)
     creator == user
   end

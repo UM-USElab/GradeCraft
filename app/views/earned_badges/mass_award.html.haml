@@ -1,0 +1,29 @@
+%div.span2= render 'layouts/admin_subnav'
+
+%div.span8
+  .filters
+    = form_tag mass_award_earned_badges_path, :method => :get do
+      %br
+      %br
+      %br
+      = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+      = submit_tag 'Filter', :class => 'btn'
+  
+  #massAward  
+    %ul.badges
+      = simple_form_for @badge, :html => {:class => 'form-horizontal' }, :url => mass_award_earned_badges_path(:badge_id => @badge.id) do |f|
+        - @earned_badges.each_with_index do |eb,i|
+          - "badge[earned_badges_attributes][#{i}][raw_score]".tap do |raw_score_field_name|
+            - if earned_badge.persisted?
+              = hidden_field_tag "badge[earned_badges_attributes][#{i}][id]", eb.id
+            - else
+              = hidden_field_tag "badge[earned_badges_attributes][#{i}][earnable_id]", eb.earnable.id
+              = hidden_field_tag "badge[earned_badges_attributes][#{i}][earnable_type]", eb.earnable.class.name        
+            = label_tag do
+              = hidden_field_tag raw_score_field_name, 0
+              = check_box_tag raw_score_field_name, eb.value
+              = eb.earnable.try(:name)
+        = f.button :submit
+  
+  %div.span12
+    = link_to 'Cancel', badges_path, :class => 'btn btn-primary'

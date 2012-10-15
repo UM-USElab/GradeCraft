@@ -15,7 +15,7 @@ class AssignmentSubmission < ActiveRecord::Base
   
   validates_presence_of :assignment_id, :submittable_id, :submittable_type
   
-  
+  #Canable permissions
   def updatable_by?(user)
     creator == user
   end
@@ -28,16 +28,17 @@ class AssignmentSubmission < ActiveRecord::Base
     submittable_id == user.id
   end
   
+  #Grading status
   def status
     if grade
-      grade.score
+      "Graded"
     else
-      "Not yet graded"
+      "Ungraded"
     end
   end
   
-  def ungraded
-    status == "Not yet graded"
+  def ungraded 
+    status == "Ungraded"
   end
   
 end
