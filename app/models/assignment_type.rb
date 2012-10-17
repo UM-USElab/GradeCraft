@@ -130,7 +130,7 @@ class AssignmentType < ActiveRecord::Base
   end
   
   def weight_for_assignment_type(student)
-    weights_by_student_id[['User',student.id]].try(:first)
+    weights_by_student_id[student.id]
   end
 
 end

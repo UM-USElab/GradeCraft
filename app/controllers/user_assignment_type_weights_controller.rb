@@ -29,6 +29,7 @@ class UserAssignmentTypeWeightsController < ApplicationController
 
   def edit
     @user = User.find(params[:user_id])
+    @assignment_type = AssignmentType.find(params[:assignment_type_id])
     @assignment_types = current_course.assignment_types.where(:user_percentage_set => "true")
     @user_assignment_type_weight = UserAssignmentTypeWeight.find(params[:id])
   end
