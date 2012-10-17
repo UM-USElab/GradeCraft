@@ -21,7 +21,8 @@
             %th
           %th= current_course.user_ref
           %th Score
-          %th Level
+          - if @assignment.has_levels?
+            %th Level
           %th Badges Earned
           - if @assignment.release_necessary?
             %th Status
@@ -39,8 +40,8 @@
                     = check_box_tag "grade_ids[]", grade.id
               %td= link_to student.name, student
               %td= grade.try(:unmultiplied_score)
-              %td
-                = @assignment.grade_level(grade.unmultiplied_score)
+              - if @assignment.has_levels?
+                %td= @assignment.grade_level(grade.try(:unmultiplied_score))
               %td 
                 - grade.try(:earned_badges) do |badge|
                   %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}

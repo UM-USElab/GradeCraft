@@ -88,8 +88,9 @@ class EarnedBadgesController < ApplicationController
     respond_to do |format|
       if @earnable.update_attributes(params[:earned_badge])
       redirect_to chart_earned_badges_path
-    else
-      redirect_to mass_edit_earned_badges_path(@badge)
+      else
+        redirect_to mass_edit_earned_badges_path(@badge)
+      end
     end
   end
 

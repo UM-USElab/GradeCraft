@@ -11,7 +11,6 @@
         %th#title Title
         %th#description Description
         %th Value
-        %th Multiplier
         - if current_user.is_staff?
           %th#visible Visible to Students
           %th
@@ -26,7 +25,6 @@
               %td= badge.name
               %td= raw badge.description
               %td= badge.value
-              %td= badge.multiplier
               %td 
                 - if badge.visible == "1"
                   Yes
@@ -41,7 +39,8 @@
               %td
                 %img{:src => badge.icon, :alt => badge.name}
                 %td= badge.name
-                %td= badge.description
+                %td= raw badge.description
+                %td= badge.value
                 
   %div.span12
     - if current_user.is_staff?
