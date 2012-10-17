@@ -48,13 +48,13 @@
                 %td= grade.try(:status)
               - @assignment.submission_for_student(student).tap do |submission|
                 - if submission
-                  %td= link_to "See Submission", assignment_assignment_submission_path(@assignment.id, submission, :gradeable_id => student.id, :gradeable_type => "User"), :class => 'btn btn-mini'
+                  %td= link_to "See Submission", assignment_assignment_submission_path(@assignment.id, submission, :submittable_id => student.id, :submittable_type => "User"), :class => 'btn btn-mini'
                 - else
-                  %td= link_to "Submit", new_assignment_assignment_submission_path(@assignment, @assignment_submission, :submittable_id => student, :submittable_type => "User"), :class => 'btn btn-mini'
+                  %td= link_to "Submit", new_assignment_assignment_submission_path(@assignment, @assignment_submission, :submittable_id => student.id, :submittable_type => "User"), :class => 'btn btn-mini'
               - if grade
-                %td= link_to "See Grade", assignment_grade_path(@assignment.id, grade.id), :class => 'btn btn-mini'
-                %td= link_to "Edit Grade", edit_assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
-                %td= link_to "Delete Grade", assignment_grade_path(@assignment, grade), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+                %td= link_to "See Grade", assignment_grade_path(@assignment.id, grade.id, :gradeable_type => "User", :gradeable_id => student.id), :class => 'btn btn-mini'
+                %td= link_to "Edit Grade", edit_assignment_grade_path(@assignment, grade, :gradeable_type => "User", :gradeable_id => student.id), :class => 'btn btn-mini'
+                %td= link_to "Delete Grade", assignment_grade_path(@assignment, grade, :gradeable_type => "User", :gradeable_id => student.id), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
               - else
                 %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>@assignment.id, :gradeable_id => student.id, :gradeable_type => "User"), :class => 'btn btn-mini'
                 %td

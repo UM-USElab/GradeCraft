@@ -32,14 +32,18 @@
               %td= grade.try(:status)
             - @assignment.submission_for_group(group).tap do |submission|
               - if submission
-                %td= link_to "See Submission", assignment_assignment_submission_path(@assignment.id, submission, :gradeable_id => group.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
+                %td= link_to "See Submission", assignment_assignment_submission_path(@assignment.id, submission, :submittable_id => group.id, :submittable_type => "Group"), :class => 'btn btn-mini'
               - else
-                %td= link_to "Submit", new_assignment_assignment_submission_path(@assignment, @assignment_submission, :submittable_id => group.id, :submittable_type => "Team"), :class => 'btn btn-mini', :class => 'btn btn-mini'
+                %td= link_to "Submit", new_assignment_assignment_submission_path(@assignment, @assignment_submission, :submittable_id => group.id, :submittable_type => "Group"), :class => 'btn btn-mini', :class => 'btn btn-mini'
             - if grade
-              %td= link_to "See Grade", assignment_grade_path(@assignment.id, grade.id), :class => 'btn btn-mini'
-              %td= link_to "Edit Grade", edit_assignment_grade_path(@assignment, grade), :class => 'btn btn-mini'
-              %td= link_to "Delete Grade", assignment_grade_path(@assignment, grade), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+              // TODO FIX
+              %td= link_to "See Grade", assignment_grade_path(@assignment.id, grade.id, :gradeable_id => group.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
+              // TODO FIX
+              %td= link_to "Edit Grade", edit_assignment_grade_path(@assignment, grade, :gradeable_id => group.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
+              // TODO FIX
+              %td= link_to "Delete Grade", assignment_grade_path(@assignment, grade, :gradeable_id => group.id, :gradeable_type => "Group"), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
             - else
+              // TODO FIX
               %td= link_to 'Grade', new_assignment_grade_path("assignment_id"=>@assignment.id, :gradeable_id => group.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
               %td
               %td
