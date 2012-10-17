@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   
   include Canable::Cans
   
-  before_save :set_sortable_score
+  before_save :set_sortable_scores
   
   Roles = %w{student professor gsi admin}
   
@@ -11,10 +11,11 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :crypted_password, :remember_me_token, :avatar_file_name, :role, :first_name, :last_name, :rank, :course_id, :user_id, :display_name, :private_display, :default_course_id, :last_activity_at, :last_login_at, :last_logout_at, :team_ids, :course_ids
 
   scope :alpha, :order => 'last_name ASC'
-  scope :winning, :order => 'sortable_score DESC'
+  scope :winning, :order => 'course_memberships.sortable_score DESC'
   
-  has_and_belongs_to_many :courses, :join_table => :course_memberships, :uniq => true
-  accepts_nested_attributes_for :courses      
+  has_many :course_memberships
+  has_many :courses, :through => :course_memberships, :uniq => true 
+  accepts_nested_attributes_for :courses
   has_many :grades, :as => :gradeable, :dependent => :destroy
   has_many :user_assignment_type_weights
   has_many :assignments, :through => :grades
@@ -191,13 +192,16 @@ class User < ActiveRecord::Base
   def earned_grades(course)
      grade_score(course) + earned_badges_value(course) || 0
   end
+  
+  
 
   private
-
-  def set_sortable_score
-    self.sortable_score = earned_grades(course)  || 0
+  
+  def set_sortable_scores
+    puts course_memberships.inspect
+    course_memberships.each do |course_membership|
+      course_membership.update_attribute(:sortable_score, self.earned_grades(course_membership.course))
+    end
   end
-  
-  
 
 end

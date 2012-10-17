@@ -23,15 +23,16 @@
               %span.assignmentTypeTitle= assignment_type.name
               %div.pull-right
                 %span.badge.badge-warning
-                  = "#{@user.assignment_type_score(assignment_type)} / " 
+                  //= "#{assignment_type.score_for_student(@user)} / " 
                   = "#{assignment_type.point_total_for_student(@user)} possible points"
-                - if assignment_type.present_weight_for_student(@user)
-                  %span.badge.badge-important
-                    = "#{assignment_type.multiplier_for_student(@user)} #{current_course.multiplier_term} "
-                    - if assignment_type.multiplier_open?
-                      = link_to "(Change)", user_user_assignment_type_weights_path(@user)
-                - else 
-                  %span.badge.badge-important= link_to "Set #{current_course.multiplier_term}", user_user_assignment_type_weights_path(@user)
+                  - if assignment_type.present_weight_for_student(@user)
+                    %span.badge.badge-important
+                      = "#{assignment_type.multiplier_for_student(@user)} #{current_course.multiplier_term} "
+                      - if assignment_type.student_choice? && assignment_type.multiplier_open?
+                        = link_to "(Change)", user_user_assignment_type_weights_path(@user)
+                  - else
+                    - if assignment_type.student_choice? && assignment_type.multiplier_open?
+                      %span.badge.badge-important= link_to "Set #{current_course.multiplier_term}", user_user_assignment_type_weights_path(@user)
             %p.lead= raw assignment_type.predictor_description
             %div#pastAssignments
             - assignments.each do |assignment|

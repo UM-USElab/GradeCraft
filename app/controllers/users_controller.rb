@@ -68,10 +68,10 @@ class UsersController < ApplicationController
     @users = current_course.users
     @students = current_course.users.students
     @teams = current_course.teams.all
-    @sorted_students = @students.order('users.sortable_score DESC')
+    @sorted_students = @students.order('course_memberships.sortable_score DESC')
     user_search_options = {}
     user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
-    @sorted_students = current_course.users.students.includes(:teams).where(user_search_options).order('users.sortable_score DESC')
+    @sorted_students = current_course.users.students.includes(:teams).where(user_search_options).order('course_memberships.sortable_score DESC')
     respond_to do |format|
       format.html
       format.json { render json: @users }
@@ -85,8 +85,6 @@ class UsersController < ApplicationController
     @title = @user.name
     @earned_badges = @user.earned_badges
     @assignment_types = current_course.assignment_types
-    #TODO Why doesn't this work? 
-    #@assignment_type_choice = current_course.assignment_types.student_choice?
     @user_assignment_type_weights = @user.user_assignment_type_weights.all
     @user_assignment_type_weight = @user.user_assignment_type_weights.new
     @assignments = current_course.assignments
@@ -213,7 +211,7 @@ class UsersController < ApplicationController
     @teams = current_course.teams.all
     user_search_options = {}
     user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
-    @students = current_course.users.students.includes(:teams).where(user_search_options).order('users.sortable_score DESC')
+    @students = current_course.users.students.includes(:teams).where(user_search_options).order('course_memberships.sortable_score DESC')
   end
 
   

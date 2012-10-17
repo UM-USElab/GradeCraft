@@ -77,8 +77,12 @@ class AssignmentType < ActiveRecord::Base
     mass_grade_type =="Radio Buttons"
   end
   
-  def scores_for_student(student)
-    assignments.map { |a| a.grade_for_student(student)}.sum || 0 
+  def grades_for_student(student)
+    self.grades.for_gradeable(student) + self.grades.for_gradeable(student.teams.first)
+  end
+  
+  def score_for_student(student)
+    grades_for_student(student).sum { |g| g.score(student) }
   end
   
   def point_totals_by_student_id
@@ -123,6 +127,10 @@ class AssignmentType < ActiveRecord::Base
         return course.multipliers_spent?(student) ? 0.5 : 1
       end
     end
+  end
+  
+  def weight_for_assignment_type(student)
+    weights_by_student_id[['User',student.id]].try(:first)
   end
 
 end

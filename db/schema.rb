@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924051812) do
+ActiveRecord::Schema.define(:version => 20121017023352) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -130,9 +130,10 @@ ActiveRecord::Schema.define(:version => 20120924051812) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "course_memberships", :id => false, :force => true do |t|
+  create_table "course_memberships", :force => true do |t|
     t.integer "course_id"
     t.integer "user_id"
+    t.integer "sortable_score"
   end
 
   add_index "course_memberships", ["course_id", "user_id"], :name => "index_courses_users_on_course_id_and_user_id"

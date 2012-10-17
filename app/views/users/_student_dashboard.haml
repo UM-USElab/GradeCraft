@@ -87,7 +87,7 @@
         %div.assignmentType
           %button.btn.btn-inverse{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name)}
           %span.badge.badge-warning
-            = "#{@user.assignment_type_score(assignment_type)} / " 
+            = "#{assignment_type.score_for_student(@user)} / " 
             = "#{assignment_type.point_total_for_student(@user)} possible points"
           - if assignment_type.present_weight_for_student(@user)
             %span.badge.badge-important

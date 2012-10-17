@@ -28,12 +28,13 @@ GradeCraft::Application.routes.draw do
   resources :home
   resources :group_memberships
   resources :courses
+  resources :course_memberships
   resources :course_grade_schemes do 
     resources :course_grade_scheme_elements 
   end
   resources :themes
   resources :badge_sets 
-  resources :badge
+  resources :badges
   resources :earned_badges do 
     collection do 
       get :mass_award
