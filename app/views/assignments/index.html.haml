@@ -21,6 +21,7 @@
         %th
       %th
       %th
+      %th
     %tbody
       - assignments.each do |assignment|
         %tr
@@ -42,6 +43,9 @@
             %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-mini'
           %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'
           %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete 
+          %td
+            - if assignment.has_groups? 
+              = link_to 'Create Group', new_assignment_group_path(assignment)
 
 %div.span12
   - if current_user.is_staff?

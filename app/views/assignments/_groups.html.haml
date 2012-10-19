@@ -5,6 +5,7 @@
       - if @assignment.release_necessary?
         %th
       %th= current_course.group_ref
+      %th Members
       %th Score
       - if @assignment.has_levels?
         %th Level
@@ -24,6 +25,10 @@
                 - if grade
                   = check_box_tag "grade_ids[]", grade.id
             %td= link_to group.name, assignment_group_path(@assignment, group)
+            %td 
+              %ul
+                - group.users.each do |user|
+                  %li= link_to user.name, user
             %td= grade.try(:unmultiplied_score)
             - if @assignment.has_levels?
               %td= @assignment.grade_level(grade.try(:unmultiplied_score))

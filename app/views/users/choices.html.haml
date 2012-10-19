@@ -12,14 +12,20 @@
     %tr
       %th #{current_course.user_ref}
       - @assignment_types.each do |assignment_type|
-        %th= assignment_type.name
+        - if assignment_type.student_choice? 
+          %th= assignment_type.name
+      %th #{current_course.multiplier_ref} Sum
+      %th #{current_course.multiplier_ref} Awarded?
     %tbody
       - @students.each do |student|
         %tr 
           %td= link_to student.name, user_path(student)
           - @assignment_types.each do |assignment_type|
-            - student.weights_for_assignment_type_id(assignment_type).tap do |weight|
-              - if weight
-                %td= weight.value
-              - else
-                %td
+            - if assignment_type.student_choice? 
+              - student.weights_for_assignment_type_id(assignment_type).tap do |weight|
+                - if weight
+                  %td= weight.value
+                - else
+                  %td
+          %td= current_course.multiplier_count(student)
+          %td= current_course.multipliers_spent?(student) ? "Yes" : "No"

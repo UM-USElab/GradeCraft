@@ -166,15 +166,15 @@ courses.each do |course|
       a.assignment_type = assignment_types.sample
       a.point_total = (100 + rand(10)) * 100
     end
-#     students.each do |student|
-#       Grade.create! do |g|
-#         g.assignment = assignment
-#         g.gradeable = student
-#         g.raw_score = assignment.point_total * ((6 + rand(5)) / 10.0)
-#         g.raw_score = assignment.point_total if student.name == 'Hermione Granger'
-#       end
-#       student.save
-#     end
+    students.each do |student|
+      Grade.create! do |g|
+        g.assignment = assignment
+        g.gradeable = student
+        g.raw_score = assignment.point_total * ((6 + rand(5)) / 10.0)
+        g.raw_score = assignment.point_total if student.name == 'Hermione Granger'
+      end
+      student.save
+    end
   end
   for n in 6..10 do
     assignment = course.assignments.create! do |a|

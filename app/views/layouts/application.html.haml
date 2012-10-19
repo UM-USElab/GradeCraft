@@ -11,7 +11,7 @@
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag 'application'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    - if current_course.try(:theme).present?
+    - if current_course.try(:theme_id).present?
       %link{ :href => current_course.theme.try(:filename), :media => "all", :rel => "stylesheet"}
   %body
     .navbar.navbar-fixed-top
@@ -46,6 +46,7 @@
                   %i.caret
                 %ul{:class => 'dropdown-menu well'}
                   %li= link_to "Gradebook", gradebook_path
+                  %li= link_to "#{current_course.multiplier_ref} Choices", choices_users_path
                   %li= link_to "New Assignment", new_assignment_path
                   %li= link_to "Assignment Types", assignment_types_path
                   %li= link_to "#{current_course.user_ref}s", students_users_path

@@ -15,6 +15,9 @@ class AssignmentSubmission < ActiveRecord::Base
   
   validates_presence_of :assignment_id, :submittable_id, :submittable_type
   
+  
+  scope :for_submittable, ->(submittable) { where(:submittable_id => submittable.id, :submittable_type => submittable.class) }
+  
   #Canable permissions
   def updatable_by?(user)
     creator == user
