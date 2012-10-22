@@ -1,13 +1,12 @@
 class UserAssignmentTypeWeightsController < ApplicationController
+  
+  before_filter :'ensure_staff?', :only=>[:index]
+
   def index
     @user = User.find(params[:user_id])
     @user_assignment_type_weights = @user.user_assignment_type_weights.all
     @assignment_types = current_course.assignment_types
     respond_with(@user_assignment_type_weights)
-    #TODO FIX
-    # if current_user.is_student?
-#       enforce_view_permission(@user_assignment_type_weight)
-#     end
   end
 
   def show
@@ -40,7 +39,7 @@ class UserAssignmentTypeWeightsController < ApplicationController
     respond_to do |format|
       if @user_assignment_type_weight.save
         format.html { redirect_to user_user_assignment_type_weights_path(@user), notice: 'Choice was successfully created.' }
-        format.json { render json: @user_assignment_type_weight, status: :created, location: @user_assignment_type_weight }
+        format.json { render json: dashboard_path, status: :created, location: @user_assignment_type_weight }
       else
         format.html { render action: "new" }
         format.json { render json: @user_assignment_type_weight.errors, status: :unprocessable_entity }
@@ -52,7 +51,7 @@ class UserAssignmentTypeWeightsController < ApplicationController
     @user = User.find(params[:user_id])
     @user_assignment_type_weight = UserAssignmentTypeWeight.find(params[:id])
     @user_assignment_type_weight.update_attributes(params[:user_assignment_type_weight])
-    redirect_to user_user_assignment_type_weights_path(@user)
+    redirect_to dashboard_path
   end
 
   def destroy

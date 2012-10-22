@@ -18,7 +18,7 @@
               %td= at.try(:name)
               %td= "#{weight.try(:value)} #{current_course.multiplier_term}"
               - if weight
-                %td= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, weight), :class => 'btn btn-mini'
+                %td= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, weight, :assignment_type_id => at.id), :class => 'btn btn-mini'
               - else
                 %td= link_to 'Set', new_user_user_assignment_type_weight_path(@user, :assignment_type_id => at.id)
         

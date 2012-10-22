@@ -21,11 +21,23 @@ class AssignmentSubmission < ActiveRecord::Base
   
   #Canable permissions
   def updatable_by?(user)
-    creator == user
+    if assignment.is_individual?
+      submittable_id == user.id 
+    elsif assignment.has_teams?
+      submittable_id == user.teams.first.id 
+    elsif assignment.has_groups?
+      submittable_id == user.groups.first.id 
+    end
   end
   
   def destroyable_by?(user)
-    updatable_by?(user)
+    if assignment.is_individual?
+      submittable_id == user.id 
+    elsif assignment.has_teams?
+      submittable_id == user.teams.first.id 
+    elsif assignment.has_groups?
+      submittable_id == user.groups.first.id 
+    end
   end
   
   def viewable_by?(user)
