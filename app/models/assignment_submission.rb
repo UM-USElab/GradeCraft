@@ -29,7 +29,13 @@ class AssignmentSubmission < ActiveRecord::Base
   end
   
   def viewable_by?(user)
-    submittable_id == user.id
+    if assignment.is_individual?
+      submittable_id == user.id 
+    elsif assignment.has_teams?
+      submittable_id == user.teams.first.id 
+    elsif assignment.has_groups?
+      submittable_id == user.groups.first.id 
+    end
   end
   
   #Grading status
