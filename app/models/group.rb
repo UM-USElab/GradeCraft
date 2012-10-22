@@ -1,11 +1,12 @@
 class Group < ActiveRecord::Base
   has_many :group_memberships
-  has_many :users, :through => :group_memberships
+  has_many :users, :through => :group_memberships, :uniq => true 
   has_many :grades, :as => :gradeable, :dependent => :destroy
   
   belongs_to :course
   belongs_to :assignment
   validates_presence_of :assignment_id, :name
+  validate :course_max_value_of_groups_not_exceeded
   
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
   has_many :badges, :through => :earned_badges
@@ -13,4 +14,13 @@ class Group < ActiveRecord::Base
     
   attr_accessible :name, :created_at, :updated_at, :proposal, :approved, :assignment_id, :user_ids
   
+  
+  def group_members_count
+    self.group_memberships.count 
+  end
+  
+  #TODO fix
+  def course_max_value_of_groups_not_exceeded
+    group_members_count <= 6
+  end
 end

@@ -46,7 +46,9 @@ class GradesController < ApplicationController
     @assignment_type = @assignment.assignment_type    
     @score_levels = @assignment_type.score_levels
     @students = current_course.users.students
-    @teams = current_course.teams
+    @teams = current_course.teams.all
+    @groups = current_course.groups.all
+    @group = Group.find(params[:gradeable_id])
     @grade = @assignment.assignment_grades.find(params[:id])
     @earned_badges = current_course.badges.map do |b|
       EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')

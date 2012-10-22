@@ -1,14 +1,12 @@
 = simple_form_for([@assignment, @grade], :html => {:class => 'form-horizontal' }) do |f|
   %div.control-group
   = f.input :assignment_submission_id, :input_html => {:value => @assignment_submission.id}, :as => :hidden
+  = f.input :gradeable_id, :input_html => { :value => @gradeable.id }, :as => :hidden
   - if @assignment.is_individual?
-    = f.input :gradeable_id, :collection => @students, :as => :hidden
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'User' }
   - elsif @assignment.has_groups?
-    = f.input :gradeable_id, :collection => @groups, :as => :hidden
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'Group' }
   - if @assignment.has_teams?
-    = f.input :gradeable_id, :collection => @teams, :label => "#{current_course.team_ref}"
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'Team' }
   - if @assignment.has_levels?
     = f.input :raw_score, :collection => @score_levels.map { |l| [l.name,l.value] }, :as => :select

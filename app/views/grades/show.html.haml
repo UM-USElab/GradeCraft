@@ -25,6 +25,10 @@
   %p
     %b Status:
     = @grade.status
+    
+  %p
+    %b Submission:
+    = @grade.assignment_submission_id
   
   %div.span12
     - if @grade.assignment.is_individual?

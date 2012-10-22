@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_filter :ensure_staff?
 
   def index
-    @assignment = Assignment.find(params[:assignment_id])
+    #@assignment = Assignment.find(params[:assignment_id])
     @groups = Group.all
  
     respond_to do |format|
@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
     @title = "Edit Group"
     @assignment = Assignment.find(params[:assignment_id])
     @group = @assignment.groups.find(params[:id])
-    @users = current_course.users.students
+    @students = current_course.users.students
   end
 
   def create
@@ -45,7 +45,7 @@ class GroupsController < ApplicationController
     @group = @assignment.groups.build(params[:group])
     respond_to do |format|
       if @group.save
-        format.html { redirect_to assignment_groups_path, notice: 'Group was successfully created.' }
+        format.html { redirect_to assignment_path(@assignment), notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
       else
         format.html { render action: "new" }
@@ -76,7 +76,7 @@ class GroupsController < ApplicationController
     @group.destroy
 
     respond_to do |format|
-      format.html { redirect_to assignment_groups_path(@assignment) }
+      format.html { redirect_to assignment_path(@assignment) }
       format.json { head :ok }
     end
   end

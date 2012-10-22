@@ -28,6 +28,10 @@ class Team < ActiveRecord::Base
     earned_badges.count 
   end
   
+  def grade_for_assignment(assignment)
+    grades_by_assignment_id[assignment.id].try(:first)
+  end
+  
   def student_count
     users.count
   end

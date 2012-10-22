@@ -10,6 +10,7 @@ class AssignmentSubmission < ActiveRecord::Base
   belongs_to :submittable, :polymorphic => :true
   belongs_to :assignment
   has_one :grade
+  accepts_nested_attributes_for :grade
   
   scope :ungraded
   

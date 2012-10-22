@@ -5,7 +5,8 @@
     = f.input :gradeable_id, :collection => @students, :label => "#{current_course.user_ref}", :include_blank => false
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'User' }
   - elsif @assignment.has_groups?
-    = f.input :gradeable_id, :collection => @groups, :label => "Group"
+    %b= @group.name
+    = f.input :gradeable_id, :input_html => { :value => @group.id }, :as => :hidden
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'Group' }
   - elsif @assignment.has_teams?
     = f.input :gradeable_id, :collection => @teams, :label => "#{current_course.team_ref}"

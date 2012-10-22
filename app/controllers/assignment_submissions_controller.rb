@@ -15,19 +15,21 @@ class AssignmentSubmissionsController < ApplicationController
     if current_user.is_student?
       enforce_view_permission(@assignment_submission)
     end
-    @assignment = Assignment.find(params[:assignment_id])
     @assignment_type = @assignment.assignment_type
+    
     if current_user.is_staff?
-      @grade = @assignment.assignment_grades.create(params[:grade])
-      @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
+      @gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
+      if @gradeable.grade_for_assignment(@assignment)
+        @grade = @assignment.assignment_grades.find(params[:grade_id])
+      else 
+        @grade = @assignment.assignment_grades.create(params[:grade])
+      end
       @score_levels = @assignment_type.score_levels
       @earned_badges = current_course.badges.map do |b|
       EarnedBadge.where(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade').first || EarnedBadge.new(:badge_id => b.id, :earnable_id => @grade.id, :earnable_type => 'Grade')
       @grade_scheme_elements = @assignment.grade_scheme_elements
       end
     end
-    @teams = current_course.teams.all
-    @groups = current_course.groups.all
     respond_with(@grade)
   end
 
@@ -46,7 +48,7 @@ class AssignmentSubmissionsController < ApplicationController
   def edit
     @assignment = Assignment.find(params[:assignment_id])
     @students = current_course.users.students
-    @groups = @assignment.groups 
+    @groups = @assignment.groups.all 
     @teams = current_course.teams
     @title = "Edit Submission for #{@assignment.name}"
     @assignment_submission = AssignmentSubmission.find(params[:id])

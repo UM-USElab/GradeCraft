@@ -8,18 +8,20 @@
         %th Badge Score
       %th Total Score
       %th Final Grade
+      %th #{current_course.user_ref}
     - @students.each do |student|
       %tr 
         %td= link_to student.name, user_path(student)
         - @assignments.each do |assignment|
           - student.grade_for_assignment(assignment).tap do |grade|
             - if grade
-              //TODO FIX
-              %td= grade.score(student)
+              %td= link_to grade.score(student), assignment_grade_path(assignment, grade)
             - else
               %td
-        %td= student.earned_badges_value(current_course)
+        - if current_course.valuable_badges?
+          %td= student.earned_badges_value(current_course)
         %td= student.earned_grades(current_course)
         %td= current_course.grade_level(student)
+        %td= link_to student.name, user_path(student)
 
 %div.span12
