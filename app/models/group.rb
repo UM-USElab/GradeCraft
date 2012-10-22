@@ -23,4 +23,13 @@ class Group < ActiveRecord::Base
   def course_max_value_of_groups_not_exceeded
     group_members_count <= 6
   end
+  
+  def grades_by_assignment_id
+    @grades_by_assignment ||= grades.group_by(&:assignment_id)
+  end
+  
+  def grade_for_assignment(assignment)
+    grades_by_assignment_id[assignment.id].try(:first)
+  end
+  
 end

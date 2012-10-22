@@ -73,13 +73,13 @@
                     - assignment.assignment_grades.where(:gradeable_id => @user.groups.first).first.tap do |grade|
                       - if grade
                         - if assignment.release_necessary? && grade.is_released? 
-                          //= "Your group earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
-                          //= hidden_field_tag assignment.name, grade.score(@user), :'data-assignment-type-id' => assignment.assignment_type_id
+                          = "Your group earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
+                          = hidden_field_tag assignment.name, grade.score(@user), :'data-assignment-type-id' => assignment.assignment_type_id
                         - elsif assignment.release_necessary?
-                          //= "#{grade.point_total} points possible"
+                          = "#{grade.point_total} points possible"
                         - else
-                          //= "Your group earned #{ grade.score(@user)} out of #{assignment.point_total_for_student(@user)} points"
-                          //= hidden_field_tag assignment.name, grade.score(@user), :'data-assignment-type-id' => assignment.assignment_type_id
+                          = "Your group earned #{ grade.score(@user)} out of #{assignment.point_total_for_student(@user)} points"
+                          = hidden_field_tag assignment.name, grade.score(@user), :'data-assignment-type-id' => assignment.assignment_type_id
                       - else
                         = "#{assignment.point_total_for_student(@user)} possible points"
               - if assignment.future?

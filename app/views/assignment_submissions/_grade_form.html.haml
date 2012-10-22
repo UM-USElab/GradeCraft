@@ -16,12 +16,5 @@
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   - if @assignment.release_necessary?
     = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]
-  - if current_course.has_badges? && current_course.assignment_badges? or current_course.has_badges? && current_course.multi_badges?
-    = f.simple_fields_for :earned_badges, @earned_badges do |ebf|
-      //TODO Add badge image as label
-      = ebf.input :earned, :as => :boolean, :label => ebf.object.name
-      //%img{:src => ebf.try(:icon), :alt => ebf.try(:name)}
-      = ebf.input :badge_id, :input_html => { :value => ebf.object.badge_id }, :as => :hidden
-      = ebf.input :earnable_id, :input_html => { :value => @grade.id }, :as => :hidden
-      = ebf.input :earnable_type, :input_html => { :value => 'Grade' }, :as => :hidden
+
   = f.submit :class => 'btn btn-primary'
