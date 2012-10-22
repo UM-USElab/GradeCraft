@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021175354) do
+ActiveRecord::Schema.define(:version => 20121021210039) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20121021175354) do
     t.string   "link"
     t.integer  "submittable_id"
     t.string   "submittable_type"
+    t.text     "text_feedback"
+    t.text     "text_comment"
   end
 
   create_table "assignment_types", :force => true do |t|
@@ -204,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20121021175354) do
     t.string   "feedback"
     t.integer  "earnable_id"
     t.string   "earnable_type"
+    t.text     "text_feedback"
   end
 
   create_table "grade_scheme_elements", :force => true do |t|
@@ -263,6 +266,7 @@ ActiveRecord::Schema.define(:version => 20121021175354) do
     t.integer  "course_id"
     t.string   "approved"
     t.string   "proposal"
+    t.text     "text_proposal"
   end
 
   create_table "rubrics", :force => true do |t|

@@ -149,7 +149,6 @@ var PredictorView = Backbone.View.extend({
         } else if ($item.is('select')) {
           score += parseInt($item.children('option:selected').val() || 0);
         } else if ($item.is('input[type="hidden"]')) {
-          console.log ($item.val());
           score += parseInt($item.val());
         } else if ($item.is('.ui-slider')) {
           score += parseInt($item.slider('value'));

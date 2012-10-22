@@ -12,7 +12,7 @@ class Group < ActiveRecord::Base
   has_many :badges, :through => :earned_badges
   has_many :assignment_submissions, :as => :submittable, :dependent => :destroy
     
-  attr_accessible :name, :created_at, :updated_at, :proposal, :approved, :assignment_id, :user_ids
+  attr_accessible :name, :created_at, :updated_at, :proposal, :approved, :assignment_id, :user_ids, :text_proposal
   
   
   def group_members_count

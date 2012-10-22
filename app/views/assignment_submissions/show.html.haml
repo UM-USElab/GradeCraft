@@ -27,7 +27,7 @@
     = link_to @assignment_submission.link, @assignment_submission.link
   %p
     %b Comment:
-    = raw @assignment_submission.comment
+    = raw @assignment_submission.text_comment
   
   - if current_user.is_staff? 
     = render 'grade_form'

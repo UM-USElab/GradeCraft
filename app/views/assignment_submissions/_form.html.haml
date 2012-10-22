@@ -34,7 +34,7 @@
         = f.input :submittable_type, :as => :hidden, :input_html => { :value => 'User' }        
     = f.association :assignment, :default => @assignment, :as => :hidden
     = f.input :link, :hint => "Where is the assignment located on the web?", :input_html => {:class => 'span12' }
-    = f.input :comment, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span12' }, :label => "Text/Comment"
+    = f.input :text_comment, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span12' }, :label => "Text/Comment"
 
   .form-actions
     = f.button :submit, "Submit"

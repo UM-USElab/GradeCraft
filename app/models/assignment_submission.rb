@@ -1,5 +1,5 @@
 class AssignmentSubmission < ActiveRecord::Base
-  attr_accessible :assignment_id, :comment, :feedback, :group_id, :attachment, :link, :submittable_id, :submittable_type
+  attr_accessible :assignment_id, :comment, :feedback, :group_id, :attachment, :link, :submittable_id, :submittable_type, :text_feedback, :text_comment
   
   include Canable::Ables 
   #userstamps! # adds creator and updater 

@@ -3,7 +3,7 @@
 
 %div.span8
   %h3= "#{@earned_badge.earnable.name}'s Badge"
-  %p= @earned_badge.feedback
+  %p= raw @earned_badge.text_feedback
   
   %img{:src => @earned_badge.badge.try(:icon), :alt => @earned_badge.badge.try(:name), :width => "25", :height => "25"}
   %p
