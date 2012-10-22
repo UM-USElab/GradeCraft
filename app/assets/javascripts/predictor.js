@@ -44,7 +44,7 @@ var chartOptions = {
   tooltip: {
     formatter: function() {
       return '<b>'+ this.series.name +'</b><br/>'+
-      this.x +': '+ this.y;
+        this.y +' points';
     }
   },
   plotOptions: {
