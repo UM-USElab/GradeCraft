@@ -9,7 +9,7 @@
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require twitter/bootstrap
-//= require bootstrap-wysihtml5-all
+//= require bootstrap-wysihtml5/locales
 //= require highcharts
 //= require flexslider 
 //= require underscore.min
