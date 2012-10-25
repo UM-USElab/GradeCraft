@@ -1,4 +1,5 @@
 .bundle
+config/database.yml
 grade-tracker.sublime-project
 grade-tracker.sublime-workspace
 db/*.sqlite3
@@ -6,3 +7,4 @@ db/*.sqlite3-journal
 log/*.log
 tmp/
 .sass-cache/
+.rvmrc
