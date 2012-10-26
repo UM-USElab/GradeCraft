@@ -193,7 +193,9 @@ class User < ActiveRecord::Base
      grade_score(course) + earned_badges_value(course) || 0
   end
   
-  
+  def group_for_assignment(assignment)
+    groups.where(:assignment_id => assignment.id).first
+  end
 
   private
   

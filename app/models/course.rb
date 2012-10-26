@@ -154,12 +154,6 @@ class Course < ActiveRecord::Base
     assignment_type_scores
   end
 
-  def current_scores_by_assignment_type_for_student(student)
-    assignment_type_scores = {}
-    self.assignments.past.map { |a| a.grades.where(:gradeable_id => student.id, :gradeable_type => 'User') }.flatten.group_by { |g| g.assignment.assignment_type_id }.each { |assignment_type_id,grades| assignment_type_scores[assignment_type_id] = grades.map { |g| g.score(student) }.sum }
-    assignment_type_scores
-  end
-
   def assignment_type_score_for_student(assignment_type,student)
     scores_by_assignment_type_for_student(student)[assignment_type.id]
   end

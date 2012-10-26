@@ -165,5 +165,3 @@ $(document).ready(function() {
     new PredictorView();
   }
 });
-
-    

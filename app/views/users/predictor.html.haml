@@ -70,7 +70,7 @@
                       - else
                         = "#{assignment.point_total_for_student(@user)} possible points"
                   - elsif assignment.has_groups?
-                    - assignment.assignment_grades.where(:gradeable_id => @user.groups.first).first.tap do |grade|
+                    - assignment.assignment_grades.for_gradeable(@user.group_for_assignment(assignment)).first.tap do |grade|
                       - if grade
                         - if assignment.release_necessary? && grade.is_released? 
                           = "Your group earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
@@ -122,6 +122,7 @@
                       %div.clearfix= badge.name
                       %div.clearfix
                         %b= "#{badge.point_value} points"
+                      = hidden_field_tag badge.name, badge.point_value
                   - else
                     %div.badgeField
                       %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => "50"}

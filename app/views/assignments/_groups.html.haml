@@ -19,7 +19,7 @@
       %th
     %tbody
       - @groups.each do |group|
-        - @assignment.grade_for_group(group).tap do |grade|
+        - @assignment.grade_for_whole_group(group).tap do |grade|
           %tr
             - if @assignment.release_necessary?
               %td

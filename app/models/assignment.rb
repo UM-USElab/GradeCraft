@@ -51,7 +51,11 @@ class Assignment < ActiveRecord::Base
     grades_by_gradeable_id[['User',student.id]].try(:first)
   end
   
-  def grade_for_group(group)
+  def grade_for_group(group, user)
+    grades_by_gradeable_id[['Group',group.id]].try(:first)
+  end 
+  
+  def grade_for_whole_group(group)
     grades_by_gradeable_id[['Group',group.id]].try(:first)
   end 
   

@@ -9,7 +9,7 @@
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require twitter/bootstrap
-//= require bootstrap-wysihtml5/locales
+//= require bootstrap-wysihtml5
 //= require highcharts
 //= require flexslider 
 //= require underscore.min
@@ -47,7 +47,7 @@ $(document).ready(function(){
   });
   
   $('#userBarInProgress').show();
-	$('#userBarTotal').hide();
+	$('#userBarTotal').show();
 	$('#totalScoreToggle').show();
   $('#soFarScoreToggle').hide();	
 
