@@ -133,10 +133,6 @@
                         = "#{assignment.point_total_for_student(@user)} possible points"
                         = select_tag assignment.name, options_from_collection_for_select(assignment_type.score_levels,'value','name'), :class => 'point-value', :id => "total-#{assignment.id}", :include_blank => true
 
-                  
-                  
-                    
-                    
       - if current_course.valuable_badges?
         %li#slide-badges{ :data => { 'assignment-type-id' => 'badges', 'assignment-type-name' => 'Badges' } }
           %div.slide-panel.span12

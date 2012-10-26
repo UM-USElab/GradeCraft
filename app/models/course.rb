@@ -131,7 +131,7 @@ class Course < ActiveRecord::Base
   end
   
   def score_for_student(student)
-   student.sortable_score
+   student.earned_grades(self)
   end
 
   def grade_level(student)

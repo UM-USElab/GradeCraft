@@ -28,4 +28,7 @@
                 - else
                   %td
           %td= current_course.multiplier_count(student)
-          %td= current_course.multipliers_spent?(student) ? "Yes" : "No"
+          %td
+            = current_course.multipliers_spent?(student) ? "Yes" : "No"            
+            - if current_course.multiplier_count(student) > 6
+              = "More than!"
