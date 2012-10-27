@@ -46,12 +46,12 @@
       %div.btn-group
         - if current_user.is_staff?
           - if current_course.has_badges? && current_course.course_badges? or current_course.has_badges? && current_course.multi_badges?
-            = link_to "Award a Badge", new_user_earned_badge_path(@user), :class => "btn btn-small"
-          = link_to "Email", "mailto:#{@user.email}", :class => "btn btn-small"
-          = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id), :class => "btn btn-small"
+            = link_to "Award a Badge", new_user_earned_badge_path(@user), :class => "btn btn-small btn-info"
+          = link_to "Email", "mailto:#{@user.email}", :class => "btn btn-small btn-info"
+          = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id), :class => "btn btn-small btn-info"
         - @user.team_leader.tap do |team_leader|
           - if team_leader.present?
-            = link_to "Email #{current_course.section_leader_term} (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-small"
+            = link_to "Email #{current_course.section_leader_term} (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-small btn-info"
         - if current_user.is_student? && current_course.predictor_on?
           = link_to 'Predict My Grade', predictor_users_path(:user_id => @user.id), :class => "btn btn-small"
         
