@@ -13,7 +13,7 @@
       %th
       - @assignment_types.each do |at|
         - if at.student_choice? 
-          - at.weight_for_assignment_type(@user).tap do |weight|
+          - @user.weights_for_assignment_type_id(at).tap do |weight|
             %tr
               %td= at.try(:name)
               %td= "#{weight.try(:value)} #{current_course.multiplier_term}"
