@@ -26,7 +26,9 @@
             %ul 
               - user.teams.each do |team|
                 %li= team.try(:name)
-          %td= user.earned_grades(current_course)
+          %td
+            - if user.is_student?
+              = user.earned_grades(current_course)
           %td= user.visit_count
           - if current_course.has_badges? 
             %td
