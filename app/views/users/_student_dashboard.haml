@@ -78,7 +78,7 @@
             = "#{assignment_type.point_total_for_student(@user)} possible points"
           - if assignment_type.present_weight_for_student(@user)
             %span.badge.badge-important
-              = "#{assignment_type.multiplier_for_student(@user)} #{current_course.multiplier_term} "
+              = "#{assignment_type.shown_weight_for_student(@user)} #{current_course.multiplier_term} "
               - if (assignment_type.student_choice? && assignment_type.multiplier_open?) || (assignment_type.student_choice? && current_user.is_staff?)
                 - assignment_type.weight_for_assignment_type(@user).tap do |weight|
                   - if weight
