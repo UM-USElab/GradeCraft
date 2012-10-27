@@ -18,11 +18,11 @@
           - @user.earned_badges_by_badge(badge).tap do |earned_badge|
             - if earned_badge
               %div.badgeIcon
-                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "40", :height => "40"}
+                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "35", :height => "40"}
                 .badgeTitle= badge.name
             - else
               %div.badgeIcon
-                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned"}
+                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned", :width => "35", :height => "40"}
                 .badgeTitle= badge.name
         %div.span12.clear_fix
           Badges you've earned will shine brightly!
