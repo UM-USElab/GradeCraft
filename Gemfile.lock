@@ -61,13 +61,10 @@ GEM
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
     client_side_validations (3.2.1)
-<<<<<<< Updated upstream
     client_side_validations-simple_form (2.0.0)
       client_side_validations (~> 3.2.0)
       simple_form (~> 2.0.3)
-=======
     coderay (1.0.8)
->>>>>>> Stashed changes
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -229,11 +226,8 @@ GEM
     simple_form (2.0.4)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
-<<<<<<< Updated upstream
-=======
     simple_oauth (0.1.9)
     slop (3.3.3)
->>>>>>> Stashed changes
     sorcery (0.7.13)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
