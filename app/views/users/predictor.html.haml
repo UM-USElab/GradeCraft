@@ -27,9 +27,9 @@
                   = "#{assignment_type.point_total_for_student(@user)} possible points"
                 - if assignment_type.present_weight_for_student(@user)
                   %span.badge.badge-important
-                    = "#{assignment_type.shown_weight_for_student(@user)} #{current_course.multiplier_term} "
+                    = "#{@user.weights_for_assignment_type_id(assignment_type).value} #{current_course.multiplier_term} "
                     - if assignment_type.student_choice? && assignment_type.multiplier_open?
-                      - assignment_type.shown_weight_for_student(@user).tap do |weight|
+                      - assignment_type.weight_for_assignment_type(@user).tap do |weight|
                         - if weight
                           = link_to "(Change)", edit_user_user_assignment_type_weight_path(@user, weight, :assignment_type_id => assignment_type.id)
                 - else
