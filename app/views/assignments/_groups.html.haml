@@ -32,7 +32,7 @@
                   %li= link_to user.name, user
             %td= grade.try(:unmultiplied_score)
             - if @assignment.has_levels?
-              %td= @assignment.grade_level(grade.try(:unmultiplied_score))
+              %td= @assignment.grade_level(grade)
             %td 
               - grade.try(:earned_badges) do |badge|
                 %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}

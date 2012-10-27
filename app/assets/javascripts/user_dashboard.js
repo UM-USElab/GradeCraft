@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var options = {
     chart: {
       type: 'bar',
-      height:150,
+      height:180,
       backgroundColor:null,
       width:710
     },
