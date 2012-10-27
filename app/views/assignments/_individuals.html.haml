@@ -21,6 +21,8 @@
             %th
           %th= current_course.user_ref
           %th Score
+          - if @assignment.assignment_type.student_choice?
+            %th Multiplied Score
           - if @assignment.has_levels?
             %th Level
           %th Badges Earned
@@ -40,6 +42,8 @@
                     = check_box_tag "grade_ids[]", grade.id
               %td= link_to student.name, student
               %td= grade.try(:unmultiplied_score)
+              - if @assignment.assignment_type.student_choice?
+                %td= grade.score(student)
               - if @assignment.has_levels?
                 %td= @assignment.grade_level(grade)
               %td 

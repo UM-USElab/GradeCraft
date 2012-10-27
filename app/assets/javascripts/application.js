@@ -17,6 +17,7 @@
 //= require selectToUISlider.jQuery
 //= require rails.validations
 //= require_tree .
+//= require jquery.dynatable
 
 $(document).ready(function(){
   $('#some-textarea').wysihtml5();
