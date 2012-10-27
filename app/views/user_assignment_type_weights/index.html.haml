@@ -16,7 +16,7 @@
           - @user.weights_for_assignment_type_id(at).tap do |weight|
             %tr
               %td= at.try(:name)
-              %td= "#{weight.try(:value)} #{current_course.multiplier_term}"
+              %td= "#{(weight.try(:value)) || ("No ") } #{current_course.multiplier_term}"
               - if weight
                 %td= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, weight, :assignment_type_id => at.id), :class => 'btn btn-mini'
               - else
