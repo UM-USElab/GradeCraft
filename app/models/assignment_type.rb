@@ -104,7 +104,7 @@ class AssignmentType < ActiveRecord::Base
   def weights_by_student_id
     @weights_by_student ||= {}.tap do |weights|
       user_assignment_type_weights.each do |weight|
-        if weight.value = nil? 
+        if weight.value.blank?
           weight = 1
         else
           weights[weight.user_id] = weight
@@ -127,7 +127,7 @@ class AssignmentType < ActiveRecord::Base
     weights_by_student_id[student.id].tap do |weight|
       if course.multipliers_spent?(student)
         if weight 
-          if weight.value = nil?
+          if weight.value.blank?
             return 0.5
           elsif weight.value == 0
             return 0.5
@@ -139,7 +139,7 @@ class AssignmentType < ActiveRecord::Base
         end
       else
         if weight 
-          if weight.value = nil?
+          if weight.value.blank?
             return 1
           elsif weight.value == 0
             return 1
