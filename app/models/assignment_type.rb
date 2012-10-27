@@ -126,8 +126,8 @@ class AssignmentType < ActiveRecord::Base
   def weight_for_student(student)
     weights_by_student_id[student.id].tap do |weight|
       if course.multipliers_spent?(student)
-        if weight
-          if weight.value == nil
+        if weight 
+          if weight.value == nil 
             return 0.5
           elsif weight.value == 0
             return 0.5
@@ -155,31 +155,16 @@ class AssignmentType < ActiveRecord::Base
   
   def shown_weight_for_student(student)
     weights_by_student_id[student.id].tap do |weight|
-      if course.multipliers_spent?(student)
-        if weight
-          if weight.value == nil
-            
-            return "Nil"
-          elsif weight.value == 0
-            return "Zero"
-          else
-            return weight.value
-          end
-        else
+      if weight
+        if weight.value == nil 
           return 0
+        elsif weight.value == 0
+          return 0
+        else 
+          return weight.value
         end
       else
-        if weight 
-          if weight.value == nil
-            return "Nil"
-          elsif weight.value == 0
-            return "ZerO"
-          else 
-            return weight.value
-          end
-        else
-          return 1
-        end
+        return course.multipliers_spent?(student) ? 0.5 : 1
       end
     end
   end
