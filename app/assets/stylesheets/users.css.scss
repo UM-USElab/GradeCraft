@@ -251,6 +251,12 @@ h3.popover-title {
 }
 
 
+  h3#pointTally {
+    font-size: 18px;
+    font-weight: normal !important;
+    
+  }
+
 	#predictionWrapper{	
   	background-color:rgba(55,55,55,.96);
     border-top:5px solid #2F96B4;
@@ -267,6 +273,8 @@ h3.popover-title {
   	text-align:center;
   	width: 100%;
   	z-index:3;
+  	
+  	
   }  
   
 	#prediction {
@@ -280,6 +288,7 @@ h3.popover-title {
 
 #predictorPage {
   padding-top: 185px;
+  
 
   div.slide-panel {
   	padding: 15px 35px;
