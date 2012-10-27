@@ -2,7 +2,7 @@ var chartOptions = {
   chart: {
     renderTo: 'prediction',
     type: 'bar',
-    height:170,
+    height:160,
     backgroundColor:null,
     width:900
   },
