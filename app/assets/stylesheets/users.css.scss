@@ -150,8 +150,9 @@ display: inline;
 }
 
 
-#userScoreSection {
-  background-color:#222;
+.span12#userScoreSection {
+  background-color: #222222;
+  width: auto;
   border-radius:10px;
   margin-bottom:15px;
   text-align: left;
@@ -160,7 +161,7 @@ display: inline;
   color: #FFF;
 }
 
-#userScoreSection a {
+.span12#userScoreSection a {
   color: #7fabfc;
   text-decoration: none;
 }
@@ -295,6 +296,10 @@ h3.popover-title {
   }
   .badge.badge-important a, #userScoreSection .badge.badge-important, #userScoreSection a.btn.btn-primary {
     color: #FFF;
+  }
+  
+  div.btn {
+    margin-bottom: 15px;
   }
   
    .badge.badge-important a:hover {
