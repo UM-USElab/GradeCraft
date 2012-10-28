@@ -22,6 +22,12 @@ class GradesController < ApplicationController
   def gradebook
     @assignments = current_course.assignments.sort_by &:id
     @students = current_course.users.students.includes(:grades)
+    respond_to do |format|
+      format.html
+      format.json { render json: @assignments }
+      format.csv { send_data @assignments.to_csv }
+      format.xls { send_data @assignments.to_csv(col_sep: "\t") }
+    end
   end
 
   def new 

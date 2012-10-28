@@ -204,12 +204,10 @@ class Assignment < ActiveRecord::Base
     (open_date !=nil && open_date < Time.now) && (due_date != nil && due_date > Time.now)
   end
     
-  def unmultiplied_score_for_grade(grade)
-   grade.try(:unmultiplied_score) || ""
-  end
   
   def grade_level(grade)
-    grade_scheme.try(:grade_level, unmultiplied_score_for_grade(grade)) || "--"
+    #puts grade_scheme(:grade_level(grade.raw_score))
+    grade_scheme.try(:grade_level)
   end  
   
 end

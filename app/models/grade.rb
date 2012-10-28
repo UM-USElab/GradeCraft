@@ -80,4 +80,14 @@ class Grade < ActiveRecord::Base
     gradeable_id == user.id 
   end
 
+  def self.to_csv(options = {})
+    #CSV.generate(options) do |csv|
+      #csv << ["First Name", "Last Name", "Score", "Grade"]
+      #students.each do |user|
+        #csv << [user.first_name, user.last_name]
+        #, user.earned_grades(course), user.grade_level(course)]
+      #end
+    #end
+  end
+
 end

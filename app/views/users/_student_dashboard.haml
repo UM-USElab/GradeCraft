@@ -41,6 +41,9 @@
                   %div= "(Due: #{assignment.try(:due_date).strftime("%b-%d")})"
 
 %div.span9.userDashboard
+  /[if IE]
+    %a{ :href => 'https://www.google.com/intl/en/chrome/browser/' }
+      %h3 We highly recommend you install Google Chrome to use GradeCraft  
   %div#userScoreSection.span12
     %div.pull-right
       %div.btn-group
@@ -193,9 +196,7 @@
           %span
             %span.badge.badge-warning= "#{@user.earned_badges_value(current_course)} points"
 
-/[if IE]
-  %a{ :href => 'https://www.google.com/intl/en/chrome/browser/' }
-    %h1 We highly recommend you install Chrome to use GradeCraft                 
+               
 
 - if current_user.is_staff?
   %div.span12

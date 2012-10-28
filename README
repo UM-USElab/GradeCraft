@@ -1,22 +1,23 @@
-Gradecraft is a gamified gradebook. 
+Gradecraft is a gamified learning management system. 
 
 Current features: 
-- Badges
-- Teams (course-long memberships)
-- Groups (single-assignment memberships)
-- Assignments
-- Assignment Types
-- Student Dashboard 
-- Grade Predictor
-- Grading schemes
-- Export students and final grades
-- User analytics
-- Team analytics
-- Assignment stats
+* Badges
+* Teams (course-long memberships)
+* Groups (single-assignment memberships)
+* Assignments
+* Assignment Submissions
+* Student Dashboard 
+* Interactive Grade Predictor
+* Grading schemes
+* Import students
+* Unified Gradebook view
+* Export students and final grades
+* User analytics
+* Team analytics
+* Assignment stats
+* Student-logged assignment scoring
+* Multipliers (students decide assignment weight)
 
 Upcoming:
-- Automated attendance logging & scoring
-- Omniauth
-- Interactive rubrics
-- Unified Gradebook view
-- Interactive grading schemes (students select percentages for specified assignments)
+* Interactive rubrics
+* Learning analytics suite

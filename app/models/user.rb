@@ -169,9 +169,10 @@ class User < ActiveRecord::Base
   #TODO Need to add final grade
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << ["First Name", "Last Name", "Score"]
+      csv << ["First Name", "Last Name", "Score", "Grade"]
       students.each do |user|
-        csv << [user.first_name, user.last_name, user.sortable_score]
+        csv << [user.first_name, user.last_name]
+        #, user.earned_grades(course), user.grade_level(course)]
       end
     end
   end
@@ -200,7 +201,6 @@ class User < ActiveRecord::Base
   private
   
   def set_sortable_scores
-    puts course_memberships.inspect
     course_memberships.each do |course_membership|
       course_membership.update_attribute(:sortable_score, self.earned_grades(course_membership.course))
     end
