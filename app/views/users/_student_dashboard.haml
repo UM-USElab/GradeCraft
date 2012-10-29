@@ -43,7 +43,7 @@
 %div.span9.userDashboard
   /[if IE]
     %a{ :href => 'https://www.google.com/intl/en/chrome/browser/' }
-      %h3 We highly recommend you install Google Chrome to use GradeCraft  
+      %h4 We highly recommend you install Google Chrome to use GradeCraft  
   %div#userScoreSection.span12
     %div.pull-right
       %div.btn-group
@@ -61,9 +61,9 @@
       %div#userID{ :'data-user-id' => @user.id }
     %div#userPointValues
       - if current_user.is_student?
-        %span= "Your current score is "
+        %b= "Your current score is "
       - elsif current_user.is_staff?
-        %span= "Current Score: "
+        %b= "Current Score: "
       %span#userScoreNum #{number_with_delimiter(@user.earned_grades(current_course), :delimiter => ',') if @user.respond_to?(:earned_grades)}
     //%a{:href => "#", :id => "totalScoreToggle", :class => "dashboard-toggle"}
     //Show me my score out of total course points

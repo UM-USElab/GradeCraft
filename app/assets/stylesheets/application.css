@@ -12,3 +12,5 @@
  *= require_tree .
 */
 
+
+html, body { height:100%; }

@@ -74,7 +74,8 @@ div.modal-header h3, .modal-body table {
   }
   
   div#userBarInProgress {
-    padding-top: 25px;
+    position: relative;
+    margin-top: 25px;
   }
   
   #userScoreSection .badge {
@@ -152,7 +153,7 @@ display: inline;
 }
 
 
-div#userScoreSection.span12 {
+div#userScoreSection {
   background-color: #222222 !important;
   border-radius:10px;
   margin-bottom:15px;
@@ -167,8 +168,8 @@ div#userScoreSection.span12 {
   text-decoration: none;
 }
 #userPointValues{
-  color:#fff;
-  font-size:1.3em;
+  color: #ffffff;
+  font-size: 18px;
 }
 #scoreToggle{
   color:#5199AE;
@@ -186,6 +187,7 @@ div#userScoreSection.span12 {
 }
 
 .assignmentType {
+  position: relative;
   margin-bottom: 10px;
 }
 .assignmentTypeTitle {
