@@ -17,8 +17,6 @@ button h4 {
   font-family: Verdana, sans-serif;
 }
 
-//** Badge section on the user dashboard **/
-
 h1.userName {
   font-size: 2em;
 }
@@ -73,6 +71,10 @@ div.modal-header h3, .modal-body table {
 
   #userScoreSection .btn-group a {
     color: #000 !important;
+  }
+  
+  div#userBarInProgress {
+    padding-top: 25px;
   }
   
   #userScoreSection .badge {
@@ -150,9 +152,8 @@ display: inline;
 }
 
 
-.span12#userScoreSection {
-  background-color: #222222;
-  width: auto;
+div#userScoreSection.span12 {
+  background-color: #222222 !important;
   border-radius:10px;
   margin-bottom:15px;
   text-align: left;
