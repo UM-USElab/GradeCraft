@@ -10,6 +10,7 @@
  *= require bootstrap-wysihtml5
  *= require flexslider.css
  *= require_tree .
+ *= require jquery-tablesorter/theme.default
 */
 
 body { 
@@ -122,12 +123,13 @@ div.modal-header h3, .modal-body table {
   div.assignment div.grade {
     padding: 5px 10px;
   }
-  
-  #userScoreSection a.btn.btn-info {
-    color: #000;
-  }
 
 }
+
+  
+  #userScoreSection .btn.btn-small.btn-info {
+    color: #000000 !important;
+  }
 
 /*
 #badgeForm {

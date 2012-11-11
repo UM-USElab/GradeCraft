@@ -1,5 +1,5 @@
 %h3= current_course.group_ref
-%table.table-bordered.table
+%table.table-bordered.table#sortableTable.tablesorter
   %thead
     %tr
       - if @assignment.release_necessary?
@@ -7,8 +7,6 @@
       %th= current_course.group_ref
       %th Members
       %th Score
-      - if @assignment.assignment_type.student_choice?
-        %th Multiplied Score
       - if @assignment.has_levels?
         %th Level
       %th Badges Earned
@@ -32,11 +30,9 @@
               %ul
                 - group.users.each do |user|
                   %li= link_to user.name, user
-            %td= grade.try(:unmultiplied_score)
-            - if @assignment.assignment_type.student_choice?
-              %td
-                - if grade
-                  = grade.score(student)
+            %td
+              - if grade
+                = grade.raw_score
             - if @assignment.has_levels?
               %td= @assignment.grade_level(grade)
             %td 

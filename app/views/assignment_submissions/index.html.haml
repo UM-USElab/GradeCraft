@@ -20,7 +20,7 @@
       %th
     - @assignment_submissions.each do |assignment_submission|
       %tr
-        %td= link_to assignment_submission.submittable.try(:name), assignment_submission.submittable
+        %td= link_to assignment_submission.submittable.try(:name), assignment_group_path(@assignment, assignment_submission.submittable)
         %td= assignment_submission.updated_at
         %td= link_to assignment_submission.link, assignment_submission.link
         %td= raw assignment_submission.comment

@@ -6,7 +6,7 @@
     = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
     = submit_tag 'Filter', :class => 'btn'
 
-%table.table.display.table-bordered
+%table.table.display.table-bordered#sortableTable.tablesorter
   %thead
     %tr
       %th Email

@@ -14,7 +14,7 @@
 
 
   = form_tag edit_status_assignment_grades_path(@assignment) do
-    %table.display.table-bordered.table
+    %table.display.table-bordered.table#sortableTable.tablesorter
       %thead
         %tr
           - if @assignment.release_necessary?

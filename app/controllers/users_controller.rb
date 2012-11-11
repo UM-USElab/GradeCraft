@@ -79,6 +79,22 @@ class UsersController < ApplicationController
       format.xls { send_data @users.to_csv(col_sep: "\t") }
     end
   end
+  
+  def analytics
+    @users = current_course.users
+    @students = current_course.users.students
+    @teams = current_course.teams.all
+    @sorted_students = @students.order('course_memberships.sortable_score DESC')
+    user_search_options = {}
+    user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
+    @sorted_students = current_course.users.students.includes(:teams).where(user_search_options).order('course_memberships.sortable_score DESC')
+    respond_to do |format|
+      format.html
+      format.json { render json: @users }
+      format.csv { send_data @users.to_csv }
+      format.xls { send_data @users.to_csv(col_sep: "\t") }
+    end
+  end
 
   def show
     @user = User.find(params[:id])

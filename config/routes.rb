@@ -18,6 +18,7 @@ GradeCraft::Application.routes.draw do
       post 'upload'
       get 'all'
       get 'choices'
+      get 'analytics'
     end
     resources :earned_badges
     resources :user_assignment_type_weights

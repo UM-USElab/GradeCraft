@@ -18,6 +18,7 @@
 //= require rails.validations
 //= require_tree .
 //= require jquery.dynatable
+//= require jquery-tablesorter
 
 $(document).ready(function(){
   $('#some-textarea').wysihtml5();
@@ -25,6 +26,8 @@ $(document).ready(function(){
 
   $('.modal').modal();
 */
+
+	$("#sortableTable").tablesorter();
   
   $('#gradeCurious').popover({
     placement: 'bottom'

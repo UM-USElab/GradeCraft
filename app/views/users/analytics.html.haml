@@ -7,7 +7,7 @@
       = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
       = submit_tag 'Filter', :class => 'btn'
   
-  %table.table.table-bordered#sortableTable.tablesorter
+  %table.table#sortableTable.tablesorter.table-bordered
     %thead
       %tr
         %th Rank
@@ -17,15 +17,17 @@
         - if current_course.team_roles?
           %th Role
         %th Score
+        - if current_course.has_badges? 
+          %th Badges Earned
         %th Log ins
         %th Page Views
         %th Predictor Views
-        - if current_course.has_badges? 
-          %th Badges Earned
+        %th Last Self-Predicted Grade
+        %th Current Final Grade
         %th
         %th 
         %th
-        %th
+        %th        
     %tbody
       - i = 1
       - @sorted_students.each do |student|
@@ -37,13 +39,15 @@
           - if current_course.team_roles?
             %td= student.try(:team_role)
           %td= student.earned_grades(current_course) if student.respond_to?(:earned_grades)
-          %td= student.visit_count
-          %td= student.page_views
-          %td= student.predictor_views
           - if current_course.has_badges? 
             %td
               - student.earned_badges.each do |badge|
                 %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => "25"}
+          %td= student.visit_count
+          %td= student.page_views
+          %td= student.predictor_views
+          %td
+          %td
           %td= link_to 'Dashboard', student, {:class => 'btn btn-mini'}
           %td= link_to 'Predictor', predictor_users_path(:user_id => student), {:class => 'btn btn-mini'}
           %td= link_to 'Edit', edit_user_path(student), {:class => 'btn btn-mini'}

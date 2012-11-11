@@ -1,7 +1,7 @@
 class EarnedBadgesController < ApplicationController
 
   before_filter :ensure_staff?
-  before_filter :find_earnable
+  #before_filter :find_earnable
 
   def index
     @title = "Awarded Badges"
@@ -92,6 +92,11 @@ class EarnedBadgesController < ApplicationController
         redirect_to mass_edit_earned_badges_path(@badge)
       end
     end
+  end
+  
+  def chart
+    @badges = current_course.badges.all
+    @students = current_course.users.students
   end
 
   def destroy

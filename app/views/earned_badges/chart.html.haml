@@ -1,0 +1,28 @@
+%table.table.table-bordered#sortableTable.tablesorter
+  %thead
+    %tr
+      %th #{current_course.user_ref}
+      - for badge in @badges
+        %th
+          = badge.name 
+          %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "35", :height => "40"}
+      - if current_course.valuable_badges?
+        %th Total Badge Score
+      %th Overall Grade
+      %th #{current_course.user_ref}
+  %tbody
+    - @students.each do |student|
+      %tr 
+        %td= link_to student.name, user_path(student)
+        - @badges.each do |badge|
+          - student.earned_badges_by_badge(badge).tap do |badge|
+            - if badge
+              %td= link_to badge.name
+            - else
+              %td
+        - if current_course.valuable_badges?
+          %td= student.earned_badges_value(current_course)
+        %td= current_course.grade_level(student)
+        %td= link_to student.name, user_path(student)
+
+%div.span12
