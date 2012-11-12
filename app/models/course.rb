@@ -139,7 +139,7 @@ class Course < ActiveRecord::Base
   end
   
   def grades_for_student(student)
-    self.grades.for_gradeable(student) + self.grades.for_gradeable(student.teams.first) + self.grades.for_gradeable(student.groups.first)
+    self.grades.for_gradeable(student) + self.grades.for_gradeable(student.teams.first) + self.grades.for_gradeable(student.groups.try(:first))
   end
   
   def point_totals_by_assignment_type_for_student(student)
