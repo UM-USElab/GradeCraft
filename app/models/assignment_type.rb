@@ -78,7 +78,7 @@ class AssignmentType < ActiveRecord::Base
   end
   
   def grades_for_student(student)
-    self.grades.for_gradeable(student) + self.grades.for_gradeable(student.teams.first) + self.grades.for_gradeable(student.groups.try(:first))
+    self.grades.for_gradeable(student) + self.grades.for_gradeable(student.teams.first) + ((self.grades.for_gradeable(student.groups.first) if student.groups.present?) || []) 
   end
   
   def score_for_student(student)
