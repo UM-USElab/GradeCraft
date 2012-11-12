@@ -6,10 +6,10 @@
   - if current_user.is_student?
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)}
       %span.buttonTitle Check My Final Grade
-    %div.span12#gradeCurious.btn.btn-warning{"data-target" => "#classStandings", "data-toggle" => "collapse"}
-      %span.buttonTitle How Am I Doing? 
-      %div{:id => "classStandings", :class => "collapse"}
-        %img{:src => "img/boxwhisker.jpg"}
+    //%div.span12#gradeCurious.btn.btn-warning{"data-target" => "#classStandings", "data-toggle" => "collapse"}
+    //%span.buttonTitle How Am I Doing? 
+    //%div{:id => "classStandings", :class => "collapse"}
+    //%img{:src => "img/boxwhisker.jpg"}
   - elsif current_user.is_staff? 
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)} 
       %span.buttonTitle Check My Final Grade
@@ -43,8 +43,8 @@
                 %li
                   = "#{assignment.try(:name)}" 
                   %div= "(Due: #{assignment.try(:due_date).strftime("%b-%d")})"
-  %div.btn.btn-primary.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
-    %span.buttonTitle Learning Objectives
+  //%div.btn.btn-primary.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
+  //%span.buttonTitle Learning Objectives
 
 %div.span9.userDashboard
   /[if IE]
