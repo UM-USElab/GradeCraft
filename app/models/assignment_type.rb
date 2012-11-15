@@ -77,9 +77,26 @@ class AssignmentType < ActiveRecord::Base
     mass_grade_type =="Radio Buttons"
   end
   
-  def grades_for_student(student)
-    self.grades.for_gradeable(student) + self.grades.for_gradeable(student.teams.first) + ((self.grades.for_gradeable(student.groups.first) if student.groups.present?) || []) 
+  def group_grades_for_student(student)
+    grades = []
+    student.groups.each do |group|
+      grades += self.grades.for_gradeable(group)
+    end
+    grades
   end
+  
+  def individual_grades_for_student(student)
+    self.grades.for_gradeable(student)
+  end
+  
+  def team_grades_for_student(student)
+    self.grades.for_gradeable(student.teams.first)
+  end
+  
+  def grades_for_student(student)
+    individual_grades_for_student(student) + team_grades_for_student(student) + ((group_grades_for_student(student) if student.groups.present?) || []) 
+  end
+  
   
   def score_for_student(student)
     grades_for_student(student).sum { |g| g.score(student) }
