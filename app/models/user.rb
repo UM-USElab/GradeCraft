@@ -181,7 +181,6 @@ class User < ActiveRecord::Base
     course.total_points(in_progress) + earned_badges_value(course)
   end
   
-  
   def grade_score(course)
     course.grades_for_student(self).map { |g| g.score(self) }.sum || 0
   end
@@ -191,7 +190,7 @@ class User < ActiveRecord::Base
   end
   
   def earned_grades(course)
-     grade_score(course) + earned_badges_value(course) || 0
+    grade_score(course) + earned_badges_value(course) || 0
   end
   
   def group_for_assignment(assignment)

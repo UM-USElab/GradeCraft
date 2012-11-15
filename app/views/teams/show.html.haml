@@ -33,7 +33,7 @@
             %td= link_to user.name, user_path(user)
             %td= user.role
             %td
-              //= user.earned_grades(current_course)
+              = user.earned_grades(current_course)
             %td= user.visit_count
             - if current_course.has_badges? 
               %td

@@ -26,6 +26,7 @@ class Grade < ActiveRecord::Base
   
   scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
   scope :for_gradeable, ->(gradeable) { where(:gradeable_id => gradeable.id, :gradeable_type => gradeable.class) }
+  scope :released, :status == "Released"
 
   def raw_score
     super || 0

@@ -138,8 +138,24 @@ class Course < ActiveRecord::Base
     course_grade_scheme.try(:grade_level, score_for_student(student)) || "Not yet known"
   end
   
+  def group_grades_for_student(student)
+    grades = []
+    student.groups.each do |group|
+      grades += self.grades.for_gradeable(group)
+    end
+    grades
+  end
+  
+  def individual_grades_for_student(student)
+    self.grades.for_gradeable(student)
+  end
+  
+  def team_grades_for_student(student)
+    self.grades.for_gradeable(student.teams.first)
+  end
+  
   def grades_for_student(student)
-    self.grades.for_gradeable(student) + self.grades.for_gradeable(student.teams.first) +  ((self.grades.for_gradeable(student.groups.first) if student.groups.present?) || []) 
+    individual_grades_for_student(student) + team_grades_for_student(student) + ((group_grades_for_student(student) if student.groups.present?) || []) 
   end
   
   def point_totals_by_assignment_type_for_student(student)
