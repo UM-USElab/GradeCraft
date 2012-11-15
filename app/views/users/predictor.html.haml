@@ -10,9 +10,8 @@
           %span#predictor-score-display= number_with_delimiter(@user.earned_grades(current_course), :delimiter => ',') if @user.respond_to?(:earned_grades)
           = "/" 
           %span#predictor-course-total-display= number_with_delimiter(current_course.total_points, :delimiter => ',')
-        %div
-          //= "Predicted Final Course Grade:"
-          
+        %span#expectedPointsValue
+        %div#prediction
 
 %div#predictorPage{ 'data-student-name' => @user.name, 'data-course-total' => current_course.total_points }
   %div.flexslider

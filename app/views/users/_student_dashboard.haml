@@ -145,18 +145,20 @@
                             %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-primary btn-mini'
                           - if assignment.release_necessary? && grade.is_released? 
                             = "You earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
-                            %p= grade.feedback
+                            %p= raw grade.feedback
                           - elsif assignment.release_necessary?
                             = "#{assignment.point_total_for_student(@user)} points possible"
+                            %p
                           - else
                             = "You earned #{ grade.score(@user)} out of #{assignment.point_total_for_student(@user)} points"
-                            %p= grade.feedback
+                            %p= raw grade.feedback
                         - else 
                           - if assignment.self_gradeable? && assignment.open?
                             = link_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user, :gradeable_type => "User"), :class => "btn btn-primary btn-mini"
                           - elsif current_user.is_staff? 
                             %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-link btn-mini'
                           = "#{assignment.point_total_for_student(@user)} possible points"
+                          %p
   
                     - elsif assignment.has_teams?
                       - if assignment.self_gradeable? && assignment.open?
@@ -167,16 +169,18 @@
                             %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-primary btn-mini'
                           - if assignment.release_necessary? && grade.is_released? 
                             = "Your team earned #{ grade.score(@user)} out of #{assignment.point_total_for_student(@user)} points"
-                            %p= grade.feedback
+                            %p= raw grade.feedback
                           - elsif assignment.release_necessary?
                             = "#{assignment.point_total_for_student(@user) } points possible"
+                            %p
                           - else
                             = "Your team earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
-                            %p= grade.feedback
+                            %p= raw grade.feedback
                         - else
                           - if current_user.is_staff? 
                             %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-link btn-mini'
                           = "#{assignment.point_total_for_student(@user)} possible points"
+                          %p
 
                     - elsif assignment.has_groups?
                       - if @user.group_for_assignment(assignment)
@@ -188,14 +192,16 @@
                               %span.editLink= link_to "Edit Grade", edit_assignment_grade_path(assignment, grade, :gradeable_id => @user.groups.where(:assignment_id => assignment.id).first.id, :gradeable_type => "Group"), :class => 'btn btn-primary btn-mini'
                             - if assignment.release_necessary? && grade.is_released? 
                               = "Your group earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
-                              %p= grade.feedback
+                              %p= raw grade.feedback
                             - elsif assignment.release_necessary?
                               = "#{assignment.point_total_for_student(@user) } points possible"
+                              %p
                             - else
                               = "Your group earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
-                              %p= grade.feedback
+                              %p= raw grade.feedback
                           - else
                             = "#{assignment.point_total_for_student(@user)} possible points"
+                            %p
                             - if current_user.is_staff? 
                               %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user.groups.where(:assignment_id => assignment.id).first.id, :gradeable_type => "Group"), :class => 'btn btn-link btn-mini'
                       - else
