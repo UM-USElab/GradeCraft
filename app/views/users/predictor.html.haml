@@ -7,11 +7,12 @@
             = "Your projected points:"
           - elsif current_user.is_staff?
             = "#{@user.name}'s projected points:"
-          %span#predictor-score-display= "#{number_with_delimiter(@user.earned_grades(current_course), :delimiter => ',') if @user.respond_to?(:earned_grades)}"
+          %span#predictor-score-display= number_with_delimiter(@user.earned_grades(current_course), :delimiter => ',') if @user.respond_to?(:earned_grades)
           = "/" 
-          %span#predictor-course-total-display= "#{number_with_delimiter(current_course.total_points, :delimiter => ',')}"
-        %span#expectedPointsValue
-        %div#prediction
+          %span#predictor-course-total-display= number_with_delimiter(current_course.total_points, :delimiter => ',')
+        %div
+          //= "Predicted Final Course Grade:"
+          
 
 %div#predictorPage{ 'data-student-name' => @user.name, 'data-course-total' => current_course.total_points }
   %div.flexslider

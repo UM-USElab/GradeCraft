@@ -1,3 +1,9 @@
+// add commas
+function addCommas(i){
+	numWithCommas = i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return numWithCommas;
+};	
+
 var chartOptions = {
   chart: {
     renderTo: 'prediction',
@@ -93,8 +99,8 @@ var PredictorView = Backbone.View.extend({
       chart.series[i].setData([assignmentType.get('score')])
       scoreTotal += assignmentType.get('score');
     });
-    $('#predictor-score-display').html(scoreTotal);
-    $('#predictor-course-total-display').html(this.calculateCourseTotal());
+    $('#predictor-score-display').html(addCommas(scoreTotal));
+    $('#predictor-course-total-display').html(addCommas(this.calculateCourseTotal()));
   },
   createAssignmentTypes: function() {
     var assignmentTypes = this.collection;
