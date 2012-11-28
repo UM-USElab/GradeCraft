@@ -10,6 +10,9 @@
           %span#predictor-score-display= number_with_delimiter(@user.earned_grades(current_course), :delimiter => ',') if @user.respond_to?(:earned_grades)
           = "/" 
           %span#predictor-course-total-display= number_with_delimiter(current_course.total_points, :delimiter => ',')
+          %p
+            = "Predicted Final Grade:"
+            %span#predictedCourseGrade= current_course.grade_level(@user) 
         %span#expectedPointsValue
         %div#prediction
 

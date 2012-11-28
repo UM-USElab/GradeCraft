@@ -83,8 +83,9 @@
         %div.assignmentType
           %button.btn.btn-inverse{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name)}
           %span.badge.badge-warning
-            = "#{assignment_type.score_for_student(@user)} / " 
-            = "#{assignment_type.point_total_for_student(@user)} possible points"
+            = number_with_delimiter(assignment_type.score_for_student(@user)) 
+            = "/"
+            = " #{number_with_delimiter(assignment_type.point_total_for_student(@user))} possible points"
           - if assignment_type.present_weight_for_student(@user)
             %span.badge.badge-important
               = "#{@user.weights_for_assignment_type_id(assignment_type).value} #{current_course.multiplier_term} "
@@ -144,13 +145,13 @@
                           - if current_user.is_staff?
                             %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-primary btn-mini'
                           - if assignment.release_necessary? && grade.is_released? 
-                            = "You earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
+                            = "You earned #{ number_with_delimiter(grade.score(@user)) } out of #{number_with_delimiter(assignment.point_total_for_student(@user))} points"
                             %p= raw grade.feedback
                           - elsif assignment.release_necessary?
-                            = "#{assignment.point_total_for_student(@user)} points possible"
+                            = "#{number_with_delimiter(assignment.point_total_for_student(@user))} points possible"
                             %p
                           - else
-                            = "You earned #{ grade.score(@user)} out of #{assignment.point_total_for_student(@user)} points"
+                            = "You earned #{number_with_delimiter(grade.score(@user))} out of #{number_with_delimiter(assignment.point_total_for_student(@user))} points"
                             %p= raw grade.feedback
                         - else 
                           - if assignment.self_gradeable? && assignment.open?

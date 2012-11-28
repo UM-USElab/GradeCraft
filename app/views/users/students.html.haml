@@ -50,8 +50,8 @@
           %td= link_to 'Delete', student, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
         - i += 1
   = "Download:"
-  = link_to "CSV", users_path(current_course, format: "csv") |
-  = link_to "Excel", users_path(current_course, format: "xls")
+  = link_to "CSV", students_users_path(format: "csv") |
+  = link_to "Excel", students_users_path(format: "xls")
   
   %div.span12
     = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"

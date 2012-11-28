@@ -169,9 +169,9 @@ class User < ActiveRecord::Base
   #TODO Need to add final grade
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << ["First Name", "Last Name", "Score", "Grade"]
+      csv << ["First Name", "Last Name", "Email", "Score", "Grade"]
       students.each do |user|
-        csv << [user.first_name, user.last_name]
+        csv << [user.first_name, user.last_name, user.email]
         #, user.earned_grades(course), user.grade_level(course)]
       end
     end

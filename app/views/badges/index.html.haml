@@ -24,7 +24,7 @@
               %img{:src => badge.icon, :alt => badge.name}
               %td= badge.name
               %td= raw badge.description
-              %td= badge.value
+              %td= number_with_delimiter(badge.value)
               %td 
                 - if badge.visible == "1"
                   Yes
