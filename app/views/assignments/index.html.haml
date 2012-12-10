@@ -1,48 +1,52 @@
-%div.pull-right
-  = link_to "Assignments Info", settings_assignments_path, :class => "badge"
-- @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
-  %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
-  %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})" 
-  = link_to "Edit", edit_assignment_type_path(assignment_type), :class => "btn btn-mini"
-  %table.table.table-bordered
-    %thead
-    %tr
-      %th Name
-      %th Open Date
-      %th Due Date
-      %th Total Points
-      %th Average
-      %th High Score
-      %th Low Score
-      %th # Submitted
-      %th
-      %th
-      - if assignment_type.mass_grade?
-        %th
-      %th
-      %th
-    %tbody
-      - assignments.each do |assignment|
-        %tr
-          %td= assignment.name
-          %td= assignment.try(:open_date)
-          %td= assignment.try(:due_date)
-          %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
-          %td= number_with_delimiter(assignment.average, :delimiter => ',') 
-          %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 
-          %td= number_with_delimiter(assignment.low_score, :delimiter => ',')
-          %td
-            - if assignment.has_assignment_submissions?
-              = "#{assignment.assignment_submissions.count}"
-          %td
-            - if assignment.has_assignment_submissions?
-              = link_to "View Submissions", assignment_assignment_submissions_path(assignment), :class => "btn btn-mini"
-          %td= link_to 'View', assignment, :class => 'btn btn-mini'
-          - if assignment_type.mass_grade?
-            %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-mini'
-          %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'
-          %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete 
+- if current_user.is_staff?
+  %div.span2= render 'layouts/admin_subnav'
 
-%div.span12
+%div.span10
+  %div.pull-right
+    = link_to "Assignments Info", settings_assignments_path, :class => "badge"
+  - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
+    %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
+    %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})" 
+    = link_to "Edit", edit_assignment_type_path(assignment_type), :class => "btn btn-mini"
+    %table.table.table-bordered
+      %thead
+      %tr
+        %th Name
+        %th Open Date
+        %th Due Date
+        %th Total Points
+        %th Average
+        %th High Score
+        %th Low Score
+        %th # Submitted
+        %th
+        %th
+        - if assignment_type.mass_grade?
+          %th
+        %th
+        %th
+      %tbody
+        - assignments.each do |assignment|
+          %tr
+            %td= assignment.name
+            %td= assignment.try(:open_date)
+            %td= assignment.try(:due_date)
+            %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
+            %td= number_with_delimiter(assignment.average, :delimiter => ',') 
+            %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 
+            %td= number_with_delimiter(assignment.low_score, :delimiter => ',')
+            %td
+              - if assignment.has_assignment_submissions?
+                = "#{assignment.assignment_submissions.count}"
+            %td
+              - if assignment.has_assignment_submissions?
+                = link_to "View Submissions", assignment_assignment_submissions_path(assignment), :class => "btn btn-mini"
+            %td= link_to 'View', assignment, :class => 'btn btn-mini'
+            - if assignment_type.mass_grade?
+              %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-mini'
+            %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'
+            %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete 
+  
+
   - if current_user.is_staff?
     = link_to 'New Assignment', new_assignment_path, {:class => 'btn btn-primary'}

@@ -1,0 +1,14 @@
+[Wed Oct 10 01:09:50 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Oct 10 07:40:14 2012] [error] Hostname www.gradecraft.com provided via SNI, but no hostname provided in HTTP request
+[Wed Oct 10 10:48:25 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Oct 10 11:27:25 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Wed Oct 10 11:41:53 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.12.188 does not match local info 67.194.44.153 for cookie cosign-www.gradecraft.com=pTctiYXL68BF3ruB-m5gvwFndDoTa913BgiomHQQwz7-ywQGgY9ftA889ZsNNQj+W7WY7oqTs-I7lcGwN3I4rVdnrn+pz8hXgSdW3LlUC4jcefsuJ-kWaXH4FBv0
+[Wed Oct 10 11:42:40 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.26.158 does not match local info 67.194.33.57 for cookie cosign-www.gradecraft.com=0dYvyT38oOAWlFSeJIWpOfo3wrZq6iaE01K8DJIrjhZbp5bnauvYpG4axFaq2o7L8Qr6fmPbaG-O2s2WB+EY4i+r-r8Q6T0aJKL8VZqa8LflwgQDW7u68TryTK52
+[Wed Oct 10 11:51:59 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.65.170 does not match local info 141.213.154.122 for cookie cosign-www.gradecraft.com=c7GVgU+c3Oo0q0jYkzNItgPTQDYZ8W5g8mubFAI31DjDbycpghGxfJU0AnxuJg0IPPZ8B9xjPL0Pvi7EjkaITapFjRWgP-uhmp5coHtUjzR-0m3sBSIsBPTj3ZBd
+[Wed Oct 10 11:52:33 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Oct 10 11:52:39 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Oct 10 11:53:12 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Oct 10 11:54:18 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Oct 10 12:47:43 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.29.173 does not match local info 67.194.33.4 for cookie cosign-www.gradecraft.com=QWH0jd-7drOuRp3C3xtvIcTh5SZtk5u8m4ojkz5yTQEC+90tEVb4DXKBfJW9Mz4u88f6SmR+pg5NXPPCPLpgNdQ+131-38t9BqVSF7t-qqDQUcpGuTbuZdoqHQgN
+[Wed Oct 10 12:51:12 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Oct 10 14:56:22 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.101.52 does not match local info 67.194.8.140 for cookie cosign-www.gradecraft.com=vSARmuNLFogUI+k+HW6r8JYdv6JN8oBnsn78WhW4koy92bGvYZS-ajX98I9SmP+gzRVe7xrWevJARb9zLwnW-SSmesNVG3b2z3Tn1t6dxFlPRkXA-LrDw4ZsgYH2

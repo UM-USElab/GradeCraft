@@ -1,0 +1,7 @@
+[Tue Nov 20 04:03:51 2012] [error] [client 54.242.31.39] request failed: error reading the headers
+[Tue Nov 20 11:24:05 2012] [error] mod_cosign: current hostname "www.gradecraft.com" does not match service URL hostname "gradecraft.com", cannot set cookie for correct domain.
+[Tue Nov 20 11:26:04 2012] [error] mod_cosign: current hostname "www.gradecraft.com" does not match service URL hostname "gradecraft.com", cannot set cookie for correct domain.
+[Tue Nov 20 11:26:49 2012] [error] mod_cosign: current hostname "www.gradecraft.com" does not match service URL hostname "gradecraft.com", cannot set cookie for correct domain.
+[Tue Nov 20 14:13:16 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.40.253 does not match local info 67.194.10.119 for cookie cosign-www.gradecraft.com=4R5WJOhCYSJ7vXw2ptT7FtnGSI5J2CH1OToc7VLzM7XnU93MfEGs90HtFYllRiSEq6qum6WwpViiyEzQB9kKU7qfRzA7g0v2kjn7urSLtTLgsktM9+bOms5wfrVs
+[Tue Nov 20 14:23:21 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.28.66 does not match local info 67.194.209.10 for cookie cosign-www.gradecraft.com=09reWapuAuMJMRodQ21HEAPlpKc++2D3Ng3uhZHGPaftoTjzINNaF3uLjKepXv0bd1Aw+jo4Ia9I2tW5TlALg00KzXWOg+HlHQncL+skX79+NECWh4WnET1V4M5J
+[Tue Nov 20 14:55:00 2012] [error] mod_cosign: cosign_cookie_valid: network info 24.11.171.92 does not match local info 67.194.126.247 for cookie cosign-www.gradecraft.com=yKI4KJKrMfm9XruShB6oPjmaEnIHzHvdnmjsMHZvfVJW8jVO+DYAmAkn2sf6JI8fQh9WEYVYYiZdys4aOx2QIjE94x+ffuF4HiNVjgdKvZPU7+R1H2xSosCUXOmr

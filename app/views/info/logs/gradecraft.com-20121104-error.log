@@ -1,0 +1,9 @@
+[Sun Nov 04 01:45:30 2012] [error] [client 184.73.64.23] request failed: error reading the headers
+[Sun Nov 04 06:25:14 2012] [warn] RSA server certificate CommonName (CN) `www.gradecraft.com' does NOT match server name!?
+[Sun Nov 04 12:37:58 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Nov 04 17:06:53 2012] [error] mod_cosign: cosign_cookie_valid: network info 35.0.101.153 does not match local info 35.0.86.120 for cookie cosign-www.gradecraft.com=EW6qGuu-6thZ2lxZRmiSEIbC4Cdm3kC5kSE4ihvHMi7TRwMrrkrQ2Jmluudps+kghqe9+HB0AQ6LlQkD4bEDpf-2m7UN3J9y36wwiVdS5+R06odmyMAYSrDbmDDx
+[Sun Nov 04 19:03:49 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.90.88 does not match local info 141.213.154.112 for cookie cosign-www.gradecraft.com=YK4yKSLIFU1u+kyrFqg7BbMoYYEMwlUNPu0+aCq-k0TY40VRUUjlzJCRWy88jF-ECpotH7WnparOQJGByYWaCR6kssV+G2+heykqT3Dv9hXSM0yfDM+QGY7kD7b3
+[Sun Nov 04 23:22:55 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Sun Nov 04 23:23:03 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Sun Nov 04 23:23:16 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Sun Nov 04 23:45:37 2012] [error] mod_cosign: cosign_cookie_valid: network info 24.11.192.125 does not match local info 98.250.54.230 for cookie cosign-www.gradecraft.com=Wf6y59wsaC-025zgKQhtqBNTAMaIWl0C-X4TilI15Wldb4y5I+KAUpAwa-IKDzygCFw+u5gBZAg0gr3M3jymU3RYPTFOQj83r50f+cHA6GKFl1cPLTbAdQjTt50u

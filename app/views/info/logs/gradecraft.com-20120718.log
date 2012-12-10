@@ -1,0 +1,4 @@
+207.46.192.45 - - [18/Jul/2012:08:02:42 -0400] "GET /robots.txt HTTP/1.1" 200 520 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+207.46.192.45 - - [18/Jul/2012:08:03:38 -0400] "GET / HTTP/1.1" 500 635 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+207.46.192.45 - - [18/Jul/2012:08:05:10 -0400] "GET / HTTP/1.0" 500 833 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+207.46.192.45 - - [18/Jul/2012:09:05:15 -0400] "GET / HTTP/1.0" 500 833 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"

@@ -1,0 +1,40 @@
+[Mon Oct 01 02:13:33 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 02:13:39 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 10:43:04 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:12:26 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:12:46 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:35:22 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:35:27 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:36:40 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:37:27 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:38:56 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:41:17 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:41:26 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:41:48 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:42:52 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 11:51:18 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 12:33:18 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Mon Oct 01 12:33:49 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Mon Oct 01 12:34:28 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Mon Oct 01 12:34:49 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Mon Oct 01 12:53:47 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Mon Oct 01 13:08:09 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 14:22:01 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.38.5 does not match local info 67.194.22.39 for cookie cosign-www.gradecraft.com=dod6ju+yM2O-wJ+cKFsHhlHX2HxPq-xmOghnKgEwb-4+ZSbkyhwoZHcv7d1WgorjNDnWCsOoZ3aZIY2MTsI74+A90CsdNJQLGfooy0+caD7OjK2Hi4DlwQvmsxV+
+[Mon Oct 01 14:32:54 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.210.52 does not match local info 67.194.15.114 for cookie cosign-www.gradecraft.com=nsY-K8-r6lLZBMT543YTkDux5qlk1qKOmcPETjLpF+vC+x4-ZXgQcJNkUjsLzHHMnSV9TrKwy7IdRrZm+GesazajK68a0Ms9T4u45wePTDVJwdH6WdaovWVyuuas
+[Mon Oct 01 15:35:16 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.47.87 does not match local info 67.194.13.110 for cookie cosign-www.gradecraft.com=LSLfQobi+4CYnMQPm98ppXVtPuu16iYXiHBvc3PPyaUg2YZzHZn23cQvTe60zJvIOORayrNr-5F-R63uZn5iVnGZr3CXEUtdU0A8XVist4WO2hPAzk9u+Snhu4ds
+[Mon Oct 01 16:13:36 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 16:13:45 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 16:13:54 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 16:32:34 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com//badges/wharton/image01.png
+[Mon Oct 01 16:37:46 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.210.83 does not match local info 67.194.4.57 for cookie cosign-www.gradecraft.com=qL2UkXm-3bhMdEPLOaNeuay76vy81Na1QBN68B2BqPGLOjEXrkB-9axOc75-j1X11Vx0Co4q8N22tdPfC8lrqHOq7-f9HWy85MQpvaTjwqylBGwlwZzEo-5SfhZb
+[Mon Oct 01 17:00:14 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 17:03:14 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.210.183 does not match local info 67.194.8.38 for cookie cosign-www.gradecraft.com=3OEFSJHU8YLRcFzocK9Fsn20wMuox+7-aB8s5DZAM0rqRv-2CoFoRnwYEXBmd2P7S8RZoY+kJgp7d5T1YsY6aYrt0m349r83k2I3lFyg8O-Vx0kZbvYCfZnHwLvW
+[Mon Oct 01 17:27:12 2012] [error] mod_cosign: cosign_cookie_valid: network info 98.224.219.216 does not match local info 67.194.113.79 for cookie cosign-www.gradecraft.com=THrx9HMvaKK+2mZQjMvDBL-rksjSaoNP6HQuEjTo2sYvoow7fXsNh+TUAVcPTBby95Dz+l-PPnxh5eAp1alovlJ3bBjSOaP6C8o+sfoUaAFZ7oirXrQDDekm5Ta9
+[Mon Oct 01 17:59:05 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.179.15 does not match local info 67.194.12.128 for cookie cosign-www.gradecraft.com=yPekySD8Y80tyOuLGKztZAbvUfBVRa9XgBvcckM7G9-hE1Q4YdbCZX3bkIN-swYtjDfFvskogf-pABv+WBD8o24EL459NSNAAKUymL8hq-GxP8WDxtYaDAWIB6ev
+[Mon Oct 01 19:13:37 2012] [error] [client 50.19.139.1] request failed: error reading the headers
+[Mon Oct 01 19:50:56 2012] [error] mod_cosign: cosign_cookie_valid: network info 64.134.165.95 does not match local info 67.194.3.76 for cookie cosign-www.gradecraft.com=5hSSM791XoChxfSge9UKhW23D1IHXifyjrZG9uXkSIqvOon0lsSF9iu4syfmMnX0dI6ox2WkIaJjTkNSZiITQCIzRShWbGiqVR6vkwocouTAyY5kCtwov9T8DChh
+[Mon Oct 01 20:01:10 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 20:55:50 2012] [error] mod_cosign: cosign_cookie_valid: network info 24.11.171.92 does not match local info 67.194.89.25 for cookie cosign-www.gradecraft.com=Exuf1FdYpEJqrj-ayn7gpzlbkhDcG2zyVIw1QaOuC2EEA6Agmc+QVxzkDbgZWlOTGz3QdR29QQwlHLjpliiLDy+CnHzZ6lri05TA8bUsBLzqUSckgLDcyKg2zkoO
+[Mon Oct 01 21:32:32 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 21:32:57 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Mon Oct 01 21:33:57 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/

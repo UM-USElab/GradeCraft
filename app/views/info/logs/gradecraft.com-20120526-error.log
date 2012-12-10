@@ -1,0 +1,14 @@
+[Sat May 26 12:39:43 2012] [error] [client 141.211.202.34] File does not exist: /data/gradecraft/public_html/favicon.ico
+[Sat May 26 12:39:43 2012] [error] [client 141.211.202.34] File does not exist: /data/gradecraft/public_html/favicon.ico
+[Sat May 26 12:44:56 2012] [error] [client 141.211.202.34] Directory index forbidden by Options directive: /data/gradecraft/public_html/Grade-Tracker/public/
+[Sat May 26 12:52:41 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 4937
+[Sat May 26 12:52:41 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 4939
+[Sat May 26 12:53:03 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 4944
+[Sat May 26 12:55:07 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 5021
+[Sat May 26 12:55:08 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 5022
+[Sat May 26 12:55:08 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 5023
+[Sat May 26 12:55:08 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 5024
+[Sat May 26 12:55:18 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 5026
+[Sat May 26 12:56:56 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 5036
+[Sat May 26 12:56:56 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 5037
+[Sat May 26 12:56:57 2012] [emerg] [client 141.211.202.34] (13)Permission denied: mod_fcgid: can't lock process table in pid 5038

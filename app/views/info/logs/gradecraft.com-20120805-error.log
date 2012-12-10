@@ -1,0 +1,22 @@
+[Sun Aug 05 12:19:10 2012] [error] Init: Private key not found
+[Sun Aug 05 12:19:10 2012] [error] SSL Library Error: 218710120 error:0D094068:asn1 encoding routines:d2i_ASN1_SET:bad tag
+[Sun Aug 05 12:19:10 2012] [error] SSL Library Error: 218529960 error:0D0680A8:asn1 encoding routines:ASN1_CHECK_TLEN:wrong tag
+[Sun Aug 05 12:19:10 2012] [error] SSL Library Error: 218595386 error:0D07803A:asn1 encoding routines:ASN1_ITEM_EX_D2I:nested asn1 error
+[Sun Aug 05 12:19:10 2012] [error] SSL Library Error: 218734605 error:0D09A00D:asn1 encoding routines:d2i_PrivateKey:ASN1 lib
+[Sun Aug 05 12:19:21 2012] [error] Init: Private key not found
+[Sun Aug 05 12:19:21 2012] [error] SSL Library Error: 218710120 error:0D094068:asn1 encoding routines:d2i_ASN1_SET:bad tag
+[Sun Aug 05 12:19:21 2012] [error] SSL Library Error: 218529960 error:0D0680A8:asn1 encoding routines:ASN1_CHECK_TLEN:wrong tag
+[Sun Aug 05 12:19:21 2012] [error] SSL Library Error: 218595386 error:0D07803A:asn1 encoding routines:ASN1_ITEM_EX_D2I:nested asn1 error
+[Sun Aug 05 12:19:21 2012] [error] SSL Library Error: 218734605 error:0D09A00D:asn1 encoding routines:d2i_PrivateKey:ASN1 lib
+[Sun Aug 05 12:19:25 2012] [error] Init: Private key not found
+[Sun Aug 05 12:19:25 2012] [error] SSL Library Error: 218710120 error:0D094068:asn1 encoding routines:d2i_ASN1_SET:bad tag
+[Sun Aug 05 12:19:25 2012] [error] SSL Library Error: 218529960 error:0D0680A8:asn1 encoding routines:ASN1_CHECK_TLEN:wrong tag
+[Sun Aug 05 12:19:25 2012] [error] SSL Library Error: 218595386 error:0D07803A:asn1 encoding routines:ASN1_ITEM_EX_D2I:nested asn1 error
+[Sun Aug 05 12:19:25 2012] [error] SSL Library Error: 218734605 error:0D09A00D:asn1 encoding routines:d2i_PrivateKey:ASN1 lib
+[Sun Aug 05 12:20:17 2012] [error] Init: Private key not found
+[Sun Aug 05 12:20:17 2012] [error] SSL Library Error: 218710120 error:0D094068:asn1 encoding routines:d2i_ASN1_SET:bad tag
+[Sun Aug 05 12:20:17 2012] [error] SSL Library Error: 218529960 error:0D0680A8:asn1 encoding routines:ASN1_CHECK_TLEN:wrong tag
+[Sun Aug 05 12:20:17 2012] [error] SSL Library Error: 218595386 error:0D07803A:asn1 encoding routines:ASN1_ITEM_EX_D2I:nested asn1 error
+[Sun Aug 05 12:20:17 2012] [error] SSL Library Error: 218734605 error:0D09A00D:asn1 encoding routines:d2i_PrivateKey:ASN1 lib
+[Sun Aug 05 12:21:08 2012] [warn] RSA server certificate CommonName (CN) `www.gradecraft.com' does NOT match server name!?
+[Sun Aug 05 12:21:08 2012] [warn] RSA server certificate CommonName (CN) `www.gradecraft.com' does NOT match server name!?

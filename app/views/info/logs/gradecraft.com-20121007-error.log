@@ -1,0 +1,6 @@
+[Sun Oct 07 06:25:08 2012] [warn] RSA server certificate CommonName (CN) `www.gradecraft.com' does NOT match server name!?
+[Sun Oct 07 13:20:32 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Oct 07 13:21:04 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Oct 07 17:41:41 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.177.71 does not match local info 67.194.248.54 for cookie cosign-www.gradecraft.com=tH-VGvXRqIfx+cgfUxLuzLHtGUvsQnBszJNKSkd-77kzMb95iGhc-uLZHTiBfnMrevbJSvS9iT3avtmF4SEvwiuxr94km0Hns8hDI2GQNBD2eAgURYnwdxjoLMHE
+[Sun Oct 07 20:13:10 2012] [error] mod_cosign: cosign_cookie_valid: network info 71.227.119.213 does not match local info 67.194.7.39 for cookie cosign-www.gradecraft.com=Gsbyw9hhwmV2FKdHxrc31ecuZedcqlW8bFIKzY8SkM8SN7nlpBmWcb0adtbIuriivDkNAXkIE+cysqwlPATNOn1+fQSWAG7K5y9eKkA9BIY1-7h+bHGQXGJJG7b1
+[Sun Oct 07 22:26:40 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.35.117 does not match local info 208.75.20.66 for cookie cosign-www.gradecraft.com=a0c3FRQWCP+wP6NLwJMKBgvbmZWM4aOZicwgKpTdD4FV-zaar9ymm7DIXEsTdmrnWDg3N5hgM-SJDGaSWZ4hA2kqSgzoW7Kh496rggRh5y3maLgi8jN5CSJvsLJB

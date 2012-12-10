@@ -1,0 +1,61 @@
+[Wed Nov 07 00:01:07 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.46.27 does not match local info 67.194.40.155 for cookie cosign-www.gradecraft.com=i4hoKupOWVtLngGbeZVOF53O0wGcTovQX1PeDYhflhRdDwgsr8MXd4kaggpX-Bu+6RGSdpeLGND7XNf4SKUzydJGH40Doy390KR5JKxZXSYvFMRYGzumjpS4pRtr
+[Wed Nov 07 01:23:26 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Nov 07 10:28:38 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Wed Nov 07 11:24:47 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Nov 07 11:33:22 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Nov 07 11:42:46 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.94.174 does not match local info 68.60.124.49 for cookie cosign-www.gradecraft.com=S7bPeGhNIujlDIBD93brJTLc7s9mWXA8bNepih+cVhlaG0h8Zhl6ankcvgemXS7OZAZLIQo4ZrRO+4y7CMIrdG2X7GjvawO4wdMEctZuPXPlClel24XV0MGBZKn8
+[Wed Nov 07 11:47:56 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Wed Nov 07 12:20:18 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.28.195 does not match local info 67.194.36.208 for cookie cosign-www.gradecraft.com=r3SrLRuxMrRdbBZr+6Vtkr5U3PNiQ+dkyXyKrueFKEc5ACwWZXLRL7kNgeDyc8roDmBLrx93d5I++810ZWqMxDq9aGeuAa91C4kWKW-MpS09k1EDZ08CYsDylIF1
+[Wed Nov 07 14:46:57 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.214.173 does not match local info 67.194.28.195 for cookie cosign-www.gradecraft.com=r3SrLRuxMrRdbBZr+6Vtkr5U3PNiQ+dkyXyKrueFKEc5ACwWZXLRL7kNgeDyc8roDmBLrx93d5I++810ZWqMxDq9aGeuAa91C4kWKW-MpS09k1EDZ08CYsDylIF1
+[Wed Nov 07 14:53:55 2012] [error] mod_cosign: cosign_cookie_valid: network info 141.213.154.112 does not match local info 67.194.80.220 for cookie cosign-www.gradecraft.com=69pwYx1-hUC3ALbWZnoatW5-djNvdy17p1q5Z2fwerZna541QjYm6NX0VcuG1ojWdz7NxlPAlK4Ynj6nWnJIS6J0ltEUMRD9rDStga97-WZsXztqnboAdPOT+Qas
+[Wed Nov 07 15:45:59 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.218.200 does not match local info 67.194.27.64 for cookie cosign-www.gradecraft.com=pan1BKb5pJUuQbkAXv2T5WZ2BjZWwuo4uZC36StrPVt89-mC5sAbZlmiVGs8nKrsZyHYuUKVzUN5jnToXzbZJ7o1sew6ViuFliJw+KyLl4+M4E30mOHFl+jRx3rm
+[Wed Nov 07 16:14:52 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.41.4 does not match local info 67.194.16.110 for cookie cosign-www.gradecraft.com=4C6xp2Dqe6FH1W2D7fPqdS5cqrpR5jE0aaO0vdVdCCGvfWp0Fp2pR9XN2AOPYaTl8VWEqs6c1C5uSCs+HVVZx9lVo3V3rqz6gk7F9kpWJIYCTx+8w-0-EI3FRrqq
+[Wed Nov 07 16:28:33 2012] [error] mod_cosign: cosign_cookie_valid: network info 141.213.154.112 does not match local info 67.194.68.90 for cookie cosign-www.gradecraft.com=o8tCecKtdzOl0D-EGcuijftlghEVtmKH-fWdo4QN+fv5gMKPvziV7es0G1hGVbkB+G47UqB4Oxk3TFJFdss2MceWvqEdFzl8v05Cgl-D4Gdaxy+Fq7+LYWijyl1U
+[Wed Nov 07 17:12:21 2012] [error] mod_cosign: cosign_cookie_valid: network info 24.11.171.92 does not match local info 67.194.93.58 for cookie cosign-www.gradecraft.com=dIrrEUOQ-QKYzAtczCGOMY+OTfhz8N5Y+JSG0Zgm4QJ8A2CvgTGxrW73ZaZtJ-aiBD-ucColzOyfwKVXDLFNpz1HPvBsOnJ18Qp2c7G8K+68CRHtWIt3w4Cv6OOS
+[Wed Nov 07 17:24:24 2012] [error] mod_cosign: cosign_cookie_valid: network info 70.91.224.42 does not match local info 141.213.154.112 for cookie cosign-www.gradecraft.com=o8tCecKtdzOl0D-EGcuijftlghEVtmKH-fWdo4QN+fv5gMKPvziV7es0G1hGVbkB+G47UqB4Oxk3TFJFdss2MceWvqEdFzl8v05Cgl-D4Gdaxy+Fq7+LYWijyl1U
+[Wed Nov 07 17:30:57 2012] [error] [client 207.72.6.2] Invalid URI in request GNUTELLA CONNECT/0.6
+[Wed Nov 07 17:30:57 2012] [error] [client 207.72.6.2] Invalid URI in request GNUTELLA CONNECT/0.4
+[Wed Nov 07 17:31:00 2012] [error] [client 207.72.6.2] Invalid URI in request some invalid request
+[Wed Nov 07 17:31:19 2012] [error] [client 207.72.6.2] Invalid URI in request GET admin/index.php HTTP/1.1
+[Wed Nov 07 17:31:27 2012] [error] [client 207.72.6.2] Invalid URI in request GET /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd HTTP/1.1
+[Wed Nov 07 17:31:31 2012] [error] [client 207.72.6.2] Client sent malformed Host header
+[Wed Nov 07 17:31:33 2012] [error] [client 207.72.6.2] Invalid URI in request GET /htdocs/../../../../../../../../../../../../../etc/passwd HTTP/1.1
+[Wed Nov 07 17:31:34 2012] [error] [client 207.72.6.2] Invalid URI in request GET ../../../../../../../etc/passwd HTTP/1.1
+[Wed Nov 07 17:31:43 2012] [error] [client 207.72.6.2] Invalid URI in request GET c:\\boot.ini HTTP/1.1
+[Wed Nov 07 17:31:44 2012] [error] [client 207.72.6.2] Invalid URI in request GET <script>document.cookie=%22testgqpb=9062;%22</script> HTTP/1.1
+[Wed Nov 07 17:31:44 2012] [error] [client 207.72.6.2] Invalid URI in request GET <meta%20http-equiv=Set-Cookie%20content=%22testgqpb=9062%22> HTTP/1.1
+[Wed Nov 07 17:31:58 2012] [error] [client 207.72.6.2] Invalid URI in request GET <script>cross_site_scripting.nasl</script> HTTP/1.1
+[Wed Nov 07 17:31:58 2012] [error] [client 207.72.6.2] Invalid URI in request GET <IMG%20SRC="javascript:alert(cross_site_scripting.nasl);"> HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET ..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\windows\\win.ini HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET ..\\..\\..\\..\\..\\..\\..\\..\\..\\..\\winnt\\win.ini HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/windows/win.ini HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/winnt/win.ini HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET %5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5c%2e%2e%5cwinnt%5cwin.ini HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET /././././././../../../../../windows/win.ini HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET /././././././../../../../../winnt/win.ini HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET .\\.\\.\\.\\.\\.\\.\\.\\.\\.\\/windows/win.ini HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET .\\.\\.\\.\\.\\.\\.\\.\\.\\.\\/winnt/win.ini HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET /../../../../../../../../../../../../etc/passwd HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET ../../../../../../../../../../../../etc/passwd HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET //../../../../../../../../../../../../etc/passwd HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd HTTP/1.1
+[Wed Nov 07 17:32:08 2012] [error] [client 207.72.6.2] Invalid URI in request GET /././././././../../../../../etc/passwd HTTP/1.1
+[Wed Nov 07 17:32:14 2012] [error] [client 207.72.6.2] Invalid URI in request GET ..\\..\\..\\..\\..\\..\\windows\\win.ini HTTP/1.1
+[Wed Nov 07 17:32:14 2012] [error] [client 207.72.6.2] Invalid URI in request GET ..\\..\\..\\..\\..\\..\\winnt\\win.ini HTTP/1.1
+[Wed Nov 07 17:32:16 2012] [error] [client 207.72.6.2] Invalid URI in request GET . HTTP/1.0
+[Wed Nov 07 17:32:16 2012] [error] [client 207.72.6.2] Invalid URI in request GET multihtml.pl?multi=/etc/passwd%00html HTTP/1.1
+[Wed Nov 07 17:34:28 2012] [error] [client 207.72.6.2] Invalid URI in request GET 1352327668:@141.211.184.200/ HTTP/1.1
+[Wed Nov 07 17:34:29 2012] [error] [client 207.72.6.2] Invalid URI in request GET 1352327669:@141.211.184.200/
+[Wed Nov 07 17:34:30 2012] [error] [client 207.72.6.2] request failed: error reading the headers
+[Wed Nov 07 17:34:30 2012] [error] [client 207.72.6.2] request failed: error reading the headers
+[Wed Nov 07 17:34:34 2012] [error] [client 207.72.6.2] Invalid URI in request GET /././.. HTTP/1.1
+[Wed Nov 07 17:34:34 2012] [error] [client 207.72.6.2] Invalid URI in request GET ././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././../../../../../../../../ HTTP/1.1
+[Wed Nov 07 17:34:37 2012] [error] [client 207.72.6.2] Invalid URI in request GET faq.php?skin=../../admin/manager&tplpath=admin HTTP/1.1
+[Wed Nov 07 19:06:43 2012] [error] mod_cosign: cosign_cookie_valid: network info 98.224.219.216 does not match local info 67.194.23.97 for cookie cosign-www.gradecraft.com=MLa0J3-kVVaHviBJ0hKWzuy5aIyKwQJlU7B3xtDZ2yyje-54kQ2CVAqXd1qNHCLH1dyiBjxUcb9rHJpPgiStp+wXTFPk4MVcgUMXf2ekhjHGH2JYGY+00TcesRdE
+[Wed Nov 07 19:28:11 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.18.244 does not match local info 67.194.31.50 for cookie cosign-www.gradecraft.com=IE2xXN1yewVkudxB+MYCXke1rChlgVQ7TjHFaVH68qPKFe8hf4XqeYqTwPM9ua7whpqPwCAs5Cr6nh+1Tc0Pcevbqy+tVI+DUu5h7yGqBmZJI0ieLuI6wntPaaJN
+[Wed Nov 07 20:26:00 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.24.189 does not match local info 67.194.27.18 for cookie cosign-www.gradecraft.com=ukuOOoWbGb7ED+NlfFvq5H8oFa5J2rM-0eEf2xK0KjUCHzpT3iuuN4ip40dM3085xTXUeQFV9VsKYV-od5uxrIo00k-PJCI-yaWMc5l8rEmsHO2haOA9-cHhRrk-
+[Wed Nov 07 21:05:40 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.97.13 does not match local info 67.194.81.92 for cookie cosign-www.gradecraft.com=NZcvRPrhvxXnvaGU4OnVSfz6GR7hav8gYMMmpBe1OCEB7F0Wh759YZVdOMJaBp7Bvq4xmh3KK-JhEZ-hU63wUjjnQg98w6h489+Bymcit5grkBefPK0rAPDzBXcw
+[Wed Nov 07 21:41:43 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.27.64 does not match local info 67.194.218.200 for cookie cosign-www.gradecraft.com=pan1BKb5pJUuQbkAXv2T5WZ2BjZWwuo4uZC36StrPVt89-mC5sAbZlmiVGs8nKrsZyHYuUKVzUN5jnToXzbZJ7o1sew6ViuFliJw+KyLl4+M4E30mOHFl+jRx3rm
+[Wed Nov 07 21:42:53 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.5.113 does not match local info 24.11.171.92 for cookie cosign-www.gradecraft.com=dIrrEUOQ-QKYzAtczCGOMY+OTfhz8N5Y+JSG0Zgm4QJ8A2CvgTGxrW73ZaZtJ-aiBD-ucColzOyfwKVXDLFNpz1HPvBsOnJ18Qp2c7G8K+68CRHtWIt3w4Cv6OOS
+[Wed Nov 07 22:59:40 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.65.113 does not match local info 141.213.154.112 for cookie cosign-www.gradecraft.com=69pwYx1-hUC3ALbWZnoatW5-djNvdy17p1q5Z2fwerZna541QjYm6NX0VcuG1ojWdz7NxlPAlK4Ynj6nWnJIS6J0ltEUMRD9rDStga97-WZsXztqnboAdPOT+Qas
+[Wed Nov 07 23:26:32 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/

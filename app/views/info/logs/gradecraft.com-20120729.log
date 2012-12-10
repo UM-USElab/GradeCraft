@@ -1,0 +1,6 @@
+65.52.110.145 - - [29/Jul/2012:03:44:52 -0400] "GET /robots.txt HTTP/1.1" 200 520 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+65.52.110.145 - - [29/Jul/2012:04:18:47 -0400] "GET / HTTP/1.1" 500 635 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+65.52.110.145 - - [29/Jul/2012:04:38:16 -0400] "GET / HTTP/1.0" 500 833 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+199.21.99.72 - - [29/Jul/2012:05:29:33 -0400] "GET /robots.txt HTTP/1.1" 200 520 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"
+65.52.110.145 - - [29/Jul/2012:05:39:34 -0400] "GET / HTTP/1.0" 500 833 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
+199.21.99.72 - - [29/Jul/2012:06:12:07 -0400] "GET / HTTP/1.1" 500 635 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"

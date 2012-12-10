@@ -1,0 +1,4 @@
+[Sat Oct 06 02:21:50 2012] [error] [client 204.236.252.190] request failed: error reading the headers
+[Sat Oct 06 10:54:24 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sat Oct 06 10:54:49 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sat Oct 06 17:39:50 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard

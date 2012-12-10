@@ -1,0 +1,3 @@
+195.72.159.1 - - [22/Jul/2012:07:47:19 -0400] "GET / HTTP/1.1" 500 833 "-" "GoogleBot 1.0"
+199.21.99.72 - - [22/Jul/2012:15:45:04 -0400] "GET /robots.txt HTTP/1.1" 200 520 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"
+199.21.99.72 - - [22/Jul/2012:19:27:04 -0400] "GET / HTTP/1.1" 500 635 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"

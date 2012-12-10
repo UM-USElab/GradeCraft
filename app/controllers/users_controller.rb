@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_filter :'ensure_staff?', :only=>[:index,:destroy,:show, :edit, :new]
   before_filter :'ensure_admin?', :only=>[:all_users]
   
+  
   def import
     if request.post? && params[:file].present?
       infile = params[:file].read
@@ -67,7 +68,7 @@ class UsersController < ApplicationController
   def students
     @users = current_course.users
     @students = current_course.users.students
-    @teams = current_course.teams.all
+    @teams = current_course.teams.all 
     @sorted_students = @students.order('course_memberships.sortable_score DESC')
     user_search_options = {}
     user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
@@ -75,7 +76,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @users }
-      format.csv { send_data @students.to_csv }
+      format.csv { send_data User.csv_for_course(current_course) }
       format.xls { send_data @students.to_csv(col_sep: "\t") }
     end
   end
@@ -156,6 +157,7 @@ class UsersController < ApplicationController
     @user.save
     
     respond_with @user
+    expire_action :action => :index
   end
   
   def update

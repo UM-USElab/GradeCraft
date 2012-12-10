@@ -1,0 +1,6 @@
+199.21.99.72 - - [13/Jun/2012:08:18:55 -0400] "GET /robots.txt HTTP/1.1" 200 520 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"
+199.21.99.72 - - [13/Jun/2012:09:19:49 -0400] "GET / HTTP/1.1" 500 2648 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"
+66.249.67.52 - - [13/Jun/2012:11:17:52 -0400] "GET /robots.txt HTTP/1.1" 200 507 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+66.249.67.52 - - [13/Jun/2012:11:17:52 -0400] "GET / HTTP/1.1" 500 2648 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+66.249.67.52 - - [13/Jun/2012:17:53:09 -0400] "GET / HTTP/1.1" 500 2648 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+66.249.67.52 - - [13/Jun/2012:23:44:36 -0400] "GET / HTTP/1.1" 500 2648 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"

@@ -1,0 +1,21 @@
+[Sun Aug 26 06:25:07 2012] [warn] RSA server certificate CommonName (CN) `www.gradecraft.com' does NOT match server name!?
+[Sun Aug 26 14:19:22 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 14:35:14 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 14:35:32 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 14:35:34 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/logout
+[Sun Aug 26 14:35:41 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 15:46:18 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 16:56:25 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 17:29:43 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 17:32:54 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 17:33:33 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 17:34:05 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 17:39:57 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 18:05:09 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 18:05:32 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 18:20:23 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard
+[Sun Aug 26 18:22:42 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 18:37:42 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 18:43:22 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 18:57:29 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Aug 26 18:59:38 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/

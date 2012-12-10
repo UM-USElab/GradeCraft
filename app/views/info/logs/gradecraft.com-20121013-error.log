@@ -1,0 +1,11 @@
+[Sat Oct 13 09:41:24 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sat Oct 13 10:17:50 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sat Oct 13 11:49:32 2012] [error] mod_cosign: cosign_cookie_valid: network info 98.250.54.230 does not match local info 24.11.192.125 for cookie cosign-www.gradecraft.com=C42rzxpMGN1NkYJCM6tA1lQ0ul7qmZp7jJLavcybuXXoVTYfL2yZyN2pJJhBnPxu7w35yQ5AN+ZrPWPLsubgnL2xKcOcnCrcdt4r+TRALTu2PoA9KfrddbKERTfx
+[Sat Oct 13 12:43:42 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sat Oct 13 16:28:52 2012] [error] [client 50.16.123.69] request failed: error reading the headers
+[Sat Oct 13 19:55:44 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sat Oct 13 20:28:35 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sat Oct 13 20:29:44 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sat Oct 13 20:35:28 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sat Oct 13 20:58:58 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sat Oct 13 22:24:29 2012] [error] [client 23.22.28.12] request failed: error reading the headers

@@ -1,0 +1,8 @@
+[Sun Sep 30 01:22:36 2012] [error] [client 204.236.255.23] request failed: error reading the headers
+[Sun Sep 30 06:25:08 2012] [warn] RSA server certificate CommonName (CN) `www.gradecraft.com' does NOT match server name!?
+[Sun Sep 30 11:51:06 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Sep 30 11:51:12 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Sep 30 16:07:42 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Sep 30 17:18:08 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Sep 30 17:18:26 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
+[Sun Sep 30 23:43:42 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/dashboard

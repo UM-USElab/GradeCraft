@@ -2,8 +2,8 @@
   %div.span2= render 'layouts/admin_subnav'
 
 %div.span8
-  %h3 #{@earnable.try(:name)}'s Badges
-  %table.table.table-bordered
+  %h3 Awarded Badges
+  %table.table.table-bordered.table-condensed
     %thead
       %tr   
         - if current_course.assignment_badges?  
@@ -32,5 +32,5 @@
           %td= link_to 'View', user_earned_badge_path(@earnable, earned_badge), :class => 'btn btn-mini'
           %td= link_to 'Edit', edit_user_earned_badge_path(@earnable, earned_badge), :class => 'btn btn-mini'
           %td= link_to 'Delete', user_earned_badge_path(@earnable, earned_badge), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-  %div.span12
-    = link_to "Award a Badge", new_user_earned_badge_path(@earnable), :class => "btn btn-primary"
+
+  = link_to "Award a Badge", new_earned_badge_path(@earnable), :class => "btn btn-primary"

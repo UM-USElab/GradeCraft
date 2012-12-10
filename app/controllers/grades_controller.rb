@@ -134,13 +134,12 @@ class GradesController < ApplicationController
   def mass_edit
     @assignment = Assignment.find(params[:assignment_id])
     @title = "Mass Grade #{@assignment.name}"
-    @grade = @assignment.assignment_grades.create(params[:grade])
     @assignment_type = @assignment.assignment_type    
     @score_levels = @assignment_type.score_levels
     user_search_options = {}
     user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
     @students = current_course.users.students.includes(:teams).where(user_search_options)
-    @grades = @students.map do |s|
+    @grades = @students.map do |s| 
       @assignment.assignment_grades.where(:gradeable_id => s.id, :gradeable_type => 'User').first || @assignment.assignment_grades.new(:gradeable => s, :assignment => @assignment)
     end
   end

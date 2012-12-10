@@ -5,7 +5,7 @@ class EarnedBadgesController < ApplicationController
 
   def index
     @title = "Awarded Badges"
-    @earned_badges = @earnable.earned_badges
+    @earned_badges = EarnedBadge.all
     respond_to do |format|
       format.html
       format.json { render json: @earned_badge }
@@ -111,8 +111,12 @@ class EarnedBadgesController < ApplicationController
   
     
   def find_earnable
-    klass = [User, Grade, Team, Group].detect { |c| params["#{c.name.underscore}_id"]}
-    @earnable = klass.find(params["#{klass.name.underscore}_id"])
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
   end
 
 end

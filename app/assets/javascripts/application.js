@@ -19,6 +19,7 @@
 //= require_tree .
 //= require jquery.dynatable
 //= require jquery-tablesorter
+//= require d3.v2
 
 $(document).ready(function(){
   $('#some-textarea').wysihtml5();

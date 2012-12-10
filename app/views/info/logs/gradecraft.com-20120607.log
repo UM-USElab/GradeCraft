@@ -1,0 +1,2 @@
+66.249.73.20 - - [07/Jun/2012:02:51:58 -0400] "GET / HTTP/1.1" 500 2648 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+50.87.26.233 - - [07/Jun/2012:20:03:28 -0400] "GET /myadmin/scripts/setup.php HTTP/1.1" 500 12208 "http://GRADECRAFT.COM/myadmin/scripts/setup.php" "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)"
