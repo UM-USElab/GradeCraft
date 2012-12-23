@@ -1,5 +1,5 @@
 user_names = ['Ron Weasley','Fred Weasley','Harry Potter','Hermione Granger','Colin Creevey','Seamus Finnigan','Hannah Abbott','Pansy Parkinson','Zacharias Smith','Blaise Zabini', 'Draco Malfoy', 'Dean Thomas', 'Millicent Bulstrode', 'Terry Boot', 'Ernie Macmillan']
-course_names = ['Maths','Defense Against','History','English','German','Art','Music','Biology','Chemistry','Theatre','French','Theory of Knowledge']
+course_names = ['Videogames & Learning','Intro to Political Science','Defense Against the Dark Arts','Physics']
 assignment_type_hashes = [
   { :name => 'Core', :predictor_display => 'Fixed' },
   { :name => 'Explorer', :predictor_display => 'Select List' },

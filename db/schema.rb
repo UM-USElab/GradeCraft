@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121021210039) do
+ActiveRecord::Schema.define(:version => 20121223164012) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20121021210039) do
     t.integer "course_id"
     t.integer "user_id"
     t.integer "sortable_score"
+    t.string  "shared_badges"
   end
 
   add_index "course_memberships", ["course_id", "user_id"], :name => "index_courses_users_on_course_id_and_user_id"
@@ -175,6 +176,7 @@ ActiveRecord::Schema.define(:version => 20121021210039) do
     t.boolean  "badges_value"
     t.integer  "max_group_size"
     t.integer  "min_group_size"
+    t.boolean  "shared_badges"
   end
 
   create_table "criteria", :force => true do |t|
@@ -207,6 +209,7 @@ ActiveRecord::Schema.define(:version => 20121021210039) do
     t.integer  "earnable_id"
     t.string   "earnable_type"
     t.text     "text_feedback"
+    t.boolean  "shared"
   end
 
   create_table "grade_scheme_elements", :force => true do |t|

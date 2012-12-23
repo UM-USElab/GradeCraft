@@ -15,6 +15,7 @@
     = f.input :badge_setting, :hint => "Do you want to use badges in your course?", :label => "Badges", :as => :radio_buttons
     = f.association :badge_sets, :collection => @badge_sets, :label => "Badge Set", :as => :check_boxes
     = f.input :badge_use_scope, :label => "How will badges be used?", :collection => [["Awarded for Assignments", "Assignment"],["Awarded outside of Assignments","Course"],["Awarded in Both","Both"]]
+    = f.input :shared_badges, :label => "Social Badges", :hint => "Will earned badges be visible between students?", :as => :radio_buttons
     = f.input :badges_value, :label => "Will badges have points attached to them?", :as => :radio_buttons
   
   %div.well

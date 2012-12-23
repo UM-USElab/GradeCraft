@@ -30,4 +30,8 @@ class Badge < ActiveRecord::Base
     EarnedBadge.where(:badge_id => id)
   end
   
+  def visible? 
+    visible == "1"
+  end 
+  
 end

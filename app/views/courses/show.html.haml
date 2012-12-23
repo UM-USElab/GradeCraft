@@ -45,6 +45,9 @@
       %b Badges will be awarded through...
       = @course.badge_use_scope
     %p
+      %b Social Badges:
+      = @course.shared_badges? ? 'Yes' : 'No'
+    %p
       %b Badges are valuable:
       = @course.badges_value? ? 'Yes' : 'No'
 

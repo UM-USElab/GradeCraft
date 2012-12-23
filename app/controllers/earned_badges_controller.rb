@@ -5,7 +5,7 @@ class EarnedBadgesController < ApplicationController
 
   def index
     @title = "Awarded Badges"
-    @earned_badges = EarnedBadge.all
+    @earned_badges = @earnable.earned_badges.all
     respond_to do |format|
       format.html
       format.json { render json: @earned_badge }
@@ -71,14 +71,13 @@ class EarnedBadgesController < ApplicationController
   end
   
   
-  def mass_edit
+  def mass_award
     @badges = Badge.all
-    @earned_badge = EarnedBadge.create(params[:earned_badge])
     user_search_options = {}
     user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
     @students = current_course.users.students.includes(:teams).where(user_search_options)
     @earned_badges = @students.map do |s|
-      EarnedBadge.where(:earnable_id => s.id, :gradeable_type => 'User').first || EarnedBadge.new(:earnable => s, :earnable_type => "User")
+      EarnedBadge.where(:earnable_id => s.id, :earnable_type => 'User').first || EarnedBadge.new(:earnable => s, :earnable_type => "User")
     end
   end
   
@@ -111,12 +110,8 @@ class EarnedBadgesController < ApplicationController
   
     
   def find_earnable
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
-      end
-    end
-    nil
+    klass = [User, Grade, Team, Group].detect { |c| params["#{c.name.underscore}_id"]}
+    @earnable = klass.find(params["#{klass.name.underscore}_id"])
   end
 
 end

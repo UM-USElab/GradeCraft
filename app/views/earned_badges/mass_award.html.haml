@@ -11,7 +11,7 @@
   
   #massAward  
     %ul.badges
-      = simple_form_for @badge, :html => {:class => 'form-horizontal' }, :url => mass_award_earned_badges_path(:badge_id => @badge.id) do |f|
+      = simple_form_for @badges, :html => {:class => 'form-horizontal' }, :url => mass_award_earned_badges_path(:badge_id => @badge.id) do |f|
         - @earned_badges.each_with_index do |eb,i|
           - "badge[earned_badges_attributes][#{i}][raw_score]".tap do |raw_score_field_name|
             - if earned_badge.persisted?
