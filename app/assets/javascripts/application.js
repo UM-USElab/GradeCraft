@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require jquery.ui.datepicker
 //= require bootstrap
 //= require bootstrap-wysihtml5

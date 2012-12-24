@@ -11,7 +11,6 @@ gem 'gravatar_image_tag'
 gem 'pacecar'
 gem 'will_paginate'
 gem 'simple_form'
-gem 'bootstrap-sass'
 gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'responders'
@@ -28,6 +27,7 @@ gem 'jquery-tablesorter'
 gem 'd3_rails'
 gem 'dalli'
 gem 'thin'
+gem 'twitter-bootstrap-rails'
 
 group :staging do
   gem 'pg'
@@ -36,10 +36,9 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem 'jquery-ui-rails'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
 end
 
 group :development do
