@@ -8,7 +8,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.ui.datepicker
-//= require twitter/bootstrap
+//= require bootstrap
 //= require bootstrap-wysihtml5
 //= require highcharts
 //= require flexslider 
@@ -19,7 +19,7 @@
 //= require_tree .
 //= require jquery.dynatable
 //= require jquery-tablesorter
-//= require d3.v2
+
 
 $(document).ready(function(){
   $('#some-textarea').wysihtml5();
