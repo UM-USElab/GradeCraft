@@ -53,6 +53,7 @@ module GradeCraft
     # Change the path that assets are served from
     config.assets.prefix = "/assets"
     
+    config.assets.precompile << /^((.*?)\/)?(?!_)[^\/]*$/
     config.assets.initialize_on_precompile = false
   end
 end

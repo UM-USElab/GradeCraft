@@ -11,9 +11,9 @@ gem 'gravatar_image_tag'
 gem 'pacecar'
 gem 'will_paginate'
 gem 'simple_form'
+gem 'bootstrap-sass'
 gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap-datepicker-rails'
-gem 'bootstrap-sass'
 gem 'responders'
 gem 'brakeman'
 gem 'activerecord-import'
@@ -27,6 +27,7 @@ gem 'client_side_validations-simple_form'
 gem 'jquery-tablesorter'
 gem 'd3_rails'
 gem 'dalli'
+gem 'thin'
 
 group :staging do
   gem 'pg'
@@ -44,7 +45,6 @@ end
 group :development do
   gem 'haml-rails'
   gem 'debugger'
-  gem 'thin'
 end
 
 group :test do
