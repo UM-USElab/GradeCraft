@@ -3,9 +3,9 @@ $(document).ready(function() {
 	var options = {
     chart: {
       type: 'bar',
-      height:180,
+      height:150,
       backgroundColor:null,
-      width:710
+      width:700
     },
     title: {
       style: {

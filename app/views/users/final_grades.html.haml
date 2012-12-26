@@ -1,12 +1,19 @@
-%table#users.display.table-bordered
-  %thead
-    %tr
-      %th Username
-      %th Current Score
-      %th Final Grade
-  %tbody
-    - current_course.users.each do |user|
+%div.span2
+  - if current_user.is_staff? 
+    = render 'layouts/admin_subnav'
+
+%div.span8
+  %table.table.display.table-bordered#sortableTable.tablesorter
+    %thead
       %tr
-        %td= user.username
-        %td= user.score
-        %td= user.final_grade
+        %th Username
+        %th Current Score
+        %th Final Grade
+    %tbody
+      - current_course.users.each do |user|
+        %tr
+          %td= user.username
+          %td
+            //= number_with_delimiter(user.earned_grades(current_course))
+          %td
+            //= current_course.grade_level(user)

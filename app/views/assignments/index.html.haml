@@ -2,6 +2,10 @@
   %div.span2= render 'layouts/admin_subnav'
 
 %div.span10
+  %div.span12
+    - if current_user.is_staff?
+      = link_to 'New Assignment', new_assignment_path, {:class => 'btn btn-primary'}
+
   %div.pull-right
     = link_to "Assignments Info", settings_assignments_path, :class => "badge"
   - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
@@ -46,7 +50,3 @@
               %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-mini'
             %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'
             %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete 
-  
-
-  - if current_user.is_staff?
-    = link_to 'New Assignment', new_assignment_path, {:class => 'btn btn-primary'}

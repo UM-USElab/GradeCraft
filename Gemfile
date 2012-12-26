@@ -28,6 +28,7 @@ gem 'd3_rails'
 gem 'dalli'
 gem 'thin'
 gem 'twitter-bootstrap-rails'
+gem "simple-navigation"
 
 group :staging do
   gem 'pg'

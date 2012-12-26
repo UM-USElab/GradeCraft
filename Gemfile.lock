@@ -225,6 +225,8 @@ GEM
     shoulda-matchers (1.4.2)
       activesupport (>= 3.0.0)
       bourne (~> 1.1.2)
+    simple-navigation (3.9.0)
+      activesupport (>= 2.3.2)
     simple_form (2.0.4)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -299,6 +301,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sendgrid
   shoulda-matchers
+  simple-navigation
   simple_form
   sorcery
   sqlite3

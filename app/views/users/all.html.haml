@@ -1,4 +1,6 @@
-%div.span2= render 'layouts/admin_subnav'
+%div.span3.well
+  - if current_user.is_staff? 
+    = render 'layouts/admin_subnav'
 
 %div.span8
   %table.table.display.table-bordered#sortableTable.tablesorter

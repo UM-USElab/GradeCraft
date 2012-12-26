@@ -1,7 +1,11 @@
-%div.span2= render 'layouts/admin_subnav'
+%div.span2
+  - if current_user.is_staff? 
+    = render 'layouts/admin_subnav'
 
 %div.span8
   %h3= "#{current_course.user_ref}s"
+  %div
+    = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"
   %div
     = form_tag students_users_path, :method => :get do
       = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
@@ -56,6 +60,3 @@
   = "Download:"
   = link_to "CSV", users_path(current_course, format: "csv") |
   = link_to "Excel", users_path(current_course, format: "xls")
-  
-  %div.span12
-    = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"

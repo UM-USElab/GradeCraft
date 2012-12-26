@@ -231,6 +231,10 @@ class UsersController < ApplicationController
     user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
     @students = current_course.users.students.includes(:teams).where(user_search_options).order('course_memberships.sortable_score DESC')
   end
+  
+  def final_grades
+    @course = current_course
+  end
 
   
   private

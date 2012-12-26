@@ -1,4 +1,6 @@
-%div.span2= render 'layouts/admin_subnav'
+%div.span2
+  - if current_user.is_staff?
+    = render 'layouts/admin_subnav'
 
 %div.span8
   %h3= "#{current_course.multiplier_ref} Choices"

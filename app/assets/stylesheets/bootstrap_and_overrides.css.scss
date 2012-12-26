@@ -1,8 +1,47 @@
 @import "bootstrap";
-body { padding-top: 100px; }
+body { padding-top: 50px; }
 @import "bootstrap-responsive";
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Trocchi', serif;
   
+}
+
+
+/* Course title in the top nav bar */ 
+.brand {
+  margin-top: 2px;
+  font-family: 'Trocchi', serif;
+  font-size: 18px !important;
+  color: #FFF !important;
+}
+
+.container-fluid {
+  margin-top: 10px;
+}
+
+.navbar-fixed-bottom {
+  height: 40px;
+}
+
+.hero-unit {
+  min-height: 350px;
+  margin-bottom: 0px;
+}
+
+.well {
+  margin-left: 0px;
+}
+
+/** Fixes the spacing between buttons in a button group */
+.btn-group a.btn {
+  margin: 0;
+}
+
+/** Fixes the spacing in the Remember Me button on the dropdown nav **/
+span.control-label {
+  float: left;
+  width: 118px;
+  letter-spacing: normal;
+  word-spacing: normal;
 }

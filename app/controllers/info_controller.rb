@@ -3,6 +3,9 @@ class InfoController < ApplicationController
   respond_to :html
 
   helper_method :sort_column, :sort_direction
+  
+  before_filter :require_login, :except => [:show, :using_gradecraft]
+
 
   def dashboard
     @title = "My Dashboard"

@@ -11,9 +11,9 @@
     = javascript_include_tag 'application'
     = yield(:head)
   %body
-    .navbar.navbar-fixed-top
+    .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
-        .container-fluid
+        .container
           %a.brand(href="/dashboard")
             - if current_course
               #{current_course.name}
@@ -21,7 +21,7 @@
               GradeCraft
           %div.pull-right
             - if current_user && current_course
-              %div{:class => 'btn-group pull-right inline-fix'}
+              %div{:class => 'btn-group pull-left'}
                 - if current_user.is_admin? 
                   = link_to "Course Dashboard",  dashboard_path, :class => "btn"
                 - else
@@ -38,23 +38,6 @@
                   = link_to "#{current_course.team_ref}s", teams_path, :class => "btn"
                 - if current_user.is_student?  
                   = link_to "Predictor",  predictor_users_path(:user_id => current_user.id), :class => "btn"
-            - if current_user.try(:is_staff?) && current_course
-              %div{:class => 'btn-group pull-right'}
-                %a{:class => 'btn btn-success dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
-                  Course
-                  %i.caret
-                %ul{:class => 'dropdown-menu well'}
-                  %li= link_to "Gradebook", gradebook_path
-                  %li= link_to "#{current_course.multiplier_ref} Choices", choices_users_path
-                  %li= link_to "New Assignment", new_assignment_path
-                  %li= link_to "Assignment Types", assignment_types_path
-                  %li= link_to "#{current_course.user_ref}s", students_users_path
-                  - if current_course.has_groups?    
-                    %li= link_to "Groups", groups_path
-                  - if current_course.has_teams?    
-                    %li= link_to "#{current_course.team_ref}s", teams_path
-                  %li= link_to "Staff", staff_users_path
-                  %li= link_to "Course Settings", edit_course_path(current_course)
             - if current_user
               %div{:class => 'btn-group pull-right'}
                 %a{:class => 'btn dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
@@ -66,30 +49,30 @@
             - else
               %div{:class => 'btn-group pull-right'}
                 %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
-                  Login
+                  Log in
                   %span{:class => 'caret'}
                 %ul{:class => 'dropdown dropdown-menu well'}
                   = simple_form_for User.new, :url => user_sessions_path do |f|
                     = f.input :email, :label => false
                     = f.input :password, :label => false
-                    %span.control-label= "Remember Me"
+                    %span.control-label.fadeopacity= "Remember Me"
                     = f.input :remember_me, :as => :boolean, :label => false
-                    = submit_tag "Login", :class => 'btn btn-primary'
-                    %br
-                    %br
-                    = link_to "Forgot your password?", login_path, :class => 'btn btn-info'
+                    <button type="submit" class="btn btn-info" action="login_path">Forgot your password?</button> 
+                    = submit_tag "Log in", :class => 'btn btn-primary'
 
     .container-fluid.container
-      .row-fluid
+      .row-fluid.span12
         = render 'layouts/content'
   
-      %footer#siteFooter
-        &copy; 2012 Regents of the University of Michigan &#124;
-        = link_to "Using Gradecraft", using_gradecraft_path
-        | 
-        = link_to "Site Credits", credits_path
+      %footer#siteFooter.span12
+        %hr      
+        .pull-right
+          &copy; 2012 Regents of the University of Michigan &#124;
+          = link_to "Using Gradecraft", using_gradecraft_path
+          | 
+          = link_to "Site Credits", credits_path
         
-    .navbar.navbar-fixed-bottom
+    .navbar.navbar-fixed-bottom.navbar-inverse
       .navbar-inner
         - if current_user.try(:is_admin?)
           %div{:class => 'btn-group pull-left'}

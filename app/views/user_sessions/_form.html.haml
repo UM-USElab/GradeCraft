@@ -1,7 +1,5 @@
-.well
-  %h3 Login
-  = simple_form_for @user, :url => user_sessions_path do |f|
-    = f.input :email
-    = f.input :password
-    = f.input :remember_me, :as => :boolean
-    = f.submit 'Log in', :class => 'btn btn-primary'
+= simple_form_for @user, :html => { :class => "form-horizontal"}, :url => user_sessions_path do |f|
+  = f.input :email
+  = f.input :password
+  = f.input :remember_me, :as => :boolean
+  = f.submit 'Log in', :class => 'btn btn-primary'

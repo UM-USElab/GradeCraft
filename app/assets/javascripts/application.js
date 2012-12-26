@@ -8,7 +8,6 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jquery.ui.datepicker
 //= require bootstrap
 //= require bootstrap-wysihtml5
 //= require highcharts
@@ -28,6 +27,14 @@ $(document).ready(function(){
 
   $('.modal').modal();
 */
+
+  $('#easyTab a').click(function (e) {
+    e.preventDefault();
+    $('#easyTab a[href="#basic"]').tab('show'); // Select tab by name
+    $('#easyTab a:first').tab('show'); // Select first tab
+    $('#easyTab a:last').tab('show'); // Select last tab
+    $('#easyTab li:eq(2) a').tab('show'); // Select third tab (0-indexed)
+  })
 
 	$("#sortableTable").tablesorter();
   

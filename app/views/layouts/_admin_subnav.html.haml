@@ -1,4 +1,8 @@
 %ul.nav.nav-list
+  %form.form-search.pull-right
+    %div.input-append
+      %input.search-query.span10
+      %button.btn{:type => "submit"}Go
   %li.nav-header Course Settings
   %li= link_to "Basic Settings", edit_course_path(current_course)
   %li= link_to "Grading Scheme", course_grade_schemes_path
@@ -8,6 +12,7 @@
   %li= link_to "Badge Sets", badge_sets_path
   %li= link_to "Badges", badges_path
   %li= link_to "Themes", themes_path
+  %li.divider
   %li.nav-header Users
   %li= link_to "Students", students_users_path
   - if current_course.student_weighted? 
@@ -16,7 +21,8 @@
   %li= link_to "Import Users", import_users_path
   - if current_user.is_admin?
     %li= link_to "All Users", all_users_path
+    %li.divider
     %li.nav-header Courses
     %li= link_to "Course Index", courses_path
     %li= link_to "New Course", new_course_path
-    
+      
