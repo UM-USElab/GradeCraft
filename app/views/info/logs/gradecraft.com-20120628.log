@@ -1,4 +1,0 @@
-141.213.173.171 - - [28/Jun/2012:00:57:33 -0400] "GET / HTTP/1.1" 500 635 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.56.5 (KHTML, like Gecko)"
-141.213.173.171 - - [28/Jun/2012:00:57:34 -0400] "GET /favicon.ico HTTP/1.1" 200 4584 "http://gradecraft.com/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.56.5 (KHTML, like Gecko)"
-141.213.173.171 - - [28/Jun/2012:00:57:36 -0400] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 500 635 "-" "Coda/2.0 CFNetwork/520.4.3 Darwin/11.4.0 (x86_64) (MacBookPro5%2C3)"
-141.213.173.171 - - [28/Jun/2012:00:57:36 -0400] "GET /apple-touch-icon.png HTTP/1.1" 500 635 "-" "Coda/2.0 CFNetwork/520.4.3 Darwin/11.4.0 (x86_64) (MacBookPro5%2C3)"

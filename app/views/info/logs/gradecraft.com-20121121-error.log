@@ -1,2 +1,0 @@
-[Wed Nov 21 17:14:10 2012] [error] mod_cosign: current hostname "www.gradecraft.com" does not match service URL hostname "gradecraft.com", cannot set cookie for correct domain.
-[Wed Nov 21 17:14:17 2012] [error] mod_cosign: current hostname "www.gradecraft.com" does not match service URL hostname "gradecraft.com", cannot set cookie for correct domain.

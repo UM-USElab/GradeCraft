@@ -1,3 +1,0 @@
-[Fri Nov 09 04:26:33 2012] [error] mod_cosign: cosign_cookie_valid: network info 98.224.229.137 does not match local info 67.194.178.141 for cookie cosign-www.gradecraft.com=C-XnAGwPuDhJkkj9KgX6P-UoWNLahFD-DA-WSO8MZ-zWagBqsMQ9LtB12Wt58zBZV5Z8OPhOvy-dY-4HczK8y2l1oJEIZxg7d8u09A-34IDxd0beRx45zFjIp9gV
-[Fri Nov 09 14:47:08 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/
-[Fri Nov 09 22:11:05 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/

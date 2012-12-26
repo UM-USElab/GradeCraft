@@ -1,3 +1,0 @@
-66.249.71.24 - - [19/Jun/2012:01:01:21 -0400] "GET / HTTP/1.1" 500 2721 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
-199.21.99.72 - - [19/Jun/2012:10:05:24 -0400] "GET /robots.txt HTTP/1.1" 200 520 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"
-199.21.99.72 - - [19/Jun/2012:10:41:46 -0400] "GET / HTTP/1.1" 500 2721 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"

@@ -1,4 +1,0 @@
-199.21.99.72 - - [01/Jul/2012:14:34:29 -0400] "GET /robots.txt HTTP/1.1" 200 520 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"
-199.21.99.72 - - [01/Jul/2012:17:29:20 -0400] "GET / HTTP/1.1" 500 635 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"
-123.125.71.84 - - [01/Jul/2012:18:33:53 -0400] "GET /robots.txt HTTP/1.1" 200 469 "-" "Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2"
-123.125.71.103 - - [01/Jul/2012:18:34:54 -0400] "GET / HTTP/1.1" 500 635 "-" "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)"

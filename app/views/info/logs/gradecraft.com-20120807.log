@@ -1,5 +1,0 @@
-67.214.123.97 - - [07/Aug/2012:08:05:30 -0400] "GET / HTTP/1.1" 500 4160 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.57 Safari/537.1"
-67.214.123.97 - - [07/Aug/2012:08:05:30 -0400] "GET /favicon.ico HTTP/1.1" 200 4886 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.57 Safari/537.1"
-23.20.137.131 - - [07/Aug/2012:10:11:53 -0400] "HEAD / HTTP/1.0" 500 3498 "-" "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Netcraft SSL Server Survey - contact info@netcraft.com)"
-107.20.72.14 - - [07/Aug/2012:18:42:41 -0400] "HEAD / HTTP/1.0" 500 3661 "-" "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Netcraft SSL Server Survey - contact info@netcraft.com)"
-91.227.77.14 - - [07/Aug/2012:22:47:20 -0400] "GET /admin/config.php HTTP/1.1" 404 4223 "-" "Python-urllib/2.6"

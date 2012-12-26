@@ -1,2 +1,0 @@
-199.21.99.72 - - [26/Jun/2012:13:22:45 -0400] "GET /robots.txt HTTP/1.1" 200 520 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"
-199.21.99.72 - - [26/Jun/2012:13:28:24 -0400] "GET / HTTP/1.1" 500 635 "-" "Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)"

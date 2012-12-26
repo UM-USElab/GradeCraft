@@ -57,7 +57,7 @@
                     = f.input :password, :label => false
                     %span.control-label.fadeopacity= "Remember Me"
                     = f.input :remember_me, :as => :boolean, :label => false
-                    <button type="submit" class="btn btn-info" action="login_path">Forgot your password?</button> 
+                    = button_to 'Forget your password?', new_user_session_path, :class => "btn btn-info"
                     = submit_tag "Log in", :class => 'btn btn-primary'
 
     .container-fluid.container

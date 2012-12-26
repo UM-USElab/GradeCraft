@@ -1,6 +1,0 @@
-38.99.82.218 - - [04/Jun/2012:11:47:31 -0400] "GET /robots.txt HTTP/1.0" 200 469 "-" "Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 6.0)"
-38.99.82.218 - - [04/Jun/2012:11:47:31 -0400] "GET / HTTP/1.0" 500 2648 "-" "Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 6.0)"
-38.99.82.205 - - [04/Jun/2012:13:13:25 -0400] "GET /robots.txt HTTP/1.0" 200 469 "-" "Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 6.0)"
-38.99.82.205 - - [04/Jun/2012:13:13:25 -0400] "GET / HTTP/1.0" 500 2648 "-" "Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 6.0)"
-38.99.82.205 - - [04/Jun/2012:16:44:20 -0400] "GET /robots.txt HTTP/1.0" 200 469 "-" "Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 6.0)"
-38.99.82.205 - - [04/Jun/2012:16:44:20 -0400] "GET / HTTP/1.0" 500 2648 "-" "Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 6.0)"

@@ -1,5 +1,0 @@
-[Thu Nov 15 09:51:24 2012] [error] [client 184.73.123.209] request failed: error reading the headers
-[Thu Nov 15 10:39:53 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.217.143 does not match local info 99.9.114.85 for cookie cosign-www.gradecraft.com=qZVqfJ5xB-paXqmaV+QFNBMcRTBtRPkcsBWChfo6uZiBP-YZaiIrf-VcFhpfKpQ7RvyiOMOYM5UPFr9qUyIz00Q8WZ3XRyaLVg4TOnmoOJdwuvfrPBa92bJX5CCm
-[Thu Nov 15 10:50:13 2012] [error] mod_cosign: cosign_cookie_valid: network info 67.194.1.48 does not match local info 67.194.214.36 for cookie cosign-www.gradecraft.com=Nf-CrjdyDLfhUBiAI100ndfEQCHV6fnTi1BQA9epwMAE4rfUVbHSGeX1rEBX7N7c8XxNGcnwLVKQ9gMbmg32zD2y3HlvwQhneU8ns2V78Uydw-7VEZgmFXh37Ib+
-[Thu Nov 15 10:51:07 2012] [error] [client 184.73.123.209] request failed: error reading the headers
-[Thu Nov 15 11:26:52 2012] [error] mod_cosign: cosign_cookie_valid: network info 64.134.170.131 does not match local info 67.194.45.133 for cookie cosign-www.gradecraft.com=dEI+RhzaR9Lhsr7kY3WpA-3He61cSX2c0FIjOAENGEZ5ikLSUCWWOvnHs9ywBB1AfZ90gMzUzEwoVjVGmIT15X4UqCeyoRoqqgITv1sjjwOy+zezetafLIV8LA3O

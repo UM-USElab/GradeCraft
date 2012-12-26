@@ -1,2 +1,0 @@
-65.52.110.147 - - [13/Jul/2012:00:44:18 -0400] "GET / HTTP/1.0" 500 833 "-" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)"
-123.125.71.78 - - [13/Jul/2012:05:34:11 -0400] "GET /robots.txt HTTP/1.1" 200 469 "-" "Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2"

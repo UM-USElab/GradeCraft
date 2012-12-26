@@ -1,6 +1,0 @@
-50.62.131.105 - - [08/Aug/2012:02:45:21 -0400] "GET /translators.html HTTP/1.1" 404 4223 "-" "Mozilla/4.0 (compatible; MSIE 6.0; MSIE 5.5; Windows NT 5.1) Opera 7.01 [en]"
-50.62.131.105 - - [08/Aug/2012:06:47:44 -0400] "GET /phpmyadmin/translators.html HTTP/1.1" 404 4223 "-" "Mozilla/4.0 (compatible; MSIE 6.0; MSIE 5.5; Windows NT 5.1) Opera 7.01 [en]"
-50.62.131.105 - - [08/Aug/2012:10:53:48 -0400] "GET /phpMyAdmin/translators.html HTTP/1.1" 404 4223 "-" "Mozilla/4.0 (compatible; MSIE 6.0; MSIE 5.5; Windows NT 5.1) Opera 7.01 [en]"
-50.62.131.105 - - [08/Aug/2012:14:55:58 -0400] "GET /admin/translators.html HTTP/1.1" 404 4223 "-" "Mozilla/4.0 (compatible; MSIE 6.0; MSIE 5.5; Windows NT 5.1) Opera 7.01 [en]"
-50.62.131.105 - - [08/Aug/2012:18:59:43 -0400] "GET /admin/phpmyadmin/translators.html HTTP/1.1" 404 4223 "-" "Mozilla/4.0 (compatible; MSIE 6.0; MSIE 5.5; Windows NT 5.1) Opera 7.01 [en]"
-50.62.131.105 - - [08/Aug/2012:23:05:41 -0400] "GET /admin/pma/translators.html HTTP/1.1" 404 4223 "-" "Mozilla/4.0 (compatible; MSIE 6.0; MSIE 5.5; Windows NT 5.1) Opera 7.01 [en]"

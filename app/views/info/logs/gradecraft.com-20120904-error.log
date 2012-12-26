@@ -1,2 +1,0 @@
-[Tue Sep 04 10:28:37 2012] [notice] mod_cosign: invalid destination: https://gradecraft.com/uploads/hi.txt
-[Tue Sep 04 11:16:29 2012] [error] mod_cosign: cosign_cookie_valid: network info 141.213.172.113 does not match local info 141.213.173.46 for cookie cosign-www.gradecraft.com=vwxKuO2D+ZqucQlqp645nRO7Vf+wPZlwzU37OTu+s5ZB8FOL+wvSd6+dMG19TBmHVIWq2skCNOFkByEIgKnecOMdK30xzeDeqQqXlhGGSBHhtKinwgjwZFeU8AXx
