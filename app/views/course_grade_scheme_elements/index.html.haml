@@ -1,28 +1,21 @@
-%div.span2= render 'layouts/admin_subnav'
+= link_to 'Create a New Course Grade Scheme Element', new_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme), :class => 'btn btn-info btn-small'
 
-%div.span8
-  %h3 Course Grading Scheme Elements
-  %table.display.table-bordered.table
-    %thead
+%table.display.table-bordered.table
+  %thead
+    %tr
+      %th Name
+      %th Low Range
+      %th High Range
+      %th Letter Grade
+      %th
+      %th
+      %th
+  %tbody
+    - @course_grade_scheme_elements.each do |element|
       %tr
-        %th Name
-        %th Low Range
-        %th High Range
-        %th Letter Grade
-        %th
-        %th
-        %th
-    %tbody
-      - @course_grade_scheme_elements.each do |element|
-        %tr
-          %td= element.name
-          %td= element.low_range
-          %td= element.high_range
-          %td= element.letter_grade
-          %td= link_to 'View', course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, element), :class => 'btn btn-mini'
-          %td= link_to 'Edit', edit_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, element), :class => 'btn btn-mini'
-          %td= link_to 'Delete', course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, element), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-  
-  %div.span12
-    = link_to 'Create a New Course Grade Scheme Element', new_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme), :class => 'btn btn-primary'
-  
+        %td= link_to element.name, element
+        %td= element.low_range
+        %td= element.high_range
+        %td= element.letter_grade
+        %td= link_to 'Edit', edit_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, element), :class => 'btn btn-mini'
+        %td= link_to 'Delete', course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, element), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

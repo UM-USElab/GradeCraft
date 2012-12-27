@@ -1,26 +1,20 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+= link_to "Add a Score Level", new_score_level_path, :class => "btn btn-info btn-small"
 
-%div.span8
-  %h3 Score Levels
-  %table.table.table-bordered
-    %thead
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Assignment Type
+      %th Name
+      %th Value
+      %th
+      %th
+      %th
+  %tbody
+    - @score_levels.each do |score_level|
       %tr
-        %th Assignment Type
-        %th Name
-        %th Value
-        %th
-        %th
-        %th
-    %tbody
-      - @score_levels.each do |score_level|
-        %tr
-          %td= score_level.assignment_type.try(:name)
-          %td= score_level.name
-          %td= score_level.value
-          %td= link_to 'View', score_level, :class => 'btn btn-mini'
-          %td= link_to 'Edit', edit_score_level_path(score_level), :class => 'btn btn-mini'
-          %td= link_to 'Delete', score_level, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-
-  = link_to "Add a Score Level", new_score_level_path, :class => "btn btn-primary"
-    
+        %td= score_level.assignment_type.try(:name)
+        %td= score_level.name
+        %td= score_level.value
+        %td= link_to 'View', score_level, :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_score_level_path(score_level), :class => 'btn btn-mini'
+        %td= link_to 'Delete', score_level, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

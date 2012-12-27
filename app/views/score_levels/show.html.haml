@@ -1,19 +1,13 @@
-%div.span2= render 'layouts/admin_subnav'
+= link_to 'Edit', edit_score_level_path(@score_level), :class => "btn btn-info btn-small"
+= link_to 'Back', score_levels_path, :class => "btn btn-info btn-small"
+= link_to 'Delete', score_level_path, :class => "btn btn-info btn-small", :data => { :confirm => 'Are you sure?' }, :method => :delete
 
-%div.span8
-  %h3 Score Level
-  
-  - if current_user.is_staff?
-    %table.table.table-bordered
-      %tr
-        %th Level Name
-        %th Assignment Type
-        %th Value
-      %tr
-        %td= @score_level.name
-        %td= @score_level.assignment_type.try(:name)
-        %td= @score_level.value
-
-  = link_to 'Edit', edit_score_level_path(@score_level), :class => "btn btn-primary"
-  = link_to 'Back', score_levels_path, :class => "btn btn-primary"
-  = link_to 'Delete', score_level_path, :class => 'btn btn-primary', :data => { :confirm => 'Are you sure?' }, :method => :delete
+%table.table.table-bordered
+  %tr
+    %th Level Name
+    %th Assignment Type
+    %th Value
+  %tr
+    %td= @score_level.name
+    %td= @score_level.assignment_type.try(:name)
+    %td= @score_level.value

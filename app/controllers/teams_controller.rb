@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
 
   def index
     @teams = current_course.teams.all
-
+    @title = "#{current_course.team_ref}s"
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @teams }
@@ -13,6 +13,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = current_course.teams.find(params[:id])
+    @title = "#{@team.name}"
     @users = @team.users
 
     respond_to do |format|
@@ -23,6 +24,7 @@ class TeamsController < ApplicationController
 
   def new
     @team =  Team.new
+    @title = "Create a New #{current_course.team_ref}"
     @courses = Course.all
     @users = current_course.users
 
@@ -31,6 +33,7 @@ class TeamsController < ApplicationController
 
   def edit
     @team =  current_course.teams.find(params[:id])
+    @title = "Editing #{@team.name}"
     @users = current_course.users
     @students = @users.students
   end

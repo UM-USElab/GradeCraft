@@ -1,35 +1,31 @@
-%div.span2= render 'layouts/admin_subnav'
+= link_to 'Edit', edit_grade_scheme_path(@grade_scheme), :class => 'btn btn-small btn-info'
+= link_to 'Back', grade_schemes_path, :class => 'btn btn-info btn-small'
 
-%div.span8
-  %p
-    %b Scheme Name:
-    = @grade_scheme.name
-    
-  %h3
-  Scheme Elements:
-  (#{link_to 'Add Element', new_grade_scheme_grade_scheme_element_path(@grade_scheme)})
+%p
+  %b Scheme Name:
+  = @grade_scheme.name
   
-  %table.display.table-bordered.table
-    %thead
-      %tr
-        %th Name
-        %th Low Range
-        %th High Range
-        %th Letter Grade
-        %th
-        %th
-        %th
-    %tbody
-      - @grade_scheme.grade_scheme_elements.each do |grade_scheme_element|
-        %tr
-          %td #{grade_scheme_element.name} 
-          %td #{number_with_delimiter(grade_scheme_element.low_range, :delimiter => ',') }
-          %td #{number_with_delimiter(grade_scheme_element.high_range, :delimiter => ',') }
-          %td #{grade_scheme_element.letter_grade} 
-          %td= link_to "View", grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id)
-          %td= link_to "Edit", edit_grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id)
-          %td= link_to "Delete", grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id), :data => { :confirm => 'Are you sure?' }, :method => :delete
-    
+%h3
+Scheme Elements:
+(#{link_to 'Add Element', new_grade_scheme_grade_scheme_element_path(@grade_scheme)})
 
-  = link_to 'Edit', edit_grade_scheme_path(@grade_scheme), :class => 'btn btn-primary'
-  = link_to 'Back', grade_schemes_path, :class => 'btn btn-primary'
+%table.display.table-bordered.table
+  %thead
+    %tr
+      %th Name
+      %th Low Range
+      %th High Range
+      %th Letter Grade
+      %th
+      %th
+      %th
+  %tbody
+    - @grade_scheme.grade_scheme_elements.each do |grade_scheme_element|
+      %tr
+        %td #{grade_scheme_element.name} 
+        %td #{number_with_delimiter(grade_scheme_element.low_range, :delimiter => ',') }
+        %td #{number_with_delimiter(grade_scheme_element.high_range, :delimiter => ',') }
+        %td #{grade_scheme_element.letter_grade} 
+        %td= link_to "View", grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id)
+        %td= link_to "Edit", edit_grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id)
+        %td= link_to "Delete", grade_scheme_grade_scheme_element_path(@grade_scheme.id, grade_scheme_element.id), :data => { :confirm => 'Are you sure?' }, :method => :delete

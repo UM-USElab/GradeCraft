@@ -1,12 +1,9 @@
-%div.span2= render 'layouts/admin_subnav'
+= link_to 'Edit', edit_theme_path(@theme), :class => "btn btn-info btn-small"
+= link_to 'Back', themes_path, :class => "btn btn-info btn-small"
 
-%div.span8
-  %p
-    %b Name:
-    = @theme.name
-  %p
-    %b Filename:
-    = @theme.filename
-
-  = link_to 'Edit', edit_theme_path(@theme), :class => 'btn btn-primary'
-  = link_to 'Back', themes_path, :class => 'btn btn-primary'
+%p
+  %b Name:
+  = @theme.name
+%p
+  %b Filename:
+  = @theme.filename

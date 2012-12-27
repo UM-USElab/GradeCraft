@@ -1,25 +1,22 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+= link_to "Back to My Dashboard", dashboard_path, :class => "btn btn-info btn-small"
 
-%div.span8
-  - if current_user.is_staff?
-    %h3= "#{@user.try(:name)}'s #{current_course.multiplier_term} Choices"
-  - else
-    %h3= "My #{current_course.multiplier_term} Choices"
-  %table.table.table-bordered
-    %tr
-      %th Assignment Type
-      %th Value
-      %th
-      - @assignment_types.each do |at|
-        - if at.student_choice? 
-          - @user.weights_for_assignment_type_id(at).tap do |weight|
-            %tr
-              %td= at.try(:name)
-              %td= "#{(weight.try(:value)) || ("No ") } #{current_course.multiplier_term}"
-              - if weight
-                %td= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, weight, :assignment_type_id => at.id), :class => 'btn btn-mini'
-              - else
-                %td= link_to 'Set', new_user_user_assignment_type_weight_path(@user, :assignment_type_id => at.id)
-        
-  = link_to "Back to My Dashboard", dashboard_path, {:class => 'btn btn-primary'}
+- if current_user.is_staff?
+  %h3= "#{@user.try(:name)}'s #{current_course.multiplier_term} Choices"
+- else
+  %h3= "My #{current_course.multiplier_term} Choices"
+%table.table.table-bordered
+  %tr
+    %th Assignment Type
+    %th Value
+    %th
+    - @assignment_types.each do |at|
+      - if at.student_choice? 
+        - @user.weights_for_assignment_type_id(at).tap do |weight|
+          %tr
+            %td= at.try(:name)
+            %td= "#{(weight.try(:value)) || ("No ") } #{current_course.multiplier_term}"
+            - if weight
+              %td= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, weight, :assignment_type_id => at.id), :class => 'btn btn-mini'
+            - else
+              %td= link_to 'Set', new_user_user_assignment_type_weight_path(@user, :assignment_type_id => at.id)
+      

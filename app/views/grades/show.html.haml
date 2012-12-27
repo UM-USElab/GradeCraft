@@ -1,41 +1,38 @@
-%div.span2= render 'layouts/admin_subnav'
+%div.span12
+  - if @grade.assignment.is_individual?
+    = link_to 'Edit', edit_assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id, :gradeable_id => @grade.gradeable_id, :gradeable_type => "User"), :class => 'btn btn-info btn-small'
+  - elsif @grade.assignment.has_teams?
+    = link_to 'Edit', edit_assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id, :gradeable_id => @grade.gradeable_id, :gradeable_type => "Team"), :class => 'btn btn-info btn-small'
+  - if @grade.assignment.has_groups?
+    = link_to 'Edit', edit_assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id, :gradeable_id => @grade.gradeable_id, :gradeable_type => "Group"), :class => 'btn btn-info btn-small'
+  = link_to 'Back', assignment_path(@grade.assignment_id), :class => 'btn btn-info btn-small'
+  = link_to "Grade Another " +@grade.assignment.name, new_assignment_grade_path("assignment_id"=>@grade.assignment.id), :class => 'btn btn-info btn-small'
+  
+%p
+  %b User:
+  = link_to @grade.gradeable.try(:name), "/#{@grade.gradeable_type.downcase}s/#{@grade.gradeable_id}"
+%p
+  %b Assignment:
+  = link_to @grade.assignment.name, assignment_path(@grade.assignment_id)
+%p
+  %b Raw Score:
+  = @grade.raw_score
+%p
+  %b Final Score:
+  = @grade.final_score
+%p
+  %b Feedback:
+  %br
+  = raw @grade.feedback
 
-%div.span8
-  %p
-    %b User:
-    = link_to @grade.gradeable.try(:name), "/#{@grade.gradeable_type.downcase}s/#{@grade.gradeable_id}"
-  %p
-    %b Assignment:
-    = link_to @grade.assignment.name, assignment_path(@grade.assignment_id)
-  %p
-    %b Raw Score:
-    = @grade.raw_score
-  %p
-    %b Final Score:
-    = @grade.final_score
-  %p
-    %b Feedback:
-    %br
-    = raw @grade.feedback
+%p
+  %b Badges:
+  - @grade.earned_badges.each do |badge|
+    %img{:src => badge.try(:icon), :alt => badge.name, :width => "50", :height => "50"}
+%p
+  %b Status:
+  = @grade.status
   
-  %p
-    %b Badges:
-    - @grade.earned_badges.each do |badge|
-      %img{:src => badge.try(:icon), :alt => badge.name, :width => "50", :height => "50"}
-  %p
-    %b Status:
-    = @grade.status
-    
-  %p
-    %b Submission:
-    = @grade.assignment_submission_id
-  
-  %div.span12
-    - if @grade.assignment.is_individual?
-      = link_to 'Edit', edit_assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id, :gradeable_id => @grade.gradeable_id, :gradeable_type => "User"), :class => 'btn btn-primary'
-    - elsif @grade.assignment.has_teams?
-      = link_to 'Edit', edit_assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id, :gradeable_id => @grade.gradeable_id, :gradeable_type => "Team"), :class => 'btn btn-primary'
-    - if @grade.assignment.has_groups?
-      = link_to 'Edit', edit_assignment_grade_path("assignment_id" => @assignment.id, "id" => @grade.id, :gradeable_id => @grade.gradeable_id, :gradeable_type => "Group"), :class => 'btn btn-primary'
-    = link_to 'Back', assignment_path(@grade.assignment_id), :class => 'btn btn-primary'
-    = link_to "Grade Another " +@grade.assignment.name, new_assignment_grade_path("assignment_id"=>@grade.assignment.id), :class => 'btn btn-primary'
+%p
+  %b Submission:
+  = @grade.assignment_submission_id

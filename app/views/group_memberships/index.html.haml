@@ -1,27 +1,19 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+= link_to 'New Group Member', new_group_membership_path, :class => "btn btn-info btn-small"
+  
+%table.table.display.table-bordered
+  %tr
+    %th Group
+    %th User
+    %th Accepted
+    %th
+    %th
+    %th
 
-%div.span8
-  %h3 Group Members
-  %table.table.display.table-bordered
+  - @group_memberships.each do |group_membership|
     %tr
-      %th Group
-      %th User
-      %th Accepted
-      %th
-      %th
-      %th
-  
-    - @group_memberships.each do |group_membership|
-      %tr
-        %td= group_membership.group_id
-        %td= group_membership.user_id
-        %td= group_membership.accepted
-        %td= link_to 'View', group_membership, :class => 'btn btn-mini'
-        %td= link_to 'Edit', edit_group_membership_path(group_membership), :class => 'btn btn-mini'
-        %td= link_to 'Delete', group_membership, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-  
-  %br
-  
-  %div.span12
-    = link_to 'New Group Member', new_group_membership_path
+      %td= group_membership.group_id
+      %td= group_membership.user_id
+      %td= group_membership.accepted
+      %td= link_to 'View', group_membership, :class => 'btn btn-mini'
+      %td= link_to 'Edit', edit_group_membership_path(group_membership), :class => 'btn btn-mini'
+      %td= link_to 'Delete', group_membership, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

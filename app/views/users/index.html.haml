@@ -1,54 +1,48 @@
-%div.span2
-  - if current_user.is_staff?
-    = render 'layouts/admin_subnav'
+%div
+  = form_tag users_path, :method => :get do
+    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+    = submit_tag 'Filter', :class => 'btn'
 
-%div.span8
-  %div
-    = form_tag users_path, :method => :get do
-      %br
-      %br
-      %br
-      = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
-      = submit_tag 'Filter', :class => 'btn'
-  
-  %table.table.display.table-bordered#sortableTable.tablesorter
-    %thead
+= link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-info btn-small"
+
+%table.table.display.table-bordered#sortableTable.tablesorter
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th Role
+      %th Team
+      %th Score
+      %th Logins
+      - if current_course.has_badges? 
+        %th Badges Earned
+      %th 
+      %th
+      %th
+      %th
+  %tbody
+    - @users.each do |user|
       %tr
-        %th Email
-        %th Name
-        %th Role
-        %th Team
-        %th Score
-        %th Logins
+        %td= link_to user.name, user_path(user)
+        %td= user.email
+        %td= user.role
+        %td 
+          - user.teams.each do |team|
+            = team.name
+        %td= user.earned_grades(current_course) if user.is_student?
+        %td= user.visit_count
         - if current_course.has_badges? 
-          %th Badges Earned
-        %th 
-        %th
-        %th
-        %th
-    %tbody
-      - @users.each do |user|
-        %tr
-          %td= user.email
-          %td= link_to user.name, user_path(user)
-          %td= user.role
-          %td 
-            - user.teams.each do |team|
-              = team.name
-          %td= user.earned_grades(current_course) if user.is_student?
-          %td= user.visit_count
-          - if current_course.has_badges? 
-            %td
-              - user.earned_badges.each do |badge|
-                %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
-          - if user.is_student?
-            %td= link_to 'Dashboard', user, :class => 'btn btn-mini'
-            %td= link_to 'Predictor', predictor_users_path(:user_id => user.id), :class => 'btn btn-mini'
-          - else
-            %td
-            %td
-          %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini'
-          %td= link_to 'Delete', user, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-  
-  %div.span12
-    = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"
+          %td
+            - user.earned_badges.each do |badge|
+              %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
+        - if user.is_student?
+          %td= link_to 'Dashboard', user, :class => 'btn btn-mini'
+          %td= link_to 'Predictor', predictor_users_path(:user_id => user.id), :class => 'btn btn-mini'
+        - else
+          %td
+          %td
+        %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini'
+        %td= link_to 'Delete', user, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+
+%div.span12
+  = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"

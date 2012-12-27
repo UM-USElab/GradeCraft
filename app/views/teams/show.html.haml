@@ -1,52 +1,48 @@
-%div.span2= render 'layouts/admin_subnav'
+= link_to 'Edit', edit_team_path(@team), :class => "btn btn-info btn-small"
+= link_to 'Back', teams_path, :class => "btn btn-info btn-small"
 
-%div.span8
-  %h3= @team.name
-  %p
-    %b Points: 
-    = @team.score
-  %p
-    %b Rank:
-  %p
-    %b Badges:
-    - @team.earned_badges.each do |badge|
-      %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
-      = @team.earned_badges.count
-  
-  - if current_user.is_staff?
-    %table.table.table-bordered
-      %tr
-        %th Email
-        %th Name
-        %th Role
-        %th Score
-        %th Logins
-        - if current_course.has_badges? 
-          %th Badges Earned
-        %th 
-        %th
-        %th
-        %th
-        - @users.each do |user|
-          %tr  
-            %td= user.email
-            %td= link_to user.name, user_path(user)
-            %td= user.role
+%p
+  %b Points: 
+  = @team.score
+%p
+  %b Rank:
+%p
+  %b Badges:
+  - @team.earned_badges.each do |badge|
+    %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
+    = @team.earned_badges.count
+
+- if current_user.is_staff?
+  %table.table.table-bordered
+    %tr
+      %th Email
+      %th Name
+      %th Role
+      %th Score
+      %th Logins
+      - if current_course.has_badges? 
+        %th Badges Earned
+      %th 
+      %th
+      %th
+      %th
+      - @users.each do |user|
+        %tr  
+          %td= user.email
+          %td= link_to user.name, user_path(user)
+          %td= user.role
+          %td
+            = user.earned_grades(current_course)
+          %td= user.visit_count
+          - if current_course.has_badges? 
             %td
-              = user.earned_grades(current_course)
-            %td= user.visit_count
-            - if current_course.has_badges? 
-              %td
-                - user.earned_badges.each do |badge|
-                  %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
-            - if user.is_student?
-              %td= link_to 'Dashboard', user, :class => 'btn btn-mini'
-              %td= link_to 'Predictor', predictor_users_path(:user_id => user.id), :class => 'btn btn-mini'
-            - else
-              %td
-              %td
-            %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini'
-            %td= link_to 'Delete', user, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-
-  = link_to 'Edit', edit_team_path(@team), :class => "btn btn-primary"
-  = link_to 'Back', teams_path, :class => "btn btn-primary"
+              - user.earned_badges.each do |badge|
+                %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
+          - if user.is_student?
+            %td= link_to 'Dashboard', user, :class => 'btn btn-mini'
+            %td= link_to 'Predictor', predictor_users_path(:user_id => user.id), :class => 'btn btn-mini'
+          - else
+            %td
+            %td
+          %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini'
+          %td= link_to 'Delete', user, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

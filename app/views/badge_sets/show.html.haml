@@ -1,32 +1,27 @@
-%div.span2= render 'layouts/admin_subnav'
+= link_to 'Edit', edit_badge_set_path(@badge_set), {:class => 'btn btn-info btn-small'}
+= link_to 'Back', badge_sets_path, {:class => 'btn btn-info btn-small'}
 
-%div.span8
-  %h3= @badge_set.name
-  
-  = link_to 'Add New Badge', new_badge_path, :class => "btn btn-mini btn-primary"
-  %p
-  %table.display.table-bordered.table
-    %thead
+= link_to 'Add New Badge', new_badge_path, :class => "btn btn-mini btn-primary"
+%p
+%table.display.table-bordered.table
+  %thead
+    %tr
+      %th Badge
+      %th Name
+      %th Value
+      %th Description
+      %th
+      %th
+      %th
+  %tbody
+    - @badge_set.badges.each do |badge|
       %tr
-        %th Badge
-        %th Name
-        %th Value
-        %th Description
-        %th
-        %th
-        %th
-    %tbody
-      - @badge_set.badges.each do |badge|
-        %tr
-          %td 
-            %img{:src => badge.icon, :alt => badge.name}
-          %td= badge.name
-          %td= badge.value
-          %td= raw badge.description
-          %td= link_to "View", badge_path(badge), :class => 'btn btn-mini'
-          %td= link_to "Edit", edit_badge_path(badge), :class => 'btn btn-mini'
-          %td= link_to "Delete", badge_path(badge), :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini', :method => :delete
+        %td 
+          %img{:src => badge.icon, :alt => badge.name}
+        %td= badge.name
+        %td= badge.value
+        %td= raw badge.description
+        %td= link_to "View", badge_path(badge), :class => 'btn btn-mini'
+        %td= link_to "Edit", edit_badge_path(badge), :class => 'btn btn-mini'
+        %td= link_to "Delete", badge_path(badge), :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini', :method => :delete
 
-  %div.span12
-    = link_to 'Edit', edit_badge_set_path(@badge_set), {:class => 'btn btn-primary'}
-    = link_to 'Back', badge_sets_path, {:class => 'btn btn-primary'}

@@ -1,9 +1,3 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+%h4= "You are awarding a badge to #{@earnable.name}"
+= render 'form'
 
-%div.span8
-  %h4= "You are awarding a badge to #{@earnable.name}"
-  = render 'form'
-  
-  %div.span12
-    = link_to 'Back', user_earned_badges_path(@earnable), :class => "btn btn-inverse"

@@ -1,71 +1,69 @@
-%div.span2
-  - if current_user.is_staff? 
-    = render 'layouts/admin_subnav'
+- if current_user.is_staff? 
+  = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-info btn-small"
 
-%div.span8
-  %h3= "#{current_course.user_ref}s"
-  %div
-    = form_tag students_users_path, :method => :get do
-      = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
-      = submit_tag 'Filter', :class => 'btn'
-  
-  %table.table.table-bordered#sortableTable.tablesorter
-    %thead
+%div
+  = form_tag students_users_path, :method => :get do
+    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+    = submit_tag 'Filter', :class => 'btn'
+- if current_user.is_staff? 
+  = "Download:"
+  = link_to "CSV", students_users_path(format: "csv") |
+  = link_to "Excel", students_users_path(format: "xls")
+%table.table.table-bordered#sortableTable.tablesorter
+  %thead
+    %tr
+      - if current_user.is_staff?
+        %th Rank
+      %th Name
+      - if current_user.is_staff?
+        %th Email
+      %th #{current_course.team_ref}
+      - if current_course.team_roles?
+        %th Role
+      - if current_user.is_staff?  
+        %th Score
+        %th Log ins
+        %th Page Views
+        %th Predictor Views
+      - if current_course.has_badges? 
+        %th Badges Earned
+      - if current_user.is_staff?  
+        %th
+        %th 
+        %th
+        %th
+  %tbody
+    - i = 1
+    - @sorted_students.each do |student|
       %tr
-        - if current_user.is_staff?
-          %th Rank
-          %th Email
-        %th Name
-        %th #{current_course.team_ref}
-        - if current_course.team_roles?
-          %th Role
         - if current_user.is_staff?  
-          %th Score
-          %th Log ins
-          %th Page Views
-          %th Predictor Views
-        - if current_course.has_badges? 
-          %th Badges Earned
-        - if current_user.is_staff?  
-          %th
-          %th 
-          %th
-          %th
-    %tbody
-      - i = 1
-      - @sorted_students.each do |student|
-        %tr
-          - if current_user.is_staff?  
-            %td= i
-            %td= student.email
-          %td
-            - if current_user.is_staff?
-              = link_to student.name, user_path(student)
-            - else
-              = student.name
+          %td= i
+          %td= link_to student.name, user_path(student)
+          %td= student.email
+        - else
+          %td = student.name
+        - if current_user.is_staff? 
           %td= student.teams.first.try(:name)
-          - if current_course.team_roles?
-            %td= student.try(:team_role)
-          - if current_user.is_staff?           
-            %td= student.earned_grades(current_course) if student.respond_to?(:earned_grades)
-            %td= student.visit_count
-            %td= student.page_views
-            %td= student.predictor_views
-          - if current_course.has_badges? 
-            %td
-              - student.earned_badges.each do |badge|
-                %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => "25"}
-          - if current_user.is_staff? 
-            %td= link_to 'Dashboard', student, {:class => 'btn btn-mini'}
-            %td= link_to 'Predictor', predictor_users_path(:user_id => student), {:class => 'btn btn-mini'}
-            %td= link_to 'Edit', edit_user_path(student), {:class => 'btn btn-mini'}
-            %td= link_to 'Delete', student, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-        - i += 1
-  - if current_user.is_staff? 
-    = "Download:"
-    = link_to "CSV", students_users_path(format: "csv") |
-    = link_to "Excel", students_users_path(format: "xls")
-  
-  %div.span12
-    - if current_user.is_staff? 
-      = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"
+        - if current_course.team_roles?
+          %td= student.try(:team_role)
+        - if current_user.is_staff?           
+          %td= student.earned_grades(current_course) if student.respond_to?(:earned_grades)
+          %td= student.visit_count
+          %td= student.page_views
+          %td= student.predictor_views
+        - if current_course.has_badges? 
+          %td
+            - student.earned_badges.each do |badge|
+              %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => "25"}
+        - if current_user.is_staff? 
+          %td= link_to 'Dashboard', student, {:class => 'btn btn-mini'}
+          %td= link_to 'Predictor', predictor_users_path(:user_id => student), {:class => 'btn btn-mini'}
+          %td= link_to 'Edit', edit_user_path(student), {:class => 'btn btn-mini'}
+          %td= link_to 'Delete', student, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+      - i += 1
+- if current_user.is_staff? 
+  = "Download:"
+  = link_to "CSV", students_users_path(format: "csv") |
+  = link_to "Excel", students_users_path(format: "xls")
+  %br
+  = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-info btn-small"

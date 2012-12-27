@@ -3,6 +3,7 @@ class AssignmentTypesController < ApplicationController
   before_filter :ensure_staff?
 
   def index
+    @title = "Assignment Types"
     @assignment_types = current_course.assignment_types
     respond_to do |format|
       format.html
@@ -12,6 +13,7 @@ class AssignmentTypesController < ApplicationController
 
   def show
     @assignment_type = current_course.assignment_types.find(params[:id])
+    @title = "View #{@assignment_type.name}"
     @score_levels = @assignment_type.score_levels
     respond_to do |format|
       format.html
@@ -20,6 +22,7 @@ class AssignmentTypesController < ApplicationController
   end
   
   def new
+    @title = "Create a New Assignment Type"
     @assignment_type = current_course.assignment_types.new
     @assignment_type.score_levels.build
     respond_with(@assignment_type)
@@ -27,6 +30,7 @@ class AssignmentTypesController < ApplicationController
 
   def edit
     @assignment_type = current_course.assignment_types.find(params[:id])
+    @title = "Edit #{@assignment_type.name}"
   end
 
   def create

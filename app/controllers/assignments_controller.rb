@@ -4,7 +4,7 @@ class AssignmentsController < ApplicationController
   before_filter :ensure_staff?
 
   def index
-    @title = "View All Assignments"
+    @title = "Assignments"
     @assignments = current_course.assignments
     @assignment_types = current_course.assignment_types
     @grade_schemes = current_course.grade_schemes.all
@@ -15,7 +15,7 @@ class AssignmentsController < ApplicationController
   end
   
    def settings
-    @title = "View All Assignments"
+    @title = "Assignments"
     @assignments = current_course.assignments
     @assignment_types = current_course.assignment_types
     @grade_schemes = current_course.grade_schemes.all

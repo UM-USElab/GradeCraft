@@ -58,6 +58,7 @@ class UsersController < ApplicationController
   end
   
   def all
+    @title = "View all Users"
     @users = User.all 
     respond_to do |format|
       format.html
@@ -66,6 +67,7 @@ class UsersController < ApplicationController
   end
   
   def students
+    @title = "#{current_course.user_ref} Roster"
     @users = current_course.users
     @students = current_course.users.students
     @teams = current_course.teams.all 
@@ -80,6 +82,12 @@ class UsersController < ApplicationController
       format.xls { send_data @students.to_csv(col_sep: "\t") }
     end
   end
+    
+  def staff
+    @title = "Staff"
+    @users = current_course.users
+  end
+  
   
   def analytics
     @users = current_course.users
@@ -136,7 +144,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @title = "Register"
+    @title = "Create a New User"
     @teams = current_course.teams.all
     @courses = Course.all
     @user = current_course.users.new(params[:users])
@@ -200,7 +208,7 @@ class UsersController < ApplicationController
     
   
   def import
-  
+    @title = "Import Users"
   end
   
   def upload 
@@ -224,6 +232,7 @@ class UsersController < ApplicationController
   end
   
   def choices
+    @title = "View all #{current_course.multiplier_term} Choices"
     @students = current_course.users.students
     @assignment_types = current_course.assignment_types
     @teams = current_course.teams.all
@@ -231,7 +240,7 @@ class UsersController < ApplicationController
     user_search_options['team_memberships.team_id'] = params[:team_id] if params[:team_id].present?
     @students = current_course.users.students.includes(:teams).where(user_search_options).order('course_memberships.sortable_score DESC')
   end
-  
+
   def final_grades
     @course = current_course
   end

@@ -1,40 +1,36 @@
-%div.span2= render 'layouts/admin_subnav'
-
-%div.span8
-  %h3= "#{@assignment.name} Submissions"
-  %table.table.table-bordered
+%table.table.table-bordered
+  %tr
+    - if @assignment.has_groups?
+      %th Group 
+    - elsif @assignment.has_teams? 
+      %th Team
+    - elsif @assignment.is_individual? 
+      %th #{current_course.user_ref}
+    %th Submitted
+    %th Link
+    %th Comment
+    %th Feedback
+    %th Score
+    %th
+    %th
+    %th
+  - @assignment_submissions.each do |assignment_submission|
     %tr
+      %td= link_to assignment_submission.submittable.try(:name), assignment_group_path(@assignment, assignment_submission.submittable)
+      %td= assignment_submission.updated_at
+      %td= link_to assignment_submission.link, assignment_submission.link
+      %td= raw assignment_submission.comment
+      %td= raw assignment_submission.feedback
+      %td= assignment_submission.grade.try(:unmultiplied_score)
       - if @assignment.has_groups?
-        %th Group 
+        %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "Group", :grade_id => assignment_submission.grade.try(:id)), :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
+        %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
       - elsif @assignment.has_teams? 
-        %th Team
+        %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "Team", :grade_id => assignment_submission.grade.try(:id)), :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "Team"), :class => 'btn btn-mini'
+        %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
       - elsif @assignment.is_individual? 
-        %th #{current_course.user_ref}
-      %th Submitted
-      %th Link
-      %th Comment
-      %th Feedback
-      %th Score
-      %th
-      %th
-      %th
-    - @assignment_submissions.each do |assignment_submission|
-      %tr
-        %td= link_to assignment_submission.submittable.try(:name), assignment_group_path(@assignment, assignment_submission.submittable)
-        %td= assignment_submission.updated_at
-        %td= link_to assignment_submission.link, assignment_submission.link
-        %td= raw assignment_submission.comment
-        %td= raw assignment_submission.feedback
-        %td= assignment_submission.grade.try(:unmultiplied_score)
-        - if @assignment.has_groups?
-          %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "Group", :grade_id => assignment_submission.grade.try(:id)), :class => 'btn btn-mini'
-          %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
-          %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-        - elsif @assignment.has_teams? 
-          %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "Team", :grade_id => assignment_submission.grade.try(:id)), :class => 'btn btn-mini'
-          %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "Team"), :class => 'btn btn-mini'
-          %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-        - elsif @assignment.is_individual? 
-          %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "User", :grade_id => assignment_submission.grade.try(:id)), :class => 'btn btn-mini'
-          %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
-          %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+        %td= link_to 'View', assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "User", :grade_id => assignment_submission.grade.try(:id)), :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_assignment_assignment_submission_path(@assignment, assignment_submission, :gradeable_id => assignment_submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
+        %td= link_to 'Delete', assignment_assignment_submission_path(@assignment, assignment_submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

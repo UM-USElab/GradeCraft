@@ -35,6 +35,7 @@ class AssignmentSubmissionsController < ApplicationController
 
   def new
     @assignment = Assignment.find(params[:assignment_id])
+    @title = "Submit #{@assignment.name}"
     @users = current_course.users
     @assignment_submission = @assignment.assignment_submissions.create(params[:assignment_submission])
     @assignment_submission.submittable = params[:submittable_type].constantize.find(params[:submittable_id])

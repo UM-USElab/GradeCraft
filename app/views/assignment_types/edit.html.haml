@@ -1,8 +1,5 @@
-%div.span2= render 'layouts/admin_subnav'
+= link_to 'View', @assignment_type, {:class => 'btn btn-info btn-small'}
+= link_to 'Back', assignment_types_path, {:class => 'btn btn-info btn-small'}
 
-%div.span8
-  %h3= "Edit #{@assignment_type.name}"
-  = render 'form'
+= render 'form'
 
-  = link_to 'View', @assignment_type, {:class => 'btn btn-primary'}
-  = link_to 'Back', assignment_types_path, {:class => 'btn btn-primary'}

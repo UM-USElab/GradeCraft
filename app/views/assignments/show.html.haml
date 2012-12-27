@@ -1,30 +1,24 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+= link_to 'Edit', edit_assignment_path(@assignment), :class => 'btn btn-info btn-small'
+= link_to 'Back', assignments_path, :class => 'btn btn-info btn-small'
 
-%div.span8
-  %h3= @assignment.name
-  %p
-    %b Description:
-    = raw @assignment.description
-  %p
-    %b Point Total:
-    = number_with_delimiter(@assignment.point_total, :delimiter => ',') 
-  %p
-    %b Open date:
-    = @assignment.open_date
-  %p
-    %b Close date:
-    = @assignment.due_date
-  
-  
-  - if @assignment.has_groups?
-    = render "assignments/groups"
-  - elsif @assignment.has_teams? 
-    = render "assignments/teams"
-  - elsif @assignment.is_individual? 
-    = render "assignments/individuals"
-  
-          
-  %div.span12
-    = link_to 'Edit', edit_assignment_path(@assignment), :class => 'btn btn-primary'
-    = link_to 'Back', assignments_path, :class => 'btn btn-primary'
+%p
+  %b Description:
+  = raw @assignment.description
+%p
+  %b Point Total:
+  = number_with_delimiter(@assignment.point_total, :delimiter => ',') 
+%p
+  %b Open date:
+  = @assignment.open_date
+%p
+  %b Close date:
+  = @assignment.due_date
+
+- if @assignment.has_groups?
+  = render "assignments/groups"
+- elsif @assignment.has_teams? 
+  = render "assignments/teams"
+- elsif @assignment.is_individual? 
+  = render "assignments/individuals"
+
+        

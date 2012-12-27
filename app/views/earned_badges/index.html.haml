@@ -1,36 +1,31 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+= link_to "Award a Badge", new_earned_badge_path(@earnable), :class => "btn btn-info btn-small"
 
-%div.span8
-  %h3 Awarded Badges
-  %table.table.table-bordered.table-condensed
-    %thead
-      %tr   
-        - if current_course.assignment_badges?  
-          %th Assignment
-        - if current_course.multi_badges? 
-          %th Assignment
-        %th Badge
-        %th Name
-        %th Feedback
-        %th Value
-        %th
-        %th
-    %tbody
-      - @earned_badges.each do |earned_badge|
-        %tr        
-          %td
-          - if current_course.assignment_badges? && earned_badge.earnable_type == "Assignment"
-            = earned_badge.earnable.try(:name)
-          - elsif current_course.multi_badges? && earned_badge.earnable_type == "Assignment"
-            = earned_badge.earnable.try(:name)
-          %td
-            %img{:src => earned_badge.badge.try(:icon), :alt => earned_badge.badge.try(:name), :width => "25", :height => "25"}
-          %td= earned_badge.name
-          %td= earned_badge.feedback
-          %td= earned_badge.value
-          %td= link_to 'View', user_earned_badge_path(@earnable, earned_badge), :class => 'btn btn-mini'
-          %td= link_to 'Edit', edit_user_earned_badge_path(@earnable, earned_badge), :class => 'btn btn-mini'
-          %td= link_to 'Delete', user_earned_badge_path(@earnable, earned_badge), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-
-  = link_to "Award a Badge", new_earned_badge_path(@earnable), :class => "btn btn-primary"
+%table.table.table-bordered.table-condensed
+  %thead
+    %tr   
+      - if current_course.assignment_badges?  
+        %th Assignment
+      - if current_course.multi_badges? 
+        %th Assignment
+      %th Badge
+      %th Name
+      %th Feedback
+      %th Value
+      %th
+      %th
+  %tbody
+    - @earned_badges.each do |earned_badge|
+      %tr        
+        %td
+        - if current_course.assignment_badges? && earned_badge.earnable_type == "Assignment"
+          = earned_badge.earnable.try(:name)
+        - elsif current_course.multi_badges? && earned_badge.earnable_type == "Assignment"
+          = earned_badge.earnable.try(:name)
+        %td
+          %img{:src => earned_badge.badge.try(:icon), :alt => earned_badge.badge.try(:name), :width => "25", :height => "25"}
+        %td= earned_badge.name
+        %td= earned_badge.feedback
+        %td= earned_badge.value
+        %td= link_to 'View', user_earned_badge_path(@earnable, earned_badge), :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_user_earned_badge_path(@earnable, earned_badge), :class => 'btn btn-mini'
+        %td= link_to 'Delete', user_earned_badge_path(@earnable, earned_badge), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

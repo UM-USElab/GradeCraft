@@ -1,4 +1,5 @@
-%p#notice= notice
+= link_to 'Edit', edit_criteria_level_path(@criteria_level), :class => "btn btn-info btn-small"
+= link_to 'Back', criteria_levels_path, :class => "btn btn-info btn-small"
 
 %p
   %b Name:
@@ -12,7 +13,3 @@
 %p
   %b Value:
   = @criteria_level.value
-
-= link_to 'Edit', edit_criteria_level_path(@criteria_level)
-\|
-= link_to 'Back', criteria_levels_path

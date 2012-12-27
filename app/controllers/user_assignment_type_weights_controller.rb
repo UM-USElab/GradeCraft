@@ -3,6 +3,7 @@ class UserAssignmentTypeWeightsController < ApplicationController
   before_filter :'ensure_staff?', :only=>[:index]
 
   def index
+    @title = "View all #{current_course.multiplier_term}"
     @user = User.find(params[:user_id])
     @user_assignment_type_weights = @user.user_assignment_type_weights.all
     @assignment_types = current_course.assignment_types

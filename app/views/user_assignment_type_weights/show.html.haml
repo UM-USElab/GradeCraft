@@ -1,18 +1,12 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
-
-%div.span8
-  %h3 #{current_course.multiplier_term} Choices
-  %p
-    %b User:
-    = @user_assignment_type_weight.user.try(:name)
-  %p
-    %b Assignment:
-    = @user_assignment_type_weight.assignment_type.try(:name)
-  %p
-    %b Multiplier Amount:
-    = @user_assignment_type_weight.value
+= link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, @user_assignment_type_weight), :class => "btn btn-info btn-small"
+= link_to 'Back', user_user_assignment_type_weights_path(@user), :class => "btn btn-info btn-small"
   
-  %div.span12
-    = link_to 'Edit', edit_user_user_assignment_type_weight_path(@user, @user_assignment_type_weight), :class => 'btn btn-primary'
-    = link_to 'Back', user_user_assignment_type_weights_path(@user), :class => 'btn btn-primary'
+%p
+  %b User:
+  = @user_assignment_type_weight.user.try(:name)
+%p
+  %b Assignment:
+  = @user_assignment_type_weight.assignment_type.try(:name)
+%p
+  %b Multiplier Amount:
+  = @user_assignment_type_weight.value

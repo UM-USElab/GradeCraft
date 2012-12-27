@@ -1,29 +1,23 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+= link_to 'New Group', new_assignment_group_path(@assignment), :class => "btn btn-info btn-small"
 
-%div.span8
-  %h3= "#{current_course.name} #{current_course.group_ref}s"
-  %table.table.display.table-bordered
-    %thead
+%table.table.display.table-bordered
+  %thead
+    %tr
+      %th Assignment
+      %th Group Name
+      %th Status
+      %th Grade
+      %th 
+      %th
+      %th
+  %tbody
+    - @groups.each do |group|
       %tr
-        %th Assignment
-        %th Group Name
-        %th Status
-        %th Grade
-        %th 
-        %th
-        %th
-    %tbody
-      - @groups.each do |group|
-        %tr
-          %td= link_to group.assignment.name, group.assignment
-          %td= link_to group.name, assignment_group_path(group.assignment, group)
-          %td= group.approved
-          %td
-          //%td= group.grade
-          %td= link_to 'See Group', assignment_group_path(group.assignment, group), :class => 'btn btn-mini'
-          %td= link_to 'Edit', edit_assignment_group_path(group.assignment, group), :class => 'btn btn-mini'
-          %td= link_to 'Delete', assignment_group_path(group.assignment, group), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-  
-  %div.span12
-    //= link_to 'New Group', new_assignment_group_path(@assignment), {:class => 'btn btn-primary'}
+        %td= link_to group.assignment.name, group.assignment
+        %td= link_to group.name, assignment_group_path(group.assignment, group)
+        %td= group.approved
+        %td
+        //%td= group.grade
+        %td= link_to 'See Group', assignment_group_path(group.assignment, group), :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_assignment_group_path(group.assignment, group), :class => 'btn btn-mini'
+        %td= link_to 'Delete', assignment_group_path(group.assignment, group), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

@@ -1,5 +1,9 @@
-%div.pull-right
-  = link_to "Assignments Index", assignments_path, :class => "badge"
+- if current_user.is_staff?
+  = link_to 'New Assignment', new_assignment_path, {:class => 'btn btn-info btn-small'}
+
+%div
+  %div.pull-right
+    = link_to "Assignments Info", settings_assignments_path, :class => "badge"
 - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
   %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
   %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})" 
@@ -21,11 +25,10 @@
       %th Release Necessary?
       %th
       %th
-      %th
     %tbody
       - assignments.each do |assignment|
         %tr
-          %td= assignment.name
+          %td= link_to assignment.name, assignment
           %td= raw assignment.description
           %td= assignment.try(:open_date)
           %td= assignment.try(:due_date)
@@ -39,7 +42,6 @@
           %td= assignment.grade_scheme_id
           %td= assignment.has_assignment_submissions? ? 'Yes' : 'No'
           %td= assignment.release_necessary? ? 'Yes' : 'No'
-          %td= link_to 'View', assignment, :class => 'btn btn-mini'
           %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'
           %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete 
           //%td
@@ -47,8 +49,3 @@
           //= link_to 'Create Group', new_group_path("assignment_id"=>assignment.id)
           //- else 
           //= #{assignment.grade_scope}
-
-
-%div.span12
-  - if current_user.is_staff?
-    = link_to 'New Assignment', new_assignment_path, {:class => 'btn btn-primary'}

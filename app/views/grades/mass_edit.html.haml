@@ -1,43 +1,40 @@
-%div.span2= render 'layouts/admin_subnav'
+%div.span12
+  = link_to 'Cancel', assignments_path, :class => 'btn btn-info btn-small'
+  
+.filters
+  = form_tag mass_edit_assignment_grades_path, :method => :get do
+    = hidden_field_tag :assignment_id, @assignment.id
+    %br
+    %br
+    %br
+    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+    = submit_tag 'Filter', :class => 'btn'
 
-%div.span8
-  .filters
-    = form_tag mass_edit_assignment_grades_path, :method => :get do
-      = hidden_field_tag :assignment_id, @assignment.id
-      %br
-      %br
-      %br
-      = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
-      = submit_tag 'Filter', :class => 'btn'
-  
-  %table#massGrade  
-    %ul.grades
-      = simple_form_for @assignment, :html => {:class => 'form-horizontal' }, :url => mass_update_assignment_grades_path(:assignment_id => @assignment.id) do |f|
-        %tr
-          - @grades.each_with_index do |grade,i|
-            - "assignment[grades_attributes][#{i}][raw_score]".tap do |raw_score_field_name|
-              - if grade.persisted?
-                = hidden_field_tag "assignment[grades_attributes][#{i}][id]", grade.id
-              - else
-                = hidden_field_tag "assignment[grades_attributes][#{i}][gradeable_id]", grade.gradeable.id
-                = hidden_field_tag "assignment[grades_attributes][#{i}][gradeable_type]", grade.gradeable.class.name        
-              = label_tag do
-                - if @assignment.grade_checkboxes?
-                  = hidden_field_tag raw_score_field_name, 0
-                  = check_box_tag raw_score_field_name, @assignment.point_total, grade
-                  = grade.gradeable.try(:name)
-                - elsif @assignment.grade_select?
-                  = grade.gradeable.try(:name)
-                  = select_tag raw_score_field_name, options_from_collection_for_select(@score_levels, "value", "name", grade.raw_score)
-                - elsif @assignment.grade_radio?
-                  %tr
-                    %td= grade.gradeable.try(:name)
-                    - @score_levels.each do |score_level|
-                      %td
-                        = label_tag "#{raw_score_field_name}_#{score_level.name}", score_level.name, :class => "radio_label"
-                        = radio_button_tag raw_score_field_name, score_level.value, @grade.raw_score == score_level.value, :class => "radio_button"
-      
-        %tr= f.button :submit
-  
-  %div.span12
-    = link_to 'Cancel', assignments_path, :class => 'btn btn-primary'
+%table#massGrade  
+  %ul.grades
+    = simple_form_for @assignment, :html => {:class => 'form-horizontal' }, :url => mass_update_assignment_grades_path(:assignment_id => @assignment.id) do |f|
+      %tr
+        - @grades.each_with_index do |grade,i|
+          - "assignment[grades_attributes][#{i}][raw_score]".tap do |raw_score_field_name|
+            - if grade.persisted?
+              = hidden_field_tag "assignment[grades_attributes][#{i}][id]", grade.id
+            - else
+              = hidden_field_tag "assignment[grades_attributes][#{i}][gradeable_id]", grade.gradeable.id
+              = hidden_field_tag "assignment[grades_attributes][#{i}][gradeable_type]", grade.gradeable.class.name        
+            = label_tag do
+              - if @assignment.grade_checkboxes?
+                = hidden_field_tag raw_score_field_name, 0
+                = check_box_tag raw_score_field_name, @assignment.point_total, grade
+                = grade.gradeable.try(:name)
+              - elsif @assignment.grade_select?
+                = grade.gradeable.try(:name)
+                = select_tag raw_score_field_name, options_from_collection_for_select(@score_levels, "value", "name", grade.raw_score)
+              - elsif @assignment.grade_radio?
+                %tr
+                  %td= grade.gradeable.try(:name)
+                  - @score_levels.each do |score_level|
+                    %td
+                      = label_tag "#{raw_score_field_name}_#{score_level.name}", score_level.name, :class => "radio_label"
+                      = radio_button_tag raw_score_field_name, score_level.value, @grade.raw_score == score_level.value, :class => "radio_button"
+    
+      %tr= f.button :submit

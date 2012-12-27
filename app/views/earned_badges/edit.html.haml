@@ -1,10 +1,4 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+= link_to 'View', "#{@earned_badge.earnable_type}_earned_badges_path", :class => "btn btn-info btn-small"
+= link_to 'Back', @earnable, :class => "btn btn-info btn-small"
 
-%div.span8
-  %h3= "Edit #{@earned_badge.earnable.name}'s Badge"
-  = render 'form'
-
-  %div.span12
-    = link_to 'View', "#{@earned_badge.earnable_type}_earned_badges_path", :class => "btn btn-inverse"
-    = link_to 'Back', @earnable, :class => "btn btn-inverse"
+= render 'form'

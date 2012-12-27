@@ -1,15 +1,9 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+= link_to 'Edit', [:edit, @earnable, :earned_badge], :class => "btn btn-info btn-small"
+= link_to 'Back', [@earnable], :class => "btn btn-info btn-small"
 
-%div.span8
-  %h3= "#{@earned_badge.earnable.name}'s Badge"
-  %p= raw @earned_badge.text_feedback
+%p= raw @earned_badge.text_feedback
   
-  %img{:src => @earned_badge.badge.try(:icon), :alt => @earned_badge.badge.try(:name), :width => "25", :height => "25"}
-  %p
-    %b= @earned_badge.name
-    = "(#{@earned_badge.value} points)"
-  
-  %div.span12
-    = link_to 'Edit', [:edit, @earnable, :earned_badge], :class => "btn btn-inverse"
-    = link_to 'Back', [@earnable], :class => "btn btn-inverse"
+%img{:src => @earned_badge.badge.try(:icon), :alt => @earned_badge.badge.try(:name), :width => "25", :height => "25"}
+%p
+  %b= @earned_badge.name
+  = "(#{@earned_badge.value} points)"

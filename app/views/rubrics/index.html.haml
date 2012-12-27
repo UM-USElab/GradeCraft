@@ -1,26 +1,19 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+= link_to 'New Rubric', new_assignment_rubric_path, :class => "btn btn-info btn-small"
 
-%div.span8
-  %h3 Rubrics
-  %table.table.display.table-bordered
+%table.table.display.table-bordered
+  %tr
+    %th Name
+    %th Assignment
+    %th Description
+    %th
+    %th
+    %th
+
+  - @rubrics.each do |rubric|
     %tr
-      %th Name
-      %th Assignment
-      %th Description
-      %th
-      %th
-      %th
-  
-    - @rubrics.each do |rubric|
-      %tr
-        %td= rubric.name
-        %td= rubric.assignment_id
-        %td= rubric.description
-        %td= link_to 'Show', rubric
-        %td= link_to 'Edit', edit_rubric_path(rubric)
-        %td= link_to 'Destroy', rubric, method: :delete, data: { confirm: 'Are you sure?' }
-  
-  %br
-  
-  = link_to 'New Rubric', new_assignment_rubric_path
+      %td= rubric.name
+      %td= rubric.assignment_id
+      %td= rubric.description
+      %td= link_to 'Show', rubric
+      %td= link_to 'Edit', edit_rubric_path(rubric)
+      %td= link_to 'Destroy', rubric, method: :delete, data: { confirm: 'Are you sure?' }

@@ -1,9 +1,5 @@
-%div.span2= render 'layouts/admin_subnav'
+= link_to 'View', assignment_path(@assignment), :class => "btn btn-inverse"
+= link_to 'Back', assignments_path, :class => "btn btn-inverse"
 
-%div.span8
-  %h3= "Edit #{@assignment.name}"
-  = render 'form'
+= render 'form'
 
-  %div.span12
-    = link_to 'View', assignment_path(@assignment), :class => "btn btn-inverse"
-    = link_to 'Back', assignments_path, :class => "btn btn-inverse"

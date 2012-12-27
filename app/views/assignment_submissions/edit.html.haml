@@ -1,9 +1,4 @@
-- if current_user.is_staff?
-  %div.span2= render 'layouts/admin_subnav'
+= link_to 'View', assignment_assignment_submission_path(@assignment, @assignment_submission), {:class => 'btn btn-info btn-small'}
+= link_to 'Back', assignment_assignment_submissions_path(@assignment), {:class => 'btn btn-info btn-small'}
 
-%div.span8
-  = render 'form'
-
-  %div.span12
-    = link_to 'View', assignment_assignment_submission_path(@assignment, @assignment_submission), {:class => 'btn btn-primary'}
-    = link_to 'Back', assignment_assignment_submissions_path(@assignment), {:class => 'btn btn-primary'}
+= render 'form'

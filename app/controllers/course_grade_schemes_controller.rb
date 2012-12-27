@@ -13,8 +13,8 @@ class CourseGradeSchemesController < ApplicationController
   end
 
   def show
-    @title = "View Grading Scheme"
     @course_grade_scheme = CourseGradeScheme.find(params[:id])
+    @title = "Viewing #{@course_grade_scheme.name} Scheme"
 
     respond_to do |format|
       format.html 

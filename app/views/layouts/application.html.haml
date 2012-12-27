@@ -57,14 +57,14 @@
                     = f.input :password, :label => false
                     %span.control-label.fadeopacity= "Remember Me"
                     = f.input :remember_me, :as => :boolean, :label => false
-                    = button_to 'Forget your password?', new_user_session_path, :class => "btn btn-info"
-                    = submit_tag "Log in", :class => 'btn btn-primary'
+                    = submit_tag "Log in", :class => 'btn btn-primary btn-small'
+                    = button_to 'Forget your password?', new_user_session_path, :class => "btn btn-info btn-small"
 
     .container-fluid.container
-      .row-fluid.span12
+      .row-fluid
         = render 'layouts/content'
   
-      %footer#siteFooter.span12
+      .row-fluid
         %hr      
         .pull-right
           &copy; 2012 Regents of the University of Michigan &#124;

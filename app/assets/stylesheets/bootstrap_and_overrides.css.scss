@@ -6,6 +6,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Trocchi', serif;
   
 }
+h4 {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
 
 
 /* Course title in the top nav bar */ 
@@ -45,3 +50,21 @@ span.control-label {
   letter-spacing: normal;
   word-spacing: normal;
 }
+
+.btn {
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
+.dropdown .btn, table .btn {
+  margin-bottom: 0px;
+}
+
+hr {
+  margin: 15px 0px;
+}
+
+.sidebar-nav-fixed {
+  position:fixed;
+  width: 240px;
+ }

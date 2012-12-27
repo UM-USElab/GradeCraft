@@ -1,7 +1,4 @@
-%h1 Editing group_membership
+= link_to 'View', @group_membership, :class => "btn btn-info btn-small"
+= link_to 'Back', group_memberships_path, :class => "btn btn-info btn-small"
 
 = render 'form'
-
-%div.span12
-  = link_to 'View', @group_membership
-  = link_to 'Back', group_memberships_path

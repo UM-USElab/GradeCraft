@@ -1,23 +1,20 @@
-%div.span2= render 'layouts/admin_subnav'
+= link_to 'Edit', edit_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, @course_grade_scheme_element), :class => 'btn btn-info btn-small'
+= link_to 'Back', course_grade_scheme_path, :class => 'btn btn-info btn-small'
+= link_to 'Create a New Course Grade Scheme Element', new_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme), :class => 'btn btn-info btn-small'
+  
+%p
+  %b Name:
+  = @course_grade_scheme_element.name
+  
+%p
+  %b Letter Grade:
+  = @course_grade_scheme_element.letter_grade
 
-%div.span8
-  %p
-    %b Name:
-    = @course_grade_scheme_element.name
-    
-  %p
-    %b Letter Grade:
-    = @course_grade_scheme_element.letter_grade
-  
-  %p
-    %b Low Range:
-    = @course_grade_scheme_element.low_range
-  
-  %p
-    %b High Range:
-    = @course_grade_scheme_element.high_range
-  
-  %div.span12
-    = link_to 'Edit', edit_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, @course_grade_scheme_element), :class => 'btn btn-primary'
-    = link_to 'Back', course_grade_scheme_path, :class => 'btn btn-primary'
-    = link_to 'Create a New Course Grade Scheme Element', new_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme), :class => 'btn btn-primary'
+%p
+  %b Low Range:
+  = @course_grade_scheme_element.low_range
+
+%p
+  %b High Range:
+  = @course_grade_scheme_element.high_range
+

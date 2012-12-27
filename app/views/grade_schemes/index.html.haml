@@ -1,22 +1,16 @@
-%div.span2= render 'layouts/admin_subnav'
+= link_to 'New Grade Scheme', new_grade_scheme_path, {:class => 'btn btn-info btn-small'}
 
-%div.span8
-  %h3 Grade Schemes
-  %div.span8
-    %table.display.table-bordered.table
-      %thead
-        %tr
-          %th Scheme Name
-          %th 
-          %th
-          %th
-      %tbody
-        - for grade_scheme in @grade_schemes
-          %tr
-            %td= grade_scheme.name
-            %td= link_to 'View', grade_scheme, :class => 'btn btn-mini'
-            %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme), :class => 'btn btn-mini'
-            %td= link_to 'Delete', grade_scheme, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-
-  %div.span8
-    = link_to 'New Grade Scheme', new_grade_scheme_path, {:class => 'btn btn-primary'}
+%table.display.table-bordered.table.span12
+  %thead
+    %tr
+      %th Scheme Name
+      %th 
+      %th
+      %th
+  %tbody
+    - for grade_scheme in @grade_schemes
+      %tr
+        %td= grade_scheme.name
+        %td= link_to 'View', grade_scheme, :class => 'btn btn-mini'
+        %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme), :class => 'btn btn-mini'
+        %td= link_to 'Delete', grade_scheme, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

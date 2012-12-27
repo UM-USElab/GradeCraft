@@ -3,6 +3,7 @@ class BadgeSetsController < ApplicationController
   before_filter :ensure_staff?
 
   def index
+    @title = "Badge Sets"
     @badge_sets = BadgeSet.all
     respond_to do |format|
       format.html # index.html.erb
@@ -21,6 +22,7 @@ class BadgeSetsController < ApplicationController
 
   def new
     @badge_set = BadgeSet.new
+    @title = "Create a New Badge Set"
 
     respond_to do |format|
       format.html # new.html.erb
