@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121223164012) do
+ActiveRecord::Schema.define(:version => 20121227175721) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20121223164012) do
     t.integer  "max_group_size"
     t.integer  "min_group_size"
     t.boolean  "shared_badges"
+    t.boolean  "graph_display"
   end
 
   create_table "criteria", :force => true do |t|

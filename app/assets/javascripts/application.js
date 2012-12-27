@@ -58,9 +58,9 @@ $(document).ready(function(){
   $('.dropdown input, .dropdown label').click(function(e) {
     e.stopPropagation();
   });
-  
+    
   $('#userBarInProgress').show();
-	$('#userBarTotal').show();
+	$('#userBarTotal').hide();
 	$('#totalScoreToggle').show();
   $('#soFarScoreToggle').hide();	
 

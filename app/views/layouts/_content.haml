@@ -8,17 +8,23 @@
   %div.span12
     .alert.alert-info= flash[:alert]
     
-%div.span12
+%div
   - if current_user && current_user.is_staff?
     %div.span3
       %div.sidebar-nav-fixed.well
         = render 'layouts/admin_subnav'  
     %div.span9
       %h4= @title 
-      %hr    
+      %hr
       = yield
-  - else
+  - elsif current_user && current_user.is_student?
+    - if current_page?(root_url) || current_page?('/dashboard')
+      = yield
+    - else
+      %h4= @title
+      %hr
+      = yield
+  - else  
     %div
       %h4= @title
       = yield
-

@@ -5,7 +5,6 @@ $(document).ready(function() {
       type: 'bar',
       height:150,
       backgroundColor:null,
-      width:700
     },
     title: {
       style: {

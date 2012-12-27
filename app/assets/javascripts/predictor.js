@@ -9,8 +9,7 @@ var chartOptions = {
     renderTo: 'prediction',
     type: 'bar',
     height:160,
-    backgroundColor:null,
-    width:900
+    backgroundColor:null
   },
   title: {
     text: ' ',

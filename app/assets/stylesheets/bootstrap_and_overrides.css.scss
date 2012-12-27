@@ -40,6 +40,10 @@ h4 {
 .btn-group a.btn {
   margin: 0;
 }
+.btn {
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
 
 /** Fixes the spacing in the Remember Me button on the dropdown nav **/
 span.control-label {
@@ -49,10 +53,6 @@ span.control-label {
   word-spacing: normal;
 }
 
-.btn {
-  margin-top: 0px;
-  margin-bottom: 15px;
-}
 
 .dropdown .btn, table .btn {
   margin-bottom: 0px;

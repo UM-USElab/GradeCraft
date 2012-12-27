@@ -28,6 +28,9 @@
     %b Course Status:
     = @course.status? ? 'Active' : 'Archived'
   %p
+    %b Display current progress and total points charts simultaneously?
+    = @course.graph_display? ? 'Simultaneous' : 'Toggle' 
+  %p
     %b The Predictor is:
     = @course.predictor_setting? ? 'On' : 'Off'
 

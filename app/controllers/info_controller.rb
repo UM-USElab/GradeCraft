@@ -8,7 +8,6 @@ class InfoController < ApplicationController
 
 
   def dashboard
-    @title = "My Dashboard"
     if current_user.is_gsi?
       @teams = current_user.teams
       @students = current_course.users.students

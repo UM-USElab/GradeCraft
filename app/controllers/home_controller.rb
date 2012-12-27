@@ -7,7 +7,6 @@ class HomeController < ApplicationController
       if current_user.is_admin?
         @title = "Course Dashboard"
       else
-        @title = "My Dashboard"
         @user = current_user
         @user_assignment_type_weights = @user.user_assignment_type_weights.all
         @user_assignment_type_weight = @user.user_assignment_type_weights.new
