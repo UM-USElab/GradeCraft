@@ -13,6 +13,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @title = "Course Settings"
     @course = Course.find(params[:id])
     @themes = Theme.all
     @users = current_course.users.all
@@ -35,7 +36,7 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @title = "Course Settings"
+    @title = "Edit Basic Settings"
     @course = Course.find(params[:id])
     @course_grade_schemes = CourseGradeScheme.all
     @badge_sets = BadgeSet.all

@@ -2,8 +2,6 @@
   - if current_user.is_staff?
     - if current_course.has_badges? && current_course.course_badges? or current_course.has_badges? && current_course.multi_badges?
       = link_to "Award a Badge", new_user_earned_badge_path(@user), :class => "btn btn-mini btn-info"
-      = link_to "See Badges", user_earned_badges_path(@user), :class => "btn btn-mini btn-info"
-    = link_to "Email", "mailto:#{@user.email}", :class => "btn btn-mini btn-info"
     = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id), :class => "btn btn-mini btn-info"
     - @user.team_leader.tap do |team_leader|
       - if team_leader.present?
@@ -26,6 +24,7 @@
   %a{:href => "#", :id => "soFarScoreToggle", :class => "dashboard-toggle"}
     //Show me my score out of available points so far
     %div#userBarTotal{:class => "dashboard-toggle"}
+
 %div#Grades
   - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
     %div.assignmentType

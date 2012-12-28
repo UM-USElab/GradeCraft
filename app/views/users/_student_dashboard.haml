@@ -2,7 +2,10 @@
   = gravatar_for @user, :size => 170, :d => "mm"
   - if current_user.is_student?
     = link_to "Edit Profile Picture", "https://en.gravatar.com/"
+  - elsif current_user.is_staff?
+    = link_to "Email #{@user.first_name}", "mailto:#{@user.email}" 
   %hr
+  // Badges Sidebar
   - if current_course.has_badges? 
     %div.well#badges
       %h5.center Badges
@@ -10,13 +13,26 @@
         - @user.earned_badges_by_badge(badge).tap do |earned_badge|
           - if earned_badge
             %div.badgeIcon
-              %a{:href => "#", :rel => "popover", :title => "{badge.try(:name)}"} 
-                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
+              - if current_course.valuable_badges?
+                %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
+                  %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
+              - else
+                %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}"} 
+                  %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
           - else
             - if badge.visible?
-              %div.badgeIcon
-                %img{:src => badge.try(:icon), :alt => badge.try(:name), :class => "unearned", :width => "60", :height => "60"}
+              %div.badgeIcon                  
+                - if current_course.valuable_badges?
+                  %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
+                    %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+                - else
+                  %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}"} 
+                    %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+
+
       %div.unEarnedText Badges you've earned will shine brightly!
+  
+  // Check Grade Sidebar
   - if current_user.is_student?
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)}
       %span.buttonTitle Check My Final Grade
@@ -34,7 +50,7 @@
       %span.buttonTitle How Am I Doing? 
       %div{:id => "classStandings", :class => "collapse"}
   
- 
+  // To Do List Sidebar
   %div.btn.btn-danger.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
     %span.buttonTitle To Do List
     %i.caret
@@ -49,6 +65,8 @@
                 %li
                   = "#{assignment.try(:name)}" 
                   %div= "(Due: #{assignment.try(:due_date).strftime("%b-%d")})"
+  
+  // Learning Objectives Sidebar
   %div.btn.btn-primary.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
     %span.buttonTitle Learning Objectives
   
