@@ -35,6 +35,8 @@ $(document).ready(function(){
     $('#easyTab a:last').tab('show'); // Select last tab
     $('#easyTab li:eq(2) a').tab('show'); // Select third tab (0-indexed)
   })
+  
+  $('.toolTip').tooltip(options)
 
 	$("#sortableTable").tablesorter();
   
@@ -61,6 +63,8 @@ $(document).ready(function(){
     
   $('#userBarInProgress').show();
 	$('#userBarTotal').hide();
+	$('#userBarInProgressSim').show();
+	$('#userBarTotalSim').show();
 	$('#totalScoreToggle').show();
   $('#soFarScoreToggle').hide();	
 

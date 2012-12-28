@@ -1,0 +1,13 @@
+- @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
+  %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
+  %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})" 
+  %table.table.table-bordered
+    %thead
+    %tr
+      %th Name
+      %th Due Date
+    %tbody
+      - assignments.each do |assignment|
+        %tr
+          %td= link_to assignment.name, assignment
+          %td= assignment.try(:due_date)

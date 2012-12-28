@@ -9,7 +9,7 @@
 .userDashboardSide {
 
   #badges {
- 
+    padding: 5px 15px 15px;
     .badgeIcon {
       float: left;
       text-align: center;
@@ -24,6 +24,7 @@
   
     .unEarnedText {
       clear: left;
+      text-align: center;
       font-size: 11px;
       line-height: 14px;
     }   
