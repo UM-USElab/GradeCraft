@@ -133,7 +133,7 @@ AssignmentType.create! do |at|
   at.points_predictor_display = "Fixed"
   at.resubmission = false
   at.max_value = "120000"
-  at.predictor_description = "We will work to build a learning community in EDUC 222, and I want this to be a great learning experience for all. To do this requires that you commit to the class and participate. You are required to register your attendance at each class meeting using LectureTools, and your team leaders will also be checking for your presence. If you must miss a class, be sure to let your team leader and professor know. You will receive 5,000 points towards your course score for each class you attend. There is no such thing as an excused absence... if you are not in class, you do not get the points, period."
+  at.predictor_description = "We will work to build a learning community in EDUC 222, and I want this to be a great learning experience for all. To do this requires that you commit to the class and participate."
   at.universal_point_value = "5000"
   at.due_date_present = true
   at.order_placement = 1
@@ -148,7 +148,7 @@ AssignmentType.create! do |at|
   at.point_setting = "Individually"
   at.points_predictor_display = "Select"
   at.resubmission = false
-  at.predictor_description = "Each week, you must write a concise summary or analysis of the reading for that week of no more than 200 words! (200 words is roughly equivalent to one-half page, double-spaced.) Your 201st word will suffer a terrible fate... your entire entry will be disqualified from that weeks competition (though it will still count for class participation). You will receive 5,000 points for each reaction you post (one 1 per week), for a maximum of 60,000 points over the entire term. You receive full credit for submitting a reaction on time, and zero points for a late or missing reaction. Thus each reaction adds up towards your semester grade, and missed or late reactions will quickly reduce your total."
+  at.predictor_description = "Each week, you must write a concise summary or analysis of the reading for that week of no more than 200 words! (200 words is roughly equivalent to one-half page, double-spaced.) Your 201st word will suffer a terrible fate... "
   at.due_date_present = true
   at.order_placement = 2
   at.mass_grade = true
@@ -164,7 +164,7 @@ AssignmentType.create! do |at|
   at.points_predictor_display = "Slider"
   at.resubmission = false
   at.max_value = "60000"
-  at.predictor_description = "The course blog allows you to reflect on your learning, or to report on and/or critique ideas and reports about games and learning that you encounter in your daily travels online and offline. Your posts are public (beyond the class). This makes the assignment more meaningful, encourages you to do your best work. You might choose to share something about your game play, something relevant you have seen in the news or on another blog, and so forth."
+  at.predictor_description = "The course blog allows you to reflect on your learning, or to report on and/or critique ideas and reports about games and learning that you encounter in your daily travels online and offline."
   at.order_placement = 3
   at.mass_grade = true
   at.mass_grade_type = "Radio"
