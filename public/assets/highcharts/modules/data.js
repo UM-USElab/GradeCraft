@@ -1,0 +1,11 @@
+/**
+ * @license Data plugin for Highcharts v0.1
+ *
+ * (c) 2012 Torstein Hønsi
+ *
+ * License: www.highcharts.com/license
+ */
+/*
+ * Demo: http://jsfiddle.net/highcharts/SnLFj/
+ */
+(function(e){var t=e.each,n=function(e){this.init(e)};e.extend(n.prototype,{init:function(e){this.options=e,this.columns=[],this.parseCSV(),this.parseTable(),this.parseTypes(),this.findHeaderRow(),this.parsed(),this.complete()},parseCSV:function(){var e=this.options,n=e.csv,r=this.columns,i=e.startRow||0,s=e.endRow||Number.MAX_VALUE,o=e.startColumn||0,u=e.endColumn||Number.MAX_VALUE,a;n&&(a=n.split(e.lineDelimiter||"\n"),t(a,function(n,a){if(a>=i&&a<=s){var f=n.split(e.itemDelimiter||",");t(f,function(e,t){t>=o&&t<=u&&(r[t-o]||(r[t-o]=[]),r[t-o][a-i]=e)})}}))},parseTable:function(){var e=this.options,n=e.table,r=this.columns,i=e.startRow||0,s=e.endRow||Number.MAX_VALUE,o=e.startColumn||0,u=e.endColumn||Number.MAX_VALUE,a;n&&(typeof n=="string"&&(n=document.getElementById(n)),t(n.getElementsByTagName("tr"),function(e,n){a=0,n>=i&&n<=s&&t(e.childNodes,function(e){(e.tagName==="TD"||e.tagName==="TH")&&a>=o&&a<=u&&(r[a]||(r[a]=[]),r[a][n-i]=e.innerHTML,a+=1)})}))},findHeaderRow:function(){var e=0;t(this.columns,function(t){typeof t[0]!="string"&&(e=null)}),this.headerRow=0},trim:function(e){return e.replace(/^\s+|\s+$/g,"")},parseTypes:function(){var e=this.columns,t=e.length,n,r,i,s,o;while(t--){n=e[t].length;while(n--)r=e[t][n],i=parseFloat(r),s=this.trim(r),s==i?(e[t][n]=i,i>31536e6?e[t].isDatetime=!0:e[t].isNumeric=!0):(o=Date.parse(r),t===0&&typeof o=="number"&&!isNaN(o)?(e[t][n]=o,e[t].isDatetime=!0):e[t][n]=s)}},parsed:function(){this.options.parsed&&this.options.parsed.call(this,this.columns)},complete:function(){var e=this.columns,t,n,r,i,s=this.options,o,u,a,f,l;if(s.complete){e.length>1&&(r=e.shift(),this.headerRow===0&&r.shift(),t=r.isNumeric||r.isDatetime,t||(n=r),r.isDatetime&&(i="datetime")),o=[];for(f=0;f<e.length;f++){this.headerRow===0&&(a=e[f].shift()),u=[];for(l=0;l<e[f].length;l++)u[l]=e[f][l]!==undefined?t?[r[l],e[f][l]]:e[f][l]:null;o[f]={name:a,data:u}}s.complete({xAxis:{categories:n,type:i},series:o})}}}),e.Data=n,e.data=function(e){return new n(e)}})(Highcharts);

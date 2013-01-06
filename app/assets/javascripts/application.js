@@ -9,7 +9,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap
-//= require bootstrap-wysihtml5
 //= require highcharts
 //= require flexslider 
 //= require underscore.min
