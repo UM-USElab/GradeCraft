@@ -212,7 +212,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 1
     g.gradeable = student
-    g.raw_score = 5000 * rand(0...1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 1 have been posted!"
@@ -234,7 +234,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 2
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 2 have been posted!"
@@ -257,7 +257,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 3
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 3 have been posted!"
@@ -279,7 +279,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 4
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 4 have been posted!"
@@ -301,7 +301,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 5
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 5 have been posted!"
@@ -323,7 +323,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 6
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 6 have been posted!"
@@ -345,7 +345,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 7
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 7 have been posted!"
@@ -367,7 +367,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 8
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 8 have been posted!"
@@ -389,7 +389,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 9
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 9 have been posted!"
@@ -411,7 +411,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 10
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 10 have been posted!"
@@ -433,7 +433,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 11
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 1 have been posted!"
@@ -455,7 +455,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 12
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 2 have been posted!"
@@ -477,7 +477,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 13
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 3 have been posted!"
@@ -499,7 +499,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 14
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 4 have been posted!"
@@ -521,7 +521,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 15
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 5 have been posted!"
@@ -543,7 +543,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 16
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 6 have been posted!"
@@ -565,7 +565,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 17
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 7 have been posted!"
@@ -587,7 +587,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 18
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 8 have been posted!"
@@ -609,7 +609,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 19
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 9 have been posted!"
@@ -631,7 +631,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 20
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 10 have been posted!"
@@ -653,7 +653,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 21
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Blog Post 1 have been posted!"
