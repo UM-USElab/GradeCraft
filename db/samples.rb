@@ -212,7 +212,7 @@ students.each do |student|
   Grade.create! do |g|
     g.assignment_id = 1
     g.gradeable = student
-    g.raw_score = 5000 * rand(0..1)
+    g.raw_score = 5000 * rand(0...1)
   end
 end
 puts "Grades from Attendance 1 have been posted!"
