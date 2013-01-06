@@ -24,6 +24,7 @@ class CoursesController < ApplicationController
   end
 
   def new
+    @title = "Create a New Course"
     @course = Course.new
     @themes = Theme.all
     @badge_sets = BadgeSet.all

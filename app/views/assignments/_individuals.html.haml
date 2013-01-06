@@ -1,17 +1,13 @@
-%div
-  = form_tag assignment_path(@assignment), :method => :get do
-    = hidden_field_tag :assignment_id, @assignment.id
-    %br
-    %br
-    %br
-    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
-    = submit_tag 'Filter', :class => 'btn'
+= form_tag assignment_path(@assignment), :method => :get do
+  = hidden_field_tag :assignment_id, @assignment.id
+  = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+  = submit_tag 'Filter', :class => 'btn btn-success btn-small'
 
 - if current_user.is_staff? 
-  %h3.span8 Individual Grades
+  %h4 Grades
   - if @assignment.assignment_type.mass_grade?
-    #{link_to 'Log Grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id), :class => "btn btn-mini btn-primary pull-right"}
-
+    %div.pull-right
+      = link_to 'Log Grades', mass_edit_assignment_grades_path(:assignment_id => @assignment.id), :class => "btn btn-mini btn-primary"
 
   = form_tag edit_status_assignment_grades_path(@assignment) do
     %table.display.table-bordered.table#sortableTable.tablesorter

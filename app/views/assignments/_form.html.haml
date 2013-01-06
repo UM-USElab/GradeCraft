@@ -21,5 +21,8 @@
     = f.input :release_necessary, :hint => "Do you want to release all grades at once? This is particularly useful for situations where extensive feedback is important."
   
   .form-actions
-    = f.button :submit
-    = link_to 'Cancel', assignments_path, :class => 'btn'
+    %div.btn-toolbar
+      %div.btn-group
+        = f.button :submit, :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', assignments_path, :class => 'btn btn-info'

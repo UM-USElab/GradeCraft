@@ -21,7 +21,7 @@ class Grade < ActiveRecord::Base
   
   delegate :name, :description, :due_date, :to => :assignment
   
-  after_save :save_gradeable_score
+  #after_save :save_gradeable_score
   after_destroy :save_gradeable_score
   
   scope :completion, :joins => :assignment, :order => "assignments.due_date ASC"
