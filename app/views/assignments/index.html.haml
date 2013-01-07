@@ -7,7 +7,7 @@
 - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
   %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
   %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})" 
-  = link_to "Edit", edit_assignment_type_path(assignment_type), :class => "btn btn-mini"
+  = link_to "Edit Assignment Type", edit_assignment_type_path(assignment_type), :class => "btn btn-mini"
   %table.table.table-bordered
     %thead
     %tr
@@ -16,8 +16,7 @@
       %th Due Date
       %th Total Points
       %th Average
-      %th High Score
-      %th Low Score
+      %th Range
       %th # Submitted
       %th
       - if assignment_type.mass_grade?
@@ -32,8 +31,7 @@
           %td= assignment.try(:due_date)
           %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
           %td= number_with_delimiter(assignment.average, :delimiter => ',') 
-          %td= number_with_delimiter(assignment.high_score, :delimiter => ',') 
-          %td= number_with_delimiter(assignment.low_score, :delimiter => ',')
+          %td= "#{number_with_delimiter(assignment.low_score, :delimiter => ',')} - #{number_with_delimiter(assignment.high_score, :delimiter => ',')}"
           %td
             - if assignment.has_assignment_submissions?
               = "#{assignment.assignment_submissions.count}"

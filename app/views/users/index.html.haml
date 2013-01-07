@@ -42,7 +42,7 @@
           %td
           %td
         %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini'
-        %td= link_to 'Delete', user, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+        %td= link_to 'Delete', user.course_memberships.first, :class => 'btn btn-mini', :confirm => 'This will remove the student from your course - Are you sure?' , :method => :destroy
 
 %div.span12
   = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"
