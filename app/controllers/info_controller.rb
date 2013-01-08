@@ -11,24 +11,19 @@ class InfoController < ApplicationController
     if current_user.is_gsi?
       @teams = current_user.teams
       @students = current_course.users.students
-      #@top_ten_students = @students.order('course_memberships.sortable_score DESC').limit(10)
-      #@bottom_ten_students = @students.order('course_memberships.sortable_score ASC').limit(10)
-      @top_ten_students = @students.limit(10)
-      @bottom_ten_students = @students.limit(10)
+      @top_ten_students = @students.order('course_memberships.sortable_score ASC').limit(10)
+      @bottom_ten_students = @students.order('course_memberships.sortable_score ASC').limit(10)
     elsif current_user.is_prof?
       @teams = current_course.teams.all
       @students = current_course.users.students
-      #@top_ten_students = @students.order('course_memberships.sortable_score DESC').limit(10)
-      #@bottom_ten_students = @students.order('course_memberships.sortable_score ASC').limit(10)
-      @top_ten_students = @students.limit(10)
-      @bottom_ten_students = @students.limit(10)
+      @top_ten_students = @students.order('course_memberships.sortable_score DESC').limit(10)
+      @bottom_ten_students = @students.order('course_memberships.sortable_score ASC').limit(10)
     elsif current_user.is_admin?
       @teams = current_course.teams.all
+      @users = current_course.users
       @students = current_course.users.students
-      #@top_ten_students = @students.order('course_memberships.sortable_score DESC').limit(10)
-      #@bottom_ten_students = @students.order('course_memberships.sortable_score ASC').limit(10)
-      @top_ten_students = @students.limit(10)
-      @bottom_ten_students = @students.limit(10)
+      @top_ten_students = @users.order('course_memberships.sortable_score DESC').limit(10)
+      @bottom_ten_students = @students.order('course_memberships.sortable_score ASC').limit(10)
     end
     @badges = current_course.badges
     @user = current_user# 

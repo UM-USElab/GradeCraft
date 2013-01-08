@@ -21,7 +21,9 @@
 
 
 $(document).ready(function(){
-  $('#some-textarea').wysihtml5();
+   
+    
+  $('#gradeCurious').popover('toggle');
 /*
 
   $('.modal').modal();
@@ -33,15 +35,12 @@ $(document).ready(function(){
     $('#easyTab a:first').tab('show'); // Select first tab
     $('#easyTab a:last').tab('show'); // Select last tab
     $('#easyTab li:eq(2) a').tab('show'); // Select third tab (0-indexed)
-  })
+  });
   
-  $('.toolTip').tooltip(options)
+  $('.toolTip').tooltip();
 
 	$("#sortableTable").tablesorter();
-  
-  $('#gradeCurious').popover({
-    placement: 'bottom'
-    });
+
  
   $('.slider').each(function(i,slider) {
     $slider = $(slider)

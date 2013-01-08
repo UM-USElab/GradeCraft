@@ -198,9 +198,9 @@ puts "Challenges!"
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 1
-  a.name = "January 9"
+  a.name = "Class 1"
   a.point_total = 5000
-  a.due_date = rand(10).weeks.ago
+  a.due_date = rand(5).weeks.ago
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "09/01/2013"
@@ -220,9 +220,9 @@ puts "Grades from Attendance 1 have been posted!"
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 1
-  a.name = "January 14"
+  a.name = "Class 2"
   a.point_total = 5000
-  a.due_date = "014/01/2013"
+  a.due_date = rand(4).weeks.ago
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "014/01/2013"
@@ -243,9 +243,9 @@ puts "Grades from Attendance 2 have been posted!"
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 1
-  a.name = "January 16"
+  a.name = "Class 3"
   a.point_total = 5000
-  a.due_date = "16/01/2013"
+  a.due_date = rand(3).weeks.ago
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "16/01/2013"
@@ -265,9 +265,9 @@ puts "Grades from Attendance 3 have been posted!"
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 1
-  a.name = "January 21"
+  a.name = "Class 4"
   a.point_total = 5000
-  a.due_date = "21/01/2013"
+  a.due_date = rand(2).weeks.ago
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "21/01/2013"
@@ -287,9 +287,9 @@ puts "Grades from Attendance 4 have been posted!"
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 1
-  a.name = "January 23"
+  a.name = "Class 5"
   a.point_total = 5000
-  a.due_date = "23/01/2013"
+  a.due_date = rand(1).weeks.ago
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "23/01/2013"
@@ -309,9 +309,9 @@ puts "Grades from Attendance 5 have been posted!"
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 1
-  a.name = "January 28"
+  a.name = "Class 6"
   a.point_total = 5000
-  a.due_date = "28/01/2013"
+  a.due_date = rand(1).weeks.from_now
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "28/01/2013"
@@ -319,21 +319,12 @@ Assignment.create! do |a|
 end
 puts "Attendance 6 has been posted!"
 
-students.each do |student|
-  Grade.create! do |g|
-    g.assignment_id = 6
-    g.gradeable = student
-    g.raw_score = 5000 * [0,1].sample
-  end
-end
-puts "Grades from Attendance 6 have been posted!"
-
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 1
-  a.name = "January 30"
+  a.name = "Class 7"
   a.point_total = 5000
-  a.due_date = "30/01/2013"
+  a.due_date = rand(2).weeks.from_now
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "30/01/2013"
@@ -341,21 +332,12 @@ Assignment.create! do |a|
 end
 puts "Attendance 7 has been posted!"
 
-students.each do |student|
-  Grade.create! do |g|
-    g.assignment_id = 7
-    g.gradeable = student
-    g.raw_score = 5000 * [0,1].sample
-  end
-end
-puts "Grades from Attendance 7 have been posted!"
-
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 1
-  a.name = "February 4"
+  a.name = "Class 8"
   a.point_total = 5000
-  a.due_date = "04/02/2013"
+  a.due_date = rand(3).weeks.from_now
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "04/02/2013"
@@ -363,21 +345,12 @@ Assignment.create! do |a|
 end
 puts "Attendance 8 has been posted!"
 
-students.each do |student|
-  Grade.create! do |g|
-    g.assignment_id = 8
-    g.gradeable = student
-    g.raw_score = 5000 * [0,1].sample
-  end
-end
-puts "Grades from Attendance 8 have been posted!"
-
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 1
-  a.name = "February 6"
+  a.name = "Class 9"
   a.point_total = 5000
-  a.due_date = "06/02/2013"
+  a.due_date = rand(4).weeks.from_now
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "06/02/2013"
@@ -385,21 +358,12 @@ Assignment.create! do |a|
 end
 puts "Attendance 9 has been posted!"
 
-students.each do |student|
-  Grade.create! do |g|
-    g.assignment_id = 9
-    g.gradeable = student
-    g.raw_score = 5000 * [0,1].sample
-  end
-end
-puts "Grades from Attendance 9 have been posted!"
-
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 1
-  a.name = "February 11"
+  a.name = "Class 10"
   a.point_total = 5000
-  a.due_date = "11/02/2013"
+  a.due_date = rand(5).weeks.from_now
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "11/02/2013"
@@ -407,21 +371,12 @@ Assignment.create! do |a|
 end
 puts "Attendance 10 has been posted!"
 
-students.each do |student|
-  Grade.create! do |g|
-    g.assignment_id = 10
-    g.gradeable = student
-    g.raw_score = 5000 * [0,1].sample
-  end
-end
-puts "Grades from Attendance 10 have been posted!"
-
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 2
   a.name = "Week 1"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(5).weeks.ago
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "14/02/2013"
@@ -443,7 +398,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 2
   a.name = "Week 2"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(4).weeks.ago
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "14/02/2013"
@@ -465,7 +420,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 2
   a.name = "Week 3"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(3).weeks.ago
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "14/02/2013"
@@ -487,7 +442,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 2
   a.name = "Week 4"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(2).weeks.ago
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "14/02/2013"
@@ -509,7 +464,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 2
   a.name = "Week 5"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(1).weeks.ago
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "14/02/2013"
@@ -531,7 +486,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 2
   a.name = "Week 6"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(1).weeks.from_now
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "14/02/2013"
@@ -539,21 +494,12 @@ Assignment.create! do |a|
 end
 puts "Reading Reaction 6 has been posted!"
 
-students.each do |student|
-  Grade.create! do |g|
-    g.assignment_id = 16
-    g.gradeable = student
-    g.raw_score = 5000 * [0,1].sample
-  end
-end
-puts "Grades from Reading Reaction 6 have been posted!"
-
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 2
   a.name = "Week 7"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(2).weeks.from_now
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "14/02/2013"
@@ -561,21 +507,12 @@ Assignment.create! do |a|
 end
 puts "Reading Reaction 7 has been posted!"
 
-students.each do |student|
-  Grade.create! do |g|
-    g.assignment_id = 17
-    g.gradeable = student
-    g.raw_score = 5000 * [0,1].sample
-  end
-end
-puts "Grades from Reading Reaction 7 have been posted!"
-
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 2
   a.name = "Week 8"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(3).weeks.from_now
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "14/02/2013"
@@ -583,21 +520,12 @@ Assignment.create! do |a|
 end
 puts "Reading Reaction 8 has been posted!"
 
-students.each do |student|
-  Grade.create! do |g|
-    g.assignment_id = 18
-    g.gradeable = student
-    g.raw_score = 5000 * [0,1].sample
-  end
-end
-puts "Grades from Reading Reaction 8 have been posted!"
-
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 2
   a.name = "Week 9"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(4).weeks.from_now
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "14/02/2013"
@@ -605,21 +533,12 @@ Assignment.create! do |a|
 end
 puts "Reading Reaction 9 has been posted!"
 
-students.each do |student|
-  Grade.create! do |g|
-    g.assignment_id = 19
-    g.gradeable = student
-    g.raw_score = 5000 * [0,1].sample
-  end
-end
-puts "Grades from Reading Reaction 9 have been posted!"
-
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 2
   a.name = "Week 10"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(5).weeks.from_now
   a.has_assignment_submissions = false
   a.release_necessary = false
   a.open_date = "14/02/2013"
@@ -627,24 +546,13 @@ Assignment.create! do |a|
 end
 puts "Reading Reaction 10 has been posted!"
 
-students.each do |student|
-  Grade.create! do |g|
-    g.assignment_id = 20
-    g.gradeable = student
-    g.raw_score = 5000 * [0,1].sample
-  end
-end
-puts "Grades from Reading Reaction 10 have been posted!"
-
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 3
   a.name = "Blog Post 1"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Post 1 has been posted!"
@@ -663,23 +571,28 @@ Assignment.create! do |a|
   a.assignment_type_id = 3
   a.name = "Blog Post 2"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Post 2 has been posted!"
+
+students.each do |student|
+  Grade.create! do |g|
+    g.assignment_id = 22
+    g.gradeable = student
+    g.raw_score = 5000 * [0,1].sample
+  end
+end
+puts "Grades from Blog Post 2 have been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 3
   a.name = "Blog Post 3"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Post 3 has been posted!"
@@ -689,10 +602,8 @@ Assignment.create! do |a|
   a.assignment_type_id = 3
   a.name = "Blog Post 4"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Post 4 has been posted!"
@@ -702,10 +613,8 @@ Assignment.create! do |a|
   a.assignment_type_id = 3
   a.name = "Blog Post 5"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Post 5 has been posted!"
@@ -715,10 +624,8 @@ Assignment.create! do |a|
   a.assignment_type_id = 3
   a.name = "Blog Post 6"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Post 6 has been posted!"
@@ -728,10 +635,8 @@ Assignment.create! do |a|
   a.assignment_type_id = 3
   a.name = "Blog Comment 1"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Comment 1 has been posted!"
@@ -741,10 +646,8 @@ Assignment.create! do |a|
   a.assignment_type_id = 3
   a.name = "Blog Comment 2"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Comment 2 has been posted!"
@@ -754,10 +657,8 @@ Assignment.create! do |a|
   a.assignment_type_id = 3
   a.name = "Blog Comment 3"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Comment 3 has been posted!"
@@ -767,10 +668,8 @@ Assignment.create! do |a|
   a.assignment_type_id = 3
   a.name = "Blog Comment 4"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Comment 4 has been posted!"
@@ -780,10 +679,8 @@ Assignment.create! do |a|
   a.assignment_type_id = 3
   a.name = "Blog Comment 5"
   a.point_total = 5000
-  a.due_date = "14/01/2013"
   a.has_assignment_submissions = true
   a.release_necessary = false
-  a.open_date = "14/02/2013"
   a.grade_scope = "Individual"
 end
 puts "Blog Comment 5 has been posted!"
@@ -794,7 +691,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 4
   a.name = "Game Selection Paper"
   a.point_total = 80000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(3).weeks.ago
   a.has_assignment_submissions = true
   a.release_necessary = true
   a.open_date = "14/02/2013"
@@ -802,12 +699,21 @@ Assignment.create! do |a|
 end
 puts "Game Selection Paper has been posted!"
 
+students.each do |student|
+  Grade.create! do |g|
+    g.assignment_id = 32
+    g.gradeable = student
+    g.raw_score = 80000 * [0,1].sample
+  end
+end
+puts "Grades from Game Selection Paper have been posted!"
+
 Assignment.create! do |a|
   a.course_id = default_course.id
   a.assignment_type_id = 4
   a.name = "Game Play Update Paper 1"
   a.point_total = 120000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(3).weeks.from_now
   a.has_assignment_submissions = true
   a.release_necessary = true
   a.open_date = "14/02/2013"
@@ -820,7 +726,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 4
   a.name = "Game Play Update Paper 2"
   a.point_total = 120000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(5).weeks.from_now
   a.has_assignment_submissions = true
   a.release_necessary = true
   a.open_date = "14/02/2013"
@@ -833,7 +739,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 4
   a.name = "Game Play Reflection Paper"
   a.point_total = 160000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(7).weeks.from_now
   a.has_assignment_submissions = true
   a.release_necessary = true
   a.open_date = "14/02/2013"
@@ -846,7 +752,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 5
   a.name = "Individual Paper/Project 1"
   a.point_total = 200000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(4).weeks.from_now
   a.has_assignment_submissions = true
   a.release_necessary = true
   a.open_date = "14/02/2013"
@@ -859,7 +765,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 5
   a.name = "Individual Paper/Project 2"
   a.point_total = 300000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(7).weeks.from_now
   a.has_assignment_submissions = true
   a.release_necessary = true
   a.open_date = "14/02/2013"
@@ -872,7 +778,7 @@ Assignment.create! do |a|
   a.assignment_type_id = 5
   a.name = "Group Game Design Project"
   a.point_total = 400000
-  a.due_date = "14/01/2013"
+  a.due_date = rand(7).weeks.from_now
   a.has_assignment_submissions = true
   a.release_necessary = true
   a.open_date = "14/02/2013"

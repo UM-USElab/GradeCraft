@@ -185,6 +185,7 @@ class User < ActiveRecord::Base
     end
   end
   
+  #Calculates the total points available in a course, assuming that badges act as extra credit 
   def total_points_for_course(course, in_progress = false)
     course.total_points(in_progress) + earned_badges_value(course)
   end

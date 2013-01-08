@@ -36,19 +36,19 @@
   - if current_user.is_student?
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)}
       %span.buttonTitle Check My Final Grade
-    %div.span12#gradeCurious.btn.btn-warning{"data-target" => "#classStandings", "data-toggle" => "collapse"}
-      %span.buttonTitle How Am I Doing? 
-      <script type="text/javascript">
-      d3.select("body").append("p").text("New paragraph!");    
-      </script>
-    %div{:id => "classStandings", :class => "collapse"}
-      %img{:src => "img/boxwhisker.jpg"}
+    //%div.span12#gradeCurious.btn.btn-warning{"data-target" => "#classStandings", "data-toggle" => "collapse"}
+    //%span.buttonTitle How Am I Doing? 
+    //<script type="text/javascript">
+    //d3.select("body").append("p").text("New paragraph!");    
+    //</script>
+    //%div{:id => "classStandings", :class => "collapse"}
+    //%img{:src => "img/boxwhisker.jpg"}
   - elsif current_user.is_staff? 
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)} 
       %span.buttonTitle Check My Final Grade
-    %div.span12.btn.btn-warning{"data-target" => "#classStandings", "data-toggle" => "collapse"}
-      %span.buttonTitle How Am I Doing? 
-      %div{:id => "classStandings", :class => "collapse"}
+    //%div.span12.btn.btn-warning{"data-target" => "#classStandings", "data-toggle" => "collapse"}
+    //%span.buttonTitle How Am I Doing? 
+    //%div{:id => "classStandings", :class => "collapse"}
   
   // To Do List Sidebar
   %div.btn.btn-danger.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
@@ -67,8 +67,8 @@
                   %div= "(Due: #{assignment.try(:due_date).strftime("%b-%d")})"
   
   // Learning Objectives Sidebar
-  %div.btn.btn-primary.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
-    %span.buttonTitle Learning Objectives
+  //%div.btn.btn-primary.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
+  //%span.buttonTitle Learning Objectives
   
 %div.span9
   %div.userDashboardContent
