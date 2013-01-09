@@ -1,12 +1,6 @@
-%div.span12
-  = link_to 'Cancel', assignments_path, :class => 'btn btn-info btn-small'
-  
 .filters
   = form_tag mass_edit_assignment_grades_path, :method => :get do
     = hidden_field_tag :assignment_id, @assignment.id
-    %br
-    %br
-    %br
     = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
     = submit_tag 'Filter', :class => 'btn'
 
@@ -36,5 +30,10 @@
                     %td
                       = label_tag "#{raw_score_field_name}_#{score_level.name}", score_level.name, :class => "radio_label"
                       = radio_button_tag raw_score_field_name, score_level.value, @grade.raw_score == score_level.value, :class => "radio_button"
-    
-      %tr= f.button :submit
+      
+      .form-actions
+        %div.btn-toolbar    
+          %div.btn-group
+            = f.button :submit, :class => "btn btn-primary"
+          %div.btn-group
+            = link_to 'Cancel', assignments_path, :class => 'btn btn-info'

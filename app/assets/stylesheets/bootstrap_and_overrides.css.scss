@@ -9,8 +9,6 @@ h4 {
   margin-bottom: 0px !important;
 }
 
-
-
 /* Course title in the top nav bar */ 
 .brand {
   margin-top: 2px;
@@ -47,6 +45,15 @@ h4 {
 .btn {
   margin-top: 0px;
   margin-bottom: 15px;
+}
+
+.btn.btn-warning a {
+  color: #FFF;
+}
+
+.btn.btn-warning a:hover {
+  color: #FFF;
+  text-decoration: none;
 }
 
 /** Fixes the spacing in the Remember Me button on the dropdown nav **/

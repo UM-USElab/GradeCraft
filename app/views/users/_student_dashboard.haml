@@ -45,6 +45,8 @@
     //</script>
     //%div{:id => "classStandings", :class => "collapse"}
     //%img{:src => "img/boxwhisker.jpg"}
+    %div.span12.btn.btn-warning
+      = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
   - elsif current_user.is_staff? 
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)} 
       %span.buttonTitle Check My Final Grade

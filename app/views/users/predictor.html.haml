@@ -11,14 +11,14 @@
           = "/" 
           %span#predictor-course-total-display= number_with_delimiter(current_course.total_points, :delimiter => ',')
           %p
-            = "Predicted Final Grade:"
-            %span#predictedCourseGrade= current_course.grade_level(@user) 
+          //= "Predicted Final Grade:"
+          //%span#predictedCourseGrade= current_course.grade_level(@user) 
         %span#expectedPointsValue
         %div#prediction
 
 %div#predictorPage{ 'data-student-name' => @user.name, 'data-course-total' => current_course.total_points }
-  %div.flexslider
-    %ul.slides
+  %div.flexslider.span12
+    %ul.slides.span10
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         %li{:id => "slide-#{assignment_type.id}", :data => { :'assignment-type-id' => assignment_type.id, :'assignment-type-name' => assignment_type.name } }
           %div.slide-panel.span12
@@ -39,12 +39,12 @@
                   - if assignment_type.student_choice? && assignment_type.multiplier_open?
                     %span.badge.badge-important= link_to "Set #{current_course.multiplier_term}", new_user_user_assignment_type_weight_path(@user, :assignment_type_id => assignment_type.id)
             %p.lead= raw assignment_type.predictor_description
-            %div#pastAssignments
             - assignments.each do |assignment|
               %div.assignment
                 %span.assignmentTitle= assignment.try(:name)
                 - if assignment.is_required?
                   %span.assignmentRequired.label.label-important Required!
+                %div.assignmentScore
                 - if assignment.is_individual?
                   - assignment.assignment_grades.where(:gradeable_id => @user).first.tap do |grade|
                     - if grade
