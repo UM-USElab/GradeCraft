@@ -4,5 +4,8 @@
   = hidden_field_tag "earned_badge[badge_ids][]", nil
   
   .form-actions
-    = f.button :submit, "Award Badge", :class => 'btn'
-    //= link_to 'Cancel', user_earned_badges_path(@user), :class => 'btn'
+    %div.btn-toolbar    
+      %div.btn-group
+        = f.button :submit, "Award Badge", :class => "btn-primary"
+      %div.btn-group
+      //= link_to 'Cancel', user_earned_badges_path(@user), :class => 'btn'

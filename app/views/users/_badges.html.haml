@@ -1,34 +1,47 @@
 %table.display.table-bordered.table#sortableTable.tablesorter
   %thead
     %tr
+      %th#check Earned?
       %th#icon Icon
       %th#title Title
       %th#description Description
       %th Criteria
-      %th Value
-      - if current_user.is_staff?
-        %th
+      - if current_course.valuable_badges?
+        %th Value
   %tbody
     - @badges.each do |badge|
       - if current_user.is_staff?
         %tr
           %td
+            - if badge.earned_badge_for_student(@user)
+              Earned
+              = badge.earned_badge_for_student(@user).created_at.strftime("%A, %B %d") 
+              %br
+              = badge.earned_badge_for_student(@user).text_feedback
+              
+          %td
             %img{:src => badge.icon, :alt => badge.name}
-            %td= link_to badge.name, badge_path(badge)
-            %td= raw badge.description
-            %td Add Criteria here
+          %td= link_to badge.name, badge_path(badge)
+          %td= raw badge.description
+          %td 
+            %ul
+              - badge.elements.each do |element|
+                %li= element.name
+          - if current_course.valuable_badges?
             %td= number_with_delimiter(badge.value)
-            %td 
-              - if badge.visible == "1"
-                Yes
-              - else
-                No
       - else
         - if badge.visible == "1"
           %tr
             %td
+              - if badge.earned_badge_for_student(@user)
+                Yes!
+            %td
               %img{:src => badge.icon, :alt => badge.name}
-              %td= badge.name
-              %td= raw badge.description
-              %td Add Criteria here
+            %td= badge.name
+            %td= raw badge.description
+            %td 
+              %ul
+                - badge.elements.each do |element|
+                  %li= element.name
+            - if current_course.valuable_badges?
               %td= badge.value

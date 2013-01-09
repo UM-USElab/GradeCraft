@@ -19,11 +19,12 @@
 //= require jquery.dynatable
 //= require jquery-tablesorter
 
-
 $(document).ready(function(){
    
     
-  $('#gradeCurious').popover('toggle');
+  $('#gradeCurious').popover();
+  
+  $('#classBoxandWhisker').popover({ html : true });
 /*
 
   $('.modal').modal();

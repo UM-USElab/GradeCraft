@@ -13,3 +13,25 @@
 %p
   %b Icon URL:
   = @badge.icon
+
+%h3
+Badge Elements:
+(#{link_to 'Add Element', new_badge_element_path(@badge)})
+
+%table.display.table-bordered.table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th
+      %th
+      %th
+  %tbody
+    - @badge.elements.each do |element|
+      %tr
+        %td #{element.name} 
+        %td= element.description
+        %td= link_to "View", badge_element_path(@badge.id, element.id)
+        %td= link_to "Edit", edit_badge_element_path(@badge.id, element.id)
+        %td= link_to "Delete", badge_element_path(@badge.id, element.id), :data => { :confirm => 'Are you sure?' }, :method => :delete
+        

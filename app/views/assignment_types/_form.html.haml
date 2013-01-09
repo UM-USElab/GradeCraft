@@ -27,5 +27,8 @@
       = link_to_add_fields "Add a Level", f, :score_levels
 
   .form-actions
-    = f.button :submit, :class => 'btn'
-    = link_to 'Cancel', assignment_types_path, :class => 'btn'
+    %div.btn-toolbar    
+      %div.btn-group
+        = f.button :submit, "Create Assignment Type", :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', assignment_types_path, :class => 'btn btn-info'

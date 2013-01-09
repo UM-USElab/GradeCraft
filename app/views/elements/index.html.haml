@@ -1,0 +1,17 @@
+= link_to 'New Element', new_badge_element_path, {:class => 'btn btn-info btn-small'}
+
+%table.table.table-bordered
+  %tr
+    %th Name
+    %th Description
+    %th
+    %th
+    %th
+
+  - @elements.each do |element|
+    %tr
+      %td= element.name
+      %td= element.description
+      %td= link_to 'View', badge_element_path(@badge, element), :class => 'btn btn-mini'
+      %td= link_to 'Edit', edit_badge_element_path(@badge, element), :class => 'btn btn-mini'
+      %td= link_to 'Delete', badge_element_path(@badge, element), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

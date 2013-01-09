@@ -2,6 +2,10 @@
   = f.input :name, :label => "Level Name"
   = f.input :value
   = f.association :assignment_type, :collection => @assignment_types
+  
   .form-actions
-    = f.button :submit
-    = link_to 'Cancel', score_levels_path, :class => 'btn'
+    %div.btn-toolbar
+      %div.btn-group
+        = f.button :submit, :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', score_levels_path, :class => 'btn btn-info'

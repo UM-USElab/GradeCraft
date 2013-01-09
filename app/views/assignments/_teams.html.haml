@@ -11,10 +11,10 @@
       %th Badges Earned
       - if @assignment.release_necessary?
         %th Status
-      %th
-      %th
-      %th
-      %th
+      %th.header
+      %th.header
+      %th.header
+      %th.header
     %tbody
       - @teams.each do |team|
         - @assignment.grade_for_team(team).tap do |grade|

@@ -5,6 +5,7 @@ class Badge < ActiveRecord::Base
   
   #mount_uploader :icon, ImageUploader
   has_many :earned_badges, :dependent => :destroy
+  has_many :elements, :dependent => :destroy
   belongs_to :badge_set
   belongs_to :course
   
@@ -32,6 +33,15 @@ class Badge < ActiveRecord::Base
   
   def visible? 
     visible == "1"
+  end
+  
+  #badges per role  
+  def earned_badges_by_earnable_id
+    @earned_badges_by_earnable_id ||= earned_badges.group_by { |eb| [eb.earnable_type,eb.earnable_id] }
+  end
+  
+  def earned_badge_for_student(student)
+    earned_badges_by_earnable_id[['User',student.id]].try(:first)
   end 
   
 end

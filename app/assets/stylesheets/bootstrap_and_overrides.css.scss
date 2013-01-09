@@ -70,3 +70,30 @@ hr {
   position:fixed;
   width: 240px;
  }
+ 
+.userDashboardSide .label a {
+   color: #FFF !important;
+   text-shadow: none;
+   font-weight: normal;
+   padding: 0px;
+ }
+ 
+ .userDashboardSide .label {
+   line-height: 12px !important;
+   width: 95%;
+   margin-top: 10px;
+ }
+ 
+ #userScoreSection .nav-tabs > .active > a {
+   background-color:  #2ad32a;
+   color: #FFF;
+   font-weight: bold;
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
+ }
+ 
+#userScoreSection .nav-tabs > a:hover {
+  color: #555555;
+  cursor: default;
+  background-color: #222222;
+}

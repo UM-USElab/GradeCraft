@@ -28,10 +28,10 @@
       - if current_course.has_badges? 
         %th Badges Earned
       - if current_user.is_staff?  
-        %th
-        %th 
-        %th
-        %th
+        %th.header
+        %th.header 
+        %th.header
+        %th.header
   %tbody
     - i = 1
     - @sorted_students.each do |student|

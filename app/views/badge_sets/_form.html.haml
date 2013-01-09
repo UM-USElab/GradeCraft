@@ -2,7 +2,10 @@
   = f.input :name
   = f.input :notes, :as => :text, :label => "Notes",  :input_html => {:id => 'some-textarea', :class => 'span9' }
   
-  .form-actions  
-    = f.button :submit, :class => 'btn'
-    = link_to 'Cancel', badge_sets_path, :class => 'btn'
+  .form-actions
+    %div.btn-toolbar    
+      %div.btn-group
+        = f.button :submit, :class => "btn-primary"
+      %div.btn-group    
+        = link_to 'Cancel', badge_sets_path, :class => 'btn btn-info'
 

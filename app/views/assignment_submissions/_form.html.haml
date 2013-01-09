@@ -37,5 +37,8 @@
     = f.input :text_comment, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span12', :maxlength => 1000 }, :label => "Comment. Note this must be <strong>TEXT ONLY</strong>"
 
   .form-actions
-    = f.button :submit, "Submit"
-    = link_to 'Cancel', assignments_path, :class => 'btn'
+    %div.btn-toolbar    
+      %div.btn-group
+        = f.button :submit, "Submit", :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', assignments_path, :class => 'btn btn-info'

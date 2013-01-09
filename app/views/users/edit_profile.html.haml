@@ -16,5 +16,10 @@
   // Taken out bc of cosign
   //= f.input :password
   //= f.input :password_confirmation
-  = submit_tag 'Update Settings', :class => 'btn btn-inverse'
-  = link_to 'Cancel', root_path, :class => 'btn btn-inverse'
+  
+
+  %div.btn-toolbar
+    %div.btn-group
+      = submit_tag 'Update Settings', :class => 'btn btn-primary'
+    %div.btn-group
+      = link_to 'Cancel', root_path, :class => 'btn btn-info'

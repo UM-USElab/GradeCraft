@@ -24,10 +24,10 @@
           %th Badges Earned
           - if @assignment.release_necessary?
             %th Status
-          %th
-          %th
-          %th
-          %th
+          %th.header
+          %th.header
+          %th.header
+          %th.header
       %tbody
         - @students.each do |student|
           - @assignment.grade_for_student(student).tap do |grade|

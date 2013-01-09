@@ -4,6 +4,9 @@
   = f.input :low_range
   = f.input :high_range
   
-  .form-actions  
-    = f.button :submit, :class => 'btn'
-    = link_to 'Cancel', course_grade_scheme_course_grade_scheme_elements_path, :class => 'btn'
+  .form-actions
+    %div.btn-toolbar    
+      %div.btn-group
+        = f.button :submit, :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', course_grade_scheme_course_grade_scheme_elements_path, :class => 'btn btn-info'

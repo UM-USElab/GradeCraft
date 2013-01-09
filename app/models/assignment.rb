@@ -36,7 +36,7 @@ class Assignment < ActiveRecord::Base
   }
   scope :past, lambda {
     { :conditions => 
-      #["assignments.due_date IS NOT NULL AND assignments.due_date <? Date.today OR assignments.due_date IS NULL AND grade_for_student(student) IS NOT NULL"]
+      #["(assignments.due_date IS NOT NULL AND assignments.due_date < ?) OR (assignments.includes(:grades).where(assignments.due_date IS NULL AND grades.raw_score IS NOT NULL))", Date.today]
       ["assignments.due_date IS NOT NULL AND assignments.due_date <?", Date.today]
     }
   }

@@ -2,6 +2,9 @@
   = f.input :name
   = f.input :filename, :as => :string
   
-  .form-actions  
-    = f.button :submit, :class => 'btn'
-    = link_to 'Cancel', themes_path, :class => 'btn'
+  .form-actions
+    %div.btn-toolbar
+      %div.btn-group
+        = f.button :submit, :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', themes_path, :class => 'btn'

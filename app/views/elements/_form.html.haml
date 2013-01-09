@@ -1,0 +1,10 @@
+= simple_form_for([@badge, @element], :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :name
+  = f.input :description, :input_html => {:id => 'some-textarea', :class => 'span9' }, :as => :text
+    
+  .form-actions
+    %div.btn-toolbar
+      %div.btn-group
+        = f.button :submit, "Create", :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', badges_path, :class => 'btn btn-info'

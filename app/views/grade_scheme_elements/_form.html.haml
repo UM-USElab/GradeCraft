@@ -7,5 +7,8 @@
   = f.input :description, :input_html => {:id => 'some-textarea', :class => 'span9' }, :as => :text
     
   .form-actions
-    = f.button :submit, 'Create'
-    = link_to 'Cancel', grade_schemes_path, :class => 'btn'
+    %div.btn-toolbar
+      %div.btn-group
+        = f.button :submit, "Create", :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', grade_schemes_path, :class => 'btn btn-info'

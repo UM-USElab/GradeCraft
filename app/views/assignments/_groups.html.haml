@@ -14,9 +14,9 @@
         %th Status
       %th Submission
       %th Grade
-      %th
-      %th
-      %th
+      %th.header
+      %th.header
+      %th.header
     %tbody
       - @groups.each do |group|
         - @assignment.grade_for_whole_group(group).tap do |grade|

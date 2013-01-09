@@ -1,4 +1,4 @@
-%table.table.table-bordered
+%table.table.table-bordered.display#sortableTable.tablesorter
   %tr
     - if @assignment.has_groups?
       %th Group 
@@ -11,9 +11,9 @@
     %th Comment
     %th Feedback
     %th Score
-    %th
-    %th
-    %th
+    %th.header
+    %th.header
+    %th.header
   - @assignment_submissions.each do |assignment_submission|
     %tr
       %td= link_to assignment_submission.submittable.try(:name), assignment_group_path(@assignment, assignment_submission.submittable)

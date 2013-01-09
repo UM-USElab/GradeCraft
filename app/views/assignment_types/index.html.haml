@@ -1,6 +1,6 @@
 = link_to 'New Assignment Type', new_assignment_type_path, {:class => 'btn btn-info btn-small'}
 
-%table.table-bordered.table-condensed.table
+%table.table-bordered.table-condensed.table#sortableTable.tablesorter
   %thead
     %tr
       %th Order
@@ -13,9 +13,9 @@
       %th Max value
       %th % Course
       %th Predictor Description
-      %th
-      %th
-      %th
+      %th.header
+      %th.header
+      %th.header
   %tbody
     - current_course.assignment_types.each do |assignment_type|
       %tr

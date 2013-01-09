@@ -3,7 +3,9 @@
   - if current_user.is_student?
     = link_to "Edit Profile Picture", "https://en.gravatar.com/"
   - elsif current_user.is_staff?
-    = link_to "Email #{@user.first_name}", "mailto:#{@user.email}" 
+    %span.label.label-info
+      %i.icon-envelope.icon-white
+      = link_to "Email #{@user.first_name}", "mailto:#{@user.email}" 
   %hr
   // Badges Sidebar
   - if current_course.has_badges? 
@@ -46,9 +48,9 @@
   - elsif current_user.is_staff? 
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)} 
       %span.buttonTitle Check My Final Grade
-    //%div.span12.btn.btn-warning{"data-target" => "#classStandings", "data-toggle" => "collapse"}
-    //%span.buttonTitle How Am I Doing? 
-    //%div{:id => "classStandings", :class => "collapse"}
+    //%div.span12#classBoxandWhisker.btn.btn-warning{:title=> "Class Standing:", "data-content" => "<div id='classStanding'>Test</div>" }
+    //%span.buttonTitle How Am I Doing?
+      
   
   // To Do List Sidebar
   %div.btn.btn-danger.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
@@ -77,12 +79,12 @@
       %a{ :href => 'https://www.google.com/intl/en/chrome/browser/' }
         %h3 We highly recommend you install Google Chrome to use GradeCraft  
     %div#userScoreSection
-      %div.tabbable
+      %div
         %ul.nav.nav-tabs
           %li.active
             %a{ "data-toggle" => "tab", "data-target" => "#tab1" } Scoreboard
-          %li 
-            %a{ "data-toggle" => "tab", "data-target" => "#tab2"} Syllabus
+          //%li 
+          //%a{ "data-toggle" => "tab", "data-target" => "#tab2"} Syllabus
           %li 
             %a{ "data-toggle" => "tab", "data-target" => "#tab3"} Badges
         %div.tab-content
@@ -91,11 +93,11 @@
               = render "scoreboard" 
             - else
               = render "users/scoreboard"           
-          %div.tab-pane#tab2
-            - if current_user.is_staff?
-              = render "assignments" 
-            - else
-              = render "users/assignments" 
+          //%div.tab-pane#tab2
+          //- if current_user.is_staff?
+          //= render "assignments" 
+          //- else
+          //= render "users/assignments" 
           %div.tab-pane#tab3
             - if current_user.is_staff?
               = render "badges" 

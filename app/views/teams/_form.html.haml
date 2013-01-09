@@ -4,5 +4,8 @@
   = f.input :course_id, :collection => @courses, :as => :hidden, :input_html => { :value => current_course.id }
   
   .form-actions
-    = f.button :submit, :class => 'btn', :value => "Create #{current_course.team_ref}"
-    = link_to 'Cancel', teams_path, :class => 'btn'
+    %div.btn-toolbar
+      %div.btn-group
+        = f.button :submit, :class => 'btn btn-primary', :value => "Create #{current_course.team_ref}"
+      %div.btn-group
+        = link_to 'Cancel', teams_path, :class => 'btn btn-info'

@@ -29,7 +29,7 @@
   - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
     %div.assignmentType
       %button.btn.btn-inverse{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name)}
-      %span.badge.badge-warning
+      %span.badge.badge-warning.pull-right
         = number_with_delimiter(assignment_type.score_for_student(@user)) 
         = "/"
         = " #{number_with_delimiter(assignment_type.point_total_for_student(@user))} possible points"
@@ -54,7 +54,7 @@
               - if assignment.future?
                 %span.assignmentDate= "| Due: #{assignment.try(:due_date).strftime("%A, %B %d")}"
                 %span.assignmentDesc= raw assignment.description
-              %div.grade    
+              %div.grade
                 - if assignment.has_assignment_submissions?
                   - if assignment.has_groups?
                     - if @user.group_for_assignment(assignment)

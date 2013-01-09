@@ -5,4 +5,7 @@
     = f.input :description
 
   .form-actions
-    = f.button :submit
+    %div.btn-toolbar
+      %div.btn-group
+        = f.button :submit, :class => "btn-primary"
+      %div.btn-group

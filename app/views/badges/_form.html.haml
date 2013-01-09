@@ -9,5 +9,8 @@
   = f.input :occurrence, :collection => [["Onetime", "onetime"], ["Multiple", "multiple"]], :hint => "Can this badge be given to one person multiple times through the semester, or only only once?", :prompt => "-- Select Occurrence --"
 
   .form-actions
-    = f.button :submit, :class => 'btn'
-    = link_to 'Cancel', badges_path, :class => 'btn'
+    %div.btn-toolbar    
+      %div.btn-group
+        = f.button :submit, :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', badges_path, :class => 'btn btn-info'

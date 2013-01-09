@@ -12,8 +12,8 @@
       %th Badges Earned
       %th Total Badges
       - if current_user.is_staff?
-        %th
-        %th
+        %th.header
+        %th.header
   %tbody
     - @teams.each do |team|
       %tr

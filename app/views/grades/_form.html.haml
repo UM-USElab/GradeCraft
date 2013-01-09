@@ -21,5 +21,8 @@
     = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]
   %div.clear
   .form-actions
-    = f.button :submit, :class => 'btn'
-    = link_to 'Cancel', assignment_path(@assignment), :class => 'btn'
+    %div.btn-toolbar
+      %div.btn-group
+        = f.button :submit, "Submit Grade", :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', assignment_path(@assignment), :class => 'btn btn-info'

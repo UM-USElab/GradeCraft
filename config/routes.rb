@@ -35,7 +35,9 @@ GradeCraft::Application.routes.draw do
   end
   resources :themes
   resources :badge_sets 
-  resources :badges
+  resources :badges do 
+    resources :elements
+  end
   resources :earned_badges do 
     collection do 
       get :mass_award

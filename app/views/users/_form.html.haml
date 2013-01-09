@@ -17,5 +17,8 @@
     = f.input :default_course_id, :collection => @courses
   
   .form-actions
-    = f.button :submit, :class => 'btn'
-    = link_to 'Cancel', users_path, :class => 'btn'
+    %div.btn-toolbar
+      %div.btn-group
+        = f.button :submit, :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', users_path, :class => 'btn btn-info'

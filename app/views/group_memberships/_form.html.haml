@@ -6,5 +6,8 @@
     = f.input :accepted
 
   .form-actions
-    = f.button :submit
-    = link_to 'Cancel', group_membership_path(@group_membership), :class => 'btn'
+    %div.btn-toolbar
+      %div.btn-group
+        = f.button :submit, :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', group_membership_path(@group_membership), :class => 'btn'
