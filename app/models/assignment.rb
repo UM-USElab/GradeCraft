@@ -10,6 +10,7 @@ class Assignment < ActiveRecord::Base
   has_many :groups
   has_many :group_memberships, :through => :group_memberships
   has_many :users, :through => :grades
+  has_one :rubric
   belongs_to :badge_set
   has_many :assignment_submissions
   accepts_nested_attributes_for :grades

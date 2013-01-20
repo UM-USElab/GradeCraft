@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.11'
 gem 'jquery-rails', '~> 2.0'
 gem 'fabrication'
 gem 'haml'
@@ -16,7 +16,7 @@ gem 'responders'
 gem 'brakeman'
 gem 'activerecord-import'
 gem 'flexslider'
-gem "highcharts-rails", "~> 2.3.0"
+gem "highcharts-rails"
 gem "airbrake"
 gem 'canable'
 gem 'mysql2'

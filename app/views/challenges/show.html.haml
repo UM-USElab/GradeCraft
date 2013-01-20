@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @challenge.name
+%p
+  %b Description:
+  = @challenge.description
+%p
+  %b Point total:
+  = @challenge.point_total
+%p
+  %b Due date:
+  = @challenge.due_date
+%p
+  %b Course:
+  = @challenge.course_id
+%p
+  %b Points predictor display:
+  = @challenge.points_predictor_display
+%p
+  %b Visible:
+  = @challenge.visible
+%p
+  %b Has challenge submissions:
+  = @challenge.has_challenge_submissions
+%p
+  %b Release necessary:
+  = @challenge.release_necessary
+
+= link_to 'Edit', edit_challenge_path(@challenge)
+\|
+= link_to 'Back', challenges_path

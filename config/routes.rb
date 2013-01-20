@@ -1,6 +1,12 @@
 GradeCraft::Application.routes.draw do
 
 
+  resources :challenge_grades
+
+
+  resources :challenges
+
+
   %w{students gsis professors admins}.each do |role|
     get "users/#{role}/new" => 'users#new', :as => "new_#{role.singularize}", :role => role.singularize
   end
@@ -45,11 +51,11 @@ GradeCraft::Application.routes.draw do
       get :chart
     end
   end
-  resources :teams do 
-    resources :earned_badges
+  resources :teams do
     collection do 
       get :activity
     end
+    resources :earned_badges
   end
   resources :assignment_types
   resources :score_levels

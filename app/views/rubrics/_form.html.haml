@@ -1,11 +1,10 @@
-= simple_form_for([@assignment, @rubric]) do |f|
-  .form-inputs
-    = f.input :name
-    = f.input :assignment_id
-    = f.input :description
+= simple_form_for([@assignment, @rubric], :html => {:class => 'form-horizontal' }) do |f|
+  = f.input :name
+  = f.input :description, :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span8' }, :placeholder => "Describe what the broader goals of this rubric."
 
   .form-actions
     %div.btn-toolbar
       %div.btn-group
         = f.button :submit, :class => "btn-primary"
       %div.btn-group
+        = link_to 'Cancel', assignment_path(@assignment), :class => 'btn btn-info'

@@ -11,7 +11,10 @@ class RubricsController < ApplicationController
 
   def new
     @rubric = Rubric.new
-    respond_with(@rubric)
+    @assignment = Assignment.find(params[:assignment_id])
+    
+    @title = "Create a Rubric for #{@assignment.name} "
+    respond_with assignment_rubric_path(@assignment, @rubric)
   end
 
   def edit

@@ -2,7 +2,7 @@ class Team < ActiveRecord::Base
   
   has_many :team_memberships
   has_many :users, :through => :team_memberships
-  has_many :grades, :as => :gradeable, :dependent => :destroy
+  has_many :challenge_grades, :dependent => :destroy
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
   
   before_save :set_sortable_score
@@ -21,7 +21,7 @@ class Team < ActiveRecord::Base
   end
 
   def score
-    grades.map(&:unmultiplied_score).sum || 0
+    challenge_grades.map(&:raw_score).sum || 0
   end
 
   def badge_count

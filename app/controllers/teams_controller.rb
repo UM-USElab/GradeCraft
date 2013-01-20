@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
     @teams = current_course.teams.all
     @title = "#{current_course.team_ref}s"
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @teams }
     end
   end
@@ -17,7 +17,18 @@ class TeamsController < ApplicationController
     @users = @team.users
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
+      format.json { render json: @team }
+    end
+  end
+  
+  def activity
+    @team = current_course.teams.find(params[:id])
+    @title = "#{@team.name}"
+    @users = @team.users
+
+    respond_to do |format|
+      format.html  
       format.json { render json: @team }
     end
   end

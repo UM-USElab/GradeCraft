@@ -1,0 +1,12 @@
+= simple_form_for(@challenge_grade) do |f|
+
+  .form-inputs
+    = f.input :challenge_id
+    = f.input :score
+    = f.input :feedback
+    = f.input :status
+    = f.input :team_id
+    = f.input :final_score
+
+  .form-actions
+    = f.button :submit

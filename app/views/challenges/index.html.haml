@@ -1,0 +1,35 @@
+%h1 Listing challenges
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Point total
+    %th Due date
+    %th Course
+    %th Points predictor display
+    %th Visible
+    %th Has challenge submissions
+    %th Release necessary
+    %th
+    %th
+    %th
+
+  - @challenges.each do |challenge|
+    %tr
+      %td= challenge.name
+      %td= challenge.description
+      %td= challenge.point_total
+      %td= challenge.due_date
+      %td= challenge.course_id
+      %td= challenge.points_predictor_display
+      %td= challenge.visible
+      %td= challenge.has_challenge_submissions
+      %td= challenge.release_necessary
+      %td= link_to 'Show', challenge
+      %td= link_to 'Edit', edit_challenge_path(challenge)
+      %td= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Challenge', new_challenge_path

@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Challenge:
+  = @challenge_grade.challenge_id
+%p
+  %b Score:
+  = @challenge_grade.score
+%p
+  %b Feedback:
+  = @challenge_grade.feedback
+%p
+  %b Status:
+  = @challenge_grade.status
+%p
+  %b Team:
+  = @challenge_grade.team_id
+%p
+  %b Final score:
+  = @challenge_grade.final_score
+
+= link_to 'Edit', edit_challenge_grade_path(@challenge_grade)
+\|
+= link_to 'Back', challenge_grades_path

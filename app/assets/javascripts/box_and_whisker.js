@@ -1,13 +1,19 @@
-/*
 var chart;
 
-var rectWidth = 35;
+var rectWidth = 15;
 $(document).ready(function() {
    chart = new Highcharts.Chart({
     chart: {
         renderTo: 'classStanding',
         defaultSeriesType: 'scatter',
-        reflow: false
+        inverted: true,
+        reflow: false,
+        height: 200,
+        margin: 50
+        
+    },
+    title: {
+          text: "Course Standings"
     },
     credits: {
        enabled: false
@@ -15,29 +21,33 @@ $(document).ready(function() {
     exporting: {
       enabled: false
     },  
-    title : {
-      text: "Class Progress"
-    },
    tooltip:{
        formatter: function()
        {
-           var s = '<b>'+this.y+'</b>';
+           var s = '<b>'+this.x+'</b>';
            for(var i = this.points.length-1; i>-1; i--)
            {
                colors = ["red","#444", "green", "#444", "blue"];
                s = s + ['<br>','<span style="color:' + colors[i] + '">', this.points[i].series.name, '</span>: ',
-               '<b>', Highcharts.numberFormat(this.points[i].x, 0), '</b>'].join('');
+               '<b>', Highcharts.numberFormat(this.points[i].y, 0), '</b>'].join('');
            }
-           return s; 
+           return s;    
        },
        shared:true         
    },
    legend:{
        enabled:false
    },
+   xAxis:{
+    categories:[' ']
+},
 yAxis:{
     labels:{
         formatter: function(){ return this.value; }
+    },
+    title: {
+        text: 'Score',
+        align: 'high'
     }            
 },
 plotOptions:{       
@@ -45,27 +55,27 @@ plotOptions:{
 series: [{
     name:'Minimum',
     marker:{enabled:false},
-    data:[-20]
+    data:[170000]
 },
 {
 
     name:'1st Quartile',
     marker:{enabled:false},
-    data:[-10]
+    data:[200000]
 },
 {
     name:'Median',
     marker:{enabled:false},
-    data:[5]
+    data:[235000]
 },{
     name:'3rd Quartile',
     marker:{enabled:false},
-    data:[12]
+    data:[270000]
 },
 {
     name:'Maximum',
     marker:{enabled:false},
-    data:[20]
+    data:[300000]
 }
 ]
 }, function(chart) {
@@ -74,17 +84,17 @@ series: [{
     var median = chart.series[2].data;
     var quartile3 = chart.series[3].data;
     var max = chart.series[4].data;
-    var translate =10; // padding between symbols and boxes
+    var translate = 0; // padding between symbols and boxes
 
     for(i=0; i<quartile1.length; i++)
     {
 
         // add the box for each category
        chart.renderer.rect(
-             quartile3[i].plotY-(rectWidth/2)+chart.plotLeft-translate, //x
-             quartile3[i].plotX+chart.plotTop, //y
-             rectWidth, //width
-             quartile1[i].plotX-quartile3[i].plotY, //height
+             quartile3[i].plotY+chart.plotTop, //x
+             quartile3[i].plotX-(rectWidth/2)+chart.plotLeft-translate, //y
+             quartile1[i].plotY-quartile3[i].plotY, //width
+             rectWidth, //height
              0) // cornerRadius
        .attr({
         'stroke-width': 1,
@@ -94,8 +104,8 @@ series: [{
         }).add();  
 
        // max value line
-       chart.renderer.path(['M', max[i].plotY-(rectWidth/2)+chart.plotTop-translate, max[i].plotX+chart.plotLeft,
-        'V', max[i].plotY+(rectWidth/2)+chart.plotTop-translate, max[i].plotX+chart.plotTop ])
+       chart.renderer.path(['M', max[i].plotY+chart.plotTop, max[i].plotX-(rectWidth/2)+chart.plotLeft-translate,
+        'L', max[i].plotY+chart.plotTop, max[i].plotX+(rectWidth/2)+chart.plotLeft-translate ])
        .attr({
         'stroke-width': 1,
         stroke: 'blue',
@@ -103,8 +113,8 @@ series: [{
     }).add();  
 
         // median value line
-       chart.renderer.path(['M',median[i].plotY-(rectWidth/2)+chart.plotTop-translate,median[i].plotX+chart.plotLeft,
-        'V',median[i].plotY+(rectWidth/2)+chart.plotTop-translate,median[i].plotX+chart.plotTop])
+       chart.renderer.path(['M', median[i].plotY+chart.plotTop, median[i].plotX-(rectWidth/2)+chart.plotLeft-translate,
+        'L', median[i].plotY+chart.plotTop, median[i].plotX+(rectWidth/2)+chart.plotLeft-translate])
        .attr({
         'stroke-width': 1,
         stroke: 'green',
@@ -112,8 +122,8 @@ series: [{
     }).add();  
 
         // minimum value line
-       chart.renderer.path(['M', min[i].plotY-(rectWidth/2)+chart.plotTop-translate, min[i].plotX+chart.plotLeft,
-        'V', min[i].plotY+(rectWidth/2)+chart.plotTop-translate, min[i].plotX+chart.plotTop])
+       chart.renderer.path(['M', min[i].plotY+chart.plotTop, min[i].plotX-(rectWidth/2)+chart.plotLeft-translate,
+        'L', min[i].plotY+chart.plotTop, min[i].plotX+(rectWidth/2)+chart.plotLeft-translate])
        .attr({
         'stroke-width': 1,
         stroke: 'red',
@@ -121,11 +131,11 @@ series: [{
     }).add();
 
        // line from box to endpoints
-       chart.renderer.path(['M', min[i].plotX, min[i].plotY,
-        'L', max[i].plotX+chart.plotTop-translate, min[i].plotY])
+       chart.renderer.path(['M', min[i].plotY+chart.plotTop, min[i].plotX+chart.plotLeft-translate, 
+        'L', max[i].plotY+chart.plotTop, max[i].plotX+chart.plotLeft-translate])
        .attr({
         'stroke-width': 1,
-        stroke: 'red',
+        stroke: '#aaa',
         zIndex:3
     })
        .add();          
@@ -135,4 +145,3 @@ series: [{
 );
 
 });
-*/

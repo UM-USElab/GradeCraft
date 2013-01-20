@@ -10,6 +10,7 @@
 //= require twitter/bootstrap
 //= require bootstrap
 //= require highcharts
+//= require highcharts-more
 //= require flexslider 
 //= require underscore.min
 //= require backbone.min

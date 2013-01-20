@@ -33,26 +33,24 @@
 
 
       %div.unEarnedText Badges you've earned will shine brightly!
-  
+      
+  // Predictor Sidebar Link
+  %div.span12.btn.btn-warning
+    = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
+
   // Check Grade Sidebar
   - if current_user.is_student?
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)}
       %span.buttonTitle Check My Final Grade
-    //%div.span12#gradeCurious.btn.btn-warning{"data-target" => "#classStandings", "data-toggle" => "collapse"}
-    //%span.buttonTitle How Am I Doing? 
-    //<script type="text/javascript">
-    //d3.select("body").append("p").text("New paragraph!");    
-    //</script>
-    //%div{:id => "classStandings", :class => "collapse"}
-    //%img{:src => "img/boxwhisker.jpg"}
-    %div.span12.btn.btn-warning
-      = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
+    %div.span12#gradeCurious.btn.btn-warning{"data-target" => "#classStandings", "data-toggle" => "collapse"}
+      %span.buttonTitle How Am I Doing? 
+      %div#classStanding
   - elsif current_user.is_staff? 
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)} 
       %span.buttonTitle Check My Final Grade
-    //%div.span12#classBoxandWhisker.btn.btn-warning{:title=> "Class Standing:", "data-content" => "<div id='classStanding'>Test</div>" }
-    //%span.buttonTitle How Am I Doing?
-      
+    %div.span12#classBoxandWhisker.btn.btn-warning{:title=> "Class Standing:", "data-content" => "<div id='classStanding'> </div>" }
+      %span.buttonTitle How Am I Doing?
+      %div#classStanding
   
   // To Do List Sidebar
   %div.btn.btn-danger.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 

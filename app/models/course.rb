@@ -149,8 +149,10 @@ class Course < ActiveRecord::Base
   end
   
   def score_for_student(student)
-   student.earned_grades(self)
+   #student.earned_grades(self)
   end
+
+  
 
   #What course grade has the student achieved? 
   def grade_level(student)
@@ -201,6 +203,31 @@ class Course < ActiveRecord::Base
   def multipliers_spent?(student)
     multiplier_count(student) >= 6
   end
+  
+  def grades_for_course(course)
+    scores = []
+    students.each do |student|
+      scores += grades_for_student(student)
+    end
+    scores    
+  end
+    
+  def minimum_course_score
+    #.min
+  end
+  
+  def maximum_course_score
+    #.max 
+  end 
+  
+  def average_course_score
+  
+  end
+  
+  def median_course_score
+    #len % 2 == 1 ? sorted[len/2] : (sorted[len/2 - 1] + sorted[len/2]).to_f / 2
+  end
+  
   
 
 end

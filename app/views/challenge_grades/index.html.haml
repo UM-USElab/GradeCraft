@@ -1,0 +1,29 @@
+%h1 Listing challenge_grades
+
+%table
+  %tr
+    %th Challenge
+    %th Score
+    %th Feedback
+    %th Status
+    %th Team
+    %th Final score
+    %th
+    %th
+    %th
+
+  - @challenge_grades.each do |challenge_grade|
+    %tr
+      %td= challenge_grade.challenge_id
+      %td= challenge_grade.score
+      %td= challenge_grade.feedback
+      %td= challenge_grade.status
+      %td= challenge_grade.team_id
+      %td= challenge_grade.final_score
+      %td= link_to 'Show', challenge_grade
+      %td= link_to 'Edit', edit_challenge_grade_path(challenge_grade)
+      %td= link_to 'Destroy', challenge_grade, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Challenge grade', new_challenge_grade_path

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109172443) do
+ActiveRecord::Schema.define(:version => 20130117133457) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -111,6 +111,31 @@ ActiveRecord::Schema.define(:version => 20130109172443) do
 
   add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
 
+  create_table "challenge_grades", :force => true do |t|
+    t.integer  "challenge_id"
+    t.integer  "score"
+    t.string   "feedback"
+    t.boolean  "status"
+    t.integer  "team_id"
+    t.integer  "final_score"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "challenges", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "point_total"
+    t.datetime "due_date"
+    t.integer  "course_id"
+    t.string   "points_predictor_display"
+    t.boolean  "visible"
+    t.boolean  "has_challenge_submissions"
+    t.boolean  "release_necessary"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
   create_table "course_badge_sets", :force => true do |t|
     t.integer "course_id"
     t.integer "badge_set_id"
@@ -182,7 +207,7 @@ ActiveRecord::Schema.define(:version => 20130109172443) do
 
   create_table "criteria", :force => true do |t|
     t.string   "name"
-    t.integer  "ruberic_id"
+    t.integer  "rubric_id"
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

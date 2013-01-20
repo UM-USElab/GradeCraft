@@ -17,8 +17,33 @@
     = f.input :raw_score, :default => @assignment.point_total, :label => "Score", :hint => "Total Assignment Points: #{@assignment.point_total}"
   = f.input :final_score, :hint => "Have points been added or deducted from the raw score for any reason? The final score will override the raw score if input."
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
-  - if @assignment.release_necessary?
-    = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]
+  %div#badges.form
+    %h5 Badges
+    - @badges.each do |badge|
+      - @grade.gradeable.earned_badges_by_badge(badge).tap do |earned_badge|
+        - if earned_badge
+          %div.badgeIcon
+            - if current_course.valuable_badges?
+              %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
+                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
+            - else
+              %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}"} 
+                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
+            %br= "Already Earned"
+        - else
+          %div.badgeIcon                  
+            - if current_course.valuable_badges?
+              %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
+                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+            - else
+              %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}"} 
+                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+              
+            = check_box_tag "earned_badge[badge_ids][]", badge.id
+            %br= badge.try(:name)
+
+    - if @assignment.release_necessary?
+      = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]
   %div.clear
   .form-actions
     %div.btn-toolbar

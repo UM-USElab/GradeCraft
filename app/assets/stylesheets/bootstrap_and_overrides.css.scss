@@ -2,8 +2,8 @@ body { padding-top: 50px; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Trocchi', serif;
-  
 }
+
 h4 {
   padding-bottom: 0px !important;
   margin-bottom: 0px !important;
@@ -92,15 +92,37 @@ hr {
  }
  
  #userScoreSection .nav-tabs > .active > a {
-   background-color:  #2ad32a;
+   background-color:  #2bd42b;
    color: #FFF;
    font-weight: bold;
    border-top-left-radius: 5px;
    border-top-right-radius: 5px;
  }
  
-#userScoreSection .nav-tabs > a:hover {
-  color: #555555;
+ #userScoreSection .nav-tabs li {
+   background-color: #AAA;
+   border-top-left-radius: 5px;
+   color: #FFF;
+   border-top-right-radius: 5px;
+   border-color: #FFF !important;
+   border-width: 1px !important;
+ }
+ 
+  #userScoreSection .nav-tabs li a {
+    color: #eee;
+  }
+ #userScoreSection .nav-tabs li.active > a:hover {
+  color: #FFF;
+   background-color:  #2bd42b;
   cursor: default;
-  background-color: #222222;
-}
+ }
+ 
+ 
+ #userScoreSection .nav-tabs li > a:hover {
+  background-color: #1baf1b;
+  cursor: pointer;
+  color: #FFF;
+ }
+ 
+ 
+ 

@@ -24,13 +24,20 @@ describe ChallengesController do
   # Challenge. As you add validations to Challenge, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
+    { "name" => "MyString" }
+  end
+
+  # This should return the minimal set of values that should be in the session
+  # in order to pass any filters (e.g. authentication) defined in
+  # ChallengesController. Be sure to keep this updated too.
+  def valid_session
     {}
   end
 
   describe "GET index" do
     it "assigns all challenges as @challenges" do
       challenge = Challenge.create! valid_attributes
-      get :index
+      get :index, {}, valid_session
       assigns(:challenges).should eq([challenge])
     end
   end
@@ -38,14 +45,14 @@ describe ChallengesController do
   describe "GET show" do
     it "assigns the requested challenge as @challenge" do
       challenge = Challenge.create! valid_attributes
-      get :show, :id => challenge.id
+      get :show, {:id => challenge.to_param}, valid_session
       assigns(:challenge).should eq(challenge)
     end
   end
 
   describe "GET new" do
     it "assigns a new challenge as @challenge" do
-      get :new
+      get :new, {}, valid_session
       assigns(:challenge).should be_a_new(Challenge)
     end
   end
@@ -53,7 +60,7 @@ describe ChallengesController do
   describe "GET edit" do
     it "assigns the requested challenge as @challenge" do
       challenge = Challenge.create! valid_attributes
-      get :edit, :id => challenge.id
+      get :edit, {:id => challenge.to_param}, valid_session
       assigns(:challenge).should eq(challenge)
     end
   end
@@ -62,18 +69,18 @@ describe ChallengesController do
     describe "with valid params" do
       it "creates a new Challenge" do
         expect {
-          post :create, :challenge => valid_attributes
+          post :create, {:challenge => valid_attributes}, valid_session
         }.to change(Challenge, :count).by(1)
       end
 
       it "assigns a newly created challenge as @challenge" do
-        post :create, :challenge => valid_attributes
+        post :create, {:challenge => valid_attributes}, valid_session
         assigns(:challenge).should be_a(Challenge)
         assigns(:challenge).should be_persisted
       end
 
       it "redirects to the created challenge" do
-        post :create, :challenge => valid_attributes
+        post :create, {:challenge => valid_attributes}, valid_session
         response.should redirect_to(Challenge.last)
       end
     end
@@ -82,14 +89,14 @@ describe ChallengesController do
       it "assigns a newly created but unsaved challenge as @challenge" do
         # Trigger the behavior that occurs when invalid params are submitted
         Challenge.any_instance.stub(:save).and_return(false)
-        post :create, :challenge => {}
+        post :create, {:challenge => { "name" => "invalid value" }}, valid_session
         assigns(:challenge).should be_a_new(Challenge)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Challenge.any_instance.stub(:save).and_return(false)
-        post :create, :challenge => {}
+        post :create, {:challenge => { "name" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -103,19 +110,19 @@ describe ChallengesController do
         # specifies that the Challenge created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Challenge.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => challenge.id, :challenge => {'these' => 'params'}
+        Challenge.any_instance.should_receive(:update_attributes).with({ "name" => "MyString" })
+        put :update, {:id => challenge.to_param, :challenge => { "name" => "MyString" }}, valid_session
       end
 
       it "assigns the requested challenge as @challenge" do
         challenge = Challenge.create! valid_attributes
-        put :update, :id => challenge.id, :challenge => valid_attributes
+        put :update, {:id => challenge.to_param, :challenge => valid_attributes}, valid_session
         assigns(:challenge).should eq(challenge)
       end
 
       it "redirects to the challenge" do
         challenge = Challenge.create! valid_attributes
-        put :update, :id => challenge.id, :challenge => valid_attributes
+        put :update, {:id => challenge.to_param, :challenge => valid_attributes}, valid_session
         response.should redirect_to(challenge)
       end
     end
@@ -125,7 +132,7 @@ describe ChallengesController do
         challenge = Challenge.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Challenge.any_instance.stub(:save).and_return(false)
-        put :update, :id => challenge.id, :challenge => {}
+        put :update, {:id => challenge.to_param, :challenge => { "name" => "invalid value" }}, valid_session
         assigns(:challenge).should eq(challenge)
       end
 
@@ -133,7 +140,7 @@ describe ChallengesController do
         challenge = Challenge.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Challenge.any_instance.stub(:save).and_return(false)
-        put :update, :id => challenge.id, :challenge => {}
+        put :update, {:id => challenge.to_param, :challenge => { "name" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end
@@ -143,13 +150,13 @@ describe ChallengesController do
     it "destroys the requested challenge" do
       challenge = Challenge.create! valid_attributes
       expect {
-        delete :destroy, :id => challenge.id
+        delete :destroy, {:id => challenge.to_param}, valid_session
       }.to change(Challenge, :count).by(-1)
     end
 
     it "redirects to the challenges list" do
       challenge = Challenge.create! valid_attributes
-      delete :destroy, :id => challenge.id
+      delete :destroy, {:id => challenge.to_param}, valid_session
       response.should redirect_to(challenges_url)
     end
   end

@@ -7,6 +7,16 @@
 
 
 .userDashboardSide {
+  img.unearned, .badgeTitle.unearned {
+      opacity: .3;
+    }
+    
+    .unEarnedText {
+      clear: left;
+      text-align: center;
+      font-size: 11px;
+      line-height: 14px;
+    }  
 
   #badges {
     padding: 5px 15px 15px;
@@ -18,16 +28,8 @@
       margin-bottom: 10px;
     }
   
-    img.unearned, .badgeTitle.unearned {
-      opacity: .3;
-    }
-  
-    .unEarnedText {
-      clear: left;
-      text-align: center;
-      font-size: 11px;
-      line-height: 14px;
-    }   
+    
+   
   }
   #toDoList { 
     text-align: left;

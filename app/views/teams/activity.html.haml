@@ -3,7 +3,6 @@
 
 %p
   %b Points: 
-  = @team.score
 %p
   %b Rank:
 %p
@@ -26,23 +25,9 @@
       %th
       %th
       %th
-      - @users.each do |user|
-        %tr  
-          %td= user.email
-          %td= link_to user.name, user_path(user)
-          %td= user.role
-          %td
-            = user.earned_grades(current_course)
-          %td= user.visit_count
-          - if current_course.has_badges? 
-            %td
-              - user.earned_badges.each do |badge|
-                %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
-          - if user.is_student?
-            %td= link_to 'Dashboard', user, :class => 'btn btn-mini'
-            %td= link_to 'Predictor', predictor_users_path(:user_id => user.id), :class => 'btn btn-mini'
-          - else
-            %td
-            %td
-          %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini'
-          %td= link_to 'Delete', user, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+    - @users.each do |user| 
+      - user.grades.each do |grade|
+        %tr
+          %td= user.name
+          %td= grade.raw_score
+          %td= grade.assignment.name
