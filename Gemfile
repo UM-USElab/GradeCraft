@@ -24,8 +24,8 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'jquery-tablesorter'
 gem 'd3_rails'
-gem 'dalli'
-gem 'thin'
+#gem 'dalli'
+#gem 'thin'
 gem 'twitter-bootstrap-rails'
 gem "simple-navigation"
 
