@@ -177,7 +177,8 @@ class Course < ActiveRecord::Base
   end
   
   def grades_for_student(student)
-    individual_grades_for_student(student) + team_grades_for_student(student) + ((group_grades_for_student(student) if student.groups.present?) || []) 
+    individual_grades_for_student(student) + ((group_grades_for_student(student) if student.groups.present?) || []) 
+    #individual_grades_for_student(student) + team_grades_for_student(student) + ((group_grades_for_student(student) if student.groups.present?) || []) 
   end
   
   def point_totals_by_assignment_type_for_student(student)

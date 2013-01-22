@@ -105,7 +105,9 @@ class User < ActiveRecord::Base
   end
   
   def earned_grades(course)
-    (course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_score(course)
+    (course.grades_for_student(self).map(&:score).sum) 
+    
+    #(course.grades_for_student(self).map(&:score).sum) + earned_badges_value(course) + team_score(course)
   end
 
   def grades_by_assignment_id

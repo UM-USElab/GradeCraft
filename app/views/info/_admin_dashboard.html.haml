@@ -71,7 +71,7 @@
           - @teams.each do |team|
             %tr
               %td= link_to team.name, team_path(team)
-              %td= team.try(:score)
+              //%td= team.try(:score)
               %td 
                 - team.earned_badges.each do |badge|
                   %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"} 
