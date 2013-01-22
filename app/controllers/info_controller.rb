@@ -4,7 +4,7 @@ class InfoController < ApplicationController
 
   helper_method :sort_column, :sort_direction
   
-  before_filter :require_login, :except => [:show, :using_gradecraft]
+  #before_filter :require_login, :except => [:show, :using_gradecraft]
 
 
   def dashboard
