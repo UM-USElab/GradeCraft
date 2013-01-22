@@ -15,7 +15,7 @@
     = f.input :raw_score, :collection => @score_levels.map { |l| [l.name,l.value] }, :as => :select
   - else
     = f.input :raw_score, :default => @assignment.point_total, :label => "Score", :hint => "Total Assignment Points: #{@assignment.point_total}"
-  = f.input :final_score, :hint => "Have points been added or deducted from the raw score for any reason? The final score will override the raw score if input."
+  //= f.input :final_score, :hint => "Have points been added or deducted from the raw score for any reason? The final score will override the raw score if input."
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   %div#badges.form
     %h5 Badges
@@ -33,12 +33,10 @@
         - else
           %div.badgeIcon                  
             - if current_course.valuable_badges?
-              %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
-                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+              %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
             - else
-              %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}"} 
-                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
-              
+              %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+            //TODO Coryhelp
             = check_box_tag "earned_badge[badge_ids][]", badge.id
             %br= badge.try(:name)
 

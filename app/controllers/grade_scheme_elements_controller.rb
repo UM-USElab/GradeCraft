@@ -20,6 +20,7 @@ class GradeSchemeElementsController < ApplicationController
     @grade_schemes = current_course.grade_schemes.all
     @grade_scheme = GradeScheme.find(params[:grade_scheme_id])
     @title = "Create a New #{@grade_scheme.name} Grading Element"
+    @button_title = "Create"
     @grade_scheme_element = @grade_scheme.grade_scheme_elements.create(params[:grade_scheme_element])
 
   end
@@ -27,6 +28,7 @@ class GradeSchemeElementsController < ApplicationController
   def edit
     @grade_scheme = GradeScheme.find(params[:grade_scheme_id])
     @title = "Edit #{@grade_scheme.name} Grading Element"
+    @button_title = "Update"
     @grade_scheme_element = @grade_scheme.grade_scheme_elements.find(params[:id])
     respond_with(@grade_scheme)
   end

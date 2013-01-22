@@ -1,15 +1,17 @@
-= simple_form_for(@challenge) do |f|
+= simple_form_for(@challenge, :html => {:class => 'form-horizontal' }) do |f|
 
   .form-inputs
     = f.input :name
-    = f.input :description
+    = f.input :description,  :as => :text, :label => "Description", :input_html => {:id => 'some-textarea', :class => 'span9' }, :placeholder => "What do the teams need to do to succed?"
     = f.input :point_total
     = f.input :due_date
-    = f.input :course_id
-    = f.input :points_predictor_display
-    = f.input :visible
-    = f.input :has_challenge_submissions
-    = f.input :release_necessary
+    = f.input :visible, :label => "Visible to students?"
+    = f.input :has_challenge_submissions, :label => "Teams submit materials?"
+    = f.input :release_necessary, :label => "Release necessary?"
 
   .form-actions
-    = f.button :submit
+    %div.btn-toolbar    
+      %div.btn-group
+        = f.button :submit, :class => "btn-primary"
+      %div.btn-group
+        = link_to 'Cancel', challenges_path, :class => 'btn btn-info'

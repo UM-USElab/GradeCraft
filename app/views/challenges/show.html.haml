@@ -1,4 +1,5 @@
-%p#notice= notice
+= link_to 'Edit', edit_challenge_path(@challenge), :class => 'btn btn-info btn-mini'
+= link_to 'Back', challenges_path, :class => 'btn btn-info btn-mini'
 
 %p
   %b Name:
@@ -13,21 +14,12 @@
   %b Due date:
   = @challenge.due_date
 %p
-  %b Course:
-  = @challenge.course_id
+  %b Visible to students:
+  = @challenge.visible? ? 'Yes' : 'No'
 %p
-  %b Points predictor display:
-  = @challenge.points_predictor_display
+  %b Challenge Submissions:
+  = @challenge.has_challenge_submissions? ? 'Yes' : 'No'
 %p
-  %b Visible:
-  = @challenge.visible
-%p
-  %b Has challenge submissions:
-  = @challenge.has_challenge_submissions
-%p
-  %b Release necessary:
-  = @challenge.release_necessary
+  %b Release Necessary:
+  = @challenge.release_necessary? ? 'Yes' : 'No'
 
-= link_to 'Edit', edit_challenge_path(@challenge)
-\|
-= link_to 'Back', challenges_path

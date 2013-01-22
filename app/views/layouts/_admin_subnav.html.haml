@@ -1,8 +1,9 @@
 %ul.nav.nav-list
-  %form.form-search.pull-right
+  %form.form-search.pull-right 
     %div.input-append
-      %input.search-query.span10{:placeholder => "Search for #{current_course.user_ref}"}
-      %button.btn{:type => "submit"}Go
+      = form_for User.new, :url => "search" do |f|
+        %input.search-query.span10{:placeholder => "Search for #{current_course.user_ref}"}
+        %button.btn{:type => "submit"}Go
   %li.nav-header Users
   %li= link_to "Students", students_users_path
   - if current_course.student_weighted? 
@@ -15,6 +16,7 @@
   %li= link_to "Assignment Types", assignment_types_path
   %li= link_to "Assignments", assignments_path
   %li= link_to "#{current_course.team_term}s", teams_path
+  %li= link_to "#{current_course.team_term} Challenges", challenges_path
   %li= link_to "Badge Sets", badge_sets_path
   %li= link_to "Badges", badges_path
   //%li= link_to "Themes", themes_path

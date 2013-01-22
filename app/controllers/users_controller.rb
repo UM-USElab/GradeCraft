@@ -244,6 +244,11 @@ class UsersController < ApplicationController
   def final_grades
     @course = current_course
   end
+  
+  def search
+    q = params[:user][:name]
+    @users = User.find(:all, :conditions => ["name LIKE %?%",q])
+  end
 
   
   private

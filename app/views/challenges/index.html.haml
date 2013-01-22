@@ -1,35 +1,29 @@
-%h1 Listing challenges
+- if current_user.is_staff?
+  = link_to 'New Challenge', new_challenge_path, :class => "btn btn-info btn-small"
 
-%table
-  %tr
-    %th Name
-    %th Description
-    %th Point total
-    %th Due date
-    %th Course
-    %th Points predictor display
-    %th Visible
-    %th Has challenge submissions
-    %th Release necessary
-    %th
-    %th
-    %th
-
-  - @challenges.each do |challenge|
+%table.table-bordered.table.display
+  %thead
     %tr
-      %td= challenge.name
-      %td= challenge.description
-      %td= challenge.point_total
-      %td= challenge.due_date
-      %td= challenge.course_id
-      %td= challenge.points_predictor_display
-      %td= challenge.visible
-      %td= challenge.has_challenge_submissions
-      %td= challenge.release_necessary
-      %td= link_to 'Show', challenge
-      %td= link_to 'Edit', edit_challenge_path(challenge)
-      %td= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' }
+      %th Name
+      %th Description
+      %th Point total
+      %th Due date
+      %th Visible
+      %th Submissions?
+      %th Release necessary
+      %th
+      %th
 
-%br
+  %tbody
+    - @challenges.each do |challenge|
+      %tr
+        %td= link_to challenge.name, challenge
+        %td= challenge.description
+        %td= challenge.point_total
+        %td= challenge.due_date
+        %td= challenge.visible? ? 'Yes' : 'No'
+        %td= challenge.has_challenge_submissions? ? 'Yes' : 'No'
+        %td= challenge.release_necessary? ? 'Yes' : 'No'
+        %td= link_to 'Edit', edit_challenge_path(challenge), :class => 'btn btn-mini'
+        %td= link_to 'Delete', challenge, :class => 'btn btn-mini', :method => :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Challenge', new_challenge_path

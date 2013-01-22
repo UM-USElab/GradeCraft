@@ -1,21 +1,25 @@
 class ChallengesController < ApplicationController
   def index
+    @title = "View All Challenges"
     @challenges = Challenge.all
     respond_with(@challenges)
   end
 
   def show
     @challenge = Challenge.find(params[:id])
+    @title = @challenge.name
     respond_with(@challenge)
   end
 
   def new
+    @title = "Create a New Challenge"
     @challenge = Challenge.new
     respond_with(@challenge)
   end
 
   def edit
     @challenge = Challenge.find(params[:id])
+    @title = "Edit #{@challenge.name}"
   end
 
   def create

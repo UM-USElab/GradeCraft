@@ -59,7 +59,8 @@
           %td= link_to 'Dashboard', student, {:class => 'btn btn-mini'}
           %td= link_to 'Predictor', predictor_users_path(:user_id => student), {:class => 'btn btn-mini'}
           %td= link_to 'Edit', edit_user_path(student), {:class => 'btn btn-mini'}
-          %td= link_to 'Delete', student, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+          //TODO Coryhelp
+          %td= link_to 'Delete', course_memberships_path(:course_id => current_course, :user_id => student.course_memberships(current_course)), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :destroy
       - i += 1
 - if current_user.is_staff? 
   = "Download:"
