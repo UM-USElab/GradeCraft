@@ -1,30 +1,31 @@
 - if current_user.is_staff?
   = link_to "Add a #{current_course.team_ref}", new_team_path, :class => "btn btn-info btn-small"
-  = link_to "Grade a #{current_course.team_ref} Assignment", assignments_path, :class => "btn btn-info btn-small"
+  = link_to "Grade a #{current_course.team_ref} Challenge", challenges_path, :class => "btn btn-info btn-small"
   
 %table.table.table-bordered#sortableTable.tablesorter
   %thead
     %tr
+      %th Rank
       %th Name
       %th No. of Students
-      %th Rank
       %th Score
-      %th Badges Earned
-      %th Total Badges
       - if current_user.is_staff?
+        %th Badges Earned
+        %th Total Badges
         %th.header
         %th.header
   %tbody
+    - i = 1
     - @teams.each do |team|
       %tr
+        %td= team.rank
         %td= link_to team.name, team
         %td= team.student_count
-        %td= team.rank
         %td= team.score
-        %td
-          - team.earned_badges.each do |badge|
-            %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
-        %td= team.student_badge_count
         - if current_user.is_staff?
+          %td
+            - team.earned_badges.each do |badge|
+              %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
+          %td= team.student_badge_count
           %td= link_to 'Edit', edit_team_path(team), :class => 'btn btn-mini'
           %td= link_to 'Delete', team, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete

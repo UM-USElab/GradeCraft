@@ -50,7 +50,7 @@ class ElementsController < ApplicationController
 
   def update
     @badge = Badge.find(params[:badge_id])
-    @element = @badge.course_grade_scheme_elements.find(params[:id])
+    @element = @badge.elements.find(params[:id])
     @element.update_attributes(params[:element])
     respond_with @badge
   end

@@ -209,8 +209,9 @@ class Assignment < ActiveRecord::Base
     
   
   def grade_level(grade)
-    #puts grade_scheme(:grade_level(grade.raw_score))
-    grade_scheme.try(:grade_level, grade.raw_score)
+    #TODO FIX
+    #grade_scheme.try(:grade_level, grade.raw_score)
+    #grade_scheme.try(:grade_level, grade.raw_score)
   end  
   
 end

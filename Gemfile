@@ -28,6 +28,7 @@ gem 'd3_rails'
 #gem 'thin'
 gem 'twitter-bootstrap-rails'
 gem "simple-navigation"
+gem 'therubyracer'
 
 group :staging do
   gem 'pg'

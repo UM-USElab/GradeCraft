@@ -70,6 +70,10 @@ class Course < ActiveRecord::Base
     team_setting == true
   end
   
+  def graph_display?
+    graph_display == true
+  end
+  
   #Can students see the team scores?
   def teams_visible?
     teams_visible == true
