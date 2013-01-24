@@ -35,7 +35,7 @@ class GradesController < ApplicationController
     @assignment_type = @assignment.assignment_type
     @grade = @assignment.assignment_grades.create(params[:grade])
     @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
-    @grade.earnable = params[:earnable_type].constantize.find(params[:earnable_id])
+    #@grade.earnable = params[:earnable_type].constantize.find(params[:earnable_id])
     @badges = current_course.badges
     @score_levels = @assignment_type.score_levels
     @earned_badge = EarnedBadge.new

@@ -25,12 +25,11 @@ $(document).ready(function(){
     
   $('#gradeCurious').popover();
   
-  // $('#classBoxandWhisker').popover({ html : true });
 /*
   
   $('#classBoxandWhiskerPopover').click(function() {
-    $(this).popover({ html: true }).popover('show');
-    box_and_whiskers();
+    $(this).popover({ html: true }).popover('toggle');
+    box_and_whiskers('toggle');
   });
 */
 /*

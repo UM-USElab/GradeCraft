@@ -43,15 +43,15 @@
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)}
       %span.buttonTitle Check My Final Grade
     //%div#classBoxandWhisker
-    //%div.span12#classBoxandWhiskerPopover.btn.btn-warning{:class => "classPlot", :title => "Class Standing", "data-content" => "<div id='classStanding'> </div>" }
-    //%span.buttonTitle How Am I Doing? 
-    //%div#classStanding
+    //%div.span12#classBoxandWhiskerPopover.btn.btn-success{:class => "classPlot", :title => "Class Standing", "data-content" => "<div id='classStanding'> </div>" }
+    //%span.buttonTitle Class Standings
   - elsif current_user.is_staff? 
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)} 
       %span.buttonTitle Check My Final Grade
-    %div.span12#classBoxandWhisker.btn.btn-warning{:title=> "Class Standing:", "data-content" => "<div id='classStanding'> </div>" }
-      %span.buttonTitle How Am I Doing?
-      //%div#classStanding
+    //%div#classBoxandWhisker
+    //%div.span12#classBoxandWhiskerPopover.btn.btn-success{:class => "classPlot", :title => "Class Standing", "data-content" => "<div id='classStanding'> </div>" }
+    //%span.buttonTitle Class Standings
+      
   
   // To Do List Sidebar
   %div.btn.btn-danger.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
