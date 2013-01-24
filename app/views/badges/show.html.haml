@@ -28,7 +28,7 @@ Badge Elements:
   %tbody
     - @badge.elements.each do |element|
       %tr
-        %td= link_to element.name
+        %td= element.name
         %td= element.description
         %td= link_to "Edit", edit_badge_element_path(@badge.id, element.id), :class => 'btn btn-mini'
         %td= link_to "Delete", badge_element_path(@badge.id, element.id), :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini', :method => :delete
