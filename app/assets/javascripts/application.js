@@ -25,7 +25,14 @@ $(document).ready(function(){
     
   $('#gradeCurious').popover();
   
-  $('#classBoxandWhisker').popover({ html : true });
+  // $('#classBoxandWhisker').popover({ html : true });
+/*
+  
+  $('#classBoxandWhiskerPopover').click(function() {
+    $(this).popover({ html: true }).popover('show');
+    box_and_whiskers();
+  });
+*/
 /*
 
   $('.modal').modal();

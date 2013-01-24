@@ -30,6 +30,7 @@ class ElementsController < ApplicationController
     @badge = Badge.find(params[:badge_id])
     @title = "Edit #{@badge.name} Grading Element"
     @element = @badge.elements.find(params[:id])
+    
     respond_with(@badge)
   end
 

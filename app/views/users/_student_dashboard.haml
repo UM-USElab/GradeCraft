@@ -42,15 +42,16 @@
   - if current_user.is_student?
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)}
       %span.buttonTitle Check My Final Grade
-    %div.span12#gradeCurious.btn.btn-warning{"data-target" => "#classStandings", "data-toggle" => "collapse"}
-      %span.buttonTitle How Am I Doing? 
-      %div#classStanding
+    //%div#classBoxandWhisker
+    //%div.span12#classBoxandWhiskerPopover.btn.btn-warning{:class => "classPlot", :title => "Class Standing", "data-content" => "<div id='classStanding'> </div>" }
+    //%span.buttonTitle How Am I Doing? 
+    //%div#classStanding
   - elsif current_user.is_staff? 
     %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)} 
       %span.buttonTitle Check My Final Grade
     %div.span12#classBoxandWhisker.btn.btn-warning{:title=> "Class Standing:", "data-content" => "<div id='classStanding'> </div>" }
       %span.buttonTitle How Am I Doing?
-      %div#classStanding
+      //%div#classStanding
   
   // To Do List Sidebar
   %div.btn.btn-danger.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
