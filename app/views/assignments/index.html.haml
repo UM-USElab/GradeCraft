@@ -7,7 +7,7 @@
 - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
   %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
   %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})" 
-  = link_to "Edit Assignment Type", edit_assignment_type_path(assignment_type), :class => "btn btn-mini"
+  //= link_to "Edit Assignment Type", edit_assignment_type_path(assignment_type), :class => "btn btn-mini"
   %table.table.display.table-bordered.tablesorter
     %thead
     %tr
