@@ -5,7 +5,7 @@ class Team < ActiveRecord::Base
   has_many :challenge_grades, :dependent => :destroy
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
   
-  before_save :set_sortable_score
+  #before_save :set_sortable_score
   
   belongs_to :course
   attr_accessible :name, :created_at, :updated_at, :banner_file_name, :banner_updated_at, :sortable_score, :rank, :team_id, :user_ids, :course_id
@@ -57,9 +57,5 @@ class Team < ActiveRecord::Base
   end
 
   private
-
-  def set_sortable_score
-    #self.sortable_score = grades.reload.map(&:unmultiplied_score).sum || 0
-  end
   
 end
