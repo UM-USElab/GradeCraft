@@ -59,7 +59,7 @@ class Team < ActiveRecord::Base
   private
 
   def set_sortable_score
-    self.sortable_score = grades.reload.map(&:unmultiplied_score).sum || 0
+    #self.sortable_score = grades.reload.map(&:unmultiplied_score).sum || 0
   end
   
 end
