@@ -19,7 +19,7 @@ gem 'flexslider'
 gem "highcharts-rails"
 gem "airbrake"
 gem 'canable'
-gem 'mysql2'
+gem 'mysql2', '0.3.12b5' 
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'jquery-tablesorter'
