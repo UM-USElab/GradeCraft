@@ -65,6 +65,10 @@ class AssignmentType < ActiveRecord::Base
     assignments.sum(&:point_total)
   end
   
+  def mass_grade?
+    mass_grade == true
+  end
+  
   def grade_checkboxes?
     mass_grade_type == "Checkbox"
   end 
