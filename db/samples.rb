@@ -749,7 +749,7 @@ puts "Game Play Reflection Paper has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 31
+  a.assignment_type_id = 41
   a.name = "Individual Paper/Project 1"
   a.point_total = 200000
   a.due_date = rand(4).weeks.from_now
@@ -762,7 +762,7 @@ puts "Individual Project 1 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 31
+  a.assignment_type_id = 41
   a.name = "Individual Paper/Project 2"
   a.point_total = 300000
   a.due_date = rand(7).weeks.from_now
@@ -775,7 +775,7 @@ puts "Individual Project 2 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 31
+  a.assignment_type_id = 41
   a.name = "Group Game Design Project"
   a.point_total = 400000
   a.due_date = rand(7).weeks.from_now
