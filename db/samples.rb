@@ -373,7 +373,7 @@ puts "Attendance 10 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 2
+  a.assignment_type_id = 11
   a.name = "Week 1"
   a.point_total = 5000
   a.due_date = rand(5).weeks.ago
@@ -395,7 +395,7 @@ puts "Grades from Reading Reaction 1 have been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 2
+  a.assignment_type_id = 11
   a.name = "Week 2"
   a.point_total = 5000
   a.due_date = rand(4).weeks.ago
@@ -417,7 +417,7 @@ puts "Grades from Reading Reaction 2 have been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 2
+  a.assignment_type_id = 11
   a.name = "Week 3"
   a.point_total = 5000
   a.due_date = rand(3).weeks.ago
@@ -439,7 +439,7 @@ puts "Grades from Reading Reaction 3 have been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 2
+  a.assignment_type_id = 11
   a.name = "Week 4"
   a.point_total = 5000
   a.due_date = rand(2).weeks.ago
@@ -461,7 +461,7 @@ puts "Grades from Reading Reaction 4 have been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 2
+  a.assignment_type_id = 11
   a.name = "Week 5"
   a.point_total = 5000
   a.due_date = rand(1).weeks.ago
@@ -483,7 +483,7 @@ puts "Grades from Reading Reaction 5 have been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 2
+  a.assignment_type_id = 11
   a.name = "Week 6"
   a.point_total = 5000
   a.due_date = rand(1).weeks.from_now
@@ -509,7 +509,7 @@ puts "Reading Reaction 7 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 2
+  a.assignment_type_id = 11
   a.name = "Week 8"
   a.point_total = 5000
   a.due_date = rand(3).weeks.from_now
@@ -535,7 +535,7 @@ puts "Reading Reaction 9 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 2
+  a.assignment_type_id = 11
   a.name = "Week 10"
   a.point_total = 5000
   a.due_date = rand(5).weeks.from_now
@@ -548,7 +548,7 @@ puts "Reading Reaction 10 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Post 1"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -568,7 +568,7 @@ puts "Grades from Blog Post 1 have been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Post 2"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -588,7 +588,7 @@ puts "Grades from Blog Post 2 have been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Post 3"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -599,7 +599,7 @@ puts "Blog Post 3 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Post 4"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -610,7 +610,7 @@ puts "Blog Post 4 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Post 5"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -621,7 +621,7 @@ puts "Blog Post 5 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Post 6"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -632,7 +632,7 @@ puts "Blog Post 6 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Comment 1"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -643,7 +643,7 @@ puts "Blog Comment 1 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Comment 2"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -654,7 +654,7 @@ puts "Blog Comment 2 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Comment 3"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -665,7 +665,7 @@ puts "Blog Comment 3 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Comment 4"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -676,7 +676,7 @@ puts "Blog Comment 4 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 3
+  a.assignment_type_id = 21
   a.name = "Blog Comment 5"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -688,7 +688,7 @@ puts "Blog Comment 5 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 4
+  a.assignment_type_id = 31
   a.name = "Game Selection Paper"
   a.point_total = 80000
   a.due_date = rand(3).weeks.ago
@@ -710,7 +710,7 @@ puts "Grades from Game Selection Paper have been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 4
+  a.assignment_type_id = 31
   a.name = "Game Play Update Paper 1"
   a.point_total = 120000
   a.due_date = rand(3).weeks.from_now
@@ -723,7 +723,7 @@ puts "Game Play Update Paper 1 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 4
+  a.assignment_type_id = 31
   a.name = "Game Play Update Paper 2"
   a.point_total = 120000
   a.due_date = rand(5).weeks.from_now
@@ -736,7 +736,7 @@ puts "Game Play Update Paper 2 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 4
+  a.assignment_type_id = 31
   a.name = "Game Play Reflection Paper"
   a.point_total = 160000
   a.due_date = rand(7).weeks.from_now
@@ -749,7 +749,7 @@ puts "Game Play Reflection Paper has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 5
+  a.assignment_type_id = 41
   a.name = "Individual Paper/Project 1"
   a.point_total = 200000
   a.due_date = rand(4).weeks.from_now
@@ -762,7 +762,7 @@ puts "Individual Project 1 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 5
+  a.assignment_type_id = 41
   a.name = "Individual Paper/Project 2"
   a.point_total = 300000
   a.due_date = rand(7).weeks.from_now
@@ -775,7 +775,7 @@ puts "Individual Project 2 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 5
+  a.assignment_type_id = 41
   a.name = "Group Game Design Project"
   a.point_total = 400000
   a.due_date = rand(7).weeks.from_now
