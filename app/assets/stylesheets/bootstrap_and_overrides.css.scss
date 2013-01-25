@@ -59,9 +59,12 @@ h4 {
 /** Fixes the spacing in the Remember Me button on the dropdown nav **/
 span.control-label {
   float: left;
-  width: 118px;
+  width: 120px;
   letter-spacing: normal;
   word-spacing: normal;
+  padding: 2px;
+  height: 20px;
+  width: 20px;
 }
 
 
