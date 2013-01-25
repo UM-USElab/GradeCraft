@@ -232,7 +232,7 @@ puts "Attendance 2 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 2
+    g.assignment_id = 11
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -255,7 +255,7 @@ puts "Attendance 3 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 3
+    g.assignment_id = 21
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -277,7 +277,7 @@ puts "Attendance 4 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 4
+    g.assignment_id = 31
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -299,7 +299,7 @@ puts "Attendance 5 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 5
+    g.assignment_id = 41
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -386,7 +386,7 @@ puts "Reading Reaction 1 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 11
+    g.assignment_id = 101
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -408,7 +408,7 @@ puts "Reading Reaction 2 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 12
+    g.assignment_id = 111
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -430,7 +430,7 @@ puts "Reading Reaction 3 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 13
+    g.assignment_id = 121
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -452,7 +452,7 @@ puts "Reading Reaction 4 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 14
+    g.assignment_id = 131
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -474,7 +474,7 @@ puts "Reading Reaction 5 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 15
+    g.assignment_id = 141
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -496,7 +496,7 @@ puts "Reading Reaction 6 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 2
+  a.assignment_type_id = 11
   a.name = "Week 7"
   a.point_total = 5000
   a.due_date = rand(2).weeks.from_now
@@ -522,7 +522,7 @@ puts "Reading Reaction 8 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 2
+  a.assignment_type_id = 11
   a.name = "Week 9"
   a.point_total = 5000
   a.due_date = rand(4).weeks.from_now
@@ -559,7 +559,7 @@ puts "Blog Post 1 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 21
+    g.assignment_id = 201
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -579,7 +579,7 @@ puts "Blog Post 2 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 22
+    g.assignment_id = 211
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -701,7 +701,7 @@ puts "Game Selection Paper has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 32
+    g.assignment_id = 301
     g.gradeable = student
     g.raw_score = 80000 * [0,1].sample
   end
@@ -749,7 +749,7 @@ puts "Game Play Reflection Paper has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 41
+  a.assignment_type_id = 31
   a.name = "Individual Paper/Project 1"
   a.point_total = 200000
   a.due_date = rand(4).weeks.from_now
@@ -762,7 +762,7 @@ puts "Individual Project 1 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 41
+  a.assignment_type_id = 31
   a.name = "Individual Paper/Project 2"
   a.point_total = 300000
   a.due_date = rand(7).weeks.from_now
@@ -775,7 +775,7 @@ puts "Individual Project 2 has been posted!"
 
 Assignment.create! do |a|
   a.course_id = default_course.id
-  a.assignment_type_id = 41
+  a.assignment_type_id = 31
   a.name = "Group Game Design Project"
   a.point_total = 400000
   a.due_date = rand(7).weeks.from_now
