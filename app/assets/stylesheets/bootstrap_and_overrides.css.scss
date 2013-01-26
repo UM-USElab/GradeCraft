@@ -58,13 +58,20 @@ h4 {
 
 /** Fixes the spacing in the Remember Me button on the dropdown nav **/
 span.control-label {
-  float: left;
-  width: 120px;
+  float: right;
   letter-spacing: normal;
   word-spacing: normal;
-  padding: 2px;
   height: 20px;
+  z-index: -1;
+}
+
+#rememberMe label.checkbox input {
+  float: right;
+  padding: 10px;
+  height: 15px;
   width: 20px;
+  z-index: 10;
+  margin-top: 2px;
 }
 
 
