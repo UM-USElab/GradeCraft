@@ -36,7 +36,7 @@
               %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
             - else
               %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
-            //TODO Coryhelp pull-request
+            //TODO Coryhelp updated to do pull-request
             //= check_box_tag "earned_badge[badge_id][]", badge.id
             = hidden_field_tag earned_badge, badge.id
             = check_box_tag 'earned_badge[:badge_id => badge.id][]', badge.id
