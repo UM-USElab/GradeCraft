@@ -36,8 +36,10 @@
               %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
             - else
               %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
-            //TODO Coryhelp
-            = check_box_tag "earned_badge[badge_ids][]", badge.id
+            //TODO Coryhelp pull-request
+            //= check_box_tag "earned_badge[badge_id][]", badge.id
+            = hidden_field_tag earned_badge, badge.id
+            = check_box_tag 'earned_badge[:badge_id => badge.id][]', badge.id
             %br= badge.try(:name)
 
     - if @assignment.release_necessary?
@@ -46,6 +48,6 @@
   .form-actions
     %div.btn-toolbar
       %div.btn-group
-        = f.button :submit, "Submit Grade", :class => "btn-primary"
+        = f.button :submit, :class => "btn-primary"
       %div.btn-group
         = link_to 'Cancel', assignment_path(@assignment), :class => 'btn btn-info'

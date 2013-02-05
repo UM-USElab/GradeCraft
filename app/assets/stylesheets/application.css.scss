@@ -75,3 +75,36 @@ background-color: #8dbdd8;
   font-size: 15px;
   font-family: Trocchi, serif;
 }
+
+.hero-unit div.login-demo {
+  margin-bottom: 25px;
+  margin-left: 20px;
+  width: 33%;
+  border-radius: 15px;
+  background-color: red;
+}
+
+.hero-unit div.login-demo div.demo-content {
+  padding: 5px 10px;
+  margin: 0;
+}
+
+.btn-group.pull-right {
+  margin-left: 15px;
+}
+
+.hero-unit div.login-demo h6 {
+  background-color: #000;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 9px 10px 4px; 
+  color: #FFF;
+  font-size: 80%;
+  margin: 0;
+}
+
+
+.hero-unit div.login-demo.student {
+  
+  background-color: #2bd42b;
+}

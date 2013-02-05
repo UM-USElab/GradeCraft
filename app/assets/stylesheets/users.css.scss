@@ -26,22 +26,29 @@
       width: 25%;
       font-size: 70%;
       margin-bottom: 10px;
-    }
-  
-    
+    }    
    
   }
   
  #classBoxandWhisker .popover {
     width: 400px !important;
   }
+  
+  #toDoList h3 {
+      padding: 0px;
+      margin: 10px 0 1px;
+  }
   #toDoList { 
     text-align: left;
   
-    .assignmentTypeToDo {
+    h3.assignmentTypeToDo {
       font-weight: bold;
-      color: #000;
-      text-decoration: underline;
+      text-transform: uppercase;
+      font-size: 11px;
+      text-align: center; 
+      line-height: 14px;
+      color: #111;
+      letter-spacing: 1px;
     }
   
     ul {
@@ -52,13 +59,9 @@
 
     li {
       margin-left: 15px;
+      line-height: 15px;
     }
   
-    h6 {
-      margin: 5px 0px;
-      color: #000;
-      font-size: 12px;
-    }
 
     .due, .submit {
       margin-left: 15px;

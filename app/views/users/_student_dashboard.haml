@@ -60,8 +60,8 @@
     %div{:id => "toDoList", :class => "collapse"}
       - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
         - if assignment_type.has_soon_assignments?
-          %span.assignmentTypeToDo
-            = "#{assignment_type.try(:name)}:"
+          %h3.assignmentTypeToDo
+            = "#{assignment_type.try(:name)}"
           %ul
             - assignments.each do |assignment|
               - if assignment.soon? 
