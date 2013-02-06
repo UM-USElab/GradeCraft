@@ -39,7 +39,7 @@
             //TODO Coryhelp updated to do pull-request
             //= check_box_tag "earned_badge[badge_id][]", badge.id
             = hidden_field_tag earned_badge, badge.id
-            = check_box_tag 'earned_badge[:badge_id => badge.id][]', badge.id
+            = check_box_tag 'earned_badge[badge_id][]', badge.id
             %br= badge.try(:name)
 
     - if @assignment.release_necessary?
