@@ -4,6 +4,7 @@
   - if @assignment.is_individual?
     = f.input :gradeable_id, :collection => @students, :label => "#{current_course.user_ref}", :include_blank => false
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'User' }
+    = "Grading  #{@grade.gradeable.name}"
   - elsif @assignment.has_groups?
     %b= @grade.gradeable.try(:name)
     = f.input :gradeable_id, :input_html => { :value => @grade.gradeable.id }, :as => :hidden
@@ -33,13 +34,18 @@
         - else
           %div.badgeIcon                  
             - if current_course.valuable_badges?
-              %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+              %img{:src => badge.try(:icon), :alt => "#{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
             - else
-              %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
-            //TODO Coryhelp updated to do pull-request
+              %img{:src => badge.try(:icon), :alt => "#{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+            = simple_fields_for EarnedBadge.new do |ebf|
+              %fieldset.inputs
+                = ebf.input :earned, :as => :check_boxes, :collection => [["Yes", badge.id]], :label => false
+                = ebf.input :earnable_id, :as => :hidden, :input_html => {:value => @grade.gradeable.id}
+                = ebf.input :earnable_type, :as => :hidden, :input_html => {:value => "User"}
+                //= ebf.input :badge_id, :as => :hidden, :input_html => {:value => badge.id}
             //= check_box_tag "earned_badge[badge_id][]", badge.id
-            = hidden_field_tag earned_badge, badge.id
-            = check_box_tag 'earned_badge[:badge_id => badge.id][]', badge.id
+            //= hidden_field_tag earned_badge, badge.id
+            //= check_box_tag 'earned_badge[:badge_id => badge.id][]', badge.id
             %br= badge.try(:name)
 
     - if @assignment.release_necessary?
