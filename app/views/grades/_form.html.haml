@@ -37,12 +37,13 @@
               %img{:src => badge.try(:icon), :alt => "#{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
             - else
               %img{:src => badge.try(:icon), :alt => "#{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
-            = f.simple_fields_for @grade.gradeable.earned_badges.new do |ebf|
-              = ebf.input :earned, :label => false, :as => :radio
-              = ebf.input :badge_id, :as => :hidden, :input_html => {:value => badge.id}
-            //= check_box_tag "earned_badge[badge_id][]", badge.id
-            //= hidden_field_tag earned_badge, badge.id
-            //= check_box_tag 'earned_badge[:badge_id => badge.id][]', badge.id
+            = f.simple_fields_for :gradeable do |gf|
+              = gf.simple_fields_for :earned_badges, @grade.gradeable.earned_badges.new(:badge => badge) do |ebf|
+                = ebf.input :earned, :as => :boolean, :label => false
+                = ebf.input :earnable_id, :as => :hidden
+                = ebf.input :earnable_type, :as => :hidden
+                = ebf.input :badge_id, :as => :hidden
+                = ebf.input :grade_id, :as => :hidden
             %br= badge.try(:name)
 
     - if @assignment.release_necessary?
