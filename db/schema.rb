@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117133457) do
+ActiveRecord::Schema.define(:version => 20130206110219) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -244,6 +244,16 @@ ActiveRecord::Schema.define(:version => 20130117133457) do
     t.integer  "badge_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "faqs", :force => true do |t|
+    t.string   "question"
+    t.text     "answer"
+    t.integer  "order"
+    t.string   "category"
+    t.string   "audience"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "grade_scheme_elements", :force => true do |t|

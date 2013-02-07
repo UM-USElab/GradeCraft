@@ -91,7 +91,6 @@ class GradesController < ApplicationController
     @grade = @assignment.assignment_grades.find(params[:id])
     @earnable = find_earnable
     @badges = current_course.badges.all
-    @earned_badge = EarnedBadge.new(params[:earned_badge])
     respond_to do |format|
       if @grade.update_attributes(params[:grade])
         format.html { redirect_to @assignment, notice: 'Grade was successfully updated.' }
