@@ -37,6 +37,7 @@
               %img{:src => badge.try(:icon), :alt => "#{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
             - else
               %img{:src => badge.try(:icon), :alt => "#{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+              //TODO FIX
               = f.simple_fields_for :gradeable do |gf|
                 = gf.simple_fields_for :earned_badges, @grade.gradeable.earned_badges.new(:badge => badge) do |ebf|
                   = ebf.input :earned, :as => :boolean, :label => false
