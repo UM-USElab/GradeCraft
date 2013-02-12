@@ -9,7 +9,7 @@ badge_icons = ['/badges/pos101/above_and_beyond.png','/badges/pos101/always_lear
 grade_scheme_hash = { [0,600000] => 'F', [600000,649000] => 'D+', [650000,699999] => 'C-', [700000,749999] => 'C', [750000,799999] => 'C+', [800000,849999] => 'B-', [850000,899999] => 'B', [900000,949999] => 'B+', [950000,999999] => 'A-', [100000,1244999] => 'A', [1245000,1600000] => 'A+'}
 
 #Generate badge set
-BadgeSet.create! do |bs|
+badge_set = BadgeSet.create! do |bs|
   bs.name = "Hogwarts Most Officially Official Badge Set"
 end
 puts "Awards may now be given!"
@@ -42,7 +42,7 @@ Course.create! do |c|
   c.teams_visible = true
   c.group_setting = true
   c.badge_setting = true
-  c.badge_set_id = 1
+  c.badge_sets << badge_set
   c.badge_use_scope = "Both"
   c.shared_badges = true
   c.badges_value = false
@@ -72,7 +72,7 @@ user_names.each do |name|
     u.last_name = last_name
     u.email = "#{username}@hogwarts.edu"
     u.password = 'uptonogood'
-    u.default_course_id = default_course.id
+    u.default_course = default_course
     u.courses = [default_course]
   end
 end
@@ -95,7 +95,7 @@ User.create! do |u|
   u.role = 'admin'
   u.email = 'dumbledore@hogwarts.edu'
   u.password = 'fawkes'
-  u.default_course_id = default_course.id
+  u.default_course = default_course
   u.courses = [default_course]
 end
 puts "Albus Dumbledore just apparated into Hogwarts"
@@ -108,7 +108,7 @@ User.create! do |u|
   u.role = 'professor'
   u.email = 'snape@hogwarts.edu'
   u.password = 'lily'
-  u.default_course_id = default_course.id
+  u.default_course = default_course
   u.courses = [default_course]
 end
 puts "Severus Snape has been spotted in Slytherin House"
@@ -121,13 +121,14 @@ students << User.create! do |u|
   u.role = 'gsi'
   u.email = 'percy.weasley@hogwarts.edu'
   u.password = 'bestprefect'
-  u.default_course_id = default_course.id
+  u.default_course = default_course
   u.courses = [default_course]
 end
 puts "Percy Weasley has arrived on campus, on time as usual"
 
-AssignmentType.create! do |at|
-  at.course_id = default_course.id
+assignment_types = []
+assignment_types << AssignmentType.create! do |at|
+  at.course = default_course
   at.name = "Attendance"
   at.point_setting = "Individually"
   at.points_predictor_display = "Fixed"
@@ -142,8 +143,8 @@ AssignmentType.create! do |at|
 end
 puts "Come to class."
 
-AssignmentType.create! do |at|
-  at.course_id = default_course.id
+assignment_types << AssignmentType.create! do |at|
+  at.course = default_course
   at.name = "Reading Reactions"
   at.point_setting = "Individually"
   at.points_predictor_display = "Select"
@@ -157,8 +158,8 @@ end
 puts "Do your readings."
 
 
-AssignmentType.create! do |at|
-  at.course_id = default_course.id
+assignment_types << AssignmentType.create! do |at|
+  at.course = default_course
   at.name = "Blogging"
   at.point_setting = "Individually"
   at.points_predictor_display = "Slider"
@@ -171,8 +172,8 @@ AssignmentType.create! do |at|
 end
 puts "Blogging is great for filling in missed points in other areas"
 
-AssignmentType.create! do |at|
-  at.course_id = default_course.id
+assignment_types << AssignmentType.create! do |at|
+  at.course = default_course
   at.name = "Learning from Playing a Game"
   at.point_setting = "Individually"
   at.points_predictor_display = "Slider"
@@ -183,8 +184,8 @@ AssignmentType.create! do |at|
 end
 puts "This is the good stuff :)"
 
-AssignmentType.create! do |at|
-  at.course_id = default_course.id
+assignment_types << AssignmentType.create! do |at|
+  at.course = default_course
   at.name = "Boss Battles"
   at.point_setting = "Individually"
   at.points_predictor_display = "Slider"
@@ -195,9 +196,10 @@ AssignmentType.create! do |at|
 end
 puts "Challenges!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 1
+assignments = []
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[0]
   a.name = "Class 1"
   a.point_total = 5000
   a.due_date = rand(5).weeks.ago
@@ -210,16 +212,16 @@ puts "Attendance 1 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 1
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 1 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 1
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[0]
   a.name = "Class 2"
   a.point_total = 5000
   a.due_date = rand(4).weeks.ago
@@ -232,7 +234,7 @@ puts "Attendance 2 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 11
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
@@ -240,9 +242,9 @@ end
 puts "Grades from Attendance 2 have been posted!"
 
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 1
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[0]
   a.name = "Class 3"
   a.point_total = 5000
   a.due_date = rand(3).weeks.ago
@@ -255,16 +257,16 @@ puts "Attendance 3 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 21
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 3 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 1
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[0]
   a.name = "Class 4"
   a.point_total = 5000
   a.due_date = rand(2).weeks.ago
@@ -277,16 +279,16 @@ puts "Attendance 4 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 31
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 4 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 1
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[0]
   a.name = "Class 5"
   a.point_total = 5000
   a.due_date = rand(1).weeks.ago
@@ -299,16 +301,16 @@ puts "Attendance 5 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 41
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Attendance 5 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 1
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[0]
   a.name = "Class 6"
   a.point_total = 5000
   a.due_date = rand(1).weeks.from_now
@@ -319,9 +321,9 @@ Assignment.create! do |a|
 end
 puts "Attendance 6 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 1
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[0]
   a.name = "Class 7"
   a.point_total = 5000
   a.due_date = rand(2).weeks.from_now
@@ -332,9 +334,9 @@ Assignment.create! do |a|
 end
 puts "Attendance 7 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 1
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[0]
   a.name = "Class 8"
   a.point_total = 5000
   a.due_date = rand(3).weeks.from_now
@@ -345,9 +347,9 @@ Assignment.create! do |a|
 end
 puts "Attendance 8 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 1
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[0]
   a.name = "Class 9"
   a.point_total = 5000
   a.due_date = rand(4).weeks.from_now
@@ -358,9 +360,9 @@ Assignment.create! do |a|
 end
 puts "Attendance 9 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 1
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[0]
   a.name = "Class 10"
   a.point_total = 5000
   a.due_date = rand(5).weeks.from_now
@@ -371,9 +373,9 @@ Assignment.create! do |a|
 end
 puts "Attendance 10 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 11
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[1]
   a.name = "Week 1"
   a.point_total = 5000
   a.due_date = rand(5).weeks.ago
@@ -386,16 +388,16 @@ puts "Reading Reaction 1 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 101
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 1 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 11
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[1]
   a.name = "Week 2"
   a.point_total = 5000
   a.due_date = rand(4).weeks.ago
@@ -408,16 +410,16 @@ puts "Reading Reaction 2 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 111
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 2 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 11
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[1]
   a.name = "Week 3"
   a.point_total = 5000
   a.due_date = rand(3).weeks.ago
@@ -430,16 +432,16 @@ puts "Reading Reaction 3 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 121
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 3 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 11
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[1]
   a.name = "Week 4"
   a.point_total = 5000
   a.due_date = rand(2).weeks.ago
@@ -452,16 +454,16 @@ puts "Reading Reaction 4 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 131
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 4 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 11
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[1]
   a.name = "Week 5"
   a.point_total = 5000
   a.due_date = rand(1).weeks.ago
@@ -474,16 +476,16 @@ puts "Reading Reaction 5 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 141
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Reading Reaction 5 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 11
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[1]
   a.name = "Week 6"
   a.point_total = 5000
   a.due_date = rand(1).weeks.from_now
@@ -494,9 +496,9 @@ Assignment.create! do |a|
 end
 puts "Reading Reaction 6 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 11
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[1]
   a.name = "Week 7"
   a.point_total = 5000
   a.due_date = rand(2).weeks.from_now
@@ -507,9 +509,9 @@ Assignment.create! do |a|
 end
 puts "Reading Reaction 7 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 11
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[1]
   a.name = "Week 8"
   a.point_total = 5000
   a.due_date = rand(3).weeks.from_now
@@ -520,9 +522,9 @@ Assignment.create! do |a|
 end
 puts "Reading Reaction 8 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 11
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[1]
   a.name = "Week 9"
   a.point_total = 5000
   a.due_date = rand(4).weeks.from_now
@@ -533,9 +535,9 @@ Assignment.create! do |a|
 end
 puts "Reading Reaction 9 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 11
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[1]
   a.name = "Week 10"
   a.point_total = 5000
   a.due_date = rand(5).weeks.from_now
@@ -546,9 +548,9 @@ Assignment.create! do |a|
 end
 puts "Reading Reaction 10 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Post 1"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -559,16 +561,16 @@ puts "Blog Post 1 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 201
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Blog Post 1 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Post 2"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -579,16 +581,16 @@ puts "Blog Post 2 has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 211
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 5000 * [0,1].sample
   end
 end
 puts "Grades from Blog Post 2 have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Post 3"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -597,9 +599,9 @@ Assignment.create! do |a|
 end
 puts "Blog Post 3 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Post 4"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -608,9 +610,9 @@ Assignment.create! do |a|
 end
 puts "Blog Post 4 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Post 5"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -619,9 +621,9 @@ Assignment.create! do |a|
 end
 puts "Blog Post 5 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Post 6"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -630,9 +632,9 @@ Assignment.create! do |a|
 end
 puts "Blog Post 6 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Comment 1"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -641,9 +643,9 @@ Assignment.create! do |a|
 end
 puts "Blog Comment 1 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Comment 2"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -652,9 +654,9 @@ Assignment.create! do |a|
 end
 puts "Blog Comment 2 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Comment 3"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -663,9 +665,9 @@ Assignment.create! do |a|
 end
 puts "Blog Comment 3 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Comment 4"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -674,9 +676,9 @@ Assignment.create! do |a|
 end
 puts "Blog Comment 4 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 21
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[2]
   a.name = "Blog Comment 5"
   a.point_total = 5000
   a.has_assignment_submissions = true
@@ -685,10 +687,9 @@ Assignment.create! do |a|
 end
 puts "Blog Comment 5 has been posted!"
 
-
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 31
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[3]
   a.name = "Game Selection Paper"
   a.point_total = 80000
   a.due_date = rand(3).weeks.ago
@@ -701,16 +702,16 @@ puts "Game Selection Paper has been posted!"
 
 students.each do |student|
   Grade.create! do |g|
-    g.assignment_id = 301
+    g.assignment = assignments.last
     g.gradeable = student
     g.raw_score = 80000 * [0,1].sample
   end
 end
 puts "Grades from Game Selection Paper have been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 31
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[3]
   a.name = "Game Play Update Paper 1"
   a.point_total = 120000
   a.due_date = rand(3).weeks.from_now
@@ -721,9 +722,9 @@ Assignment.create! do |a|
 end
 puts "Game Play Update Paper 1 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 31
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[3]
   a.name = "Game Play Update Paper 2"
   a.point_total = 120000
   a.due_date = rand(5).weeks.from_now
@@ -734,9 +735,9 @@ Assignment.create! do |a|
 end
 puts "Game Play Update Paper 2 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 31
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[3]
   a.name = "Game Play Reflection Paper"
   a.point_total = 160000
   a.due_date = rand(7).weeks.from_now
@@ -747,9 +748,9 @@ Assignment.create! do |a|
 end
 puts "Game Play Reflection Paper has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 41
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[4]
   a.name = "Individual Paper/Project 1"
   a.point_total = 200000
   a.due_date = rand(4).weeks.from_now
@@ -760,9 +761,9 @@ Assignment.create! do |a|
 end
 puts "Individual Project 1 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 41
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[4]
   a.name = "Individual Paper/Project 2"
   a.point_total = 300000
   a.due_date = rand(7).weeks.from_now
@@ -773,9 +774,9 @@ Assignment.create! do |a|
 end
 puts "Individual Project 2 has been posted!"
 
-Assignment.create! do |a|
-  a.course_id = default_course.id
-  a.assignment_type_id = 41
+assignments << Assignment.create! do |a|
+  a.course = default_course
+  a.assignment_type = assignment_types[4]
   a.name = "Group Game Design Project"
   a.point_total = 400000
   a.due_date = rand(7).weeks.from_now
