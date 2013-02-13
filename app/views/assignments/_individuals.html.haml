@@ -45,7 +45,7 @@
               - if @assignment.has_levels?
                 %td= @assignment.grade_level(grade)
               %td 
-                - grade.try(:earned_badges) do |badge|
+                - student.earned_badges.select(&:earned?).each do |badge|
                   %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}
               - if @assignment.release_necessary?
                 %td= grade.try(:status)

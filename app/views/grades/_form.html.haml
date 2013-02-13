@@ -4,6 +4,7 @@
   - if @assignment.is_individual?
     = f.input :gradeable_id, :collection => @students, :label => "#{current_course.user_ref}", :include_blank => false
     = f.input :gradeable_type, :as => :hidden, :input_html => { :value => 'User' }
+    = "Grading  #{@grade.gradeable.name}"
   - elsif @assignment.has_groups?
     %b= @grade.gradeable.try(:name)
     = f.input :gradeable_id, :input_html => { :value => @grade.gradeable.id }, :as => :hidden
@@ -19,28 +20,32 @@
   = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
   %div#badges.form
     %h5 Badges
-    - @badges.each do |badge|
-      - @grade.gradeable.earned_badges_by_badge(badge).tap do |earned_badge|
-        - if earned_badge
-          %div.badgeIcon
-            - if current_course.valuable_badges?
-              %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
-                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
-            - else
-              %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}"} 
-                %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
-            %br= "Already Earned"
-        - else
-          %div.badgeIcon                  
-            - if current_course.valuable_badges?
-              %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
-            - else
-              %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
-            //TODO Coryhelp pull-request
-            //= check_box_tag "earned_badge[badge_id][]", badge.id
-            = hidden_field_tag earned_badge, badge.id
-            = check_box_tag 'earned_badge[:badge_id => badge.id][]', badge.id
-            %br= badge.try(:name)
+    = f.simple_fields_for :gradeable do |gf|
+      - @badges.each do |badge|
+        - @grade.gradeable.earned_badges_by_badge(badge).tap do |earned_badge|
+          - earned_badge ||= @grade.gradeable.earned_badges.new(:badge => badge, :grade => @grade)
+          - if earned_badge.earned?
+            %div.badgeIcon
+              - if current_course.valuable_badges?
+                %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
+                  %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
+              - else
+                %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}"} 
+                  %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
+              %br= "Already Earned"
+          - else
+            %div.badgeIcon
+              - if current_course.valuable_badges?
+                %img{:src => badge.try(:icon), :alt => "#{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+              - else
+                %img{:src => badge.try(:icon), :alt => "#{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+                = gf.simple_fields_for :earned_badges, earned_badge do |ebf|
+                  = ebf.input :earned, :as => :boolean, :label => false
+                  = ebf.input :earnable_id, :as => :hidden
+                  = ebf.input :earnable_type, :as => :hidden
+                  = ebf.input :badge_id, :as => :hidden
+                  = ebf.input :grade_id, :as => :hidden
+                %br= badge.try(:name)
 
     - if @assignment.release_necessary?
       = f.input :status, :as => :radio_buttons, :collection => [["New"], ["Graded"],["Released"]]

@@ -78,14 +78,15 @@ background-color: #8dbdd8;
 
 .hero-unit div.login-demo {
   margin-bottom: 25px;
-  margin-left: 20px;
   width: 33%;
   border-radius: 15px;
-  background-color: red;
+  background-color: #3a91e3;
 }
 
 .hero-unit div.login-demo div.demo-content {
   padding: 5px 10px;
+  font-size: 85%;
+  color: #FFF;
   margin: 0;
 }
 
@@ -98,7 +99,8 @@ background-color: #8dbdd8;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   padding: 9px 10px 4px; 
-  color: #FFF;
+  color: #CCC;
+  text-transform: uppercase;
   font-size: 80%;
   margin: 0;
 }
