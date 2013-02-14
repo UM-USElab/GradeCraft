@@ -8,6 +8,7 @@ class Badge < ActiveRecord::Base
   has_many :elements, :dependent => :destroy
   belongs_to :badge_set
   belongs_to :course
+  belongs_to :assignment
   
   accepts_nested_attributes_for :badge_set
   

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Question:
+  = @faq.question
+%p
+  %b Answer:
+  = @faq.answer
+%p
+  %b Order:
+  = @faq.order
+%p
+  %b Category:
+  = @faq.category
+%p
+  %b Audience:
+  = @faq.audience
+
+= link_to 'Edit', edit_faq_path(@faq)
+\|
+= link_to 'Back', faqs_path
