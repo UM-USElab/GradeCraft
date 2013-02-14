@@ -127,7 +127,7 @@ end
 puts "Percy Weasley has arrived on campus, on time as usual"
 
 assignment_types = {}
-assignment_types.push :attendance, AssignmentType.create! do |at|
+assignment_types[:attendance] = AssignmentType.create! do |at|
   at.course = default_course
   at.name = "Attendance"
   at.point_setting = "Individually"
@@ -143,7 +143,7 @@ assignment_types.push :attendance, AssignmentType.create! do |at|
 end
 puts "Come to class."
 
-assignment_types.push :reading_reaction, AssignmentType.create! do |at|
+assignment_types[:reading_reaction] = AssignmentType.create! do |at|
   at.course = default_course
   at.name = "Reading Reactions"
   at.point_setting = "Individually"
@@ -157,8 +157,7 @@ assignment_types.push :reading_reaction, AssignmentType.create! do |at|
 end
 puts "Do your readings."
 
-
-assignment_types.push :blogging,  AssignmentType.create! do |at|
+assignment_types[:blogging] = AssignmentType.create! do |at|
   at.course = default_course
   at.name = "Blogging"
   at.point_setting = "Individually"
@@ -172,7 +171,7 @@ assignment_types.push :blogging,  AssignmentType.create! do |at|
 end
 puts "Blogging is great for filling in missed points in other areas"
 
-assignment_types.push :lfpg,  AssignmentType.create! do |at|
+assignment_types[:lfpg] = AssignmentType.create! do |at|
   at.course = default_course
   at.name = "Learning from Playing a Game"
   at.point_setting = "Individually"
@@ -184,7 +183,7 @@ assignment_types.push :lfpg,  AssignmentType.create! do |at|
 end
 puts "This is the good stuff :)"
 
-assignment_types.push :boss_battles,  AssignmentType.create! do |at|
+assignment_types[:boss_battles] = AssignmentType.create! do |at|
   at.course = default_course
   at.name = "Boss Battles"
   at.point_setting = "Individually"
@@ -216,7 +215,7 @@ grinding_assignments = []
     a.name = "Reading Reaction #{n}"
     a.point_total = 5000
     a.due_date = rand(n - 6).weeks.ago
-    a.hass_assignment_submissions = false
+    a.has_assignment_submissions = false
     a.release_necessary = true
     a.grade_scope = "Individual"
   end
