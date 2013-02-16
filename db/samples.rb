@@ -183,7 +183,7 @@ assignment_types[:lfpg] = AssignmentType.create! do |at|
 end
 puts "This is the good stuff :)"
 
-assignment_types[:boss_battles] = AssignmentType.create! do |at|
+assignment_types[:boss_battle] = AssignmentType.create! do |at|
   at.course = default_course
   at.name = "Boss Battles"
   at.point_setting = "Individually"
@@ -211,7 +211,7 @@ grinding_assignments = []
   
   grinding_assignments << Assignment.create! do |a|
     a.course = default_course
-    a.assignment_type = assignment_types[:reading_reactions]
+    a.assignment_type = assignment_types[:reading_reaction]
     a.name = "Reading Reaction #{n}"
     a.point_total = 5000
     a.due_date = rand(n - 6).weeks.ago
@@ -273,7 +273,7 @@ assignments = []
 
 assignments << Assignment.create! do |a|
   a.course = default_course
-  a.assignment_type = assignment_types[3]
+  a.assignment_type = assignment_types[:lfpg]
   a.name = "Game Selection Paper"
   a.point_total = 80000
   a.due_date = rand(3).weeks.ago
@@ -295,7 +295,7 @@ puts "Grades from Game Selection Paper have been posted!"
 
 assignments << Assignment.create! do |a|
   a.course = default_course
-  a.assignment_type = assignment_types[3]
+  a.assignment_type = assignment_types[:lfpg]
   a.name = "Game Play Update Paper 1"
   a.point_total = 120000
   a.due_date = rand(3).weeks.from_now
@@ -308,7 +308,7 @@ puts "Game Play Update Paper 1 has been posted!"
 
 assignments << Assignment.create! do |a|
   a.course = default_course
-  a.assignment_type = assignment_types[3]
+  a.assignment_type = assignment_types[:lfpg]
   a.name = "Game Play Update Paper 2"
   a.point_total = 120000
   a.due_date = rand(5).weeks.from_now
@@ -321,7 +321,7 @@ puts "Game Play Update Paper 2 has been posted!"
 
 assignments << Assignment.create! do |a|
   a.course = default_course
-  a.assignment_type = assignment_types[3]
+  a.assignment_type = assignment_types[:lfpg]
   a.name = "Game Play Reflection Paper"
   a.point_total = 160000
   a.due_date = rand(7).weeks.from_now
@@ -334,7 +334,7 @@ puts "Game Play Reflection Paper has been posted!"
 
 assignments << Assignment.create! do |a|
   a.course = default_course
-  a.assignment_type = assignment_types[4]
+  a.assignment_type = assignment_types[:boss_battle]
   a.name = "Individual Paper/Project 1"
   a.point_total = 200000
   a.due_date = rand(4).weeks.from_now
@@ -347,7 +347,7 @@ puts "Individual Project 1 has been posted!"
 
 assignments << Assignment.create! do |a|
   a.course = default_course
-  a.assignment_type = assignment_types[4]
+  a.assignment_type = assignment_types[:boss_battle]
   a.name = "Individual Paper/Project 2"
   a.point_total = 300000
   a.due_date = rand(7).weeks.from_now
@@ -360,7 +360,7 @@ puts "Individual Project 2 has been posted!"
 
 assignments << Assignment.create! do |a|
   a.course = default_course
-  a.assignment_type = assignment_types[4]
+  a.assignment_type = assignment_types[:boss_battle]
   a.name = "Group Game Design Project"
   a.point_total = 400000
   a.due_date = rand(7).weeks.from_now
