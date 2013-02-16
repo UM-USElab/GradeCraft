@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   has_many :assignments, :through => :grades
   has_many :assignment_submissions, :as => :submittable, :dependent => :destroy
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
-  accepts_nested_attributes_for :earned_badges
+  accepts_nested_attributes_for :earned_badges, :reject_if => proc { |attributes| attributes['earned'] != '1' }
 
   has_many :badges, :through => :earned_badges
   has_many :team_memberships, :dependent => :destroy

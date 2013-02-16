@@ -6,6 +6,8 @@ class EarnedBadge < ActiveRecord::Base
   
   attr_accessible :earnable, :badge, :badge_id, :grade_id, :feedback, :text_feedback, :earnable_id, :earnable_type, :earned, :earned_badges
 
+  attr_accessor :earned
+
   delegate :name, :description, :icon, :value, :to => :badge
   
   validates_presence_of :earnable_id, :badge_id

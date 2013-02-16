@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207163707) do
+ActiveRecord::Schema.define(:version => 20130216215231) do
 
   create_table "assignment_submissions", :force => true do |t|
     t.integer  "assignment_id"
@@ -237,7 +237,6 @@ ActiveRecord::Schema.define(:version => 20130207163707) do
     t.text     "text_feedback"
     t.boolean  "shared"
     t.integer  "grade_id"
-    t.boolean  "earned"
   end
 
   create_table "elements", :force => true do |t|

@@ -24,7 +24,7 @@
       - @badges.each do |badge|
         - @grade.gradeable.earned_badges_by_badge(badge).tap do |earned_badge|
           - earned_badge ||= @grade.gradeable.earned_badges.new(:badge => badge, :grade => @grade)
-          - if earned_badge.earned?
+          - if earned_badge.persisted?
             %div.badgeIcon
               - if current_course.valuable_badges?
                 %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
