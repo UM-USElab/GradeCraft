@@ -29,6 +29,7 @@ gem 'thin'
 gem 'twitter-bootstrap-rails'
 gem "simple-navigation"
 gem 'therubyracer'
+gem 'rails3-jquery-autocomplete'
 
 group :staging do
   gem 'pg'

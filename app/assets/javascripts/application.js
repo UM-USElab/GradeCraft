@@ -19,6 +19,8 @@
 //= require_tree .
 //= require jquery.dynatable
 //= require jquery-tablesorter
+//= require autocomplete-rails
+
 
 $(document).ready(function(){
    

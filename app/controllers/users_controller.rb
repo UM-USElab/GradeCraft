@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   before_filter :'ensure_staff?', :only=>[:index,:destroy,:show, :edit, :new]
   before_filter :'ensure_admin?', :only=>[:all_users]
   
-  
   def import
     if request.post? && params[:file].present?
       infile = params[:file].read
