@@ -1,8 +1,8 @@
 %ul.nav.nav-list
-  %form.form-search
+  %form.form-search.span12.input-append#search
     = form_for User.new, :url => "search" do |f|
-      %input.search-query.span9.input-medium{:placeholder => "Search for #{current_course.user_ref}"}
-      %button.btn.btn-primary.btn-small{:type => "submit"}Go
+      %input#appendedInputButton.span9{:placeholder => "Search #{current_course.user_ref}s"}
+      %button.btn.btn-primary{:type => "submit"}Go
   %li.nav-header Users
   %li= link_to "Students", students_users_path
   - if current_course.student_weighted? 
