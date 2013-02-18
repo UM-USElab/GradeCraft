@@ -11,7 +11,6 @@ h4 {
 
 /* Course title in the top nav bar */ 
 .brand {
-  margin-top: 2px;
   font-family: 'Trocchi', serif;
   font-size: 18px !important;
   color: #FFF !important;
@@ -23,6 +22,10 @@ h4 {
 
 .content {
   min-height: 520px !important;
+}
+
+.form-search .btn {
+  margin-top: 12px;
 }
 
 .navbar-fixed-bottom {
@@ -82,11 +85,6 @@ span.control-label {
 hr {
   margin: 15px 0px;
 }
-
-.sidebar-nav-fixed {
-  position:fixed;
-  width: 240px;
- }
  
 .userDashboardSide .label a {
    color: #FFF !important;
