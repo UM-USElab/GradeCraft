@@ -1,9 +1,8 @@
 %ul.nav.nav-list
-  %form.form-search.pull-right 
-    %div.input-append.span12
-      = simple_form_for User.new do |f|
-        = f.autocomplete_field :name, :url => autocomplete_user_name_courses_path, :as => :autocomplete
-        %button.btn.btn-primary{:type => "submit"}Go
+  %form.form-search
+    %div.input-append
+      %input.search-query.span9.typeahead :type => "text", :placeholder => "Search Users", :label => false, :data-provide => "typeahead", :data-items => "8", :data-source => @autocomplete_items.to_json
+      %button.btn{:type => "submit"}Go
   %li.nav-header Users
   %li= link_to "Students", students_users_path
   - if current_course.student_weighted? 

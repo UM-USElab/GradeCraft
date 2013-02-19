@@ -34,9 +34,7 @@ GradeCraft::Application.routes.draw do
   resources :info
   resources :home
   resources :group_memberships
-  resources :courses do 
-    get 'autocomplete_user_name', :on => :collection
-  end
+  resources :courses
   resources :course_memberships
   resources :course_grade_schemes do 
     resources :course_grade_scheme_elements 
