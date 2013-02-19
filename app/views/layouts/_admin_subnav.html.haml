@@ -1,15 +1,9 @@
 %ul.nav.nav-list
-<<<<<<< HEAD
   %form.form-search.pull-right 
-    %div.input-append
-      = simple_form_for @user do |form|
-        = form.input :name, :url => autocomplete_user_name_courses_path, :as => :autocomplete
-=======
-  %form.form-search.span12.input-append#search
-    = form_for User.new, :url => "search" do |f|
-      %input#appendedInputButton.span9{:placeholder => "Search #{current_course.user_ref}s"}
-      %button.btn.btn-primary{:type => "submit"}Go
->>>>>>> master
+    %div.input-append.span12
+      = simple_form_for User.new do |f|
+        = f.autocomplete_field :name, :url => autocomplete_user_name_courses_path, :as => :autocomplete
+        %button.btn.btn-primary{:type => "submit"}Go
   %li.nav-header Users
   %li= link_to "Students", students_users_path
   - if current_course.student_weighted? 
