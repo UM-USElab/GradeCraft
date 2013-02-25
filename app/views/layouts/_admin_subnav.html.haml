@@ -1,8 +1,8 @@
 %ul.nav.nav-list
   %form.form-search
     %div.input-append
-      %input.search-query.span9.typeahead :type => "text", :placeholder => "Search Users", :label => false, :data-provide => "typeahead", :data-items => "8", :data-source => @autocomplete_items.to_json
-      %button.btn{:type => "submit"}Go
+      %input.search-query.span9.typeahead{ :type => "text", :placeholder => "Search Users", :label => false, 'data-provide' => "typeahead", 'data-items' => "8", 'data-source' => autocomplete_items }
+      %button.btn{:type => "submit"} Go
   %li.nav-header Users
   %li= link_to "Students", students_users_path
   - if current_course.student_weighted? 
@@ -24,5 +24,3 @@
     %li.divider
     %li= link_to "All Users", all_users_path
     %li= link_to "Course Index", courses_path
-
-      

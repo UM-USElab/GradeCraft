@@ -6,7 +6,6 @@ class HomeController < ApplicationController
     if current_user
       if current_user.is_admin?
         @title = "Course Dashboard"
-        @autocomplete_items = User.find(:all,:select=>'first_name').map(&:first_name)
       else
         @user = current_user
         @user_assignment_type_weights = @user.user_assignment_type_weights.all

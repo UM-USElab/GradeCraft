@@ -21,12 +21,8 @@
 //= require jquery-tablesorter
 
 $(document).ready(function(){
-   
-    
   $('#gradeCurious').popover();
-  
-  $('.typeahead').typeahead()
-  
+
 /*
   
   $('#classBoxandWhiskerPopover').click(function() {
