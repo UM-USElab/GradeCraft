@@ -4,7 +4,8 @@
     = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
     = submit_tag 'Filter', :class => 'btn'
 
-%table#massGrade  
+%table#massGrade 
+   
   %ul.grades
     = simple_form_for @assignment, :html => {:class => 'form-horizontal' }, :url => mass_update_assignment_grades_path(:assignment_id => @assignment.id) do |f|
       %tr
@@ -17,6 +18,7 @@
               = hidden_field_tag "assignment[grades_attributes][#{i}][gradeable_type]", grade.gradeable.class.name        
             = label_tag do
               - if @assignment.grade_checkboxes?
+                
                 = hidden_field_tag raw_score_field_name, 0
                 - if grade.raw_score > 0
                   = check_box_tag raw_score_field_name, @assignment.point_total, grade
@@ -39,11 +41,14 @@
                 = hidden_field_tag raw_score_field_name, 0
                 = check_box_tag raw_score_field_name, @assignment.point_total, grade
                 = grade.gradeable.try(:name)
-                
+      
+      %div.btn-group
+        %button.select-all.btn.btn-mini.btn-info= "Check All"
+        %button.select-none.btn.btn-mini.btn-info= "Uncheck"
       
       .form-actions
         %div.btn-toolbar    
           %div.btn-group
-            = f.button :submit, :class => "btn btn-primary"
+            = f.button :submit, :class => "btn-primary"
           %div.btn-group
             = link_to 'Cancel', assignments_path, :class => 'btn btn-info'

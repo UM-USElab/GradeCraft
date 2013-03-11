@@ -104,21 +104,20 @@ $('.nav-tabs').button();
 	// handle 'select all' button
 	$(".select-all").click(function(e){
 		e.preventDefault();
-		$(this).siblings().find("input").each(function(){
+		$(this).parents().find("input").each(function(){
 			$(this).attr("checked","checked");
 		});
-		updateProgressBar($(this));		
 	});
 		
 	// handle 'select none' button
 	$(".select-none").click(function(e){
-		$(this).siblings().find("input").each(function(){
+		e.preventDefault();
+		$(this).parents().find("input").each(function(){
 			$(this).attr("checked", false);
-		});
-		updateProgressBar($(this));		
+		});	
 	});
 	
-	
+/*
 function removeCommas(i){
 		console.log(i);
 		if (i == null) {
@@ -132,6 +131,7 @@ function removeCommas(i){
 			return parseInt(i);
 		}
 	}; 
+*/
 
   
 });
