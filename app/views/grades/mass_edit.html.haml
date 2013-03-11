@@ -18,7 +18,10 @@
             = label_tag do
               - if @assignment.grade_checkboxes?
                 = hidden_field_tag raw_score_field_name, 0
-                = check_box_tag raw_score_field_name, @assignment.point_total, grade
+                - if grade.raw_score > 0
+                  = check_box_tag raw_score_field_name, @assignment.point_total, grade
+                - else 
+                  = check_box_tag raw_score_field_name, @assignment.point_total
                 = grade.gradeable.try(:name)
               - elsif @assignment.grade_select?
                 = grade.gradeable.try(:name)
