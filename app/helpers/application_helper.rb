@@ -37,7 +37,9 @@ module ApplicationHelper
 
   def autocomplete_items
     return [] unless current_user.is_admin?
-    User.pluck(:first_name).zip(User.pluck(:last_name)).map { |names| names.join(' ') }
+    User.all.map do |u|
+      { :name => [u.first_name, u.last_name].join(' '), :id => u.id }
+    end
   end
 
 end

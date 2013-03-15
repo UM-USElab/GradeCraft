@@ -16,6 +16,8 @@
 //= require backbone.min
 //= require selectToUISlider.jQuery
 //= require rails.validations
+//= require jquery.omniselect
+//= require gradecraft
 //= require_tree .
 //= require jquery.dynatable
 //= require jquery-tablesorter

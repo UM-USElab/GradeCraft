@@ -1,7 +1,9 @@
+:javascript
+  Gradecraft.preloadStore.set('users', #{autocomplete_items.to_json});
 %ul.nav.nav-list
   %form.form-search
-    %div.input-append
-      %input.search-query.span9.typeahead{ :type => "text", :placeholder => "Search Users", :label => false, 'data-provide' => "typeahead", 'data-items' => "8", 'data-source' => autocomplete_items }
+    %div.input-append.dropdown
+      %input.search-query.span9{ :type => "text", :placeholder => "Search Users", :label => false }
       %button.btn{:type => "submit"} Go
   %li.nav-header Users
   %li= link_to "Students", students_users_path
