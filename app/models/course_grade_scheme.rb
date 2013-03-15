@@ -16,7 +16,7 @@ class CourseGradeScheme < ActiveRecord::Base
   
   def grade_level(sortable_score)
     element_names.each do |range,name|
-      #return name if sortable_score.between?(*range)
+      return name if sortable_score.between?(*range)
     end
     nil
   end

@@ -153,7 +153,7 @@ class Course < ActiveRecord::Base
   end
   
   def score_for_student(student)
-   #student.earned_grades(self)
+   student.earned_grades(self)
   end
 
   

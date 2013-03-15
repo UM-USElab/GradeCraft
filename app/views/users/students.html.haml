@@ -22,6 +22,7 @@
         %th Role
       - if current_user.is_staff?  
         %th Score
+        %th Current Grade
         %th Log ins
         %th Page Views
         %th Predictor Views
@@ -48,6 +49,7 @@
           %td= student.try(:team_role)
         - if current_user.is_staff?           
           %td= student.earned_grades(current_course) if student.respond_to?(:earned_grades)
+          %td= current_course.grade_level(student)
           %td= student.visit_count
           %td= student.page_views
           %td= student.predictor_views
