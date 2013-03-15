@@ -1,8 +1,10 @@
+:javascript
+  Gradecraft.preloadStore.set('users', #{autocomplete_items.to_json});
 %ul.nav.nav-list
-  %form.form-search.span12.input-append#search
-    = form_for User.new, :url => "search" do |f|
-      %input#appendedInputButton.span9{:placeholder => "Search #{current_course.user_ref}s"}
-      %button.btn.btn-primary{:type => "submit"}Go
+  %form.form-search
+    %div.input-append.dropdown
+      %input.search-query.span9{ :type => "text", :placeholder => "Search Users", :label => false }
+      %button.btn{:type => "submit"} Go
   %li.nav-header Users
   %li= link_to "Students", students_users_path
   - if current_course.student_weighted? 
@@ -24,5 +26,3 @@
     %li.divider
     %li= link_to "All Users", all_users_path
     %li= link_to "Course Index", courses_path
-
-      
