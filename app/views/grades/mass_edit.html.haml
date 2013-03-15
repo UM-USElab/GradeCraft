@@ -5,7 +5,6 @@
     = submit_tag 'Filter', :class => 'btn'
 
 %table#massGrade 
-   
   %ul.grades
     = simple_form_for @assignment, :html => {:class => 'form-horizontal' }, :url => mass_update_assignment_grades_path(:assignment_id => @assignment.id) do |f|
       %tr
@@ -45,10 +44,9 @@
       %div.btn-group
         %button.select-all.btn.btn-mini.btn-info= "Check All"
         %button.select-none.btn.btn-mini.btn-info= "Uncheck"
-      
-      .form-actions
+      %div.clear
+      .form-actions.massGrades
         %div.btn-toolbar    
           %div.btn-group
-            = f.button :submit, :class => "btn-primary"
-          %div.btn-group
+            = f.button :submit, :class => "btn btn-primary"
             = link_to 'Cancel', assignments_path, :class => 'btn btn-info'
