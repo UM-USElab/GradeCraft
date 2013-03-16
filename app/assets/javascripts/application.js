@@ -48,7 +48,8 @@ $(document).ready(function(){
   $('.toolTip').tooltip();
 
 	$("#sortableTable").tablesorter();
-
+	
+	$('#navbar').affix();
  
   $('.slider').each(function(i,slider) {
     $slider = $(slider)

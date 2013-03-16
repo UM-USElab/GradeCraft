@@ -161,4 +161,8 @@
                       %div.clearfix
                         %b= "#{badge.point_value} points"
                       %div.clearfix= check_box_tag badge.name, badge.point_value, @user.badges.include?(badge), :class => 'class-checkbox', :'data-assignment-type-id' => 'grades'
-  = link_to "Back to the Dashboard", user_path(@user), :class => 'btn btn-primary'
+  - if current_user.is_student?               
+    = link_to "Back to the Dashboard", user_path(@user), :class => 'btn btn-primary'
+  - elsif current_user.is_staff?
+    = link_to "Back to #{@user.first_name}'s Dashboard", user_path(@user), :class => 'btn btn-primary'
+  
