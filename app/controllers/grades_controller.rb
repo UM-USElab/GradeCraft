@@ -109,7 +109,7 @@ class GradesController < ApplicationController
     @grade.destroy
     
     respond_to do |format|
-      format.html { redirect_to assignment_path(@assignment), notice: 'Grade was successfully deleted.' }
+      format.html { redirect_to assignment_path(@assignment), notice: "#{ @grade.gradeable.name}'s #{@assignment.name} grade was successfully deleted." }
       format.json { head :ok }
     end
   end

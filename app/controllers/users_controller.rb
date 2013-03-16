@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       format.html
       format.json { render json: @users }
       format.csv { send_data User.csv_for_course(current_course) }
-      format.xls { send_data @students.to_csv(col_sep: "\t") }
+      format.xls { send_data @users.csv_for_course(current_course, col_sep: "\t") }
     end
   end
     
