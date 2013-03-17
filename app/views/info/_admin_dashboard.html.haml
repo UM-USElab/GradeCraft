@@ -1,34 +1,45 @@
-%div.row.span10
-  %div.span12
-    %div.span12
-      %h4= "Top 10" 
-      %table.table.table-bordered
-        %thead
-          %tr
-            %th= current_course.user_ref
-            %th Score
-            %th Badges Earned
-            %th Logins
-            %th Pageviews
-            %th Predictor Views
-            %th Email
-            %th #{current_course.section_leader_ref}
-        %tbody
-          - @top_ten_students.each do |student|
+%div
+  %ul.nav.nav-tabs
+    %li.active
+      %a{ "data-toggle" => "tab", "data-target" => "#tab1" } Top 10
+    %li 
+      %a{ "data-toggle" => "tab", "data-target" => "#tab2"} Bottom 10
+    %li 
+      %a{ "data-toggle" => "tab", "data-target" => "#tab3"} Teams
+    %li
+      %a{ "data-toggle" => "tab", "data-target" => "#tab4"} Submissions
+    %li
+      %a{ "data-toggle" => "tab", "data-target" => "#tab5"} Badges
+  %div.tab-content
+    %div.tab-pane.active#tab1
+      %div.span12
+        %h4= "Top 10" 
+        %table.table.table-bordered
+          %thead
             %tr
-              %td= link_to student.name, user_path(student)
-              %td= student.earned_grades(current_course)
-              %td= student.user_badge_count
-              %td= student.visit_count
-              %td= student.page_views
-              %td= student.predictor_views
-              %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-mini"
-              %td
-                - student.team_leader.tap do |team_leader|
-                  - if team_leader.present?
-                    %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
-  %div.clear
-    %div.span12
+              %th= current_course.user_ref
+              %th Score
+              %th Badges Earned
+              %th Logins
+              %th Pageviews
+              %th Predictor Views
+              %th Email
+              %th #{current_course.section_leader_ref}
+          %tbody
+            - @top_ten_students.each do |student|
+              %tr
+                %td= link_to student.name, user_path(student)
+                %td= student.earned_grades(current_course)
+                %td= student.user_badge_count
+                %td= student.visit_count
+                %td= student.page_views
+                %td= student.predictor_views
+                %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-mini"
+                %td
+                  - student.team_leader.tap do |team_leader|
+                    - if team_leader.present?
+                      %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"          
+    %div.tab-pane#tab2
       %h4= "Bottom 10"
       %table.table.table-bordered
         %thead
@@ -55,9 +66,7 @@
                 - student.team_leader.tap do |team_leader|
                   - if team_leader.present?
                     %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
-      
-  %div.clear        
-    %div.span12
+    %div.tab-pane#tab3
       %h4= current_course.team_term
       %table.table.table-bordered
         %thead
@@ -71,53 +80,48 @@
           - @teams.each do |team|
             %tr
               %td= link_to team.name, team_path(team)
-              //%td= team.try(:score)
+              %td= team.try(:score)
               %td 
                 - team.earned_badges.each do |badge|
                   %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"} 
               %td
-              %td= team.team_leader.try(:name)
-  
-  
-  %div.clear 
-    %div.span12
-      %hr
-      %h3= "Ungraded Assignment Submissions"
-      - @submissions.group_by(&:assignment).each do |assignment, submissions|
-        %span.assignmentTypeTitle= link_to "#{assignment.try(:name)}", assignment_path(assignment)
-        %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 
-        %table.table.table-bordered
-          %thead
-          %tr            
-            - if assignment.is_individual?
-              %th= current_course.team_ref
-              %th= current_course.user_ref
-            - elsif assignment.has_groups? 
-              %th= current_course.group_ref
-            - elsif assignment.has_teams?
-              %th= current_course.team_ref
-            %th Link
-            %th Comment
-            %th 
-          %tbody
-            %tr
-              - assignment.assignment_submissions_for_assignment(assignment).tap do |submission|
-                - if submission.ungraded
+              %td= team.team_leader.try(:name)     
+    %div.tab-pane#tab4
+      %div.span12
+        %h4= "Ungraded Assignment Submissions"
+        %br
+        - @submissions.group_by(&:assignment).each do |assignment, submissions|
+          %span.assignmentTypeTitle= link_to "#{assignment.try(:name)}", assignment_path(assignment)
+          %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 
+          %table.table.table-bordered
+            %thead
+            %tr            
+              - if assignment.is_individual?
+                %th= current_course.team_ref
+                %th= current_course.user_ref
+              - elsif assignment.has_groups? 
+                %th= current_course.group_ref
+              - elsif assignment.has_teams?
+                %th= current_course.team_ref
+              %th Link
+              %th Comment
+              %th
+            %tbody
+              %tr
+                - assignment.assignment_submissions.each.tap do |submission|
+                  //- if submission.ungraded
                   - if assignment.is_individual?
-                    %td= submission.submittable.teams.first.try(:name)
-                  %td= submission.submittable.try(:name)
-                  %td= link_to submission.link, submission.link
-                  %td= submission.comment
-                  - if assignment.has_groups?
-                    %td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
-                    %td= link_to 'Edit', edit_assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
-                    %td= link_to 'Delete', assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-                  - elsif assignment.has_teams? 
-                    %td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Team"), :class => 'btn btn-mini'
-                    %td= link_to 'Edit', edit_assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Team"), :class => 'btn btn-mini'
-                    %td= link_to 'Delete', assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-                  - elsif assignment.is_individual? 
-                    %td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
-                    %td= link_to 'Edit', edit_assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
-                    %td= link_to 'Delete', assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
-
+                    %td= submission
+                    //link_to submission.submittable.teams.first.try(:name), submission.submittable.teams.first
+                    //%td= link_to submission.submittable.try(:name), submission.submittable
+                    //%td= link_to submission.link, submission.link
+                    //%td= submission.text_comment
+                    - if assignment.has_groups?
+                      //%td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
+                    - elsif assignment.has_teams? 
+                      //%td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Team"), :class => 'btn btn-mini'
+                    - elsif assignment.is_individual? 
+                      //%td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
+    %div.tab-pane#tab5
+      %div.span12
+        %h4= "Badges"

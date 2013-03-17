@@ -92,6 +92,10 @@ class Assignment < ActiveRecord::Base
   def assignment_submissions_for_assignment(assignment)
     assignment_submissions_by_assignment_id[assignment.id].try(:first)
   end
+
+  def assignment_submissions(assignment)
+    AssignmentSubmission.find(:assignment_id => assignment.id)
+  end
   
   #Assignment grade data
   def assignment_grades
@@ -215,8 +219,8 @@ class Assignment < ActiveRecord::Base
   
   def grade_level(grade)
     #TODO FIX
-    #grade_scheme.try(:grade_level, grade.raw_score)
-    #grade_scheme.try(:grade_level, grade.raw_score)
+    grade_scheme.try(:grade_level, grade.raw_score)
+    
   end  
   
 end

@@ -59,7 +59,7 @@ class AssignmentSubmission < ActiveRecord::Base
     end
   end
   
-  def ungraded 
+  def ungraded
     status == "Ungraded"
   end
   

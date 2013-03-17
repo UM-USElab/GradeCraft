@@ -64,10 +64,10 @@ class AssignmentSubmissionsController < ApplicationController
     respond_to do |format|
       if @assignment_submission.save
         if current_user.is_student?
-          format.html { redirect_to dashboard_path, notice: 'Assignment was successfully submitted.' }
+          format.html { redirect_to dashboard_path, notice: "#{@assignment.name} was successfully submitted." }
           format.json { render json: @assignment, status: :created, location: @assignment }
         else 
-          format.html { redirect_to assignment_path(@assignment), notice: 'Assignment was successfully submitted.' }
+          format.html { redirect_to assignment_path(@assignment), notice: "#{@assignment.name} was successfully submitted." }
         end
       else
         format.html { render action: "new" }
@@ -81,7 +81,7 @@ class AssignmentSubmissionsController < ApplicationController
     @assignment_submission = @assignment.assignment_submissions.find(params[:id])
     respond_to do |format|
       if @assignment_submission.update_attributes(params[:assignment_submission])
-        format.html { redirect_to dashboard_path, notice: 'Your Assignment Submission was successfully updated.' }
+        format.html { redirect_to dashboard_path, notice: "Your #{@assignment.name} was successfully updated." }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
