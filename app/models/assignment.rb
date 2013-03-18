@@ -93,9 +93,6 @@ class Assignment < ActiveRecord::Base
     assignment_submissions_by_assignment_id[assignment.id].try(:first)
   end
 
-  def assignment_submissions(assignment)
-    AssignmentSubmission.find(:assignment_id => assignment.id)
-  end
   
   #Assignment grade data
   def assignment_grades
@@ -170,6 +167,10 @@ class Assignment < ActiveRecord::Base
   
   def has_assignment_submissions? 
     has_assignment_submissions == true
+  end
+  
+  def has_ungraded_submissions?
+    has_assignment_submissions == true && assignment_submissions.ungraded
   end
   
   def slider?

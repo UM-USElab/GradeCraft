@@ -14,6 +14,7 @@
     %div.tab-pane.active#tab1
       %div.span12
         %h4= "Top 10" 
+        %br
         %table.table.table-bordered
           %thead
             %tr
@@ -41,6 +42,7 @@
                       %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"          
     %div.tab-pane#tab2
       %h4= "Bottom 10"
+      %br
       %table.table.table-bordered
         %thead
           %tr
@@ -67,7 +69,9 @@
                   - if team_leader.present?
                     %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
     %div.tab-pane#tab3
-      %h4= current_course.team_term
+      %h4= "#{current_course.team_term}s"
+      %br
+      %div#teamChart
       %table.table.table-bordered
         %thead
           %tr
@@ -90,38 +94,45 @@
       %div.span12
         %h4= "Ungraded Assignment Submissions"
         %br
-        - @submissions.group_by(&:assignment).each do |assignment, submissions|
-          %span.assignmentTypeTitle= link_to "#{assignment.try(:name)}", assignment_path(assignment)
-          %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 
-          %table.table.table-bordered
-            %thead
-            %tr            
-              - if assignment.is_individual?
-                %th= current_course.team_ref
-                %th= current_course.user_ref
-              - elsif assignment.has_groups? 
-                %th= current_course.group_ref
-              - elsif assignment.has_teams?
-                %th= current_course.team_ref
-              %th Link
-              %th Comment
-              %th
-            %tbody
-              %tr
-                - assignment.assignment_submissions.each.tap do |submission|
-                  //- if submission.ungraded
+          - @assignments.each do |assignment|
+            - if assignment.has_ungraded_submissions?
+              %span.assignmentTypeTitle= link_to "#{assignment.try(:name)}", assignment_path(assignment)
+              %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 
+              %table.table.table-bordered
+                %thead
+                %tr            
                   - if assignment.is_individual?
-                    %td= submission
-                    //link_to submission.submittable.teams.first.try(:name), submission.submittable.teams.first
-                    //%td= link_to submission.submittable.try(:name), submission.submittable
-                    //%td= link_to submission.link, submission.link
-                    //%td= submission.text_comment
-                    - if assignment.has_groups?
-                      //%td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
-                    - elsif assignment.has_teams? 
-                      //%td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Team"), :class => 'btn btn-mini'
-                    - elsif assignment.is_individual? 
-                      //%td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
+                    %th= current_course.team_ref
+                    %th= current_course.user_ref
+                  - elsif assignment.has_groups? 
+                    %th= current_course.group_ref
+                  - elsif assignment.has_teams?
+                    %th= current_course.team_ref
+                  %th Link
+                  %th Comment
+                  %th
+                
     %div.tab-pane#tab5
       %div.span12
         %h4= "Badges"
+        %br
+        %table.table.table-bordered
+          %thead
+            %tr
+              %th= "Badge"
+              %th= "Elements"
+              %th= "# Earned"
+              %th
+          %tbody
+            - @badges.each do |badge|
+              %tr
+                %td 
+                  %img{:src => badge.icon, :alt => badge.name}
+                  %br
+                  = link_to badge.name, badge 
+                %td
+                  %ul
+                    - badge.elements.each do |element|
+                      %li= link_to element.name, badge_element_path(badge, element)
+                %td= badge.earned_badges.count
+                %td= link_to "Award", new_earned_badge_path(:id => badge), :class => "btn btn-mini"

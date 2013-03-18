@@ -43,6 +43,7 @@ $(document).ready(function(){
     $('#easyTab a:first').tab('show'); // Select first tab
     $('#easyTab a:last').tab('show'); // Select last tab
     $('#easyTab li:eq(2) a').tab('show'); // Select third tab (0-indexed)
+    
   });
   
   $('.toolTip').tooltip();

@@ -1,7 +1,6 @@
 class CoursesController < ApplicationController
 
   before_filter :ensure_staff?
-  autocomplete :user, :first_name, :full => true
 
   def index
     @title = "Course Index"

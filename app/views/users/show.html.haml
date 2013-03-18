@@ -1,1 +1,6 @@
-= render 'users/student_dashboard', :user => @user, :assignments => @assignments
+- if @user.is_student?
+  = render 'users/student_dashboard', :user => @user, :assignments => @assignments
+- elsif @user.is_admin?
+  = render 'users/admin_dashboard', :user => @user, :assignments => @assignments
+- elsif @user.is_staff?
+  = render 'users/staff_dashboard', :user => @user, :assignments => @assignments

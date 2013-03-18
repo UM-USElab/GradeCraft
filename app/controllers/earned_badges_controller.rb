@@ -1,7 +1,7 @@
 class EarnedBadgesController < ApplicationController
 
   before_filter :ensure_staff?
-  before_filter :find_earnable
+  #before_filter :find_earnable
 
   def index
     @title = "Awarded Badges"
@@ -21,8 +21,15 @@ class EarnedBadgesController < ApplicationController
       format.json { render json: @earned_badge }
     end
   end
-
+  
   def new
+    @title = "Award a New Badge"
+    @badges = current_course.badges.all
+    @earned_badge = EarnedBadge.new
+    @students = current_course.users.students.all
+  end
+
+  def new_via_assignment
     @title = "Award a New Badge"
     @assignments = current_course.assignments.all
     @badges = current_course.badges.all
