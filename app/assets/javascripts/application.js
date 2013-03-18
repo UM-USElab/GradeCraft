@@ -105,18 +105,19 @@ $('.nav-tabs').button();
 	
 	// handle 'select all' button
 	$(".select-all").click(function(e){
+		var $link = $(this);
+		
 		e.preventDefault();
-		$(this).parents().find("input").each(function(){
-			$(this).attr("checked","checked");
-		});
+		$link.parents().find("input").prop("checked", "checked");
 	});
 		
 	// handle 'select none' button
 	$(".select-none").click(function(e){
+	 var $link = $(this);
+	 
 		e.preventDefault();
-		$(this).parents().find("input").each(function(){
-			$(this).attr("checked", false);
-		});	
+		$link.parents().find("input").prop("checked", false);
+		
 	});
 	
 /*

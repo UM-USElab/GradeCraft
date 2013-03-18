@@ -53,8 +53,7 @@ $(document).ready(function() {
             credits: {
                 enabled: false
             }
-        });
-    });
+    };
     
     var chart, categories, assignment_type_name, scores;
     
