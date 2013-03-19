@@ -134,6 +134,9 @@ class Course < ActiveRecord::Base
     has_assignment_submissions == true
   end
 
+  def membership_for_student(student)
+    course_memberships.detect { |m| m.user_id == student.id }
+  end
 
   def total_points(in_progress = false)
     (in_progress ? assignments.past : assignments).sum(:point_total)
