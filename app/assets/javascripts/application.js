@@ -21,6 +21,7 @@
 //= require_tree .
 //= require jquery.dynatable
 //= require jquery-tablesorter
+//= require ckeditor/init
 
 $(document).ready(function(){
   $('#gradeCurious').popover();

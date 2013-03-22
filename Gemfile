@@ -29,6 +29,7 @@ gem 'thin'
 gem 'twitter-bootstrap-rails'
 gem "simple-navigation"
 gem 'therubyracer'
+gem "ckeditor"
 
 group :staging do
   gem 'pg'

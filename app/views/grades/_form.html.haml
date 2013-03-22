@@ -17,7 +17,7 @@
   - else
     = f.input :raw_score, :default => @assignment.point_total, :label => "Score", :hint => "Total Assignment Points: #{@assignment.point_total}"
   //= f.input :final_score, :hint => "Have points been added or deducted from the raw score for any reason? The final score will override the raw score if input."
-  = f.input :feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' }
+  = f.input :feedback, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini"} }
   %div#badges.form
     %h5 Badges
     = f.simple_fields_for :gradeable do |gf|

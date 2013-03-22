@@ -63,7 +63,7 @@ class GradesController < ApplicationController
     end
     @grade.gradeable = params[:gradeable_type].constantize.find(params[:gradeable_id])
     #@gradeable_earned_badges = @gradeable.earned_badges
-    @grade_scheme_elements = @assignment.grade_scheme_elements
+    #@grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with @grade
   end
   

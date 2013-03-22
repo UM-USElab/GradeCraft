@@ -58,6 +58,9 @@ GEM
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
+    ckeditor (4.0.2)
+      mime-types
+      orm_adapter
     client_side_validations (3.2.2)
     client_side_validations-simple_form (2.0.1)
       client_side_validations (~> 3.2.0)
@@ -153,6 +156,7 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
+    orm_adapter (0.4.0)
     pacecar (1.5.3)
     pg (0.14.1)
     polyglot (0.3.3)
@@ -278,6 +282,7 @@ DEPENDENCIES
   brakeman
   canable
   carrierwave
+  ckeditor
   client_side_validations
   client_side_validations-simple_form
   coffee-rails (~> 3.2.1)

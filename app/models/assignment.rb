@@ -4,8 +4,8 @@ class Assignment < ActiveRecord::Base
   has_many :grades, :dependent => :destroy
   belongs_to :course
   validates_presence_of :course
-  belongs_to :grade_scheme
-  has_many :grade_scheme_elements, :through => :grade_scheme
+  #belongs_to :grade_scheme
+  #has_many :grade_scheme_elements, :through => :grade_scheme
   belongs_to :assignment_type
   has_many :groups
   has_many :group_memberships, :through => :group_memberships
@@ -15,7 +15,7 @@ class Assignment < ActiveRecord::Base
   has_many :assignment_submissions
   accepts_nested_attributes_for :grades
   accepts_nested_attributes_for :assignment_type
-  has_many :score_levels  
+  has_many :score_levels, :through => :assignment_type
   accepts_nested_attributes_for :score_levels, allow_destroy: true
   
   delegate :points_predictor_display, :to => :assignment
@@ -217,11 +217,12 @@ class Assignment < ActiveRecord::Base
     (open_date !=nil && open_date < Time.now) && (due_date != nil && due_date > Time.now)
   end
     
+  def score_levels
+    assignment_type.score_levels
+  end
   
   def grade_level(grade)
-    #TODO FIX
-    grade_scheme.try(:grade_level, grade.raw_score)
-    
+    score_levels.try(:score_level, grade.raw_score)
   end  
   
 end
