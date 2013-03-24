@@ -222,7 +222,7 @@ class Assignment < ActiveRecord::Base
   end
   
   def grade_level(grade)
-    score_levels.try(:score_level, grade.raw_score)
+    assignment_type.score_levels.try(:score_level, grade.raw_score)
   end  
   
 end

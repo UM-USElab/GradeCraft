@@ -45,7 +45,8 @@
               - if @assignment.has_levels?
                 %td
                   - if grade
-                    = @assignment.score_levels(grade)
+                    #TODO FIX
+                    //= @assignment.grade_level(grade)
               %td 
                 - student.earned_badges.each do |badge|
                   %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => 40}

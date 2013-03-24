@@ -1,6 +1,6 @@
 = simple_form_for(@badge_set, :html => {:class => 'form-horizontal' }) do |f|
   = f.input :name
-  = f.input :notes, :as => :text, :label => "Notes",  :input_html => {:id => 'some-textarea', :class => 'span9' }
+  = f.input :notes, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, :label => "Notes"
   
   .form-actions
     %div.btn-toolbar    

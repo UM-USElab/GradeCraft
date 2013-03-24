@@ -45,7 +45,6 @@ class GradesController < ApplicationController
     @teams = current_course.teams.all
     @groups = current_course.groups.all
     @students = current_course.users.students
-    @grade_scheme_elements = @assignment.grade_scheme_elements
     respond_with(@grade)
   end
 

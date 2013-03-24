@@ -1,6 +1,6 @@
 = simple_form_for([@earnable, @earned_badge], :html => {:class => 'form-horizontal' }) do |f|
   = f.input :badge_id, :as => :select, :collection => @badges 
-  = f.input :text_feedback, :as => :text, :input_html => {:id => 'some-textarea', :class => 'span9' } 
+  = f.input :text_feedback, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }
   = hidden_field_tag "earned_badge[badge_ids][]", nil
   
   .form-actions

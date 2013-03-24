@@ -3,7 +3,7 @@
   .form-inputs
     = f.input :challenge_id
     = f.input :score
-    = f.input :feedback
+    = f.input :feedback, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, 
     = f.input :status
     = f.input :team_id
     = f.input :final_score
