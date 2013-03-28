@@ -97,7 +97,7 @@
                         %p= raw grade.feedback
                       - elsif assignment.release_necessary?
                         = "#{number_with_delimiter(assignment.point_total_for_student(@user))} points possible"
-                        %p Test
+                        %p= raw grade.feedback
                       - else
                         = "You earned #{number_with_delimiter(grade.score(@user))} out of #{number_with_delimiter(assignment.point_total_for_student(@user))} points"
                         %p= raw grade.feedback

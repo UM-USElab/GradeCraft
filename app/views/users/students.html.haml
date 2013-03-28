@@ -61,7 +61,7 @@
           %td= link_to 'Dashboard', student, {:class => 'btn btn-mini'}
           %td= link_to 'Predictor', predictor_users_path(:user_id => student), {:class => 'btn btn-mini'}
           %td= link_to 'Edit', edit_user_path(student), {:class => 'btn btn-mini'}
-          %td= link_to 'Delete', course_membership_path(current_course.membership_for_student(student)), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+          %td= link_to 'Remove from Course', course_membership_path(current_course.membership_for_student(student)), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure you want to remove this student from your course?' }, :method => :delete
       - i += 1
 - if current_user.is_staff? 
   = "Download:"

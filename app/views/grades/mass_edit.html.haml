@@ -29,22 +29,22 @@
                 = select_tag raw_score_field_name, options_from_collection_for_select(@score_levels, "value", "name", grade.raw_score)
               - elsif @assignment.grade_radio?
                 %tr
-                  %td= grade.gradeable.try(:name)
+                  %td= link_to grade.gradeable.try(:name), grade.gradeable
                   - @score_levels.each do |score_level|
                     %td
                       = label_tag "#{raw_score_field_name}_#{score_level.name}", score_level.name, :class => "radio_label"
-                      = radio_button_tag raw_score_field_name, score_level.value, :class => "radio_button"
-                      //TODO FIX
-                      //= radio_button_tag raw_score_field_name, score_level.value, @grade.raw_score == score_level.value, :class => "radio_button"
+                      //= radio_button_tag raw_score_field_name, score_level.value, :class => "radio_button"
+                      = radio_button_tag raw_score_field_name, score_level.value, grade.raw_score == score_level.value, :class => "radio_button"
               - else
                 = hidden_field_tag raw_score_field_name, 0
                 = check_box_tag raw_score_field_name, @assignment.point_total, grade
                 = grade.gradeable.try(:name)
-      
-      %div.btn-group
-        %button.select-all.btn.btn-mini.btn-info= "Check All"
-        %button.select-none.btn.btn-mini.btn-info= "Uncheck"
-      %div.clear
+     
+      - if @assignment.grade_checkboxes? 
+        %div.btn-group
+          %button.select-all.btn.btn-mini.btn-info= "Check All"
+          %button.select-none.btn.btn-mini.btn-info= "Uncheck"
+
       .form-actions.massGrades
         %div.btn-toolbar    
           %div.btn-group
