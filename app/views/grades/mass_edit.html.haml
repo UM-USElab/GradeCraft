@@ -4,11 +4,12 @@
     = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
     = submit_tag 'Filter', :class => 'btn'
 
-%table#massGrade 
-  %ul.grades
-    = simple_form_for @assignment, :html => {:class => 'form-horizontal' }, :url => mass_update_assignment_grades_path(:assignment_id => @assignment.id) do |f|
+= simple_form_for @assignment, :html => {:class => 'form-horizontal' }, :url => mass_update_assignment_grades_path(:assignment_id => @assignment.id) do |f|
+  %table#massGrade
+    - @grades.each_with_index do |grade,i|
       %tr
-        - @grades.each_with_index do |grade,i|
+        %td= link_to grade.gradeable.try(:name), grade.gradeable
+        %td
           - "assignment[grades_attributes][#{i}][raw_score]".tap do |raw_score_field_name|
             - if grade.persisted?
               = hidden_field_tag "assignment[grades_attributes][#{i}][id]", grade.id
@@ -23,30 +24,26 @@
                   = check_box_tag raw_score_field_name, @assignment.point_total, grade
                 - else 
                   = check_box_tag raw_score_field_name, @assignment.point_total
-                = grade.gradeable.try(:name)
+                
               - elsif @assignment.grade_select?
-                = grade.gradeable.try(:name)
                 = select_tag raw_score_field_name, options_from_collection_for_select(@score_levels, "value", "name", grade.raw_score)
+                
               - elsif @assignment.grade_radio?
-                %tr
-                  %td= link_to grade.gradeable.try(:name), grade.gradeable
-                  - @score_levels.each do |score_level|
-                    %td
-                      = label_tag "#{raw_score_field_name}_#{score_level.name}", score_level.name, :class => "radio_label"
-                      //= radio_button_tag raw_score_field_name, score_level.value, :class => "radio_button"
-                      = radio_button_tag raw_score_field_name, score_level.value, grade.raw_score == score_level.value, :class => "radio_button"
+                - @score_levels.each do |score_level|
+                  %td
+                    = label_tag "#{raw_score_field_name}_#{score_level.name}", score_level.name, :class => "radio_label"
+                    = radio_button_tag raw_score_field_name, score_level.value, grade.raw_score == score_level.value, :class => "radio_button"
               - else
                 = hidden_field_tag raw_score_field_name, 0
                 = check_box_tag raw_score_field_name, @assignment.point_total, grade
-                = grade.gradeable.try(:name)
-     
-      - if @assignment.grade_checkboxes? 
-        %div.btn-group
-          %button.select-all.btn.btn-mini.btn-info= "Check All"
-          %button.select-none.btn.btn-mini.btn-info= "Uncheck"
+   
+    - if @assignment.grade_checkboxes? 
+      %div.btn-group
+        %button.select-all.btn.btn-mini.btn-info= "Check All"
+        %button.select-none.btn.btn-mini.btn-info= "Uncheck"
 
-      .form-actions.massGrades
-        %div.btn-toolbar    
-          %div.btn-group
-            = f.button :submit, :class => "btn btn-primary"
-            = link_to 'Cancel', assignments_path, :class => 'btn btn-info'
+  .form-actions.massGrades
+    %div.btn-toolbar    
+      %div.btn-group
+        = f.button :submit, :class => "btn btn-primary"
+        = link_to 'Cancel', assignments_path, :class => 'btn btn-info'
