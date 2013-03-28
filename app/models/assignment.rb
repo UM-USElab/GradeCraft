@@ -216,13 +216,12 @@ class Assignment < ActiveRecord::Base
   def open?
     (open_date !=nil && open_date < Time.now) && (due_date != nil && due_date > Time.now)
   end
-    
-  def score_levels
-    assignment_type.score_levels
-  end
-  
+
   def grade_level(grade)
-    assignment_type.score_levels.try(:score_level, grade.raw_score)
-  end  
+    score_levels.each do |score_level|
+      return score_level.name if grade.raw_score == score_level.value
+    end
+    nil
+  end
   
 end
