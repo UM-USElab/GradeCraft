@@ -2,14 +2,15 @@ class UserAssignmentTypeWeight < ActiveRecord::Base
   attr_accessible :user, :user_id, :assignment_type, :assignment_type_id, :value
 
   include Canable::Ables
-  #userstamps! # adds creator and updater
 
   belongs_to :user
   belongs_to :assignment_type
 
   validates_presence_of :user_id, :assignment_type_id
-  validate :course_max_value_not_exceeded
+  validate :course_max_value_not_exceeded, :max_value_per_at, :min_value_per_at
 
+  delegate :course, :to => :assignment_type, :allow_nil => false
+  
   def updatable_by?(user)
     creator == user
   end
@@ -20,6 +21,18 @@ class UserAssignmentTypeWeight < ActiveRecord::Base
 
   def viewable_by?(user)
     user_id == user.id
+  end
+  
+  def max_value_per_at
+    if value > course.max_size
+      errors.add(:value, "Max value for this assignment type has been exceed. Please set a lower value.")
+    end
+  end
+  
+  def min_value_per_at
+    if value < course.min_size
+      errors.add(:value, "The value for this assignment type is too low. Please set a higher value.")
+    end
   end
 
   def course_max_value_not_exceeded

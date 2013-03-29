@@ -40,6 +40,8 @@
     = f.input :user_weight_amount, :label => "Student set what amount of the course?"
     = f.input :user_weight_amount_type, :label => "Amount type", :collection => [["Multiplier"],["Percent"]]
     = f.input :user_weight_amount_close_date, :label => "What date must they make this decision by?", :as => :date
+    = f.input :min_size, :label => "Minimum amount that students may set"
+    = f.input :max_size, :label => "Maximium amount that students may set"
     = f.input :multiplier_default, :label => "What amount should other assignment types be multiplied by?"
     = f.input :multiplier_term, :label => "What do you want to call these weights/multipliers?"
   

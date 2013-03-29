@@ -97,10 +97,10 @@
     = @course.user_weight_amount
     = @course.user_weight_amount_type
   %p
-    %b 
+    %b Minimum size:
     = @course.min_size
   %p
-    %b 
+    %b Maximium size: 
     = @course.max_size
   %p
     %b Multipliers must be set by: 
@@ -109,5 +109,5 @@
     %b Multiplier/weight term:
     = @course.multiplier_term
   %p
-    %b What amount should other assignment types be multiplied by?
+    %b What amount should other (unselected) assignment types be multiplied by?
     = @course.multiplier_default
