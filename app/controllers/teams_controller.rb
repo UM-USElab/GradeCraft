@@ -38,6 +38,7 @@ class TeamsController < ApplicationController
     @title = "Create a New #{current_course.team_term}"
     @courses = Course.all
     @users = current_course.users
+    @students = @users.students
 
     respond_with @team
   end

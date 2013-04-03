@@ -1,4 +1,4 @@
-= simple_form_for(@course, :html => {:class => 'form-horizontal' }) do |f|
+= simple_form_for(@course, :html => {:class => 'form-horizontal' }, :validate => false)  do |f|
   %div.well
     %h4 THE BASICS
     = f.input :name, :label => "Course Title"
@@ -42,7 +42,7 @@
     = f.input :user_weight_amount_close_date, :label => "What date must they make this decision by?", :as => :date
     = f.input :min_size, :label => "Minimum amount that students may set"
     = f.input :max_size, :label => "Maximium amount that students may set"
-    = f.input :multiplier_default, :label => "What amount should other assignment types be multiplied by?"
+    = f.input :multiplier_default, :label => "What amount should other assignment types be multiplied by?", :validate => false
     = f.input :multiplier_term, :label => "What do you want to call these weights/multipliers?"
   
   .form-actions

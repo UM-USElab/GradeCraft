@@ -1,9 +1,18 @@
 class EarnedBadgesController < ApplicationController
 
   before_filter :ensure_staff?
-  before_filter :find_earnable
+  #before_filter :find_earnable
 
   def index
+    @title = "Awarded Badges"
+    @earned_badges = EarnedBadge.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @earned_badges }
+    end
+  end
+  
+  def my_badges
     @title = "Awarded Badges"
     @earned_badges = @earnable.earned_badges.all
     respond_to do |format|
@@ -23,6 +32,14 @@ class EarnedBadgesController < ApplicationController
   end
   
   def new
+    @title = "Award a New Badge"
+    @badge = Badge.find(params[:id])
+    @badges = current_course.badges.all
+    @earned_badge = EarnedBadge.new
+    @students = current_course.users.students.all
+  end
+  
+  def new_via_student
     @title = "Award a New Badge"
     @badges = current_course.badges.all
     @earned_badge = EarnedBadge.new
@@ -117,8 +134,10 @@ class EarnedBadgesController < ApplicationController
   
     
   def find_earnable
-    klass = [User, Grade, Team, Group].detect { |c| params["#{c.name.underscore}_id"]}
-    @earnable = klass.find(params["#{klass.name.underscore}_id"])
+    unless new || index
+      klass = [User, Grade, Team, Group].detect { |c| params["#{c.name.underscore}_id"]}
+      @earnable = klass.find(params["#{klass.name.underscore}_id"])
+    end
   end
 
 end

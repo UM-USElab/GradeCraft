@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130216215231) do
+ActiveRecord::Schema.define(version: 20130329181455) do
 
   create_table "assignment_submissions", force: true do |t|
     t.integer  "assignment_id"
@@ -174,14 +174,14 @@ ActiveRecord::Schema.define(version: 20130216215231) do
     t.string   "semester"
     t.string   "theme_id"
     t.integer  "course_grade_scheme_id"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.boolean  "badge_setting",                 default: true
-    t.boolean  "team_setting",                  default: false
+    t.datetime "created_at",                                                             null: false
+    t.datetime "updated_at",                                                             null: false
+    t.boolean  "badge_setting",                                          default: true
+    t.boolean  "team_setting",                                           default: false
     t.string   "user_term"
     t.string   "team_term"
     t.string   "homepage_message"
-    t.boolean  "status",                        default: true
+    t.boolean  "status",                                                 default: true
     t.boolean  "group_setting"
     t.integer  "badge_set_id"
     t.integer  "user_weight_amount"
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 20130216215231) do
     t.boolean  "has_assignment_submissions"
     t.boolean  "teams_visible"
     t.string   "badge_use_scope"
-    t.integer  "multiplier_default"
+    t.decimal  "multiplier_default",            precision: 10, scale: 0
     t.string   "multiplier_term"
     t.boolean  "predictor_setting"
     t.boolean  "badges_value"
