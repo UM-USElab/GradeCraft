@@ -39,6 +39,7 @@ class TeamsController < ApplicationController
     @courses = Course.all
     @users = current_course.users
     @students = @users.students
+    @submit_message = "Create #{current_course.team_ref}"
 
     respond_with @team
   end
@@ -48,6 +49,7 @@ class TeamsController < ApplicationController
     @title = "Editing #{@team.name}"
     @users = current_course.users
     @students = @users.students
+    @submit_message = "Update #{current_course.team_ref}"
   end
 
   def create

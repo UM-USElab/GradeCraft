@@ -26,7 +26,7 @@
                   = check_box_tag raw_score_field_name, @assignment.point_total
                 
               - elsif @assignment.grade_select?
-                = select_tag raw_score_field_name, options_from_collection_for_select(@score_levels, "value", "name", grade.raw_score)
+                = select_tag raw_score_field_name, options_from_collection_for_select(@score_levels, "value", "name", grade.raw_score), :include_blank => false
                 
               - elsif @assignment.grade_radio?
                 - @score_levels.each do |score_level|
