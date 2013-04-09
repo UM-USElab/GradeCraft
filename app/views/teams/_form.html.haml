@@ -2,7 +2,6 @@
   = f.input :name, :label => "#{current_course.team_term}s Name"
   = f.association :users, :collection => @students, :as => :check_boxes
   = f.input :course_id, :collection => @courses, :as => :hidden, :input_html => { :value => current_course.id }
-  
   .form-actions
     %div.btn-toolbar
       %div.btn-group

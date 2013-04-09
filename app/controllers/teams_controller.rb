@@ -1,36 +1,26 @@
 class TeamsController < ApplicationController
+  respond_to :html, :json
 
-  before_filter :ensure_staff?, :only=>[:new,:edit,:create,:destroy]
+  before_filter :ensure_staff?, :only => [:new, :edit, :create, :destroy]
 
   def index
     @teams = current_course.teams.all
     @title = "#{current_course.team_term}s"
-    respond_to do |format|
-      format.html
-      format.json { render json: @teams }
-    end
+    respond_with @teams
   end
 
   def show
     @team = current_course.teams.find(params[:id])
-    @title = "#{@team.name}"
+    @title = @team.name
     @users = @team.users
-
-    respond_to do |format|
-      format.html 
-      format.json { render json: @team }
-    end
+    respond_with @team
   end
-  
+
   def activity
     @team = current_course.teams.find(params[:id])
-    @title = "#{@team.name}"
+    @title = @team.name
     @users = @team.users
-
-    respond_to do |format|
-      format.html  
-      format.json { render json: @team }
-    end
+    respond_wth @team
   end
 
   def new
@@ -40,7 +30,12 @@ class TeamsController < ApplicationController
     @users = current_course.users
     @students = @users.students
     @submit_message = "Create #{current_course.team_ref}"
+    respond_with @team
+  end
 
+  def create
+    @team =  Team.new(params[:team])
+    @team.save
     respond_with @team
   end
 
@@ -52,50 +47,29 @@ class TeamsController < ApplicationController
     @submit_message = "Update #{current_course.team_ref}"
   end
 
-  def create
-    @team =  Team.new(params[:team])
-
-    respond_to do |format|
-      if @team.save
-        format.html { redirect_to @team, notice: "#{current_course.team_term} was successfully created." }
-        format.json { render json: @team, status: :created, location: @team }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def update
     @team =  current_course.teams.find(params[:id])
-
-    respond_to do |format|
-      if @team.update_attributes(params[:team])
-        format.html { redirect_to @team, notice: 'Team was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
-    end
+    @team.update_attributes(params[:team])
+    respond_with @team
   end
 
   def destroy
     @team =  current_course.teams.find(params[:id])
     @team.destroy
-
-    respond_to do |format|
-      format.html { redirect_to teams_url }
-      format.json { head :ok }
-    end
+    respond_with @team
   end
-  
+
+  private
+
+  def interpolation_options
+    { :resource_name => current_course.team_ref }
+  end
+
   def sort_column
      current_course.team.column_names.include?(params[:sort]) ? params[:sort] : "id"
   end
-  
+
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
-  
 end
