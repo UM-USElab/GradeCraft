@@ -9,17 +9,17 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216215231) do
+ActiveRecord::Schema.define(version: 20130329181455) do
 
-  create_table "assignment_submissions", :force => true do |t|
+  create_table "assignment_submissions", force: true do |t|
     t.integer  "assignment_id"
     t.integer  "user_id"
     t.string   "feedback"
     t.string   "comment"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.text     "text_comment"
   end
 
-  create_table "assignment_types", :force => true do |t|
+  create_table "assignment_types", force: true do |t|
     t.string   "name"
     t.string   "point_setting"
     t.boolean  "levels"
@@ -40,12 +40,12 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.integer  "max_value"
     t.integer  "percentage_course"
     t.string   "predictor_description"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "course_id"
     t.integer  "universal_point_value"
     t.integer  "minimum_score"
-    t.integer  "step_value",               :default => 1
+    t.integer  "step_value",               default: 1
     t.integer  "grade_scheme_id"
     t.boolean  "due_date_present"
     t.integer  "order_placement"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.string   "mass_grade_type"
   end
 
-  create_table "assignments", :force => true do |t|
+  create_table "assignments", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "point_total"
@@ -79,19 +79,19 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.datetime "open_date"
   end
 
-  create_table "badge_sets", :force => true do |t|
+  create_table "badge_sets", force: true do |t|
     t.string   "name"
     t.string   "notes"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "badge_sets_courses", :id => false, :force => true do |t|
+  create_table "badge_sets_courses", id: false, force: true do |t|
     t.integer "course_id"
     t.integer "badge_set_id"
   end
 
-  create_table "badges", :force => true do |t|
+  create_table "badges", force: true do |t|
     t.integer  "assignment_id"
     t.string   "name"
     t.text     "description"
@@ -109,20 +109,20 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.integer  "multiplier"
   end
 
-  add_index "badges", ["assignment_id"], :name => "index_badges_on_assignment_id"
+  add_index "badges", ["assignment_id"], name: "index_badges_on_assignment_id", using: :btree
 
-  create_table "challenge_grades", :force => true do |t|
+  create_table "challenge_grades", force: true do |t|
     t.integer  "challenge_id"
     t.integer  "score"
     t.string   "feedback"
     t.boolean  "status"
     t.integer  "team_id"
     t.integer  "final_score"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  create_table "challenges", :force => true do |t|
+  create_table "challenges", force: true do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "point_total"
@@ -132,56 +132,56 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.boolean  "visible"
     t.boolean  "has_challenge_submissions"
     t.boolean  "release_necessary"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
-  create_table "course_badge_sets", :force => true do |t|
+  create_table "course_badge_sets", force: true do |t|
     t.integer "course_id"
     t.integer "badge_set_id"
   end
 
-  create_table "course_grade_scheme_elements", :force => true do |t|
+  create_table "course_grade_scheme_elements", force: true do |t|
     t.string   "name"
     t.string   "letter_grade"
     t.integer  "low_range"
     t.integer  "high_range"
     t.integer  "course_grade_scheme_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "course_grade_schemes", :force => true do |t|
+  create_table "course_grade_schemes", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "course_memberships", :force => true do |t|
+  create_table "course_memberships", force: true do |t|
     t.integer "course_id"
     t.integer "user_id"
     t.integer "sortable_score"
     t.string  "shared_badges"
   end
 
-  add_index "course_memberships", ["course_id", "user_id"], :name => "index_courses_users_on_course_id_and_user_id"
-  add_index "course_memberships", ["user_id", "course_id"], :name => "index_courses_users_on_user_id_and_course_id"
+  add_index "course_memberships", ["course_id", "user_id"], name: "index_courses_users_on_course_id_and_user_id", using: :btree
+  add_index "course_memberships", ["user_id", "course_id"], name: "index_courses_users_on_user_id_and_course_id", using: :btree
 
-  create_table "courses", :force => true do |t|
+  create_table "courses", force: true do |t|
     t.string   "name"
     t.string   "courseno"
     t.string   "year"
     t.string   "semester"
     t.string   "theme_id"
     t.integer  "course_grade_scheme_id"
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
-    t.boolean  "badge_setting",                 :default => true
-    t.boolean  "team_setting",                  :default => false
+    t.datetime "created_at",                                                             null: false
+    t.datetime "updated_at",                                                             null: false
+    t.boolean  "badge_setting",                                          default: true
+    t.boolean  "team_setting",                                           default: false
     t.string   "user_term"
     t.string   "team_term"
     t.string   "homepage_message"
-    t.boolean  "status",                        :default => true
+    t.boolean  "status",                                                 default: true
     t.boolean  "group_setting"
     t.integer  "badge_set_id"
     t.integer  "user_weight_amount"
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.boolean  "has_assignment_submissions"
     t.boolean  "teams_visible"
     t.string   "badge_use_scope"
-    t.integer  "multiplier_default"
+    t.decimal  "multiplier_default",            precision: 10, scale: 0
     t.string   "multiplier_term"
     t.boolean  "predictor_setting"
     t.boolean  "badges_value"
@@ -205,29 +205,29 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.boolean  "graph_display"
   end
 
-  create_table "criteria", :force => true do |t|
+  create_table "criteria", force: true do |t|
     t.string   "name"
     t.integer  "rubric_id"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "criteria_levels", :force => true do |t|
+  create_table "criteria_levels", force: true do |t|
     t.string   "name"
     t.integer  "criteria_id"
     t.text     "description"
     t.integer  "value"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "dashboards", :force => true do |t|
+  create_table "dashboards", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "earned_badges", :force => true do |t|
+  create_table "earned_badges", force: true do |t|
     t.integer  "badge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -239,36 +239,46 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.integer  "grade_id"
   end
 
-  create_table "elements", :force => true do |t|
+  create_table "elements", force: true do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "badge_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "faqs", :force => true do |t|
+  create_table "evidences", force: true do |t|
+    t.integer  "badge_id"
+    t.integer  "assignment_id"
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "earned_badge_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "faqs", force: true do |t|
     t.string   "question"
     t.text     "answer"
     t.integer  "order"
     t.string   "category"
     t.string   "audience"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "grade_scheme_elements", :force => true do |t|
+  create_table "grade_scheme_elements", force: true do |t|
     t.string   "name"
     t.integer  "low_range"
     t.string   "letter_grade"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "grade_scheme_id"
     t.string   "description"
     t.integer  "high_range"
   end
 
-  create_table "grade_schemes", :force => true do |t|
+  create_table "grade_schemes", force: true do |t|
     t.integer  "assignment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -276,7 +286,7 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.string   "name"
   end
 
-  create_table "grades", :force => true do |t|
+  create_table "grades", force: true do |t|
     t.integer  "raw_score"
     t.integer  "assignment_id"
     t.text     "feedback"
@@ -295,18 +305,18 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.integer  "assignment_submission_id"
   end
 
-  add_index "grades", ["assignment_id"], :name => "index_grades_on_assignment_id"
-  add_index "grades", ["gradeable_id", "gradeable_type"], :name => "index_grades_on_graded_id_and_graded_type"
+  add_index "grades", ["assignment_id"], name: "index_grades_on_assignment_id", using: :btree
+  add_index "grades", ["gradeable_id", "gradeable_type"], name: "index_grades_on_graded_id_and_graded_type", using: :btree
 
-  create_table "group_memberships", :force => true do |t|
+  create_table "group_memberships", force: true do |t|
     t.integer  "group_id"
     t.integer  "user_id"
     t.string   "accepted"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "groups", :force => true do |t|
+  create_table "groups", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -317,31 +327,31 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.text     "text_proposal"
   end
 
-  create_table "rubrics", :force => true do |t|
+  create_table "rubrics", force: true do |t|
     t.string   "name"
     t.integer  "assignment_id"
     t.text     "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  create_table "score_levels", :force => true do |t|
+  create_table "score_levels", force: true do |t|
     t.string   "name"
     t.integer  "value"
     t.integer  "assignment_type_id"
     t.integer  "assignment_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
-  create_table "team_memberships", :force => true do |t|
+  create_table "team_memberships", force: true do |t|
     t.integer  "team_id"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "teams", :force => true do |t|
+  create_table "teams", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -354,23 +364,23 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.integer  "course_id"
   end
 
-  create_table "themes", :force => true do |t|
+  create_table "themes", force: true do |t|
     t.string   "name"
     t.string   "filename"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "user_assignment_type_weights", :force => true do |t|
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+  create_table "user_assignment_type_weights", force: true do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "user_id"
     t.integer  "assignment_type_id"
     t.integer  "value"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "username",                                               :null => false
+  create_table "users", force: true do |t|
+    t.string   "username",                                            null: false
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
@@ -385,13 +395,13 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "role",                            :default => "student"
+    t.string   "role",                            default: "student"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "sortable_score"
     t.integer  "rank"
     t.string   "display_name"
-    t.boolean  "private_display",                 :default => false
+    t.boolean  "private_display",                 default: false
     t.integer  "default_course_id"
     t.string   "final_grade"
     t.integer  "visit_count"
@@ -403,9 +413,9 @@ ActiveRecord::Schema.define(:version => 20130216215231) do
     t.datetime "last_activity_at"
   end
 
-  add_index "users", ["last_logout_at", "last_activity_at"], :name => "index_users_on_last_logout_at_and_last_activity_at"
-  add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
-  add_index "users", ["sortable_score"], :name => "index_users_sortable_score"
+  add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
+  add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
+  add_index "users", ["sortable_score"], name: "index_users_sortable_score", using: :btree
 
 end

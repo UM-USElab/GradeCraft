@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '4.0.0.rc1'
 gem 'jquery-rails', '~> 2.0'
 gem 'fabrication'
 gem 'haml'
@@ -10,37 +10,32 @@ gem 'sendgrid'
 gem 'gravatar_image_tag'
 gem 'pacecar'
 gem 'will_paginate'
-gem 'simple_form'
+gem 'simple_form', '~> 3.0.0.rc'
 gem 'bootstrap-datepicker-rails'
 gem 'responders'
 gem 'brakeman'
-gem 'activerecord-import'
+#gem 'activerecord-import'
 gem 'flexslider'
 gem "highcharts-rails"
 gem "airbrake"
 gem 'canable'
 gem 'mysql2', '0.3.12b5' 
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
-gem 'jquery-tablesorter'
+#gem 'client_side_validations'
+#gem 'jquery-tablesorter'
 gem 'd3_rails'
-#gem 'dalli'
+gem 'dalli'
 gem 'thin'
 gem 'twitter-bootstrap-rails'
 gem "simple-navigation"
 gem 'therubyracer'
 gem "ckeditor"
+gem 'rails4_upgrade'
+gem 'sass-rails',   '~> 4.0.0.beta1'
+gem 'coffee-rails', '~> 4.0.0.beta1'
+gem 'protected_attributes'
 
 group :staging do
   gem 'pg'
-end
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
 end
 
 group :development do

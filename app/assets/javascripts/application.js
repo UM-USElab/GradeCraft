@@ -15,12 +15,10 @@
 //= require underscore.min
 //= require backbone.min
 //= require selectToUISlider.jQuery
-//= require rails.validations
 //= require jquery.omniselect
 //= require gradecraft
 //= require_tree .
 //= require jquery.dynatable
-//= require jquery-tablesorter
 //= require ckeditor/init
 
 $(document).ready(function(){

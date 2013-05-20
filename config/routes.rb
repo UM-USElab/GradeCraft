@@ -1,6 +1,5 @@
 GradeCraft::Application.routes.draw do
 
-
   resources :challenge_grades
 
 
@@ -101,8 +100,8 @@ GradeCraft::Application.routes.draw do
   post '/current_course/change' => 'current_courses#change', :as => :change_current_course
   get 'current_course' => 'current_courses#show'
 
-  match 'login' => 'user_sessions#new', :as => :login
-  match 'logout' => 'user_sessions#destroy', :as => :logout
+  get 'login' => 'user_sessions#new', :as => :login
+  get 'logout' => 'user_sessions#destroy', :as => :logout
   
   # Helps for testing authentication!
 #   get 'cosign_test' => 'info#cosign_test'
