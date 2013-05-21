@@ -24,21 +24,23 @@
       %th
       %th
     %tbody
-      - assignments.each do |assignment|
-        %tr
-          %td= link_to assignment.name, assignment
-          %td= assignment.try(:open_date)
-          %td= assignment.try(:due_date)
-          %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
-          %td= number_with_delimiter(assignment.average, :delimiter => ',') 
-          %td= "#{number_with_delimiter(assignment.low_score, :delimiter => ',')} - #{number_with_delimiter(assignment.high_score, :delimiter => ',')}"
-          %td
-            - if assignment.has_assignment_submissions?
-              = "#{assignment.assignment_submissions.count}"
-          %td
-            - if assignment.has_assignment_submissions?
-              = link_to "View Submissions", assignment_assignment_submissions_path(assignment), :class => "btn btn-mini"
-          - if assignment_type.mass_grade?
-            %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-mini'
-          %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'
-          %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete 
+      - cache do
+        - assignments.each do |assignment|
+          %tr
+            %td= link_to assignment.name, assignment
+            %td= assignment.try(:open_date)
+            %td= assignment.try(:due_date)
+            %td= number_with_delimiter(assignment.point_total, :delimiter => ',') 
+            %td= number_with_delimiter(assignment.average, :delimiter => ',') 
+            %td= "#{number_with_delimiter(assignment.low_score, :delimiter => ',')} - #{number_with_delimiter(assignment.high_score, :delimiter => ',')}"
+            %td
+              - if assignment.has_assignment_submissions?
+                = "#{assignment.assignment_submissions.count}"
+            %td
+              - if assignment.has_assignment_submissions?
+                = link_to "View Submissions", assignment_assignment_submissions_path(assignment), :class => "btn btn-mini"
+            - if assignment_type.mass_grade?
+              %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-mini'
+            %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'
+            %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete 
+        

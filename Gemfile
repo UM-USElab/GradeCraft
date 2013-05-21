@@ -33,6 +33,8 @@ gem 'rails4_upgrade'
 gem 'sass-rails',   '~> 4.0.0.beta1'
 gem 'coffee-rails', '~> 4.0.0.beta1'
 gem 'protected_attributes'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
 
 group :staging do
   gem 'pg'

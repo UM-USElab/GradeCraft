@@ -34,35 +34,36 @@
         %th.header
         %th.header
   %tbody
-    - i = 1
-    - @sorted_students.each do |student|
-      %tr
-        - if current_user.is_staff?  
-          %td= i
-          %td= link_to student.name, user_path(student)
-          %td= student.email
-        - else
-          %td = student.name
-        - if current_user.is_staff? 
-          %td= student.teams.first.try(:name)
-        - if current_course.team_roles?
-          %td= student.try(:team_role)
-        - if current_user.is_staff?           
-          %td= student.earned_grades(current_course) if student.respond_to?(:earned_grades)
-          %td= current_course.grade_level(student)
-          %td= student.visit_count
-          %td= student.page_views
-          %td= student.predictor_views
-        - if current_course.has_badges? 
-          %td
-            - student.earned_badges.each do |badge|
-              %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => "25"}
-        - if current_user.is_staff? 
-          %td= link_to 'Dashboard', student, {:class => 'btn btn-mini'}
-          %td= link_to 'Predictor', predictor_users_path(:user_id => student), {:class => 'btn btn-mini'}
-          %td= link_to 'Edit', edit_user_path(student), {:class => 'btn btn-mini'}
-          %td= link_to 'Remove from Course', course_membership_path(current_course.membership_for_student(student)), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure you want to remove this student from your course?' }, :method => :delete
-      - i += 1
+    - cache do
+      - i = 1
+      - @sorted_students.each do |student|
+        %tr
+          - if current_user.is_staff?  
+            %td= i
+            %td= link_to student.name, user_path(student)
+            %td= student.email
+          - else
+            %td = student.name
+          - if current_user.is_staff? 
+            %td= student.teams.first.try(:name)
+          - if current_course.team_roles?
+            %td= student.try(:team_role)
+          - if current_user.is_staff?           
+            %td= student.earned_grades(current_course) if student.respond_to?(:earned_grades)
+            %td= current_course.grade_level(student)
+            %td= student.visit_count
+            %td= student.page_views
+            %td= student.predictor_views
+          - if current_course.has_badges? 
+            %td
+              - student.earned_badges.each do |badge|
+                %img{:src => badge.try(:icon), :alt => badge.try(:name), :width => "25"}
+          - if current_user.is_staff? 
+            %td= link_to 'Dashboard', student, {:class => 'btn btn-mini'}
+            %td= link_to 'Predictor', predictor_users_path(:user_id => student), {:class => 'btn btn-mini'}
+            %td= link_to 'Edit', edit_user_path(student), {:class => 'btn btn-mini'}
+            %td= link_to 'Remove from Course', course_membership_path(current_course.membership_for_student(student)), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure you want to remove this student from your course?' }, :method => :delete
+        - i += 1
 - if current_user.is_staff? 
   = "Download:"
   = link_to "CSV", students_users_path(format: "csv") |
