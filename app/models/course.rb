@@ -25,12 +25,8 @@ class Course < ActiveRecord::Base
   validates_presence_of :name, :badge_setting, :team_setting, :group_setting
   
   #Terms
-  def user_ref
-    if user_term?
-      user_term
-    else 
-      "Player"
-    end
+  def user_term
+    super || "Player"
   end
   
   def team_ref
