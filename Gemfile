@@ -40,7 +40,6 @@ end
 
 group :development do
   gem 'haml-rails'
-  gem 'debugger'
 end
 
 group :test do
@@ -56,4 +55,5 @@ end
 
 group :test, :development do
   gem 'sqlite3'
+  gem 'debugger'
 end

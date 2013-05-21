@@ -29,19 +29,19 @@ class Course < ActiveRecord::Base
     super || "Player"
   end
   
-  def team_ref
+  def team_term
     super || "Team"
   end
   
-  def group_ref
+  def group_term
     super || "Group"
   end
   
-  def section_leader_ref
+  def section_leader_term
     super || "Team Leader"
   end
   
-  def multiplier_ref 
+  def multiplier_term
     super || "Multiplier"
   end
   
@@ -119,7 +119,9 @@ class Course < ActiveRecord::Base
   end
 
   def total_points(in_progress = false)
-    (in_progress ? assignments.past : assignments).sum(:point_total)
+    debugger
+    #assignments.map(&:point_total).sum
+    (in_progress ? assignments.past : assignments).map(&:point_total).sum
   end
 
   def running_total_points
