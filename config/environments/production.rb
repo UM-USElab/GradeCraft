@@ -16,6 +16,8 @@ GradeCraft::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
   
+  config.eager_load = true
+  
   # Choose the compressors to use
   # config.assets.js_compressor  = :uglifier
   # config.assets.css_compressor = :yui

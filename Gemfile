@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '4.0.0.rc1'
 gem 'jquery-rails', '~> 2.0'
-gem 'fabrication'
 gem 'haml'
 gem 'sorcery'
 gem 'carrierwave'
@@ -26,15 +25,14 @@ gem 'd3_rails'
 gem 'dalli'
 gem 'thin'
 gem 'twitter-bootstrap-rails'
-gem "simple-navigation"
 gem 'therubyracer'
 gem "ckeditor"
-gem 'rails4_upgrade'
 gem 'sass-rails',   '~> 4.0.0.beta1'
 gem 'coffee-rails', '~> 4.0.0.beta1'
 gem 'protected_attributes'
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
+gem 'minitest-rails'
 
 group :staging do
   gem 'pg'
@@ -51,11 +49,11 @@ group :test do
   gem 'shoulda-matchers'
   gem 'watchr'
   gem 'faker'
-  gem 'guard-rspec'
   gem 'launchy'
+  gem 'fabrication'
+  gem 'capybara'
 end
 
 group :test, :development do
   gem 'sqlite3'
-  gem 'rspec-rails'
 end

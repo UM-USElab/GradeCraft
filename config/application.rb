@@ -1,6 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 require 'csv'
-require 'rails/all'
+require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'sprockets/railtie'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -37,8 +40,11 @@ module GradeCraft
     config.encoding = "utf-8"
 
     config.generators do |g|
-      g.test_framework :rspec, :fixtures => true
-      g.fixture_replacement :fabrication
+      g.test_framework :mini_test, :fixture => false
+      g.integration_tool :mini_test
+      g.template_engine :haml
+      g.orm :active_record
+      g.stylesheets :false
     end
 
     # Configure sensitive parameters which will be filtered from the log file.
