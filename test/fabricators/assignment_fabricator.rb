@@ -1,7 +1,7 @@
 Fabricator(:assignment) do
   name 'Test Assignment'
   grade_scope 'Individual'
-  course!
+  course
   point_total 50
 end
 
@@ -10,6 +10,6 @@ Fabricator(:weighted_assignment, :from => :assignment) do
 end
 
 
-Fabricator(:past_assignment, :from => :assignment) do 
+Fabricator(:past_assignment, :from => :assignment) do
   due_date 3.days.ago
 end

@@ -49,11 +49,11 @@ group :test do
   gem 'watchr'
   gem 'faker'
   gem 'launchy'
-  gem 'fabrication'
   gem 'capybara'
 end
 
 group :test, :development do
-  gem 'sqlite3'
   gem 'debugger'
+  gem 'fabrication'
+  gem 'sqlite3'
 end

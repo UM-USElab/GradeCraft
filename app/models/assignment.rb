@@ -1,6 +1,6 @@
 class Assignment < ActiveRecord::Base
   self.inheritance_column = 'something_you_will_not_use'
-  
+
   has_many :grades, :dependent => :destroy
   belongs_to :course
   validates_presence_of :course
@@ -17,12 +17,17 @@ class Assignment < ActiveRecord::Base
   accepts_nested_attributes_for :assignment_type
   has_many :score_levels, :through => :assignment_type
   accepts_nested_attributes_for :score_levels, allow_destroy: true
-  
+
   delegate :points_predictor_display, :to => :assignment
   delegate :mass_grade, :to => :assignment_type
-  
+
   validates_presence_of :name, :grade_scope
-    attr_accessible :type, :name, :description, :point_total, :due_date, :created_at, :updated_at, :level, :present, :grades_attributes, :assignment_type_id, :grade_scope, :visible, :grade_scheme_id, :required, :open_time, :has_assignment_submissions, :student_logged_button_text, :student_logged, :badge_set_id, :release_necessary, :score_levels_attributes, :open_date, :close_time
+  attr_accessible :type, :name, :description, :point_total, :due_date,
+    :created_at, :updated_at, :level, :present, :grades_attributes,
+    :assignment_type_id, :grade_scope, :visible, :grade_scheme_id, :required,
+    :open_time, :has_assignment_submissions, :student_logged_button_text,
+    :student_logged, :badge_set_id, :release_necessary,
+    :score_levels_attributes, :open_date, :close_time, :course, :due_date
 
   scope :individual_assignment, where(:grade_scope => "Individual")
   scope :group_assignment, where(:grade_scope => "Group")
@@ -31,7 +36,7 @@ class Assignment < ActiveRecord::Base
   scope :order, :chronological => 'due_date ASC'
 
   scope :future, lambda {
-    { :conditions => 
+    { :conditions =>
       #["assignments.due_date IS NOT NULL AND assignments.due_date >=?", Date.today OR "assignments.due_date IS NULL AND grade_for_student(student) IS NOT NULL"]
       ["assignments.due_date IS NOT NULL AND assignments.due_date >=?", Date.today]
     }
