@@ -14,11 +14,11 @@ class User < ActiveRecord::Base
     :last_activity_at, :last_login_at, :last_logout_at, :team_ids, :course_ids,
     :shared_badges, :earned_badges, :earned_badges_attributes
 
-  scope :alpha, -> lambda { where order: 'last_name ASC' }
-  scope :winning, -> lambda { where order: 'course_memberships.sortable_score DESC' }
+  scope :alpha, -> { where order: 'last_name ASC' }
+  scope :winning, -> { where order: 'course_memberships.sortable_score DESC' }
   
   has_many :course_memberships
-  has_many :courses, :through => :course_memberships, :uniq => true 
+  has_many :courses, -> { where uniq: true}, :through => :course_memberships 
   accepts_nested_attributes_for :courses
   belongs_to :default_course, :class_name => 'Course'
   has_many :grades, :as => :gradeable, :dependent => :destroy
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :team_memberships, :dependent => :destroy
   has_many :teams, :through => :team_memberships
   has_many :group_memberships, :dependent => :destroy
-  has_many :groups, :through => :group_memberships, :uniq => true 
+  has_many :groups, -> { where uniq: true }, :through => :group_memberships
   has_many :user_assignment_type_weights
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
 
   #Roles
   %w{student gsi professor admin}.each do |role|
-    scope role.pluralize, where(:role => role)
+    scope role.pluralize, -> { where role: role }
   end 
 
   def is_prof?

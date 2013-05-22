@@ -29,26 +29,17 @@ class Assignment < ActiveRecord::Base
     :student_logged, :badge_set_id, :release_necessary,
     :score_levels_attributes, :open_date, :close_time, :course, :due_date
 
-  scope :individual_assignment, -> lambda { where grade_scope: "Individual" } 
-  scope :group_assignment, -> lambda { where grade_scope: "Group" }
-  scope :team_assignment, -> lambda { where grade_scope: "Team" }
+  scope :individual_assignment, -> { where grade_scope: "Individual" } 
+  scope :group_assignment, -> { where grade_scope: "Group" }
+  scope :team_assignment, -> { where grade_scope: "Team" }
 
-  scope :order, -> lambda { where chronological: 'due_date ASC' }
+  scope :order, -> { where chronological: 'due_date ASC' }
 
-  scope :future, lambda {
-    { :conditions =>
-      #["assignments.due_date IS NOT NULL AND assignments.due_date >=?", Date.today OR "assignments.due_date IS NULL AND grade_for_student(student) IS NOT NULL"]
-      ["assignments.due_date IS NOT NULL AND assignments.due_date >=?", Date.today]
-    }
-  }
-  scope :past, lambda {
-    { :conditions => 
-      #["(assignments.due_date IS NOT NULL AND assignments.due_date < ?) OR (assignments.includes(:grades).where(assignments.due_date IS NULL AND grades.raw_score IS NOT NULL))", Date.today]
-      ["assignments.due_date IS NOT NULL AND assignments.due_date <?", Date.today]
-    }
-  }
+  scope :future, lambda { where('assignments.due_date IS NOT NULL AND assignments.due_date >= ?', Date.today) }
 
-  scope :grading_done, -> lambda { where assignment_grades.present? == 1 }
+  scope :past, lambda { where('assignments.due_date IS NOT NULL AND assignments.due_date < ?', Date.today) }
+
+  scope :grading_done, -> { where assignment_grades.present? == 1 }
   
   
   #grades per role  
