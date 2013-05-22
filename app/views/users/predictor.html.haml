@@ -107,7 +107,7 @@
 
                 - elsif assignment.has_groups?
                   - if @user.group_for_assignment(assignment)
-                    - assignment.assignment_grades.for_gradeable(@user.group_for_assignment(assignment)).first.tap do |grade|
+                    - assignment.assignment_grades.where(:gradeable => @user.group_for_assignment(assignment)).first.tap do |grade|
                       - if grade
                         - if assignment.release_necessary? && grade.is_released? 
                           = "Your group earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"

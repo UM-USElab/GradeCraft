@@ -135,7 +135,7 @@
                   - if @user.group_for_assignment(assignment)
                     - if assignment.self_gradeable? && assignment.open?
                       = button_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user.groups.where(:assignment_id => assignment.id).first.id, :gradeable_type => "Group"), :class => "btn btn-primary btn-mini"
-                    - assignment.assignment_grades.for_gradeable(@user.group_for_assignment(assignment)).first.tap do |grade|
+                    - assignment.assignment_grades.where(:gradeable => @user.group_for_assignment(assignment)).first.tap do |grade|
                       - if grade
                         - if current_user.is_staff?
                           %span.editLink= link_to "Edit Grade", edit_assignment_grade_path(assignment, grade, :gradeable_id => @user.groups.where(:assignment_id => assignment.id).first.id, :gradeable_type => "Group"), :class => 'btn btn-info btn-mini'

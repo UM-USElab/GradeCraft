@@ -29,11 +29,11 @@ class Assignment < ActiveRecord::Base
     :student_logged, :badge_set_id, :release_necessary,
     :score_levels_attributes, :open_date, :close_time, :course, :due_date
 
-  scope :individual_assignment, where(:grade_scope => "Individual")
-  scope :group_assignment, where(:grade_scope => "Group")
-  scope :team_assignment, where(:grade_scope => "Team")
+  scope :individual_assignment, -> lambda { where grade_scope: "Individual" } 
+  scope :group_assignment, -> lambda { where grade_scope: "Group" }
+  scope :team_assignment, -> lambda { where grade_scope: "Team" }
 
-  scope :order, :chronological => 'due_date ASC'
+  scope :order, -> lambda { where chronological: 'due_date ASC' }
 
   scope :future, lambda {
     { :conditions =>
@@ -48,7 +48,7 @@ class Assignment < ActiveRecord::Base
     }
   }
 
-  scope :grading_done, where(:assignment_grades.present? == 1)
+  scope :grading_done, -> lambda { where assignment_grades.present? == 1 }
   
   
   #grades per role  

@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
     :last_activity_at, :last_login_at, :last_logout_at, :team_ids, :course_ids,
     :shared_badges, :earned_badges, :earned_badges_attributes
 
-  scope :alpha, :order => 'last_name ASC'
-  scope :winning, :order => 'course_memberships.sortable_score DESC'
+  scope :alpha, -> lambda { where order: 'last_name ASC' }
+  scope :winning, -> lambda { where order: 'course_memberships.sortable_score DESC' }
   
   has_many :course_memberships
   has_many :courses, :through => :course_memberships, :uniq => true 

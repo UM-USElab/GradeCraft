@@ -14,7 +14,7 @@ class Team < ActiveRecord::Base
   
   has_many :assignment_submissions, :as => :submittable, :dependent => :destroy
 
-  default_scope :order => 'id ASC'
+  #default_scope :order => 'id ASC'
 
   def user_grades
     Grade.where(:user_id => users)

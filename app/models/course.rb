@@ -150,17 +150,17 @@ class Course < ActiveRecord::Base
   def group_grades_for_student(student)
     grades = []
     student.groups.each do |group|
-      grades += self.grades.for_gradeable(group)
+      grades += self.grades.where(:gradeable => group)
     end
     grades
   end
   
   def individual_grades_for_student(student)
-    self.grades.for_gradeable(student)
+    self.grades.where(:gradeable => student)
   end
   
   def team_grades_for_student(student)
-    self.grades.for_gradeable(student.teams.first)
+    self.grades.where(:gradeable => student.teams.first)
   end
   
   def grades_for_student(student)

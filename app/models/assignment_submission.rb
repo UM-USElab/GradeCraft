@@ -12,12 +12,12 @@ class AssignmentSubmission < ActiveRecord::Base
   has_one :grade
   accepts_nested_attributes_for :grade
   
-  scope :ungraded
+  #scope :ungraded
   
   validates_presence_of :assignment_id, :submittable_id, :submittable_type
   
   
-  scope :for_submittable, ->(submittable) { where(:submittable_id => submittable.id, :submittable_type => submittable.class) }
+  scope :for_submittable, -> lambda { where submittable_id: submittable.id, submittable_type: submittable.class }
   
   #Canable permissions
   def updatable_by?(user)
