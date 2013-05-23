@@ -40,6 +40,7 @@ end
 
 group :development do
   gem 'haml-rails'
+  gem "bullet"
 end
 
 group :test do
