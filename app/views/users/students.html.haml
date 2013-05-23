@@ -1,9 +1,9 @@
 - if current_user.is_staff? 
-  = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-info btn-small"
+  = link_to "Create a New #{current_course.user_term}", new_user_path, :class => "btn btn-info btn-small"
 
 %div
   = form_tag students_users_path, :method => :get do
-    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_term}"
     = submit_tag 'Filter', :class => 'btn'
 - if current_user.is_staff? 
   = "Download:"
@@ -17,7 +17,7 @@
       %th Name
       - if current_user.is_staff?
         %th Email
-      %th #{current_course.team_ref}
+      %th #{current_course.team_term}
       - if current_course.team_roles?
         %th Role
       - if current_user.is_staff?  
@@ -69,4 +69,4 @@
   = link_to "CSV", students_users_path(format: "csv") |
   = link_to "Excel", students_users_path(format: "xls")
   %br
-  = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-info btn-small"
+  = link_to "Create a New #{current_course.user_term}", new_user_path, :class => "btn btn-info btn-small"

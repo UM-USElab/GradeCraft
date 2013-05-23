@@ -1,14 +1,14 @@
 %table.table#sortableTable.tablesorter.table-bordered
   %thead
     %tr
-      %th #{current_course.user_ref}
+      %th #{current_course.user_term}
       - for assignment in @assignments
         %th= assignment.name
       - if current_course.valuable_badges?
         %th Badge Score
       %th Total Score
       %th Final Grade
-      %th #{current_course.user_ref}
+      %th #{current_course.user_term}
   %tbody
     - @students.each do |student|
       %tr 

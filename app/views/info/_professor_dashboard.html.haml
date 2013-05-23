@@ -5,7 +5,7 @@
       %table.table.table-bordered
         %thead
           %tr
-            %th= current_course.user_ref
+            %th= current_course.user_term
             %th Score
             %th Badges Earned
             %th Logins
@@ -33,7 +33,7 @@
       %table.table.table-bordered
         %thead
           %tr
-            %th= current_course.user_ref
+            %th= current_course.user_term
             %th Score
             %th Badges Earned
             %th Logins
@@ -62,7 +62,7 @@
       %table.table.table-bordered
         %thead
           %tr
-            %th= current_course.team_ref
+            %th= current_course.team_term
             %th Score
             %th Badges Earned
             %th Average Grade
@@ -90,12 +90,12 @@
           %thead
           %tr            
             - if assignment.is_individual?
-              %th= current_course.team_ref
-              %th= current_course.user_ref
+              %th= current_course.team_term
+              %th= current_course.user_term
             - elsif assignment.has_groups? 
               %th= current_course.group_ref
             - elsif assignment.has_teams?
-              %th= current_course.team_ref
+              %th= current_course.team_term
             %th Link
             %th Comment
             %th 

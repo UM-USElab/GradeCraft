@@ -27,7 +27,7 @@ class AssignmentType < ActiveRecord::Base
     elsif max_value?
       max_value.to_s << " possible points"
     elsif student_choice?
-      "#{course.user_ref}s decide!"
+      "#{course.user_term}s decide!"
     else
       possible_score.to_s << " possible points"
     end
@@ -37,8 +37,13 @@ class AssignmentType < ActiveRecord::Base
     course.user_weight_amount_close_date > Date.today
   end
   
+  # the next two methods should be consolidated into one
   def possible_score
     self.assignments.sum(:point_total) || 0
+  end
+  
+  def assignment_value_sum
+    assignments.sum(&:point_total)
   end
 
   def slider?
@@ -59,10 +64,6 @@ class AssignmentType < ActiveRecord::Base
   
   def has_soon_assignments? 
     assignments.any?(&:soon?)
-  end
-  
-  def assignment_value_sum
-    assignments.sum(&:point_total)
   end
   
   def mass_grade?

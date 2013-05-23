@@ -1,12 +1,12 @@
 %div
   = form_tag choices_users_path, :method => :get do
-    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+    = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_term}"
     = submit_tag 'Filter', :class => 'btn'
 
 %table.table.table-bordered#sortableTable.tablesorter
   %thead
   %tr
-    %th #{current_course.user_ref}
+    %th #{current_course.user_term}
     - @assignment_types.each do |assignment_type|
       - if assignment_type.student_choice? 
         %th= assignment_type.name

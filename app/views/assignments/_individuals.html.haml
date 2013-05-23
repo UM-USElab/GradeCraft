@@ -1,6 +1,6 @@
 = form_tag assignment_path(@assignment), :method => :get do
   = hidden_field_tag :assignment_id, @assignment.id
-  = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_ref}"
+  = select_tag :team_id, options_for_select(current_course.teams.map { |t| [t.name, t.id] }, @team.try(:id)), :prompt => "Select a #{current_course.team_term}"
   = submit_tag 'Filter', :class => 'btn btn-success btn-small'
 
 - if current_user.is_staff? 
@@ -15,7 +15,7 @@
         %tr
           - if @assignment.release_necessary?
             %th
-          %th= current_course.user_ref
+          %th= current_course.user_term
           %th Score
           - if @assignment.assignment_type.student_choice?
             %th Multiplied Score

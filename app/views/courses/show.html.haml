@@ -60,7 +60,7 @@
     = @course.team_setting? ? 'Yes' : 'No'
   %p
     %b These sections will be called:
-    = @course.team_ref
+    = @course.team_term
   %p
     %b Students can see the teams, the team's points, and the team's badges:
     = @course.teams_visible? ? 'Yes' : 'No'
@@ -88,7 +88,7 @@
   %h4 STUDENTS
   %p 
     %b Students will be called:
-    = @course.user_ref
+    = @course.user_term
 
 %div.well
   %h4 MULTIPLIERS

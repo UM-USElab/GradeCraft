@@ -8,7 +8,7 @@
         = f.input :submittable_id, :input_html => { :value => current_user.groups.first.id }, :as => :hidden
         = f.input :submittable_type, :input_html => { :value => "Group" }, :as => :hidden
       - elsif @assignment.has_teams? 
-        %b= "You are submitting this assignment as a representative of #{current_course.team_ref} #{current_user.teams.first.try(:name)}"
+        %b= "You are submitting this assignment as a representative of #{current_course.team_term} #{current_user.teams.first.try(:name)}"
         %br
         %br
         = f.input :submittable_id, :input_html => { :value => current_user.teams.first.id}, :as => :hidden
@@ -17,20 +17,20 @@
         = f.input :submittable_id, :input_html => { :value => current_user.id }, :as => :hidden
         = f.input :submittable_type, :input_html => { :value => "User" }, :as => :hidden
       - else
-        = f.input :submittable_id, :input_html => { :value => current_user.id }, :label => "#{current_course.user_ref}", :as => :hidden
+        = f.input :submittable_id, :input_html => { :value => current_user.id }, :label => "#{current_course.user_term}", :as => :hidden
         = f.input :submittable_type, :as => :hidden, :input_html => { :value => 'User' }
     - if current_user.is_staff?
       - if @assignment.has_groups?
         = f.input :submittable_id, :collection => @groups, :label => "#{current_course.group_ref}"
         = f.input :submittable_type, :input_html => { :value => "Group" }, :as => :hidden
       - elsif @assignment.has_teams? 
-        = f.input :submittable_id, :collection => @teams, :label => "#{current_course.team_ref}"
+        = f.input :submittable_id, :collection => @teams, :label => "#{current_course.team_term}"
         = f.input :submittable_type, :input_html => { :value => "Team" }, :as => :hidden
       - elsif @assignment.is_individual? 
-        = f.input :submittable_id, :collection => @students, :label => "#{current_course.user_ref}"
+        = f.input :submittable_id, :collection => @students, :label => "#{current_course.user_term}"
         = f.input :submittable_type, :input_html => { :value => "User" }, :as => :hidden
       - else
-        = f.input :submittable_id, :collection => @students, :label => "#{current_course.user_ref}", :include_blank => false
+        = f.input :submittable_id, :collection => @students, :label => "#{current_course.user_term}", :include_blank => false
         = f.input :submittable_type, :as => :hidden, :input_html => { :value => 'User' }        
     = f.association :assignment, :default => @assignment, :as => :hidden
     = f.input :link, :hint => "Where is the assignment located on the web?", :input_html => {:class => 'span12' }

@@ -1,11 +1,11 @@
 = simple_form_for(@team, :html => {:class => 'form-horizontal' }) do |f|
-  = f.input :name, :label => "#{current_course.team_ref}s Name"
+  = f.input :name, :label => "#{current_course.team_term}s Name"
   = f.association :users, :collection => @students, :as => :check_boxes
   = f.input :course_id, :collection => @courses, :as => :hidden, :input_html => { :value => current_course.id }
   
   .form-actions
     %div.btn-toolbar
       %div.btn-group
-        = f.button :submit, :class => 'btn btn-primary', :value => "Create #{current_course.team_ref}"
+        = f.button :submit, :class => 'btn btn-primary', :value => "Create #{current_course.team_term}"
       %div.btn-group
         = link_to 'Cancel', teams_path, :class => 'btn btn-info'

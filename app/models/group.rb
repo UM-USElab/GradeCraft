@@ -3,7 +3,7 @@ class Group < ActiveRecord::Base
   MAX_MEMBERS = 6
 
   has_many :group_memberships
-  has_many :users, :through => :group_memberships, :uniq => true 
+  has_many :users, :through => :group_memberships 
   has_many :grades, :as => :gradeable, :dependent => :destroy
   
   belongs_to :course

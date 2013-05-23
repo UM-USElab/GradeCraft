@@ -1,7 +1,7 @@
 %table.table.table-bordered#sortableTable.tablesorter
   %thead
     %tr
-      %th #{current_course.user_ref}
+      %th #{current_course.user_term}
       - for badge in @badges
         %th
           = badge.name 
@@ -9,7 +9,7 @@
       - if current_course.valuable_badges?
         %th Total Badge Score
       %th Overall Grade
-      %th #{current_course.user_ref}
+      %th #{current_course.user_term}
   %tbody
     - @students.each do |student|
       %tr 

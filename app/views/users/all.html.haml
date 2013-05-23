@@ -1,4 +1,4 @@
-= link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-info btn-small"
+= link_to "Create a New #{current_course.user_term}", new_user_path, :class => "btn btn-info btn-small"
 
 %table.table.display.table-bordered#sortableTable.tablesorter
   %thead
@@ -43,4 +43,4 @@
         %td= link_to 'Delete', user, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %div#footerNav
-  = link_to "Create a New #{current_course.user_ref}", new_user_path, :class => "btn btn-primary"
+  = link_to "Create a New #{current_course.user_term}", new_user_path, :class => "btn btn-primary"

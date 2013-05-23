@@ -1,8 +1,8 @@
-%h3= "#{current_course.team_ref}s"
+%h3= "#{current_course.team_term}s"
 %table.table-bordered.table#sortableTable.tablesorter
   %thead
     %tr
-      %th= current_course.team_ref
+      %th= current_course.team_term
       %th Score
       - if @assignment.assignment_type.student_choice?
         %th Multiplied Score

@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
 
   def index
     @teams = current_course.teams.all
-    @title = "#{current_course.team_ref}s"
+    @title = "#{current_course.team_term}s"
     respond_to do |format|
       format.html
       format.json { render json: @teams }
@@ -35,7 +35,7 @@ class TeamsController < ApplicationController
 
   def new
     @team =  Team.new
-    @title = "Create a New #{current_course.team_ref}"
+    @title = "Create a New #{current_course.team_term}"
     @courses = Course.all
     @users = current_course.users
 
@@ -54,7 +54,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to @team, notice: "#{current_course.team_ref} was successfully created." }
+        format.html { redirect_to @team, notice: "#{current_course.team_term} was successfully created." }
         format.json { render json: @team, status: :created, location: @team }
       else
         format.html { render action: "new" }

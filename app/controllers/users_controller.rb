@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   end
   
   def students
-    @title = "#{current_course.user_ref} Roster"
+    @title = "#{current_course.user_term} Roster"
     @users = current_course.users
     @students = current_course.users.students
     @teams = current_course.teams.all 
@@ -151,7 +151,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title = "Edit #{current_course.user_ref}"
+    @title = "Edit #{current_course.user_term}"
     @teams = current_course.teams.all
     @courses = Course.all
     @user = current_course.users.find(params[:id])

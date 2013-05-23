@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   scope :winning, -> { where order: 'course_memberships.sortable_score DESC' }
   
   has_many :course_memberships
-  has_many :courses, -> { where uniq: true}, :through => :course_memberships 
+  has_many :courses, :through => :course_memberships 
   accepts_nested_attributes_for :courses
   belongs_to :default_course, :class_name => 'Course'
   has_many :grades, :as => :gradeable, :dependent => :destroy
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :team_memberships, :dependent => :destroy
   has_many :teams, :through => :team_memberships
   has_many :group_memberships, :dependent => :destroy
-  has_many :groups, -> { where uniq: true }, :through => :group_memberships
+  has_many :groups, :through => :group_memberships
   has_many :user_assignment_type_weights
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
