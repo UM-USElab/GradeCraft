@@ -33,11 +33,11 @@ class Assignment < ActiveRecord::Base
   scope :group_assignment, -> { where grade_scope: "Group" }
   scope :team_assignment, -> { where grade_scope: "Team" }
 
-  scope :order, -> { where chronological: 'due_date ASC' }
-
-  scope :future, lambda { where('assignments.due_date IS NOT NULL AND assignments.due_date >= ?', Date.today) }
-
-  scope :past, lambda { where('assignments.due_date IS NOT NULL AND assignments.due_date < ?', Date.today) }
+  scope :chronological, -> { order('due_date ASC') }
+  
+  scope :with_due_date, -> { where('assignments.due_date IS NOT NULL') }
+  scope :future, -> { with_due_date.where('assignments.due_date >= ?', Date.today) }
+  scope :past, -> { with_due_date.where('assignments.due_date < ?', Date.today) }
 
   scope :grading_done, -> { where assignment_grades.present? == 1 }
   
