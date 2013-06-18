@@ -1,145 +1,36 @@
-body { padding-top: 50px; }
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Trocchi', serif;
-}
-
-h4 {
-  padding-bottom: 0px !important;
-  margin-bottom: 0px !important;
-}
 
 /* Course title in the top nav bar */ 
-.brand {
-  font-family: 'Trocchi', serif;
-  font-size: 18px !important;
-  color: #FFF !important;
+
+
+.navbar {
+  background: #45484d; /* Old browsers */
+background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+
+}
+
+.navbar-inner  {
+  padding: 8px 0 0;
+
+}
+
+a.brand {
+  font-family: 'Futura', serif;
+  font-size: 1.4em;
+  color: #FFF;
+}
+
+a.brand:hover {
+  text-decoration: none;
+  color: #eee;
 }
 
 .container-fluid {
   margin-top: 10px;
 }
 
-.content {
-  min-height: 520px !important;
-}
-
-#search {
-  margin-top: 5px;
-}
-
-.navbar-fixed-bottom {
-  height: 40px;
-}
-
-.hero-unit {
-  min-height: 350px;
-  margin-bottom: 0px;
-}
-
-.well {
-  margin-left: 0px;
-}
-
-/** Fixes the spacing between buttons in a button group */
-.btn-group a.btn {
-  margin: 0;
-}
-.btn {
-  margin-top: 0px;
-  margin-bottom: 15px;
-}
-
-.btn.btn-warning a {
-  color: #FFF;
-}
-
-.btn.btn-warning a:hover {
-  color: #FFF;
-  text-decoration: none;
-}
-
-/** Fixes the spacing in the Remember Me button on the dropdown nav **/
-span.control-label {
-  float: right;
-  letter-spacing: normal;
-  word-spacing: normal;
-  height: 20px;
-  z-index: -1;
-}
-
-#rememberMe label.checkbox input {
-  float: right;
-  padding: 10px;
-  height: 15px;
-  width: 20px;
-  z-index: 10;
-  margin-top: 2px;
-}
-
-
-.dropdown .btn, table .btn {
-  margin-bottom: 0px;
-}
-
-hr {
-  margin: 15px 0px;
-}
- 
-.userDashboardSide .label a {
-   color: #FFF !important;
-   text-shadow: none;
-   font-weight: normal;
-   padding: 0px;
- }
- 
- .userDashboardSide .label {
-   line-height: 12px !important;
-   width: 95%;
-   margin-top: 10px;
- }
- 
- #userScoreSection .nav-tabs > .active > a {
-   background-color:  #2bd42b;
-   color: #FFF;
-   font-weight: bold;
-   border-top-left-radius: 5px;
-   border-top-right-radius: 5px;
- }
- 
- #userScoreSection .nav-tabs li {
-   background-color: #AAA;
-   border-top-left-radius: 5px;
-   color: #FFF;
-   border-top-right-radius: 5px;
-   border-color: #FFF !important;
-   border-width: 1px !important;
- }
- 
-  #userScoreSection .nav-tabs li a {
-    color: #eee;
-  }
- #userScoreSection .nav-tabs li.active > a:hover {
-  color: #FFF;
-   background-color:  #2bd42b;
-  cursor: default;
- }
- 
- 
- #userScoreSection .nav-tabs li > a:hover {
-  background-color: #1baf1b;
-  cursor: pointer;
-  color: #FFF;
- }
- 
- 
-#userScoreSection .assignmentType.well.darkwell {
-  background-color: #333;
-  border-color: #111;
-  padding: 10px;
-}
-
-#userScoreSection .assignmentType.well.darkwell .btn {
-  margin-bottom: 0px;
-}
- 
