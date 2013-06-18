@@ -291,5 +291,6 @@ DEPENDENCIES
   thin
   turn
   twitter-bootstrap-rails
+  uniform_notifier
   watchr
   will_paginate
