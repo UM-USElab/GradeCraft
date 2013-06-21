@@ -36,8 +36,10 @@ group :development do
   gem 'bullet'
   gem 'guard'
   gem 'guard-minitest'
-  gem 'minitest-colorize'
   gem 'haml-rails'
+  gem 'minitest-colorize'
+  gem 'minitest-matchers'
+  gem 'valid_attribute'
 end
 
 group :test do
