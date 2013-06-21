@@ -1,10 +1,10 @@
 .bundle
+.env
+.sass-cache/
 config/database.yml
-grade-tracker.sublime-project
-grade-tracker.sublime-workspace
 db/*.sqlite3
 db/*.sqlite3-journal
+grade-tracker.sublime-project
+grade-tracker.sublime-workspace
 log/*.log
 tmp/
-.sass-cache/
-.rvmrc

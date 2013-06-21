@@ -34,7 +34,6 @@ GEM
       activesupport
       builder
       json
-    ansi (1.4.3)
     arel (4.0.0)
     atomic (1.1.9)
     bcrypt-ruby (3.0.1)
@@ -68,17 +67,10 @@ GEM
       mime-types
       orm_adapter
     cocaine (0.4.2)
-    coffee-rails (4.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 4.0.0.beta, < 5.0)
-    coffee-script (2.2.0)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.6.2)
+    coderay (1.0.9)
     columnize (0.3.6)
     d3_rails (3.1.6)
       railties (>= 3.1.0)
-    daemons (1.1.9)
     dalli (2.6.3)
     debugger (1.6.0)
       columnize (>= 0.3.1)
@@ -86,23 +78,30 @@ GEM
       debugger-ruby_core_source (~> 1.2.1)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.2)
-    diff-lcs (1.2.4)
+    dotenv (0.7.0)
+    dotenv-rails (0.7.0)
+      dotenv (= 0.7.0)
     erubis (2.7.0)
-    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    fabrication (2.7.0)
+    fabrication (2.7.2)
     faker (1.1.2)
       i18n (~> 0.5)
     faraday (0.8.7)
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
+    ffi (1.9.0)
     flexslider (2.0.2)
-    fuubar (1.1.0)
-      rspec (~> 2.0)
-      rspec-instafail (~> 0.2.0)
-      ruby-progressbar (~> 1.0.0)
+    formatador (0.2.4)
     gravatar_image_tag (1.1.3)
+    guard (1.8.1)
+      formatador (>= 0.2.4)
+      listen (>= 1.0.0)
+      lumberjack (>= 1.0.2)
+      pry (>= 0.9.10)
+      thor (>= 0.14.6)
+    guard-minitest (0.5.0)
+      guard (>= 0.4)
     haml (4.0.2)
       tilt
     haml-rails (0.4)
@@ -125,18 +124,25 @@ GEM
       multi_json (>= 1.5)
     launchy (2.3.0)
       addressable (~> 2.3)
-    libv8 (3.11.8.17)
+    listen (1.2.2)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+      rb-kqueue (>= 0.2)
+    lumberjack (1.0.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.1)
     mime-types (1.23)
     minitest (4.7.4)
+    minitest-colorize (0.0.5)
+      minitest (>= 2.0)
     minitest-rails (0.9.2)
       minitest (~> 4.7)
       rails (>= 3.0)
     multi_json (1.7.3)
     multipart-post (1.2.0)
-    mysql2 (0.3.12b5)
+    newrelic_rpm (3.6.1.88)
     nokogiri (1.5.9)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -151,6 +157,12 @@ GEM
     polyglot (0.3.3)
     protected_attributes (1.0.1)
       activemodel (>= 4.0.0.beta, < 5.0)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    puma (2.0.1)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -168,18 +180,12 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.0.4)
-    ref (1.0.5)
+    rb-fsevent (0.9.3)
+    rb-inotify (0.9.0)
+      ffi (>= 0.5.0)
+    rb-kqueue (0.2.0)
+      ffi (>= 0.5.0)
     responders (0.6.5)
-    rspec (2.13.0)
-      rspec-core (~> 2.13.0)
-      rspec-expectations (~> 2.13.0)
-      rspec-mocks (~> 2.13.0)
-    rspec-core (2.13.1)
-    rspec-expectations (2.13.0)
-      diff-lcs (>= 1.1.3, < 2.0)
-    rspec-instafail (0.2.4)
-    rspec-mocks (2.13.1)
-    ruby-progressbar (1.0.2)
     ruby2ruby (2.0.3)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.0)
@@ -195,14 +201,13 @@ GEM
       json
       json
     sexp_processor (4.2.1)
-    shoulda-matchers (2.1.0)
-      activesupport (>= 3.0.0)
     simple_form (3.0.0.rc)
       actionpack (>= 4.0.0.rc1, < 4.1)
       activemodel (>= 4.0.0.rc1, < 4.1)
     slim (1.3.9)
       temple (~> 0.6.3)
       tilt (~> 1.3, >= 1.3.3)
+    slop (3.4.5)
     sorcery (0.8.1)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
@@ -216,16 +221,8 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.7)
     temple (0.6.4)
     terminal-table (1.4.5)
-    therubyracer (0.11.4)
-      libv8 (~> 3.11.8.12)
-      ref
-    thin (1.5.1)
-      daemons (>= 1.0.9)
-      eventmachine (>= 0.12.6)
-      rack (>= 1.0.0)
     thor (0.18.1)
     thread_safe (0.1.0)
       atomic
@@ -233,8 +230,6 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    turn (0.9.6)
-      ansi
     twitter-bootstrap-rails (2.2.6)
       actionpack (>= 3.1)
       execjs
@@ -260,36 +255,34 @@ DEPENDENCIES
   capybara
   carrierwave
   ckeditor
-  coffee-rails (~> 4.0.0.beta1)
   d3_rails
   dalli
   debugger
+  dotenv-rails
   fabrication
   faker
   flexslider
-  fuubar
   gravatar_image_tag
+  guard
+  guard-minitest
   haml
   haml-rails
   highcharts-rails
   jquery-rails (~> 2.0)
   launchy
+  minitest-colorize
   minitest-rails
-  mysql2 (= 0.3.12b5)
+  newrelic_rpm
   pacecar
   pg
   protected_attributes
+  puma
   rails (= 4.0.0.rc1)
   responders
   sass-rails (~> 4.0.0.beta1)
   sendgrid
-  shoulda-matchers
   simple_form (~> 3.0.0.rc)
   sorcery
-  sqlite3
-  therubyracer
-  thin
-  turn
   twitter-bootstrap-rails
   watchr
   will_paginate

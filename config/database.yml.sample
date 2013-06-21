@@ -1,0 +1,14 @@
+development:
+  adapter: postgresql
+  database: gradecraft_development
+  min_messages: warning
+  pool: 5
+  username: cait
+
+test:
+  adapter: postgresql
+  database: gradecraft_test
+  encoding: unicode
+  min_messages: warning
+  pool: 5
+  username: cait
