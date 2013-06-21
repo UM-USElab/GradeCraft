@@ -5,10 +5,60 @@
  *= require_self
  *= require jquery.ui
  *= require bootstrap
- *= require bootstrap_responsive
- *= require bootstrap_and_overrides
  *= require flexslider.css
  *= require_tree .
 */
 
+/* Branding colors */
+$blue: #2ab2cd;
+$green: #a2d344;
+$red: #d64545;
+
+
+body {
+  padding-top: 2.4em;
+  background-image: url(images/cloud_bg2.gif);
+  
+}
+
+.btn.btn-primary {
+  background-color: $blue;
+  background-image: none;
+}
+.btn.btn-primary:hover, .btn-group.open .btn-primary.dropdown-toggle {
+  background-color: $blue;
+  opacity: .8;
+}
+.btn.btn-success {
+  background-color: $green;
+  background-image: none;
+}
+.btn.btn-error {
+  background-color: $red;
+  background-image: none;
+}
+
+
+.navbar {
+  background: #45484d; /* Old browsers */
+background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+
+}
+
+a.brand {
+  font-family: 'Futura', serif;
+  font-size: 1.4em;
+  color: #999 !important;
+}
+
+a.brand:hover {
+  text-decoration: none;
+  color: #666 !important;
+}
 
