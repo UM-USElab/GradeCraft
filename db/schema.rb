@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130329181455) do
+ActiveRecord::Schema.define(version: 20130621001628) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "assignment_submissions", force: true do |t|
     t.integer  "assignment_id"
@@ -52,6 +55,7 @@ ActiveRecord::Schema.define(version: 20130329181455) do
     t.string   "user_percentage_set"
     t.boolean  "mass_grade"
     t.string   "mass_grade_type"
+    t.boolean  "student_weightable"
   end
 
   create_table "assignments", force: true do |t|
@@ -174,28 +178,28 @@ ActiveRecord::Schema.define(version: 20130329181455) do
     t.string   "semester"
     t.string   "theme_id"
     t.integer  "course_grade_scheme_id"
-    t.datetime "created_at",                                                             null: false
-    t.datetime "updated_at",                                                             null: false
-    t.boolean  "badge_setting",                                          default: true
-    t.boolean  "team_setting",                                           default: false
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
+    t.boolean  "badge_setting",                                       default: true
+    t.boolean  "team_setting",                                        default: false
     t.string   "user_term"
     t.string   "team_term"
     t.string   "homepage_message"
-    t.boolean  "status",                                                 default: true
+    t.boolean  "status",                                              default: true
     t.boolean  "group_setting"
     t.integer  "badge_set_id"
-    t.integer  "user_weight_amount"
+    t.integer  "max_student_weight",                                                  null: false
     t.integer  "min_size"
     t.integer  "max_size"
-    t.datetime "user_weight_amount_close_date"
+    t.datetime "student_weight_close_date"
     t.boolean  "team_roles"
     t.string   "section_leader_term"
     t.string   "group_term"
-    t.string   "user_weight_amount_type"
+    t.string   "student_weight_type"
     t.boolean  "has_assignment_submissions"
     t.boolean  "teams_visible"
     t.string   "badge_use_scope"
-    t.decimal  "multiplier_default",            precision: 10, scale: 0
+    t.decimal  "multiplier_default",         precision: 10, scale: 0
     t.string   "multiplier_term"
     t.boolean  "predictor_setting"
     t.boolean  "badges_value"
@@ -366,7 +370,7 @@ ActiveRecord::Schema.define(version: 20130329181455) do
     t.datetime "updated_at",         null: false
     t.integer  "user_id"
     t.integer  "assignment_type_id"
-    t.integer  "value"
+    t.integer  "value",              null: false
   end
 
   create_table "users", force: true do |t|

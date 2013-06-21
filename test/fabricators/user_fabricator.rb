@@ -11,9 +11,10 @@ Fabricator(:student, :from => :user) do
 end
 
 Fabricator(:student_with_grades, :from => :student) do
-  grades { [Fabricate(:grade)] }
-end
-
-Fabricator(:student_with_weight, :from => :student) do
-  
+  transient :assignments => []
+  after_create do |student, transients|
+    transients[:assignments].each do |assignment|
+      Fabricate(:grade, :gradeable => student, :assignment => assignment, :raw_score => assignment.point_total - 100)
+    end
+  end
 end

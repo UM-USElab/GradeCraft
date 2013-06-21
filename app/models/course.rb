@@ -2,8 +2,8 @@ class Course < ActiveRecord::Base
   attr_accessible :badge_set_ids, :course_grade_scheme_id, :courseno, :name,
     :semester, :theme_id, :year, :badge_setting, :team_setting, :team_term,
     :user_term, :user_id, :course_id, :homepage_message, :group_setting,
-    :user_weight_amount, :user_weight_amount_close_date, :team_roles,
-    :section_leader_term, :group_term, :user_weight_amount_type,
+    :max_student_weight, :student_weight_close_date, :team_roles,
+    :section_leader_term, :group_term, :student_weight_type,
     :has_assignment_submissions, :teams_visible, :badge_use_scope,
     :multiplier_default, :multiplier_term, :badges_value, :predictor_setting,
     :max_group_size, :min_group_size, :shared_badges, :graph_display,
@@ -113,9 +113,8 @@ class Course < ActiveRecord::Base
     shared_badges == true
   end
 
-  #Can students decide assignment values?
   def student_weighted?
-    user_weight_amount != nil
+    max_student_weight > 0
   end
 
   #Do students declare their roles on their team within the system?

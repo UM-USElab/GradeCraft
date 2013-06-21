@@ -1,38 +1,33 @@
 require 'test_helper'
 
 class AssignmentTypeTest < ActiveSupport::TestCase
-  setup do
-    @course = Fabricate(:course, :user_weight_amount => 6)
-    @assignment_type = Fabricate(:assignment_type_with_student_choice, :course => @course)
-    @student = Fabricate(:student, :course => [@course])
-    @assignments = [300, 500].map do |n|
-      Fabricate(:assignment, :assignment_type => @assignment_type, :point_total => n)
-    end
+  # Assignment point totals: [300, 500]
+  test "calculates point total for student" do
+    assert_equal 800, assignment_type.point_total_for_student(student)
   end
 
-  test "calculates points total for student" do
-    assert_equal 800, @assignment_type.point_total_for_student(@student)
+  test "multiplier is 1 if not student weightable" do
+    assert_equal 1, assignment_type.multiplier_for_student(student)
   end
 
-  test "calculates 2x point total for student" do
-    Fabricate(:user_assignment_type_weight, :user => @student, :assignment_type => @assignment_type, :value => 2)
-    assert_equal 1600, @assignment_type.point_total_for_student(@student)
+  # Weight: 2
+  test "calculates weighted point total for student" do
+    Fabricate(:user_assignment_type_weight, :user => student, :assignment_type => assignment_type)
+    assert_equal 1600, assignment_type.point_total_for_student(student)
   end
 
+  # Grades: [200, 400]
   test "calculates score for student" do
-    Fabricate(:grade, :assignment => @assignments.first, :gradeable => @student, :raw_score => 250)
-    Fabricate(:grade, :assignment => @assignments.last, :gradeable => @student, :raw_score => 400)
-    assert_equal 650, @assignment_type.score_for_student(@student)
+    @student = Fabricate(:student_with_grades, :assignments => assignment_type.assignments)
+    assert_equal 600, assignment_type.score_for_student(student)
   end
 
+  # Grades: [200, 400], weight: 2
   test "calculates 2x score for student" do
-    Fabricate(:grade, :assignment => @assignments.first, :gradeable => @student, :raw_score => 250)
-    Fabricate(:grade, :assignment => @assignments.last, :gradeable => @student, :raw_score => 400)
-    Fabricate(:user_assignment_type_weight, :user => @student, :assignment_type => @assignment_type, :value => 2)
-    assert_equal 1300, @assignment_type.score_for_student(@student)
+    @student = Fabricate(:student_with_grades, :assignments => assignment_type.assignments)
+    Fabricate(:user_assignment_type_weight, :user => student, :assignment_type => assignment_type)
+    assert_equal 1200, assignment_type.score_for_student(student)
   end
-
-  #is the assignment type student weight configurable?
 
   #what is the assignment type weight structure for the course
 
@@ -60,4 +55,17 @@ class AssignmentTypeTest < ActiveSupport::TestCase
 
   #multiplier for student
 
+  # Lazy loaded objects. These can be overridden by setting the instance
+  # variable before calling the method.
+  def assignment_type
+    @assignment_type ||= Fabricate(:assignment_type_with_assignments, :course => course)
+  end
+
+  def course
+    @course ||= Fabricate(:course)
+  end
+
+  def student
+    @student ||= Fabricate(:student)
+  end
 end
