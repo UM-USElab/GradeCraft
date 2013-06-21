@@ -44,7 +44,6 @@ group :test do
   gem 'capybara'
   gem 'faker'
   gem 'launchy'
-  gem 'watchr'
 end
 
 group :test, :development do

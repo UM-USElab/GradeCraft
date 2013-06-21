@@ -107,7 +107,7 @@ class AssignmentType < ActiveRecord::Base
   end
 
   def point_total_for_student(student)
-    assignments.sum { |a| a.point_total_for_student(student) }
+    assignments.to_a.sum { |a| a.point_total_for_student(student) }
   end
 
   def multiplier_for_student(student)

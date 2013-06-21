@@ -14,3 +14,13 @@ require "minitest/rails"
 
 class ActiveSupport::TestCase
 end
+
+module LazyLoadedFabricators
+  def assignment_type
+    @assignment_type ||= Fabricate(:assignment_type, :course => course)
+  end
+
+  def course
+    @course ||= Fabricate(:course)
+  end
+end

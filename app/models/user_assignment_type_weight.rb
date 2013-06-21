@@ -9,7 +9,7 @@ class UserAssignmentTypeWeight < ActiveRecord::Base
   validates_presence_of :user_id, :assignment_type_id
   validate :course_max_value_not_exceeded, :max_value_per_at, :min_value_per_at
 
-  scope :except, ->(weight) { where('user_assignment_type_weights.id != ?', weight.id) }
+  scope :except_weight, ->(weight) { where('user_assignment_type_weights.id != ?', weight.id) }
   scope :for_course, ->(course) { where(:assignment_type_id => course.assignment_types.pluck(:id)) }
 
   delegate :course, :to => :assignment_type, :allow_nil => false
@@ -39,7 +39,7 @@ class UserAssignmentTypeWeight < ActiveRecord::Base
   end
 
   def total_student_weight
-    value + user.weights_for_course(course).except(self).pluck(:value).sum
+    user.weights_for_course(course).pluck(:value).sum + (persisted? ? 0 : value)
   end
 
   def course_max_student_not_exceeded
