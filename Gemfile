@@ -37,6 +37,7 @@ group :development do
   gem 'guard'
   gem 'guard-minitest'
   gem 'haml-rails'
+  gem 'minitest-colorize'
   gem 'minitest-matchers'
   gem 'minitest-reporters'
   gem 'valid_attribute'
