@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20130624222511) do
     t.datetime "close_time"
     t.datetime "open_time"
     t.boolean  "required"
-    t.boolean  "has_assignment_submissions"
+    t.boolean  "allows_assignment_submissions"
     t.boolean  "student_logged"
     t.string   "student_logged_button_text"
     t.integer  "badge_set_id"
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(version: 20130624222511) do
     t.text     "text_feedback"
     t.boolean  "shared"
     t.integer  "grade_id"
+    t.datetime "expires_at"
   end
 
   create_table "elements", force: true do |t|
