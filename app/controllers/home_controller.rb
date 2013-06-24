@@ -20,7 +20,7 @@ class HomeController < ApplicationController
       @top_ten_students = @students.order('course_memberships.sortable_score DESC').limit(10)
       @bottom_ten_students = @students.order('course_memberships.sortable_score ASC').limit(10)
       @assignments = current_course.try(:assignments)
-      @submissions = current_course.try(:assignment_submissions).ungraded.all
+      #@submissions = current_course.try(:assignment_submissions).ungraded.all
     end
   end
 
