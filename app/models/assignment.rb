@@ -167,7 +167,7 @@ class Assignment < ActiveRecord::Base
   end
 
   def has_ungraded_submissions?
-    allows_assignment_submissions == true && assignment_submissions.try(:ungraded)
+    has_assignment_submissions == true && assignment_submissions.try(:ungraded)
   end
 
   def slider?
