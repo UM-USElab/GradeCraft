@@ -1,9 +1,11 @@
-%div.span12.well
-  %h3 Login
-  %div
-    = render 'form'
-%div.span12.well.alert-error
-  %h3 Forgot Your Password?
-  %br
-  %p.span6 Enter the email address associated with your account, and you'll receive a link via email that will allow you to create a new password.
-  = render 'forgot_password_form'
+%div.row
+  %div.col.col-lg-6
+    %div.well
+      %h3 Login
+      %div
+        = render 'form'
+  %div.col.col-lg-6
+    %div.well.alert-danger
+      %h3 Forgot Your Password?
+      %p.col.col-lg-12 Enter the email address associated with your account, and you'll receive a link via email that will allow you to create a new password.
+      = render 'forgot_password_form'

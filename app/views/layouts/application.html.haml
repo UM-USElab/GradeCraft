@@ -13,65 +13,111 @@
   %body
     .navbar.navbar-fixed-top.navbar-inverse
       .navbar-inner
-        .container
-          %a.brand(href="/dashboard")
-            - if current_course
-              #{current_course.name}
-            - else
-              GradeCraft
-          %div.pull-right
-            - if current_user && current_course
-              %div{:class => 'btn-group pull-left'}
-                - if current_user.is_admin? 
-                  = link_to "Course Dashboard",  dashboard_path, :class => "btn"
-                - elsif current_user.is_staff?
-                  = link_to "My Dashboard",  dashboard_path, :class => "btn"   
-                  = link_to "Assignments", assignments_path, :class => "btn"
-                  - if current_course.has_teams?
-                    = link_to "#{current_course.team_term}s", teams_path, :class => "btn"
-                  - if current_course.has_badges?                
-                    = link_to "Badges", badges_path, :class => "btn"
-                  - if current_course.shared_badges?
-                    = link_to "Class Badges", students_users_path, :class => "btn"
-            - if current_user
-              %div{:class => 'btn-group pull-right'}
-                %a{:class => 'btn dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
-                  = current_user.public_name
-                  %i.caret
-                %ul{:class => 'dropdown-menu well'}
-                  %li= link_to "My Account", edit_profile_users_path
-                  %li= link_to "Logout", :logout
-            - else
-                    
-              %div{:class => 'btn-group pull-right'}
-                %a{:class => 'btn btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
-                  Log In 
-                  %span{:class => 'caret'}
-                %ul{:class => 'dropdown dropdown-menu well'}
-                  = simple_form_for User.new, :url => user_sessions_path do |f|
-                    = f.input :email, :label => false
-                    = f.input :password, :label => false
-                    %span.control-label.fadeopacity= "Remember Me"
-                    %span#rememberMe= f.input :remember_me, :as => :boolean, :label => false
-                    = submit_tag "Log in", :class => 'btn btn-primary btn-small pull-right'
-                    = button_to 'Forget your password?', new_user_session_path, :class => "btn btn-info btn-small"
+        %a.brand(href="/dashboard")
+          - if current_course
+            #{current_course.name}
+          - else
+            GradeCraft
+        %div.pull-right
+          - if current_user && current_course
+            %div{:class => 'btn-group btn-small pull-left'}
+              - if current_user.is_admin? 
+                = link_to "Course Dashboard",  dashboard_path, :class => "btn"
+              - elsif current_user.is_staff?
+                = link_to "My Dashboard",  dashboard_path, :class => "btn"   
+                = link_to "Assignments", assignments_path, :class => "btn"
+                - if current_course.has_teams?
+                  = link_to "#{current_course.team_term}s", teams_path, :class => "btn"
+                - if current_course.has_badges?                
+                  = link_to "Badges", badges_path, :class => "btn"
+                - if current_course.shared_badges?
+                  = link_to "Class Badges", students_users_path, :class => "btn"
+          - if current_user
+            %div{:class => 'btn-group btn-small pull-right'}
+              %a{:class => 'btn btn-small dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                = current_user.public_name
+                %i.caret
+              %ul{:class => 'dropdown-menu well'}
+                %li= link_to "My Account", edit_profile_users_path
+                %li= link_to "Logout", :logout
+          - else   
+            %div{:class => 'btn-group pull-right'}
+              %a{:class => 'btn btn-small btn-primary dropdown-toggle', "data-toggle" => 'dropdown', :href => '#' }
+                Log In 
+                %span{:class => 'caret'}
+              %ul{:class => 'dropdown-menu dropdown well login'}
+                = simple_form_for User.new, :url => user_sessions_path do |f|
+                  %li= f.input :email, :label => false
+                  %li= f.input :password, :label => false
+                  %li#remember.pull-right
+                    = f.input :remember_me, :as => :boolean
+                  %li= submit_tag "Log in", :class => 'dropmenu btn btn-small pull-right'
+                %div.spacer
+                %div.divider.clear
+                = link_to 'Forget your password?', new_user_session_path, :class => " "
 
-    .container-fluid.container
-      %div.row-fluid.span12
-        = render 'layouts/content'
-      
-      %div.row-fluid.span12#footer
-        %hr      
-          %div.pull-right
-            &copy; 2012 Regents of the University of Michigan &#124;
-            = link_to "Using Gradecraft", using_gradecraft_path
-            | 
-            = link_to "Site Credits", credits_path
+    %div.container
+      - if flash[:notice]
+        .alert.alert-success= flash[:notice]
+      - if flash[:error]
+        .alert.alert-error= flash[:error]
+      - if flash[:alert]
+        .alert.alert-info= flash[:alert]           
+      - if current_user && current_user.is_staff? &&! current_page?(:controller => 'users', :action => 'predictor')
+        %div.col.col-lg-3
+          %div.sidebar-nav-fixed.well#navbar
+            = render 'layouts/admin_subnav'  
+        %div.col.col-lg-9.content
+          %h4= @title 
+          %hr
+          = yield
+      - elsif current_user && current_user.is_staff? && current_page?(:controller => 'users', :action => 'predictor')
+        %div#predictor
+          %div.col.col-lg-3
+            %div.sidebar-nav-fixed.well#navbar
+              %ul.nav.nav-list
+                %li.nav-header Quick Menu
+                %li= link_to "Students", students_users_path
+                %li= link_to "Assignments", assignments_path
+                %li= link_to "Badges", badges_path
+                %li= link_to "Settings", edit_course_path(current_course)
+          %div.col.col-lg-9.content
+            %h4= @title 
+            %hr
+            = yield
+      - elsif current_user && current_user.is_student?
+        - if current_page?(root_url) || current_page?('/dashboard')
+          %div.container.site
+          = yield
+        - else
+          %h4= @title
+          %hr
+          = yield
+      - else  
+        %div.site.col-lg-12
+          = yield      
+      %footer.row.col.col-lg-12
+        %div.col.col-lg-4
+          %h5 &copy; 2012-13 Regents of the University of Michigan
+        %div.col.col-lg-2
+          %h5 Explore
+          %ul
+            %li= link_to "See the Demo"
+        %div.col.col-lg-2
+          %h5 Develop
+          %ul
+            %li= link_to "Using Gradecraft", using_gradecraft_path
+            %li= link_to "Features"
+        %div.col.col-lg-2
+          %h5 About 
+          %ul
+            %li= link_to "Blog"
+            %li= link_to "Site Credits", credits_path
         
     .navbar.navbar-fixed-bottom.navbar-inverse
       .navbar-inner
         - if current_user.try(:is_admin?)
           %div{:class => 'btn-group pull-left'}
-            = form_tag change_current_course_path do
+            = form_tag change_current_course_path, :class => 'dropup' do 
               = select_tag 'course_id', options_from_collection_for_select(current_user.courses, 'id', 'name', current_course.id)
         

@@ -11,14 +11,21 @@
 
 /* Branding colors */
 $blue: #2ab2cd;
+$lightblue: #00BFE5;
 $green: #a2d344;
 $red: #d64545;
 
 
 body {
-  padding-top: 2.4em;
   background-image: url(images/cloud_bg2.gif);
-  
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Futura", sans-serif !important;
+}
+
+.container {
+  padding: 10px;
 }
 
 .btn.btn-primary {
@@ -40,20 +47,25 @@ body {
 
 
 .navbar {
+  padding: 3px;
   background: #45484d; /* Old browsers */
-background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+  background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
 
+.site {
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 a.brand {
   font-family: 'Futura', serif;
-  font-size: 1.4em;
+  font-size: 1.5em;
   color: #999 !important;
 }
 
@@ -62,3 +74,113 @@ a.brand:hover {
   color: #666 !important;
 }
 
+footer {
+  margin: 0;
+  border-radius: 10px;
+  background: #3f4c6b; /* Old browsers */
+  background: -moz-linear-gradient(top,  #3f4c6b 0%, #3f4c6b 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3f4c6b), color-stop(100%,#3f4c6b)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #3f4c6b 0%,#3f4c6b 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #3f4c6b 0%,#3f4c6b 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #3f4c6b 0%,#3f4c6b 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #3f4c6b 0%,#3f4c6b 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4c6b', endColorstr='#3f4c6b',GradientType=0 ); /* IE6-9 */
+  opacity: .7;
+  color: #FFF;
+}
+
+footer div {  
+  padding: 15px 15px 20px;
+}
+
+footer ul, footer li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer a {
+  color: $green;
+}
+
+footer a:hover {
+  color: $green;
+  opacity: .7;
+}
+
+ul.no_bullet {
+  padding: 0px;
+  margin-left: 5px;
+}
+ul.no_bullet li {
+  list-style-type: none;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+.jumbotron div {
+  margin-left: 5px;
+}
+
+.jumbotron {
+  margin: 5px;
+  padding: 1em !important;
+  background-color: transparent !important;
+}
+
+.login {
+  width: 260px;
+}
+
+.login li, .forgot input, .forgot input.input {
+  margin-bottom: 10px;
+  clear: both;
+}
+
+#remember .control-group .control-label {
+  font-weight: normal !important;
+  color: #666 !important;
+  float: right;
+}
+
+#remember .controls input.boolean {
+  background-color: pink !important;
+  top: -25px;
+  right: 105px;
+  position: relative;
+  float: right;
+}
+
+.alert {
+  margin-top: 35px;
+}
+
+.login li input.btn {
+  position: relative;
+  margin-top: -20px;
+  background-color: $lightblue;
+  color: #FFF;
+}
+
+.login li input.btn:hover {
+  background-color: $blue;
+}
+
+
+.spacer {
+  clear: both;
+  height: 5px;
+}
+
+.well {
+  margin-top: 15px;
+}
+
+
+@media screen and (min-width: 768px) { 
+  .jumbotron {
+    width: 70%;
+    min-height: 450px;
+  }
+  
+}

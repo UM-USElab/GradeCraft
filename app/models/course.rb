@@ -8,7 +8,7 @@ class Course < ActiveRecord::Base
     :multiplier_default, :multiplier_term, :badges_value, :predictor_setting,
     :max_group_size, :min_group_size, :shared_badges, :graph_display,
     :max_student_assignment_type_weight, :assignments, :theme
-
+  
   has_many :course_memberships
   has_many :users, :through => :course_memberships
   accepts_nested_attributes_for :users

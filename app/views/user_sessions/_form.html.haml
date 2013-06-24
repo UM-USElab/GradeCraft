@@ -1,5 +1,5 @@
-= simple_form_for @user, :html => { :class => "form-horizontal"}, :url => user_sessions_path do |f|
-  = f.input :email
-  = f.input :password
+= simple_form_for @user, :html => { :class => "forgot"}, :url => user_sessions_path do |f|
+  = f.input :email, :label => false
+  = f.input :password, :label => false
   = f.input :remember_me, :as => :boolean
   = f.submit 'Log in', :class => 'btn btn-primary'

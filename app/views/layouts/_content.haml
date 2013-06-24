@@ -5,16 +5,16 @@
     .alert.alert-error= flash[:alert]
 %div
   - if current_user && current_user.is_staff? &&! current_page?(:controller => 'users', :action => 'predictor')
-    %div.span3
+    %div.col.col-lg-3
       %div.sidebar-nav-fixed.well#navbar
         = render 'layouts/admin_subnav'  
-    %div.span9.content
+    %div.col.col-lg-9.content
       %h4= @title 
       %hr
       = yield
   - elsif current_user && current_user.is_staff? && current_page?(:controller => 'users', :action => 'predictor')
     %div#predictor
-      %div.span2
+      %div.col.col-lg-3
         %div.sidebar-nav-fixed.well#navbar
           %ul.nav.nav-list
             %li.nav-header Quick Menu
@@ -22,7 +22,7 @@
             %li= link_to "Assignments", assignments_path
             %li= link_to "Badges", badges_path
             %li= link_to "Settings", edit_course_path(current_course)
-      %div.span9.content
+      %div.col.col-lg-9.content
         %h4= @title 
         %hr
         = yield

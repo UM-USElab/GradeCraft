@@ -1,106 +1,104 @@
-%div.span2.userDashboardSide
-  = gravatar_for @user, :size => 170, :d => "mm"
-  - if current_user.is_student?
-    = link_to "Edit Profile Picture", "https://en.gravatar.com/"
-  - elsif current_user.is_staff?
-    %span.label.label-info
-      %i.icon-envelope.icon-white
-      = link_to "Email #{@user.first_name}", "mailto:#{@user.email}" 
-  %hr
-  // Badges Sidebar
-  - if current_course.has_badges? 
-    %div.well#badges
-      %h5.center Badges
-      - @badges.each do |badge|
-        - @user.earned_badges_by_badge(badge).tap do |earned_badge|
-          - if earned_badge
-            %div.badgeIcon
-              - if current_course.valuable_badges?
-                %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
-                  %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
-              - else
-                %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}"} 
-                  %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
-          - else
-            - if badge.visible?
-              %div.badgeIcon                  
+%div.site
+  %div.col.col-lg-2.userDashboardSide
+    - if current_user.is_staff?
+      = gravatar_for @user, :size => 170, :d => "mm"
+      %span.label.label-info
+        %i.icon-envelope.icon-white
+        = link_to "Email #{@user.first_name}", "mailto:#{@user.email}" 
+    // Badges Sidebar
+    - if current_course.has_badges? 
+      %div.well#badges
+        %h5.center Badges
+        - @badges.each do |badge|
+          - @user.earned_badges_by_badge(badge).tap do |earned_badge|
+            - if earned_badge
+              %div.badgeIcon
                 - if current_course.valuable_badges?
                   %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
-                    %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+                    %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
                 - else
                   %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}"} 
-                    %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
-
-
-      %div.unEarnedText Badges you've earned will shine brightly!
-      
-  // Predictor Sidebar Link
-  %div.span12.btn.btn-warning
-    = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
-
-  // Check Grade Sidebar
-  - if current_user.is_student?
-    %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)}
-      %span.buttonTitle Check My Final Grade
-    //%div#classBoxandWhisker
-    //%div.span12#classBoxandWhiskerPopover.btn.btn-success{:class => "classPlot", :title => "Class Standing", "data-content" => "<div id='classStanding'> </div>" }
-    //%span.buttonTitle Class Standings
-  - elsif current_user.is_staff? 
-    %div.span12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)} 
-      %span.buttonTitle Check My Final Grade
-    //%div#classBoxandWhisker
-    //%div.span12#classBoxandWhiskerPopover.btn.btn-success{:class => "classPlot", :title => "Class Standing", "data-content" => "<div id='classStanding'> </div>" }
-    //%span.buttonTitle Class Standings
-      
-  
-  // To Do List Sidebar
-  %div.btn.btn-danger.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
-    %span.buttonTitle To Do List
-    %i.caret
-    %div{:id => "toDoList", :class => "collapse"}
-      - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
-        - if assignment_type.has_soon_assignments?
-          %h3.assignmentTypeToDo
-            = "#{assignment_type.try(:name)}"
-          %ul
-            - assignments.each do |assignment|
-              - if assignment.soon? 
-                %li
-                  = "#{assignment.try(:name)}" 
-                  %div= "(Due: #{assignment.try(:due_date).strftime("%b-%d")})"
-  
-  // Learning Objectives Sidebar
-  //%div.btn.btn-primary.span12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
-  //%span.buttonTitle Learning Objectives
-  
-%div.span9
-  %div.userDashboardContent
-    // Displays a warning to IE users to switch to Chrome
-    /[if IE]
-      %a{ :href => 'https://www.google.com/intl/en/chrome/browser/' }
-        %h3 We highly recommend you install Google Chrome to use GradeCraft  
-    %div#userScoreSection
-      %div
-        %ul.nav.nav-tabs
-          %li.active
-            %a{ "data-toggle" => "tab", "data-target" => "#tab1" } Scoreboard
-          //%li 
-          //%a{ "data-toggle" => "tab", "data-target" => "#tab2"} Syllabus
-          %li 
-            %a{ "data-toggle" => "tab", "data-target" => "#tab3"} Badges
-        %div.tab-content
-          %div.tab-pane.active#tab1
-            - if current_user.is_staff?
-              = render "scoreboard" 
+                    %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "earned", :width => "60", :height => "60"}
             - else
-              = render "users/scoreboard"           
-          //%div.tab-pane#tab2
-          //- if current_user.is_staff?
-          //= render "assignments" 
-          //- else
-          //= render "users/assignments" 
-          %div.tab-pane#tab3
-            - if current_user.is_staff?
-              = render "badges" 
-            - else
-              = render "users/badges" 
+              - if badge.visible?
+                %div.badgeIcon                  
+                  - if current_course.valuable_badges?
+                    %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}, #{badge.try(:value)} points"} 
+                      %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+                  - else
+                    %a{:href => "#", :rel => "tooltip", :title => "#{badge.try(:name)}"} 
+                      %img{:src => badge.try(:icon), :alt => "You've earned the #{badge.try(:name)} badge", :class => "unearned", :width => "60", :height => "60"}
+  
+  
+        %div.unEarnedText Badges you've earned will shine brightly!
+        
+    // Predictor Sidebar Link
+    %div.col.col-lg-12.btn.btn-warning
+      = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
+  
+    // Check Grade Sidebar
+    - if current_user.is_student?
+      %div.col.col-lg-12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)}
+        %span.buttonTitle Check My Final Grade
+      //%div#classBoxandWhisker
+      //%div.col.col-lg-12#classBoxandWhiskerPopover.btn.btn-success{:class => "classPlot", :title => "Class Standing", "data-content" => "<div id='classStanding'> </div>" }
+      //%span.buttonTitle Class Standings
+    - elsif current_user.is_staff? 
+      %div.col.col-lg-12#gradeCurious.btn.btn-primary{:title => "Current Final Grade:", "data-content" => current_course.grade_level(@user)} 
+        %span.buttonTitle Check My Final Grade
+      //%div#classBoxandWhisker
+      //%div.col.col-lg-12#classBoxandWhiskerPopover.btn.btn-success{:class => "classPlot", :title => "Class Standing", "data-content" => "<div id='classStanding'> </div>" }
+      //%span.buttonTitle Class Standings
+        
+    
+    // To Do List Sidebar
+    %div.btn.btn-danger.col.col-lg-12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
+      %span.buttonTitle To Do List
+      %i.caret
+      %div{:id => "toDoList", :class => "collapse"}
+        - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
+          - if assignment_type.has_soon_assignments?
+            %h3.assignmentTypeToDo
+              = "#{assignment_type.try(:name)}"
+            %ul
+              - assignments.each do |assignment|
+                - if assignment.soon? 
+                  %li
+                    = "#{assignment.try(:name)}" 
+                    %div= "(Due: #{assignment.try(:due_date).strftime("%b-%d")})"
+    
+    // Learning Objectives Sidebar
+    //%div.btn.btn-primary.col.col-lg-12{"data-target" => "#toDoList", "data-toggle" => "collapse"} 
+    //%span.buttonTitle Learning Objectives
+    
+  %div.col.col-lg-9
+    %div.userDashboardContent
+      // Displays a warning to IE users to switch to Chrome
+      /[if IE]
+        %a{ :href => 'https://www.google.com/intl/en/chrome/browser/' }
+          %h3 We highly recommend you install Google Chrome to use GradeCraft  
+      %div#userScoreSection
+        %div
+          %ul.nav.nav-tabs
+            %li.active
+              %a{ "data-toggle" => "tab", "data-target" => "#tab1" } Scoreboard
+            //%li 
+            //%a{ "data-toggle" => "tab", "data-target" => "#tab2"} Syllabus
+            %li 
+              %a{ "data-toggle" => "tab", "data-target" => "#tab3"} Badges
+          %div.tab-content
+            %div.tab-pane.active#tab1
+              - if current_user.is_staff?
+                = render "scoreboard" 
+              - else
+                = render "users/scoreboard"           
+            //%div.tab-pane#tab2
+            //- if current_user.is_staff?
+            //= render "assignments" 
+            //- else
+            //= render "users/assignments" 
+            %div.tab-pane#tab3
+              - if current_user.is_staff?
+                = render "badges" 
+              - else
+                = render "users/badges" 
