@@ -30,11 +30,12 @@ puts "Did someone need motivation? We found these badges in the Room of Requirem
 Course.create! do |c|
   c.name = "Videogames & Learning"
   c.courseno = "ED222"
-  c.year = Date.today.year 
+  c.year = Date.today.year
   c.semester = "Winter"
   c.user_term = "Player"
   c.section_leader_term = "Team Leader"
   c.group_term = "Group"
+  c.total_student_weight = 60
   c.max_group_size = 3
   c.min_group_size = 5
   c.team_term = "Team"
@@ -199,7 +200,6 @@ grinding_assignments = []
 
 1.upto(10).each do |n|
   grinding_assignments << Assignment.create! do |a|
-    a.course = default_course
     a.assignment_type = assignment_types[:attendance]
     a.name = "Class #{n}"
     a.point_total = 5000
@@ -210,7 +210,6 @@ grinding_assignments = []
   end
   
   grinding_assignments << Assignment.create! do |a|
-    a.course = default_course
     a.assignment_type = assignment_types[:reading_reaction]
     a.name = "Reading Reaction #{n}"
     a.point_total = 5000
@@ -238,7 +237,6 @@ blog_assignments = []
 
 1.upto(5).each do |n|
   blog_assignments << Assignment.create! do |a|
-    a.course = default_course
     a.assignment_type = assignment_types[:blogging]
     a.name = "Blog Post #{n}"
     a.point_total = 5000
@@ -248,7 +246,6 @@ blog_assignments = []
   end
   
   blog_assignments << Assignment.create! do |a|
-    a.course = default_course
     a.assignment_type = assignment_types[:blogging]
     a.name = "Blog Comment #{n}"
     a.point_total = 2000
@@ -272,7 +269,6 @@ puts "Blogging assignments and scores have been posted!"
 assignments = []
 
 assignments << Assignment.create! do |a|
-  a.course = default_course
   a.assignment_type = assignment_types[:lfpg]
   a.name = "Game Selection Paper"
   a.point_total = 80000
@@ -294,7 +290,6 @@ end
 puts "Grades from Game Selection Paper have been posted!"
 
 assignments << Assignment.create! do |a|
-  a.course = default_course
   a.assignment_type = assignment_types[:lfpg]
   a.name = "Game Play Update Paper 1"
   a.point_total = 120000
@@ -307,7 +302,6 @@ end
 puts "Game Play Update Paper 1 has been posted!"
 
 assignments << Assignment.create! do |a|
-  a.course = default_course
   a.assignment_type = assignment_types[:lfpg]
   a.name = "Game Play Update Paper 2"
   a.point_total = 120000
@@ -320,7 +314,6 @@ end
 puts "Game Play Update Paper 2 has been posted!"
 
 assignments << Assignment.create! do |a|
-  a.course = default_course
   a.assignment_type = assignment_types[:lfpg]
   a.name = "Game Play Reflection Paper"
   a.point_total = 160000
@@ -333,7 +326,6 @@ end
 puts "Game Play Reflection Paper has been posted!"
 
 assignments << Assignment.create! do |a|
-  a.course = default_course
   a.assignment_type = assignment_types[:boss_battle]
   a.name = "Individual Paper/Project 1"
   a.point_total = 200000
@@ -346,7 +338,6 @@ end
 puts "Individual Project 1 has been posted!"
 
 assignments << Assignment.create! do |a|
-  a.course = default_course
   a.assignment_type = assignment_types[:boss_battle]
   a.name = "Individual Paper/Project 2"
   a.point_total = 300000
@@ -359,7 +350,6 @@ end
 puts "Individual Project 2 has been posted!"
 
 assignments << Assignment.create! do |a|
-  a.course = default_course
   a.assignment_type = assignment_types[:boss_battle]
   a.name = "Group Game Design Project"
   a.point_total = 400000

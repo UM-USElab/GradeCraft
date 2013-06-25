@@ -2,19 +2,20 @@ class Course < ActiveRecord::Base
   attr_accessible :badge_set_ids, :course_grade_scheme_id, :courseno, :name,
     :semester, :theme_id, :year, :badge_setting, :team_setting, :team_term,
     :user_term, :user_id, :course_id, :homepage_message, :group_setting,
-    :max_student_weight, :student_weight_close_date, :team_roles,
+    :total_student_weight, :student_weight_close_date, :team_roles,
     :section_leader_term, :group_term, :student_weight_type,
     :has_assignment_submissions, :teams_visible, :badge_use_scope,
     :multiplier_default, :multiplier_term, :badges_value, :predictor_setting,
     :max_group_size, :min_group_size, :shared_badges, :graph_display,
-    :min_size, :max_size, :assignments, :theme
+    :max_student_assignment_type_weight, :assignments, :theme
 
   has_many :course_memberships
   has_many :users, :through => :course_memberships
   accepts_nested_attributes_for :users
 
-  has_many :assignments, :dependent => :destroy
   has_many :assignment_types, :dependent => :destroy
+  has_many :assignments, :through => :assignment_types, :dependent => :destroy
+  has_many :grades, :through => :assignments
   has_many :assignment_submissions, :through => :assignments
   has_and_belongs_to_many :badge_sets, :join_table => :course_badge_sets
   has_many :badges, :through => :badge_sets
@@ -23,13 +24,10 @@ class Course < ActiveRecord::Base
   has_many :grade_scheme_elements, :through => :grade_schemes
   belongs_to :course_grade_scheme
   has_many :course_grade_scheme_elements, :through => :course_grade_scheme
-  has_many :grades, :through => :assignments
   has_many :groups, :dependent => :destroy
   has_many :teams, :dependent => :destroy
   has_many :team_assignments, :dependent => :destroy
   belongs_to :theme
-
-  has_many :user_assignment_type_weights, :through => :assignment_types
 
   #Validations
   validates_presence_of :name, :badge_setting, :team_setting, :group_setting
@@ -114,7 +112,7 @@ class Course < ActiveRecord::Base
   end
 
   def student_weighted?
-    max_student_weight > 0
+    total_student_weight > 0
   end
 
   #Do students declare their roles on their team within the system?
@@ -195,11 +193,11 @@ class Course < ActiveRecord::Base
   end
 
   def multiplier_count(student)
-    student.user_assignment_type_weights.map(&:value).compact.sum
+    student.assignment_type_weights.map(&:weight).compact.sum
   end
 
   def multipliers_spent?(student)
-    multiplier_count(student) >= self.user_weight_amount
+    multiplier_count(student) >= total_student_weight
   end
 
   def grades_for_course(course)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130621001628) do
+ActiveRecord::Schema.define(version: 20130624222511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,19 +178,18 @@ ActiveRecord::Schema.define(version: 20130621001628) do
     t.string   "semester"
     t.string   "theme_id"
     t.integer  "course_grade_scheme_id"
-    t.datetime "created_at",                                                          null: false
-    t.datetime "updated_at",                                                          null: false
-    t.boolean  "badge_setting",                                       default: true
-    t.boolean  "team_setting",                                        default: false
+    t.datetime "created_at",                                                                  null: false
+    t.datetime "updated_at",                                                                  null: false
+    t.boolean  "badge_setting",                                               default: true
+    t.boolean  "team_setting",                                                default: false
     t.string   "user_term"
     t.string   "team_term"
     t.string   "homepage_message"
-    t.boolean  "status",                                              default: true
+    t.boolean  "status",                                                      default: true
     t.boolean  "group_setting"
     t.integer  "badge_set_id"
-    t.integer  "max_student_weight",                                                  null: false
-    t.integer  "min_size"
-    t.integer  "max_size"
+    t.integer  "total_student_weight",                                                        null: false
+    t.integer  "max_student_assignment_type_weight"
     t.datetime "student_weight_close_date"
     t.boolean  "team_roles"
     t.string   "section_leader_term"
@@ -199,7 +198,7 @@ ActiveRecord::Schema.define(version: 20130621001628) do
     t.boolean  "has_assignment_submissions"
     t.boolean  "teams_visible"
     t.string   "badge_use_scope"
-    t.decimal  "multiplier_default",         precision: 10, scale: 0
+    t.decimal  "multiplier_default",                 precision: 10, scale: 0
     t.string   "multiplier_term"
     t.boolean  "predictor_setting"
     t.boolean  "badges_value"
@@ -338,6 +337,14 @@ ActiveRecord::Schema.define(version: 20130621001628) do
     t.datetime "updated_at",         null: false
   end
 
+  create_table "student_assignment_type_weights", force: true do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "student_id"
+    t.integer  "assignment_type_id"
+    t.integer  "weight",             null: false
+  end
+
   create_table "team_memberships", force: true do |t|
     t.integer  "team_id"
     t.integer  "user_id"
@@ -365,14 +372,6 @@ ActiveRecord::Schema.define(version: 20130621001628) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_assignment_type_weights", force: true do |t|
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.integer  "user_id"
-    t.integer  "assignment_type_id"
-    t.integer  "value",              null: false
-  end
-
   create_table "users", force: true do |t|
     t.string   "username",                                            null: false
     t.string   "email"
@@ -392,7 +391,6 @@ ActiveRecord::Schema.define(version: 20130621001628) do
     t.string   "role",                            default: "student"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "sortable_score"
     t.integer  "rank"
     t.string   "display_name"
     t.boolean  "private_display",                 default: false
@@ -410,6 +408,5 @@ ActiveRecord::Schema.define(version: 20130621001628) do
   add_index "users", ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at", using: :btree
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
-  add_index "users", ["sortable_score"], name: "index_users_sortable_score", using: :btree
 
 end

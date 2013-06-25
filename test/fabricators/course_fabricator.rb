@@ -6,7 +6,7 @@ Fabricator(:course) do
   theme
   team_setting true
   group_setting true
-  max_student_weight 6
+  total_student_weight 60
 end
 
 Fabricator(:course_with_assignments, :from => :course) do

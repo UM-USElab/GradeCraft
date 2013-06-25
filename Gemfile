@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0'
 
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
@@ -37,8 +37,8 @@ group :development do
   gem 'guard'
   gem 'guard-minitest'
   gem 'haml-rails'
-  gem 'minitest-colorize'
   gem 'minitest-matchers'
+  gem 'minitest-reporters'
   gem 'valid_attribute'
 end
 

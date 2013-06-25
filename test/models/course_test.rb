@@ -2,38 +2,36 @@ require 'test_helper'
 
 class CourseTest < ActiveSupport::TestCase
   test "user_term returns default Player if no term set" do
-    @course = Course.new
-    assert_equal "Player", @course.user_term
+    assert_equal "Player", course.user_term
   end
 
   test "team_term returns default Team if no term set" do
-    @course = Course.new
-    assert_equal "Team", @course.team_term
+    assert_equal "Team", course.team_term
   end
 
   test "group_term returns default Group if no term set" do
-    @course = Course.new
-    assert_equal "Group", @course.group_term
+    assert_equal "Group", course.group_term
   end
 
   test "section_leader_term returns default Team Leader if no term set" do
-    @course = Course.new
-    assert_equal "Team Leader", @course.section_leader_term
+    assert_equal "Team Leader", course.section_leader_term
   end
 
   test "multiplier_term returns default Mulitplier if no term set" do
-    @course = Course.new
-    assert_equal "Multiplier", @course.multiplier_term
+    assert_equal "Multiplier", course.multiplier_term
   end
 
   test "point total" do
-    @course = Fabricate(:course_with_assignments)
-    assert_equal 60, @course.total_points
+    create_assignments(2) # point totals: 300, 500
+    assert_equal 800, course.total_points
   end
 
   test "point total with past assignment" do
-    # Fabricates 3 assignments: future, 10pts; past, 20pts; future, 30pts.
-    @course = Fabricate(:course_with_assignments)
-    assert_equal 20, @course.total_points(true)
+    create_assignments(3) # point totals: future, 300; past, 500; future, 700
+    assert_equal 500, course.total_points(true)
+  end
+
+  def course
+    @course ||= Fabricate.build(:course)
   end
 end

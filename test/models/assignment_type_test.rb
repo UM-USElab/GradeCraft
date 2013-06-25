@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class AssignmentTypeTest < ActiveSupport::TestCase
-  # Assignment point totals: [300, 500]
   test "calculates point total for student" do
+    create_assignments(2) # point totals: 300, 500
     assert_equal 800, assignment_type.point_total_for_student(student)
   end
 
@@ -10,24 +10,27 @@ class AssignmentTypeTest < ActiveSupport::TestCase
     assert_equal 1, assignment_type.multiplier_for_student(student)
   end
 
-  # Weight: 2
   test "calculates weighted point total for student" do
-    Fabricate(:user_assignment_type_weight, :user => student, :assignment_type => assignment_type)
+    @assignment_type = create_assignment_type(:student_weightable => true)
+    create_assignments(2) # point totals: 300, 500
+    create_student_assignment_type_weight(:weight => 2)
     assert_equal 1600, assignment_type.point_total_for_student(student)
   end
 
-  # Grades: [200, 400]
   test "calculates score for student" do
-    @student = Fabricate(:student_with_grades, :assignments => assignment_type.assignments)
+    create_grades(2) # raw scores: 200, 400
     assert_equal 600, assignment_type.score_for_student(student)
   end
 
-  # Grades: [200, 400], weight: 2
   test "calculates 2x score for student" do
-    @student = Fabricate(:student_with_grades, :assignments => assignment_type.assignments)
-    Fabricate(:user_assignment_type_weight, :user => student, :assignment_type => assignment_type)
+    @assignment_type = create_assignment_type(:student_weightable => true)
+    create_grades(2) # raw scores: 200, 400
+    create_student_assignment_type_weight(:weight => 2)
     assert_equal 1200, assignment_type.score_for_student(student)
   end
+
+  # Max weight for any particular assignment type
+  # Total weight equals total available weight
 
   #what is the assignment type weight structure for the course
 
@@ -54,18 +57,4 @@ class AssignmentTypeTest < ActiveSupport::TestCase
   #calculating score for student
 
   #multiplier for student
-
-  # Lazy loaded objects. These can be overridden by setting the instance
-  # variable before calling the method.
-  def assignment_type
-    @assignment_type ||= Fabricate(:assignment_type_with_assignments, :course => course)
-  end
-
-  def course
-    @course ||= Fabricate(:course)
-  end
-
-  def student
-    @student ||= Fabricate(:student)
-  end
 end

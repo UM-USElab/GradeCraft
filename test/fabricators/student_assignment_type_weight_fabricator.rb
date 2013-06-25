@@ -1,6 +1,6 @@
-Fabricator(:user_assignment_type_weight) do
+Fabricator(:student_assignment_type_weight) do
   transient :course
-  user
+  student
   assignment_type { |attrs| Fabricate(:assignment_type, :course => attrs[:course] ) }
-  value 2
+  weight 10
 end

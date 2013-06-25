@@ -1,15 +1,11 @@
 GradeCraft::Application.routes.draw do
-
   resources :challenge_grades
-
-
   resources :challenges
-
 
   %w{students gsis professors admins}.each do |role|
     get "users/#{role}/new" => 'users#new', :as => "new_#{role.singularize}", :role => role.singularize
   end
-  
+
   resources :users do
     collection do
       get 'edit_profile'
@@ -26,7 +22,7 @@ GradeCraft::Application.routes.draw do
       get 'analytics'
       get 'my_badges'
     end
-    resources :user_assignment_type_weights
+    resources :student_assignment_type_weights
   end
   resources :user_sessions
   resources :password_resets
@@ -35,23 +31,23 @@ GradeCraft::Application.routes.draw do
   resources :group_memberships
   resources :courses
   resources :course_memberships
-  resources :course_grade_schemes do 
-    resources :course_grade_scheme_elements 
+  resources :course_grade_schemes do
+    resources :course_grade_scheme_elements
   end
   resources :themes
-  resources :badge_sets 
-  resources :badges do 
+  resources :badge_sets
+  resources :badges do
     resources :elements
   end
-  resources :earned_badges do 
-    collection do 
+  resources :earned_badges do
+    collection do
       get :mass_award
       put :mass_update
       get :chart
     end
   end
   resources :teams do
-    collection do 
+    collection do
       get :activity
     end
     resources :earned_badges
@@ -59,15 +55,15 @@ GradeCraft::Application.routes.draw do
   resources :assignment_types
   resources :score_levels
   resources :groups, :only => :index
-  resources :assignments do 
-    collection do 
+  resources :assignments do
+    collection do
       get :settings
     end
     resources :assignment_submissions
     resources :groups
-    resources :rubrics do 
-      resources :criteria do 
-        resources :criteria_levels 
+    resources :rubrics do
+      resources :criteria do
+        resources :criteria_levels
       end
     end
     resources :grades do
@@ -80,12 +76,12 @@ GradeCraft::Application.routes.draw do
         post :self_log_create
       end
       resources :earned_badges
-    end 
+    end
   end
   resources :grade_schemes do
-    resources :grade_scheme_elements 
+    resources :grade_scheme_elements
     collection do
-      post :destroy_multiple 
+      post :destroy_multiple
     end
   end
 
@@ -96,13 +92,13 @@ GradeCraft::Application.routes.draw do
   get 'home/index'
   get 'dashboard' => 'info#dashboard'
   root :to => "home#index"
-  
+
   post '/current_course/change' => 'current_courses#change', :as => :change_current_course
   get 'current_course' => 'current_courses#show'
 
   get 'login' => 'user_sessions#new', :as => :login
   get 'logout' => 'user_sessions#destroy', :as => :logout
-  
+
   # Helps for testing authentication!
 #   get 'cosign_test' => 'info#cosign_test'
   # The priority is based upon order of creation:

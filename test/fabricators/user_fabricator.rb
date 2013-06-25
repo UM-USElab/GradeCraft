@@ -6,18 +6,14 @@ Fabricator(:user) do
 end
 
 Fabricator(:student, :from => :user) do
-  transient :course
   role 'student'
-  before_create do |student, transients|
-    student.courses = [transients[:course] || Fabricate(:course)]
-  end
 end
 
 Fabricator(:student_with_weights, :from => :student) do
   transient :n => 2
   after_create do |student, transients|
     transients[:n].times do |i|
-      Fabricate(:user_assignment_type_weight, :user => student, :value => i + 1) do
+      Fabricate(:student_assignment_type_weight, :student => student, :weight => i + 1) do
         course transients[:course]  if transients[:course]
       end
     end

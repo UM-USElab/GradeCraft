@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :remember_me
   attr_accessible :username, :email, :crypted_password, :remember_me_token,
-    :avatar_file_name, :role, :first_name, :last_name, :rank, :course_id,
-    :user_id, :display_name, :private_display, :default_course_id,
-    :last_activity_at, :last_login_at, :last_logout_at, :team_ids, :course_ids,
+    :avatar_file_name, :role, :first_name, :last_name, :rank, :user_id,
+    :display_name, :private_display, :default_course_id, :last_activity_at,
+    :last_login_at, :last_logout_at, :team_ids, :courses, :course_ids,
     :shared_badges, :earned_badges, :earned_badges_attributes
 
   scope :alpha, -> { where order: 'last_name ASC' }
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :courses
   belongs_to :default_course, :class_name => 'Course'
   has_many :grades, :as => :gradeable, :dependent => :destroy
-  has_many :user_assignment_type_weights
+  has_many :assignment_type_weights, :class_name => 'StudentAssignmentTypeWeight', :foreign_key => :student_id
   has_many :assignments, :through => :grades
   has_many :assignment_submissions, :as => :submittable, :dependent => :destroy
   has_many :earned_badges, :as => :earnable, :dependent => :destroy
@@ -33,7 +33,6 @@ class User < ActiveRecord::Base
   has_many :teams, :through => :team_memberships
   has_many :group_memberships, :dependent => :destroy
   has_many :groups, :through => :group_memberships
-  has_many :user_assignment_type_weights
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -128,7 +127,7 @@ class User < ActiveRecord::Base
   #Badges
 
   def earned_badges_value(course)
-    earned_badges.sum(&:point_value)
+    earned_badges.to_a.sum(&:point_value)
   end
 
   def user_badge_count
@@ -147,12 +146,12 @@ class User < ActiveRecord::Base
     earned_badges_by_badge_id[badge.id].try(:first)
   end
 
-  def weights_for_course(course)
-    user_assignment_type_weights.for_course(course)
+  def sortable_score_for_course(course)
+    course_memberships.for_course(course).first.sortable_score
   end
 
   def weights_by_assignment_type_id
-    @weights_by_assignment_type_id ||= user_assignment_type_weights.group_by(&:assignment_type_id)
+    @weights_by_assignment_type_id ||= assignment_type_weights.group_by(&:assignment_type_id)
   end
 
   def weights_for_assignment_type_id(assignment_type)
@@ -166,11 +165,6 @@ class User < ActiveRecord::Base
 
   def assignment_type_multiplier(assignment_type)
     (weights_for_assignment_type_id(assignment_type).try(:value) || 0.5)
-  end
-
-  #Score
-  def sortable_score
-    super || 0
   end
 
   #Import Users

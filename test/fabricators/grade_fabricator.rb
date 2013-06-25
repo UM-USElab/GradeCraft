@@ -1,5 +1,5 @@
 Fabricator(:grade) do
-  gradeable { Fabricate(:user) }
   assignment
-  raw_score { rand(1000) }
+  gradeable { Fabricate(:student) }
+  raw_score { |attrs| attrs[:assignment].point_total - 100 }
 end

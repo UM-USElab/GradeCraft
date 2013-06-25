@@ -1,5 +1,4 @@
 Fabricator(:assignment_type) do
-  course
   name 'Test Assignment Type'
   point_setting 'Individually'
   levels ""

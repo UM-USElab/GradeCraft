@@ -1,14 +1,17 @@
 class AssignmentType < ActiveRecord::Base
-  attr_accessible :due_date_present, :levels, :max_value, :name, :percentage_course, :point_setting, :points_predictor_display, :predictor_description, :resubmission, :universal_point_value, :course, :course_id, :order_placement, :student_weightable, :mass_grade, :score_levels_attributes, :score_level, :mass_grade_type, :course
+  attr_accessible :due_date_present, :levels, :max_value, :name,
+    :percentage_course, :point_setting, :points_predictor_display,
+    :predictor_description, :resubmission, :universal_point_value, :course,
+    :course_id, :order_placement, :student_weightable, :mass_grade,
+    :score_levels_attributes, :score_level, :mass_grade_type, :course
 
   belongs_to :course
   belongs_to :grade_scheme
   has_many :assignments
   has_many :grades, :through => :assignments
-  has_many :user_assignment_type_weights
+  has_many :student_weights, :class_name => 'StudentAssignmentTypeWeight'
   has_many :score_levels
   accepts_nested_attributes_for :score_levels, allow_destroy: true
-  has_many :user_assignment_type_weights
 
   validates_presence_of :name, :points_predictor_display, :point_setting
 
@@ -117,11 +120,11 @@ class AssignmentType < ActiveRecord::Base
   #assignment type weights by student
   def weights_by_student_id
     @weights_by_student ||= {}.tap do |weights|
-      user_assignment_type_weights.each do |weight|
-        if weight.value.blank?
+      student_weights.each do |student_weight|
+        if student_weight.blank?
           weight = 1
         else
-          weights[weight.user_id] = weight
+          weights[student_weight.student_id] = student_weight
         end
       end
     end
@@ -138,27 +141,27 @@ class AssignmentType < ActiveRecord::Base
   end
 
   def weight_for_student(student)
-    weights_by_student_id[student.id].tap do |weight|
+    weights_by_student_id[student.id].tap do |student_weight|
       if course.multipliers_spent?(student)
-        if weight
-          if weight.value.blank?
+        if student_weight
+          if student_weight.weight.blank?
             return 0.5
-          elsif weight.value == 0
+          elsif student_weight.weight == 0
             return 0.5
           else
-            return weight.value
+            return student_weight.weight
           end
         else
           return 0.5
         end
       else
-        if weight
-          if weight.value.blank?
+        if student_weight
+          if student_weight.weight.blank?
             return 1
-          elsif weight.value == 0
+          elsif student_weight.weight == 0
             return 1
           else
-            return weight.value
+            return student_weight.weight
           end
         else
           return 1
