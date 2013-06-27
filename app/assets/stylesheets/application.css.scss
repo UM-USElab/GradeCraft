@@ -27,6 +27,12 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px;
 }
 
+#page {  
+  margin-top: 44px;
+  padding-top: 1.2em;
+  background-color: #FFF;
+}
+
 .btn.btn-primary, .btn.btn-success, .btn.btn-error  {
   background-image: none;
 }
@@ -59,6 +65,11 @@ h1, h2, h3, h4, h5, h6 {
   background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
   background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+  font-family: 'Futura', sans-serif;
+}
+
+.navbar a {
+  color: $lightblue;
 }
 
 .site {
@@ -67,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a.brand {
-  font-family: 'Futura', serif;
+  font-family: 'Futura', sans-serif;
   font-size: 1.5em;
   color: #999 !important;
 }
@@ -313,6 +324,15 @@ div#userScoreSection {
   #userScoreNum {
     color: $green;
   } 
+}
+
+
+.divider {
+  height: 2px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-bottom: 1px solid #ffffff;
 }
 	
 	//Styling the color of the point entry text

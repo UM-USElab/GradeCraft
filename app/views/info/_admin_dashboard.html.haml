@@ -1,4 +1,4 @@
-%div
+%div.col.col-lg-12.container
   %ul.nav.nav-tabs
     %li.active
       %a{ "data-toggle" => "tab", "data-target" => "#tab1" } Top 10
@@ -12,7 +12,7 @@
       %a{ "data-toggle" => "tab", "data-target" => "#tab5"} Badges
   %div.tab-content
     %div.tab-pane.active#tab1
-      %div.span12
+      %div.col.col-lg-12.container
         %h4= "Top 10" 
         %br
         %table.table.table-bordered
@@ -91,7 +91,7 @@
               %td
               %td= team.team_leader.try(:name)     
     %div.tab-pane#tab4
-      %div.span12
+      %div.col.col-lg-12.container
         %h4= "Ungraded Assignment Submissions"
         %br
           - @assignments.each do |assignment|
@@ -112,7 +112,7 @@
                   %th Comment
                   %th
     %div.tab-pane#tab5
-      %div.span12
+      %div.col.col-lg-12.container
         %h4= "Badges"
         %br
         %table.table.table-bordered

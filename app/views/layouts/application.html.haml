@@ -20,7 +20,7 @@
             GradeCraft
         %div.pull-right
           - if current_user && current_course
-            %div{:class => 'btn-group btn-small pull-left'}
+            %div{:class => 'btn-group pull-left'}
               - if current_user.is_admin? 
                 = link_to "Course Dashboard",  dashboard_path, :class => "btn"
               - elsif current_user.is_staff?
@@ -56,44 +56,36 @@
                 %div.divider.clear
                 = link_to 'Forget your password?', new_user_session_path, :class => " "
 
-    %div.container
+    %div
       - if flash[:notice]
         .alert.alert-success= flash[:notice]
       - if flash[:error]
         .alert.alert-error= flash[:error]
       - if flash[:alert]
         .alert.alert-info= flash[:alert]
-      %div.spacer           
-    - if current_user && current_user.is_staff? &&! current_page?(:controller => 'users', :action => 'predictor')
-      %div.container
+    %div.col.col-lg-12#page     
+      - if current_user && current_user.is_staff? &&! current_page?(:controller => 'users', :action => 'predictor')
+        %div.col.col-lg-3
+          %div.sidebar-nav-fixed.well
+            = render 'layouts/admin_subnav'  
+        %div.col.col-lg-9
+          %h4= @title 
+          = yield
+      - elsif current_user && current_user.is_staff? && current_page?(:controller => 'users', :action => 'predictor')
         %div.col.col-lg-3
           %div.sidebar-nav-fixed.well#navbar
-            = render 'layouts/admin_subnav'  
-        %div.col.col-lg-9.content
-          %h4= @title 
-          %hr
+            %ul.nav.nav-list
+              %li.nav-header Quick Menu
+              %li= link_to "Students", students_users_path
+              %li= link_to "Assignments", assignments_path
+              %li= link_to "Badges", badges_path
+              %li= link_to "Settings", edit_course_path(current_course)
+        %div.col.col-lg-9
           = yield
-    - elsif current_user && current_user.is_staff? && current_page?(:controller => 'users', :action => 'predictor')
-      %div.container
-        %div#predictor
-          %div.col.col-lg-3
-            %div.sidebar-nav-fixed.well#navbar
-              %ul.nav.nav-list
-                %li.nav-header Quick Menu
-                %li= link_to "Students", students_users_path
-                %li= link_to "Assignments", assignments_path
-                %li= link_to "Badges", badges_path
-                %li= link_to "Settings", edit_course_path(current_course)
-          %div.col.col-lg-9.content
-            %h4= @title 
-            %hr
-            = yield
-    - elsif current_user && current_user.is_student?
-      = yield
-    - else  
-      %div.container
-        %div.site.col-lg-12
-          = yield      
+      - elsif current_user && current_user.is_student?
+        = yield
+      - else  
+        = yield  
         %footer.row.col.col-lg-12
           %div.col.col-lg-4
             %h5 &copy; 2012-13 Regents of the University of Michigan
