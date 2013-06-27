@@ -3,13 +3,12 @@
   = f.input :email
   = f.input :first_name
   = f.input :last_name
-  //- if !@user.persisted?
-  //= f.input :password, :as => :password
-  //= f.input :password_confirmation, :as => :password
-  /= f.input :token, :as => :hidden
+  - if !@user.persisted?
+    = f.input :password, :as => :password
+    = f.input :password_confirmation, :as => :password
+    = f.input :token, :as => :hidden
   - if current_user.is_staff?
     = f.input :role, :collection => [["Student", "student"],["GSI", "gsi"],["Professor", "professor"],["Admin", "admin"]], :prompt => "Select Role"
-    //TODO Sort out what would happen if a user had many courses
     - if current_course.has_teams?
       = f.association :teams, :collection => @teams, :prompt => "Select a #{current_course.team_term}", :label => "#{current_course.team_term}", :as => :check_boxes
 

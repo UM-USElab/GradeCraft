@@ -2,7 +2,7 @@
 
   .form-inputs
     = f.input :name
-    = f.input :description,  :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, :label => "Description", :placeholder => "What do the teams need to do to succed?"
+    = f.input :description,  as: ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, :label => "Description", :placeholder => "What do the teams need to do to succed?"
     = f.input :point_total
     = f.input :due_date
     = f.input :visible, :label => "Visible to students?"

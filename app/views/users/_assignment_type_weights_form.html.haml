@@ -25,7 +25,7 @@
     
     .form-actions
       = user_assignment_type_weight.button :submit, "Spend #{current_course.multiplier_term}"
-  = "You may set #{current_course.user_weight_amount} #{current_course.multiplier_term}s before #{current_course.user_weight_amount_close_date.strftime("%A, %B %d")}"
+  = "You may set #{current_course.max_student_weight} #{current_course.multiplier_term}s before #{current_course.student_weight_close_date.strftime("%A, %B %d")}"
 
 %div.modal-footer
   %button.btn{"data-dismiss" => "modal", "aria-hidden" => "true"}Close

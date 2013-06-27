@@ -31,7 +31,7 @@ class AssignmentType < ActiveRecord::Base
   end
 
   def multiplier_open?
-    course.user_weight_amount_close_date > Date.today
+    course.student_weight_close_date > Date.today
   end
 
   # the next two methods should be consolidated into one

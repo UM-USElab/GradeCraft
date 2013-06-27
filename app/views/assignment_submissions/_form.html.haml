@@ -2,7 +2,7 @@
   .form-inputs
     - if current_user.is_student?
       - if @assignment.has_groups?
-        %b= "You are submitting this assignment as a representative of #{current_course.group_ref} #{current_user.groups.first.try(:name)}"
+        %b= "You are submitting this assignment as a representative of #{current_course.group_term} #{current_user.groups.first.try(:name)}"
         %br
         %br
         = f.input :submittable_id, :input_html => { :value => current_user.groups.first.id }, :as => :hidden
@@ -21,7 +21,7 @@
         = f.input :submittable_type, :as => :hidden, :input_html => { :value => 'User' }
     - if current_user.is_staff?
       - if @assignment.has_groups?
-        = f.input :submittable_id, :collection => @groups, :label => "#{current_course.group_ref}"
+        = f.input :submittable_id, :collection => @groups, :label => "#{current_course.group_term}"
         = f.input :submittable_type, :input_html => { :value => "Group" }, :as => :hidden
       - elsif @assignment.has_teams? 
         = f.input :submittable_id, :collection => @teams, :label => "#{current_course.team_term}"

@@ -79,9 +79,6 @@ GEM
       debugger-ruby_core_source (~> 1.2.1)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.2)
-    dotenv (0.7.0)
-    dotenv-rails (0.7.0)
-      dotenv (= 0.7.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -197,6 +194,7 @@ GEM
       ffi (>= 0.5.0)
     rb-kqueue (0.2.0)
       ffi (>= 0.5.0)
+    rdiscount (2.1.6)
     responders (0.6.5)
     ruby2ruby (2.0.3)
       ruby_parser (~> 3.1)
@@ -270,7 +268,6 @@ DEPENDENCIES
   d3_rails
   dalli
   debugger
-  dotenv-rails
   fabrication
   faker
   flexslider
@@ -292,6 +289,7 @@ DEPENDENCIES
   protected_attributes
   puma
   rails (= 4.0.0)
+  rdiscount
   responders
   sass-rails (~> 4.0.0.beta1)
   sendgrid

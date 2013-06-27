@@ -12,7 +12,7 @@
             %th Pageviews
             %th Predictor Views
             %th Email
-            %th #{current_course.section_leader_ref}
+            %th #{current_course.section_leader_term}
         %tbody
           - @top_ten_students.each do |student|
             %tr
@@ -93,7 +93,7 @@
               %th= current_course.team_term
               %th= current_course.user_term
             - elsif assignment.has_groups? 
-              %th= current_course.group_ref
+              %th= current_course.group_term
             - elsif assignment.has_teams?
               %th= current_course.team_term
             %th Link

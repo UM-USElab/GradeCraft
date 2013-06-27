@@ -1,10 +1,10 @@
-%h3= current_course.group_ref
+%h3= current_course.group_term
 %table.table-bordered.table#sortableTable.tablesorter
   %thead
     %tr
       - if @assignment.release_necessary?
         %th
-      %th= current_course.group_ref
+      %th= current_course.group_term
       %th Members
       %th Score
       - if @assignment.has_levels?

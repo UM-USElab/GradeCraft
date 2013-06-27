@@ -8,12 +8,12 @@
     = f.input :resubmission, :label => "Resubmission?", :collection => [["Yes", "1"], ["No", "0"], ["Set per Assignment", "2"]], :as => :radio_buttons
     = f.input :max_value, :label => "Max Value", :hint => "Does this assignment type have a maximum value within the course?"
     = f.input :percentage_course, :label => "Course Percentage", :hint => "What percentage of the course total grade does this assignment type make up?"
-    = f.input :user_percentage_set, :label => "Do students decide how much this assignment type is worth?", :as => :radio_buttons
+    = f.input :student_weightable, :label => "Do students decide how much this assignment type is worth?", :as => :radio_buttons
   %div.well
     %h4 Predictor Settings
     = f.input :order_placement, :label => "Assignment Type Order", :hint => "What order would you like the assignment types to appear in?"
     = f.input :points_predictor_display, :collection => [["Fixed"], ["Slider"], ["Select List"], ["Set per Assignment"]]
-    = f.input :predictor_description, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, :label => "Predictor Display Text", :hint => "How would you like to describe this assignment type in the predictor? Are there hints that you can give students that will help them understand how to succeed?"
+    = f.input :predictor_description, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, :label => "Predictor Display Text", :hint => "How would you like to describe this assignment type in the predictor? Are there hints that you can give students that will help them understand how to succeed?"
   %div.well
     %h4 Grading
     = f.input :mass_grade, :label => "Mass grading?", :hint => "Do you want to be able to grade all students who submit this assignment in a single screen?"

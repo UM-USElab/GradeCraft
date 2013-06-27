@@ -11,8 +11,8 @@
   = f.input :display_name
   = f.input :private_display, :label => "Private Browsing", :hint => "For privacy purposes would you like to hide all identifying information (name and email address) while browsing?"
   = f.input :team_role, :hint => "What will you contribute to your team?"
-  //#TODO Connect to shared badges setting in course memberships
-  //= f.input :shared_badges, :label => "Social Badges", :hint => "Do you want to publically display the badges you earn?", :collection => [["Yes"],["No"],["Decide per Badge"]] 
+  = f.simple_fields_for :course_memberships do |p| 
+    = p.input :shared_badges, :label => "Social Badges", as: :boolean, :hint => "Do you want to publically display the badges you earn?", :collection => [["Yes"],["No"],["Decide per Badge"]] 
   // Taken out bc of cosign
   //= f.input :password
   //= f.input :password_confirmation

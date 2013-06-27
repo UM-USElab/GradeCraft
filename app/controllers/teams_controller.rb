@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
     @courses = Course.all
     @users = current_course.users
     @students = @users.students
-    @submit_message = "Create #{current_course.team_ref}"
+    @submit_message = "Create #{current_course.team_term}"
     respond_with @team
   end
 
@@ -44,7 +44,7 @@ class TeamsController < ApplicationController
     @title = "Editing #{@team.name}"
     @users = current_course.users
     @students = @users.students
-    @submit_message = "Update #{current_course.team_ref}"
+    @submit_message = "Update #{current_course.team_term}"
   end
 
   def update
@@ -62,7 +62,7 @@ class TeamsController < ApplicationController
   private
 
   def interpolation_options
-    { :resource_name => current_course.team_ref }
+    { :resource_name => current_course.team_term }
   end
 
   def sort_column

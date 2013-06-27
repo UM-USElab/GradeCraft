@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130624222511) do
-
+ActiveRecord::Schema.define(version: 20130626163929) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,7 +51,6 @@ ActiveRecord::Schema.define(version: 20130624222511) do
     t.integer  "grade_scheme_id"
     t.boolean  "due_date_present"
     t.integer  "order_placement"
-    t.string   "user_percentage_set"
     t.boolean  "mass_grade"
     t.string   "mass_grade_type"
     t.boolean  "student_weightable"

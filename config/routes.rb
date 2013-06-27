@@ -53,6 +53,7 @@ GradeCraft::Application.routes.draw do
     resources :earned_badges
   end
   resources :assignment_types
+  resources :faqs
   resources :score_levels
   resources :groups, :only => :index
   resources :assignments do

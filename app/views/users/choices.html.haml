@@ -10,8 +10,8 @@
     - @assignment_types.each do |assignment_type|
       - if assignment_type.student_choice? 
         %th= assignment_type.name
-    %th #{current_course.multiplier_ref} Sum
-    %th #{current_course.multiplier_ref} Awarded?
+    %th #{current_course.multiplier_term} Sum
+    %th #{current_course.multiplier_term} Awarded?
   %tbody
     - @students.each do |student|
       %tr 
