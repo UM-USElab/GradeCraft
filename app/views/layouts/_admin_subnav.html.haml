@@ -1,28 +1,35 @@
 :javascript
   Gradecraft.preloadStore.set('users', #{autocomplete_items.to_json});
-%ul.nav.nav-list
-  %form.form-search
-    %div.input-append.dropdown
-      %input.search-query.col.col-lg-9{ :type => "text", :placeholder => "Search Users", :label => false }
-      %button.btn{:type => "submit"} Go
-  %li.nav-header Users
-  %li= link_to "Students", students_users_path
-  - if current_course.student_weighted? 
-    %li= link_to "#{current_course.multiplier_term} Choices", choices_users_path
-  %li= link_to "Staff", staff_users_path
+%form.quick_search
+  %div.dropdown
+    %input.search-query.col.col-lg-9{ :type => "text", :placeholder => "Search Users", :label => false }
+%ul.nav.nav-list#sidebar
+  %li.nav-header Students
+  %li.icn_add_user= link_to "Add New Student", new_student_path
+  %li.icn_view_users= link_to "Students", students_users_path
+  %li.icn_team= link_to "#{current_course.team_term}s", teams_path
+  %li.divider
+  %li.nav-header Assignments
+  %li.icn_attendance= link_to "Attendance"
+  %li.icn_certificate= link_to "Badges", badges_path
+  %li.icn_cup= link_to "#{current_course.team_term} Challenges", challenges_path
+  %li.icn_star= link_to "Assignments", assignments_path
+  %li.icn_categories= link_to "Assignment Types", assignment_types_path
+  %li.icn_screenshot= link_to "Learning Objectives"
+  %li.divider
+  %li.nav-header Analytics
+  %li.icn_flag= link_to "Early Warnings"
+  %li.icn_dashboard= link_to "Class Engagement"
+  %li.icn_stats= link_to "Explore Class Trends"
+  %li.icn_charts= link_to "Compare Teams"
   %li.divider
   %li.nav-header Course Settings
-  %li= link_to "Basic Settings", edit_course_path(current_course)
-  %li= link_to "Course Grading Scheme", course_grade_schemes_path
-  %li= link_to "Assignment Types", assignment_types_path
-  %li= link_to "Assignments", assignments_path
-  %li= link_to "#{current_course.team_term}s", teams_path
-  %li= link_to "#{current_course.team_term} Challenges", challenges_path
-  %li= link_to "Badge Sets", badge_sets_path
-  %li= link_to "Badges", badges_path
-  //%li= link_to "Themes", themes_path
+  %li.icn_settings= link_to "Options", edit_course_path(current_course)
+  %li.icn_group= link_to "Staff", staff_users_path
+  %li.icn_calculator= link_to "Grading Scheme", course_grade_schemes_path
   
   - if current_user.is_admin?
     %li.divider
+    %li.nav-header Admin
     %li= link_to "All Users", all_users_path
     %li= link_to "Course Index", courses_path

@@ -15,8 +15,11 @@ $lightblue: #00BFE5;
 $green: #a2d344;
 $red: #d64545;
 
+@import url(http://fonts.googleapis.com/css?family=Pontano+Sans);
+
 body {
   background-image: url(images/cloud_bg2.gif);
+  font-family: 'Pontano Sans',sans-serif !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,7 +32,6 @@ h1, h2, h3, h4, h5, h6 {
 
 #page {  
   margin-top: 44px;
-  padding-top: 1.2em;
   background-color: #FFF;
 }
 
@@ -72,6 +74,10 @@ h1, h2, h3, h4, h5, h6 {
   color: $lightblue;
 }
 
+.navbar a.btn {
+  color: #FFF;
+}
+
 .site {
   background-color: #fff;
   border-radius: 10px;
@@ -80,7 +86,8 @@ h1, h2, h3, h4, h5, h6 {
 a.brand {
   font-family: 'Futura', sans-serif;
   font-size: 1.5em;
-  color: #999 !important;
+  color: #fff;
+text-shadow: 0 -1px 0 #000;
 }
 
 a.brand:hover {
@@ -196,6 +203,28 @@ ul.no_bullet li {
   margin: 1.5em 0;
   background-color: #FFF;
 }
+
+.sidebar-nav-fixed {
+  background-image: url(images/sidebar.png);
+  padding: 10px 0px;
+}
+
+ul.nav.nav-list > li > a {
+  padding: 4px 0px 5px 25px !important;
+  margin-left: 34px;
+  color: #333;
+}
+
+.sidebar-nav-fixed li.nav-header {
+  font-family: Helvetica, sans-serif;
+  color: #1F1F20;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 #fff;
+  font-size: 13px;
+  margin: 20px 0 5px 20px !important;
+  display: block;
+  width: 90%;
+} 
 
 #badges {
   padding: 5px 10px 15px;
@@ -326,24 +355,193 @@ div#userScoreSection {
   } 
 }
 
-
 .divider {
+  margin: 10px 0px;
+  border: none;
+  outline: none;
+  background: url(images/sidebar_divider.png);
+  display: block;
+  width: 100%;
   height: 2px;
-  margin: 9px 0;
-  overflow: hidden;
-  background-color: #e5e5e5;
-  border-bottom: 1px solid #ffffff;
+}	
+
+.quick_search {
+text-align: center;
+padding: 14px 0 15px 5px;
+margin: 5px 0 15px 15px !important;
 }
-	
-	//Styling the color of the point entry text
-	input[type=text] {
-  	background-color: #eeeeee;
-  	border: none;
-  	box-shadow: none;
-  	color: green;
-  	margin: -4px 10px 0px;
-	}
-	
+
+.quick_search input[type=text] {
+-webkit-border-radius: 20px;
+-moz-border-radius: 20px;
+border-radius: 20px;
+border: 1px solid #bbb;
+height: 10px !important;
+width: 90%;
+color: #ccc;
+-webkit-box-shadow: inset 0 2px 2px #ccc, 0 1px 0 #fff;
+-moz-box-shadow: inset 0 2px 2px #ccc, 0 1px 0 #fff;
+box-shadow: inset 0 2px 2px #ccc, 0 1px 0 #fff;
+text-indent: 30px;
+background: #fff url(images/icn_search.png) no-repeat;
+background-position: 12px 8px;
+}
+
+.quick_search input[type=text]:focus {
+outline: none;
+color: #666666;
+border: 1px solid #77BACE;
+-webkit-box-shadow: inset 0 2px 2px #ccc, 0 0 10px #ADDCE6;
+-moz-box-shadow: inset 0 2px 2px #ccc, 0 0 10px #ADDCE6;
+box-shadow: inset 0 2px 2px #ccc, 0 0 10px #ADDCE6;
+}
+
+
+#sidebar li.icn_new_article a {
+background: url(images/icn_new_article.png) no-repeat center left;
+}
+#sidebar li.icn_edit_article a {
+background: url(images/icn_edit_article.png) no-repeat center left;
+}
+#sidebar li.icn_categories a {
+background: url(images/icn_categories.png) no-repeat center left;
+}
+#sidebar li.icn_team a {
+background: url(images/icn_podium.png) no-repeat center left;
+}
+#sidebar li.icn_tags a {
+background: url(images/icn_tags.png) no-repeat center left;
+}
+#sidebar li.icn_add_user a {
+background: url(images/icn_add_user.png) no-repeat center left;
+}
+#sidebar li.icn_view_users a {
+background: url(images/icn_view_users.png) no-repeat center left;
+}
+#sidebar li.icn_profile a {
+background: url(images/icn_profile.png) no-repeat center left;
+}
+#sidebar li.icn_folder a {
+background: url(images/icn_folder.png) no-repeat center left;
+}
+#sidebar li.icn_photo a {
+background: url(images/icn_photo.png) no-repeat center left;
+}
+#sidebar li.icn_audio a {
+background: url(images/icn_audio.png) no-repeat center left;
+}
+#sidebar li.icn_video a {
+background: url(images/icn_video.png) no-repeat center left;
+}
+#sidebar li.icn_settings a {
+background: url(images/icn_settings.png) no-repeat center left;
+}
+#sidebar li.icn_security a {
+background: url(images/icn_security.png) no-repeat center left;
+}
+#sidebar li.icn_jump_back a {
+background: url(images/icn_jump_back.png) no-repeat center left;
+}
+#sidebar li.icn_badge a {
+background: url(images/icn_badge.png) no-repeat center left;
+}
+
+#sidebar li.icn_book a {
+background: url(images/icn_book.png) no-repeat center left;
+}
+#sidebar li.icn_attendance a {
+background: url(images/icn_parents.png) no-repeat center left;
+}
+#sidebar li.icn_blog a {
+background: url(images/icn_blog.png) no-repeat center left;
+}
+#sidebar li.icn_lfpg a {
+background: url(images/icn_gamepad.png) no-repeat center left;
+}
+#sidebar li.icn_cup a {
+background: url(images/icn_cup.png) no-repeat center left;
+}
+#sidebar li.icn_certificate a {
+background: url(images/icn_certificate.png) no-repeat top left;
+}
+
+li.icn_certificate a {  
+background: url(images/icn_certificate.png) no-repeat top left;
+}
+
+#sidebar li.icn_sheriff a {
+background: url(images/icn_sheriffs_st.png) no-repeat center left;
+}
+#sidebar li.icn_skull a {
+background: url(images/icn_skull.png) no-repeat center left;
+}
+#sidebar li.icn_star a {
+background: url(images/icn_star.png) no-repeat center left;
+}
+#sidebar li.icn_calendar a {
+background: url(images/icn_calendar.png) no-repeat center left;
+}
+#sidebar li.icn_dashboard a {
+background: url(images/icn_dashboard.png) no-repeat center left;
+}
+#sidebar li.icn_flag a {
+background: url(images/icn_pin_flag.png) no-repeat center left;
+}
+#sidebar li.icn_stats a {
+background: url(images/icn_stats.png) no-repeat center left;
+}
+#sidebar li.icn_screenshot a {
+background: url(images/icn_screenshot.png) no-repeat center left;
+}
+#sidebar li.icn_charts a {
+background: url(images/icn_charts.png) no-repeat center left;
+}
+#sidebar li.icn_calculator a {
+background: url(images/icn_calculator.png) no-repeat center left;
+}
+#sidebar li.icn_compass a {
+background: url(images/icn_compass.png) no-repeat center left;
+}
+#sidebar li.icn_dislikes a {
+background: url(images/icn_dislikes.png) no-repeat center left;
+}
+#sidebar li.icn_crown a {
+background: url(images/icn_crown.png) no-repeat center left;
+}
+#sidebar li.icn_group a {
+background: url(images/icn_group.png) no-repeat center left;
+}
+#rubric li.icn_learning_theory a {
+  background: url(../badges/learningtheory_sm.png) no-repeat center left;
+}
+#rubric li.icn_apa a {
+  background: url(../badges/apa_sm.png) no-repeat center left;
+}
+#rubric li.icn_motivation a {
+  background: url(../badges/motivationaltheory_sm.png) no-repeat center left;
+}
+#rubric li.icn_scholar a {
+  background: url(../badges/scholar_sm.png) no-repeat center left;
+}
+#rubric li.icn_violence a {
+  background: url(../badges/violence_sm.png) no-repeat center left;
+}
+#rubric li.icn_gamedesigner a {
+  background: url(../badges/gamer_sm.png) no-repeat center left;
+}
+#rubric li.icn_educationalgames a {
+  background: url(../badges/educationalgames_sm.png) no-repeat center left;
+}
+#rubric li.icn_mathandscience a {
+  background: url(../badges/mathandscience_sm.png) no-repeat center left;
+}
+#rubric li.icn_virtual a {
+  background: url(../badges/virtualreality_sm.png) no-repeat center left;
+}
+#rubric li.icn_gamecritic a {
+  background: url(../badges/gamecritic_sm.png) no-repeat center left;
+}
+
 
 
 @media screen and (min-width: 768px) { 

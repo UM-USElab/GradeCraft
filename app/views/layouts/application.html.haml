@@ -62,47 +62,51 @@
       - if flash[:error]
         .alert.alert-error= flash[:error]
       - if flash[:alert]
-        .alert.alert-info= flash[:alert]
-    %div.col.col-lg-12#page     
+        .alert.alert-info= flash[:alert]    
       - if current_user && current_user.is_staff? &&! current_page?(:controller => 'users', :action => 'predictor')
-        %div.col.col-lg-3
-          %div.sidebar-nav-fixed.well
-            = render 'layouts/admin_subnav'  
-        %div.col.col-lg-9
-          %h4= @title 
-          = yield
+        %div.col.col-lg-12#page 
+          %div.col.col-lg-3
+            %div.sidebar-nav-fixed
+              = render 'layouts/admin_subnav'  
+          %div.col.col-lg-9
+            %h4= @title 
+            = yield
       - elsif current_user && current_user.is_staff? && current_page?(:controller => 'users', :action => 'predictor')
-        %div.col.col-lg-3
-          %div.sidebar-nav-fixed.well#navbar
-            %ul.nav.nav-list
-              %li.nav-header Quick Menu
-              %li= link_to "Students", students_users_path
-              %li= link_to "Assignments", assignments_path
-              %li= link_to "Badges", badges_path
-              %li= link_to "Settings", edit_course_path(current_course)
-        %div.col.col-lg-9
-          = yield
+        %div.col.col-lg-12#page 
+          %div.col.col-lg-3
+            %div.sidebar-nav-fixed.well
+              %ul.nav.nav-list
+                %li.nav-header Quick Menu
+                %li= link_to "Students", students_users_path
+                %li= link_to "Assignments", assignments_path
+                %li= link_to "Badges", badges_path
+                %li= link_to "Settings", edit_course_path(current_course)
+          %div.col.col-lg-9
+            = yield
       - elsif current_user && current_user.is_student?
-        = yield
-      - else  
-        = yield  
-        %footer.row.col.col-lg-12
-          %div.col.col-lg-4
-            %h5 &copy; 2012-13 Regents of the University of Michigan
-          %div.col.col-lg-2
-            %h5 Explore
-            %ul
-              %li= link_to "See the Demo"
-          %div.col.col-lg-2
-            %h5 Develop
-            %ul
-              %li= link_to "Using Gradecraft", using_gradecraft_path
-              %li= link_to "Features"
-          %div.col.col-lg-2
-            %h5 About 
-            %ul
-              %li= link_to "Blog"
-              %li= link_to "Site Credits", credits_path
+        %div.col.col-lg-12#page
+          = yield
+      - else
+        %div.container
+          %div#page
+            = yield  
+          %footer.row.col.col-lg-12
+            %div.col.col-lg-4
+              %h5 &copy; 2012-13 Regents of the University of Michigan
+            %div.col.col-lg-2
+              %h5 Explore
+              %ul
+                %li= link_to "See the Demo"
+            %div.col.col-lg-2
+              %h5 Develop
+              %ul
+                %li= link_to "Using Gradecraft", using_gradecraft_path
+                %li= link_to "Features"
+            %div.col.col-lg-2
+              %h5 About 
+              %ul
+                %li= link_to "Blog"
+                %li= link_to "Site Credits", credits_path
         
     .navbar.navbar-fixed-bottom.navbar-inverse
       .navbar-inner
