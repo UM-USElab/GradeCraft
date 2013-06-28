@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
     respond_to do |format|
       if @user = login(params[:user][:email],params[:user][:password],params[:user][:remember_me])
         #User.increment_counter(:visit_count, current_user.id) if current_user
-        format.html { redirect_to dashboard_path }
+        format.html { redirect_back_or_to dashboard_path }
         format.xml { render :xml => @users, :status => :created, :location => @user }
       else
         @user = User.new

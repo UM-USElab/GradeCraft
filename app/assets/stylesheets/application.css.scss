@@ -35,6 +35,10 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #FFF;
 }
 
+#page_no_bkg {  
+  margin-top: 44px;
+}
+
 .btn.btn-primary, .btn.btn-success, .btn.btn-error  {
   background-image: none;
 }
@@ -200,7 +204,6 @@ ul.no_bullet li {
 
 .section {
   border-radius: 10px !important; 
-  margin: 1.5em 0;
   background-color: #FFF;
 }
 
