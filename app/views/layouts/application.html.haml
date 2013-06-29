@@ -68,7 +68,7 @@
           %div.col.col-lg-3.col-sm-4.col-12
             %div.sidebar-nav-fixed
               = render 'layouts/admin_subnav'  
-          %div.col.col-lg-9.col-sm-8.col-12
+          %div.col.col-lg-9.col-sm-8.col-12#primaryContent
             %h4= @title 
             = yield
       - elsif current_user && current_user.is_staff? && current_page?(:controller => 'users', :action => 'predictor')
@@ -81,7 +81,7 @@
                 %li= link_to "Assignments", assignments_path
                 %li= link_to "Badges", badges_path
                 %li= link_to "Settings", edit_course_path(current_course)
-          %div.col.col-lg-9
+          %div.col.col-lg-9#primaryContent
             = yield
       - elsif current_user && current_user.is_student?
         %div.col.col-lg-12#page_no_bkg

@@ -33,7 +33,7 @@
         = f.input :submittable_id, :collection => @students, :label => "#{current_course.user_term}", :include_blank => false
         = f.input :submittable_type, :as => :hidden, :input_html => { :value => 'User' }        
     = f.association :assignment, :default => @assignment, :as => :hidden
-    = f.input :link, :hint => "Where is the assignment located on the web?", :input_html => {:class => 'span12' }
+    = f.input :link, :hint => "Where is the assignment located on the web?", :input_html => {:class => 'col col-lg-12' }
     //= f.input :text_comment, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, :label => "Comment. Note this must be <strong>TEXT ONLY</strong>"
 
   .form-actions

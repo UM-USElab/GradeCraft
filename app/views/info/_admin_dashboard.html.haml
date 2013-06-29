@@ -1,45 +1,39 @@
-%div.col.col-lg-12.container
-  %ul.nav.nav-tabs
+%div.col.col-lg-12.section
+  %ul.tabs
     %li.active
       %a{ "data-toggle" => "tab", "data-target" => "#tab1" } Top 10
     %li 
       %a{ "data-toggle" => "tab", "data-target" => "#tab2"} Bottom 10
     %li 
       %a{ "data-toggle" => "tab", "data-target" => "#tab3"} Teams
-    %li
-      %a{ "data-toggle" => "tab", "data-target" => "#tab4"} Submissions
-    %li
-      %a{ "data-toggle" => "tab", "data-target" => "#tab5"} Badges
   %div.tab-content
     %div.tab-pane.active#tab1
-      %div.col.col-lg-12.container
-        %h4= "Top 10" 
-        %br
-        %table.table.table-bordered
-          %thead
+      %h4= "Top 10" 
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th= current_course.user_term
+            %th Score
+            %th Badges
+            %th Logins
+            %th Pageviews
+            %th Predictor Views
+            %th Email
+            %th #{current_course.section_leader_term}
+        %tbody
+          - @top_ten_students.each do |student|
             %tr
-              %th= current_course.user_term
-              %th Score
-              %th Badges Earned
-              %th Logins
-              %th Pageviews
-              %th Predictor Views
-              %th Email
-              %th #{current_course.section_leader_term}
-          %tbody
-            - @top_ten_students.each do |student|
-              %tr
-                %td= link_to student.name, user_path(student)
-                %td= student.earned_grades(current_course)
-                %td= student.user_badge_count
-                %td= student.visit_count
-                %td= student.page_views
-                %td= student.predictor_views
-                %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-mini"
-                %td
-                  - student.team_leader.tap do |team_leader|
-                    - if team_leader.present?
-                      %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"          
+              %td= link_to student.name, user_path(student)
+              %td= student.earned_grades(current_course)
+              %td= student.user_badge_count
+              %td= student.visit_count
+              %td= student.page_views
+              %td= student.predictor_views
+              %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-tiny btn-success"
+              %td
+                - student.team_leader.tap do |team_leader|
+                  - if team_leader.present?
+                    %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"          
     %div.tab-pane#tab2
       %h4= "Bottom 10"
       %br
@@ -48,7 +42,7 @@
           %tr
             %th= current_course.user_term
             %th Score
-            %th Badges Earned
+            %th Badges
             %th Logins
             %th Pageviews
             %th Predictor Views
@@ -63,7 +57,7 @@
               %td= student.visit_count
               %td= student.page_views
               %td= student.predictor_views
-              %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-mini"
+              %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn  btn-tiny btn-success"
               %td
                 - student.team_leader.tap do |team_leader|
                   - if team_leader.present?
@@ -77,7 +71,7 @@
           %tr
             %th= current_course.team_term
             %th Score
-            %th Badges Earned
+            %th Badges
             %th Average Grade
             %th GSI
         %tbody
@@ -90,48 +84,53 @@
                   %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"} 
               %td
               %td= team.team_leader.try(:name)     
-    %div.tab-pane#tab4
-      %div.col.col-lg-12.container
-        %h4= "Ungraded Assignment Submissions"
-        %br
-          - @assignments.each do |assignment|
-            - if assignment.has_ungraded_submissions?
-              %span.assignmentTypeTitle= link_to "#{assignment.try(:name)}", assignment_path(assignment)
-              %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 
-              %table.table.table-bordered
-                %thead
-                %tr            
-                  - if assignment.is_individual?
-                    %th= current_course.team_term
-                    %th= current_course.user_term
-                  - elsif assignment.has_groups? 
-                    %th= current_course.group_term
-                  - elsif assignment.has_teams?
-                    %th= current_course.team_term
-                  %th Link
-                  %th Comment
-                  %th
+%div.col.col-lg-12.section
+  %ul.tabs
+    %li.active
+      %a{ "data-toggle" => "tab", "data-target" => "#tab4"} Submissions
+    %li
+      %a{ "data-toggle" => "tab", "data-target" => "#tab5"} Badges
+  %div.tab-content   
+    %div.tab-pane#tab4.active
+      %h4= "Ungraded Assignment Submissions"
+      %br
+        - @assignments.each do |assignment|
+          - if assignment.has_ungraded_submissions?
+            %span.assignmentTypeTitle= link_to "#{assignment.try(:name)}", assignment_path(assignment)
+            %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 
+            %table.table.table-bordered
+              %thead
+              %tr            
+                - if assignment.is_individual?
+                  %th= current_course.team_term
+                  %th= current_course.user_term
+                - elsif assignment.has_groups? 
+                  %th= current_course.group_term
+                - elsif assignment.has_teams?
+                  %th= current_course.team_term
+                %th Link
+                %th Comment
+                %th
     %div.tab-pane#tab5
-      %div.col.col-lg-12.container
-        %h4= "Badges"
-        %br
-        %table.table.table-bordered
-          %thead
+      %h4= "Badges"
+      %br
+      %table.table.table-bordered
+        %thead
+          %tr
+            %th= "Badge"
+            %th= "Elements"
+            %th= "# Earned"
+            %th
+        %tbody
+          - @badges.each do |badge|
             %tr
-              %th= "Badge"
-              %th= "Elements"
-              %th= "# Earned"
-              %th
-          %tbody
-            - @badges.each do |badge|
-              %tr
-                %td 
-                  %img{:src => badge.icon, :alt => badge.name}
-                  %br
-                  = link_to badge.name, badge 
-                %td
-                  %ul
-                    - badge.elements.each do |element|
-                      %li= link_to element.name, badge_element_path(badge, element)
-                %td= badge.earned_badges.count
-                %td= link_to "Award", new_earned_badge_path(:id => badge), :class => "btn btn-mini"
+              %td 
+                %img{:src => badge.icon, :alt => badge.name}
+                %br
+                = link_to badge.name, badge 
+              %td
+                %ul
+                  - badge.elements.each do |element|
+                    %li= link_to element.name, badge_element_path(badge, element)
+              %td= badge.earned_badges.count
+              %td= link_to "Award", new_earned_badge_path(:id => badge), :class => "btn btn-mini"

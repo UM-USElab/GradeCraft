@@ -12,6 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20130626163929) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,7 +74,7 @@ ActiveRecord::Schema.define(version: 20130626163929) do
     t.datetime "close_time"
     t.datetime "open_time"
     t.boolean  "required"
-    t.boolean  "allows_assignment_submissions"
+    t.boolean  "has_assignment_submissions"
     t.boolean  "student_logged"
     t.string   "student_logged_button_text"
     t.integer  "badge_set_id"
@@ -176,17 +177,17 @@ ActiveRecord::Schema.define(version: 20130626163929) do
     t.string   "semester"
     t.string   "theme_id"
     t.integer  "course_grade_scheme_id"
-    t.datetime "created_at",                                                                  null: false
-    t.datetime "updated_at",                                                                  null: false
-    t.boolean  "badge_setting",                                               default: true
-    t.boolean  "team_setting",                                                default: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.boolean  "badge_setting",                      default: true
+    t.boolean  "team_setting",                       default: false
     t.string   "user_term"
     t.string   "team_term"
     t.string   "homepage_message"
-    t.boolean  "status",                                                      default: true
+    t.boolean  "status",                             default: true
     t.boolean  "group_setting"
     t.integer  "badge_set_id"
-    t.integer  "total_student_weight",                                                        null: false
+    t.integer  "total_student_weight",                               null: false
     t.integer  "max_student_assignment_type_weight"
     t.datetime "student_weight_close_date"
     t.boolean  "team_roles"
@@ -196,7 +197,7 @@ ActiveRecord::Schema.define(version: 20130626163929) do
     t.boolean  "has_assignment_submissions"
     t.boolean  "teams_visible"
     t.string   "badge_use_scope"
-    t.decimal  "multiplier_default",                 precision: 10, scale: 0
+    t.decimal  "multiplier_default"
     t.string   "multiplier_term"
     t.boolean  "predictor_setting"
     t.boolean  "badges_value"
@@ -238,7 +239,6 @@ ActiveRecord::Schema.define(version: 20130626163929) do
     t.text     "text_feedback"
     t.boolean  "shared"
     t.integer  "grade_id"
-    t.datetime "expires_at"
   end
 
   create_table "elements", force: true do |t|

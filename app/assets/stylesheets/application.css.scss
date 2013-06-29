@@ -39,7 +39,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 44px;
 }
 
-.btn.btn-primary, .btn.btn-success, .btn.btn-error  {
+#primaryContent {
+  padding-top: 20px;
+}
+
+.btn.btn-primary, .btn-info, .btn.btn-success, .btn.btn-error  {
   background-image: none;
 }
 
@@ -49,7 +53,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn.btn-primary {
-  background-color: $blue;
+  background-color: $blue !important;
+}
+
+.btn.btn-info {
+  background-color: $lightblue !important;
 }
 
 .btn.btn-success {
@@ -60,6 +68,12 @@ h1, h2, h3, h4, h5, h6 {
   background-color: $red;
 }
 
+.btn.btn-tiny {
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 1.0;
+  border-radius: 3px;
+}
 
 .navbar {
   padding: 3px;
@@ -545,6 +559,78 @@ background: url(images/icn_group.png) no-repeat center left;
   background: url(../badges/gamecritic_sm.png) no-repeat center left;
 }
 
+ul.tabs {
+	margin: 3px 10px 0 0;
+	padding: 0;
+	float: right;
+	list-style: none;
+	height: 24px; /*--Set height of tabs--*/
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 0 #fff;
+	-moz-box-shadow: 0 1px 0 #fff;
+	box-shadow: 0 1px 0 #fff;
+	border: 1px solid #ccc;
+	font-weight: bold;
+	text-shadow: 0 1px 0 #fff;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	line-height: 24px;
+}
+ul.tabs li a {
+	text-decoration: none;
+	color: #999;
+	display: block;
+	padding: 0 10px;
+	height: 24px;
+}
+html ul.tabs li.active a {
+  color: #FFF !important;
+}
+
+ul.tabs li a:hover {
+	color: #44474F;
+}
+
+html ul.tabs {
+	}
+
+html ul.tabs li.active, html ul.tabs li.active a:hover  {
+	-webkit-box-shadow: inset 0 2px 3px #818181;
+	-moz-box-shadow: inset 0 2px 3px #818181;
+	box-shadow: inset 0 2px 3px #818181;
+  background-color: $lightblue !important;
+	text-shadow: none;
+}
+
+html ul.tabs li:first-child, html ul.tabs li:first-child a  {
+	-webkit-border-top-left-radius: 5px; -webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 5px; -moz-border-radius-bottomleft: 5px;
+	border-top-left-radius: 5px; border-bottom-left-radius: 5px;
+}
+
+html ul.tabs li:last-child, html ul.tabs li:last-child a  {
+	-webkit-border-top-right-radius: 5px; -webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-topright: 5px; -moz-border-radius-bottomright: 5px;
+	border-top-right-radius: 5px; border-bottom-right-radius: 5px;
+}
+
+.section {
+  border: 2px solid #eee;
+  margin: 0px 0 20px;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+table {
+   font-size: 80%;
+}
 
 
 @media screen and (min-width: 768px) { 
