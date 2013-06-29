@@ -22,7 +22,7 @@ body {
   font-family: 'Pontano Sans',sans-serif !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h5, h6 {
   font-family: "Futura", sans-serif !important;
 }
 
@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #primaryContent {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .btn.btn-primary, .btn-info, .btn.btn-success, .btn.btn-error  {
@@ -384,7 +384,7 @@ div#userScoreSection {
 
 .quick_search {
 text-align: center;
-padding: 14px 0 15px 5px;
+padding: 4px 0 15px 5px;
 margin: 5px 0 15px 15px !important;
 }
 
@@ -596,9 +596,6 @@ ul.tabs li a:hover {
 	color: #44474F;
 }
 
-html ul.tabs {
-	}
-
 html ul.tabs li.active, html ul.tabs li.active a:hover  {
 	-webkit-box-shadow: inset 0 2px 3px #818181;
 	-moz-box-shadow: inset 0 2px 3px #818181;
@@ -630,6 +627,11 @@ html ul.tabs li:last-child, html ul.tabs li:last-child a  {
 
 table {
    font-size: 80%;
+}
+
+thead {
+  background-color: #777;
+  color: #FFF;
 }
 
 

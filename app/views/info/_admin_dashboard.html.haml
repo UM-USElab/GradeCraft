@@ -1,4 +1,4 @@
-%div.col.col-lg-12.section
+%div.col.col-lg-12.col-sm-12.section
   %ul.tabs
     %li.active
       %a{ "data-toggle" => "tab", "data-target" => "#tab1" } Top 10
@@ -36,7 +36,6 @@
                     %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"          
     %div.tab-pane#tab2
       %h4= "Bottom 10"
-      %br
       %table.table.table-bordered
         %thead
           %tr
@@ -47,7 +46,7 @@
             %th Pageviews
             %th Predictor Views
             %th Email
-            %th GSI
+            %th #{current_course.section_leader_term}
         %tbody
           - @bottom_ten_students.each do |student|
             %tr
@@ -64,7 +63,6 @@
                     %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
     %div.tab-pane#tab3
       %h4= "#{current_course.team_term}s"
-      %br
       %div#teamChart
       %table.table.table-bordered
         %thead
@@ -73,7 +71,7 @@
             %th Score
             %th Badges
             %th Average Grade
-            %th GSI
+            %th #{current_course.section_leader_term}
         %tbody
           - @teams.each do |team|
             %tr
@@ -93,27 +91,25 @@
   %div.tab-content   
     %div.tab-pane#tab4.active
       %h4= "Ungraded Assignment Submissions"
-      %br
-        - @assignments.each do |assignment|
-          - if assignment.has_ungraded_submissions?
-            %span.assignmentTypeTitle= link_to "#{assignment.try(:name)}", assignment_path(assignment)
-            %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 
-            %table.table.table-bordered
-              %thead
-              %tr            
-                - if assignment.is_individual?
-                  %th= current_course.team_term
-                  %th= current_course.user_term
-                - elsif assignment.has_groups? 
-                  %th= current_course.group_term
-                - elsif assignment.has_teams?
-                  %th= current_course.team_term
-                %th Link
-                %th Comment
-                %th
+      - @assignments.each do |assignment|
+        - if assignment.has_ungraded_submissions?
+          %span.assignmentTypeTitle= link_to "#{assignment.try(:name)}", assignment_path(assignment)
+          %span.assignmentTypeValue= "(#{assignment.try(:point_total)} total points)" 
+          %table.table.table-bordered
+            %thead
+            %tr            
+              - if assignment.is_individual?
+                %th= current_course.team_term
+                %th= current_course.user_term
+              - elsif assignment.has_groups? 
+                %th= current_course.group_term
+              - elsif assignment.has_teams?
+                %th= current_course.team_term
+              %th Link
+              %th Comment
+              %th
     %div.tab-pane#tab5
       %h4= "Badges"
-      %br
       %table.table.table-bordered
         %thead
           %tr
@@ -125,12 +121,11 @@
           - @badges.each do |badge|
             %tr
               %td 
-                %img{:src => badge.icon, :alt => badge.name}
-                %br
+                %img{:src => badge.icon, :alt => badge.name, :width => "40"}
                 = link_to badge.name, badge 
               %td
                 %ul
                   - badge.elements.each do |element|
                     %li= link_to element.name, badge_element_path(badge, element)
               %td= badge.earned_badges.count
-              %td= link_to "Award", new_earned_badge_path(:id => badge), :class => "btn btn-mini"
+              %td= link_to "Award", new_earned_badge_path(:id => badge), :class => "btn btn-tiny btn-success"
