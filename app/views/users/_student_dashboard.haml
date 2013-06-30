@@ -1,13 +1,10 @@
-%div.pull-right.col.col-lg-3.container
+%div.pull-right.col.col-lg-3
   - if current_user.is_staff?
-    = gravatar_for @user, :size => 170, :d => "mm"
-    %span.label.label-info
-      %i.icon-envelope.icon-white
-      = link_to "Email #{@user.first_name}", "mailto:#{@user.email}" 
+    = gravatar_for @user, :size => 300, :d => "mm"
   
   // Badges Sidebar
   - if current_course.has_badges? 
-    %div#badges.section
+    %div.section#badges
       %h4.center Badges
       - @badges.each do |badge|
         - @user.earned_badges_by_badge(badge).tap do |earned_badge|
@@ -58,7 +55,7 @@
                   = "#{assignment.try(:name)}" 
                   %div= "(Due: #{assignment.try(:due_date).strftime("%b-%d")})"
   
-%div.col.col-lg-9.container
+%div.col.col-lg-9
   // Displays a warning to IE users to switch to Chrome
   /[if IE]
     %a{ :href => 'https://www.google.com/intl/en/chrome/browser/' }
@@ -76,16 +73,14 @@
           %a{ "data-toggle" => "tab", "data-target" => "#tab2"} Calendar
         %li 
           %a{ "data-toggle" => "tab", "data-target" => "#tab3"} Syllabus
+        %li 
+          %a{ "data-toggle" => "tab", "data-target" => "#tab4"} Badges
       %div.tab-content
         %div.tab-pane.active#tab1
           
         %div.tab-pane#tab2
-          - if current_user.is_staff?
-            = render "assignments" 
-          - else
-            = render "users/assignments" 
+          = render "users/assignments" 
         %div.tab-pane#tab3
-          - if current_user.is_staff?
-            = render "badges" 
-          - else
-            = render "users/badges" 
+          = render "users/syllabus" 
+        %div.tab-pane#tab4
+          = render "users/badges" 

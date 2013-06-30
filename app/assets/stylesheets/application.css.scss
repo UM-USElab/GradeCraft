@@ -33,6 +33,7 @@ h1, h2, h3, h5, h6 {
 #page {  
   margin-top: 44px;
   background-color: #FFF;
+  border-radius: 10px;
 }
 
 #page_no_bkg {  
@@ -272,69 +273,6 @@ ul.nav.nav-list > li > a {
 
     
 
-
-.userDashboardSide {
-  img.unearned, .badgeTitle.unearned {
-      opacity: .3;
-    }
-    
-    .unEarnedText {
-      clear: left;
-      text-align: center;
-      font-size: 11px;
-      line-height: 14px;
-    }  
-
-  #badges {
-    padding: 5px 15px 15px;
-    .badgeIcon {
-      float: left;
-      text-align: center;
-      width: 25%;
-      font-size: 70%;
-      margin-bottom: 10px;
-    }    
-   
-  }
-  
- #classBoxandWhisker .popover {
-    width: 400px !important;
-  }
-  
-  #toDoList h3 {
-      padding: 0px;
-      margin: 10px 0 1px;
-  }
-  #toDoList { 
-    text-align: left;
-  
-    h3.assignmentTypeToDo {
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 11px;
-      text-align: center; 
-      line-height: 14px;
-      color: #111;
-      letter-spacing: 1px;
-    }
-  
-    ul {
-      font-size: 0.9em;
-      margin: 0;
-      padding-bottom: 10px;
-    }
-
-    li {
-      margin-left: 15px;
-      line-height: 15px;
-    }
-  
-
-    .due, .submit {
-      margin-left: 15px;
-    }
-  }
-}
   
 div#userScoreSection {
   background-color: #222222 !important;
@@ -527,6 +465,9 @@ background: url(images/icn_crown.png) no-repeat center left;
 }
 #sidebar li.icn_group a {
 background: url(images/icn_group.png) no-repeat center left;
+}
+#sidebar li.icn_envelope a, .icn_envelope {
+background: url(images/icn_envelope.png) no-repeat center left;
 }
 #rubric li.icn_learning_theory a {
   background: url(../badges/learningtheory_sm.png) no-repeat center left;

@@ -68,39 +68,13 @@ $(document).ready(function(){
     e.stopPropagation();
   });
     
-  $('#userBarInProgress').show();
-	$('#userBarTotal').hide();
-	$('#userBarInProgressSim').show();
-	$('#userBarTotalSim').show();
-	$('#totalScoreToggle').show();
-  $('#soFarScoreToggle').hide();	
-
-  $('a.dashboard-toggle').click(function(){
-    $('.dashboard-toggle').toggle();
-      return false;
-	});
-  
+	$('#userBarTotalSim').show();	
 
 $('#course_id').change(function() { $(this).closest('form').submit(); });
 
 $('.nav-tabs').button();
 
-   $('.flexslider').flexslider({
-      animation: "slide",
-      slideshow: false,      
-      controlNav: true, //Boolean: Create navigation for paging control of each clide? Note: Leave true for manualControls usage
-      directionNav: true,             //Boolean: Create navigation for previous/next navigation? (true/false)
-      prevText: "Previous",           //String: Set the text for the "previous" directionNav item
-      nextText: "Next"
-      
-    });
-
     
-	// add commas
-	function addCommas(i){
-		numWithCommas = i.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		return numWithCommas;
-	};	
 	
 	// handle 'select all' button
 	$(".select-all").click(function(e){
@@ -118,22 +92,6 @@ $('.nav-tabs').button();
 		$link.parents().find("input").prop("checked", false);
 		
 	});
-	
-/*
-function removeCommas(i){
-		console.log(i);
-		if (i == null) {
-			return 0;
-		}
-		else if (i.indexOf(",") >= 0){
-			integer = parseInt(i.replace(/,/g, ""));
-			return integer
-		}
-		else{
-			return parseInt(i);
-		}
-	}; 
-*/
 
   
 });
