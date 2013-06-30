@@ -1,8 +1,8 @@
-= simple_form_for([@user, @user_assignment_type_weight], :html => {:class => 'form-horizontal' }) do |f|
+= simple_form_for([@user, @student_assignment_type_weight], :html => {:class => 'form-horizontal' }) do |f|
   %b= "You are setting the Kapital value for #{@assignment_type.name}"
   = f.input :assignment_type_id, :input_html => { :value => @assignment_type.id }, :as => :hidden
   = f.input :value, :hint => "You may set #{current_course.max_student_weight} #{current_course.multiplier_term}s", :collection => @amounts
   
   .form-actions
     = f.button :submit, "Update #{current_course.multiplier_term}"
-    = link_to 'Cancel', user_user_assignment_type_weights_path(@user), :class => 'btn'
+    = link_to 'Cancel', user_student_assignment_type_weights_path(@user), :class => 'btn'

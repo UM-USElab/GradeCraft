@@ -109,8 +109,8 @@ class UsersController < ApplicationController
     @title = @user.name
     @earned_badges = @user.earned_badges
     @assignment_types = current_course.assignment_types
-    @user_assignment_type_weights = @user.user_assignment_type_weights.all
-    @user_assignment_type_weight = @user.user_assignment_type_weights.new
+    @student_assignment_type_weights = @user.student_assignment_type_weights.all
+    @student_assignment_type_weight = @user.student_assignment_type_weights.new
     @assignments = current_course.assignments
     @grades = @user.grades.all 
     @badges = current_course.badges

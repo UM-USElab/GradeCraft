@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :course_memberships
   belongs_to :default_course, :class_name => 'Course'
   has_many :grades, :as => :gradeable, :dependent => :destroy
-  has_many :assignment_type_weights, :class_name => 'StudentAssignmentTypeWeight', :foreign_key => :student_id
+  has_many :student_assignment_type_weights, :class_name => 'StudentAssignmentTypeWeight', :foreign_key => :student_id
   has_many :assignments, :through => :grades
   has_many :assignment_submissions, :as => :submittable, :dependent => :destroy
   has_many :earned_badges, :as => :earnable, :dependent => :destroy

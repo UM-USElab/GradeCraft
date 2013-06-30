@@ -1,0 +1,12 @@
+= link_to 'Edit', edit_user_student_assignment_type_weight_path(@user, @student_assignment_type_weight), :class => "btn btn-info btn-small"
+= link_to 'Back', user_student_assignment_type_weights_path(@user), :class => "btn btn-info btn-small"
+  
+%p
+  %b User:
+  = @student_assignment_type_weight.user.try(:name)
+%p
+  %b Assignment:
+  = @student_assignment_type_weight.assignment_type.try(:name)
+%p
+  %b Multiplier Amount:
+  = @student_assignment_type_weight.value

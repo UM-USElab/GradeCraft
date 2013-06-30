@@ -7,8 +7,8 @@ class HomeController < ApplicationController
       if current_user.is_admin?
       else
         @user = current_user
-        @user_assignment_type_weights = @user.user_assignment_type_weights.all
-        @user_assignment_type_weight = @user.user_assignment_type_weights.new
+        @student_assignment_type_weights = @user.student_assignment_type_weights.all
+        @student_assignment_type_weight = @user.student_assignment_type_weights.new
         @assignment_types = current_course.assignment_types
         #@assignment_type_choice = current_course.assignment_types.student_choice
       end
