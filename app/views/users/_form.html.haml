@@ -6,7 +6,7 @@
   - if !@user.persisted?
     = f.input :password, :as => :password
     = f.input :password_confirmation, :as => :password
-    = f.input :token, :as => :hidden
+    //= f.input :token, :as => :hidden
   - if current_user.is_staff?
     = f.input :role, :collection => [["Student", "student"],["GSI", "gsi"],["Professor", "professor"],["Admin", "admin"]], :prompt => "Select Role"
     - if current_course.has_teams?
