@@ -1,6 +1,6 @@
-%div.pull-right.col.col-lg-3
+%div.pull-right.col.col-lg-3.sidebar
   - if current_user.is_staff?
-    = gravatar_for @user, :size => 300, :d => "mm"
+    %div.section= gravatar_for @user, :size => 300, :d => "mm"
   
   // Badges Sidebar
   - if current_course.has_badges? 
@@ -28,7 +28,7 @@
       %div.unEarnedText Badges you've earned will shine brightly!
       
   // Predictor Sidebar Link
-  %div.col.col-lg-12.btn.btn-primary
+  %div.col.col-lg-12.btn.btn-success
     = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id)
 
   // Check Grade Sidebar

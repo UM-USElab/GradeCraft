@@ -53,6 +53,10 @@ h1, h2, h3, h5, h6 {
   opacity: .8;
 }
 
+.btn a {
+  color: #FFF;
+} 
+
 .btn.btn-primary {
   background-color: $blue !important;
 }
@@ -222,6 +226,10 @@ ul.no_bullet li {
   background-color: #FFF;
 }
 
+.sidebar .section, .sidebar .btn {
+  margin-bottom: 15px !important;
+}
+
 .sidebar-nav-fixed {
   background-image: url(images/sidebar.png);
   padding: 10px 0px;
@@ -232,6 +240,7 @@ ul.nav.nav-list > li > a {
   margin-left: 34px;
   color: #333;
 }
+
 
 .sidebar-nav-fixed li.nav-header {
   font-family: Helvetica, sans-serif;
@@ -350,7 +359,9 @@ border: 1px solid #77BACE;
 -moz-box-shadow: inset 0 2px 2px #ccc, 0 0 10px #ADDCE6;
 box-shadow: inset 0 2px 2px #ccc, 0 0 10px #ADDCE6;
 }
-
+#sidebar li a:hover {
+  text-decoration: underline;
+}
 
 #sidebar li.icn_new_article a {
 background: url(images/icn_new_article.png) no-repeat center left;

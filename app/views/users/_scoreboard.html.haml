@@ -16,11 +16,3 @@
   %span#userScoreNum #{number_with_delimiter(@user.earned_grades(current_course), :delimiter => ',') if @user.respond_to?(:earned_grades)}
   %div#userBarInProgressSim
   %div#userBarTotalSim
-
-                    
-  - if current_course.valuable_badges?
-    %div.badges
-      %button.btn.btn-inverse(data-target="#badges" data-toggle="collapse") Badges
-      %span
-        %span.badge.badge-warning= "#{@user.earned_badges_value(current_course)} points"
-
