@@ -27,5 +27,5 @@
             - team.earned_badges.each do |badge|
               %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
           %td= team.student_badge_count
-          %td= link_to 'Edit', edit_team_path(team), :class => 'btn btn-mini'
-          %td= link_to 'Delete', team, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+          %td= link_to 'Edit', edit_team_path(team), :class => 'btn btn-tiny btn-success'
+          %td= link_to 'Delete', team, :class => 'btn btn-tiny btn-success', :data => { :confirm => 'Are you sure?' }, :method => :delete
