@@ -11,6 +11,6 @@
     - for grade_scheme in @grade_schemes
       %tr
         %td= grade_scheme.name
-        %td= link_to 'View', grade_scheme, :class => 'btn btn-mini'
-        %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme), :class => 'btn btn-mini'
-        %td= link_to 'Delete', grade_scheme, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+        %td= link_to 'View', grade_scheme, :class => 'btn btn-tiny btn-success'
+        %td= link_to 'Edit', edit_grade_scheme_path(grade_scheme), :class => 'btn btn-tiny btn-success'
+        %td= link_to 'Delete', grade_scheme, :class => 'btn btn-tiny btn-success', :data => { :confirm => 'Are you sure?' }, :method => :delete

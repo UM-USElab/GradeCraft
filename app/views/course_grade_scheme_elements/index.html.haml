@@ -17,5 +17,5 @@
         %td= element.low_range
         %td= element.high_range
         %td= element.letter_grade
-        %td= link_to 'Edit', edit_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, element), :class => 'btn btn-mini'
-        %td= link_to 'Delete', course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, element), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+        %td= link_to 'Edit', edit_course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, element), :class => 'btn btn-tiny btn-success'
+        %td= link_to 'Delete', course_grade_scheme_course_grade_scheme_element_path(@course_grade_scheme, element), :class => 'btn btn-tiny btn-success', :data => { :confirm => 'Are you sure?' }, :method => :delete

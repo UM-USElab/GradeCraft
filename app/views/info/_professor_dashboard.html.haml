@@ -22,11 +22,11 @@
               %td= student.visit_count
               %td= student.page_views
               %td= student.predictor_views
-              %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-mini"
+              %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-tiny btn-success"
               %td
                 - student.team_leader.tap do |team_leader|
                   - if team_leader.present?
-                    %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
+                    %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-tiny btn-success"
   %div.clear
     %div.span12
       %h4= "Bottom 10"
@@ -50,11 +50,11 @@
               %td= student.visit_count
               %td= student.page_views
               %td= student.predictor_views
-              %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-mini"
+              %td= link_to "Email #{student.first_name}", "mailto:#{student.email}", :class => "btn btn-tiny btn-success"
               %td
                 - student.team_leader.tap do |team_leader|
                   - if team_leader.present?
-                    %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
+                    %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-tiny btn-success"
       
   %div.clear        
     %div.span12
@@ -109,15 +109,15 @@
                   %td= link_to submission.link, submission.link
                   %td= submission.comment
                   - if assignment.has_groups?
-                    %td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
-                    %td= link_to 'Edit', edit_assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Group"), :class => 'btn btn-mini'
-                    %td= link_to 'Delete', assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+                    %td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Group"), :class => 'btn btn-tiny btn-success'
+                    %td= link_to 'Edit', edit_assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Group"), :class => 'btn btn-tiny btn-success'
+                    %td= link_to 'Delete', assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-tiny btn-success', :data => { :confirm => 'Are you sure?' }, :method => :delete
                   - elsif assignment.has_teams? 
-                    %td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Team"), :class => 'btn btn-mini'
-                    %td= link_to 'Edit', edit_assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Team"), :class => 'btn btn-mini'
-                    %td= link_to 'Delete', assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+                    %td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Team"), :class => 'btn btn-tiny btn-success'
+                    %td= link_to 'Edit', edit_assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "Team"), :class => 'btn btn-tiny btn-success'
+                    %td= link_to 'Delete', assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-tiny btn-success', :data => { :confirm => 'Are you sure?' }, :method => :delete
                   - elsif assignment.is_individual? 
-                    %td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
-                    %td= link_to 'Edit', edit_assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-mini'
-                    %td= link_to 'Delete', assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+                    %td= link_to 'Grade', assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-tiny btn-success'
+                    %td= link_to 'Edit', edit_assignment_assignment_submission_path(assignment, submission, :gradeable_id => submission.submittable.id, :gradeable_type => "User"), :class => 'btn btn-tiny btn-success'
+                    %td= link_to 'Delete', assignment_assignment_submission_path(assignment, submission), :class => 'btn btn-tiny btn-success', :data => { :confirm => 'Are you sure?' }, :method => :delete
 

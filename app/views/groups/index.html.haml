@@ -18,6 +18,6 @@
         %td= group.approved
         %td
         //%td= group.grade
-        %td= link_to 'See Group', assignment_group_path(group.assignment, group), :class => 'btn btn-mini'
-        %td= link_to 'Edit', edit_assignment_group_path(group.assignment, group), :class => 'btn btn-mini'
-        %td= link_to 'Delete', assignment_group_path(group.assignment, group), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+        %td= link_to 'See Group', assignment_group_path(group.assignment, group), :class => 'btn btn-tiny btn-success'
+        %td= link_to 'Edit', edit_assignment_group_path(group.assignment, group), :class => 'btn btn-tiny btn-success'
+        %td= link_to 'Delete', assignment_group_path(group.assignment, group), :class => 'btn btn-tiny btn-success', :data => { :confirm => 'Are you sure?' }, :method => :delete

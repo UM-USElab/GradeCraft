@@ -48,10 +48,10 @@
         %td= student.predictor_views
         %td
         %td
-        %td= link_to 'Dashboard', student, {:class => 'btn btn-mini'}
-        %td= link_to 'Predictor', predictor_users_path(:user_id => student), {:class => 'btn btn-mini'}
-        %td= link_to 'Edit', edit_user_path(student), {:class => 'btn btn-mini'}
-        %td= link_to 'Delete', student, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+        %td= link_to 'Dashboard', student, {:class => 'btn btn-tiny btn-success'}
+        %td= link_to 'Predictor', predictor_users_path(:user_id => student), {:class => 'btn btn-tiny btn-success'}
+        %td= link_to 'Edit', edit_user_path(student), {:class => 'btn btn-tiny btn-success'}
+        %td= link_to 'Delete', student, :class => 'btn btn-tiny btn-success', :data => { :confirm => 'Are you sure?' }, :method => :delete
       - i += 1
 = "Download:"
 = link_to "CSV", users_path(current_course, format: "csv") |

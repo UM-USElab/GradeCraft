@@ -34,13 +34,13 @@
             - user.earned_badges.each do |badge|
               %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
         - if user.is_student?
-          %td= link_to 'Dashboard', user, :class => 'btn btn-mini'
-          %td= link_to 'Predictor', predictor_users_path(:user_id => user.id), :class => 'btn btn-mini'
+          %td= link_to 'Dashboard', user, :class => 'btn btn-tiny btn-success'
+          %td= link_to 'Predictor', predictor_users_path(:user_id => user.id), :class => 'btn btn-tiny btn-success'
         - else
           %td
           %td
-        %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini'
-        %td= link_to 'Delete', user, :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete
+        %td= link_to 'Edit', edit_user_path(user), :class => 'btn btn-tiny btn-success'
+        %td= link_to 'Delete', user, :class => 'btn btn-tiny btn-success', :data => { :confirm => 'Are you sure?' }, :method => :delete
 
 %div#footerNav
   = link_to "Create a New #{current_course.user_term}", new_user_path, :class => "btn btn-primary"

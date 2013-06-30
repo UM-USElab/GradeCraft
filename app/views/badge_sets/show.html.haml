@@ -1,7 +1,7 @@
 = link_to 'Edit', edit_badge_set_path(@badge_set), {:class => 'btn btn-info btn-small'}
 = link_to 'Back', badge_sets_path, {:class => 'btn btn-info btn-small'}
 
-= link_to 'Add New Badge', new_badge_path, :class => "btn btn-mini btn-primary"
+= link_to 'Add New Badge', new_badge_path, :class => "btn btn-tiny btn-success btn-primary"
 %p
 %table.display.table-bordered.table
   %thead
@@ -21,7 +21,7 @@
         %td= badge.name
         %td= badge.value
         %td= raw badge.description
-        %td= link_to "View", badge_path(badge), :class => 'btn btn-mini'
-        %td= link_to "Edit", edit_badge_path(badge), :class => 'btn btn-mini'
-        %td= link_to "Delete", badge_path(badge), :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini', :method => :delete
+        %td= link_to "View", badge_path(badge), :class => 'btn btn-tiny btn-success'
+        %td= link_to "Edit", edit_badge_path(badge), :class => 'btn btn-tiny btn-success'
+        %td= link_to "Delete", badge_path(badge), :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-tiny btn-success', :method => :delete
 

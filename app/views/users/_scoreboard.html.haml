@@ -1,11 +1,11 @@
 %div.btn-group.pull-right
   - if current_user.is_staff?
     - if current_course.has_badges? && current_course.course_badges? or current_course.has_badges? && current_course.multi_badges?
-      //= link_to "Award a Badge", new_user_earned_badge_path(@user), :class => "btn btn-mini btn-info"
-    = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id), :class => "btn btn-mini btn-info"
+      //= link_to "Award a Badge", new_user_earned_badge_path(@user), :class => "btn btn-tiny btn-success btn-info"
+    = link_to 'Predict Course Grade', predictor_users_path(:user_id => @user.id), :class => "btn btn-tiny btn-success btn-info"
     - @user.team_leader.tap do |team_leader|
       - if team_leader.present?
-        = link_to "Email #{current_course.section_leader_term} (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-mini btn-info"
+        = link_to "Email #{current_course.section_leader_term} (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-tiny btn-success btn-info"
 
 %div#userID{ :'data-user-id' => @user.id }
 %div#userPointValues
@@ -62,28 +62,28 @@
                     - if @user.group_for_assignment(assignment)
                       - assignment.submission_for_group(@user.groups.first).tap do |submission|
                         - if submission && @user.groups.first.grade_for_assignment(assignment)
-                          = link_to "See Submission", assignment_assignment_submission_path(assignment, submission, :grade_id => @user.groups.first.grade_for_assignment(assignment).id, :gradeable_id => @user.groups.first, :gradeable_type => "Group"), :class => 'btn btn-mini btn-info'
+                          = link_to "See Submission", assignment_assignment_submission_path(assignment, submission, :grade_id => @user.groups.first.grade_for_assignment(assignment).id, :gradeable_id => @user.groups.first, :gradeable_type => "Group"), :class => 'btn btn-tiny btn-success btn-info'
                           = submission.created_date
                         - elsif submission
-                          = link_to "See Submission", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user.groups.first, :gradeable_type => "Group"), :class => 'btn btn-mini btn-info'
+                          = link_to "See Submission", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user.groups.first, :gradeable_type => "Group"), :class => 'btn btn-tiny btn-success btn-info'
                         - else
-                          = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user.groups.first, :submittable_type => "Group"), :class => 'btn btn-mini btn-primary'
+                          = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user.groups.first, :submittable_type => "Group"), :class => 'btn btn-tiny btn-success btn-primary'
                   - elsif assignment.has_teams?
                     - assignment.submission_for_team(@user.teams.first).tap do |submission|
                       - if submission && @user.teams.first.grade_for_assignment(assignment)
-                        = link_to "See Submission ", assignment_assignment_submission_path(assignment, submission, :grade_id => @user.teams.first.grade_for_assignment(assignment).id, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-mini btn-info'
+                        = link_to "See Submission ", assignment_assignment_submission_path(assignment, submission, :grade_id => @user.teams.first.grade_for_assignment(assignment).id, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-tiny btn-success btn-info'
                       - elsif submission
-                        = link_to "See Submission ", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-mini btn-info'
+                        = link_to "See Submission ", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-tiny btn-success btn-info'
                       - else
-                        = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user.teams.first, :submittable_type => "Team"), :class => 'btn btn-mini btn-primary'
+                        = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user.teams.first, :submittable_type => "Team"), :class => 'btn btn-tiny btn-success btn-primary'
                   - elsif assignment.is_individual?
                     - assignment.submission_for_student(@user).tap do |submission|
                       - if submission && @user.grade_for_assignment(assignment)
-                        = link_to "See Submission (#{submission.created_at})", assignment_assignment_submission_path(assignment, submission, :grade_id => @user.grade_for_assignment(assignment).id, :submittable_id => @user, :submittable_type => "User", :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-mini btn-info'
+                        = link_to "See Submission (#{submission.created_at})", assignment_assignment_submission_path(assignment, submission, :grade_id => @user.grade_for_assignment(assignment).id, :submittable_id => @user, :submittable_type => "User", :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-tiny btn-success btn-info'
                       - elsif submission
-                        = link_to "See Submission (#{submission.created_at})", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-mini btn-info'
+                        = link_to "See Submission (#{submission.created_at})", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-tiny btn-success btn-info'
                       - else
-                        = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user, :submittable_type => "User"), :class => 'btn btn-mini btn-primary'
+                        = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user, :submittable_type => "User"), :class => 'btn btn-tiny btn-success btn-primary'
 
                   
                 // Individually graded assignments
@@ -91,7 +91,7 @@
                   - assignment.assignment_grades.where(:gradeable_id => @user).first.tap do |grade|
                     - if grade
                       - if current_user.is_staff?
-                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-info btn-mini'
+                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-info btn-tiny btn-success'
                       - if assignment.release_necessary? && grade.is_released? 
                         = "You earned #{ number_with_delimiter(grade.score(@user)) } out of #{number_with_delimiter(assignment.point_total_for_student(@user))} points"
                         %p= raw grade.feedback
@@ -103,19 +103,19 @@
                         %p= raw grade.feedback
                     - else 
                       - if assignment.self_gradeable? && assignment.open?
-                        = button_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user, :gradeable_type => "User"), :class => "btn btn-primary btn-mini"
+                        = button_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user, :gradeable_type => "User"), :class => "btn btn-primary btn-tiny btn-success"
                       - elsif current_user.is_staff? 
-                        %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-primary btn-mini'
+                        %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-primary btn-tiny btn-success'
                       = "#{assignment.point_total_for_student(@user)} possible points"
                       %p
 
                 - elsif assignment.has_teams?
                   - if assignment.self_gradeable? && assignment.open?
-                    = button_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => "btn btn-primary btn-mini"
+                    = button_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => "btn btn-primary btn-tiny btn-success"
                   - assignment.assignment_grades.where(:gradeable_id => @user.teams.try(:first)).first.tap do |grade|
                     - if grade
                       - if current_user.is_staff?
-                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-info btn-mini'
+                        %span.editLink= link_to "Edit Grade", edit_assignment_grade_path("assignment_id" => assignment.id, :id => grade, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-info btn-tiny btn-success'
                       - if assignment.release_necessary? && grade.is_released? 
                         = "Your team earned #{ grade.score(@user)} out of #{assignment.point_total_for_student(@user)} points"
                         %p= raw grade.feedback
@@ -127,18 +127,18 @@
                         %p= raw grade.feedback
                     - else
                       - if current_user.is_staff? 
-                        %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-primary btn-mini'
+                        %span.editLink= link_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user.teams.first, :gradeable_type => "Team"), :class => 'btn btn-primary btn-tiny btn-success'
                       = "#{assignment.point_total_for_student(@user)} possible points"
                       %p
 
                 - elsif assignment.has_groups?
                   - if @user.group_for_assignment(assignment)
                     - if assignment.self_gradeable? && assignment.open?
-                      = button_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user.groups.where(:assignment_id => assignment.id).first.id, :gradeable_type => "Group"), :class => "btn btn-primary btn-mini"
+                      = button_to "#{assignment.student_logged_button_text}", self_log_assignment_grades_path(assignment, :gradeable_id => @user.groups.where(:assignment_id => assignment.id).first.id, :gradeable_type => "Group"), :class => "btn btn-primary btn-tiny btn-success"
                     - assignment.assignment_grades.where(:gradeable => @user.group_for_assignment(assignment)).first.tap do |grade|
                       - if grade
                         - if current_user.is_staff?
-                          %span.editLink= link_to "Edit Grade", edit_assignment_grade_path(assignment, grade, :gradeable_id => @user.groups.where(:assignment_id => assignment.id).first.id, :gradeable_type => "Group"), :class => 'btn btn-info btn-mini'
+                          %span.editLink= link_to "Edit Grade", edit_assignment_grade_path(assignment, grade, :gradeable_id => @user.groups.where(:assignment_id => assignment.id).first.id, :gradeable_type => "Group"), :class => 'btn btn-info btn-tiny btn-success'
                         - if assignment.release_necessary? && grade.is_released? 
                           = "Your group earned #{ grade.score(@user) } out of #{assignment.point_total_for_student(@user)} points"
                           %p= raw grade.feedback
@@ -152,9 +152,9 @@
                         = "#{assignment.point_total_for_student(@user)} possible points"
                         %p
                         - if current_user.is_staff? 
-                          %span.editLink= button_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user.groups.where(:assignment_id => assignment.id).first.id, :gradeable_type => "Group"), :class => 'btn btn-primary btn-mini'
+                          %span.editLink= button_to "Grade", new_assignment_grade_path("assignment_id" => assignment.id, :gradeable_id => @user.groups.where(:assignment_id => assignment.id).first.id, :gradeable_type => "Group"), :class => 'btn btn-primary btn-tiny btn-success'
                   - else
-                    = button_to "Create a Group", new_assignment_group_path(assignment), :class => "btn btn-primary btn-mini"
+                    = button_to "Create a Group", new_assignment_group_path(assignment), :class => "btn btn-primary btn-tiny btn-success"
                     
                     
   - if current_course.valuable_badges?

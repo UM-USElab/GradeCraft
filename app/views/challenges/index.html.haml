@@ -24,6 +24,6 @@
         %td= challenge.visible? ? 'Yes' : 'No'
         %td= challenge.has_challenge_submissions? ? 'Yes' : 'No'
         %td= challenge.release_necessary? ? 'Yes' : 'No'
-        %td= link_to 'Edit', edit_challenge_path(challenge), :class => 'btn btn-mini'
-        %td= link_to 'Delete', challenge, :class => 'btn btn-mini', :method => :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Edit', edit_challenge_path(challenge), :class => 'btn btn-tiny btn-success'
+        %td= link_to 'Delete', challenge, :class => 'btn btn-tiny btn-success', :method => :delete, data: { confirm: 'Are you sure?' }
 

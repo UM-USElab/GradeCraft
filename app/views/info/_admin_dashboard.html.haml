@@ -33,7 +33,7 @@
               %td
                 - student.team_leader.tap do |team_leader|
                   - if team_leader.present?
-                    %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"          
+                    %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-tiny btn-success"          
     %div.tab-pane#tab2
       %h4= "Bottom 10"
       %table.table.table-bordered
@@ -60,7 +60,7 @@
               %td
                 - student.team_leader.tap do |team_leader|
                   - if team_leader.present?
-                    %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-mini"
+                    %div= link_to "Email GSI (#{team_leader.first_name})", "mailto:#{team_leader.email}", :class => "btn btn-primary btn-tiny btn-success"
     %div.tab-pane#tab3
       %h4= "#{current_course.team_term}s"
       %div#teamChart

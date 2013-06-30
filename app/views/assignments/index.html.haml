@@ -7,7 +7,7 @@
 - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
   %span.assignmentTypeTitle= "#{assignment_type.try(:name)}"
   %span.assignmentTypeValue= "(#{assignment_type.try(:weight)})" 
-  = link_to "Edit Assignment Type", edit_assignment_type_path(assignment_type), :class => "btn btn-mini"
+  = link_to "Edit Assignment Type", edit_assignment_type_path(assignment_type), :class => "btn btn-tiny btn-success"
   %table.table.display.table-bordered.tablesorter
     %thead
     %tr
@@ -38,9 +38,9 @@
                 = "#{assignment.assignment_submissions.count}"
             %td
               - if assignment.has_assignment_submissions?
-                = link_to "View Submissions", assignment_assignment_submissions_path(assignment), :class => "btn btn-mini"
+                = link_to "View Submissions", assignment_assignment_submissions_path(assignment), :class => "btn btn-tiny btn-success"
             - if assignment_type.mass_grade?
-              %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-mini'
-            %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-mini'
-            %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-mini', :data => { :confirm => 'Are you sure?' }, :method => :delete 
+              %td= link_to 'Log Grades',  mass_edit_assignment_grades_path("assignment_id"=>assignment.id), :class => 'btn btn-tiny btn-success'
+            %td= link_to 'Edit', edit_assignment_path(assignment), :class => 'btn btn-tiny btn-success'
+            %td= link_to 'Delete', assignment_path(assignment), :class => 'btn btn-tiny btn-success', :data => { :confirm => 'Are you sure?' }, :method => :delete 
         
