@@ -18,8 +18,6 @@
         %th Badges Earned
       %th.header
       %th.header
-      %th.header
-      %th.header
   %tbody
     - @users.each do |user|
       %tr
@@ -35,9 +33,6 @@
           %td
             - user.earned_badges.each do |badge|
               %img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
-        - if user.is_student?
-          %td= link_to 'Dashboard', user, :class => 'btn btn-tiny btn-success'
-          %td= link_to 'Predictor', predictor_users_path(:user_id => user.id), :class => 'btn btn-tiny btn-success'
         - else
           %td
           %td

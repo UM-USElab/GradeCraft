@@ -7,8 +7,8 @@
       %th Name
       %th Role
       %th Team
-      //%th Score
-      //%th Badges Earned
+      %th Score
+      %th Badges Earned
       %th.header
       %th.header
   %tbody
@@ -22,8 +22,11 @@
             - user.teams.each do |team|
               = team.try(:name)
               %br
-          //%td= user.team.try(:score)
-          //- user.team_badges.each do |badge|
-          //%img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
+          %td
+            //= user.team.try(:score)
+            
+          %td
+            //- user.team_badges.each do |badge|
+            //%img{:src => asset_path(badge.icon), :alt => badge.name, :width => "25"}
           %td= link_to 'Edit', edit_user_path(user), {:class => 'btn btn-tiny btn-success'}
           %td= link_to 'Delete', user, :class => 'btn btn-tiny btn-success', :data => {:confirm => 'Are you sure?'}, :method => :delete

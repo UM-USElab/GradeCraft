@@ -17,7 +17,6 @@ GradeCraft::Application.routes.draw do
       get 'test'
       get 'import'
       post 'upload'
-      get 'all'
       get 'choices'
       get 'analytics'
       get 'my_badges'
