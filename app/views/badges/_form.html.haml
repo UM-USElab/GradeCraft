@@ -2,7 +2,7 @@
   = f.association :badge_set, :collection => @badge_sets
   = f.input :name, :label => "Badge Name"
   = f.input :icon, :as => :string, :label => "Image"
-  = f.input :description, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, :label => "Description", :placeholder => "Describe what this badge means, and how it can be earned. Note that if this badge is marked as visible then this description will also be viewable in the list of badges."
+  = f.text_area :description, :class => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, :label => "Description", :placeholder => "Describe what this badge means, and how it can be earned. Note that if this badge is marked as visible then this description will also be viewable in the list of badges."
   = f.input :visible, :as => :boolean
   = f.input :value
   = f.input :multiplier

@@ -1,6 +1,6 @@
 = simple_form_for([@assignment, @rubric], :html => {:class => 'form-horizontal' }) do |f|
   = f.input :name
-  = f.input :description, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, :placeholder => "Describe what the broader goals of this rubric."
+  = f.text_area :description, :class => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }, :placeholder => "Describe what the broader goals of this rubric."
 
   .form-actions
     %div.btn-toolbar

@@ -3,7 +3,7 @@
   .form-inputs
     = f.input :name
     = f.input :ruberic_id
-    = f.input :description, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }
+    = f.text_area :description, :class => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }
 
   .form-actions
     %div.btn-toolbar    

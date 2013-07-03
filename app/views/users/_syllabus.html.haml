@@ -1,8 +1,7 @@
-%div#Grades
+%div
   - @assignments.group_by(&:assignment_type).each do |assignment_type, assignments|
     %div.assignmentType.well.darkwell
       %button.btn.btn-primary{"data-target" => "#assignment_type-#{assignment_type.id}", "data-toggle" => "collapse"} #{assignment_type.try(:name) } 
-      
       
       %span.badge.badge-warning.pull-right
         = number_with_delimiter(assignment_type.score_for_student(@user)) 
@@ -54,7 +53,20 @@
                       - if submission && @user.grade_for_assignment(assignment)
                         = link_to "See Submission (#{submission.created_at})", assignment_assignment_submission_path(assignment, submission, :grade_id => @user.grade_for_assignment(assignment).id, :submittable_id => @user, :submittable_type => "User", :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-tiny btn-success btn-info'
                       - elsif submission
-                        = link_to "See Submission (#{submission.created_at})", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-tiny btn-success btn-info'
+                        %a{:href => "#myModal", :role => "button", :class => "btn btn-info btn-tiny", "data-toggle" => "modal"} See Submission
+                        %div.modal#myModal
+                          %div.modal-content.section.col.col-lg-10
+                            %div.modal-header
+                              %button{:type => "button", :class => "close", "data-dismiss" => "modal", "aria-hidden" => "true"} x 
+                              %h3= assignment.name
+                            %div.modal-body
+                              %p 
+                                = link_to submission.link, submission.link
+                                = submission.comment
+                              %div.modal-footer
+                              %a{:href => "#", :class => "btn close", "data-dismiss" => "modal", "aria-hidden" => "true"}Close
+                              %a{:href => "#", :class => "btn btn-primary"} Save changes
+                              = link_to "See Submission (#{submission.created_at})", assignment_assignment_submission_path(assignment, submission, :gradeable_id => @user, :gradeable_type => "User"), :class => 'btn btn-tiny btn-success btn-info'
                       - else
                         = link_to "Submit", new_assignment_assignment_submission_path(assignment, @assignment_submission, :submittable_id => @user, :submittable_type => "User"), :class => 'btn btn-tiny btn-success btn-primary'
 

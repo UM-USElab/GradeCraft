@@ -60,7 +60,7 @@
   /[if IE]
     %a{ :href => 'https://www.google.com/intl/en/chrome/browser/' }
       %h3 We highly recommend you install Google Chrome to use GradeCraft  
-  %div#userScoreSection
+  %div.section
     %div
       - if current_user.is_staff?
         = render "scoreboard" 
@@ -71,16 +71,15 @@
           %a{ "data-toggle" => "tab", "data-target" => "#tab1" } Timeline
         %li 
           %a{ "data-toggle" => "tab", "data-target" => "#tab2"} Calendar
-        %li 
+        %li
           %a{ "data-toggle" => "tab", "data-target" => "#tab3"} Syllabus
         %li 
           %a{ "data-toggle" => "tab", "data-target" => "#tab4"} Badges
       %div.tab-content
         %div.tab-pane.active#tab1
-          
+          = render "users/syllabus" 
         %div.tab-pane#tab2
           = render "users/assignments" 
         %div.tab-pane#tab3
-          = render "users/syllabus" 
         %div.tab-pane#tab4
           = render "users/badges" 

@@ -2,7 +2,7 @@
 
   .form-inputs
     = f.input :question
-    = f.input :answer, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }
+    = f.text_area :answer, :class => :ckeditor, :input_html => { :ckeditor => {:toolbar => "Mini", :id => 'some-textarea', :class => 'span12', :maxlength => 1000} }
     = f.input :order
     = f.input :category
     = f.input :audience

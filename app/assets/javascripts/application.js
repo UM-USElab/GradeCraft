@@ -23,18 +23,8 @@
 
 $(document).ready(function(){
   $('#gradeCurious').popover();
-
-/*
   
-  $('#classBoxandWhiskerPopover').click(function() {
-    $(this).popover({ html: true }).popover('toggle');
-    box_and_whiskers('toggle');
-  });
-*/
-/*
-
-  $('.modal').modal();
-*/
+  $('#myModal').modal('hide');
 
   $('#easyTab a').click(function (e) {
     e.preventDefault();
@@ -46,8 +36,6 @@ $(document).ready(function(){
   });
   
   $('.toolTip').tooltip();
-
-	$("#sortableTable").tablesorter();
 	
 	$('#navbar').affix();
  
@@ -60,8 +48,6 @@ $(document).ready(function(){
       $(slider).prev("div.assignment > span").html(ui.value)
     });
   });
-  
-  //$('select').selectToUISlider();
   
   // Fix input element click problem
   $('.dropdown input, .dropdown label').click(function(e) {
