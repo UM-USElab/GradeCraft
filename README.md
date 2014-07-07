@@ -1,5 +1,5 @@
-**Out of date. Reference our development repo for current version:
-https://github.com/UM-USElab/gradecraft-development**
+**Out of date. Reference our development repo for current version:**
+https://github.com/UM-USElab/gradecraft-development
 
 ## Gradecraft is a gamified learning management system.
 
